@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Extracta — extraé datos de cualquier documento</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles/app.css" />
+  <script src="src/theme-init.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">
+        <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5aa2ff"/><stop offset="1" stop-color="#8a6cff"/></linearGradient></defs>
+          <rect x="3" y="10" width="5.4" height="17" rx="2.6" fill="url(#bm)"/>
+          <rect x="12.3" y="3" width="5.4" height="24" rx="2.6" fill="url(#bm)" opacity=".9"/>
+          <rect x="21.6" y="14" width="5.4" height="13" rx="2.6" fill="url(#bm)" opacity=".72"/>
+        </svg>
+      </span>
+      <div class="brand-text">
+        <h1>Extracta</h1>
+        <p>Extraé datos de cualquier documento — local, exacto, tuyo.</p>
+      </div>
+    </div>
+    <div class="actions">
+      <label class="btn primary" title="Abrir un PDF o imagen para extraer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg>
+        <span class="btn-txt">Abrir PDF o imagen</span><input id="fileInput" type="file" accept="application/pdf,image/*" hidden />
+      </label>
+      <button id="themeBtn" class="icon-btn" title="Cambiar tema" aria-label="Cambiar tema"></button>
+      <div class="menu-wrap">
+        <button id="btnMenu" class="icon-btn" aria-haspopup="true" aria-expanded="false" title="Más acciones" aria-label="Más acciones">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="12" cy="19" r="1.9"/></svg>
+        </button>
+        <div id="actionMenu" class="menu" role="menu" hidden>
+          <button id="btnSample" class="menu-item" role="menuitem">
+            <svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>
+            Ver un ejemplo
+          </button>
+          <label class="menu-item" role="menuitem" title="Reusar una plantilla .json descargada">
+            <svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+            Cargar plantilla<input id="tplInput" type="file" accept=".json,application/json" hidden />
+          </label>
+          <div id="savedTplRow" class="menu-field" style="display:none">
+            <span class="menu-label">Plantillas guardadas</span>
+            <select id="savedTpl" title="Reusar una plantilla guardada"></select>
+          </div>
+          <div class="menu-sep"></div>
+          <button id="btnHelp" class="menu-item" role="menuitem">
+            <svg class="ico" width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12" y2="17"/></svg>
+            Cómo funciona
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="ocrProgress" class="ocr-progress" style="display:none"></div>
+
+  <main>
+    <section id="emptyState" class="empty">
+      <div class="empty-card">
+        <div class="empty-mark">
+          <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><linearGradient id="bm2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5aa2ff"/><stop offset="1" stop-color="#8a6cff"/></linearGradient></defs>
+            <rect x="3" y="10" width="5.4" height="17" rx="2.6" fill="url(#bm2)"/>
+            <rect x="12.3" y="3" width="5.4" height="24" rx="2.6" fill="url(#bm2)" opacity=".9"/>
+            <rect x="21.6" y="14" width="5.4" height="13" rx="2.6" fill="url(#bm2)" opacity=".72"/>
+          </svg>
+        </div>
+        <h2>Tu extracto, en datos limpios</h2>
+        <p>Arrastrá un PDF o imagen acá —o tocá <em>Abrir</em> arriba. Marcás las columnas una vez
+           y el sistema lee todo. Nada se sube a ningún lado.</p>
+        <div class="empty-tags"><span>PDF</span><span>Imagen</span><span>Escaneado · OCR</span><span>Multipágina</span><span>Multi-cuenta</span><span>100% local</span></div>
+      </div>
+    </section>
+
+    <section id="workspace" style="display:none">
+      <!-- Izquierda: PDF + overlay de columnas + navegador -->
+      <div class="pane left">
+        <div class="pane-head">
+          <span>Extracto</span>
+          <div class="pager">
+            <button id="btnPrev" class="ghost sm" aria-label="Página anterior"><svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <span id="pageLabel" class="page-label">Página 1 / 1</span>
+            <button id="btnNext" class="ghost sm" aria-label="Página siguiente"><svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+            <button id="btnNewCol" class="btn sm">+ Nueva columna</button>
+            <button id="btnRecalc" class="ghost sm" title="Re-leer manteniendo tus columnas"><svg class="ico" width="14" height="14" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v5h-5"/></svg> Recalcular</button>
+            <button id="btnReset" class="ghost sm" title="Descartar columnas y auto-detectar de nuevo">Auto-detectar</button>
+          </div>
+        </div>
+        <div id="placeHint" class="place-hint" style="display:none"></div>
+        <div id="pdfWrap" class="pdf-wrap"></div>
+        <p class="hint">Cada columna es una <b>banda</b> con barra de <b>inicio</b> y de <b>fin</b>: arrastralas libres. <b>+ Nueva columna</b> → marcás inicio y fin con dos clicks. Las columnas valen para todas las páginas.</p>
+      </div>
+
+      <!-- Derecha: roles, anotaciones, tabla, saldo, export -->
+      <div class="pane right">
+        <div id="matchBanner" class="match-banner" style="display:none"></div>
+
+        <!-- El resultado (semáforo del saldo + tabla) arriba de todo: es el payoff, se ve sin scrollear. -->
+        <div id="segmentsHost"></div>
+
+        <details class="block" open>
+          <summary>Columnas y roles</summary>
+          <div id="columnsPanel" class="cols-panel"></div>
+          <p class="hint">Asigná a cada columna qué es. Agregá columnas del PDF que falten (ej: Comprobante).</p>
+        </details>
+
+        <details class="block">
+          <summary>Campos propios (no están en el PDF)</summary>
+          <div class="anno-add">
+            <input id="annoInput" type="text" placeholder="Ej: Categoría, Rubro, Conciliado…" />
+            <button id="annoAdd" class="btn sm">Agregar</button>
+          </div>
+          <div id="annoList" class="anno-list"></div>
+          <p class="hint">Aparecen como columnas editables en la tabla. Los completás vos.</p>
+        </details>
+
+        <details class="block" id="rulesBlock">
+          <summary>Reglas de exclusión <b id="rulesCount"></b></summary>
+          <div class="rule-add">
+            <select id="ruleField" title="En qué columna mirar"><option value="*">Cualquier celda</option></select>
+            <select id="ruleMatch" title="Condición">
+              <option value="contains">contiene</option>
+              <option value="equals">es igual a</option>
+              <option value="regex">regex</option>
+              <option value="empty">está vacía</option>
+            </select>
+            <input id="ruleValue" type="text" placeholder="texto a saltear (ej: TOTALES)" />
+            <button id="ruleAdd" class="btn sm">Agregar</button>
+          </div>
+          <div id="rulesList" class="rules-list"></div>
+          <p class="hint">Saltea filas-basura por <b>contenido</b> (no por posición): headers repetidos, "TOTALES", "CONTINÚA EN PÁGINA"… También desde el <b>botón de excluir</b> de cada fila en la tabla. Se guarda en la plantilla.</p>
+        </details>
+
+        <details class="block">
+          <summary><svg class="ico" width="14" height="14" viewBox="0 0 24 24" style="vertical-align:-2px"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Configuración</summary>
+          <div class="settings">
+            <label>Lectura de importes
+              <select id="setDecimalIn">
+                <option value="auto">Automático</option>
+                <option value="es-AR">es-AR (1.234,56)</option>
+                <option value="us">Yanqui (1,234.56)</option>
+              </select>
+            </label>
+            <label>Tolerancia del saldo (centavos)
+              <input id="setTolerance" type="number" min="0" step="1" />
+            </label>
+            <label>Fecha (patrón global)
+              <input id="setDateFmt" type="text" placeholder="DD/MM/YYYY" title="DD/D día · MM/M mes · AAAA/YYYY año · AA/YY año corto" />
+            </label>
+            <label>Decimal en el CSV
+              <select id="setCsvDecimal"><option value=",">Coma (,)</option><option value=".">Punto (.)</option></select>
+            </label>
+            <label>Separador del CSV
+              <select id="setCsvSep"><option value=",">Coma (,)</option><option value=";">Punto y coma (;)</option><option value="tab">Tabulación</option></select>
+            </label>
+            <label>Débitos en el CSV
+              <select id="setDebitoSign"><option value="auto">Como vienen</option><option value="negative">En negativo</option><option value="positive">En positivo</option></select>
+            </label>
+            <label class="chk"><input id="setCsvBom" type="checkbox" /> Compatibilidad Excel (BOM UTF-8)</label>
+          </div>
+          <p class="hint">Se guarda en tu navegador. "Lectura de importes" y la tolerancia recalculan al instante; el resto aplica al exportar.</p>
+        </details>
+
+        <div class="export">
+          <label class="fld">Nombre de la Entidad <input id="bankName" type="text" placeholder="Nombre de la entidad" /></label>
+          <label class="fld">Id para la Comunidad <input id="contributor" type="text" placeholder="anon (para la biblioteca comunitaria)" /></label>
+          <div class="export-btns">
+            <button id="btnEdit" class="btn" title="Editar las celdas antes de exportar (saldo en vivo)">
+              <svg class="ico" width="15" height="15" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+              Editar tabla
+            </button>
+            <button id="btnCsv" class="btn primary">Descargar movimientos (CSV)</button>
+            <button id="btnEscriba" class="btn send-escriba" title="Mandar lo extraído a tu Escriba: anonimizar, convertir, chunk, audio">
+              <svg class="ico" width="15" height="15" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Enviar a Escriba
+            </button>
+            <button id="btnYaml" class="btn">Plantilla .yaml</button>
+            <button id="btnJson" class="ghost">.json</button>
+          </div>
+          <p class="hint">La plantilla guarda <b>dónde</b> está cada dato, nunca <b>qué</b> dice. Es lo único compartible.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="helpModal" class="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Ayuda">
+      <button class="modal-close" data-close title="Cerrar" aria-label="Cerrar"><svg class="ico" width="18" height="18" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <h2>Cómo usar Extracta</h2>
+      <p class="modal-lead">Convierte el extracto bancario en PDF (o imagen) en una planilla de movimientos.
+        Todo se procesa <b>en tu navegador</b>: ningún dato sale de tu máquina.</p>
+
+      <h3>1 · Tres pasos</h3>
+      <ol class="modal-steps">
+        <li><b>Abrí</b> un PDF o imagen (o "Probar con ejemplo").</li>
+        <li><b>Marcá las columnas</b> sobre el PDF: dónde está cada dato.</li>
+        <li><b>Exportá</b> los movimientos (CSV) o la plantilla. La <b>regla del saldo</b> te confirma en verde que leyó bien.</li>
+      </ol>
+
+      <h3>2 · Marcar columnas (las barritas)</h3>
+      <ul>
+        <li>Cada columna es una <b>banda</b> con barra de <b>inicio</b> y de <b>fin</b>: arrastralas libres.</li>
+        <li><b>+ Nueva columna</b> → click donde empieza, click donde termina.</li>
+        <li>El botón de <b>cerrar</b> de la banda la borra. <b>Recalcular</b> re-lee con tus columnas. <b>Auto-detectar</b> reinicia.</li>
+        <li>Asigná a cada columna su <b>rol</b> en el panel derecho.</li>
+      </ul>
+
+      <h3>3 · Roles</h3>
+      <table class="modal-table">
+        <tr><td><b>Fecha</b></td><td>la fecha del movimiento</td></tr>
+        <tr><td><b>Descripción</b></td><td>el detalle/concepto</td></tr>
+        <tr><td><b>Débito / Crédito</b></td><td>columnas separadas de cargos y abonos</td></tr>
+        <tr><td><b>Importe</b></td><td>una sola columna con signo (+/−)</td></tr>
+        <tr><td><b>Saldo</b></td><td>el saldo corrido (si el banco lo imprime)</td></tr>
+        <tr><td><b>Texto / Ignorar</b></td><td>datos extra (ej: Comprobante) o columnas a omitir</td></tr>
+      </table>
+
+      <h3>4 · Formato a tu gusto (el botón de formato de cada columna)</h3>
+      <p>Definís cómo se presenta cada columna con un <b>patrón libre</b>. Lo que ves en la tabla es lo que sale en el CSV.</p>
+      <p class="modal-sub">Fechas — tokens (separá con / - . lo que quieras):</p>
+      <table class="modal-table">
+        <tr><td><code>DD</code> / <code>D</code></td><td>día</td><td><code>MM</code> / <code>M</code></td><td>mes</td></tr>
+        <tr><td><code>AAAA</code> / <code>YYYY</code></td><td>año 4</td><td><code>AA</code> / <code>YY</code></td><td>año 2</td></tr>
+      </table>
+      <p class="modal-eg">Ej: <code>DD/MM/YYYY</code> → 04/05/2026 · <code>AAAA-MM-DD</code> → 2026-05-04 · <code>D.M.AA</code> → 4.5.26</p>
+      <p class="modal-sub">Importes — patrón estilo Excel <code>positivo;negativo</code> (último <code>,</code>/<code>.</code> con 2 dígitos = decimal):</p>
+      <table class="modal-table">
+        <tr><td><code>$ #.##0,00</code></td><td>$ 1.234,56</td></tr>
+        <tr><td><code>#,##0.00;(#,##0.00)</code></td><td>negativos (1.234,56)</td></tr>
+        <tr><td><code>#.##0,00;#.##0,00-</code></td><td>menos atrás 89,90-</td></tr>
+        <tr><td><code>U$S #,##0.00</code></td><td>U$S 1,234.50</td></tr>
+      </table>
+
+      <h3>5 · Plantillas (reusar)</h3>
+      <ul>
+        <li>Marcaste un banco una vez → exportás la <b>plantilla</b> y queda guardada en el navegador.</li>
+        <li>La próxima vez que abrís un PDF de ese banco, lo <b>reconoce solo</b> y aplica la plantilla. También podés "Cargar plantilla" desde un archivo.</li>
+      </ul>
+
+      <h3>6 · Más</h3>
+      <ul>
+        <li><b>Multi-cuenta:</b> si el PDF tiene varias cuentas (pesos y dólares), las separa en tarjetas independientes.</li>
+        <li><b>Imágenes y escaneados:</b> los lee con OCR, también local.</li>
+        <li><b>Campos propios:</b> agregá columnas que no están en el PDF (Categoría, Conciliado…) y completalas a mano.</li>
+        <li><b>Configuración:</b> defaults globales de fecha, decimal, separador del CSV, etc.</li>
+      </ul>
+
+      <p class="modal-foot"><svg class="ico" width="13" height="13" viewBox="0 0 24 24" style="vertical-align:-1px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Privacidad por diseño: el PDF nunca se sube a ningún servidor. La plantilla que compartís guarda <b>dónde</b> está cada dato, nunca <b>qué</b> dice.</p>
+    </div>
+  </div>
+
+  <div id="editorModal" class="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card editor-card" role="dialog" aria-modal="true" aria-label="Editar tabla">
+      <button class="modal-close" data-close title="Cerrar" aria-label="Cerrar"><svg class="ico" width="18" height="18" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <h2>Editar tabla</h2>
+      <p class="modal-lead">Corregí cualquier celda —Enter/Tab para moverte, como en una planilla. El <b>saldo se recalcula al instante</b>. Lo que edites acá es lo que se exporta y se envía a Escriba (no toca la plantilla).</p>
+      <div class="editor-tools">
+        <button id="edUndo" class="icon-btn" title="Deshacer (Ctrl+Z)" aria-label="Deshacer" disabled><svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-1"/></svg></button>
+        <button id="edRedo" class="icon-btn" title="Rehacer (Ctrl+Y)" aria-label="Rehacer" disabled><svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="m15 14 5-5-5-5"/><path d="M20 9H9a5 5 0 0 0 0 10h1"/></svg></button>
+        <span class="ed-sep"></span>
+        <input id="edFind" class="ed-tool-inp" type="text" placeholder="Buscar texto…" />
+        <input id="edRepl" class="ed-tool-inp" type="text" placeholder="Reemplazar con…" />
+        <button id="edReplace" class="btn sm">Reemplazar todo</button>
+        <span class="ed-sep"></span>
+        <button id="edCat" class="btn sm">Categorizar…</button>
+        <button id="edQuality" class="btn sm">Revisar calidad</button>
+        <span id="edStatus" class="ed-status"></span>
+      </div>
+      <div id="edCatPanel" class="ed-cat" hidden>
+        <span class="ed-cat-lbl">Si la descripción contiene</span>
+        <input id="edCatKey" class="ed-tool-inp" type="text" placeholder="ej: UBER" />
+        <span class="ed-cat-lbl">poner</span>
+        <input id="edCatVal" class="ed-tool-inp" type="text" placeholder="ej: Transporte" />
+        <span class="ed-cat-lbl">en</span>
+        <select id="edCatCol"></select>
+        <button id="edCatApply" class="btn sm">Aplicar</button>
+      </div>
+      <div id="editorBody"></div>
+      <div class="editor-foot">
+        <button id="editorClear" class="ghost sm" title="Descartar todas las correcciones manuales">Limpiar ediciones</button>
+        <button id="editorDone" class="btn primary" data-close>Listo</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

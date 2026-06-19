@@ -1,0 +1,22 @@
+# Lo que NO entra a la imagen.
+node_modules
+tools
+.git
+.gitignore
+.github
+.claude
+*.log
+.DS_Store
+
+# Secretos: NUNCA al contenedor (las variables llegan por el entorno de EasyPanel).
+.env
+.env.*
+!.env.example
+
+# PDFs reales con PII: NUNCA al contenedor.
+samples/private
+
+# Artefactos de build
+Dockerfile
+.dockerignore
+docker-compose.yml

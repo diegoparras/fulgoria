@@ -1,0 +1,14 @@
+{
+  "name": "extracta-tools",
+  "private": true,
+  "type": "module",
+  "description": "Herramientas de desarrollo: generador de PDFs de prueba",
+  "scripts": {
+    "gen": "node gen-sample.mjs"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^4.10.38",
+    "tesseract.js": "^5.1.1"
+  }
+}

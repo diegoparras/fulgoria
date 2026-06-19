@@ -1,0 +1,16 @@
+node_modules/
+tools/node_modules/
+*.log
+.DS_Store
+
+# PDFs reales con datos del cliente: NUNCA al repo. Solo prueba local.
+samples/private/
+
+# Dumps de PDFs para debug (pueden tener PII): NUNCA al repo.
+tools/*-dump.txt
+*.dump
+
+# Secretos del server (login). El .env NUNCA al repo; sí el .env.example.
+.env
+.env.local
+.env.*.local
