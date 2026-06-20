@@ -959,9 +959,13 @@ $("btnEscriba").addEventListener("click", () => {
   const csv = rowsToCsv(state.result.movements, state.columns, state.annotations, state.annoValues, { ...o, sep: ",", bom: false });
   const bank = ($("bankName")?.value || "").trim();
   const payload = { from: "extracta", version: 1, title: "Extracta — " + (bank || "movimientos"), source: bank, mime: "text/markdown", content: md, alt: { csv }, ts: Date.now() };
-  try { sessionStorage.setItem("escriba.handoff", JSON.stringify(payload)); } catch {}
+  // Doble canal: localStorage (se comparte al instante entre pestañas del mismo origen, sirve en
+  // todos los navegadores) + sessionStorage (el contrato del ecosistema). Escriba lee cualquiera.
+  try { const s = JSON.stringify(payload); localStorage.setItem("escriba.handoff", s); sessionStorage.setItem("escriba.handoff", s); } catch {}
   toast("Abriendo Escriba con tus datos…");
-  window.open(escribaUrl(), "_blank", "noopener");
+  // SIN "noopener": para que la pestaña nueva (Escriba, mismo origen) herede la copia del
+  // sessionStorage con el handoff. Con noopener no se copia y Escriba no recibe nada. (Igual que Fisherboy.)
+  window.open(escribaUrl(), "_blank");
 });
 
 // Toast mínimo (estilo ecosistema)
@@ -980,11 +984,11 @@ function coachOnce() {
 
 // Modal de ayuda
 $("btnHelp").addEventListener("click", () => { $("helpModal").hidden = false; });
-$("helpModal").addEventListener("click", (e) => { if ("close" in e.target.dataset) $("helpModal").hidden = true; });
+$("helpModal").addEventListener("click", (e) => { if (e.target.closest("[data-close]")) $("helpModal").hidden = true; });
 // Editor de tabla
 $("btnEdit").addEventListener("click", openEditor);
 $("editorClear").addEventListener("click", clearEdits);
-$("editorModal").addEventListener("click", (e) => { if ("close" in e.target.dataset) closeEditor(); });
+$("editorModal").addEventListener("click", (e) => { if (e.target.closest("[data-close]")) closeEditor(); });
 (() => {
   const eb = $("editorBody");
   eb.addEventListener("focusin", (e) => { if (e.target.matches("input.ed-cell, input.ed-be")) cellPre = snapshot(); });
