@@ -15,10 +15,9 @@
     <div class="brand">
       <span class="logo">
         <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="64" height="64" rx="15" fill="#6c5cf0"/>
-          <rect x="12" y="22" width="10" height="30" rx="5" fill="#ffffff"/>
-          <rect x="27" y="12" width="10" height="40" rx="5" fill="#ffffff"/>
-          <rect x="42" y="28" width="10" height="24" rx="5" fill="#ffffff"/>
+          <defs><linearGradient id="fgTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5aa2ff"/><stop offset="1" stop-color="#7a52e8"/></linearGradient></defs>
+          <rect width="64" height="64" rx="15" fill="url(#fgTop)"/>
+          <path d="M13 2 L3 14 h9 l-1 8 L21 10 h-9 l1 -8 z" transform="translate(2,2) scale(2.5)" fill="#ffffff"/>
         </svg>
       </span>
       <div class="brand-text">
@@ -69,11 +68,9 @@
     <section id="emptyState" class="empty">
       <div class="empty-card">
         <div class="empty-mark">
-          <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs><linearGradient id="bm2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5aa2ff"/><stop offset="1" stop-color="#8a6cff"/></linearGradient></defs>
-            <rect x="3" y="10" width="5.4" height="17" rx="2.6" fill="url(#bm2)"/>
-            <rect x="12.3" y="3" width="5.4" height="24" rx="2.6" fill="url(#bm2)" opacity=".9"/>
-            <rect x="21.6" y="14" width="5.4" height="13" rx="2.6" fill="url(#bm2)" opacity=".72"/>
+            <path d="M13 2 L3 14 h9 l-1 8 L21 10 h-9 l1 -8 z" fill="url(#bm2)"/>
           </svg>
         </div>
         <h2>Tu extracto, en datos limpios</h2>
