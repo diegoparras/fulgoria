@@ -13,29 +13,30 @@ Compose, **(3)** EasyPanel, e por fim a **referência de variáveis** e o **chec
 
 ## 0. Primeiro, os segredos
 
-Para ter login (recomendado para qualquer coisa pública), você precisa de dois valores no `.env`:
+Para ter login (recomendado para qualquer coisa pública), coloque isto no seu `.env`:
 
 ```bash
 cp .env.example .env
-
-# 1) hash bcrypt da sua senha → vai em AUTH_PASSWORD (nunca a senha em texto puro):
-node server.js --hash 'sua-senha'
-
-# 2) um segredo aleatório para assinar o cookie de sessão → vai em SESSION_SECRET:
-openssl rand -hex 32
 ```
-
-Depois edite o `.env`:
 
 ```ini
 AUTH_ENABLED=true
 AUTH_USER=diego
-AUTH_PASSWORD=$2a$12$....................          # o hash do passo 1
-SESSION_SECRET=1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d... # o segredo do passo 2
-COOKIE_SECURE=true        # true atrás de HTTPS; false só para http:// local
+AUTH_PASSWORD=sua-senha          # texto puro, como Escriba/Fisherboy
+SESSION_SECRET=<cole o de baixo>
+COOKIE_SECURE=true               # true atrás de HTTPS; false só para http:// local
 ```
 
-> Não quer login (rede privada / só local)? Defina `AUTH_ENABLED=false` e pule os segredos.
+O único valor que você precisa gerar é `SESSION_SECRET` (assina o cookie de sessão):
+
+```bash
+openssl rand -hex 32
+# Sem openssl no Windows? -> node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+> **Prefere não deixar a senha em claro?** Use um hash bcrypt: rode `node server.js --hash 'sua-senha'` e cole o `$2a$...` em `AUTH_PASSWORD` (o servidor detecta sozinho).
+>
+> **Não quer login** (rede privada / só local)? Defina `AUTH_ENABLED=false` e pule os segredos.
 
 ---
 
@@ -55,7 +56,7 @@ npm start            # → http://localhost:3000
 Com Docker Desktop (Windows/Mac) ou qualquer host Docker:
 
 ```bash
-cp .env.example .env          # preencha AUTH_PASSWORD (hash) + SESSION_SECRET (ou AUTH_ENABLED=false)
+cp .env.example .env          # preencha AUTH_PASSWORD + SESSION_SECRET (ou AUTH_ENABLED=false)
 docker compose up --build     # → http://localhost:3000
 ```
 
@@ -97,7 +98,7 @@ O EasyPanel pode **puxar a imagem pré-construída** ou **buildar a partir do re
    ```ini
    AUTH_ENABLED=true
    AUTH_USER=diego
-   AUTH_PASSWORD=$2a$12$....
+   AUTH_PASSWORD=<your-password>
    SESSION_SECRET=<hex aleatório>
    COOKIE_SECURE=true
    ```
@@ -133,7 +134,7 @@ Lista completa com comentários: [`.env.example`](../../.env.example).
 
 Antes de expor o Extracta a alguém além de você:
 
-- [ ] Defina `AUTH_USER`, `AUTH_PASSWORD` (um **hash bcrypt**, nunca texto puro) e `SESSION_SECRET`.
+- [ ] Defina `AUTH_USER`, `AUTH_PASSWORD` (sua senha, ou um hash bcrypt) e `SESSION_SECRET`.
 - [ ] **Não** deixe `AUTH_ENABLED=false` em algo acessível por outros.
 - [ ] `COOKIE_SECURE=true` atrás de HTTPS (EasyPanel / seu reverse proxy encerra o TLS).
 - [ ] Mantenha o `.env` fora do git e da imagem (já está — `.gitignore` + `.dockerignore`).

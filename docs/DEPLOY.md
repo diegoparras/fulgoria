@@ -18,29 +18,30 @@ Four ways to run it, from easiest to most controlled:
 
 ## 0. Secrets first
 
-If you want a login (recommended for anything public), you need two values in your `.env`:
+If you want a login (recommended for anything public), set these in your `.env`:
 
 ```bash
 cp .env.example .env
-
-# 1) bcrypt hash of your password → goes in AUTH_PASSWORD (never the plain password):
-node server.js --hash 'your-password'
-
-# 2) a random secret to sign the session cookie → goes in SESSION_SECRET:
-openssl rand -hex 32
 ```
-
-Then edit `.env`:
 
 ```ini
 AUTH_ENABLED=true
 AUTH_USER=diego
-AUTH_PASSWORD=$2a$12$....................          # the hash from step 1
-SESSION_SECRET=1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d... # the secret from step 2
-COOKIE_SECURE=true        # true behind HTTPS; false only for local http://
+AUTH_PASSWORD=your-password     # plain text, like Escriba/Fisherboy
+SESSION_SECRET=<paste from below>
+COOKIE_SECURE=true              # true behind HTTPS; false only for local http://
 ```
 
-> Don't want a login (private network / local only)? Set `AUTH_ENABLED=false` and skip the secrets.
+`SESSION_SECRET` is the one value you must generate — it signs the session cookie:
+
+```bash
+openssl rand -hex 32
+# No openssl on Windows? -> node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+> **Prefer not to store the password in clear?** Use a bcrypt hash instead: run `node server.js --hash 'your-password'` and paste the `$2a$...` into `AUTH_PASSWORD` (the server auto-detects it).
+>
+> **Don't want a login** (private network / local only)? Set `AUTH_ENABLED=false` and skip the secrets.
 
 ---
 
@@ -60,7 +61,7 @@ That's it. Node ≥ 18. To change the port, set `PORT` in the `.env`.
 With Docker Desktop (Windows/Mac) or any Docker host:
 
 ```bash
-cp .env.example .env          # fill AUTH_PASSWORD (hash) + SESSION_SECRET (or AUTH_ENABLED=false)
+cp .env.example .env          # fill AUTH_PASSWORD + SESSION_SECRET (or AUTH_ENABLED=false)
 docker compose up --build     # → http://localhost:3000
 ```
 
@@ -102,7 +103,7 @@ EasyPanel can **pull the prebuilt image** or **build from the repo**. Pulling is
    ```ini
    AUTH_ENABLED=true
    AUTH_USER=diego
-   AUTH_PASSWORD=$2a$12$....
+   AUTH_PASSWORD=<your-password>
    SESSION_SECRET=<random hex>
    COOKIE_SECURE=true
    ```
@@ -138,7 +139,7 @@ Full list with comments: [`.env.example`](../.env.example).
 
 Before exposing Extracta to anyone but you:
 
-- [ ] Set `AUTH_USER`, `AUTH_PASSWORD` (a **bcrypt hash**, never plain text) and `SESSION_SECRET`.
+- [ ] Set `AUTH_USER`, `AUTH_PASSWORD` (your password, or a bcrypt hash) and `SESSION_SECRET`.
 - [ ] **Do not** leave `AUTH_ENABLED=false` on anything reachable by others.
 - [ ] `COOKIE_SECURE=true` behind HTTPS (EasyPanel / your reverse proxy terminates TLS).
 - [ ] Keep the `.env` out of git and out of the image (it already is — `.gitignore` + `.dockerignore`).

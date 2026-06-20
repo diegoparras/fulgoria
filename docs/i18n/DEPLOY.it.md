@@ -14,29 +14,30 @@ Quattro modi per eseguirlo, dal più facile al più controllato: **(1)** locale 
 
 ## 0. Prima i segreti
 
-Per un login (consigliato per qualsiasi cosa pubblica) servono due valori nel `.env`:
+Per un login (consigliato per qualsiasi cosa pubblica), metti questo nel tuo `.env`:
 
 ```bash
 cp .env.example .env
-
-# 1) hash bcrypt della tua password → va in AUTH_PASSWORD (mai la password in chiaro):
-node server.js --hash 'la-tua-password'
-
-# 2) un segreto casuale per firmare il cookie di sessione → va in SESSION_SECRET:
-openssl rand -hex 32
 ```
-
-Poi modifica il `.env`:
 
 ```ini
 AUTH_ENABLED=true
 AUTH_USER=diego
-AUTH_PASSWORD=$2a$12$....................          # l'hash del passo 1
-SESSION_SECRET=1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d... # il segreto del passo 2
-COOKIE_SECURE=true        # true dietro HTTPS; false solo per http:// locale
+AUTH_PASSWORD=la-tua-password    # testo semplice, come Escriba/Fisherboy
+SESSION_SECRET=<incolla quello sotto>
+COOKIE_SECURE=true               # true dietro HTTPS; false solo per http:// locale
 ```
 
-> Niente login (rete privata / solo locale)? Imposta `AUTH_ENABLED=false` e salta i segreti.
+L'unico valore da generare è `SESSION_SECRET` (firma il cookie di sessione):
+
+```bash
+openssl rand -hex 32
+# Niente openssl su Windows? -> node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+> **Preferisci non tenere la password in chiaro?** Usa un hash bcrypt: esegui `node server.js --hash 'la-tua-password'` e incolla il `$2a$...` in `AUTH_PASSWORD` (il server lo rileva da solo).
+>
+> **Niente login** (rete privata / solo locale)? Imposta `AUTH_ENABLED=false` e salta i segreti.
 
 ---
 
@@ -56,7 +57,7 @@ Tutto qui. Node ≥ 18. Per cambiare la porta, imposta `PORT` nel `.env`.
 Con Docker Desktop (Windows/Mac) o qualsiasi host Docker:
 
 ```bash
-cp .env.example .env          # compila AUTH_PASSWORD (hash) + SESSION_SECRET (o AUTH_ENABLED=false)
+cp .env.example .env          # compila AUTH_PASSWORD + SESSION_SECRET (o AUTH_ENABLED=false)
 docker compose up --build     # → http://localhost:3000
 ```
 
@@ -98,7 +99,7 @@ EasyPanel può **scaricare l'immagine già pronta** o **compilare dal repo**. Sc
    ```ini
    AUTH_ENABLED=true
    AUTH_USER=diego
-   AUTH_PASSWORD=$2a$12$....
+   AUTH_PASSWORD=<your-password>
    SESSION_SECRET=<hex casuale>
    COOKIE_SECURE=true
    ```
@@ -134,7 +135,7 @@ Elenco completo con commenti: [`.env.example`](../../.env.example).
 
 Prima di esporre Extracta a qualcuno oltre a te:
 
-- [ ] Imposta `AUTH_USER`, `AUTH_PASSWORD` (un **hash bcrypt**, mai in chiaro) e `SESSION_SECRET`.
+- [ ] Imposta `AUTH_USER`, `AUTH_PASSWORD` (la tua password, o un hash bcrypt) e `SESSION_SECRET`.
 - [ ] **Non** lasciare `AUTH_ENABLED=false` su qualcosa raggiungibile da altri.
 - [ ] `COOKIE_SECURE=true` dietro HTTPS (EasyPanel / il tuo reverse proxy termina il TLS).
 - [ ] Tieni il `.env` fuori da git e dall'immagine (lo è già — `.gitignore` + `.dockerignore`).
