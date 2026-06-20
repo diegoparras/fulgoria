@@ -959,13 +959,20 @@ $("btnEscriba").addEventListener("click", () => {
   const csv = rowsToCsv(state.result.movements, state.columns, state.annotations, state.annoValues, { ...o, sep: ",", bom: false });
   const bank = ($("bankName")?.value || "").trim();
   const payload = { from: "extracta", version: 1, title: "Extracta — " + (bank || "movimientos"), source: bank, mime: "text/markdown", content: md, alt: { csv }, ts: Date.now() };
-  // Doble canal: localStorage (se comparte al instante entre pestañas del mismo origen, sirve en
-  // todos los navegadores) + sessionStorage (el contrato del ecosistema). Escriba lee cualquiera.
+  // Canal 1 (mismo origen): storage. localStorage se comparte al instante entre pestañas del mismo
+  // origen; sessionStorage es el contrato del ecosistema. Escriba lee cualquiera.
   try { const s = JSON.stringify(payload); localStorage.setItem("escriba.handoff", s); sessionStorage.setItem("escriba.handoff", s); } catch {}
+  // Canal 2 (CROSS-ORIGEN): postMessage. El storage NO cruza orígenes distintos (ej. Extracta y
+  // Escriba en subdominios distintos). Abro Escriba SIN noopener (para tener su window), y cuando
+  // ella avisa "ready" le mando el handoff por postMessage al origen exacto. Funciona estén donde estén.
+  const url = escribaUrl();
+  let targetOrigin = "*"; try { targetOrigin = new URL(url, location.origin).origin; } catch {}
+  let win = null;
+  const onMsg = (e) => { if (win && e.source === win && e.data && e.data.type === "escriba-ready") { try { win.postMessage({ type: "escriba-handoff", payload }, targetOrigin); } catch {} } };
+  window.addEventListener("message", onMsg);
+  setTimeout(() => window.removeEventListener("message", onMsg), 120000); // limpio el listener a los 2 min
   toast("Abriendo Escriba con tus datos…");
-  // SIN "noopener": para que la pestaña nueva (Escriba, mismo origen) herede la copia del
-  // sessionStorage con el handoff. Con noopener no se copia y Escriba no recibe nada. (Igual que Fisherboy.)
-  window.open(escribaUrl(), "_blank");
+  win = window.open(url, "_blank");
 });
 
 // Toast mínimo (estilo ecosistema)
