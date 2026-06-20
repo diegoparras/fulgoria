@@ -80,6 +80,9 @@ npm install && npm start            # 本地 → http://localhost:3000
 或使用发布到 **GHCR** 的镜像（`ghcr.io/diegoparras/extracta:latest`，由 CI 在每次推送到 `main`
 时构建），并在 **EasyPanel** 上部署，把 `.env` 变量填入面板。
 
+> 📖 **完整部署指南**（Docker、EasyPanel、环境变量参考、上线检查清单）：
+> [DEPLOY.zh.md](DEPLOY.zh.md)。
+
 ## 📜 许可证
 
 版权所有 2026 Diego Parras。**Apache-2.0** —— 见 [LICENSE](../../LICENSE)。

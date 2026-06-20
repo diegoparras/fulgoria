@@ -87,6 +87,9 @@ npm install && npm start                   # locale → http://localhost:3000
 Oppure usa l'immagine pubblicata su **GHCR** (`ghcr.io/diegoparras/extracta:latest`, costruita dalla
 CI ad ogni push su `main`) e distribuiscila su **EasyPanel** con le variabili del `.env` nel pannello.
 
+> 📖 **Guida al deploy completa** (Docker, EasyPanel, referenza delle variabili, checklist di produzione):
+> [DEPLOY.it.md](DEPLOY.it.md).
+
 ## 📜 Licenza
 
 Copyright 2026 Diego Parras. **Apache-2.0** — vedi [LICENSE](../../LICENSE).

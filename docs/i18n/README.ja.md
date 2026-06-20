@@ -86,6 +86,9 @@ npm install && npm start                      # ローカル → http://localhos
 または **GHCR** に公開されたイメージ（`ghcr.io/diegoparras/extracta:latest`、`main` への push ごとに
 CI がビルド）を使い、`.env` の変数をパネルに設定して **EasyPanel** にデプロイします。
 
+> 📖 **完全なデプロイガイド**（Docker、EasyPanel、環境変数リファレンス、本番チェックリスト）：
+> [DEPLOY.ja.md](DEPLOY.ja.md)。
+
 ## 📜 ライセンス
 
 Copyright 2026 Diego Parras. **Apache-2.0** —— [LICENSE](../../LICENSE) を参照。
