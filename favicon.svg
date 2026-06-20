@@ -1,10 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Fulgoria">
-  <defs>
-    <linearGradient id="fg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#5aa2ff"/>
-      <stop offset="1" stop-color="#7a52e8"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="15" fill="url(#fg)"/>
+  <rect width="64" height="64" rx="15" fill="#6c5cf0"/>
   <path d="M13 2 L3 14 h9 l-1 8 L21 10 h-9 l1 -8 z" transform="translate(2,2) scale(2.5)" fill="#ffffff"/>
 </svg>
