@@ -119,7 +119,7 @@ O EasyPanel pode **puxar a imagem pré-construída** ou **buildar a partir do re
 | `PORT` | `3000` | Porta em que o servidor escuta. |
 | `AUTH_ENABLED` | `true` | `false` serve o app **sem login** (local / rede privada). |
 | `AUTH_USER` | — | Usuário do login. Obrigatório com `AUTH_ENABLED=true`. |
-| `AUTH_PASSWORD` | — | **Hash bcrypt** da senha (não o texto puro). Gere com `node server.js --hash '…'`. |
+| `AUTH_PASSWORD` | — | A senha do login, em **texto puro** (como Escriba/Fisherboy). Opcional: um hash bcrypt (`node server.js --hash '…'`) para não deixá-la em claro. |
 | `SESSION_SECRET` | — | Segredo que assina o cookie de sessão. Mesmo valor em cada réplica. `openssl rand -hex 32`. |
 | `SESSION_TTL_HOURS` | `12` | Quanto tempo um login permanece válido. |
 | `COOKIE_SECURE` | `true` | Envia o cookie só por HTTPS. Defina `false` para `http://` local. |

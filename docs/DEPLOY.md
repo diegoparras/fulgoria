@@ -124,7 +124,7 @@ EasyPanel can **pull the prebuilt image** or **build from the repo**. Pulling is
 | `PORT` | `3000` | Port the server listens on. |
 | `AUTH_ENABLED` | `true` | `false` serves the app with **no login** (local / private network). |
 | `AUTH_USER` | — | Username for the login. Required when `AUTH_ENABLED=true`. |
-| `AUTH_PASSWORD` | — | **bcrypt hash** of the password (not the plain text). Generate with `node server.js --hash '…'`. |
+| `AUTH_PASSWORD` | — | The login password, **plain text** (like Escriba/Fisherboy). Optionally a bcrypt hash (`node server.js --hash '…'`) if you'd rather not store it in clear. |
 | `SESSION_SECRET` | — | Secret that signs the session cookie. Use the same value on every replica. `openssl rand -hex 32`. |
 | `SESSION_TTL_HOURS` | `12` | How long a login stays valid. |
 | `COOKIE_SECURE` | `true` | Send the session cookie only over HTTPS. Set `false` for local `http://`. |

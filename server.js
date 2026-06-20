@@ -35,9 +35,21 @@ const INDEX_HTML = fs.readFileSync(path.join(__dirname, "index.html"), "utf8").r
 );
 
 if (AUTH_ENABLED && (!AUTH_USER || !AUTH_PASSWORD || !SESSION_SECRET)) {
-  console.error("AUTH_ENABLED=true requiere AUTH_USER, AUTH_PASSWORD (hash bcrypt) y SESSION_SECRET en el .env.");
-  console.error("Generá el hash con:  node server.js --hash '<contraseña>'   y el secreto con:  openssl rand -hex 32");
+  console.error("AUTH_ENABLED=true requiere AUTH_USER, AUTH_PASSWORD y SESSION_SECRET en el .env.");
+  console.error("AUTH_PASSWORD puede ser tu contraseña en texto plano, o un hash bcrypt (node server.js --hash '…').");
+  console.error("Generá el SESSION_SECRET con:  openssl rand -hex 32");
   process.exit(1);
+}
+
+// AUTH_PASSWORD admite texto plano (como Escriba/Fisherboy) O un hash bcrypt (opcional, más seguro
+// si el .env se filtra). Auto-detección por el prefijo del hash.
+const PASS_IS_HASH = /^\$2[aby]\$/.test(AUTH_PASSWORD);
+function passwordOk(input) {
+  const p = String(input || "");
+  if (PASS_IS_HASH) return bcrypt.compareSync(p, AUTH_PASSWORD);
+  // Comparación en tiempo constante (hasheo ambos a 32 bytes para no filtrar el largo).
+  const h = (s) => crypto.createHash("sha256").update(s).digest();
+  return crypto.timingSafeEqual(h(p), h(AUTH_PASSWORD));
 }
 
 const app = express();
@@ -119,7 +131,7 @@ app.post("/login", (req, res) => {
   const ip = req.ip || "?";
   const f = fails.get(ip);
   if (f && f.count >= 8 && Date.now() - f.t < 60000) return res.redirect("/login?e=2");
-  const ok = !!AUTH_USER && req.body.user === AUTH_USER && bcrypt.compareSync(String(req.body.password || ""), AUTH_PASSWORD);
+  const ok = !!AUTH_USER && req.body.user === AUTH_USER && passwordOk(req.body.password);
   if (!ok) {
     fails.set(ip, { count: (f && Date.now() - f.t < 60000 ? f.count : 0) + 1, t: Date.now() });
     return res.redirect("/login?e=1");
