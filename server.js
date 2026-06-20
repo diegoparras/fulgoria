@@ -116,7 +116,7 @@ input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-m
 button{width:100%;margin-top:20px;padding:12px;border:0;border-radius:10px;background:var(--accent);color:#fff;font:inherit;font-weight:600;font-size:15px;cursor:pointer}
 button:hover{filter:brightness(1.06)}.err{color:#cf222e;font-size:13px;margin:14px 0 0}
 </style></head><body><form class="card" method="post" action="/login" autocomplete="on">
-<div class="logo"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="15" fill="#6c5cf0"/><path d="M13 2 L3 14 h9 l-1 8 L21 10 h-9 l1 -8 z" transform="translate(2,2) scale(2.5)" fill="#fff"/></svg>Fulgoria</div>
+<div class="logo"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="15" fill="#3b76d9"/><path d="M13 2 L3 14 h9 l-1 8 L21 10 h-9 l1 -8 z" transform="translate(2,2) scale(2.5)" fill="#fff"/></svg>Fulgoria</div>
 <p class="sub">Extraé datos de cualquier documento.</p>
 <label for="u">Usuario</label><input id="u" name="user" autocomplete="username" required autofocus>
 <label for="p">Contraseña</label><input id="p" name="password" type="password" autocomplete="current-password" required>
