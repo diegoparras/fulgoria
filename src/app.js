@@ -944,7 +944,11 @@ $("themeBtn").addEventListener("click", () => {
 // El documento nunca sale del navegador; el handoff es local (tu Escriba del ecosistema).
 const ESCRIBA_URL_KEY = "extracta.escribaUrl";
 function escribaUrl() {
-  let u; try { u = localStorage.getItem(ESCRIBA_URL_KEY) || "/"; } catch { return "/"; }
+  // Prioridad: override local (localStorage) > config del server (meta inyectada de ESCRIBA_URL) > "/".
+  let u = "";
+  try { u = localStorage.getItem(ESCRIBA_URL_KEY) || ""; } catch {}
+  if (!u) u = document.querySelector('meta[name="extracta-escriba-url"]')?.content || "";
+  u = u || "/";
   // Solo rutas relativas o http(s). Bloqueo javascript:/data: (evita ejecución vía window.open).
   try { const abs = new URL(u, location.origin); return abs.protocol === "http:" || abs.protocol === "https:" ? u : "/"; } catch { return "/"; }
 }

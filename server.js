@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const path = require("path");
+const fs = require("fs");
 require("dotenv").config();
 
 // --- CLI: generar el hash bcrypt para AUTH_PASSWORD ---
@@ -24,6 +25,14 @@ const SESSION_SECRET = process.env.SESSION_SECRET || "";
 const COOKIE_SECURE = String(process.env.COOKIE_SECURE ?? "true").toLowerCase() === "true";
 const TTL_MS = Number(process.env.SESSION_TTL_HOURS || 12) * 3600 * 1000;
 const COOKIE = "extracta_auth";
+const ESCRIBA_URL = process.env.ESCRIBA_URL || ""; // destino de "Enviar a Escriba" (vacío → "/")
+
+// index.html con el destino de Escriba inyectado en su <meta> (una sola lectura al arrancar).
+const escAttr = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const INDEX_HTML = fs.readFileSync(path.join(__dirname, "index.html"), "utf8").replace(
+  '<meta name="extracta-escriba-url" content="" />',
+  `<meta name="extracta-escriba-url" content="${escAttr(ESCRIBA_URL)}" />`,
+);
 
 if (AUTH_ENABLED && (!AUTH_USER || !AUTH_PASSWORD || !SESSION_SECRET)) {
   console.error("AUTH_ENABLED=true requiere AUTH_USER, AUTH_PASSWORD (hash bcrypt) y SESSION_SECRET en el .env.");
@@ -137,7 +146,7 @@ app.use("/styles", express.static(path.join(__dirname, "styles"), { ...staticOpt
 app.use("/vendor", express.static(path.join(__dirname, "vendor"), { ...staticOpts, maxAge: "7d" }));
 app.get("/favicon.svg", (req, res) => res.sendFile(path.join(__dirname, "favicon.svg")));
 app.get("/samples/banco-rio-cc.pdf", (req, res) => res.sendFile(path.join(__dirname, "samples", "banco-rio-cc.pdf")));
-app.get("/", (req, res) => res.sendFile(path.join(__dirname, "index.html")));
+app.get("/", (req, res) => res.type("html").send(INDEX_HTML));
 app.use((req, res) => res.status(404).send("No encontrado"));
 
 app.listen(PORT, () => console.log(`Extracta escuchando en http://localhost:${PORT}  ·  login: ${AUTH_ENABLED ? "ON" : "OFF"}`));

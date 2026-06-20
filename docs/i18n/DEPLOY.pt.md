@@ -123,6 +123,7 @@ O EasyPanel pode **puxar a imagem pré-construída** ou **buildar a partir do re
 | `SESSION_SECRET` | — | Segredo que assina o cookie de sessão. Mesmo valor em cada réplica. `openssl rand -hex 32`. |
 | `SESSION_TTL_HOURS` | `12` | Quanto tempo um login permanece válido. |
 | `COOKIE_SECURE` | `true` | Envia o cookie só por HTTPS. Defina `false` para `http://` local. |
+| `ESCRIBA_URL` | — | Destino do botão **"Enviar ao Escriba"**. Vazio → `/`. Defina a URL do seu Escriba (ou um caminho interno se mesmo domínio). |
 
 Lista completa com comentários: [`.env.example`](../../.env.example).
 

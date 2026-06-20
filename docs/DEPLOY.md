@@ -128,6 +128,7 @@ EasyPanel can **pull the prebuilt image** or **build from the repo**. Pulling is
 | `SESSION_SECRET` | — | Secret that signs the session cookie. Use the same value on every replica. `openssl rand -hex 32`. |
 | `SESSION_TTL_HOURS` | `12` | How long a login stays valid. |
 | `COOKIE_SECURE` | `true` | Send the session cookie only over HTTPS. Set `false` for local `http://`. |
+| `ESCRIBA_URL` | — | Destination of the **"Send to Escriba"** button. Empty → `/`. Set your Escriba's URL (or an internal path if same‑domain). |
 
 Full list with comments: [`.env.example`](../.env.example).
 

@@ -125,6 +125,7 @@ EasyPanel peut **tirer l'image préconstruite** ou **builder depuis le dépôt**
 | `SESSION_SECRET` | — | Secret qui signe le cookie de session. Même valeur sur chaque réplique. `openssl rand -hex 32`. |
 | `SESSION_TTL_HOURS` | `12` | Durée de validité d'une session. |
 | `COOKIE_SECURE` | `true` | N'envoie le cookie qu'en HTTPS. Mettez `false` pour du `http://` local. |
+| `ESCRIBA_URL` | — | Destination du bouton **« Envoyer à Escriba »**. Vide → `/`. Mettez l'URL de votre Escriba (ou un chemin interne si même domaine). |
 
 Liste complète commentée : [`.env.example`](../../.env.example).
 
