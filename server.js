@@ -116,7 +116,7 @@ input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-m
 button{width:100%;margin-top:20px;padding:12px;border:0;border-radius:10px;background:var(--accent);color:#fff;font:inherit;font-weight:600;font-size:15px;cursor:pointer}
 button:hover{filter:brightness(1.06)}.err{color:#cf222e;font-size:13px;margin:14px 0 0}
 </style></head><body><form class="card" method="post" action="/login" autocomplete="on">
-<div class="logo"><svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5aa2ff"/><stop offset="1" stop-color="#8a6cff"/></linearGradient></defs><rect x="3" y="10" width="5.4" height="17" rx="2.6" fill="url(#g)"/><rect x="12.3" y="3" width="5.4" height="24" rx="2.6" fill="url(#g)" opacity=".9"/><rect x="21.6" y="14" width="5.4" height="13" rx="2.6" fill="url(#g)" opacity=".72"/></svg>Fulgoria</div>
+<div class="logo"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5aa2ff"/><stop offset="1" stop-color="#8a6cff"/></linearGradient></defs><path d="M13 2 L3 14 h9 l-1 8 L21 10 h-9 l1 -8 z" fill="url(#g)"/></svg>Fulgoria</div>
 <p class="sub">Extraé datos de cualquier documento.</p>
 <label for="u">Usuario</label><input id="u" name="user" autocomplete="username" required autofocus>
 <label for="p">Contraseña</label><input id="p" name="password" type="password" autocomplete="current-password" required>
