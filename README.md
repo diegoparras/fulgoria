@@ -1,17 +1,17 @@
 <div align="center">
 
-# 📄 Extracta
+# 📄 Fulgoria
 
 **Extract data from any document — local, exact, yours.**
 
 Mark the columns of a document (bank statement, invoice, receipt…) once, and from then on
-Extracta reads every document of that kind on its own and gives you clean structured data
+Fulgoria reads every document of that kind on its own and gives you clean structured data
 (CSV). It starts with bank statements —where the **balance rule** gives a certainty no one
 else has— and generalizes to any tabular document. Everything runs **in your browser**: the
 document never leaves your machine. Part of the [**Escriba**](https://github.com/diegoparras/escriba) family.
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-3b76d9.svg)](LICENSE)
-[![Docker image](https://img.shields.io/badge/image-ghcr.io%2Fdiegoparras%2Fextracta-2496ED?logo=docker&logoColor=white)](https://github.com/diegoparras/extracta/pkgs/container/extracta)
+[![Docker image](https://img.shields.io/badge/image-ghcr.io%2Fdiegoparras%2Ffulgoria-2496ED?logo=docker&logoColor=white)](https://github.com/diegoparras/fulgoria/pkgs/container/fulgoria)
 ![Self-hosted](https://img.shields.io/badge/self--hosted-✓-3b76d9.svg)
 ![100% browser](https://img.shields.io/badge/processing-100%25%20browser-30d158.svg)
 
@@ -53,7 +53,7 @@ isn't a promise: it's the architecture. The template you share stores the docume
 
 ## 🧩 The Escriba family
 
-Extracta is a standalone satellite of the **[Escriba](https://github.com/diegoparras/escriba)**
+Fulgoria is a standalone satellite of the **[Escriba](https://github.com/diegoparras/escriba)**
 ecosystem (alongside **[Fisherboy](https://github.com/diegoparras/fisherboy)**). Once you've
 extracted a document, **"Send to Escriba"** hands the clean Markdown to your local Escriba to
 anonymize, convert (JSON/YAML/TOON), chunk for RAG, or turn into audio — and the document
@@ -70,7 +70,7 @@ python -m http.server 5599
 
 ## 🏗️ Production (self-hosted)
 
-Extracta ships a **thin server** (`server.js`, Node/Express) that only serves the static app
+Fulgoria ships a **thin server** (`server.js`, Node/Express) that only serves the static app
 and an optional **login** from `.env`. The document is still processed 100% in the browser;
 the server never receives it, applies a strict CSP + security headers, and never exposes
 `.env`, `server.js` or the PDFs in `samples/private/`.
@@ -83,7 +83,7 @@ npm install && npm start                 # local → http://localhost:3000
 # or: docker compose up --build
 ```
 
-Or use the image published to **GHCR** (`ghcr.io/diegoparras/extracta:latest`, built by CI on
+Or use the image published to **GHCR** (`ghcr.io/diegoparras/fulgoria:latest`, built by CI on
 every push to `main`) and deploy it on **EasyPanel** with the `.env` variables set in the panel.
 
 > 📖 **Full deploy guide** (Docker, EasyPanel, environment reference, production checklist):

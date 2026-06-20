@@ -112,7 +112,7 @@ textR(fmt(saldo), X_SAL, y, { f: bold, size: 9 });
 const check = opening + sumCre - sumDeb;
 if (check !== saldo) throw new Error(`No reconcilia: ${check} != ${saldo}`);
 
-text("Documento de prueba sintético — datos ficticios — Extracta", 40, 40, { size: 7, color: grey });
+text("Documento de prueba sintético — datos ficticios — Fulgoria", 40, 40, { size: 7, color: grey });
 
 const bytes = await doc.save();
 writeFileSync(new URL("../samples/banco-rio-cc.pdf", import.meta.url), bytes);

@@ -1,5 +1,5 @@
 {
-  "name": "extracta-tools",
+  "name": "fulgoria-tools",
   "private": true,
   "type": "module",
   "description": "Herramientas de desarrollo: generador de PDFs de prueba",

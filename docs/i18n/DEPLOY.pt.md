@@ -1,8 +1,8 @@
-# Implantar o Extracta
+# Implantar o Fulgoria
 
 > [English](../DEPLOY.md) · [Español](DEPLOY.es.md) · [Français](DEPLOY.fr.md) · **Português** · [Italiano](DEPLOY.it.md) · [中文](DEPLOY.zh.md) · [日本語](DEPLOY.ja.md)
 
-O Extracta traz um **servidor leve** (`server.js`, Node/Express) que faz apenas duas coisas: servir
+O Fulgoria traz um **servidor leve** (`server.js`, Node/Express) que faz apenas duas coisas: servir
 o app estático e tratar um login opcional a partir do `.env`. **O documento é processado 100% no
 navegador e nunca chega ao servidor** — não há banco de dados, fila nem worker. O servidor é só a porta.
 
@@ -63,19 +63,19 @@ docker compose up --build     # → http://localhost:3000
 Imagem sozinha, na mão:
 
 ```bash
-docker build -t extracta .
-docker run -d --name extracta --env-file .env -p 3000:3000 extracta
+docker build -t fulgoria .
+docker run -d --name fulgoria --env-file .env -p 3000:3000 fulgoria
 ```
 
 Ou puxe a imagem pré-construída (sem build) — publicada no GHCR pela CI a cada push em `main`:
 
 ```bash
-docker run -d --name extracta --env-file .env -p 3000:3000 ghcr.io/diegoparras/extracta:latest
+docker run -d --name fulgoria --env-file .env -p 3000:3000 ghcr.io/diegoparras/fulgoria:latest
 ```
 
 ```bash
-docker logs -f extracta     # acompanhar logs
-docker rm -f extracta       # parar e remover
+docker logs -f fulgoria     # acompanhar logs
+docker rm -f fulgoria       # parar e remover
 ```
 
 > No Docker Desktop você serve `http://localhost` puro, então defina `COOKIE_SECURE=false` (senão o
@@ -90,7 +90,7 @@ O EasyPanel pode **puxar a imagem pré-construída** ou **buildar a partir do re
 ### Opção A — puxar a imagem (recomendado)
 
 1. No EasyPanel: **Create → App → Docker Image**.
-2. Imagem: `ghcr.io/diegoparras/extracta:latest`
+2. Imagem: `ghcr.io/diegoparras/fulgoria:latest`
    *(publicada automaticamente pelo GitHub Actions; se o package for privado, adicione antes uma
    credencial de registry GHCR no EasyPanel, ou torne o package público).*
 3. **Porta:** contêiner `3000` → mapeie para o seu domínio. O EasyPanel encerra o HTTPS por você.
@@ -106,7 +106,7 @@ O EasyPanel pode **puxar a imagem pré-construída** ou **buildar a partir do re
 
 ### Opção B — buildar do código
 
-1. **Create → App → GitHub repo**, apontando para `diegoparras/extracta`.
+1. **Create → App → GitHub repo**, apontando para `diegoparras/fulgoria`.
 2. Tipo de build: **Dockerfile** (o repo tem um). Mesma porta / variáveis acima.
 
 > O EasyPanel fica atrás de HTTPS, então mantenha `COOKIE_SECURE=true`.
@@ -132,7 +132,7 @@ Lista completa com comentários: [`.env.example`](../../.env.example).
 
 ## Indo para produção
 
-Antes de expor o Extracta a alguém além de você:
+Antes de expor o Fulgoria a alguém além de você:
 
 - [ ] Defina `AUTH_USER`, `AUTH_PASSWORD` (sua senha, ou um hash bcrypt) e `SESSION_SECRET`.
 - [ ] **Não** deixe `AUTH_ENABLED=false` em algo acessível por outros.

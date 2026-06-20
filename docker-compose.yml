@@ -1,10 +1,10 @@
-# Para correr Extracta local con Docker (o de referencia para EasyPanel).
+# Para correr Fulgoria local con Docker (o de referencia para EasyPanel).
 #   1) cp .env.example .env  y completá AUTH_PASSWORD (hash) + SESSION_SECRET
 #   2) docker compose up --build
 services:
-  extracta:
+  fulgoria:
     build: .
-    image: extracta:latest
+    image: fulgoria:latest
     ports:
       - "3000:3000"
     env_file: .env

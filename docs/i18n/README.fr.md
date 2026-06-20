@@ -1,18 +1,18 @@
 <div align="center">
 
-# 📄 Extracta
+# 📄 Fulgoria
 
 **Extrayez les données de n'importe quel document — local, exact, à vous.**
 
 Marquez les colonnes d'un document (relevé bancaire, facture, reçu…) une seule fois, et dès
-lors Extracta lit tout seul chaque document de ce type et vous le rend en données propres (CSV).
+lors Fulgoria lit tout seul chaque document de ce type et vous le rend en données propres (CSV).
 Il commence par les relevés bancaires —où la **règle du solde** offre une certitude que
 personne d'autre n'a— et se généralise à tout document tabulaire. Tout s'exécute **dans votre
 navigateur** : le document ne quitte jamais votre machine. Membre de la famille
 [**Escriba**](https://github.com/diegoparras/escriba).
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-3b76d9.svg)](../../LICENSE)
-[![Docker image](https://img.shields.io/badge/image-ghcr.io%2Fdiegoparras%2Fextracta-2496ED?logo=docker&logoColor=white)](https://github.com/diegoparras/extracta/pkgs/container/extracta)
+[![Docker image](https://img.shields.io/badge/image-ghcr.io%2Fdiegoparras%2Ffulgoria-2496ED?logo=docker&logoColor=white)](https://github.com/diegoparras/fulgoria/pkgs/container/fulgoria)
 ![Self-hosted](https://img.shields.io/badge/self--hosted-✓-3b76d9.svg)
 ![100% navigateur](https://img.shields.io/badge/traitement-100%25%20navigateur-30d158.svg)
 
@@ -55,7 +55,7 @@ document (géométrie), jamais ses **données**.
 
 ## 🧩 La famille Escriba
 
-Extracta est un satellite autonome de l'écosystème **[Escriba](https://github.com/diegoparras/escriba)**
+Fulgoria est un satellite autonome de l'écosystème **[Escriba](https://github.com/diegoparras/escriba)**
 (aux côtés de **[Fisherboy](https://github.com/diegoparras/fisherboy)**). Une fois un document
 extrait, **« Envoyer à Escriba »** transmet le Markdown propre à votre Escriba local pour
 l'anonymiser, le convertir (JSON/YAML/TOON), le découper pour le RAG ou le transformer en audio —
@@ -72,7 +72,7 @@ python -m http.server 5599
 
 ## 🏗️ Production (auto-hébergé)
 
-Extracta inclut un **serveur léger** (`server.js`, Node/Express) qui ne fait que servir l'app
+Fulgoria inclut un **serveur léger** (`server.js`, Node/Express) qui ne fait que servir l'app
 statique et un **login** optionnel depuis le `.env`. Le document est toujours traité à 100% dans
 le navigateur ; le serveur ne le reçoit jamais, applique une CSP stricte + en-têtes de sécurité,
 et n'expose jamais `.env`, `server.js` ni les PDF de `samples/private/`.
@@ -85,7 +85,7 @@ npm install && npm start                      # local → http://localhost:3000
 # ou : docker compose up --build
 ```
 
-Ou utilisez l'image publiée sur **GHCR** (`ghcr.io/diegoparras/extracta:latest`, construite par la
+Ou utilisez l'image publiée sur **GHCR** (`ghcr.io/diegoparras/fulgoria:latest`, construite par la
 CI à chaque push sur `main`) et déployez-la sur **EasyPanel** avec les variables du `.env` dans le panneau.
 
 > 📖 **Guide de déploiement complet** (Docker, EasyPanel, référence des variables, checklist de production) :

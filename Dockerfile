@@ -1,4 +1,4 @@
-# Extracta — imagen del server fino (sirve estáticos + login). Multi-stage para una imagen chica.
+# Fulgoria — imagen del server fino (sirve estáticos + login). Multi-stage para una imagen chica.
 FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json* ./

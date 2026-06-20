@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Extracta — extraé datos de cualquier documento</title>
+  <title>Fulgoria — extraé datos de cualquier documento</title>
   <!-- Destino de "Enviar a Escriba": el server lo inyecta desde ESCRIBA_URL (.env). Vacío = "/" -->
-  <meta name="extracta-escriba-url" content="" />
+  <meta name="fulgoria-escriba-url" content="" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles/app.css" />
   <script src="src/theme-init.js"></script>
@@ -14,16 +14,15 @@
   <header class="topbar">
     <div class="brand">
       <span class="logo">
-        <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5aa2ff"/><stop offset="1" stop-color="#8a6cff"/></linearGradient></defs>
-          <rect x="3" y="10" width="5.4" height="17" rx="2.6" fill="url(#bm)"/>
-          <rect x="12.3" y="3" width="5.4" height="24" rx="2.6" fill="url(#bm)" opacity=".9"/>
-          <rect x="21.6" y="14" width="5.4" height="13" rx="2.6" fill="url(#bm)" opacity=".72"/>
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="64" height="64" rx="15" fill="#6c5cf0"/>
+          <rect x="12" y="22" width="10" height="30" rx="5" fill="#ffffff"/>
+          <rect x="27" y="12" width="10" height="40" rx="5" fill="#ffffff"/>
+          <rect x="42" y="28" width="10" height="24" rx="5" fill="#ffffff"/>
         </svg>
       </span>
       <div class="brand-text">
-        <h1>Extracta</h1>
-        <p>Extraé datos de cualquier documento — local, exacto, tuyo.</p>
+        <h1>Fulgoria</h1>
       </div>
     </div>
     <div class="actions">
@@ -42,7 +41,7 @@
             Ver un ejemplo
           </button>
           <label class="menu-item" role="menuitem" title="Reusar una plantilla .json descargada">
-            <svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+            <svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
             Cargar plantilla<input id="tplInput" type="file" accept=".json,application/json" hidden />
           </label>
           <div id="savedTplRow" class="menu-field" style="display:none">
@@ -57,6 +56,11 @@
         </div>
       </div>
     </div>
+  </header>
+
+  <header class="hero">
+    <h1>Tus extractos, en datos limpios.</h1>
+    <p class="sub">Marcás las columnas una vez y Fulgoria lee todo. 100% local, exacto, tuyo.</p>
   </header>
 
   <div id="ocrProgress" class="ocr-progress" style="display:none"></div>
@@ -140,6 +144,11 @@
 
         <details class="block">
           <summary><svg class="ico" width="14" height="14" viewBox="0 0 24 24" style="vertical-align:-2px"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Configuración</summary>
+          <!-- Anonimización BÁSICA (regex, en el navegador) aplicada al CSV. Control compartido del ecosistema. -->
+          <div class="anon-field">
+            <div id="anonOptionsMount"></div>
+            <p class="hint">Se aplica al <b>CSV</b>: tapa CBU, CUIT, tarjeta, DNI, email y teléfono en las descripciones. Para nombres y direcciones, usá <b>Enviar a Escriba</b> (libera el motor completo de Anonimal).</p>
+          </div>
           <div class="settings">
             <label>Lectura de importes
               <select id="setDecimalIn">
@@ -194,7 +203,7 @@
     <div class="modal-backdrop" data-close></div>
     <div class="modal-card" role="dialog" aria-modal="true" aria-label="Ayuda">
       <button class="modal-close" data-close title="Cerrar" aria-label="Cerrar"><svg class="ico" width="18" height="18" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
-      <h2>Cómo usar Extracta</h2>
+      <h2>Cómo usar Fulgoria</h2>
       <p class="modal-lead">Convierte el extracto bancario en PDF (o imagen) en una planilla de movimientos.
         Todo se procesa <b>en tu navegador</b>: ningún dato sale de tu máquina.</p>
 
@@ -292,6 +301,8 @@
     </div>
   </div>
 
+  <!-- Componente compartido de opciones de anonimización (vendorizado desde anonimal_lite). Define window.AnonOptions ANTES del módulo. -->
+  <script src="vendor/anon-options.js"></script>
   <script type="module" src="src/app.js"></script>
 </body>
 </html>

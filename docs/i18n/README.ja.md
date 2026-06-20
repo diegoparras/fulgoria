@@ -1,17 +1,17 @@
 <div align="center">
 
-# 📄 Extracta
+# 📄 Fulgoria
 
 **あらゆる文書からデータを抽出 —— ローカルで、正確に、あなたのものに。**
 
-文書（銀行明細、請求書、領収書…）の列を一度マークするだけで、以降 Extracta は同じ種類の文書を
+文書（銀行明細、請求書、領収書…）の列を一度マークするだけで、以降 Fulgoria は同じ種類の文書を
 自動で読み取り、きれいな構造化データ（CSV）として返します。**残高ルール**が他にはない確実性を
 与える銀行明細から始まり、あらゆる表形式の文書へと一般化します。すべては**ブラウザ内**で動作し、
 文書があなたのマシンから出ることはありません。[**Escriba**](https://github.com/diegoparras/escriba)
 ファミリーの一員です。
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-3b76d9.svg)](../../LICENSE)
-[![Docker image](https://img.shields.io/badge/image-ghcr.io%2Fdiegoparras%2Fextracta-2496ED?logo=docker&logoColor=white)](https://github.com/diegoparras/extracta/pkgs/container/extracta)
+[![Docker image](https://img.shields.io/badge/image-ghcr.io%2Fdiegoparras%2Ffulgoria-2496ED?logo=docker&logoColor=white)](https://github.com/diegoparras/fulgoria/pkgs/container/fulgoria)
 ![Self-hosted](https://img.shields.io/badge/self--hosted-✓-3b76d9.svg)
 ![100% ブラウザ](https://img.shields.io/badge/処理-100%25%20ブラウザ-30d158.svg)
 
@@ -53,7 +53,7 @@
 
 ## 🧩 Escriba ファミリー
 
-Extracta は **[Escriba](https://github.com/diegoparras/escriba)** エコシステムの独立した衛星です
+Fulgoria は **[Escriba](https://github.com/diegoparras/escriba)** エコシステムの独立した衛星です
 （**[Fisherboy](https://github.com/diegoparras/fisherboy)** と並ぶ存在）。文書を抽出したら、
 **「Escriba へ送信」** がきれいな Markdown をローカルの Escriba に渡し、匿名化、変換
 （JSON/YAML/TOON）、RAG 用のチャンク化、音声化を行います —— それでも文書はあなたのマシンから
@@ -70,7 +70,7 @@ python -m http.server 5599
 
 ## 🏗️ 本番（セルフホスト）
 
-Extracta には、静的アプリと `.env` からの任意の**ログイン**だけを提供する**軽量サーバー**
+Fulgoria には、静的アプリと `.env` からの任意の**ログイン**だけを提供する**軽量サーバー**
 （`server.js`、Node/Express）が同梱されています。文書は引き続き 100% ブラウザ内で処理され、
 サーバーは決してそれを受け取らず、厳格な CSP + セキュリティヘッダーを適用し、`.env`、`server.js`、
 `samples/private/` 内の PDF を一切公開しません。
@@ -83,7 +83,7 @@ npm install && npm start                      # ローカル → http://localhos
 # または: docker compose up --build
 ```
 
-または **GHCR** に公開されたイメージ（`ghcr.io/diegoparras/extracta:latest`、`main` への push ごとに
+または **GHCR** に公開されたイメージ（`ghcr.io/diegoparras/fulgoria:latest`、`main` への push ごとに
 CI がビルド）を使い、`.env` の変数をパネルに設定して **EasyPanel** にデプロイします。
 
 > 📖 **完全なデプロイガイド**（Docker、EasyPanel、環境変数リファレンス、本番チェックリスト）：

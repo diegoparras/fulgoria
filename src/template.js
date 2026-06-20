@@ -1,9 +1,9 @@
-// Construcción y serialización de la plantilla Extracta (modelo de columnas con roles),
+// Construcción y serialización de la plantilla Fulgoria (modelo de columnas con roles),
 // fingerprint posicional sin contenido, y export de datos (CSV).
 
 const AMOUNT_ROLES = new Set(["importe", "debito", "credito", "saldo"]);
 
-// Construye el objeto plantilla Extracta a partir de las columnas marcadas.
+// Construye el objeto plantilla Fulgoria a partir de las columnas marcadas.
 export function buildTemplate({ bank, columns, annotations = [], pageSize, anchors = [], source = "digital", contributor = "anon", createdAt = null, rules = [] }) {
   const tplCols = columns.map((c) => {
     const o = { field: c.label, role: c.role, x_band: { from: round(c.from), to: round(c.to) } };
@@ -26,7 +26,7 @@ export function buildTemplate({ bank, columns, annotations = [], pageSize, ancho
     : "opening + sum(credito) - sum(debito) == closing";
 
   return {
-    extracta_template: "0.1",
+    fulgoria_template: "0.1",
     meta: {
       template_id: slug(bank) + "-v1",
       country: "AR",
@@ -173,6 +173,8 @@ export function rowsToCsv(movements, columns, annotations = [], annoValues = [],
   const o = { sep: ",", decimal: ",", dateFmt: "DD/MM/YYYY", bom: true, debitoSign: "auto", thousands: true, ...opts };
   const baseDef = { decimal: o.decimal, dateFmt: o.dateFmt, thousands: o.thousands };
   const globalValue = o.debitoSign === "negative" ? "neg" : o.debitoSign === "positive" ? "pos" : "asis";
+  // Anonimización básica: solo se aplica a TEXTO (descripción, texto, anotaciones), nunca a importes/fechas.
+  const anon = typeof o.anon === "function" ? o.anon : (s) => s;
   const cols = columns.filter((c) => c.role !== "ignorar");
   const multi = movements.some((m) => m._cuenta > 1); // varias cuentas → columna "Cuenta"
   const cell = (v) => {
@@ -185,12 +187,12 @@ export function rowsToCsv(movements, columns, annotations = [], annoValues = [],
     const cells = cols.map((c) => {
       const f = resolveColFmt(c, { ...baseDef, value: c.role === "debito" ? globalValue : "asis" });
       if (c.role === "fecha") return cell(formatDate(m.fecha, f.dateFmt));
-      if (c.role === "descripcion") return cell(m.descripcion);
+      if (c.role === "descripcion") return cell(anon(m.descripcion));
       if (c.role === "saldo") return cell(formatAmount(m.saldo, { ...f, value: "asis" }));
       if (AMOUNT_ROLES.has(c.role)) return cell(formatAmount(m.amounts[c.label], f));
-      return cell(m.cells[c.label] || "");
+      return cell(anon(m.cells[c.label] || ""));
     });
-    const annos = annotations.map((a) => cell((annoValues[ri] || {})[a.label] || ""));
+    const annos = annotations.map((a) => cell(anon((annoValues[ri] || {})[a.label] || "")));
     return [...cuenta, ...cells, ...annos].join(o.sep);
   }).join("\n");
   return (o.bom ? "﻿" : "") + head + "\n" + body + "\n";
@@ -201,6 +203,7 @@ export function rowsToMarkdown(movements, columns, annotations = [], annoValues 
   const o = { decimal: ",", dateFmt: "DD/MM/YYYY", debitoSign: "auto", thousands: true, ...opts };
   const baseDef = { decimal: o.decimal, dateFmt: o.dateFmt, thousands: o.thousands };
   const globalValue = o.debitoSign === "negative" ? "neg" : o.debitoSign === "positive" ? "pos" : "asis";
+  const anon = typeof o.anon === "function" ? o.anon : (s) => s;
   const cols = columns.filter((c) => c.role !== "ignorar");
   const multi = movements.some((m) => m._cuenta > 1);
   const cell = (v) => String(v ?? "").replace(/\|/g, "\\|").replace(/\n+/g, " ").trim();
@@ -212,12 +215,12 @@ export function rowsToMarkdown(movements, columns, annotations = [], annoValues 
     const cells = cols.map((c) => {
       const f = resolveColFmt(c, { ...baseDef, value: c.role === "debito" ? globalValue : "asis" });
       if (c.role === "fecha") return cell(formatDate(m.fecha, f.dateFmt));
-      if (c.role === "descripcion") return cell(m.descripcion);
+      if (c.role === "descripcion") return cell(anon(m.descripcion));
       if (c.role === "saldo") return cell(formatAmount(m.saldo, { ...f, value: "asis" }));
       if (AMOUNT_ROLES.has(c.role)) return cell(formatAmount(m.amounts[c.label], f));
-      return cell(m.cells[c.label] || "");
+      return cell(anon(m.cells[c.label] || ""));
     });
-    const annos = annotations.map((a) => cell((annoValues[ri] || {})[a.label] || ""));
+    const annos = annotations.map((a) => cell(anon((annoValues[ri] || {})[a.label] || "")));
     return "| " + [...cuenta, ...cells, ...annos].join(" | ") + " |";
   }).join("\n");
   return head + "\n" + sep + "\n" + body + "\n";

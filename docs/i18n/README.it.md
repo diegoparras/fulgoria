@@ -1,17 +1,17 @@
 <div align="center">
 
-# 📄 Extracta
+# 📄 Fulgoria
 
 **Estrai dati da qualsiasi documento — locale, esatto, tuo.**
 
 Segna le colonne di un documento (estratto conto, fattura, ricevuta…) una sola volta, e da lì in
-poi Extracta legge da solo ogni documento di quel tipo e te lo restituisce in dati puliti (CSV).
+poi Fulgoria legge da solo ogni documento di quel tipo e te lo restituisce in dati puliti (CSV).
 Parte dagli estratti conto —dove la **regola del saldo** dà una certezza che nessun altro ha— e
 si generalizza a qualsiasi documento tabellare. Tutto gira **nel tuo browser**: il documento non
 lascia mai la tua macchina. Parte della famiglia [**Escriba**](https://github.com/diegoparras/escriba).
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-3b76d9.svg)](../../LICENSE)
-[![Docker image](https://img.shields.io/badge/image-ghcr.io%2Fdiegoparras%2Fextracta-2496ED?logo=docker&logoColor=white)](https://github.com/diegoparras/extracta/pkgs/container/extracta)
+[![Docker image](https://img.shields.io/badge/image-ghcr.io%2Fdiegoparras%2Ffulgoria-2496ED?logo=docker&logoColor=white)](https://github.com/diegoparras/fulgoria/pkgs/container/fulgoria)
 ![Self-hosted](https://img.shields.io/badge/self--hosted-✓-3b76d9.svg)
 ![100% browser](https://img.shields.io/badge/elaborazione-100%25%20browser-30d158.svg)
 
@@ -54,7 +54,7 @@ suoi **dati**.
 
 ## 🧩 La famiglia Escriba
 
-Extracta è un satellite autonomo dell'ecosistema **[Escriba](https://github.com/diegoparras/escriba)**
+Fulgoria è un satellite autonomo dell'ecosistema **[Escriba](https://github.com/diegoparras/escriba)**
 (insieme a **[Fisherboy](https://github.com/diegoparras/fisherboy)**). Una volta estratto un
 documento, **"Invia a Escriba"** consegna il Markdown pulito al tuo Escriba locale per
 anonimizzare, convertire (JSON/YAML/TOON), suddividere per il RAG o trasformare in audio — e il
@@ -71,7 +71,7 @@ python -m http.server 5599
 
 ## 🏗️ Produzione (self-hosted)
 
-Extracta include un **server leggero** (`server.js`, Node/Express) che serve solo l'app statica e un
+Fulgoria include un **server leggero** (`server.js`, Node/Express) che serve solo l'app statica e un
 **login** opzionale dal `.env`. Il documento viene comunque elaborato al 100% nel browser; il
 server non lo riceve mai, applica una CSP rigorosa + header di sicurezza, e non espone mai `.env`,
 `server.js` né i PDF in `samples/private/`.
@@ -84,7 +84,7 @@ npm install && npm start                   # locale → http://localhost:3000
 # oppure: docker compose up --build
 ```
 
-Oppure usa l'immagine pubblicata su **GHCR** (`ghcr.io/diegoparras/extracta:latest`, costruita dalla
+Oppure usa l'immagine pubblicata su **GHCR** (`ghcr.io/diegoparras/fulgoria:latest`, costruita dalla
 CI ad ogni push su `main`) e distribuiscila su **EasyPanel** con le variabili del `.env` nel pannello.
 
 > 📖 **Guida al deploy completa** (Docker, EasyPanel, referenza delle variabili, checklist di produzione):

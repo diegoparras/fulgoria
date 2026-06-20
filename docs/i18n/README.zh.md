@@ -1,16 +1,16 @@
 <div align="center">
 
-# 📄 Extracta
+# 📄 Fulgoria
 
 **从任何文档中提取数据 —— 本地、精确、属于你。**
 
-只需标记一次文档（银行对账单、发票、收据……）的列，此后 Extracta 便会自行读取同类型的每一份
+只需标记一次文档（银行对账单、发票、收据……）的列，此后 Fulgoria 便会自行读取同类型的每一份
 文档，并输出干净的结构化数据（CSV）。它从银行对账单起步 —— **余额规则**在这里提供了别人无法
 给予的确定性 —— 并可推广到任何表格型文档。一切都在**你的浏览器中**运行：文档永不离开你的设备。
 [**Escriba**](https://github.com/diegoparras/escriba) 生态的一员。
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-3b76d9.svg)](../../LICENSE)
-[![Docker image](https://img.shields.io/badge/image-ghcr.io%2Fdiegoparras%2Fextracta-2496ED?logo=docker&logoColor=white)](https://github.com/diegoparras/extracta/pkgs/container/extracta)
+[![Docker image](https://img.shields.io/badge/image-ghcr.io%2Fdiegoparras%2Ffulgoria-2496ED?logo=docker&logoColor=white)](https://github.com/diegoparras/fulgoria/pkgs/container/fulgoria)
 ![Self-hosted](https://img.shields.io/badge/self--hosted-✓-3b76d9.svg)
 ![100% 浏览器](https://img.shields.io/badge/处理-100%25%20浏览器-30d158.svg)
 
@@ -49,7 +49,7 @@
 
 ## 🧩 Escriba 家族
 
-Extracta 是 **[Escriba](https://github.com/diegoparras/escriba)** 生态中的一个独立卫星
+Fulgoria 是 **[Escriba](https://github.com/diegoparras/escriba)** 生态中的一个独立卫星
 （与 **[Fisherboy](https://github.com/diegoparras/fisherboy)** 并列）。提取完一份文档后，
 **"发送到 Escriba"** 会把干净的 Markdown 交给你本地的 Escriba 进行匿名化、转换
 （JSON/YAML/TOON）、为 RAG 切块或转为音频 —— 而文档依旧不会离开你的设备。
@@ -65,7 +65,7 @@ python -m http.server 5599
 
 ## 🏗️ 生产部署（自托管）
 
-Extracta 自带一个**轻量服务器**（`server.js`，Node/Express），仅负责提供静态应用以及来自 `.env`
+Fulgoria 自带一个**轻量服务器**（`server.js`，Node/Express），仅负责提供静态应用以及来自 `.env`
 的可选**登录**。文档仍 100% 在浏览器中处理；服务器永远不会收到它，会应用严格的 CSP + 安全头，
 并且绝不暴露 `.env`、`server.js` 或 `samples/private/` 中的 PDF。
 
@@ -77,7 +77,7 @@ npm install && npm start            # 本地 → http://localhost:3000
 # 或：docker compose up --build
 ```
 
-或使用发布到 **GHCR** 的镜像（`ghcr.io/diegoparras/extracta:latest`，由 CI 在每次推送到 `main`
+或使用发布到 **GHCR** 的镜像（`ghcr.io/diegoparras/fulgoria:latest`，由 CI 在每次推送到 `main`
 时构建），并在 **EasyPanel** 上部署，把 `.env` 变量填入面板。
 
 > 📖 **完整部署指南**（Docker、EasyPanel、环境变量参考、上线检查清单）：

@@ -1,4 +1,4 @@
-// Extracta — servidor FINO. Solo sirve la app estática + un login opcional desde el .env.
+// Fulgoria — servidor FINO. Solo sirve la app estática + un login opcional desde el .env.
 // El documento se procesa 100% en el navegador y NUNCA llega acá: el server solo es la puerta.
 const express = require("express");
 const cookieParser = require("cookie-parser");
@@ -24,14 +24,14 @@ const AUTH_PASSWORD = process.env.AUTH_PASSWORD || ""; // hash bcrypt
 const SESSION_SECRET = process.env.SESSION_SECRET || "";
 const COOKIE_SECURE = String(process.env.COOKIE_SECURE ?? "true").toLowerCase() === "true";
 const TTL_MS = Number(process.env.SESSION_TTL_HOURS || 12) * 3600 * 1000;
-const COOKIE = "extracta_auth";
+const COOKIE = "fulgoria_auth";
 const ESCRIBA_URL = process.env.ESCRIBA_URL || ""; // destino de "Enviar a Escriba" (vacío → "/")
 
 // index.html con el destino de Escriba inyectado en su <meta> (una sola lectura al arrancar).
 const escAttr = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const INDEX_HTML = fs.readFileSync(path.join(__dirname, "index.html"), "utf8").replace(
-  '<meta name="extracta-escriba-url" content="" />',
-  `<meta name="extracta-escriba-url" content="${escAttr(ESCRIBA_URL)}" />`,
+  '<meta name="fulgoria-escriba-url" content="" />',
+  `<meta name="fulgoria-escriba-url" content="${escAttr(ESCRIBA_URL)}" />`,
 );
 
 if (AUTH_ENABLED && (!AUTH_USER || !AUTH_PASSWORD || !SESSION_SECRET)) {
@@ -101,7 +101,7 @@ const fails = new Map(); // anti fuerza-bruta simple por IP
 function loginPage(err) {
   const msg = err ? `<p class="err">${err}</p>` : "";
   return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Extracta — Ingresar</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><style>
+<title>Fulgoria — Ingresar</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><style>
 :root{--bg:#fafbfc;--panel:#fff;--ink:#16181d;--muted:#5f6b7a;--line:rgba(15,23,42,.12);--accent:#3b76d9}
 @media(prefers-color-scheme:dark){:root{--bg:#090c11;--panel:#111720;--ink:#eaeef4;--muted:#8a95a4;--line:rgba(255,255,255,.11);--accent:#5aa2ff}}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--bg);color:var(--ink);
@@ -116,7 +116,7 @@ input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-m
 button{width:100%;margin-top:20px;padding:12px;border:0;border-radius:10px;background:var(--accent);color:#fff;font:inherit;font-weight:600;font-size:15px;cursor:pointer}
 button:hover{filter:brightness(1.06)}.err{color:#cf222e;font-size:13px;margin:14px 0 0}
 </style></head><body><form class="card" method="post" action="/login" autocomplete="on">
-<div class="logo"><svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5aa2ff"/><stop offset="1" stop-color="#8a6cff"/></linearGradient></defs><rect x="3" y="10" width="5.4" height="17" rx="2.6" fill="url(#g)"/><rect x="12.3" y="3" width="5.4" height="24" rx="2.6" fill="url(#g)" opacity=".9"/><rect x="21.6" y="14" width="5.4" height="13" rx="2.6" fill="url(#g)" opacity=".72"/></svg>Extracta</div>
+<div class="logo"><svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5aa2ff"/><stop offset="1" stop-color="#8a6cff"/></linearGradient></defs><rect x="3" y="10" width="5.4" height="17" rx="2.6" fill="url(#g)"/><rect x="12.3" y="3" width="5.4" height="24" rx="2.6" fill="url(#g)" opacity=".9"/><rect x="21.6" y="14" width="5.4" height="13" rx="2.6" fill="url(#g)" opacity=".72"/></svg>Fulgoria</div>
 <p class="sub">Extraé datos de cualquier documento.</p>
 <label for="u">Usuario</label><input id="u" name="user" autocomplete="username" required autofocus>
 <label for="p">Contraseña</label><input id="p" name="password" type="password" autocomplete="current-password" required>
@@ -161,4 +161,4 @@ app.get("/samples/banco-rio-cc.pdf", (req, res) => res.sendFile(path.join(__dirn
 app.get("/", (req, res) => res.type("html").send(INDEX_HTML));
 app.use((req, res) => res.status(404).send("No encontrado"));
 
-app.listen(PORT, () => console.log(`Extracta escuchando en http://localhost:${PORT}  ·  login: ${AUTH_ENABLED ? "ON" : "OFF"}`));
+app.listen(PORT, () => console.log(`Fulgoria escuchando en http://localhost:${PORT}  ·  login: ${AUTH_ENABLED ? "ON" : "OFF"}`));

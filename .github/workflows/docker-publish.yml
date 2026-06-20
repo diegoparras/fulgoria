@@ -1,8 +1,8 @@
 name: Publish Docker image
 
-# Construye la imagen de Extracta y la publica en GitHub Container Registry (GHCR)
+# Construye la imagen de Fulgoria y la publica en GitHub Container Registry (GHCR)
 # en cada push a main y en cada tag de release. EasyPanel / Docker pueden tirar
-# ghcr.io/<owner>/extracta:latest sin compilar desde el código.
+# ghcr.io/<owner>/fulgoria:latest sin compilar desde el código.
 
 on:
   push:

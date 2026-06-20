@@ -1,5 +1,5 @@
 /* Inter Variable VENDORIZADA (vendor/fonts/) — misma tipografía del ecosistema Escriba/Fisherboy
-   pero servida local: Extracta no hace NINGUNA llamada externa (privacidad por arquitectura). */
+   pero servida local: Fulgoria no hace NINGUNA llamada externa (privacidad por arquitectura). */
 @font-face {
   font-family: "Inter Variable"; font-style: normal; font-display: swap; font-weight: 100 900;
   src: url("../vendor/fonts/inter-latin.woff2") format("woff2");
@@ -13,7 +13,7 @@
 
 /* ===== Sistema de diseño del ecosistema Escriba =====
    Claro por defecto (:root) + oscuro ([data-theme="dark"]).
-   Acento propio de Extracta: azul→violeta. Bordes en rgba para adaptarse al tema. */
+   Acento propio de Fulgoria: azul→violeta. Bordes en rgba para adaptarse al tema. */
 :root {
   --bg: #fafbfc;
   --bg-2: #ffffff;
@@ -115,7 +115,7 @@ body.dragging { cursor: col-resize; user-select: none; }
 }
 .brand { display: flex; align-items: center; gap: 13px; }
 .logo { display: grid; place-items: center; width: 36px; height: 36px; }
-.logo svg { width: 30px; height: 30px; filter: drop-shadow(0 2px 8px rgba(90,140,255,.35)); }
+.logo svg { width: 30px; height: 30px; }
 .brand-text h1, .topbar h1 { font-size: 20px; margin: 0; font-weight: 700; letter-spacing: -.02em; }
 .topbar p { margin: 1px 0 0; color: var(--muted); font-size: 12.5px; letter-spacing: .005em; }
 .actions { display: flex; align-items: center; gap: 10px; }
@@ -447,4 +447,50 @@ body.busy { cursor: progress; }
   .btn.primary { padding: 10px; }
   .btn.primary .btn-txt { display: none; }
   .menu { right: 0; min-width: min(260px, calc(100vw - 32px)); }
+}
+
+/* El botón "Abrir PDF" de la topbar va plano (sin glow): es navegación, no una acción destacada. */
+.actions .btn.primary, .actions .btn.primary:hover { box-shadow: none; }
+
+/* Hero — MISMA tipografía, escala y peso que Escriba/Fisherboy: Inter, weight 600
+   (no 800 — eso lo hacía ver como otra fuente), clamp(34→62), -.03em, line-height 1.05. */
+.hero { text-align: center; margin: 30px auto 28px; padding: 0 24px; max-width: 880px; }
+.hero h1 {
+  margin: 0; font-family: "Inter Variable", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: clamp(34px, 6vw, 62px); font-weight: 600; letter-spacing: -.03em; line-height: 1.05;
+}
+.hero .sub { margin: 14px auto 0; max-width: 620px; color: var(--muted); font-size: clamp(16px, 1.9vw, 19px); line-height: 1.5; }
+
+/* Caja de anonimización (componente compartido AnonOptions) — con aire, jerarquía y un select con cuerpo.
+   AnonOptions trae estilos inline mínimos; los overrides van SCOPED a #anonOptionsMount → no tocan a Escriba. */
+/* Selector con la especificidad suficiente para ganarle a `.block > *:not(summary){padding:0 12px}`. */
+.block > .anon-field, .anon-field {
+  margin: 14px 12px 18px; padding: 20px 22px; border-radius: 14px;
+  background: color-mix(in srgb, var(--accent) 5%, var(--panel));
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line));
+}
+#anonOptionsMount > div { margin: 0 !important; gap: 0 !important; }
+#anonOptionsMount > div > label {           /* título de la caja */
+  display: block; margin: 0 0 12px !important; font-size: 14px !important;
+  font-weight: 600 !important; letter-spacing: -.01em; color: var(--ink) !important;
+}
+#anonOptionsMount > div > div {             /* fila select + badge */
+  gap: 12px !important; align-items: center !important;
+}
+#anonOptionsMount select {                  /* el <select> "pelado" → cuerpo propio, altura cómoda */
+  flex: 1 1 260px; min-width: 240px; height: 42px;
+  font: inherit; font-size: 13.5px; padding: 0 36px 0 14px; border-radius: 10px;
+  border: 1px solid var(--line); background-color: var(--panel); color: var(--ink);
+  background-position: right 13px center; transition: border-color .14s, box-shadow .14s;
+}
+#anonOptionsMount select:hover { border-color: var(--line-strong); }
+#anonOptionsMount > div > div > span {      /* badge "Básico (regex)" */
+  padding: 6px 12px !important; font-size: 12px !important;
+}
+#anonOptionsMount > div > p {               /* hint del componente (básico vs completo) */
+  margin: 14px 0 0 !important; font-size: 12.5px !important; line-height: 1.55 !important; color: var(--muted) !important;
+}
+.anon-field > .hint {                       /* nota propia de Fulgoria (CSV / Escriba), separada con divisor */
+  margin: 14px 0 0; padding-top: 14px; line-height: 1.55;
+  border-top: 1px solid color-mix(in srgb, var(--accent) 12%, var(--line));
 }

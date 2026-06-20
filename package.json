@@ -1,8 +1,8 @@
 {
-  "name": "extracta",
+  "name": "fulgoria",
   "version": "1.0.0",
   "private": true,
-  "description": "Extracta — server fino: sirve la app estática + login desde .env. El documento se procesa 100% en el navegador y nunca llega al server.",
+  "description": "Fulgoria — server fino: sirve la app estática + login desde .env. El documento se procesa 100% en el navegador y nunca llega al server.",
   "license": "Apache-2.0",
   "scripts": {
     "start": "node server.js",

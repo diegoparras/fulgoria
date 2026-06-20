@@ -4,6 +4,7 @@ import { loadPdf, renderPage, renderToCanvas } from "./pdf.js";
 import { ocrCanvas, imageFileToCanvas } from "./ocr.js";
 import { extract, balanceCheck, autoDetect, extractAnchors, matchScore, setAmountMode, parseAmount, ROLES } from "./extract.js";
 import { buildTemplate, toYaml, toJson, rowsToCsv, rowsToMarkdown, download, resolveColFmt, formatAmount, formatDate } from "./template.js";
+import { Anonymizer } from "./anon.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -782,17 +783,43 @@ function exportTemplate(kind) {
   else download(`${id}.ext.json`, toJson(tpl), "application/json");
   saveTemplateLS(tpl); refreshSavedTemplates(); // queda disponible para reusar con un click
 }
+// ---------- Anonimización básica (componente compartido del ecosistema) ----------
+const ANON_MODE_KEY = "fulgoria.anonMode";
+function getAnonMode() {
+  const el = document.getElementById("anonOptionsMount");
+  const v = (window.AnonOptions && el) ? AnonOptions.getValues(el) : null;
+  return v ? v.mode : "off";
+}
+function mountAnon() {
+  const el = document.getElementById("anonOptionsMount");
+  if (!el || !window.AnonOptions) return;
+  let saved = "off"; try { saved = localStorage.getItem(ANON_MODE_KEY) || "off"; } catch {}
+  AnonOptions.mount(el, {
+    lang: document.documentElement.lang || "es",
+    hasService: false,   // Fulgoria básico (regex en el navegador); el motor completo se libera vía Escriba
+    showRules: false,
+    mode: saved,
+    onChange: (v) => { try { localStorage.setItem(ANON_MODE_KEY, v.mode); } catch {} },
+  });
+}
+mountAnon();
+
 function exportCsv() {
   if (!state.result) return;
+  const anon = new Anonymizer(getAnonMode());
   const opts = {
     sep: settings.csvSep === "tab" ? "\t" : settings.csvSep,
     decimal: settings.csvDecimal, dateFmt: settings.dateFmt, bom: settings.csvBom, debitoSign: settings.debitoSign,
+    anon: (s) => anon.transform(s),
   };
   download("movimientos.csv", rowsToCsv(state.result.movements, state.columns, state.annotations, state.annoValues, opts), "text/csv");
+  // En modo pseudo los tokens son reversibles: bajamos el mapa token→original aparte.
+  const map = anon.mapping;
+  if (Object.keys(map).length) download("movimientos.map.json", JSON.stringify(map, null, 2), "application/json");
 }
 
 // ---------- Configuración (persistida en el navegador) ----------
-const SETTINGS_KEY = "extracta.settings";
+const SETTINGS_KEY = "fulgoria.settings";
 const DEFAULT_SETTINGS = { decimalIn: "auto", dateFmt: "DD/MM/YYYY", csvSep: ",", csvDecimal: ",", csvBom: true, debitoSign: "auto", toleranceCents: 1, contributor: "" };
 let settings = (() => { try { return { ...DEFAULT_SETTINGS, ...JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}") }; } catch { return { ...DEFAULT_SETTINGS }; } })();
 function saveSettings() { try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch {} }
@@ -820,7 +847,7 @@ function wireSettings() {
 }
 
 // ---------- Reusar plantilla (cargar / guardar / aplicar) ----------
-// Reconstruye columnas y campos desde una plantilla Extracta exportada.
+// Reconstruye columnas y campos desde una plantilla Fulgoria exportada.
 function applyTemplate(tpl) {
   if (!tpl || !tpl.geometry || !Array.isArray(tpl.geometry.columns)) throw new Error("Plantilla inválida");
   state.columns = tpl.geometry.columns.map((c) => ({
@@ -882,7 +909,7 @@ function showMatch(bank, score) {
   }
 }
 
-const LS_KEY = "extracta.templates";
+const LS_KEY = "fulgoria.templates";
 function savedTemplates() { try { return JSON.parse(localStorage.getItem(LS_KEY) || "[]"); } catch { return []; } }
 function saveTemplateLS(tpl) {
   if (!tpl.meta) return;
@@ -936,18 +963,18 @@ $("themeBtn").addEventListener("click", () => {
   const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
   if (next === "dark") document.documentElement.setAttribute("data-theme", "dark");
   else document.documentElement.removeAttribute("data-theme");
-  try { localStorage.setItem("extracta.theme", next); } catch {}
+  try { localStorage.setItem("fulgoria.theme", next); } catch {}
   paintTheme();
 });
 
 // Enviar a Escriba (mismo origen): dejo lo extraído en sessionStorage y abro Escriba.
 // El documento nunca sale del navegador; el handoff es local (tu Escriba del ecosistema).
-const ESCRIBA_URL_KEY = "extracta.escribaUrl";
+const ESCRIBA_URL_KEY = "fulgoria.escribaUrl";
 function escribaUrl() {
   // Prioridad: override local (localStorage) > config del server (meta inyectada de ESCRIBA_URL) > "/".
   let u = "";
   try { u = localStorage.getItem(ESCRIBA_URL_KEY) || ""; } catch {}
-  if (!u) u = document.querySelector('meta[name="extracta-escriba-url"]')?.content || "";
+  if (!u) u = document.querySelector('meta[name="fulgoria-escriba-url"]')?.content || "";
   u = u || "/";
   // Solo rutas relativas o http(s). Bloqueo javascript:/data: (evita ejecución vía window.open).
   try { const abs = new URL(u, location.origin); return abs.protocol === "http:" || abs.protocol === "https:" ? u : "/"; } catch { return "/"; }
@@ -958,11 +985,11 @@ $("btnEscriba").addEventListener("click", () => {
   const md = rowsToMarkdown(state.result.movements, state.columns, state.annotations, state.annoValues, o);
   const csv = rowsToCsv(state.result.movements, state.columns, state.annotations, state.annoValues, { ...o, sep: ",", bom: false });
   const bank = ($("bankName")?.value || "").trim();
-  const payload = { from: "extracta", version: 1, title: "Extracta — " + (bank || "movimientos"), source: bank, mime: "text/markdown", content: md, alt: { csv }, ts: Date.now() };
+  const payload = { from: "fulgoria", version: 1, title: "Fulgoria — " + (bank || "movimientos"), source: bank, mime: "text/markdown", content: md, alt: { csv }, ts: Date.now() };
   // Canal 1 (mismo origen): storage. localStorage se comparte al instante entre pestañas del mismo
   // origen; sessionStorage es el contrato del ecosistema. Escriba lee cualquiera.
   try { const s = JSON.stringify(payload); localStorage.setItem("escriba.handoff", s); sessionStorage.setItem("escriba.handoff", s); } catch {}
-  // Canal 2 (CROSS-ORIGEN): postMessage. El storage NO cruza orígenes distintos (ej. Extracta y
+  // Canal 2 (CROSS-ORIGEN): postMessage. El storage NO cruza orígenes distintos (ej. Fulgoria y
   // Escriba en subdominios distintos). Abro Escriba SIN noopener (para tener su window), y cuando
   // ella avisa "ready" le mando el handoff por postMessage al origen exacto. Funciona estén donde estén.
   const url = escribaUrl();
@@ -985,7 +1012,7 @@ function toast(msg, ms = 2600) {
 }
 // Tip de descubrimiento: la primera vez, explico la interacción estrella (arrastrar columnas).
 function coachOnce() {
-  try { if (localStorage.getItem("extracta.coachSeen")) return; localStorage.setItem("extracta.coachSeen", "1"); } catch { return; }
+  try { if (localStorage.getItem("fulgoria.coachSeen")) return; localStorage.setItem("fulgoria.coachSeen", "1"); } catch { return; }
   toast("Tip: arrastrá las barras de color sobre el documento para ajustar las columnas (o usá + Nueva columna).", 6000);
 }
 
@@ -1051,4 +1078,4 @@ dz.addEventListener("drop", (e) => { const f = e.dataTransfer.files[0]; if (f) o
 applyAmountMode(); // aplicar modo de lectura de importes guardado
 wireSettings();
 
-window.__extractaReady = true; // marcador: listeners enganchados
+window.__fulgoriaReady = true; // marcador: listeners enganchados
