@@ -91,6 +91,15 @@ function cellText(lineItems, columns) {
 
 const norm = (s) => (s || "").toLowerCase().replace(/\s+/g, " ").trim();
 
+// Detector heurístico de ReDoS: rechaza CUANTIFICADORES ANIDADOS (el caso de
+// backtracking exponencial dominante: (a+)+, (.*)+, ([a-z]*)+ ...). No es exhaustivo,
+// pero las reglas se comparten en plantillas y una ajena NO debe poder congelar el
+// navegador — acotar la longitud no alcanza (explota con ~33 chars). Ver auditoría 2026-06.
+function reDoSRisk(src) {
+  const s = String(src || "").replace(/\\./g, ""); // neutraliza escapes (\+, \d, \., ...)
+  return /\([^()]*[*+][^()]*\)[*+]/.test(s);        // grupo con cuantificador, cuantificado otra vez
+}
+
 // ¿La fila matchea alguna REGLA de exclusión? (por contenido, no por posición).
 // rule = { field: "<label>"|"*", match: "contains"|"equals"|"regex"|"empty", value }
 function rowExcluded(text, lineText, columns, rules) {
@@ -101,9 +110,15 @@ function rowExcluded(text, lineText, columns, rules) {
     const v = norm(r.value);
     if (r.match === "empty") { if (!cell) return true; }
     else if (r.match === "equals") { if (cell === v) return true; }
-    // regex: acoto patrón y texto evaluado para acotar el peor caso de backtracking (ReDoS) —
-    // las reglas se comparten en plantillas, así que una ajena no debe poder colgar el navegador.
-    else if (r.match === "regex") { try { if (new RegExp(r.value.slice(0, 200), "i").test(cell.slice(0, 2000))) return true; } catch {} }
+    // regex: detector de ReDoS + acoto patrón/texto. Las reglas se comparten en plantillas,
+    // así que una ajena no debe poder colgar el navegador. Patrón peligroso -> se ignora (fail-safe).
+    else if (r.match === "regex") {
+      try {
+        const src = (r.value || "").slice(0, 200);
+        if (reDoSRisk(src)) continue;                 // cuantificador anidado: regla ignorada
+        if (new RegExp(src, "i").test(cell.slice(0, 2000))) return true;
+      } catch {}
+    }
     else if (v && cell.includes(v)) return true; // contains (default)
   }
   return false;
