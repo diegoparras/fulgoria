@@ -6,7 +6,8 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "node server.js",
-    "hash": "node server.js --hash"
+    "hash": "node server.js --hash",
+    "test": "node --test \"test/*.test.mjs\""
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
