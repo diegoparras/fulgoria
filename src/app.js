@@ -5,8 +5,12 @@ import { ocrCanvas, imageFileToCanvas } from "./ocr.js";
 import { extract, balanceCheck, autoDetect, extractAnchors, matchScore, setAmountMode, parseAmount, ROLES } from "./extract.js";
 import { buildTemplate, toYaml, toJson, rowsToCsv, rowsToMarkdown, download, resolveColFmt, formatAmount, formatDate } from "./template.js";
 import { Anonymizer } from "./anon.js";
+import { initI18n, t as tr } from "./i18n.js";
 
 const $ = (id) => document.getElementById(id);
+// i18n: `tr(key)` traduce; `ti(key, {n})` interpola {n}/{total} en strings dinámicos.
+const ti = (key, vars = {}) =>
+  Object.entries(vars).reduce((s, [k, v]) => s.replaceAll("{" + k + "}", v), tr(key));
 
 // Íconos de línea del ecosistema (SVG, nunca emojis). `s` = tamaño en px.
 const svg = (s, body) => `<svg class="ico" width="${s}" height="${s}" viewBox="0 0 24 24">${body}</svg>`;
@@ -145,7 +149,7 @@ async function renderCurrentPage() {
   overlay.id = "overlay";
   overlay.addEventListener("click", onOverlayClick);
   wrap.appendChild(overlay);
-  $("pageLabel").textContent = `Página ${state.curPage + 1} / ${state.pdf.numPages}`;
+  $("pageLabel").textContent = ti("page.label", { n: state.curPage + 1, total: state.pdf.numPages });
   layoutOverlay();
 }
 
@@ -658,7 +662,7 @@ function fillDown(inp) {
   pushHistory(); let n = 0;
   for (let r = r0 + 1; r < rows.length; r++) { const t = [...rows[r].querySelectorAll("input.ed-cell")][ci]; if (t) { t.value = inp.value; commitCell(t); n++; } }
   applyEdits(); refreshEditorBalances(); updateEditBtn(); updateUndoBtns();
-  toast(`Rellené ${n} celda(s) hacia abajo.`);
+  toast(ti("toast.filledDown", { n }));
 }
 function refreshEditorBalances() {
   const segs = state.result ? state.result.segments : [];
@@ -696,7 +700,7 @@ function setBalanceEdit(inp) {
 // Buscar y reemplazar en celdas de texto (no toca montos, para no corromper números).
 function findReplaceAll() {
   const find = $("edFind").value; const repl = $("edRepl").value;
-  if (!find) { toast("Escribí qué buscar."); return; }
+  if (!find) { toast(tr("toast.findWhat")); return; }
   pushHistory();
   const re = new RegExp(find.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
   let n = 0;
@@ -705,7 +709,7 @@ function findReplaceAll() {
     re.lastIndex = 0;
   });
   applyEdits(); refreshEditorBalances(); updateEditBtn(); updateUndoBtns();
-  toast(`${n} reemplazo(s).`);
+  toast(ti("toast.replaced", { n }));
 }
 // Categorización asistida: a las filas cuya descripción contiene la palabra, les pone un valor
 // en un campo propio (anotación). Se acumula aplicando varias veces.
@@ -717,12 +721,12 @@ function populateCatCols() {
 }
 function applyCategory() {
   const key = $("edCatKey").value.trim().toLowerCase(); const val = $("edCatVal").value; const col = $("edCatCol").value;
-  if (!col) { toast("Agregá un Campo propio (ej: Categoría) primero."); return; }
-  if (!key) { toast("Escribí una palabra a buscar en la descripción."); return; }
+  if (!col) { toast(tr("toast.addFieldFirst")); return; }
+  if (!key) { toast(tr("toast.searchWord")); return; }
   pushHistory(); let n = 0;
   state.result.movements.forEach((m) => { if ((m.descripcion || "").toLowerCase().includes(key)) { (state.annoStore[m._id] ||= {})[col] = val; n++; } });
   afterEditMutation();
-  toast(`Categoricé ${n} fila(s).`);
+  toast(ti("toast.categorized", { n }));
 }
 // Flags de calidad: duplicados (misma fecha+descr+neto) y huecos (fecha que retrocede).
 function qualityCheck() {
@@ -754,7 +758,7 @@ function updateEditBtn() {
 }
 function updateUndoBtns() { const u = $("edUndo"), r = $("edRedo"); if (u) u.disabled = !state.history.length; if (r) r.disabled = !state.future.length; }
 function openEditor() {
-  if (!state.result || !state.result.segments.length) { toast("Primero abrí y extraé un documento."); return; }
+  if (!state.result || !state.result.segments.length) { toast(tr("toast.openFirst")); return; }
   buildEditor(); $("editorModal").hidden = false;
 }
 function closeEditor() { $("editorModal").hidden = true; renderResult(); } // el resultado refleja las ediciones
@@ -980,7 +984,7 @@ function escribaUrl() {
   try { const abs = new URL(u, location.origin); return abs.protocol === "http:" || abs.protocol === "https:" ? u : "/"; } catch { return "/"; }
 }
 $("btnEscriba").addEventListener("click", () => {
-  if (!state.result || !state.result.movements.length) { toast("Primero abrí y extraé un documento."); return; }
+  if (!state.result || !state.result.movements.length) { toast(tr("toast.openFirst")); return; }
   const o = { decimal: settings.csvDecimal, dateFmt: settings.dateFmt, debitoSign: settings.debitoSign };
   const md = rowsToMarkdown(state.result.movements, state.columns, state.annotations, state.annoValues, o);
   const csv = rowsToCsv(state.result.movements, state.columns, state.annotations, state.annoValues, { ...o, sep: ",", bom: false });
@@ -998,7 +1002,7 @@ $("btnEscriba").addEventListener("click", () => {
   const onMsg = (e) => { if (win && e.source === win && e.data && e.data.type === "escriba-ready") { try { win.postMessage({ type: "escriba-handoff", payload }, targetOrigin); } catch {} } };
   window.addEventListener("message", onMsg);
   setTimeout(() => window.removeEventListener("message", onMsg), 120000); // limpio el listener a los 2 min
-  toast("Abriendo Escriba con tus datos…");
+  toast(tr("toast.escribaOpening"));
   win = window.open(url, "_blank");
 });
 
@@ -1013,7 +1017,7 @@ function toast(msg, ms = 2600) {
 // Tip de descubrimiento: la primera vez, explico la interacción estrella (arrastrar columnas).
 function coachOnce() {
   try { if (localStorage.getItem("fulgoria.coachSeen")) return; localStorage.setItem("fulgoria.coachSeen", "1"); } catch { return; }
-  toast("Tip: arrastrá las barras de color sobre el documento para ajustar las columnas (o usá + Nueva columna).", 6000);
+  toast(tr("toast.tip"), 6000);
 }
 
 // Modal de ayuda
@@ -1074,6 +1078,9 @@ const dz = $("emptyState");
 ["dragover", "dragenter"].forEach((ev) => dz.addEventListener(ev, (e) => { e.preventDefault(); dz.classList.add("hover"); }));
 ["dragleave", "drop"].forEach((ev) => dz.addEventListener(ev, (e) => { e.preventDefault(); dz.classList.remove("hover"); }));
 dz.addEventListener("drop", (e) => { const f = e.dataTransfer.files[0]; if (f) onFile(f); });
+
+// i18n del ecosistema: arma el selector de idioma y aplica las traducciones (data-i18n).
+initI18n();
 
 applyAmountMode(); // aplicar modo de lectura de importes guardado
 wireSettings();

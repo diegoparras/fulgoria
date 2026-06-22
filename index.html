@@ -24,33 +24,34 @@
       </div>
     </div>
     <div class="actions">
-      <label class="btn primary" title="Abrir un PDF o imagen para extraer">
+      <label class="btn primary" data-i18n-title="open.title" title="Abrir un PDF o imagen para extraer">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg>
-        <span class="btn-txt">Abrir PDF o imagen</span><input id="fileInput" type="file" accept="application/pdf,image/*" hidden />
+        <span class="btn-txt" data-i18n="open">Abrir PDF o imagen</span><input id="fileInput" type="file" accept="application/pdf,image/*" hidden />
       </label>
-      <button id="themeBtn" class="icon-btn" title="Cambiar tema" aria-label="Cambiar tema"></button>
-      <a href="/logout" class="icon-btn" title="Salir" aria-label="Salir" style="display:inline-grid;place-items:center;text-decoration:none"><svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></a>
+      <select id="langSelect" class="lang-select" title="Idioma" aria-label="Idioma"></select>
+      <button id="themeBtn" class="icon-btn" data-i18n-title="theme" title="Cambiar tema" aria-label="Cambiar tema"></button>
+      <a href="/logout" class="icon-btn" data-i18n-title="logout" title="Salir" aria-label="Salir" style="display:inline-grid;place-items:center;text-decoration:none"><svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></a>
       <div class="menu-wrap">
-        <button id="btnMenu" class="icon-btn" aria-haspopup="true" aria-expanded="false" title="Más acciones" aria-label="Más acciones">
+        <button id="btnMenu" class="icon-btn" aria-haspopup="true" aria-expanded="false" data-i18n-title="menu.more" title="Más acciones" aria-label="Más acciones">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="12" cy="19" r="1.9"/></svg>
         </button>
         <div id="actionMenu" class="menu" role="menu" hidden>
           <button id="btnSample" class="menu-item" role="menuitem">
             <svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>
-            Ver un ejemplo
+            <span data-i18n="menu.sample">Ver un ejemplo</span>
           </button>
-          <label class="menu-item" role="menuitem" title="Reusar una plantilla .json descargada">
+          <label class="menu-item" role="menuitem" data-i18n-title="menu.loadTpl.title" title="Reusar una plantilla .json descargada">
             <svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
-            Cargar plantilla<input id="tplInput" type="file" accept=".json,application/json" hidden />
+            <span data-i18n="menu.loadTpl">Cargar plantilla</span><input id="tplInput" type="file" accept=".json,application/json" hidden />
           </label>
           <div id="savedTplRow" class="menu-field" style="display:none">
-            <span class="menu-label">Plantillas guardadas</span>
+            <span class="menu-label" data-i18n="menu.savedTpl">Plantillas guardadas</span>
             <select id="savedTpl" title="Reusar una plantilla guardada"></select>
           </div>
           <div class="menu-sep"></div>
           <button id="btnHelp" class="menu-item" role="menuitem">
             <svg class="ico" width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12" y2="17"/></svg>
-            Cómo funciona
+            <span data-i18n="menu.help">Cómo funciona</span>
           </button>
         </div>
       </div>
@@ -58,8 +59,8 @@
   </header>
 
   <header class="hero">
-    <h1>Tus extractos, en datos limpios.</h1>
-    <p class="sub">Marcás las columnas una vez y Fulgoria lee todo. 100% local, exacto, tuyo.</p>
+    <h1 data-i18n="hero.title">Tus extractos, en datos limpios.</h1>
+    <p class="sub" data-i18n="hero.sub">Marcás las columnas una vez y Fulgoria lee todo. 100% local, exacto, tuyo.</p>
   </header>
 
   <div id="ocrProgress" class="ocr-progress" style="display:none"></div>
@@ -72,10 +73,10 @@
             <path d="M13 2 L3 14 h9 l-1 8 L21 10 h-9 l1 -8 z" fill="#3b76d9"/>
           </svg>
         </div>
-        <h2>Tu extracto, en datos limpios</h2>
-        <p>Arrastrá un PDF o imagen acá —o tocá <em>Abrir</em> arriba. Marcás las columnas una vez
+        <h2 data-i18n="empty.title">Tu extracto, en datos limpios</h2>
+        <p data-i18n-html="empty.body">Arrastrá un PDF o imagen acá —o tocá <em>Abrir</em> arriba. Marcás las columnas una vez
            y el sistema lee todo. Nada se sube a ningún lado.</p>
-        <div class="empty-tags"><span>PDF</span><span>Imagen</span><span>Escaneado · OCR</span><span>Multipágina</span><span>Multi-cuenta</span><span>100% local</span></div>
+        <div class="empty-tags"><span data-i18n="tag.pdf">PDF</span><span data-i18n="tag.image">Imagen</span><span data-i18n="tag.ocr">Escaneado · OCR</span><span data-i18n="tag.multipage">Multipágina</span><span data-i18n="tag.multiaccount">Multi-cuenta</span><span data-i18n="tag.local">100% local</span></div>
       </div>
     </section>
 
@@ -83,19 +84,19 @@
       <!-- Izquierda: PDF + overlay de columnas + navegador -->
       <div class="pane left">
         <div class="pane-head">
-          <span>Extracto</span>
+          <span data-i18n="pane.extract">Extracto</span>
           <div class="pager">
-            <button id="btnPrev" class="ghost sm" aria-label="Página anterior"><svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <button id="btnPrev" class="ghost sm" data-i18n-title="pager.prev" aria-label="Página anterior"><svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
             <span id="pageLabel" class="page-label">Página 1 / 1</span>
-            <button id="btnNext" class="ghost sm" aria-label="Página siguiente"><svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
-            <button id="btnNewCol" class="btn sm">+ Nueva columna</button>
-            <button id="btnRecalc" class="ghost sm" title="Re-leer manteniendo tus columnas"><svg class="ico" width="14" height="14" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v5h-5"/></svg> Recalcular</button>
-            <button id="btnReset" class="ghost sm" title="Descartar columnas y auto-detectar de nuevo">Auto-detectar</button>
+            <button id="btnNext" class="ghost sm" data-i18n-title="pager.next" aria-label="Página siguiente"><svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+            <button id="btnNewCol" class="btn sm" data-i18n="btn.newCol">+ Nueva columna</button>
+            <button id="btnRecalc" class="ghost sm" data-i18n-title="btn.recalc.title" title="Re-leer manteniendo tus columnas"><svg class="ico" width="14" height="14" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v5h-5"/></svg> <span data-i18n="btn.recalc">Recalcular</span></button>
+            <button id="btnReset" class="ghost sm" data-i18n="btn.autodetect" data-i18n-title="btn.autodetect.title" title="Descartar columnas y auto-detectar de nuevo">Auto-detectar</button>
           </div>
         </div>
         <div id="placeHint" class="place-hint" style="display:none"></div>
         <div id="pdfWrap" class="pdf-wrap"></div>
-        <p class="hint">Cada columna es una <b>banda</b> con barra de <b>inicio</b> y de <b>fin</b>: arrastralas libres. <b>+ Nueva columna</b> → marcás inicio y fin con dos clicks. Las columnas valen para todas las páginas.</p>
+        <p class="hint" data-i18n-html="hint.bands">Cada columna es una <b>banda</b> con barra de <b>inicio</b> y de <b>fin</b>: arrastralas libres. <b>+ Nueva columna</b> → marcás inicio y fin con dos clicks. Las columnas valen para todas las páginas.</p>
       </div>
 
       <!-- Derecha: roles, anotaciones, tabla, saldo, export -->
@@ -106,90 +107,90 @@
         <div id="segmentsHost"></div>
 
         <details class="block" open>
-          <summary>Columnas y roles</summary>
+          <summary data-i18n="block.cols">Columnas y roles</summary>
           <div id="columnsPanel" class="cols-panel"></div>
-          <p class="hint">Asigná a cada columna qué es. Agregá columnas del PDF que falten (ej: Comprobante).</p>
+          <p class="hint" data-i18n="hint.cols">Asigná a cada columna qué es. Agregá columnas del PDF que falten (ej: Comprobante).</p>
         </details>
 
         <details class="block">
-          <summary>Campos propios (no están en el PDF)</summary>
+          <summary data-i18n="block.anno">Campos propios (no están en el PDF)</summary>
           <div class="anno-add">
-            <input id="annoInput" type="text" placeholder="Ej: Categoría, Rubro, Conciliado…" />
-            <button id="annoAdd" class="btn sm">Agregar</button>
+            <input id="annoInput" type="text" data-i18n-ph="anno.ph" placeholder="Ej: Categoría, Rubro, Conciliado…" />
+            <button id="annoAdd" class="btn sm" data-i18n="anno.add">Agregar</button>
           </div>
           <div id="annoList" class="anno-list"></div>
-          <p class="hint">Aparecen como columnas editables en la tabla. Los completás vos.</p>
+          <p class="hint" data-i18n="hint.anno">Aparecen como columnas editables en la tabla. Los completás vos.</p>
         </details>
 
         <details class="block" id="rulesBlock">
-          <summary>Reglas de exclusión <b id="rulesCount"></b></summary>
+          <summary><span data-i18n="block.rules">Reglas de exclusión</span> <b id="rulesCount"></b></summary>
           <div class="rule-add">
-            <select id="ruleField" title="En qué columna mirar"><option value="*">Cualquier celda</option></select>
-            <select id="ruleMatch" title="Condición">
-              <option value="contains">contiene</option>
-              <option value="equals">es igual a</option>
-              <option value="regex">regex</option>
-              <option value="empty">está vacía</option>
+            <select id="ruleField" data-i18n-title="rule.field.title" title="En qué columna mirar"><option value="*" data-i18n="rule.anyCell">Cualquier celda</option></select>
+            <select id="ruleMatch" data-i18n-title="rule.match.title" title="Condición">
+              <option value="contains" data-i18n="rule.contains">contiene</option>
+              <option value="equals" data-i18n="rule.equals">es igual a</option>
+              <option value="regex" data-i18n="rule.regex">regex</option>
+              <option value="empty" data-i18n="rule.empty">está vacía</option>
             </select>
-            <input id="ruleValue" type="text" placeholder="texto a saltear (ej: TOTALES)" />
-            <button id="ruleAdd" class="btn sm">Agregar</button>
+            <input id="ruleValue" type="text" data-i18n-ph="rule.ph" placeholder="texto a saltear (ej: TOTALES)" />
+            <button id="ruleAdd" class="btn sm" data-i18n="rule.add">Agregar</button>
           </div>
           <div id="rulesList" class="rules-list"></div>
-          <p class="hint">Saltea filas-basura por <b>contenido</b> (no por posición): headers repetidos, "TOTALES", "CONTINÚA EN PÁGINA"… También desde el <b>botón de excluir</b> de cada fila en la tabla. Se guarda en la plantilla.</p>
+          <p class="hint" data-i18n-html="hint.rules">Saltea filas-basura por <b>contenido</b> (no por posición): headers repetidos, "TOTALES", "CONTINÚA EN PÁGINA"… También desde el <b>botón de excluir</b> de cada fila en la tabla. Se guarda en la plantilla.</p>
         </details>
 
         <details class="block">
-          <summary><svg class="ico" width="14" height="14" viewBox="0 0 24 24" style="vertical-align:-2px"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Configuración</summary>
+          <summary><svg class="ico" width="14" height="14" viewBox="0 0 24 24" style="vertical-align:-2px"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> <span data-i18n="block.config">Configuración</span></summary>
           <!-- Anonimización BÁSICA (regex, en el navegador) aplicada al CSV. Control compartido del ecosistema. -->
           <div class="anon-field">
             <div id="anonOptionsMount"></div>
-            <p class="hint">Se aplica al <b>CSV</b>: tapa CBU, CUIT, tarjeta, DNI, email y teléfono en las descripciones. Para nombres y direcciones, usá <b>Enviar a Escriba</b> (libera el motor completo de Anonimal).</p>
+            <p class="hint" data-i18n-html="hint.anon">Se aplica al <b>CSV</b>: tapa CBU, CUIT, tarjeta, DNI, email y teléfono en las descripciones. Para nombres y direcciones, usá <b>Enviar a Escriba</b> (libera el motor completo de Anonimal).</p>
           </div>
           <div class="settings">
-            <label>Lectura de importes
+            <label><span data-i18n="cfg.amountRead">Lectura de importes</span>
               <select id="setDecimalIn">
-                <option value="auto">Automático</option>
-                <option value="es-AR">es-AR (1.234,56)</option>
-                <option value="us">Yanqui (1,234.56)</option>
+                <option value="auto" data-i18n="cfg.amount.auto">Automático</option>
+                <option value="es-AR" data-i18n="cfg.amount.esar">es-AR (1.234,56)</option>
+                <option value="us" data-i18n="cfg.amount.us">Yanqui (1,234.56)</option>
               </select>
             </label>
-            <label>Tolerancia del saldo (centavos)
+            <label><span data-i18n="cfg.tolerance">Tolerancia del saldo (centavos)</span>
               <input id="setTolerance" type="number" min="0" step="1" />
             </label>
-            <label>Fecha (patrón global)
-              <input id="setDateFmt" type="text" placeholder="DD/MM/YYYY" title="DD/D día · MM/M mes · AAAA/YYYY año · AA/YY año corto" />
+            <label><span data-i18n="cfg.dateFmt">Fecha (patrón global)</span>
+              <input id="setDateFmt" type="text" placeholder="DD/MM/YYYY" data-i18n-title="cfg.dateFmt.title" title="DD/D día · MM/M mes · AAAA/YYYY año · AA/YY año corto" />
             </label>
-            <label>Decimal en el CSV
-              <select id="setCsvDecimal"><option value=",">Coma (,)</option><option value=".">Punto (.)</option></select>
+            <label><span data-i18n="cfg.csvDecimal">Decimal en el CSV</span>
+              <select id="setCsvDecimal"><option value="," data-i18n="cfg.decimal.comma">Coma (,)</option><option value="." data-i18n="cfg.decimal.dot">Punto (.)</option></select>
             </label>
-            <label>Separador del CSV
-              <select id="setCsvSep"><option value=",">Coma (,)</option><option value=";">Punto y coma (;)</option><option value="tab">Tabulación</option></select>
+            <label><span data-i18n="cfg.csvSep">Separador del CSV</span>
+              <select id="setCsvSep"><option value="," data-i18n="cfg.sep.comma">Coma (,)</option><option value=";" data-i18n="cfg.sep.semicolon">Punto y coma (;)</option><option value="tab" data-i18n="cfg.sep.tab">Tabulación</option></select>
             </label>
-            <label>Débitos en el CSV
-              <select id="setDebitoSign"><option value="auto">Como vienen</option><option value="negative">En negativo</option><option value="positive">En positivo</option></select>
+            <label><span data-i18n="cfg.debitSign">Débitos en el CSV</span>
+              <select id="setDebitoSign"><option value="auto" data-i18n="cfg.debit.asis">Como vienen</option><option value="negative" data-i18n="cfg.debit.neg">En negativo</option><option value="positive" data-i18n="cfg.debit.pos">En positivo</option></select>
             </label>
-            <label class="chk"><input id="setCsvBom" type="checkbox" /> Compatibilidad Excel (BOM UTF-8)</label>
+            <label class="chk"><input id="setCsvBom" type="checkbox" /> <span data-i18n="cfg.excelBom">Compatibilidad Excel (BOM UTF-8)</span></label>
           </div>
-          <p class="hint">Se guarda en tu navegador. "Lectura de importes" y la tolerancia recalculan al instante; el resto aplica al exportar.</p>
+          <p class="hint" data-i18n="hint.config">Se guarda en tu navegador. "Lectura de importes" y la tolerancia recalculan al instante; el resto aplica al exportar.</p>
         </details>
 
         <div class="export">
-          <label class="fld">Nombre de la Entidad <input id="bankName" type="text" placeholder="Nombre de la entidad" /></label>
-          <label class="fld">Id para la Comunidad <input id="contributor" type="text" placeholder="anon (para la biblioteca comunitaria)" /></label>
+          <label class="fld"><span data-i18n="export.bankName">Nombre de la Entidad</span> <input id="bankName" type="text" data-i18n-ph="export.bankName.ph" placeholder="Nombre de la entidad" /></label>
+          <label class="fld"><span data-i18n="export.contributor">Id para la Comunidad</span> <input id="contributor" type="text" data-i18n-ph="export.contributor.ph" placeholder="anon (para la biblioteca comunitaria)" /></label>
           <div class="export-btns">
-            <button id="btnEdit" class="btn" title="Editar las celdas antes de exportar (saldo en vivo)">
+            <button id="btnEdit" class="btn" data-i18n-title="btn.edit.title" title="Editar las celdas antes de exportar (saldo en vivo)">
               <svg class="ico" width="15" height="15" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
-              Editar tabla
+              <span data-i18n="btn.edit">Editar tabla</span>
             </button>
-            <button id="btnCsv" class="btn primary">Descargar movimientos (CSV)</button>
-            <button id="btnEscriba" class="btn send-escriba" title="Mandar lo extraído a tu Escriba: anonimizar, convertir, chunk, audio">
+            <button id="btnCsv" class="btn primary" data-i18n="btn.csv">Descargar movimientos (CSV)</button>
+            <button id="btnEscriba" class="btn send-escriba" data-i18n-title="btn.escriba.title" title="Mandar lo extraído a tu Escriba: anonimizar, convertir, chunk, audio">
               <svg class="ico" width="15" height="15" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-              Enviar a Escriba
+              <span data-i18n="btn.escriba">Enviar a Escriba</span>
             </button>
-            <button id="btnYaml" class="btn">Plantilla .yaml</button>
-            <button id="btnJson" class="ghost">.json</button>
+            <button id="btnYaml" class="btn" data-i18n="btn.yaml">Plantilla .yaml</button>
+            <button id="btnJson" class="ghost" data-i18n="btn.json">.json</button>
           </div>
-          <p class="hint">La plantilla guarda <b>dónde</b> está cada dato, nunca <b>qué</b> dice. Es lo único compartible.</p>
+          <p class="hint" data-i18n-html="hint.export">La plantilla guarda <b>dónde</b> está cada dato, nunca <b>qué</b> dice. Es lo único compartible.</p>
         </div>
       </div>
     </section>
@@ -198,101 +199,101 @@
   <div id="helpModal" class="modal" hidden>
     <div class="modal-backdrop" data-close></div>
     <div class="modal-card" role="dialog" aria-modal="true" aria-label="Ayuda">
-      <button class="modal-close" data-close title="Cerrar" aria-label="Cerrar"><svg class="ico" width="18" height="18" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
-      <h2>Cómo usar Fulgoria</h2>
-      <p class="modal-lead">Convierte el extracto bancario en PDF (o imagen) en una planilla de movimientos.
+      <button class="modal-close" data-close data-i18n-title="common.close" title="Cerrar" aria-label="Cerrar"><svg class="ico" width="18" height="18" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <h2 data-i18n="help.title">Cómo usar Fulgoria</h2>
+      <p class="modal-lead" data-i18n-html="help.lead">Convierte el extracto bancario en PDF (o imagen) en una planilla de movimientos.
         Todo se procesa <b>en tu navegador</b>: ningún dato sale de tu máquina.</p>
 
-      <h3>1 · Tres pasos</h3>
+      <h3 data-i18n="help.h1">1 · Tres pasos</h3>
       <ol class="modal-steps">
-        <li><b>Abrí</b> un PDF o imagen (o "Probar con ejemplo").</li>
-        <li><b>Marcá las columnas</b> sobre el PDF: dónde está cada dato.</li>
-        <li><b>Exportá</b> los movimientos (CSV) o la plantilla. La <b>regla del saldo</b> te confirma en verde que leyó bien.</li>
+        <li data-i18n-html="help.step1"><b>Abrí</b> un PDF o imagen (o "Probar con ejemplo").</li>
+        <li data-i18n-html="help.step2"><b>Marcá las columnas</b> sobre el PDF: dónde está cada dato.</li>
+        <li data-i18n-html="help.step3"><b>Exportá</b> los movimientos (CSV) o la plantilla. La <b>regla del saldo</b> te confirma en verde que leyó bien.</li>
       </ol>
 
-      <h3>2 · Marcar columnas (las barritas)</h3>
+      <h3 data-i18n="help.h2">2 · Marcar columnas (las barritas)</h3>
       <ul>
-        <li>Cada columna es una <b>banda</b> con barra de <b>inicio</b> y de <b>fin</b>: arrastralas libres.</li>
-        <li><b>+ Nueva columna</b> → click donde empieza, click donde termina.</li>
-        <li>El botón de <b>cerrar</b> de la banda la borra. <b>Recalcular</b> re-lee con tus columnas. <b>Auto-detectar</b> reinicia.</li>
-        <li>Asigná a cada columna su <b>rol</b> en el panel derecho.</li>
+        <li data-i18n-html="help.cols1">Cada columna es una <b>banda</b> con barra de <b>inicio</b> y de <b>fin</b>: arrastralas libres.</li>
+        <li data-i18n-html="help.cols2"><b>+ Nueva columna</b> → click donde empieza, click donde termina.</li>
+        <li data-i18n-html="help.cols3">El botón de <b>cerrar</b> de la banda la borra. <b>Recalcular</b> re-lee con tus columnas. <b>Auto-detectar</b> reinicia.</li>
+        <li data-i18n-html="help.cols4">Asigná a cada columna su <b>rol</b> en el panel derecho.</li>
       </ul>
 
-      <h3>3 · Roles</h3>
+      <h3 data-i18n="help.h3">3 · Roles</h3>
       <table class="modal-table">
-        <tr><td><b>Fecha</b></td><td>la fecha del movimiento</td></tr>
-        <tr><td><b>Descripción</b></td><td>el detalle/concepto</td></tr>
-        <tr><td><b>Débito / Crédito</b></td><td>columnas separadas de cargos y abonos</td></tr>
-        <tr><td><b>Importe</b></td><td>una sola columna con signo (+/−)</td></tr>
-        <tr><td><b>Saldo</b></td><td>el saldo corrido (si el banco lo imprime)</td></tr>
-        <tr><td><b>Texto / Ignorar</b></td><td>datos extra (ej: Comprobante) o columnas a omitir</td></tr>
+        <tr><td><b>Fecha</b></td><td data-i18n="help.role.date">la fecha del movimiento</td></tr>
+        <tr><td><b>Descripción</b></td><td data-i18n="help.role.desc">el detalle/concepto</td></tr>
+        <tr><td><b>Débito / Crédito</b></td><td data-i18n="help.role.debcred">columnas separadas de cargos y abonos</td></tr>
+        <tr><td><b>Importe</b></td><td data-i18n="help.role.amount">una sola columna con signo (+/−)</td></tr>
+        <tr><td><b>Saldo</b></td><td data-i18n="help.role.balance">el saldo corrido (si el banco lo imprime)</td></tr>
+        <tr><td><b>Texto / Ignorar</b></td><td data-i18n="help.role.text">datos extra (ej: Comprobante) o columnas a omitir</td></tr>
       </table>
 
-      <h3>4 · Formato a tu gusto (el botón de formato de cada columna)</h3>
-      <p>Definís cómo se presenta cada columna con un <b>patrón libre</b>. Lo que ves en la tabla es lo que sale en el CSV.</p>
-      <p class="modal-sub">Fechas — tokens (separá con / - . lo que quieras):</p>
+      <h3 data-i18n="help.h4">4 · Formato a tu gusto (el botón de formato de cada columna)</h3>
+      <p data-i18n-html="help.fmt.lead">Definís cómo se presenta cada columna con un <b>patrón libre</b>. Lo que ves en la tabla es lo que sale en el CSV.</p>
+      <p class="modal-sub" data-i18n="help.fmt.dates">Fechas — tokens (separá con / - . lo que quieras):</p>
       <table class="modal-table">
-        <tr><td><code>DD</code> / <code>D</code></td><td>día</td><td><code>MM</code> / <code>M</code></td><td>mes</td></tr>
-        <tr><td><code>AAAA</code> / <code>YYYY</code></td><td>año 4</td><td><code>AA</code> / <code>YY</code></td><td>año 2</td></tr>
+        <tr><td><code>DD</code> / <code>D</code></td><td data-i18n="help.fmt.day">día</td><td><code>MM</code> / <code>M</code></td><td data-i18n="help.fmt.month">mes</td></tr>
+        <tr><td><code>AAAA</code> / <code>YYYY</code></td><td data-i18n="help.fmt.year4">año 4</td><td><code>AA</code> / <code>YY</code></td><td data-i18n="help.fmt.year2">año 2</td></tr>
       </table>
-      <p class="modal-eg">Ej: <code>DD/MM/YYYY</code> → 04/05/2026 · <code>AAAA-MM-DD</code> → 2026-05-04 · <code>D.M.AA</code> → 4.5.26</p>
-      <p class="modal-sub">Importes — patrón estilo Excel <code>positivo;negativo</code> (último <code>,</code>/<code>.</code> con 2 dígitos = decimal):</p>
+      <p class="modal-eg"><span data-i18n="help.fmt.eg">Ej:</span> <code>DD/MM/YYYY</code> → 04/05/2026 · <code>AAAA-MM-DD</code> → 2026-05-04 · <code>D.M.AA</code> → 4.5.26</p>
+      <p class="modal-sub" data-i18n-html="help.fmt.amounts">Importes — patrón estilo Excel <code>positivo;negativo</code> (último <code>,</code>/<code>.</code> con 2 dígitos = decimal):</p>
       <table class="modal-table">
         <tr><td><code>$ #.##0,00</code></td><td>$ 1.234,56</td></tr>
-        <tr><td><code>#,##0.00;(#,##0.00)</code></td><td>negativos (1.234,56)</td></tr>
-        <tr><td><code>#.##0,00;#.##0,00-</code></td><td>menos atrás 89,90-</td></tr>
+        <tr><td><code>#,##0.00;(#,##0.00)</code></td><td data-i18n="help.fmt.neg">negativos (1.234,56)</td></tr>
+        <tr><td><code>#.##0,00;#.##0,00-</code></td><td data-i18n="help.fmt.trailing">menos atrás 89,90-</td></tr>
         <tr><td><code>U$S #,##0.00</code></td><td>U$S 1,234.50</td></tr>
       </table>
 
-      <h3>5 · Plantillas (reusar)</h3>
+      <h3 data-i18n="help.h5">5 · Plantillas (reusar)</h3>
       <ul>
-        <li>Marcaste un banco una vez → exportás la <b>plantilla</b> y queda guardada en el navegador.</li>
-        <li>La próxima vez que abrís un PDF de ese banco, lo <b>reconoce solo</b> y aplica la plantilla. También podés "Cargar plantilla" desde un archivo.</li>
+        <li data-i18n-html="help.tpl1">Marcaste un banco una vez → exportás la <b>plantilla</b> y queda guardada en el navegador.</li>
+        <li data-i18n-html="help.tpl2">La próxima vez que abrís un PDF de ese banco, lo <b>reconoce solo</b> y aplica la plantilla. También podés "Cargar plantilla" desde un archivo.</li>
       </ul>
 
-      <h3>6 · Más</h3>
+      <h3 data-i18n="help.h6">6 · Más</h3>
       <ul>
-        <li><b>Multi-cuenta:</b> si el PDF tiene varias cuentas (pesos y dólares), las separa en tarjetas independientes.</li>
-        <li><b>Imágenes y escaneados:</b> los lee con OCR, también local.</li>
-        <li><b>Campos propios:</b> agregá columnas que no están en el PDF (Categoría, Conciliado…) y completalas a mano.</li>
-        <li><b>Configuración:</b> defaults globales de fecha, decimal, separador del CSV, etc.</li>
+        <li data-i18n-html="help.more1"><b>Multi-cuenta:</b> si el PDF tiene varias cuentas (pesos y dólares), las separa en tarjetas independientes.</li>
+        <li data-i18n-html="help.more2"><b>Imágenes y escaneados:</b> los lee con OCR, también local.</li>
+        <li data-i18n-html="help.more3"><b>Campos propios:</b> agregá columnas que no están en el PDF (Categoría, Conciliado…) y completalas a mano.</li>
+        <li data-i18n-html="help.more4"><b>Configuración:</b> defaults globales de fecha, decimal, separador del CSV, etc.</li>
       </ul>
 
-      <p class="modal-foot"><svg class="ico" width="13" height="13" viewBox="0 0 24 24" style="vertical-align:-1px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Privacidad por diseño: el PDF nunca se sube a ningún servidor. La plantilla que compartís guarda <b>dónde</b> está cada dato, nunca <b>qué</b> dice.</p>
+      <p class="modal-foot" data-i18n-html="help.foot"><svg class="ico" width="13" height="13" viewBox="0 0 24 24" style="vertical-align:-1px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Privacidad por diseño: el PDF nunca se sube a ningún servidor. La plantilla que compartís guarda <b>dónde</b> está cada dato, nunca <b>qué</b> dice.</p>
     </div>
   </div>
 
   <div id="editorModal" class="modal" hidden>
     <div class="modal-backdrop" data-close></div>
     <div class="modal-card editor-card" role="dialog" aria-modal="true" aria-label="Editar tabla">
-      <button class="modal-close" data-close title="Cerrar" aria-label="Cerrar"><svg class="ico" width="18" height="18" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
-      <h2>Editar tabla</h2>
-      <p class="modal-lead">Corregí cualquier celda —Enter/Tab para moverte, como en una planilla. El <b>saldo se recalcula al instante</b>. Lo que edites acá es lo que se exporta y se envía a Escriba (no toca la plantilla).</p>
+      <button class="modal-close" data-close data-i18n-title="common.close" title="Cerrar" aria-label="Cerrar"><svg class="ico" width="18" height="18" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <h2 data-i18n="editor.title">Editar tabla</h2>
+      <p class="modal-lead" data-i18n-html="editor.lead">Corregí cualquier celda —Enter/Tab para moverte, como en una planilla. El <b>saldo se recalcula al instante</b>. Lo que edites acá es lo que se exporta y se envía a Escriba (no toca la plantilla).</p>
       <div class="editor-tools">
-        <button id="edUndo" class="icon-btn" title="Deshacer (Ctrl+Z)" aria-label="Deshacer" disabled><svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-1"/></svg></button>
-        <button id="edRedo" class="icon-btn" title="Rehacer (Ctrl+Y)" aria-label="Rehacer" disabled><svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="m15 14 5-5-5-5"/><path d="M20 9H9a5 5 0 0 0 0 10h1"/></svg></button>
+        <button id="edUndo" class="icon-btn" data-i18n-title="editor.undo" title="Deshacer (Ctrl+Z)" aria-label="Deshacer" disabled><svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-1"/></svg></button>
+        <button id="edRedo" class="icon-btn" data-i18n-title="editor.redo" title="Rehacer (Ctrl+Y)" aria-label="Rehacer" disabled><svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="m15 14 5-5-5-5"/><path d="M20 9H9a5 5 0 0 0 0 10h1"/></svg></button>
         <span class="ed-sep"></span>
-        <input id="edFind" class="ed-tool-inp" type="text" placeholder="Buscar texto…" />
-        <input id="edRepl" class="ed-tool-inp" type="text" placeholder="Reemplazar con…" />
-        <button id="edReplace" class="btn sm">Reemplazar todo</button>
+        <input id="edFind" class="ed-tool-inp" type="text" data-i18n-ph="editor.find.ph" placeholder="Buscar texto…" />
+        <input id="edRepl" class="ed-tool-inp" type="text" data-i18n-ph="editor.repl.ph" placeholder="Reemplazar con…" />
+        <button id="edReplace" class="btn sm" data-i18n="editor.replaceAll">Reemplazar todo</button>
         <span class="ed-sep"></span>
-        <button id="edCat" class="btn sm">Categorizar…</button>
-        <button id="edQuality" class="btn sm">Revisar calidad</button>
+        <button id="edCat" class="btn sm" data-i18n="editor.categorize">Categorizar…</button>
+        <button id="edQuality" class="btn sm" data-i18n="editor.quality">Revisar calidad</button>
         <span id="edStatus" class="ed-status"></span>
       </div>
       <div id="edCatPanel" class="ed-cat" hidden>
-        <span class="ed-cat-lbl">Si la descripción contiene</span>
-        <input id="edCatKey" class="ed-tool-inp" type="text" placeholder="ej: UBER" />
-        <span class="ed-cat-lbl">poner</span>
-        <input id="edCatVal" class="ed-tool-inp" type="text" placeholder="ej: Transporte" />
-        <span class="ed-cat-lbl">en</span>
+        <span class="ed-cat-lbl" data-i18n="editor.cat.if">Si la descripción contiene</span>
+        <input id="edCatKey" class="ed-tool-inp" type="text" data-i18n-ph="editor.cat.keyPh" placeholder="ej: UBER" />
+        <span class="ed-cat-lbl" data-i18n="editor.cat.put">poner</span>
+        <input id="edCatVal" class="ed-tool-inp" type="text" data-i18n-ph="editor.cat.valPh" placeholder="ej: Transporte" />
+        <span class="ed-cat-lbl" data-i18n="editor.cat.in">en</span>
         <select id="edCatCol"></select>
-        <button id="edCatApply" class="btn sm">Aplicar</button>
+        <button id="edCatApply" class="btn sm" data-i18n="editor.cat.apply">Aplicar</button>
       </div>
       <div id="editorBody"></div>
       <div class="editor-foot">
-        <button id="editorClear" class="ghost sm" title="Descartar todas las correcciones manuales">Limpiar ediciones</button>
-        <button id="editorDone" class="btn primary" data-close>Listo</button>
+        <button id="editorClear" class="ghost sm" data-i18n-title="editor.clear.title" title="Descartar todas las correcciones manuales" data-i18n="editor.clear">Limpiar ediciones</button>
+        <button id="editorDone" class="btn primary" data-close data-i18n="editor.done">Listo</button>
       </div>
     </div>
   </div>
