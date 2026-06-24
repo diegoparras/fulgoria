@@ -27,6 +27,14 @@ const TTL_MS = Number(process.env.SESSION_TTL_HOURS || 12) * 3600 * 1000;
 const COOKIE = "fulgoria_auth";
 const ESCRIBA_URL = process.env.ESCRIBA_URL || ""; // destino de "Enviar a Escriba" (vacío → "/")
 
+// --- Federación opcional con Lockatus (el hub de identidad de la suite). Flag: local | federado.
+//     Default `local` → todo sigue exactamente como hoy (login propio del .env). ---
+const AUTH_MODE = String(process.env.AUTH_MODE || "local").toLowerCase();
+const LK_ISSUER = String(process.env.LOCKATUS_ISSUER || "").replace(/\/$/, "");
+const LK_CLIENT = process.env.LOCKATUS_CLIENT_ID || "fulgoria";
+const LK_REDIRECT = process.env.LOCKATUS_REDIRECT_URI || `http://localhost:${PORT}/callback`;
+const OIDC_COOKIE = "fulgoria_oidc"; // cookie de transacción (verifier/state/nonce) durante el login
+
 // index.html con el destino de Escriba inyectado en su <meta> (una sola lectura al arrancar).
 const escAttr = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const INDEX_HTML = fs.readFileSync(path.join(__dirname, "index.html"), "utf8").replace(
@@ -34,12 +42,21 @@ const INDEX_HTML = fs.readFileSync(path.join(__dirname, "index.html"), "utf8").r
   `<meta name="fulgoria-escriba-url" content="${escAttr(ESCRIBA_URL)}" />`,
 );
 
-if (AUTH_ENABLED && (!AUTH_USER || !AUTH_PASSWORD || !SESSION_SECRET)) {
+if (AUTH_ENABLED && AUTH_MODE === "federado" && (!SESSION_SECRET || !LK_ISSUER)) {
+  console.error("AUTH_MODE=federado requiere SESSION_SECRET y LOCKATUS_ISSUER en el .env.");
+  process.exit(1);
+}
+if (AUTH_ENABLED && AUTH_MODE !== "federado" && (!AUTH_USER || !AUTH_PASSWORD || !SESSION_SECRET)) {
   console.error("AUTH_ENABLED=true requiere AUTH_USER, AUTH_PASSWORD y SESSION_SECRET en el .env.");
   console.error("AUTH_PASSWORD puede ser tu contraseña en texto plano, o un hash bcrypt (node server.js --hash '…').");
   console.error("Generá el SESSION_SECRET con:  openssl rand -hex 32");
   process.exit(1);
 }
+
+// Cliente de Lockatus solo en modo federado (carga perezosa, sin deps nuevas).
+const lk = AUTH_ENABLED && AUTH_MODE === "federado"
+  ? require("./lockatus.js").createLockatus({ issuer: LK_ISSUER, clientId: LK_CLIENT, redirectUri: LK_REDIRECT })
+  : null;
 
 // AUTH_PASSWORD admite texto plano (como Escriba/Fisherboy) O un hash bcrypt (opcional, más seguro
 // si el .env se filtra). Auto-detección por el prefijo del hash.
@@ -124,8 +141,32 @@ button:hover{filter:brightness(1.06)}.err{color:#cf222e;font-size:13px;margin:14
 }
 app.get("/login", (req, res) => {
   if (authed(req)) return res.redirect("/");
+  if (AUTH_MODE === "federado") {
+    const verifier = crypto.randomBytes(32).toString("base64url");
+    const challenge = crypto.createHash("sha256").update(verifier).digest("base64url");
+    const state = crypto.randomBytes(16).toString("base64url"), nonce = crypto.randomBytes(16).toString("base64url");
+    res.cookie(OIDC_COOKIE, sign({ verifier, state, nonce, exp: Date.now() + 600000 }), { httpOnly: true, secure: COOKIE_SECURE, sameSite: "lax", maxAge: 600000 });
+    return res.redirect(lk.authorizeUrl({ state, nonce, challenge }));
+  }
   const e = req.query.e === "2" ? "Demasiados intentos. Esperá un minuto." : req.query.e ? "Usuario o contraseña incorrectos." : "";
   res.type("html").send(loginPage(e));
+});
+
+// Vuelta de Lockatus (federado): canjea el código, verifica los tokens (RS256/JWKS) y siembra la
+// MISMA cookie de sesión que usa el login propio → el resto del gate de Fulgoria no cambia.
+app.get("/callback", async (req, res) => {
+  if (AUTH_MODE !== "federado") return res.redirect("/login");
+  try {
+    if (req.query.error) return res.status(403).type("html").send(`<p>Acceso denegado por Lockatus: ${String(req.query.error).replace(/[<>&"]/g, "")}</p>`);
+    const tx = verify(req.cookies[OIDC_COOKIE]);
+    if (!tx || !req.query.code || req.query.state !== tx.state) return res.redirect("/login?e=1");
+    const tok = await lk.exchange({ code: String(req.query.code), verifier: tx.verifier });
+    await lk.verifyJwt(tok.id_token, { audience: LK_CLIENT, nonce: tx.nonce });
+    const ac = await lk.verifyJwt(tok.access_token, { audience: LK_CLIENT });
+    res.clearCookie(OIDC_COOKIE);
+    res.cookie(COOKIE, sign({ u: ac.email, role: ac.role, exp: Date.now() + TTL_MS }), { httpOnly: true, secure: COOKIE_SECURE, sameSite: "lax", maxAge: TTL_MS });
+    res.redirect("/");
+  } catch { res.redirect("/login?e=1"); }
 });
 app.post("/login", (req, res) => {
   const ip = req.ip || "?";
