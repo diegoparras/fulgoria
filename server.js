@@ -132,13 +132,24 @@ input{width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--lin
 input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
 button{width:100%;margin-top:20px;padding:12px;border:0;border-radius:10px;background:var(--accent);color:#fff;font:inherit;font-weight:600;font-size:15px;cursor:pointer}
 button:hover{filter:brightness(1.06)}.err{color:#cf222e;font-size:13px;margin:14px 0 0}
+.pwrap{position:relative;display:flex;align-items:center}.pwrap>input{flex:1 1 auto;padding-right:38px}
+.ptog{position:absolute;right:5px;top:50%;transform:translateY(-50%);width:30px;height:30px;display:grid;place-items:center;background:none;border:0;border-radius:7px;color:var(--muted);cursor:pointer}
+.ptog:hover{color:var(--ink)}.ptog svg{width:17px;height:17px}
 </style></head><body><form class="card" method="post" action="/login" autocomplete="on">
 <div class="logo"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="15" fill="#3b76d9"/><path d="M13 2 L3 14 h9 l-1 8 L21 10 h-9 l1 -8 z" transform="translate(2,2) scale(2.5)" fill="#fff"/></svg>Fulgoria</div>
 <p class="sub">Extraé datos de cualquier documento.</p>
 <label for="u">Usuario</label><input id="u" name="user" autocomplete="username" required autofocus>
 <label for="p">Contraseña</label><input id="p" name="password" type="password" autocomplete="current-password" required>
-<button type="submit">Ingresar</button>${msg}</form></body></html>`;
+<button type="submit">Ingresar</button>${msg}</form><script src="/login-eye.js"></script></body></html>`;
 }
+// Ojito mostrar/ocultar para el campo de contraseña del login. Externo (no inline) porque el
+// CSP del login es script-src 'self' sin 'unsafe-inline'. Se sirve ANTES de la puerta de auth.
+const LOGIN_EYE_JS = `(function(){var i=document.getElementById('p');if(!i)return;
+var EYE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>';
+var OFF='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9.9 4.24A9.1 9.1 0 0 1 12 4c6.4 0 10 7 10 7a13.2 13.2 0 0 1-1.67 2.68M6.6 6.6A13.4 13.4 0 0 0 2 11s3.6 7 10 7a9.1 9.1 0 0 0 5.4-1.6"/><path d="M14.12 14.12A3 3 0 1 1 9.88 9.88"/><line x1="2" y1="2" x2="22" y2="22"/></svg>';
+var w=document.createElement('span');w.className='pwrap';i.parentNode.insertBefore(w,i);w.appendChild(i);
+var b=document.createElement('button');b.type='button';b.className='ptog';b.tabIndex=-1;b.setAttribute('aria-label','Mostrar u ocultar la contraseña');b.innerHTML=EYE;
+b.addEventListener('click',function(){var s=i.type==='password';i.type=s?'text':'password';b.innerHTML=s?OFF:EYE;i.focus();});w.appendChild(b);})();`;
 app.get("/login", (req, res) => {
   if (authed(req)) return res.redirect("/");
   if (AUTH_MODE === "federado") {
@@ -183,6 +194,9 @@ app.post("/login", (req, res) => {
 });
 app.get("/logout", (req, res) => { res.clearCookie(COOKIE); res.redirect("/login"); });
 app.get("/api/health", (req, res) => res.json({ ok: true }));
+
+// Script del ojito del login: ungated (la página de login no tiene sesión todavía).
+app.get("/login-eye.js", (req, res) => res.type("application/javascript").send(LOGIN_EYE_JS));
 
 // --- Puerta: todo lo de abajo requiere sesión (si AUTH_ENABLED) ---
 app.use((req, res, next) => {
