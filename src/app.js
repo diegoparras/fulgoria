@@ -951,7 +951,7 @@ function closeMenu() { actionMenu.hidden = true; btnMenu.setAttribute("aria-expa
 function toggleMenu() { actionMenu.hidden ? (actionMenu.hidden = false, btnMenu.setAttribute("aria-expanded", "true")) : closeMenu(); }
 btnMenu.addEventListener("click", (e) => { e.stopPropagation(); toggleMenu(); });
 // Cerrar al elegir una acción (menos abrir el select de plantillas, que se usa adentro)
-actionMenu.addEventListener("click", (e) => { if (!e.target.closest("#savedTplRow")) closeMenu(); });
+actionMenu.addEventListener("click", (e) => { if (!e.target.closest("#savedTplRow") && !e.target.closest("#langRow")) closeMenu(); });
 document.addEventListener("click", (e) => { if (!actionMenu.hidden && !e.target.closest(".menu-wrap")) closeMenu(); });
 
 // Tema claro/oscuro (ecosistema Escriba) — claro por defecto, persistido; toggle en la topbar.

@@ -146,6 +146,17 @@ body.dragging { cursor: col-resize; user-select: none; }
   font: inherit; font-size: 13px; width: 100%; padding: 8px 10px; cursor: pointer;
   border-radius: 9px; border: 1px solid var(--line); background-color: var(--panel-2); color: var(--ink);
 }
+/* Fila de idioma dentro del menú (estilo Fisherboy): ícono + "Idioma" + select a la derecha. */
+.lang-row { cursor: default; }
+.lang-row:hover { background: transparent; }
+.lang-row:hover svg { color: var(--muted); }
+.lang-row .langsel {
+  margin-left: auto; font: inherit; font-size: 12.5px; cursor: pointer;
+  padding: 5px 8px; border-radius: 8px; border: 1px solid var(--line);
+  background-color: var(--panel-2); color: var(--ink);
+}
+.lang-row .langsel:hover { border-color: var(--accent); }
+.lang-row .langsel:focus-visible { box-shadow: var(--ring); outline: none; }
 
 /* Botones */
 .btn, .ghost {
