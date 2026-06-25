@@ -202,7 +202,13 @@ app.post("/login", (req, res) => {
   res.cookie(COOKIE, sign({ u: AUTH_USER, exp: Date.now() + TTL_MS }), { httpOnly: true, secure: COOKIE_SECURE, sameSite: "lax", maxAge: TTL_MS });
   res.redirect("/");
 });
-app.get("/logout", (req, res) => { res.clearCookie(COOKIE); res.redirect("/login"); });
+app.get("/logout", (req, res) => {
+  // clearCookie DEBE repetir las mismas opciones que res.cookie() o el navegador no borra la cookie.
+  const opts = { httpOnly: true, secure: COOKIE_SECURE, sameSite: "lax", path: "/" };
+  res.clearCookie(COOKIE, opts);
+  res.clearCookie(OIDC_COOKIE, opts);
+  res.redirect("/login");
+});
 app.get("/api/health", (req, res) => res.json({ ok: true }));
 
 // Script del ojito del login: ungated (la página de login no tiene sesión todavía).
