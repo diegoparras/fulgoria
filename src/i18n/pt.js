@@ -13,6 +13,16 @@ export default {
   "menu.loadTpl.title": "Reutilizar um modelo .json baixado",
   "menu.savedTpl": "Modelos salvos",
   "menu.help": "Como funciona",
+  "menu.theme.dark": "Tema escuro",
+  "menu.theme.light": "Tema claro",
+  "menu.about": "Sobre o Fulgoria",
+
+  // Sobre (modal canônico)
+  "about.title": "Sobre o Fulgoria",
+  "about.tagline": "Extraia dados de qualquer documento, 100% no seu navegador.",
+  "about.version": "Versão",
+  "about.role": "Papel na suíte",
+  "about.roleVal": "Satélite · Ecossistema Escriba",
 
   "hero.title": "Seus extratos, em dados limpos.",
   "hero.sub": "Você marca as colunas uma vez e a Fulgoria lê tudo. 100% local, exato, seu.",

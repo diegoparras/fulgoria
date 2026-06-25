@@ -15,6 +15,16 @@ export default {
   "menu.loadTpl.title": "Reusar una plantilla .json descargada",
   "menu.savedTpl": "Plantillas guardadas",
   "menu.help": "Cómo funciona",
+  "menu.theme.dark": "Tema oscuro",
+  "menu.theme.light": "Tema claro",
+  "menu.about": "Acerca de Fulgoria",
+
+  // Acerca de (modal canónico)
+  "about.title": "Acerca de Fulgoria",
+  "about.tagline": "Extraé datos de cualquier documento, 100% en tu navegador.",
+  "about.version": "Versión",
+  "about.role": "Rol en la suite",
+  "about.roleVal": "Satélite · Ecosistema Escriba",
 
   // Hero
   "hero.title": "Tus extractos, en datos limpios.",

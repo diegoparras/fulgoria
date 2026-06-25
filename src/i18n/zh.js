@@ -13,6 +13,16 @@ export default {
   "menu.loadTpl.title": "复用已下载的 .json 模板",
   "menu.savedTpl": "已保存的模板",
   "menu.help": "工作原理",
+  "menu.theme.dark": "深色主题",
+  "menu.theme.light": "浅色主题",
+  "menu.about": "关于 Fulgoria",
+
+  // 关于（标准弹窗）
+  "about.title": "关于 Fulgoria",
+  "about.tagline": "从任何文档中提取数据，100% 在您的浏览器中完成。",
+  "about.version": "版本",
+  "about.role": "在套件中的角色",
+  "about.roleVal": "卫星应用 · Escriba 生态系统",
 
   "hero.title": "把对账单变成干净的数据。",
   "hero.sub": "只需标记一次列，Fulgoria 就能读取全部内容。100% 本地、精确、归你所有。",

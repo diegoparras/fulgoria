@@ -13,6 +13,16 @@ export default {
   "menu.loadTpl.title": "Reuse a downloaded .json template",
   "menu.savedTpl": "Saved templates",
   "menu.help": "How it works",
+  "menu.theme.dark": "Dark theme",
+  "menu.theme.light": "Light theme",
+  "menu.about": "About Fulgoria",
+
+  // About (canonical modal)
+  "about.title": "About Fulgoria",
+  "about.tagline": "Extract data from any document, 100% in your browser.",
+  "about.version": "Version",
+  "about.role": "Role in the suite",
+  "about.roleVal": "Satellite · Escriba Ecosystem",
 
   "hero.title": "Your statements, as clean data.",
   "hero.sub": "Mark the columns once and Fulgoria reads everything. 100% local, exact, yours.",

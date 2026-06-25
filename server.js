@@ -35,12 +35,22 @@ const LK_CLIENT = process.env.LOCKATUS_CLIENT_ID || "fulgoria";
 const LK_REDIRECT = process.env.LOCKATUS_REDIRECT_URI || `http://localhost:${PORT}/callback`;
 const OIDC_COOKIE = "fulgoria_oidc"; // cookie de transacción (verifier/state/nonce) durante el login
 
-// index.html con el destino de Escriba inyectado en su <meta> (una sola lectura al arrancar).
+// Versión real de la app (package.json) — se inyecta en el <meta> para el "Acerca de".
+const APP_VERSION = (() => {
+  try { return require("./package.json").version || ""; } catch { return ""; }
+})();
+
+// index.html con el destino de Escriba y la versión inyectados en sus <meta> (una sola lectura al arrancar).
 const escAttr = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-const INDEX_HTML = fs.readFileSync(path.join(__dirname, "index.html"), "utf8").replace(
-  '<meta name="fulgoria-escriba-url" content="" />',
-  `<meta name="fulgoria-escriba-url" content="${escAttr(ESCRIBA_URL)}" />`,
-);
+const INDEX_HTML = fs.readFileSync(path.join(__dirname, "index.html"), "utf8")
+  .replace(
+    '<meta name="fulgoria-escriba-url" content="" />',
+    `<meta name="fulgoria-escriba-url" content="${escAttr(ESCRIBA_URL)}" />`,
+  )
+  .replace(
+    '<meta name="fulgoria-version" content="" />',
+    `<meta name="fulgoria-version" content="${escAttr(APP_VERSION)}" />`,
+  );
 
 if (AUTH_ENABLED && AUTH_MODE === "federado" && (!SESSION_SECRET || !LK_ISSUER)) {
   console.error("AUTH_MODE=federado requiere SESSION_SECRET y LOCKATUS_ISSUER en el .env.");

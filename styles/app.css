@@ -26,9 +26,11 @@
   --line: rgba(15,23,42,.12);
   --line-soft: rgba(15,23,42,.07);
   --line-strong: rgba(15,23,42,.22);
+  /* Acento Fulgoria (claro) — tabla oficial del sistema de diseño Escriba. */
   --accent: #3b76d9;
-  --accent-2: #7a52e8;
+  --accent-2: #2f5fb0;
   --accent-ink: #ffffff;
+  --on-accent: #ffffff;
   --ring: 0 0 0 3px rgba(59,118,217,.20);
   --sel: rgba(59,118,217,.22);
   --scroll-thumb: rgba(15,23,42,.22);
@@ -46,7 +48,9 @@
   --shadow: 0 1px 2px rgba(15,23,42,.05), 0 12px 32px -16px rgba(15,23,42,.18);
   color-scheme: light;
 }
-[data-theme="dark"] {
+/* :root[...] (no bare [...]) para igualar la especificidad del bloque de tokens canónico
+   (escriba-ui.css usa :root[data-theme="dark"]) y ganar por orden de carga. */
+:root[data-theme="dark"] {
   --bg: #090c11;
   --bg-2: #0c1015;
   --bg-grad: radial-gradient(1200px 600px at 80% -10%, #101826 0%, var(--bg) 55%);
@@ -58,11 +62,13 @@
   --line: rgba(255,255,255,.11);
   --line-soft: rgba(255,255,255,.06);
   --line-strong: rgba(255,255,255,.24);
-  --accent: #5aa2ff;
-  --accent-2: #8a6cff;
+  /* Acento Fulgoria (oscuro) — tabla oficial del sistema de diseño Escriba. */
+  --accent: #6f9eea;
+  --accent-2: #3b76d9;
   --accent-ink: #07101b;
-  --ring: 0 0 0 3px rgba(90,162,255,.28);
-  --sel: rgba(90,162,255,.30);
+  --on-accent: #07101b;
+  --ring: 0 0 0 3px rgba(111,158,234,.28);
+  --sel: rgba(111,158,234,.30);
   --scroll-thumb: #2a3340;
   --scroll-thumb-h: #3a4757;
   --topbar-bg: color-mix(in srgb, var(--bg) 60%, transparent);
@@ -454,8 +460,7 @@ body.busy { cursor: progress; }
   .brand-text h1 { font-size: 18px; }
 }
 @media (max-width: 480px) {
-  .btn.primary { padding: 10px; }
-  .btn.primary .btn-txt { display: none; }
+  /* La acción principal vive en el hero: su etiqueta SIEMPRE se ve (no se colapsa a ícono). */
   .menu { right: 0; min-width: min(260px, calc(100vw - 32px)); }
 }
 
@@ -467,6 +472,8 @@ body.busy { cursor: progress; }
   font-size: clamp(34px, 6vw, 62px); font-weight: 600; letter-spacing: -.03em; line-height: 1.05;
 }
 .hero .sub { margin: 14px auto 0; max-width: 620px; color: var(--muted); font-size: clamp(16px, 1.9vw, 19px); line-height: 1.5; }
+/* Acción PRINCIPAL de la app: "Abrir PDF o imagen" vive en el hero (no en el header). */
+.hero-cta { margin: 22px 0 0; display: flex; justify-content: center; }
 
 /* Caja de anonimización (componente compartido AnonOptions) — con aire, jerarquía y un select con cuerpo.
    AnonOptions trae estilos inline mínimos; los overrides van SCOPED a #anonOptionsMount → no tocan a Escriba. */

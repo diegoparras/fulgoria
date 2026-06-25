@@ -954,13 +954,16 @@ btnMenu.addEventListener("click", (e) => { e.stopPropagation(); toggleMenu(); })
 actionMenu.addEventListener("click", (e) => { if (!e.target.closest("#savedTplRow") && !e.target.closest("#langRow")) closeMenu(); });
 document.addEventListener("click", (e) => { if (!actionMenu.hidden && !e.target.closest(".menu-wrap")) closeMenu(); });
 
-// Tema claro/oscuro (ecosistema Escriba) — claro por defecto, persistido; toggle en la topbar.
-const SUN_SVG = '<svg class="ico" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
-const MOON_SVG = '<svg class="ico" width="18" height="18" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>';
+// Tema claro/oscuro (ecosistema Escriba) — claro por defecto, persistido; ahora vive en el menú ⋮.
+const SUN_SVG = '<svg class="ico" width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+const MOON_SVG = '<svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>';
 function paintTheme() {
   const dark = document.documentElement.getAttribute("data-theme") === "dark";
-  $("themeBtn").innerHTML = dark ? SUN_SVG : MOON_SVG; // ícono = a dónde vas
-  $("themeBtn").title = dark ? "Cambiar a modo claro" : "Cambiar a modo oscuro";
+  // Ítem de menú: ícono (a dónde vas) + etiqueta i18n ("Tema claro"/"Tema oscuro").
+  const label = dark ? tr("menu.theme.light") : tr("menu.theme.dark");
+  $("themeBtn").innerHTML = (dark ? SUN_SVG : MOON_SVG) + `<span>${label}</span>`;
+  $("themeBtn").title = label;
+  $("themeBtn").setAttribute("aria-label", label);
 }
 paintTheme();
 $("themeBtn").addEventListener("click", () => {
@@ -1023,6 +1026,15 @@ function coachOnce() {
 // Modal de ayuda
 $("btnHelp").addEventListener("click", () => { $("helpModal").hidden = false; });
 $("helpModal").addEventListener("click", (e) => { if (e.target.closest("[data-close]")) $("helpModal").hidden = true; });
+
+// Modal "Acerca de Fulgoria" (canónico): versión real + autoría. La versión la inyecta el
+// server desde package.json en <meta name="fulgoria-version">.
+(() => {
+  const v = (document.querySelector('meta[name="fulgoria-version"]')?.content || "").trim();
+  $("aboutVersion").textContent = v ? "v" + v : "—";
+})();
+$("btnAbout").addEventListener("click", () => { $("aboutModal").hidden = false; });
+$("aboutModal").addEventListener("click", (e) => { if (e.target.closest("[data-close]")) $("aboutModal").hidden = true; });
 // Editor de tabla
 $("btnEdit").addEventListener("click", openEditor);
 $("editorClear").addEventListener("click", clearEdits);
@@ -1053,6 +1065,7 @@ window.addEventListener("keydown", (e) => {
   if (e.key !== "Escape") return;
   if (!$("actionMenu").hidden) closeMenu();
   else if (!$("editorModal").hidden) closeEditor();
+  else if (!$("aboutModal").hidden) $("aboutModal").hidden = true;
   else if (!$("helpModal").hidden) $("helpModal").hidden = true;
   else if (state.placing) cancelPlacing();
 });
@@ -1080,7 +1093,10 @@ const dz = $("emptyState");
 dz.addEventListener("drop", (e) => { const f = e.dataTransfer.files[0]; if (f) onFile(f); });
 
 // i18n del ecosistema: arma el selector de idioma y aplica las traducciones (data-i18n).
-initI18n();
+// El ítem de tema arma su texto por JS (no data-i18n): repintar tras cargar el idioma inicial
+// y en cada cambio de idioma.
+initI18n().then(paintTheme).catch(() => {});
+$("langSelect").addEventListener("change", () => { setTimeout(paintTheme, 0); });
 
 applyAmountMode(); // aplicar modo de lectura de importes guardado
 wireSettings();

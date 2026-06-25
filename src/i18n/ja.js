@@ -13,6 +13,16 @@ export default {
   "menu.loadTpl.title": "ダウンロード済みの .json テンプレートを再利用",
   "menu.savedTpl": "保存済みテンプレート",
   "menu.help": "使い方",
+  "menu.theme.dark": "ダークテーマ",
+  "menu.theme.light": "ライトテーマ",
+  "menu.about": "Fulgoria について",
+
+  // Fulgoria について（標準モーダル）
+  "about.title": "Fulgoria について",
+  "about.tagline": "あらゆるドキュメントからデータを抽出。すべてブラウザ内で完結。",
+  "about.version": "バージョン",
+  "about.role": "スイート内の役割",
+  "about.roleVal": "サテライト · Escriba エコシステム",
 
   "hero.title": "明細を、きれいなデータに。",
   "hero.sub": "一度だけ列を指定すれば、Fulgoria がすべて読み取ります。100% ローカル、正確、あなただけのもの。",
