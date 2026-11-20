@@ -1,6 +1,6 @@
 {
   "name": "fulgoria",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Fulgoria — server fino: sirve la app estática + login desde .env. El documento se procesa 100% en el navegador y nunca llega al server.",
   "license": "Apache-2.0",
@@ -16,6 +16,6 @@
     "express": "^4.21.2"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   }
 }

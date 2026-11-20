@@ -86,6 +86,13 @@ npm install && npm start                 # local → http://localhost:3000
 O usá la imagen publicada en **GHCR** (`ghcr.io/diegoparras/fulgoria:latest`, que el CI construye
 en cada push a `main`) y desplegala en **EasyPanel** con las variables del `.env` en el panel.
 
+**Versión y novedades de cada deploy.** Cada deploy sube el *patch* de la versión y agrega su
+sección `## [X.Y.Z]` al [`CHANGELOG.md`](../../CHANGELOG.md) (sin ella el CI no publica). Lo
+primero que escribe el contenedor al levantar (EasyPanel > servicio > Registros) es un cartel
+`[fulgoria] FULGORIA vX.Y.Z` con lo que cambia; la interfaz avisa "Novedades" una vez tras cada
+actualización (y las deja en el menú y en "Acerca de"); la imagen sale también como `:X.Y.Z` y
+GitHub crea el Release `vX.Y.Z` con las mismas notas.
+
 > 📖 **Guía de deploy completa** (Docker, EasyPanel, referencia de variables, checklist de producción):
 > [DEPLOY.es.md](DEPLOY.es.md).
 

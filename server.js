@@ -17,6 +17,17 @@ if (process.argv[2] === "--hash") {
   process.exit(0);
 }
 
+// Lo primero que se ve en los registros al levantar (EasyPanel): version y que cambia, leido del
+// CHANGELOG.md. Va antes de validar el .env para que salga aunque falte configuracion. Nunca
+// rompe el arranque: sin CHANGELOG dice "Sin notas para esta version".
+const nov = require("./novedades.js");
+const APP_VERSION = (() => {
+  try { return require("./package.json").version || ""; } catch { return ""; }
+})();
+try {
+  for (const l of nov.cartelArranque(APP_VERSION, nov.todas())) console.log(`[fulgoria] ${l}`);
+} catch {}
+
 const PORT = Number(process.env.PORT || 3000);
 const AUTH_ENABLED = String(process.env.AUTH_ENABLED ?? "true").toLowerCase() === "true";
 const AUTH_USER = process.env.AUTH_USER || "";
@@ -35,10 +46,8 @@ const LK_CLIENT = process.env.LOCKATUS_CLIENT_ID || "fulgoria";
 const LK_REDIRECT = process.env.LOCKATUS_REDIRECT_URI || `http://localhost:${PORT}/callback`;
 const OIDC_COOKIE = "fulgoria_oidc"; // cookie de transacción (verifier/state/nonce) durante el login
 
-// Versión real de la app (package.json) — se inyecta en el <meta> para el "Acerca de".
-const APP_VERSION = (() => {
-  try { return require("./package.json").version || ""; } catch { return ""; }
-})();
+// La versión real de la app (APP_VERSION, de package.json, arriba) se inyecta en el <meta>
+// para el "Acerca de".
 
 // index.html con el destino de Escriba y la versión inyectados en sus <meta> (una sola lectura al arrancar).
 const escAttr = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -219,6 +228,17 @@ app.use((req, res, next) => {
   if (authed(req)) return next();
   if (req.path.startsWith("/api/")) return res.status(401).json({ error: "auth" });
   res.redirect("/login");
+});
+
+// GET /api/novedades?desde=X.Y.Z  -> que cambio desde la ultima version vista (CHANGELOG).
+// ?todas=1 -> historial hasta la version instalada. Detras de la misma puerta que el resto.
+app.get("/api/novedades", (req, res) => {
+  const d = String(req.query.desde || "");
+  const vista = /^\d+\.\d+\.\d+$/.test(d) ? d : null;
+  const versiones = req.query.todas === "1"
+    ? nov.todas().filter((x) => nov.comparar(x.version, APP_VERSION) <= 0)
+    : nov.desde(nov.todas(), vista, APP_VERSION);
+  res.json({ ok: true, version: APP_VERSION, versiones });
 });
 
 // --- Estáticos: WHITELIST explícita. Nunca se sirven .env, server.js, node_modules ni

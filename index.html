@@ -57,6 +57,10 @@
           </button>
           <div class="menu-sep"></div>
           <button id="themeBtn" class="menu-item" role="menuitem" data-i18n-title="theme" title="Cambiar tema" aria-label="Cambiar tema"></button>
+          <button id="btnNews" class="menu-item" role="menuitem">
+            <svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>
+            <span data-i18n="menu.news">Novedades</span>
+          </button>
           <button id="btnAbout" class="menu-item" role="menuitem">
             <svg class="ico" width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="8"/></svg>
             <span data-i18n="menu.about">Acerca de Fulgoria</span>
@@ -290,10 +294,23 @@
       <h2 id="aboutTitle" data-i18n="about.title">Acerca de Fulgoria</h2>
       <p class="modal-lead" data-i18n="about.tagline">Extraé datos de cualquier documento, 100% en tu navegador.</p>
       <dl class="about-rows">
-        <dt data-i18n="about.version">Versión</dt><dd id="aboutVersion">—</dd>
+        <dt data-i18n="about.version">Versión</dt><dd><span id="aboutVersion">—</span> · <button id="aboutNews" class="linkbtn" type="button" data-i18n="about.news">Qué cambió</button></dd>
         <dt data-i18n="about.role">Rol en la suite</dt><dd data-i18n="about.roleVal">Satélite · Ecosistema Escriba</dd>
       </dl>
       <p class="about-foot">Diego Parras · Ecosistema Escriba</p>
+    </div>
+  </div>
+
+  <!-- "Novedades": que cambio en cada version (sale del CHANGELOG.md via /api/novedades).
+       Aparece solo una vez tras una actualizacion; el historial queda en el menu. -->
+  <div id="newsModal" class="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card news-card" role="dialog" aria-modal="true" aria-labelledby="newsTitle">
+      <button class="modal-close" data-close data-i18n-title="common.close" title="Cerrar" aria-label="Cerrar"><svg class="ico" width="18" height="18" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <h2 id="newsTitle" data-i18n="news.title">Novedades</h2>
+      <p id="newsLead" class="modal-lead"></p>
+      <div id="newsBody"></div>
+      <div class="news-actions"><button class="btn primary" type="button" data-close data-i18n="news.ok">Entendido</button></div>
     </div>
   </div>
 

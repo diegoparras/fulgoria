@@ -1035,6 +1035,50 @@ $("helpModal").addEventListener("click", (e) => { if (e.target.closest("[data-cl
 })();
 $("btnAbout").addEventListener("click", () => { $("aboutModal").hidden = false; });
 $("aboutModal").addEventListener("click", (e) => { if (e.target.closest("[data-close]")) $("aboutModal").hidden = true; });
+
+// Modal "Novedades": que cambio en cada version. Sale del CHANGELOG.md (GET /api/novedades).
+// Aparece solo al entrar despues de una actualizacion (una vez por navegador: la ultima version
+// vista queda en localStorage); el historial queda en el menu y en "Acerca de" > "Qué cambió".
+const NOV_KEY = "fulgoria.versionVista";
+const novEsc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+// Primero se escapa el HTML; recien despues se convierten **negrita** y `codigo`.
+const novMd = (s) => novEsc(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/`([^`]+)`/g, "<code>$1</code>");
+function novHtml(versiones) {
+  return versiones.map((v) =>
+    `<div class="nov-ver"><b>v${novEsc(v.version)}</b>${v.fecha ? `<span>${novEsc(v.fecha)}</span>` : ""}</div>` +
+    v.secciones.map((s) => `<div class="nov-sec">${novMd(s.titulo)}</div><ul class="nov-list">${s.items.map((i) => `<li>${novMd(i)}</li>`).join("")}</ul>`).join(""),
+  ).join("");
+}
+async function novFetch(qs) {
+  const r = await fetch("/api/novedades" + qs, { credentials: "same-origin", headers: { accept: "application/json" } });
+  if (!r.ok) throw new Error("HTTP " + r.status);
+  return r.json();
+}
+function showNews(r, lead) {
+  $("newsLead").innerHTML = lead;
+  $("newsBody").innerHTML = r.versiones.length ? novHtml(r.versiones) : `<p class="modal-lead">${novEsc(tr("news.empty"))}</p>`;
+  $("newsModal").hidden = false;
+}
+async function avisarNovedades() {
+  let vista = null;
+  try { vista = localStorage.getItem(NOV_KEY); } catch {}
+  let r;
+  try { r = await novFetch(vista ? "?desde=" + encodeURIComponent(vista) : ""); } catch { return; }
+  try { localStorage.setItem(NOV_KEY, r.version); } catch {}
+  if (vista === r.version || !r.versiones.length) return;
+  if (document.querySelector(".modal:not([hidden])")) return; // no tapar lo que el usuario abrio
+  showNews(r, ti("news.updated", { v: "<b>v" + novEsc(r.version) + "</b>" }));
+}
+async function novedadesTodas() {
+  $("aboutModal").hidden = true;
+  try {
+    const r = await novFetch("?todas=1");
+    showNews({ ...r, versiones: r.versiones.slice(0, 15) }, ti("news.history", { v: "<b>v" + novEsc(r.version) + "</b>" }));
+  } catch { toast(tr("news.error")); }
+}
+$("btnNews").addEventListener("click", novedadesTodas);
+$("aboutNews").addEventListener("click", novedadesTodas);
+$("newsModal").addEventListener("click", (e) => { if (e.target.closest("[data-close]")) $("newsModal").hidden = true; });
 // Editor de tabla
 $("btnEdit").addEventListener("click", openEditor);
 $("editorClear").addEventListener("click", clearEdits);
@@ -1065,6 +1109,7 @@ window.addEventListener("keydown", (e) => {
   if (e.key !== "Escape") return;
   if (!$("actionMenu").hidden) closeMenu();
   else if (!$("editorModal").hidden) closeEditor();
+  else if (!$("newsModal").hidden) $("newsModal").hidden = true;
   else if (!$("aboutModal").hidden) $("aboutModal").hidden = true;
   else if (!$("helpModal").hidden) $("helpModal").hidden = true;
   else if (state.placing) cancelPlacing();
@@ -1095,7 +1140,7 @@ dz.addEventListener("drop", (e) => { const f = e.dataTransfer.files[0]; if (f) o
 // i18n del ecosistema: arma el selector de idioma y aplica las traducciones (data-i18n).
 // El ítem de tema arma su texto por JS (no data-i18n): repintar tras cargar el idioma inicial
 // y en cada cambio de idioma.
-initI18n().then(paintTheme).catch(() => {});
+initI18n().then(paintTheme).catch(() => {}).then(() => setTimeout(avisarNovedades, 400));
 $("langSelect").addEventListener("change", () => { setTimeout(paintTheme, 0); });
 
 applyAmountMode(); // aplicar modo de lectura de importes guardado

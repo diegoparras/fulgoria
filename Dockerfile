@@ -1,17 +1,19 @@
 # Fulgoria — imagen del server fino (sirve estáticos + login). Multi-stage para una imagen chica.
-FROM node:20-alpine AS deps
+# Imagen base pinneada por digest para builds reproducibles (node:24-alpine, LTS).
+FROM node:24-alpine@sha256:116b800c3754b440ee0aa3ed2f20f5bf3d99a554bfd9adeea09ea8017f6e85f5 AS deps
 WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN npm ci --omit=dev || npm install --omit=dev
 
-FROM node:20-alpine
+FROM node:24-alpine@sha256:116b800c3754b440ee0aa3ed2f20f5bf3d99a554bfd9adeea09ea8017f6e85f5
 WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
 # Dependencias ya resueltas
 COPY --from=deps /app/node_modules ./node_modules
 # Código de la app (lo que .dockerignore deja pasar: index.html, src, styles, vendor,
-# samples/banco-rio-cc.pdf, favicon, server.js, package.json…). NUNCA .env ni samples/private.
+# samples/banco-rio-cc.pdf, favicon, server.js, package.json, CHANGELOG.md…). NUNCA .env ni
+# samples/private. El CHANGELOG.md es la fuente de las novedades del log de arranque y de la UI.
 COPY . .
 EXPOSE 3000
 USER node

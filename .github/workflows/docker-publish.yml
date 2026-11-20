@@ -3,6 +3,10 @@ name: Publish Docker image
 # Construye la imagen de Fulgoria y la publica en GitHub Container Registry (GHCR)
 # en cada push a main y en cada tag de release. EasyPanel / Docker pueden tirar
 # ghcr.io/<owner>/fulgoria:latest sin compilar desde el código.
+#  - push a main           -> tags :latest + :X.Y.Z (de package.json) + :sha, y Release vX.Y.Z
+#                             con las notas de esa version del CHANGELOG.md
+#  - tag vX.Y.Z (release)  -> tag :vX.Y.Z + :X.Y.Z + :X.Y
+# Cada version dice que cambia: sin su seccion en el CHANGELOG el build no sale.
 
 on:
   push:
@@ -18,14 +22,30 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write   # crear el tag y el Release de la version
       packages: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Version y novedades (CHANGELOG)
+        id: ver
+        run: |
+          V="$(node tools/notas-version.cjs --version)"
+          node tools/notas-version.cjs > "$RUNNER_TEMP/notas.md"
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+          {
+            echo "## Fulgoria v$V"
+            echo
+            cat "$RUNNER_TEMP/notas.md"
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Log in to GHCR
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -33,19 +53,24 @@ jobs:
 
       - name: Docker metadata (tags & labels)
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=${{ steps.ver.outputs.version }},enable={{is_default_branch}}
             type=ref,event=tag
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
             type=sha,format=short
+          labels: |
+            org.opencontainers.image.version=${{ steps.ver.outputs.version }}
 
       - name: Set up Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Build and push
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           push: true
@@ -53,3 +78,15 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Release de la version
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          V: ${{ steps.ver.outputs.version }}
+        run: |
+          if gh release view "v$V" >/dev/null 2>&1; then
+            echo "::warning::La v$V ya estaba publicada: este deploy no subio la version (patch) ni sumo novedades."
+          else
+            gh release create "v$V" --target "$GITHUB_SHA" --title "Fulgoria v$V" --notes-file "$RUNNER_TEMP/notas.md"
+          fi

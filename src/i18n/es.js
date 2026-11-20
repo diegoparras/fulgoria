@@ -25,6 +25,14 @@ export default {
   "about.version": "Versión",
   "about.role": "Rol en la suite",
   "about.roleVal": "Satélite · Ecosistema Escriba",
+  "menu.news": "Novedades",
+  "about.news": "Qué cambió",
+  "news.title": "Novedades",
+  "news.ok": "Entendido",
+  "news.updated": "Fulgoria se actualizó a la {v}. Esto cambió desde la última versión que viste:",
+  "news.history": "Versión instalada: {v}. Últimas versiones, de la más nueva a la más vieja:",
+  "news.empty": "No hay notas para esta versión.",
+  "news.error": "No se pudieron cargar las novedades.",
 
   // Hero
   "hero.title": "Tus extractos, en datos limpios.",
