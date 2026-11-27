@@ -1,0 +1,18 @@
+Fecha;Comprob.;Descripción;Importe;Saldo
+;;Transporte;;$ 11.729.785,00
+04-05-26;0001-00000403;Cobranza cliente Cooperativa Hornero Ltda;$ 1.754.000,00;$ 13.483.785,00
+04-05-26;OP 0001-00000409;Transferencia a Servicios Médicos Lomas SRL OP 0001-00000409;($ 567.000,00);$ 12.916.785,00
+04-05-26;OP 0001-00000410;Pago a proveedor Lácteos Valle Verde SA;($ 349.231,41);$ 12.567.553,59
+06-05-26;0001-00000397;Cobro FC A 0001-00000397 Panificadora La Espiga SRL;$ 1.971.138,53;$ 14.538.692,12
+07-05-26;0003-00000395;Cobranza cliente Constructora Delta Norte SRL;$ 4.296.412,06;$ 18.835.104,18
+14-05-26;OP 0001-00000408;Pago a proveedor Transporte Ruta 3 SRL;($ 1.257.319,05);$ 17.577.785,13
+18-05-26;0002-00000393;Cobro FC A 0002-00000393 Frigorífico Pampa Alta SA;$ 3.237.834,94;$ 20.815.620,07
+18-05-26;0001-00000399;Cobro FC A 0001-00000399 Tecnología Austral SAS;$ 319.770,00;$ 21.135.390,07
+18-05-26;OP 0001-00000407;Pago a proveedor Servicios Médicos Lomas SRL;($ 2.971.000,00);$ 18.164.390,07
+25-05-26;0002-00000401;Cobranza Óptica Mirador SRL Rec. 0001-00000402;$ 663.361,35;$ 18.827.751,42
+26-05-26;0002-00000405;Cobranza cliente Ferretería El Tornillo SRL;$ 1.749.717,03;$ 20.577.468,45
+31-05-26;;Impuesto ley 25.413 del mes;($ 115.250,52);$ 20.462.217,93
+31-05-26;;Retenciones SIRCREB del mes;($ 279.844,68);$ 20.182.373,25
+31-05-26;;Comisiones bancarias del mes;($ 59.203,35);$ 20.123.169,90
+31-05-26;;IVA comisiones bancarias del mes;($ 12.432,70);$ 20.110.737,20
+;;Total general;;$ 20.110.737,20

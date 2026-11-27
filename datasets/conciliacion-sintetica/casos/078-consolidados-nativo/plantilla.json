@@ -1,0 +1,35 @@
+{
+  "banco": "Banco Nativo Argentino",
+  "columnas": [
+    {
+      "from": 0,
+      "to": 0.16134453781512606,
+      "role": "fecha",
+      "label": "FECHA"
+    },
+    {
+      "from": 0.16134453781512606,
+      "to": 0.5714285714285714,
+      "role": "descripcion",
+      "label": "CONCEPTO"
+    },
+    {
+      "from": 0.5714285714285714,
+      "to": 0.7495798319327731,
+      "role": "importe",
+      "label": "IMPORTE"
+    },
+    {
+      "from": 0.7495798319327731,
+      "to": 0.7899159663865546,
+      "role": "signo",
+      "label": "D/H"
+    },
+    {
+      "from": 0.7899159663865546,
+      "to": 1,
+      "role": "saldo",
+      "label": "SALDO"
+    }
+  ]
+}

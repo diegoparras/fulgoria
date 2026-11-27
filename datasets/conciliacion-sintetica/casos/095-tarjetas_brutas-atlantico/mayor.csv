@@ -1,0 +1,25 @@
+Empresa: Muebles Quebracho SAS
+Cuenta: 1.1.1.02 Banco Atlántico
+Período: 01/01/2026 al 31/01/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,33312063.29
+2026-01-01,Ventas con tarjeta lote 93187,822011.66,,34134074.95
+2026-01-01,Arancel tarjeta lote 93187,,24660.35,34109414.60
+2026-01-01,IVA arancel lote 93187,,5178.67,34104235.93
+2026-01-06,Liquidación tarjeta lote 72182,1271733.36,,35375969.29
+2026-01-07,Pago Tecnología Austral SAS OP 0001-00000426,,2817000.00,32558969.29
+2026-01-07,Transferencia a Estudio Gráfico Cobalto SAS OP 0001-00000428,,2547960.00,30011009.29
+2026-01-12,Cobranza cliente Bodega Piedra Negra SA,4232960.00,,34243969.29
+2026-01-16,Ventas con tarjeta lote 72563,1403000.00,,35646969.29
+2026-01-16,Arancel tarjeta lote 72563,,42090.00,35604879.29
+2026-01-16,IVA arancel lote 72563,,8838.90,35596040.39
+2026-01-16,Cobro FC A 0001-00000423 Metalúrgica San Telmo SRL,2090600.67,,37686641.06
+2026-01-19,Ventas con tarjeta lote 65290,923902.51,,38610543.57
+2026-01-19,Arancel tarjeta lote 65290,,23097.56,38587446.01
+2026-01-19,IVA arancel lote 65290,,4850.49,38582595.52
+2026-01-19,Ventas con tarjeta lote 80257,1758320.00,,40340915.52
+2026-01-19,Arancel tarjeta lote 80257,,43958.00,40296957.52
+2026-01-19,IVA arancel lote 80257,,9231.18,40287726.34
+2026-01-23,Pago Logística Andina SAS OP 0001-00000427,,1983000.00,38304726.34
+2026-01-28,Pago a proveedor Estudio Gráfico Cobalto SAS,,1034089.22,37270637.12

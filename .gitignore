@@ -14,3 +14,6 @@ tools/*-dump.txt
 .env
 .env.local
 .env.*.local
+
+# Datos del modo estudio (base SQLite y documentos): NUNCA al repo ni a la imagen.
+data/

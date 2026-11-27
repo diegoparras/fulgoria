@@ -1,0 +1,419 @@
+{
+ "dataset": "desde-plantilla",
+ "version": "1.1.0",
+ "id": "015-tarjetas_brutas-banco-del-rio",
+ "escenario": "tarjetas_brutas",
+ "banco": "banco-del-rio",
+ "sistema": "importe_signo_tab",
+ "semilla": 77001,
+ "periodo": {
+  "desde": "2026-10-01",
+  "hasta": "2026-10-31"
+ },
+ "cliente": {
+  "nombre": "Química Litoral SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El libro registra la venta con tarjeta en bruto y aparte el arancel y su IVA; el banco acredita el neto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 3956300000,
+    "bancoCierre": 5191323622,
+    "librosApertura": 3956300000,
+    "librosCierre": 5196295321
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-10-05",
+     "cents": 205586030,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 44111",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-10-06",
+     "cents": 366600000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LÁCTEOS VALLE VERDE SA CUIT 30-56487559-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-10-06",
+     "cents": -109235000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-10-07",
+     "cents": 107950490,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 32314",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-10-12",
+     "cents": 407552000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FARMACIA DEL PARQUE SCS CUIT 33-58956324-2",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-10-19",
+     "cents": 107323731,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 43962",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-10-21",
+     "cents": 56159497,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 1123",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-10-22",
+     "cents": -237406637,
+     "descripcion": "TRANSFERENCIA ENVIADA A ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-10-26",
+     "cents": 205848832,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 92129",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-10-26",
+     "cents": 68380628,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE COOPERATIVA HORNERO LTDA CUIT 30-56252921-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-10-27",
+     "cents": 61235750,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 69709",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-10-28",
+     "cents": -4009435,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-10-28",
+     "cents": -841981,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-10-28",
+     "cents": -120283,
+     "descripcion": "PERCEP. IVA RG 2408",
+     "tipo": "percepcion_iva"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-10-05",
+     "cents": 205586030,
+     "descripcion": "Liquidación tarjeta lote 44111",
+     "comprobante": "",
+     "asiento": 189
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-10-05",
+     "cents": 366600000,
+     "descripcion": "Cobro FC A 0003-00000392 Lácteos Valle Verde SA",
+     "comprobante": "0003-00000392",
+     "asiento": 193
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-10-05",
+     "cents": -109235000,
+     "descripcion": "Pago Tecnología Austral SAS OP 0001-00000395",
+     "comprobante": "OP 0001-00000395",
+     "asiento": 195
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-10-07",
+     "cents": 110354000,
+     "descripcion": "Ventas con tarjeta lote 32314",
+     "comprobante": "",
+     "asiento": 177
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-10-07",
+     "cents": -1986372,
+     "descripcion": "Arancel tarjeta lote 32314",
+     "comprobante": "",
+     "asiento": 178
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-10-07",
+     "cents": -417138,
+     "descripcion": "IVA arancel lote 32314",
+     "comprobante": "",
+     "asiento": 179
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-10-09",
+     "cents": 407552000,
+     "descripcion": "Cobranza cliente Farmacia Del Parque SCS",
+     "comprobante": "0001-00000390",
+     "asiento": 192
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-10-19",
+     "cents": 109713286,
+     "descripcion": "Ventas con tarjeta lote 43962",
+     "comprobante": "",
+     "asiento": 183
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-10-19",
+     "cents": -1974839,
+     "descripcion": "Arancel tarjeta lote 43962",
+     "comprobante": "",
+     "asiento": 184
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-10-19",
+     "cents": -414716,
+     "descripcion": "IVA arancel lote 43962",
+     "comprobante": "",
+     "asiento": 185
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-10-21",
+     "cents": 56159497,
+     "descripcion": "Liquidación tarjeta lote 1123",
+     "comprobante": "",
+     "asiento": 190
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-10-21",
+     "cents": -237406637,
+     "descripcion": "Transferencia a Óptica Mirador SRL OP 0001-00000394",
+     "comprobante": "OP 0001-00000394",
+     "asiento": 194
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-10-23",
+     "cents": 68380628,
+     "descripcion": "Cobranza Cooperativa Hornero Ltda Rec. 0001-00000389",
+     "comprobante": "0002-00000388",
+     "asiento": 191
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-10-26",
+     "cents": 212270000,
+     "descripcion": "Ventas con tarjeta lote 92129",
+     "comprobante": "",
+     "asiento": 186
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-10-26",
+     "cents": -5306750,
+     "descripcion": "Arancel tarjeta lote 92129",
+     "comprobante": "",
+     "asiento": 187
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-10-26",
+     "cents": -1114418,
+     "descripcion": "IVA arancel lote 92129",
+     "comprobante": "",
+     "asiento": 188
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-10-27",
+     "cents": 63145914,
+     "descripcion": "Ventas con tarjeta lote 69709",
+     "comprobante": "",
+     "asiento": 180
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-10-27",
+     "cents": -1578648,
+     "descripcion": "Arancel tarjeta lote 69709",
+     "comprobante": "",
+     "asiento": 181
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-10-27",
+     "cents": -331516,
+     "descripcion": "IVA arancel lote 69709",
+     "comprobante": "",
+     "asiento": 182
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4",
+      "L5",
+      "L6"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L17",
+      "L18",
+      "L19"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L8",
+      "L9",
+      "L10"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L14",
+      "L15",
+      "L16"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

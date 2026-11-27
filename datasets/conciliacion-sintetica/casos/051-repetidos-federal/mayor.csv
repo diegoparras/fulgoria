@@ -1,0 +1,18 @@
+Fecha;Asiento;Comprobante;Concepto;Debe;Haber;Saldo
+;;;Saldo anterior;;;22.960.000,00
+01/10/2026;82;;Sueldo septiembre - Joaquín Pereyra;;1.027.830,43;21.932.169,57
+01/10/2026;83;;Sueldo septiembre - Mateo Benítez;;1.027.830,43;20.904.339,14
+01/10/2026;84;;Sueldo septiembre - Ignacio Vera;;1.027.830,43;19.876.508,71
+01/10/2026;85;;Sueldo septiembre - Camila Herrera;;1.027.830,43;18.848.678,28
+01/10/2026;86;;Sueldo septiembre - Agustín Molina;;1.027.830,43;17.820.847,85
+01/10/2026;87;;Sueldo septiembre - Lucas Fernández;;1.027.830,43;16.793.017,42
+01/10/2026;88;;Sueldo septiembre - Julieta Medina;;1.027.830,43;15.765.186,99
+01/10/2026;89;;Sueldo septiembre - Nicolás Romero;;1.027.830,43;14.737.356,56
+01/10/2026;93;0003-00000691;Cobro FC A 0003-00000691 Textil Río Bermejo SA;117.000,00;;14.854.356,56
+09/10/2026;95;OP 0001-00000694;Transferencia a Bodega Piedra Negra SA OP 0001-00000694;;1.056.000,00;13.798.356,56
+14/10/2026;90;OP 0001-00000687;Pago a proveedor Tecnología Austral SAS;;580.943,92;13.217.412,64
+15/10/2026;94;OP 0001-00000693;Transferencia a Metalúrgica San Telmo SRL OP 0001-00000693;;232.000,00;12.985.412,64
+19/10/2026;92;0002-00000689;Cobranza Distribuidora Los Álamos SRL Rec. 0001-00000690;117.000,00;;13.102.412,64
+20/10/2026;96;OP 0001-00000695;Transferencia a Servicios Médicos Lomas SRL OP 0001-00000695;;1.889.000,00;11.213.412,64
+21/10/2026;91;OP 0001-00000688;Transferencia a Logística Andina SAS OP 0001-00000688;;580.943,92;10.632.468,72
+;;;Totales;;;10.632.468,72

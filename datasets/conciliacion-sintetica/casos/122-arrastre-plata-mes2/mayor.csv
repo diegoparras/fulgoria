@@ -1,0 +1,18 @@
+Fecha;Comprob.;Descripción;Importe;Saldo
+;;Transporte;;$ 8.134.957,60
+01-02-26;;Gas del Litoral - débito automático;($ 152.150,00);$ 7.982.807,60
+02-02-26;OP 0001-00000450;Transferencia a Agro Sur del Plata SA OP 0001-00000450;($ 2.926.000,00);$ 5.056.807,60
+09-02-26;;Cobranza identificada del mes anterior (cliente confirmó);$ 89.400,00;$ 5.146.207,60
+10-02-26;0001-00000447;Cobranza Farmacia Del Parque SCS Rec. 0001-00000448;$ 3.589.000,00;$ 8.735.207,60
+11-02-26;OP 0001-00000451;Pago Logística Andina SAS OP 0001-00000451;($ 306.208,87);$ 8.428.998,73
+12-02-26;0003-00000439;Cobro FC A 0003-00000439 Hotel Cerro Azul SA;$ 343.010,00;$ 8.772.008,73
+12-02-26;0003-00000445;Cobranza Distribuidora Los Álamos SRL Rec. 0001-00000446;$ 685.050,00;$ 9.457.058,73
+16-02-26;0002-00000441;Cobranza Viñedos Altos de Cuyo SA Rec. 0001-00000442;$ 1.702.000,00;$ 11.159.058,73
+16-02-26;0003-00000443;Cobro FC A 0003-00000443 Muebles Quebracho SAS;$ 794.610,58;$ 11.953.669,31
+16-02-26;OP 0001-00000452;Pago a proveedor Tecnología Austral SAS;($ 2.546.571,50);$ 9.407.097,81
+17-02-26;OP 0001-00000453;Pago a proveedor Viñedos Altos de Cuyo SA;($ 663.867,13);$ 8.743.230,68
+18-02-26;0002-00000437;Cobranza cliente Viñedos Altos de Cuyo SA;$ 3.279.220,00;$ 12.022.450,68
+20-02-26;OP 0001-00000449;Transferencia a Librería El Faro SA OP 0001-00000449;($ 211.266,07);$ 11.811.184,61
+23-02-26;CH 00048094;ECHEQ N° 00048094 a Ferretería El Tornillo SRL;($ 1.831.420,69);$ 9.979.763,92
+27-02-26;;Depósito cheques de terceros;$ 424.284,08;$ 10.404.048,00
+;;Total general;;$ 10.404.048,00

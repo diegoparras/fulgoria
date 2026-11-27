@@ -9,3 +9,9 @@ services:
       - "3000:3000"
     env_file: .env
     restart: unless-stopped
+    # Modo estudio (PERSISTENCIA=on): la base y los documentos sobreviven a los reinicios.
+    volumes:
+      - fulgoria-data:/data
+
+volumes:
+  fulgoria-data:

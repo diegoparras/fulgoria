@@ -1,0 +1,17 @@
+Fecha;Asiento;Comprobante;Concepto;Debe;Haber;Saldo
+;;;Saldo anterior;;;21.089.720,00
+01/06/2026;230;;Seguros La Previsora - débito automático;;83.090,00;21.006.630,00
+04/06/2026;227;OP 0001-00000159;Transferencia a Servicios Médicos Lomas SRL OP 0001-00000159;;1.317.400,72;19.689.229,28
+07/06/2026;229;;Gas del Litoral - débito automático;;45.040,00;19.644.189,28
+08/06/2026;219;0001-00000147;Cobranza cliente Bodega Piedra Negra SA;2.031.000,00;;21.675.189,28
+08/06/2026;222;0003-00000153;Cobranza cliente Librería El Faro SA;3.035.000,00;;24.710.189,28
+08/06/2026;223;OP 0001-00000155;Pago Distribuidora Los Álamos SRL OP 0001-00000155;;2.540.000,00;22.170.189,28
+10/06/2026;220;0003-00000149;Cobranza cliente Constructora Delta Norte SRL;203.025,62;;22.373.214,90
+10/06/2026;221;0001-00000151;Cobro FC A 0001-00000151 Imprenta Tinta Fresca SRL;126.000,00;;22.499.214,90
+15/06/2026;217;0001-00000143;Cobranza cliente Bodega Piedra Negra SA;4.091.000,00;;26.590.214,90
+15/06/2026;218;0001-00000145;Cobranza Óptica Mirador SRL Rec. 0001-00000146;3.616.920,52;;30.207.135,42
+15/06/2026;228;OP 0001-00000160;Pago a proveedor Servicios Médicos Lomas SRL;;1.984.820,00;28.222.315,42
+16/06/2026;224;OP 0001-00000156;Pago a proveedor Hotel Cerro Azul SA;;959.079,95;27.263.235,47
+16/06/2026;225;OP 0001-00000157;Pago a proveedor Tecnología Austral SAS;;563.460,00;26.699.775,47
+29/06/2026;226;OP 0001-00000158;Pago a proveedor Frigorífico Pampa Alta SA;;1.724.788,73;24.974.986,74
+;;;Totales;;;24.974.986,74

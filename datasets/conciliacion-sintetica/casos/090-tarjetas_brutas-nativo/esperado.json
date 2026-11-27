@@ -1,0 +1,563 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "090-tarjetas_brutas-nativo",
+ "escenario": "tarjetas_brutas",
+ "banco": "nativo",
+ "sistema": "comillas_coma",
+ "semilla": 8022,
+ "periodo": {
+  "desde": "2026-04-01",
+  "hasta": "2026-04-30"
+ },
+ "cliente": {
+  "nombre": "Metalúrgica San Telmo SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El libro registra la venta con tarjeta en bruto y aparte el arancel y su IVA; el banco acredita el neto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 3576500000,
+    "bancoCierre": 4191413331,
+    "librosApertura": 3576500000,
+    "librosCierre": 4205607443
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-04-03",
+     "cents": -162900000,
+     "descripcion": "TRANSFERENCIA A TERCEROS AGRO SUR DEL PLATA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-04-03",
+     "cents": -977400,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-04-06",
+     "cents": 266200000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-04-06",
+     "cents": -1597200,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-04-06",
+     "cents": 199132236,
+     "descripcion": "TRANSFERENCIA DE TERCEROS COOPERATIVA HORNERO LTDA - 0002-00000332",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-04-06",
+     "cents": -1194793,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-04-13",
+     "cents": 178609525,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 84474",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-04-13",
+     "cents": -1071657,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-04-13",
+     "cents": 250587335,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 49703",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-04-13",
+     "cents": -1503524,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-04-15",
+     "cents": -267600000,
+     "descripcion": "TRANSFERENCIA A TERCEROS FERRETERÍA EL TORNILLO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-04-15",
+     "cents": -1605600,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-04-20",
+     "cents": -100800000,
+     "descripcion": "TRANSFERENCIA A TERCEROS LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-04-20",
+     "cents": -604800,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-04-21",
+     "cents": 278709551,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 94907",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-04-21",
+     "cents": -1672257,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-04-21",
+     "cents": -154400000,
+     "descripcion": "TRANSFERENCIA A TERCEROS PANIFICADORA LA ESPIGA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-04-21",
+     "cents": -926400,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-04-23",
+     "cents": 51672971,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 95616",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-04-23",
+     "cents": -310038,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-04-23",
+     "cents": 89895825,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 44400",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-04-23",
+     "cents": -539375,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-04-28",
+     "cents": -1800000,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-04-28",
+     "cents": -378000,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-04-28",
+     "cents": -10800,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-04-28",
+     "cents": -2268,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-04-03",
+     "cents": 266200000,
+     "descripcion": "Cobranza cliente Transporte Ruta 3 SRL",
+     "comprobante": "0003-00000330",
+     "asiento": 128
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-04-03",
+     "cents": -162900000,
+     "descripcion": "Pago Agro Sur del Plata SA OP 0001-00000334",
+     "comprobante": "OP 0001-00000334",
+     "asiento": 130
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-04-06",
+     "cents": 199132236,
+     "descripcion": "Cobranza cliente Cooperativa Hornero Ltda",
+     "comprobante": "0002-00000332",
+     "asiento": 129
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-04-13",
+     "cents": 184181000,
+     "descripcion": "Ventas con tarjeta lote 84474",
+     "comprobante": "",
+     "asiento": 118
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-04-13",
+     "cents": -4604525,
+     "descripcion": "Arancel tarjeta lote 84474",
+     "comprobante": "",
+     "asiento": 119
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-04-13",
+     "cents": -966950,
+     "descripcion": "IVA arancel lote 84474",
+     "comprobante": "",
+     "asiento": 120
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-04-13",
+     "cents": 256166645,
+     "descripcion": "Ventas con tarjeta lote 49703",
+     "comprobante": "",
+     "asiento": 124
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-04-13",
+     "cents": -4611000,
+     "descripcion": "Arancel tarjeta lote 49703",
+     "comprobante": "",
+     "asiento": 125
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-04-13",
+     "cents": -968310,
+     "descripcion": "IVA arancel lote 49703",
+     "comprobante": "",
+     "asiento": 126
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-04-15",
+     "cents": -267600000,
+     "descripcion": "Pago Ferretería El Tornillo SRL OP 0001-00000336",
+     "comprobante": "OP 0001-00000336",
+     "asiento": 132
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-04-20",
+     "cents": -100800000,
+     "descripcion": "Pago a proveedor Logística Andina SAS",
+     "comprobante": "OP 0001-00000335",
+     "asiento": 131
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-04-21",
+     "cents": 284915000,
+     "descripcion": "Ventas con tarjeta lote 94907",
+     "comprobante": "",
+     "asiento": 121
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-04-21",
+     "cents": -5128470,
+     "descripcion": "Arancel tarjeta lote 94907",
+     "comprobante": "",
+     "asiento": 122
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-04-21",
+     "cents": -1076979,
+     "descripcion": "IVA arancel lote 94907",
+     "comprobante": "",
+     "asiento": 123
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-04-21",
+     "cents": -154400000,
+     "descripcion": "Transferencia a Panificadora La Espiga SRL OP 0001-00000337",
+     "comprobante": "OP 0001-00000337",
+     "asiento": 133
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-04-23",
+     "cents": 53619354,
+     "descripcion": "Ventas con tarjeta lote 95616",
+     "comprobante": "",
+     "asiento": 115
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-04-23",
+     "cents": -1608581,
+     "descripcion": "Arancel tarjeta lote 95616",
+     "comprobante": "",
+     "asiento": 116
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-04-23",
+     "cents": -337802,
+     "descripcion": "IVA arancel lote 95616",
+     "comprobante": "",
+     "asiento": 117
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-04-23",
+     "cents": 89895825,
+     "descripcion": "Liquidación tarjeta lote 44400",
+     "comprobante": "",
+     "asiento": 127
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L16",
+      "L17",
+      "L18"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L4",
+      "L5",
+      "L6"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L12",
+      "L13",
+      "L14"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L7",
+      "L8",
+      "L9"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L19"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

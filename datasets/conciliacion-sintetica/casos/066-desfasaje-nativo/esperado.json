@@ -1,0 +1,527 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "066-desfasaje-nativo",
+ "escenario": "desfasaje",
+ "banco": "nativo",
+ "sistema": "parentesis_transporte",
+ "semilla": 6022,
+ "periodo": {
+  "desde": "2026-08-01",
+  "hasta": "2026-08-31"
+ },
+ "cliente": {
+  "nombre": "Muebles Quebracho SAS",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El libro registra con días de diferencia respecto del banco, algunos más allá de la ventana por defecto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2612600000,
+    "bancoCierre": 2928405047,
+    "librosApertura": 2612600000,
+    "librosCierre": 2952905008
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-08-03",
+     "cents": -34500000,
+     "descripcion": "DEB AUT TELEFONÍA FEDERAL",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-08-10",
+     "cents": 393900000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-08-10",
+     "cents": -4726800,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-08-10",
+     "cents": -200600000,
+     "descripcion": "TRANSFERENCIA A TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-08-12",
+     "cents": 345046936,
+     "descripcion": "TRANSFERENCIA DE TERCEROS DISTRIBUIDORA LOS ÁLAMOS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-08-12",
+     "cents": -4140563,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-08-12",
+     "cents": -203907847,
+     "descripcion": "TRANSFERENCIA A TERCEROS LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-08-12",
+     "cents": -30600000,
+     "descripcion": "TRANSFERENCIA A TERCEROS SERVICIOS MÉDICOS LOMAS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-08-13",
+     "cents": -33217312,
+     "descripcion": "TRANSFERENCIA A TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-08-17",
+     "cents": 148978192,
+     "descripcion": "TRANSFERENCIA DE TERCEROS METALÚRGICA SAN TELMO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-08-17",
+     "cents": -1787738,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-08-17",
+     "cents": -187542974,
+     "descripcion": "TRANSFERENCIA A TERCEROS TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-08-19",
+     "cents": -228767526,
+     "descripcion": "TRANSFERENCIA A TERCEROS CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-08-24",
+     "cents": 63400000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS FRIGORÍFICO PAMPA ALTA SA - 0002-00000594",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-08-24",
+     "cents": -760800,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-08-24",
+     "cents": -175700000,
+     "descripcion": "TRANSFERENCIA A TERCEROS BODEGA PIEDRA NEGRA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-08-25",
+     "cents": -5086000,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-08-25",
+     "cents": -1068060,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-08-27",
+     "cents": -12939461,
+     "descripcion": "DEB AUT TELEFONÍA FEDERAL",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-08-31",
+     "cents": 205200000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-08-31",
+     "cents": -2462400,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-08-31",
+     "cents": 372300000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS FARMACIA DEL PARQUE SCS - 0001-00000602",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-08-31",
+     "cents": -4467600,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-08-31",
+     "cents": -80745000,
+     "descripcion": "TRANSFERENCIA A TERCEROS LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-08-01",
+     "cents": -34500000,
+     "descripcion": "Telefonía Federal - débito automático",
+     "comprobante": "",
+     "asiento": 348
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-08-03",
+     "cents": 345046936,
+     "descripcion": "Cobro FC A 0001-00000600 Distribuidora Los Álamos SRL",
+     "comprobante": "0001-00000600",
+     "asiento": 337
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-08-03",
+     "cents": -30600000,
+     "descripcion": "Pago a proveedor Servicios Médicos Lomas SRL",
+     "comprobante": "OP 0001-00000607",
+     "asiento": 342
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-08-03",
+     "cents": -200600000,
+     "descripcion": "Pago a proveedor Tecnología Austral SAS",
+     "comprobante": "OP 0001-00000608",
+     "asiento": 343
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-08-05",
+     "cents": 393900000,
+     "descripcion": "Cobro FC A 0003-00000592 Constructora Delta Norte SRL",
+     "comprobante": "0003-00000592",
+     "asiento": 333
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-08-10",
+     "cents": -203907847,
+     "descripcion": "Transferencia a Logística Andina SAS OP 0001-00000605",
+     "comprobante": "OP 0001-00000605",
+     "asiento": 340
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-08-10",
+     "cents": -187542974,
+     "descripcion": "Transferencia a Transporte Ruta 3 SRL OP 0001-00000611",
+     "comprobante": "OP 0001-00000611",
+     "asiento": 346
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-08-11",
+     "cents": -33217312,
+     "descripcion": "Pago Tecnología Austral SAS OP 0001-00000610",
+     "comprobante": "OP 0001-00000610",
+     "asiento": 345
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-08-13",
+     "cents": -228767526,
+     "descripcion": "Pago Constructora Delta Norte SRL OP 0001-00000606",
+     "comprobante": "OP 0001-00000606",
+     "asiento": 341
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-08-14",
+     "cents": 148978192,
+     "descripcion": "Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000597",
+     "comprobante": "0001-00000596",
+     "asiento": 335
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-08-18",
+     "cents": -175700000,
+     "descripcion": "Pago Bodega Piedra Negra SA OP 0001-00000609",
+     "comprobante": "OP 0001-00000609",
+     "asiento": 344
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-08-20",
+     "cents": 63400000,
+     "descripcion": "Cobranza Frigorífico Pampa Alta SA Rec. 0001-00000595",
+     "comprobante": "0002-00000594",
+     "asiento": 334
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-08-24",
+     "cents": 205200000,
+     "descripcion": "Cobranza Constructora Delta Norte SRL Rec. 0001-00000599",
+     "comprobante": "0003-00000598",
+     "asiento": 336
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-08-24",
+     "cents": -12939461,
+     "descripcion": "Telefonía Federal - débito automático",
+     "comprobante": "",
+     "asiento": 347
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-08-25",
+     "cents": -80745000,
+     "descripcion": "Transferencia a Logística Andina SAS OP 0001-00000604",
+     "comprobante": "OP 0001-00000604",
+     "asiento": 339
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-08-31",
+     "cents": 372300000,
+     "descripcion": "Cobro FC A 0001-00000602 Farmacia Del Parque SCS",
+     "comprobante": "0001-00000602",
+     "asiento": 338
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B20"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B22"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B24"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B3",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B15",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B11",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

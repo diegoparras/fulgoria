@@ -1,0 +1,1085 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "033-cheques-cuyano",
+ "escenario": "cheques",
+ "banco": "cuyano",
+ "sistema": "debitos_creditos_us",
+ "semilla": 3041,
+ "periodo": {
+  "desde": "2026-04-01",
+  "hasta": "2026-04-30"
+ },
+ "cliente": {
+  "nombre": "Distribuidora Los Álamos SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 2,
+ "notas": "Muchos cheques emitidos que se debitan días después, varios pendientes al cierre y un cheque de tercero rechazado.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor-ars.csv",
+   "saldos": {
+    "bancoApertura": 281400000,
+    "bancoCierre": 97543795,
+    "librosApertura": 281400000,
+    "librosCierre": -849812780
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-04-08",
+     "cents": 131587309,
+     "descripcion": "DEP CHEQUES OTROS BANCOS",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-04-08",
+     "cents": -789524,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-04-08",
+     "cents": 6905560,
+     "descripcion": "DEP CHEQUES OTROS BANCOS",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-04-09",
+     "cents": -215046144,
+     "descripcion": "E-CHEQ DEBITADO 00085484",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-04-09",
+     "cents": -1290277,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-04-10",
+     "cents": -6905560,
+     "descripcion": "CHQ DEVUELTO 00085527 SIN FONDOS",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-04-10",
+     "cents": -1400000,
+     "descripcion": "COMISION CHQ DEVUELTO",
+     "tipo": "comision"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-04-13",
+     "cents": -63317943,
+     "descripcion": "E-CHEQ DEBITADO 00085490",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-04-13",
+     "cents": -379908,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-04-13",
+     "cents": 163343699,
+     "descripcion": "TRF INMEDIATA RECIB 30701114384",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-04-13",
+     "cents": -980062,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-04-15",
+     "cents": -125700000,
+     "descripcion": "E-CHEQ DEBITADO 00085470",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-04-15",
+     "cents": -754200,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-04-15",
+     "cents": -197586000,
+     "descripcion": "CHQ PAGADO POR CAMARA 00085481",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-04-15",
+     "cents": -1185516,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-04-16",
+     "cents": 361694112,
+     "descripcion": "TRF INMEDIATA RECIB 33728750621",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-04-16",
+     "cents": -2170165,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-04-17",
+     "cents": -115800000,
+     "descripcion": "CHQ PAGADO POR CAMARA 00085498",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-04-17",
+     "cents": -694800,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-04-20",
+     "cents": -227920000,
+     "descripcion": "CHQ PAGADO POR CAMARA 00085462",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-04-20",
+     "cents": -1367520,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-04-20",
+     "cents": -74600000,
+     "descripcion": "CHQ PAGADO POR CAMARA 00085466",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-04-20",
+     "cents": -447600,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-04-23",
+     "cents": -159680000,
+     "descripcion": "CHQ PAGADO POR CAMARA 00085471",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-04-23",
+     "cents": -958080,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-04-27",
+     "cents": 319378000,
+     "descripcion": "TRF INMEDIATA RECIB 33700485930 0003-00000823",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-04-27",
+     "cents": -1916268,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-04-27",
+     "cents": 188548522,
+     "descripcion": "TRF INMEDIATA RECIB 33719689642",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-04-27",
+     "cents": -1131291,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-04-27",
+     "cents": 167070000,
+     "descripcion": "TRF INMEDIATA RECIB 33692965162",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-04-27",
+     "cents": -1002420,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-04-28",
+     "cents": -139202872,
+     "descripcion": "CHQ PAGADO POR CAMARA 00085485",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-04-28",
+     "cents": -835217,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-04-28",
+     "cents": -112600000,
+     "descripcion": "CHQ PAGADO POR CAMARA 00085492",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B35",
+     "fecha": "2026-04-28",
+     "cents": -675600,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B36",
+     "fecha": "2026-04-28",
+     "cents": -2247979,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B37",
+     "fecha": "2026-04-28",
+     "cents": -472076,
+     "descripcion": "I.V.A. TASA GENERAL",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B38",
+     "fecha": "2026-04-28",
+     "cents": -67439,
+     "descripcion": "PERCEPCION IVA",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B39",
+     "fecha": "2026-04-28",
+     "cents": -13488,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B40",
+     "fecha": "2026-04-28",
+     "cents": -2832,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B41",
+     "fecha": "2026-04-28",
+     "cents": -405,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B42",
+     "fecha": "2026-04-30",
+     "cents": -62865031,
+     "descripcion": "CHQ PAGADO POR CAMARA 00085502",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B43",
+     "fecha": "2026-04-30",
+     "cents": -377190,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-04-01",
+     "cents": -215046144,
+     "descripcion": "ECHEQ N° 00085484 a Librería El Faro SA",
+     "comprobante": "CH 00085484",
+     "asiento": 182
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-04-01",
+     "cents": -44700000,
+     "descripcion": "ECHEQ N° 00085525 a Frigorífico Pampa Alta SA",
+     "comprobante": "CH 00085525",
+     "asiento": 195
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-04-02",
+     "cents": -159680000,
+     "descripcion": "Cheque N° 00085471 a Viñedos Altos de Cuyo SA",
+     "comprobante": "CH 00085471",
+     "asiento": 179
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-04-02",
+     "cents": -160987326,
+     "descripcion": "Cheque N° 00085524 a Farmacia Del Parque SCS",
+     "comprobante": "CH 00085524",
+     "asiento": 194
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-04-03",
+     "cents": -63317943,
+     "descripcion": "ECHEQ N° 00085490 a Óptica Mirador SRL",
+     "comprobante": "CH 00085490",
+     "asiento": 184
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-04-06",
+     "cents": -197586000,
+     "descripcion": "Cheque N° 00085481 a Farmacia Del Parque SCS",
+     "comprobante": "CH 00085481",
+     "asiento": 181
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-04-06",
+     "cents": 131587309,
+     "descripcion": "Depósito cheque cliente",
+     "comprobante": "",
+     "asiento": 201
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-04-07",
+     "cents": 6905560,
+     "descripcion": "Depósito cheque N° 00085527 cliente Panificadora La Espiga SRL",
+     "comprobante": "CH 00085527",
+     "asiento": 202
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-04-08",
+     "cents": -74600000,
+     "descripcion": "Cheque N° 00085466 a Frigorífico Pampa Alta SA",
+     "comprobante": "CH 00085466",
+     "asiento": 177
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-04-08",
+     "cents": -125700000,
+     "descripcion": "ECHEQ N° 00085470 a Agro Sur del Plata SA",
+     "comprobante": "CH 00085470",
+     "asiento": 178
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-04-08",
+     "cents": -115800000,
+     "descripcion": "Cheque N° 00085498 a Constructora Delta Norte SRL",
+     "comprobante": "CH 00085498",
+     "asiento": 186
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-04-08",
+     "cents": -62865031,
+     "descripcion": "Cheque N° 00085502 a Agro Sur del Plata SA",
+     "comprobante": "CH 00085502",
+     "asiento": 188
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-04-09",
+     "cents": 163343699,
+     "descripcion": "Cobranza Logística Andina SAS Rec. 0001-00000826",
+     "comprobante": "0002-00000825",
+     "asiento": 198
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-04-13",
+     "cents": -99739000,
+     "descripcion": "Cheque N° 00085477 a Distribuidora Los Álamos SRL",
+     "comprobante": "CH 00085477",
+     "asiento": 180
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-04-14",
+     "cents": 361694112,
+     "descripcion": "Cobranza cliente Ferretería El Tornillo SRL",
+     "comprobante": "0002-00000821",
+     "asiento": 196
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-04-15",
+     "cents": -227920000,
+     "descripcion": "Cheque N° 00085462 a Textil Río Bermejo SA",
+     "comprobante": "CH 00085462",
+     "asiento": 175
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-04-15",
+     "cents": -139202872,
+     "descripcion": "Cheque N° 00085485 a Cooperativa Hornero Ltda",
+     "comprobante": "CH 00085485",
+     "asiento": 183
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-04-20",
+     "cents": -112600000,
+     "descripcion": "Cheque N° 00085492 a Distribuidora Los Álamos SRL",
+     "comprobante": "CH 00085492",
+     "asiento": 185
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-04-20",
+     "cents": -77000000,
+     "descripcion": "ECHEQ N° 00085508 a Panificadora La Espiga SRL",
+     "comprobante": "CH 00085508",
+     "asiento": 190
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-04-22",
+     "cents": -116100000,
+     "descripcion": "Cheque N° 00085465 a Distribuidora Los Álamos SRL",
+     "comprobante": "CH 00085465",
+     "asiento": 176
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-04-23",
+     "cents": -24249325,
+     "descripcion": "ECHEQ N° 00085511 a Imprenta Tinta Fresca SRL",
+     "comprobante": "CH 00085511",
+     "asiento": 191
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-04-24",
+     "cents": -138800000,
+     "descripcion": "Cheque N° 00085505 a Transporte Ruta 3 SRL",
+     "comprobante": "CH 00085505",
+     "asiento": 189
+    },
+    {
+     "id": "L23",
+     "fecha": "2026-04-24",
+     "cents": -12360581,
+     "descripcion": "Cheque N° 00085514 a Distribuidora Los Álamos SRL",
+     "comprobante": "CH 00085514",
+     "asiento": 192
+    },
+    {
+     "id": "L24",
+     "fecha": "2026-04-25",
+     "cents": -85862760,
+     "descripcion": "Cheque N° 00085521 a Imprenta Tinta Fresca SRL",
+     "comprobante": "CH 00085521",
+     "asiento": 193
+    },
+    {
+     "id": "L25",
+     "fecha": "2026-04-27",
+     "cents": -215623000,
+     "descripcion": "Cheque N° 00085499 a Distribuidora Los Álamos SRL",
+     "comprobante": "CH 00085499",
+     "asiento": 187
+    },
+    {
+     "id": "L26",
+     "fecha": "2026-04-27",
+     "cents": 319378000,
+     "descripcion": "Cobranza cliente Tecnología Austral SAS",
+     "comprobante": "0003-00000823",
+     "asiento": 197
+    },
+    {
+     "id": "L27",
+     "fecha": "2026-04-27",
+     "cents": 188548522,
+     "descripcion": "Cobranza Estudio Gráfico Cobalto SAS Rec. 0001-00000828",
+     "comprobante": "0002-00000827",
+     "asiento": 199
+    },
+    {
+     "id": "L28",
+     "fecha": "2026-04-27",
+     "cents": 167070000,
+     "descripcion": "Cobro FC A 0002-00000829 Textil Río Bermejo SA",
+     "comprobante": "0002-00000829",
+     "asiento": 200
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B20"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B22"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B24"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B32"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B34"
+     ],
+     "libros": [
+      "L18"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B42"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B26"
+     ],
+     "libros": [
+      "L26"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B28"
+     ],
+     "libros": [
+      "L27"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B30"
+     ],
+     "libros": [
+      "L28"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L20",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L14",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L25",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L22",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L19",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L21",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L23",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L24",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L4",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L2",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "debito_no_identificado"
+    },
+    {
+     "id": "B7",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B36",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B37",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B38",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B15",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B5",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B33",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B9",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B35",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B19",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B43",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B27",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B11",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B29",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B31",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B39",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B40",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B41",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  },
+  {
+   "segmento": 1,
+   "moneda": "USD",
+   "mayor": "mayor-usd.csv",
+   "saldos": {
+    "bancoApertura": 1865222,
+    "bancoCierre": 2558136,
+    "librosApertura": 1865222,
+    "librosCierre": 2559108
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-04-01",
+     "cents": 758949,
+     "descripcion": "TRF INMEDIATA RECIB 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-04-01",
+     "cents": -442197,
+     "descripcion": "TRF INMEDIATA ENV 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-04-06",
+     "cents": -141324,
+     "descripcion": "TRF INMEDIATA ENV 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-04-13",
+     "cents": 516636,
+     "descripcion": "TRF INMEDIATA RECIB 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-04-15",
+     "cents": 612054,
+     "descripcion": "TRF INMEDIATA RECIB 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-04-22",
+     "cents": -610232,
+     "descripcion": "TRF INMEDIATA ENV 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-04-27",
+     "cents": -972,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-04-01",
+     "cents": 758949,
+     "descripcion": "Cobro exportación (USD)",
+     "comprobante": "",
+     "asiento": 18
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-04-01",
+     "cents": -442197,
+     "descripcion": "Pago proveedor exterior (USD)",
+     "comprobante": "",
+     "asiento": 19
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-04-06",
+     "cents": -141324,
+     "descripcion": "Pago proveedor exterior (USD)",
+     "comprobante": "",
+     "asiento": 20
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-04-13",
+     "cents": 516636,
+     "descripcion": "Cobro exportación (USD)",
+     "comprobante": "",
+     "asiento": 15
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-04-15",
+     "cents": 612054,
+     "descripcion": "Cobro exportación (USD)",
+     "comprobante": "",
+     "asiento": 17
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-04-22",
+     "cents": -610232,
+     "descripcion": "Pago proveedor exterior (USD)",
+     "comprobante": "",
+     "asiento": 16
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B7",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

@@ -1,0 +1,409 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "108-errores-atlantico",
+ "escenario": "errores",
+ "banco": "atlantico",
+ "sistema": "parentesis_transporte",
+ "semilla": 9052,
+ "periodo": {
+  "desde": "2026-01-01",
+  "hasta": "2026-01-31"
+ },
+ "cliente": {
+  "nombre": "Ferretería El Tornillo SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Importe transpuesto, registro duplicado, créditos que el cliente no registró e ingresos registrados que nunca llegaron al banco.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2275500000,
+    "bancoCierre": 2251385537,
+    "librosApertura": 2275500000,
+    "librosCierre": 2018491838
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-01-05",
+     "cents": -171866000,
+     "descripcion": "TRANSFERENCIA A TERCEROS QUÍMICA LITORAL SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-01-05",
+     "cents": -14619520,
+     "descripcion": "DEB AUT INTERNET FIBRA SUR",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-01-06",
+     "cents": -109454000,
+     "descripcion": "TRANSFERENCIA A TERCEROS COOPERATIVA HORNERO LTDA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-01-06",
+     "cents": -229610000,
+     "descripcion": "TRANSFERENCIA A TERCEROS LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-01-08",
+     "cents": -269746880,
+     "descripcion": "TRANSFERENCIA A TERCEROS FRIGORÍFICO PAMPA ALTA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-01-12",
+     "cents": 214058000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS COOPERATIVA HORNERO LTDA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-01-12",
+     "cents": -1284348,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-01-12",
+     "cents": 39789000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS JOAQUÍN PEREYRA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-01-12",
+     "cents": -238734,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-01-14",
+     "cents": 177087000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS FRIGORÍFICO PAMPA ALTA SA - 0001-00000820",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-01-14",
+     "cents": -1062522,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-01-26",
+     "cents": 103176429,
+     "descripcion": "TRANSFERENCIA DE TERCEROS MUEBLES QUEBRACHO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-01-26",
+     "cents": -619059,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-01-27",
+     "cents": 267693689,
+     "descripcion": "TRANSFERENCIA DE TERCEROS FRIGORÍFICO PAMPA ALTA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-01-27",
+     "cents": -1606162,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-01-28",
+     "cents": -5692222,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-01-28",
+     "cents": -1195367,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-01-28",
+     "cents": -170767,
+     "descripcion": "PERC. IVA",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-01-29",
+     "cents": -18753000,
+     "descripcion": "TRANSFERENCIA A TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-01-02",
+     "cents": -171866000,
+     "descripcion": "Pago a proveedor Química Litoral SRL",
+     "comprobante": "OP 0001-00000826",
+     "asiento": 102
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-01-05",
+     "cents": -229610000,
+     "descripcion": "Transferencia a Librería El Faro SA OP 0001-00000830",
+     "comprobante": "OP 0001-00000830",
+     "asiento": 106
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-01-05",
+     "cents": -229610000,
+     "descripcion": "Transferencia a Librería El Faro SA OP 0001-00000830",
+     "comprobante": "OP 0001-00000830",
+     "asiento": 107
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-01-06",
+     "cents": -109450400,
+     "descripcion": "Pago Cooperativa Hornero Ltda OP 0001-00000829",
+     "comprobante": "OP 0001-00000829",
+     "asiento": 105
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-01-08",
+     "cents": -269746880,
+     "descripcion": "Pago a proveedor Frigorífico Pampa Alta SA",
+     "comprobante": "OP 0001-00000828",
+     "asiento": 104
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-01-08",
+     "cents": 10013000,
+     "descripcion": "Cobranza Metalúrgica San Telmo SRL (depósito)",
+     "comprobante": "",
+     "asiento": 108
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-01-09",
+     "cents": 214058000,
+     "descripcion": "Cobro FC A 0003-00000824 Cooperativa Hornero Ltda",
+     "comprobante": "0003-00000824",
+     "asiento": 101
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-01-12",
+     "cents": 177087000,
+     "descripcion": "Cobro FC A 0001-00000820 Frigorífico Pampa Alta SA",
+     "comprobante": "0001-00000820",
+     "asiento": 99
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-01-26",
+     "cents": 103176429,
+     "descripcion": "Cobranza Muebles Quebracho SAS Rec. 0001-00000819",
+     "comprobante": "0002-00000818",
+     "asiento": 98
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-01-26",
+     "cents": 267693689,
+     "descripcion": "Cobranza Frigorífico Pampa Alta SA Rec. 0001-00000823",
+     "comprobante": "0002-00000822",
+     "asiento": 100
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-01-28",
+     "cents": -18753000,
+     "descripcion": "Transferencia a Tecnología Austral SAS OP 0001-00000827",
+     "comprobante": "OP 0001-00000827",
+     "asiento": 103
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L3",
+     "lado": "libros",
+     "tipo": "egreso_pendiente"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "debito_no_identificado"
+    },
+    {
+     "id": "L6",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B11",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B15",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B7",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B9",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+Fecha;Comprob.;Descripción;Importe;Saldo
+;;Transporte;;$ 24.470.579,69
+02-03-26;OP 0001-00000166;Transferencia a Transporte Ruta 3 SRL OP 0001-00000166;($ 145.790,00);$ 24.324.789,69
+02-03-26;;Telefonía Federal - débito automático;($ 214.770,00);$ 24.110.019,69
+04-03-26;OP 0001-00000172;Pago a proveedor Ferretería El Tornillo SRL;($ 128.000,00);$ 23.982.019,69
+05-03-26;0002-00000150;Cobranza Muebles Quebracho SAS Rec. 0001-00000151;$ 3.019.313,08;$ 27.001.332,77
+06-03-26;0002-00000142;Cobranza Constructora Delta Norte SRL Rec. 0001-00000143;$ 3.458.000,00;$ 30.459.332,77
+06-03-26;0003-00000158;Cobranza Agro Sur del Plata SA Rec. 0001-00000159;$ 1.607.000,00;$ 32.066.332,77
+09-03-26;0003-00000162;Cobranza cliente Ferretería El Tornillo SRL;$ 3.168.380,00;$ 35.234.712,77
+09-03-26;OP 0001-00000167;Pago Transporte Ruta 3 SRL OP 0001-00000167;($ 2.003.980,00);$ 33.230.732,77
+09-03-26;OP 0001-00000169;Pago a proveedor Agro Sur del Plata SA;($ 611.860,00);$ 32.618.872,77
+09-03-26;OP 0001-00000170;Transferencia a Hotel Cerro Azul SA OP 0001-00000170;($ 2.917.982,20);$ 29.700.890,57
+11-03-26;0001-00000152;Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000153;$ 1.077.430,00;$ 30.778.320,57
+14-03-26;;Energía Metropolitana - débito automático;($ 192.547,03);$ 30.585.773,54
+16-03-26;0001-00000140;Cobranza cliente Logística Andina SAS;$ 3.471.324,34;$ 34.057.097,88
+16-03-26;OP 0001-00000165;Transferencia a Farmacia Del Parque SCS OP 0001-00000165;($ 1.175.689,26);$ 32.881.408,62
+20-03-26;OP 0001-00000168;Transferencia a Panificadora La Espiga SRL OP 0001-00000168;($ 575.880,00);$ 32.305.528,62
+23-03-26;0002-00000144;Cobranza Librería El Faro SA Rec. 0001-00000145;$ 1.903.740,00;$ 34.209.268,62
+23-03-26;0001-00000146;Cobranza Agro Sur del Plata SA Rec. 0001-00000147;$ 181.000,00;$ 34.390.268,62
+23-03-26;0002-00000148;Cobro FC A 0002-00000148 Viñedos Altos de Cuyo SA;$ 4.368.873,58;$ 38.759.142,20
+23-03-26;0002-00000154;Cobranza cliente Librería El Faro SA;$ 1.702.630,00;$ 40.461.772,20
+23-03-26;OP 0001-00000171;Pago Metalúrgica San Telmo SRL OP 0001-00000171;($ 304.447,36);$ 40.157.324,84
+25-03-26;VEP 945231357;Anticipo Ganancias VEP 945231357;($ 114.000,00);$ 40.043.324,84
+26-03-26;0003-00000160;Cobranza Textil Río Bermejo SA Rec. 0001-00000161;$ 2.579.000,00;$ 42.622.324,84
+27-03-26;OP 0001-00000164;Pago Distribuidora Los Álamos SRL OP 0001-00000164;($ 1.946.070,00);$ 40.676.254,84
+30-03-26;0001-00000156;Cobro FC A 0001-00000156 Estudio Gráfico Cobalto SAS;$ 428.600,00;$ 41.104.854,84
+;;Total general;;$ 41.104.854,84

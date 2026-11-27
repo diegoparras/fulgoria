@@ -1,0 +1,44 @@
+{
+  "fulgoria_pendientes": 1,
+  "periodo": "2026-01",
+  "pendientes": [
+    {
+      "id": "A-L13",
+      "lado": "libros",
+      "fecha": "2026-01-27",
+      "cents": -22341811,
+      "descripcion": "ECHEQ N° 00011768 a Bodega Piedra Negra SA",
+      "referencia": "",
+      "saldo": null,
+      "entidades": {
+        "cheque": "11768"
+      },
+      "evidencia": {},
+      "periodo": "2026-01"
+    },
+    {
+      "id": "A-L14",
+      "lado": "libros",
+      "fecha": "2026-01-29",
+      "cents": 76394759,
+      "descripcion": "Depósito cheques de terceros",
+      "referencia": "",
+      "saldo": null,
+      "entidades": {},
+      "evidencia": {},
+      "periodo": "2026-01"
+    },
+    {
+      "id": "A-B20",
+      "lado": "banco",
+      "fecha": "2026-01-19",
+      "cents": 12129268,
+      "descripcion": "TRANSFERENCIA DE TERCEROS CLIENTE SIN DATOS",
+      "referencia": "",
+      "saldo": null,
+      "entidades": {},
+      "evidencia": {},
+      "periodo": "2026-01"
+    }
+  ]
+}

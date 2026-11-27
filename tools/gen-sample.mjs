@@ -5,7 +5,7 @@ import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import { writeFileSync } from "node:fs";
 
 // --- Datos del extracto (en centavos para no arrastrar errores de float) ---
-const opening = 15_000_00; // $150.000,00
+const opening = 15_000_00; // $15.000,00 (en centavos)
 
 // Cada movimiento: [dia, detalle, debito_centavos, credito_centavos]
 // Las descripciones con "\n" prueban el caso multilínea (segunda línea sin fecha).

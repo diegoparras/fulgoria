@@ -1,0 +1,24 @@
+Empresa: Panificadora La Espiga SRL
+Cuenta: 1.1.1.02 Banco Cuyano de Inversión
+Período: 01/04/2026 al 30/04/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,12117570.00
+2026-04-01,Cobro FC A 0003-00000184 Estudio Gráfico Cobalto SAS,1072830.00,,13190400.00
+2026-04-01,Aguas Urbanas - débito automático,,192000.00,12998400.00
+2026-04-02,Cobranza Distribuidora Los Álamos SRL Rec. 0001-00000175,1182000.00,,14180400.00
+2026-04-06,Cobranza Hotel Cerro Azul SA Rec. 0001-00000187,2561000.00,,16741400.00
+2026-04-07,Cobro FC A 0003-00000172 Librería El Faro SA,3469000.00,,20210400.00
+2026-04-07,Cobranza cliente Química Litoral SRL,1238000.00,,21448400.00
+2026-04-08,Cobranza cliente Estudio Gráfico Cobalto SAS,3562000.00,,25010400.00
+2026-04-13,Cobranza cliente Estudio Gráfico Cobalto SAS,697617.73,,25708017.73
+2026-04-13,F.931 VEP 767279049,,193217.21,25514800.52
+2026-04-17,Cobranza cliente Estudio Gráfico Cobalto SAS,971000.00,,26485800.52
+2026-04-17,Pago a proveedor Ferretería El Tornillo SRL,,70000.00,26415800.52
+2026-04-18,Gas del Litoral - débito automático,,85950.36,26329850.16
+2026-04-20,Pago a proveedor Tecnología Austral SAS,,2966080.00,23363770.16
+2026-04-21,Cobro FC A 0001-00000170 Tecnología Austral SAS,793049.68,,24156819.84
+2026-04-24,Transferencia a Agro Sur del Plata SA OP 0001-00000194,,1373000.00,22783819.84
+2026-04-27,Cobro FC A 0003-00000178 Química Litoral SRL,3049596.23,,25833416.07
+2026-04-27,Pago a proveedor Lácteos Valle Verde SA,,1041990.00,24791426.07
+2026-04-27,Transferencia a Logística Andina SAS OP 0001-00000193,,2836000.00,21955426.07

@@ -1,0 +1,23 @@
+Empresa: Librería El Faro SA
+Cuenta: 1.1.1.02 Banco Federal del Sur
+Período: 01/10/2026 al 31/10/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,10861000.00
+2026-10-01,Energía Metropolitana - débito automático,,185000.00,10676000.00
+2026-10-01,Aguas Urbanas - débito automático,,111734.04,10564265.96
+2026-10-01,Gas del Litoral - débito automático,,44408.82,10519857.14
+2026-10-02,Pago a proveedor Librería El Faro SA,,1498666.47,9021190.67
+2026-10-13,Cobro FC A 0001-00000115 Estudio Gráfico Cobalto SAS,3813067.94,,12834258.61
+2026-10-14,Cobranza Tecnología Austral SAS Rec. 0001-00000118,1127350.09,,13961608.70
+2026-10-14,Pago a proveedor Estudio Gráfico Cobalto SAS,,2870886.28,11090722.42
+2026-10-14,Transferencia a Tecnología Austral SAS OP 0001-00000125,,2950240.30,8140482.12
+2026-10-16,Cobranza Viñedos Altos de Cuyo SA Rec. 0001-00000114,4339611.51,,12480093.63
+2026-10-19,Cobranza cliente Constructora Delta Norte SRL,3497201.21,,15977294.84
+2026-10-20,Cobranza cliente Química Litoral SRL,3961215.61,,19938510.45
+2026-10-22,Transferencia a Hotel Cerro Azul SA OP 0001-00000121,,2791000.00,17147510.45
+2026-10-22,Pago a proveedor Ferretería El Tornillo SRL,,2491000.00,14656510.45
+2026-10-26,Cobranza Lácteos Valle Verde SA Rec. 0001-00000110,3851839.24,,18508349.69
+2026-10-26,Cobranza Hotel Cerro Azul SA Rec. 0001-00000120,1046100.00,,19554449.69
+2026-10-26,Pago Transporte Ruta 3 SRL OP 0001-00000124,,578160.00,18976289.69
+2026-10-27,Transferencia a Cooperativa Hornero Ltda OP 0001-00000123,,886000.00,18090289.69

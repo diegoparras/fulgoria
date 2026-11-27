@@ -1,0 +1,560 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "047-agrupados-atlantico",
+ "escenario": "agrupados",
+ "banco": "atlantico",
+ "sistema": "parentesis_transporte",
+ "semilla": 4051,
+ "periodo": {
+  "desde": "2026-02-01",
+  "hasta": "2026-02-28"
+ },
+ "cliente": {
+  "nombre": "Estudio Gráfico Cobalto SAS",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Depósitos que juntan varias cobranzas y retiros de Mercado Pago que juntan muchas ventas (algunos con más de 4 partidas).",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 777585248,
+    "bancoCierre": 3175069746,
+    "librosApertura": 777585248,
+    "librosCierre": 3177611632
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-02-02",
+     "cents": 127963386,
+     "descripcion": "TRANSFERENCIA DE TERCEROS MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-02-02",
+     "cents": 120614526,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 15635",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-02-03",
+     "cents": 150408225,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 37876",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-02-09",
+     "cents": 286716177,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 94752",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-02-09",
+     "cents": 272371495,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 37148",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-02-09",
+     "cents": -61200000,
+     "descripcion": "TRANSFERENCIA A TERCEROS LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-02-16",
+     "cents": 101754109,
+     "descripcion": "TRANSFERENCIA DE TERCEROS MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-02-16",
+     "cents": 165816000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-02-18",
+     "cents": -141077684,
+     "descripcion": "TRANSFERENCIA A TERCEROS DISTRIBUIDORA LOS ÁLAMOS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-02-19",
+     "cents": 205304186,
+     "descripcion": "DEPOSITO POR VENTANILLA",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-02-19",
+     "cents": 411500000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS FARMACIA DEL PARQUE SCS - 0001-00000865",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-02-23",
+     "cents": 161280000,
+     "descripcion": "DEPOSITO POR VENTANILLA",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-02-23",
+     "cents": 250875964,
+     "descripcion": "DEPOSITO POR VENTANILLA",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-02-23",
+     "cents": -2100732,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-02-23",
+     "cents": -441154,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-02-25",
+     "cents": 347700000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TEXTIL RÍO BERMEJO SA - 0002-00000867",
+     "tipo": "transferencia"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-02-01",
+     "cents": 15600000,
+     "descripcion": "Venta MP #31305016",
+     "comprobante": "",
+     "asiento": 351
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-02-01",
+     "cents": 12706235,
+     "descripcion": "Venta MP #91598118",
+     "comprobante": "",
+     "asiento": 354
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-02-01",
+     "cents": 19700000,
+     "descripcion": "Venta MP #35307444",
+     "comprobante": "",
+     "asiento": 355
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-02-02",
+     "cents": 16200000,
+     "descripcion": "Venta MP #70757048",
+     "comprobante": "",
+     "asiento": 352
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-02-02",
+     "cents": 17657151,
+     "descripcion": "Venta MP #91201719",
+     "comprobante": "",
+     "asiento": 353
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-02-02",
+     "cents": 20700000,
+     "descripcion": "Venta MP #77626197",
+     "comprobante": "",
+     "asiento": 356
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-02-02",
+     "cents": 25400000,
+     "descripcion": "Venta MP #42422916",
+     "comprobante": "",
+     "asiento": 357
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-02-02",
+     "cents": 120614526,
+     "descripcion": "Liquidación tarjeta lote 15635",
+     "comprobante": "",
+     "asiento": 366
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-02-03",
+     "cents": 150408225,
+     "descripcion": "Liquidación tarjeta lote 37876",
+     "comprobante": "",
+     "asiento": 367
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-02-06",
+     "cents": -61200000,
+     "descripcion": "Transferencia a Librería El Faro SA OP 0001-00000872",
+     "comprobante": "OP 0001-00000872",
+     "asiento": 372
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-02-09",
+     "cents": 286716177,
+     "descripcion": "Liquidación tarjeta lote 94752",
+     "comprobante": "",
+     "asiento": 364
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-02-09",
+     "cents": 272371495,
+     "descripcion": "Liquidación tarjeta lote 37148",
+     "comprobante": "",
+     "asiento": 365
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-02-12",
+     "cents": 18736000,
+     "descripcion": "Venta MP #89946818",
+     "comprobante": "",
+     "asiento": 360
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-02-12",
+     "cents": 1641000,
+     "descripcion": "Venta MP #95361303",
+     "comprobante": "",
+     "asiento": 361
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-02-12",
+     "cents": 22000000,
+     "descripcion": "Venta MP #77875822",
+     "comprobante": "",
+     "asiento": 362
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-02-12",
+     "cents": 22077109,
+     "descripcion": "Venta MP #26917502",
+     "comprobante": "",
+     "asiento": 363
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-02-14",
+     "cents": 14200000,
+     "descripcion": "Venta MP #84230911",
+     "comprobante": "",
+     "asiento": 359
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-02-16",
+     "cents": 23100000,
+     "descripcion": "Venta MP #52240466",
+     "comprobante": "",
+     "asiento": 358
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-02-16",
+     "cents": 165816000,
+     "descripcion": "Cobranza Librería El Faro SA Rec. 0001-00000870",
+     "comprobante": "0002-00000869",
+     "asiento": 370
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-02-17",
+     "cents": 411500000,
+     "descripcion": "Cobranza Farmacia Del Parque SCS Rec. 0001-00000866",
+     "comprobante": "0001-00000865",
+     "asiento": 368
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-02-18",
+     "cents": 47323000,
+     "descripcion": "Cobranza Valentina Sosa - efectivo a depositar",
+     "comprobante": "RC 0001-00000858",
+     "asiento": 344
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-02-18",
+     "cents": -141077684,
+     "descripcion": "Transferencia a Distribuidora Los Álamos SRL OP 0001-00000871",
+     "comprobante": "OP 0001-00000871",
+     "asiento": 371
+    },
+    {
+     "id": "L23",
+     "fecha": "2026-02-19",
+     "cents": 80000000,
+     "descripcion": "Cobranza Carolina Núñez - efectivo a depositar",
+     "comprobante": "RC 0001-00000859",
+     "asiento": 345
+    },
+    {
+     "id": "L24",
+     "fecha": "2026-02-19",
+     "cents": 77981186,
+     "descripcion": "Cobranza Lucía Ortiz - efectivo a depositar",
+     "comprobante": "RC 0001-00000860",
+     "asiento": 346
+    },
+    {
+     "id": "L25",
+     "fecha": "2026-02-20",
+     "cents": 88333000,
+     "descripcion": "Cobranza Paula Castro - efectivo a depositar",
+     "comprobante": "RC 0001-00000856",
+     "asiento": 342
+    },
+    {
+     "id": "L26",
+     "fecha": "2026-02-20",
+     "cents": 57600000,
+     "descripcion": "Cobranza Valentina Sosa - efectivo a depositar",
+     "comprobante": "RC 0001-00000861",
+     "asiento": 347
+    },
+    {
+     "id": "L27",
+     "fecha": "2026-02-20",
+     "cents": 69400000,
+     "descripcion": "Cobranza Julieta Medina - efectivo a depositar",
+     "comprobante": "RC 0001-00000863",
+     "asiento": 349
+    },
+    {
+     "id": "L28",
+     "fecha": "2026-02-22",
+     "cents": 72947000,
+     "descripcion": "Cobranza Camila Herrera - efectivo a depositar",
+     "comprobante": "RC 0001-00000857",
+     "asiento": 343
+    },
+    {
+     "id": "L29",
+     "fecha": "2026-02-23",
+     "cents": 61502888,
+     "descripcion": "Cobranza Camila Herrera - efectivo a depositar",
+     "comprobante": "RC 0001-00000862",
+     "asiento": 348
+    },
+    {
+     "id": "L30",
+     "fecha": "2026-02-23",
+     "cents": 62373076,
+     "descripcion": "Cobranza Santiago Rojas - efectivo a depositar",
+     "comprobante": "RC 0001-00000864",
+     "asiento": 350
+    },
+    {
+     "id": "L31",
+     "fecha": "2026-02-24",
+     "cents": 347700000,
+     "descripcion": "Cobranza Textil Río Bermejo SA Rec. 0001-00000868",
+     "comprobante": "0002-00000867",
+     "asiento": 369
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L25",
+      "L28"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L21",
+      "L23",
+      "L24"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L26",
+      "L29",
+      "L27",
+      "L30"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1",
+      "L4",
+      "L5",
+      "L2",
+      "L3",
+      "L6",
+      "L7"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L18",
+      "L17",
+      "L13",
+      "L14",
+      "L15",
+      "L16"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L20"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L31"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L19"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L22"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B15",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

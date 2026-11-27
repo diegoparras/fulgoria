@@ -1,0 +1,523 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "026-cheques-plata",
+ "escenario": "cheques",
+ "banco": "plata",
+ "sistema": "planilla_cliente",
+ "semilla": 3002,
+ "periodo": {
+  "desde": "2026-05-01",
+  "hasta": "2026-05-31"
+ },
+ "cliente": {
+  "nombre": "Hotel Cerro Azul SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Muchos cheques emitidos que se debitan días después, varios pendientes al cierre y un cheque de tercero rechazado.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 714407000,
+    "bancoCierre": 389355439,
+    "librosApertura": 714407000,
+    "librosCierre": -857289925
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-05-07",
+     "cents": -115827000,
+     "descripcion": "CHEQUE CAMARA NRO 00038370",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-05-11",
+     "cents": -51998381,
+     "descripcion": "ECHEQ PAGADO NRO 00038377",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-05-12",
+     "cents": -197686955,
+     "descripcion": "CHEQUE CAMARA NRO 00038393",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-05-12",
+     "cents": 18800000,
+     "descripcion": "DEPOSITO DE CHEQUES",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-05-13",
+     "cents": 180601000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 30-70262640-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-05-13",
+     "cents": -2167212,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-05-13",
+     "cents": 47936000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE DISTRIBUIDORA LOS ÁLAMOS SRL CUIT 33-62274569-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-05-13",
+     "cents": -575232,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-05-14",
+     "cents": -18800000,
+     "descripcion": "CHEQUE RECHAZADO NRO 00038421",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-05-14",
+     "cents": -1497484,
+     "descripcion": "COMISION CHEQUE RECHAZADO",
+     "tipo": "comision"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-05-22",
+     "cents": -178200000,
+     "descripcion": "ECHEQ PAGADO NRO 00038391",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-05-25",
+     "cents": -40049488,
+     "descripcion": "CHEQUE CAMARA NRO 00038383",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-05-26",
+     "cents": -53635064,
+     "descripcion": "CHEQUE CAMARA NRO 00038356",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-05-27",
+     "cents": 51386000,
+     "descripcion": "DEPOSITO DE CHEQUES",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-05-27",
+     "cents": -5900000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-05-27",
+     "cents": -1239000,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-05-28",
+     "cents": -170406037,
+     "descripcion": "CHEQUE CAMARA NRO 00038389",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-05-31",
+     "cents": 216809000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FRIGORÍFICO PAMPA ALTA SA CUIT 30-52796354-7 REF 0003-00000498",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-05-31",
+     "cents": -2601708,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-05-04",
+     "cents": -115827000,
+     "descripcion": "Cheque N° 00038370 a Bodega Piedra Negra SA",
+     "comprobante": "CH 00038370",
+     "asiento": 365
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-05-04",
+     "cents": -51998381,
+     "descripcion": "ECHEQ N° 00038377 a Metalúrgica San Telmo SRL",
+     "comprobante": "CH 00038377",
+     "asiento": 366
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-05-04",
+     "cents": -155300000,
+     "descripcion": "ECHEQ N° 00038414 a Química Litoral SRL",
+     "comprobante": "CH 00038414",
+     "asiento": 376
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-05-08",
+     "cents": -178200000,
+     "descripcion": "ECHEQ N° 00038391 a Librería El Faro SA",
+     "comprobante": "CH 00038391",
+     "asiento": 370
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-05-11",
+     "cents": -170406037,
+     "descripcion": "Cheque N° 00038389 a Estudio Gráfico Cobalto SAS",
+     "comprobante": "CH 00038389",
+     "asiento": 369
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-05-11",
+     "cents": -197686955,
+     "descripcion": "Cheque N° 00038393 a Panificadora La Espiga SRL",
+     "comprobante": "CH 00038393",
+     "asiento": 371
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-05-11",
+     "cents": 180601000,
+     "descripcion": "Cobranza cliente Hotel Cerro Azul SA",
+     "comprobante": "0001-00000496",
+     "asiento": 377
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-05-11",
+     "cents": 18800000,
+     "descripcion": "Depósito cheque N° 00038421 cliente Hotel Cerro Azul SA",
+     "comprobante": "CH 00038421",
+     "asiento": 381
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-05-13",
+     "cents": -40049488,
+     "descripcion": "Cheque N° 00038383 a Transporte Ruta 3 SRL",
+     "comprobante": "CH 00038383",
+     "asiento": 367
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-05-13",
+     "cents": 47936000,
+     "descripcion": "Cobro FC A 0002-00000500 Distribuidora Los Álamos SRL",
+     "comprobante": "0002-00000500",
+     "asiento": 379
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-05-23",
+     "cents": -201191000,
+     "descripcion": "Cheque N° 00038413 a Transporte Ruta 3 SRL",
+     "comprobante": "CH 00038413",
+     "asiento": 375
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-05-25",
+     "cents": -53635064,
+     "descripcion": "Cheque N° 00038356 a Lácteos Valle Verde SA",
+     "comprobante": "CH 00038356",
+     "asiento": 362
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-05-25",
+     "cents": -194582000,
+     "descripcion": "ECHEQ N° 00038386 a Constructora Delta Norte SRL",
+     "comprobante": "CH 00038386",
+     "asiento": 368
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-05-25",
+     "cents": -186020000,
+     "descripcion": "Cheque N° 00038403 a Agro Sur del Plata SA",
+     "comprobante": "CH 00038403",
+     "asiento": 373
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-05-26",
+     "cents": 51386000,
+     "descripcion": "Depósito valores a depositar",
+     "comprobante": "",
+     "asiento": 380
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-05-27",
+     "cents": -209900000,
+     "descripcion": "ECHEQ N° 00038361 a Transporte Ruta 3 SRL",
+     "comprobante": "CH 00038361",
+     "asiento": 363
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-05-28",
+     "cents": 216809000,
+     "descripcion": "Cobro FC A 0003-00000498 Frigorífico Pampa Alta SA",
+     "comprobante": "0003-00000498",
+     "asiento": 378
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-05-29",
+     "cents": -73800000,
+     "descripcion": "Cheque N° 00038363 a Farmacia Del Parque SCS",
+     "comprobante": "CH 00038363",
+     "asiento": 364
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-05-29",
+     "cents": -235033000,
+     "descripcion": "Cheque N° 00038396 a Ferretería El Tornillo SRL",
+     "comprobante": "CH 00038396",
+     "asiento": 372
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-05-29",
+     "cents": -23600000,
+     "descripcion": "Cheque N° 00038407 a Textil Río Bermejo SA",
+     "comprobante": "CH 00038407",
+     "asiento": 374
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L16",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L18",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L13",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L19",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L14",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L20",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L11",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L3",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "B9",
+     "lado": "banco",
+     "tipo": "debito_no_identificado"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B15",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B19",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

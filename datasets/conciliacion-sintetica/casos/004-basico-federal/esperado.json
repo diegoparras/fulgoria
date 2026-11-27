@@ -1,0 +1,625 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "004-basico-federal",
+ "escenario": "basico",
+ "banco": "federal",
+ "sistema": "parentesis_transporte",
+ "semilla": 1012,
+ "periodo": {
+  "desde": "2026-03-01",
+  "hasta": "2026-03-31"
+ },
+ "cliente": {
+  "nombre": "Transporte Ruta 3 SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Pocos movimientos, la mayoría 1 a 1, gastos bancarios sin registrar, un cheque pendiente y un depósito en tránsito.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 113766235,
+    "bancoCierre": 1603612642,
+    "librosApertura": 113766235,
+    "librosCierre": 1557679032
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-03-05",
+     "cents": 358500000,
+     "descripcion": "TRF INMEDIATA RECIB 30571778137",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-03-05",
+     "cents": -2151000,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-03-05",
+     "cents": 264811986,
+     "descripcion": "TRF INMEDIATA RECIB 33584021816",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-03-05",
+     "cents": -1588872,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-03-10",
+     "cents": 183718557,
+     "descripcion": "TRF INMEDIATA RECIB 33521159818",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-03-10",
+     "cents": -1102311,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-03-10",
+     "cents": 174400000,
+     "descripcion": "TRF INMEDIATA RECIB 33583689627",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-03-10",
+     "cents": -1046400,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-03-11",
+     "cents": -24000000,
+     "descripcion": "DEBITO AUTOMATICO SEGUROS LA PREVISORA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-03-11",
+     "cents": -144000,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-03-13",
+     "cents": -65000000,
+     "descripcion": "TRF INMEDIATA ENV 30721129108",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-03-13",
+     "cents": -390000,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-03-18",
+     "cents": 162800000,
+     "descripcion": "TRF INMEDIATA RECIB 33650670626",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-03-18",
+     "cents": -976800,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-03-23",
+     "cents": -261118092,
+     "descripcion": "TRF INMEDIATA ENV 30647293839",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-03-23",
+     "cents": -1566709,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-03-23",
+     "cents": -96743042,
+     "descripcion": "TRF INMEDIATA ENV 30680491026",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-03-23",
+     "cents": -580458,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-03-24",
+     "cents": 310296000,
+     "descripcion": "TRF INMEDIATA RECIB 30699695188",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-03-24",
+     "cents": -1861776,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-03-25",
+     "cents": 135902869,
+     "descripcion": "TRF INMEDIATA RECIB 30728121986",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-03-25",
+     "cents": -815417,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-03-26",
+     "cents": -4050952,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-03-26",
+     "cents": -850700,
+     "descripcion": "I.V.A. TASA GENERAL",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-03-26",
+     "cents": -24306,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-03-26",
+     "cents": -5104,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-03-30",
+     "cents": -27350000,
+     "descripcion": "TRF INMEDIATA ENV 30726321406",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-03-30",
+     "cents": -164100,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-03-30",
+     "cents": -25814561,
+     "descripcion": "DEBITO AUTOMATICO TELEFONÍA FEDERAL",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-03-30",
+     "cents": -154887,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-03-31",
+     "cents": 419433080,
+     "descripcion": "TRF INMEDIATA RECIB 30639344823 0003-00000407",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-03-31",
+     "cents": -2516598,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-03-04",
+     "cents": 358500000,
+     "descripcion": "Cobranza cliente Distribuidora Los Álamos SRL",
+     "comprobante": "0001-00000399",
+     "asiento": 61
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-03-04",
+     "cents": 264811986,
+     "descripcion": "Cobranza Tecnología Austral SAS Rec. 0001-00000410",
+     "comprobante": "0001-00000409",
+     "asiento": 66
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-03-08",
+     "cents": -24000000,
+     "descripcion": "Seguros La Previsora - débito automático",
+     "comprobante": "",
+     "asiento": 73
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-03-09",
+     "cents": 183718557,
+     "descripcion": "Cobranza cliente Constructora Delta Norte SRL",
+     "comprobante": "0003-00000397",
+     "asiento": 60
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-03-09",
+     "cents": 174400000,
+     "descripcion": "Cobranza cliente Viñedos Altos de Cuyo SA",
+     "comprobante": "0002-00000405",
+     "asiento": 64
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-03-13",
+     "cents": -65000000,
+     "descripcion": "Transferencia a Transporte Ruta 3 SRL OP 0001-00000414",
+     "comprobante": "OP 0001-00000414",
+     "asiento": 69
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-03-17",
+     "cents": 162800000,
+     "descripcion": "Cobranza cliente Imprenta Tinta Fresca SRL",
+     "comprobante": "0001-00000403",
+     "asiento": 63
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-03-23",
+     "cents": 135902869,
+     "descripcion": "Cobranza Ferretería El Tornillo SRL Rec. 0001-00000412",
+     "comprobante": "0001-00000411",
+     "asiento": 67
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-03-23",
+     "cents": -261118092,
+     "descripcion": "Pago Distribuidora Los Álamos SRL OP 0001-00000413",
+     "comprobante": "OP 0001-00000413",
+     "asiento": 68
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-03-23",
+     "cents": -96743042,
+     "descripcion": "Pago a proveedor Panificadora La Espiga SRL",
+     "comprobante": "OP 0001-00000415",
+     "asiento": 70
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-03-24",
+     "cents": 310296000,
+     "descripcion": "Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000402",
+     "comprobante": "0002-00000401",
+     "asiento": 62
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-03-27",
+     "cents": -25814561,
+     "descripcion": "Telefonía Federal - débito automático",
+     "comprobante": "",
+     "asiento": 72
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-03-29",
+     "cents": -94024000,
+     "descripcion": "Cheque N° 00026731 a Óptica Mirador SRL",
+     "comprobante": "CH 00026731",
+     "asiento": 74
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-03-30",
+     "cents": 419433080,
+     "descripcion": "Cobranza cliente Ferretería El Tornillo SRL",
+     "comprobante": "0003-00000407",
+     "asiento": 65
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-03-30",
+     "cents": -27350000,
+     "descripcion": "Transferencia a Distribuidora Los Álamos SRL OP 0001-00000416",
+     "comprobante": "OP 0001-00000416",
+     "asiento": 71
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-03-31",
+     "cents": 28100000,
+     "descripcion": "Depósito valores a depositar",
+     "comprobante": "",
+     "asiento": 75
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B31"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B29"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L13",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L16",
+     "lado": "libros",
+     "tipo": "deposito_transito"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B32",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

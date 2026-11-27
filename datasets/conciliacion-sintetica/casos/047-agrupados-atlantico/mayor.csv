@@ -1,0 +1,35 @@
+Fecha;Comprob.;Descripción;Importe;Saldo
+;;Transporte;;$ 7.775.852,48
+01-02-26;;Venta MP #31305016;$ 156.000,00;$ 7.931.852,48
+01-02-26;;Venta MP #91598118;$ 127.062,35;$ 8.058.914,83
+01-02-26;;Venta MP #35307444;$ 197.000,00;$ 8.255.914,83
+02-02-26;;Venta MP #70757048;$ 162.000,00;$ 8.417.914,83
+02-02-26;;Venta MP #91201719;$ 176.571,51;$ 8.594.486,34
+02-02-26;;Venta MP #77626197;$ 207.000,00;$ 8.801.486,34
+02-02-26;;Venta MP #42422916;$ 254.000,00;$ 9.055.486,34
+02-02-26;;Liquidación tarjeta lote 15635;$ 1.206.145,26;$ 10.261.631,60
+03-02-26;;Liquidación tarjeta lote 37876;$ 1.504.082,25;$ 11.765.713,85
+06-02-26;OP 0001-00000872;Transferencia a Librería El Faro SA OP 0001-00000872;($ 612.000,00);$ 11.153.713,85
+09-02-26;;Liquidación tarjeta lote 94752;$ 2.867.161,77;$ 14.020.875,62
+09-02-26;;Liquidación tarjeta lote 37148;$ 2.723.714,95;$ 16.744.590,57
+12-02-26;;Venta MP #89946818;$ 187.360,00;$ 16.931.950,57
+12-02-26;;Venta MP #95361303;$ 16.410,00;$ 16.948.360,57
+12-02-26;;Venta MP #77875822;$ 220.000,00;$ 17.168.360,57
+12-02-26;;Venta MP #26917502;$ 220.771,09;$ 17.389.131,66
+14-02-26;;Venta MP #84230911;$ 142.000,00;$ 17.531.131,66
+16-02-26;;Venta MP #52240466;$ 231.000,00;$ 17.762.131,66
+16-02-26;0002-00000869;Cobranza Librería El Faro SA Rec. 0001-00000870;$ 1.658.160,00;$ 19.420.291,66
+17-02-26;0001-00000865;Cobranza Farmacia Del Parque SCS Rec. 0001-00000866;$ 4.115.000,00;$ 23.535.291,66
+18-02-26;RC 0001-00000858;Cobranza Valentina Sosa - efectivo a depositar;$ 473.230,00;$ 24.008.521,66
+18-02-26;OP 0001-00000871;Transferencia a Distribuidora Los Álamos SRL OP 0001-00000871;($ 1.410.776,84);$ 22.597.744,82
+19-02-26;RC 0001-00000859;Cobranza Carolina Núñez - efectivo a depositar;$ 800.000,00;$ 23.397.744,82
+19-02-26;RC 0001-00000860;Cobranza Lucía Ortiz - efectivo a depositar;$ 779.811,86;$ 24.177.556,68
+20-02-26;RC 0001-00000856;Cobranza Paula Castro - efectivo a depositar;$ 883.330,00;$ 25.060.886,68
+;;Subtotal página;;$ 25.060.886,68
+20-02-26;RC 0001-00000861;Cobranza Valentina Sosa - efectivo a depositar;$ 576.000,00;$ 25.636.886,68
+20-02-26;RC 0001-00000863;Cobranza Julieta Medina - efectivo a depositar;$ 694.000,00;$ 26.330.886,68
+22-02-26;RC 0001-00000857;Cobranza Camila Herrera - efectivo a depositar;$ 729.470,00;$ 27.060.356,68
+23-02-26;RC 0001-00000862;Cobranza Camila Herrera - efectivo a depositar;$ 615.028,88;$ 27.675.385,56
+23-02-26;RC 0001-00000864;Cobranza Santiago Rojas - efectivo a depositar;$ 623.730,76;$ 28.299.116,32
+24-02-26;0002-00000867;Cobranza Textil Río Bermejo SA Rec. 0001-00000868;$ 3.477.000,00;$ 31.776.116,32
+;;Total general;;$ 31.776.116,32

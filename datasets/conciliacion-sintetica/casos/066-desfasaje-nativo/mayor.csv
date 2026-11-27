@@ -1,0 +1,19 @@
+Fecha;Comprob.;Descripción;Importe;Saldo
+;;Transporte;;$ 26.126.000,00
+01-08-26;;Telefonía Federal - débito automático;($ 345.000,00);$ 25.781.000,00
+03-08-26;0001-00000600;Cobro FC A 0001-00000600 Distribuidora Los Álamos SRL;$ 3.450.469,36;$ 29.231.469,36
+03-08-26;OP 0001-00000607;Pago a proveedor Servicios Médicos Lomas SRL;($ 306.000,00);$ 28.925.469,36
+03-08-26;OP 0001-00000608;Pago a proveedor Tecnología Austral SAS;($ 2.006.000,00);$ 26.919.469,36
+05-08-26;0003-00000592;Cobro FC A 0003-00000592 Constructora Delta Norte SRL;$ 3.939.000,00;$ 30.858.469,36
+10-08-26;OP 0001-00000605;Transferencia a Logística Andina SAS OP 0001-00000605;($ 2.039.078,47);$ 28.819.390,89
+10-08-26;OP 0001-00000611;Transferencia a Transporte Ruta 3 SRL OP 0001-00000611;($ 1.875.429,74);$ 26.943.961,15
+11-08-26;OP 0001-00000610;Pago Tecnología Austral SAS OP 0001-00000610;($ 332.173,12);$ 26.611.788,03
+13-08-26;OP 0001-00000606;Pago Constructora Delta Norte SRL OP 0001-00000606;($ 2.287.675,26);$ 24.324.112,77
+14-08-26;0001-00000596;Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000597;$ 1.489.781,92;$ 25.813.894,69
+18-08-26;OP 0001-00000609;Pago Bodega Piedra Negra SA OP 0001-00000609;($ 1.757.000,00);$ 24.056.894,69
+20-08-26;0002-00000594;Cobranza Frigorífico Pampa Alta SA Rec. 0001-00000595;$ 634.000,00;$ 24.690.894,69
+24-08-26;0003-00000598;Cobranza Constructora Delta Norte SRL Rec. 0001-00000599;$ 2.052.000,00;$ 26.742.894,69
+24-08-26;;Telefonía Federal - débito automático;($ 129.394,61);$ 26.613.500,08
+25-08-26;OP 0001-00000604;Transferencia a Logística Andina SAS OP 0001-00000604;($ 807.450,00);$ 25.806.050,08
+31-08-26;0001-00000602;Cobro FC A 0001-00000602 Farmacia Del Parque SCS;$ 3.723.000,00;$ 29.529.050,08
+;;Total general;;$ 29.529.050,08

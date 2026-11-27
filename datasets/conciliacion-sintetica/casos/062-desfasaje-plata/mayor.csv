@@ -1,0 +1,24 @@
+Empresa: Imprenta Tinta Fresca SRL
+Cuenta: 1.1.1.02 Banco del Plata Austral
+Período: 01/03/2026 al 31/03/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,39700659.24
+2026-03-03,Cobro FC A 0001-00000535 Metalúrgica San Telmo SRL,2208000.00,,41908659.24
+2026-03-09,Cobranza cliente Servicios Médicos Lomas SRL,422596.87,,42331256.11
+2026-03-09,Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000540,1110900.00,,43442156.11
+2026-03-10,Pago Muebles Quebracho SAS OP 0001-00000550,,2225216.06,41216940.05
+2026-03-11,Energía Metropolitana - débito automático,,87514.80,41129425.25
+2026-03-12,Cobranza Bodega Piedra Negra SA Rec. 0001-00000546,1358000.00,,42487425.25
+2026-03-17,Pago a proveedor Hotel Cerro Azul SA,,152000.00,42335425.25
+2026-03-17,Pago a proveedor Muebles Quebracho SAS,,2695190.00,39640235.25
+2026-03-19,Cobranza cliente Muebles Quebracho SAS,4282470.00,,43922705.25
+2026-03-23,Cobranza cliente Distribuidora Los Álamos SRL,3271000.00,,47193705.25
+2026-03-23,Cobranza cliente Química Litoral SRL,134670.00,,47328375.25
+2026-03-23,Cobro FC A 0002-00000543 Servicios Médicos Lomas SRL,1079000.00,,48407375.25
+2026-03-24,Cobro FC A 0003-00000547 Farmacia Del Parque SCS,2971710.00,,51379085.25
+2026-03-24,Transferencia a Cooperativa Hornero Ltda OP 0001-00000549,,1487280.00,49891805.25
+2026-03-24,Pago Distribuidora Los Álamos SRL OP 0001-00000552,,616187.09,49275618.16
+2026-03-25,Seguros La Previsora - débito automático,,289000.00,48986618.16
+2026-03-27,Pago Ferretería El Tornillo SRL OP 0001-00000551,,560100.00,48426518.16
+2026-03-30,Pago a proveedor Cooperativa Hornero Ltda,,1999000.00,46427518.16

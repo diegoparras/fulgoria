@@ -1,0 +1,28 @@
+Fecha;Comprob.;Descripción;Importe;Saldo
+;;Transporte;;$ 26.222.169,52
+02-01-26;;Ventas con tarjeta lote 51517;$ 1.141.000,00;$ 27.363.169,52
+02-01-26;;Arancel tarjeta lote 51517;($ 28.525,00);$ 27.334.644,52
+02-01-26;;IVA arancel lote 51517;($ 5.990,25);$ 27.328.654,27
+05-01-26;;Ventas con tarjeta lote 92695;$ 2.165.587,42;$ 29.494.241,69
+05-01-26;;Arancel tarjeta lote 92695;($ 54.139,69);$ 29.440.102,00
+05-01-26;;IVA arancel lote 92695;($ 11.369,33);$ 29.428.732,67
+05-01-26;0001-00000173;Cobranza Constructora Delta Norte SRL Rec. 0001-00000174;$ 3.354.229,62;$ 32.782.962,29
+07-01-26;OP 0001-00000176;Pago Servicios Médicos Lomas SRL OP 0001-00000176;($ 402.700,00);$ 32.380.262,29
+12-01-26;;Liquidación tarjeta lote 67719;$ 518.991,54;$ 32.899.253,83
+13-01-26;;Ventas con tarjeta lote 72274;$ 1.424.000,00;$ 34.323.253,83
+13-01-26;;Arancel tarjeta lote 72274;($ 25.632,00);$ 34.297.621,83
+13-01-26;;IVA arancel lote 72274;($ 5.382,72);$ 34.292.239,11
+14-01-26;;Ventas con tarjeta lote 9928;$ 814.080,00;$ 35.106.319,11
+14-01-26;;Arancel tarjeta lote 9928;($ 24.422,40);$ 35.081.896,71
+14-01-26;;IVA arancel lote 9928;($ 5.128,70);$ 35.076.768,01
+19-01-26;;Liquidación tarjeta lote 65031;$ 103.497,06;$ 35.180.265,07
+22-01-26;;Ventas con tarjeta lote 18506;$ 2.178.588,10;$ 37.358.853,17
+22-01-26;;Arancel tarjeta lote 18506;($ 54.464,70);$ 37.304.388,47
+22-01-26;;IVA arancel lote 18506;($ 11.437,59);$ 37.292.950,88
+23-01-26;OP 0001-00000175;Pago Viñedos Altos de Cuyo SA OP 0001-00000175;($ 292.012,37);$ 37.000.938,51
+26-01-26;0002-00000171;Cobro FC A 0002-00000171 Servicios Médicos Lomas SRL;$ 4.110.149,46;$ 41.111.087,97
+29-01-26;;Ventas con tarjeta lote 1899;$ 1.744.487,47;$ 42.855.575,44
+29-01-26;;Arancel tarjeta lote 1899;($ 43.612,19);$ 42.811.963,25
+29-01-26;;IVA arancel lote 1899;($ 9.158,56);$ 42.802.804,69
+29-01-26;OP 0001-00000177;Pago Distribuidora Los Álamos SRL OP 0001-00000177;($ 930.000,00);$ 41.872.804,69
+;;Total general;;$ 41.872.804,69

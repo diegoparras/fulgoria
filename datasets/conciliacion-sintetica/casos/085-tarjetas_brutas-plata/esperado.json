@@ -1,0 +1,521 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "085-tarjetas_brutas-plata",
+ "escenario": "tarjetas_brutas",
+ "banco": "plata",
+ "sistema": "importe_signo_tab",
+ "semilla": 8001,
+ "periodo": {
+  "desde": "2026-06-01",
+  "hasta": "2026-06-30"
+ },
+ "cliente": {
+  "nombre": "Frigorífico Pampa Alta SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El libro registra la venta con tarjeta en bruto y aparte el arancel y su IVA; el banco acredita el neto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2726700000,
+    "bancoCierre": 4383269902,
+    "librosApertura": 2726700000,
+    "librosCierre": 4397668575
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-06-03",
+     "cents": 295900000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 33-62275701-5",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-06-03",
+     "cents": -1775400,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-06-03",
+     "cents": -98127000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-06-04",
+     "cents": 196180425,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 84236",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-06-04",
+     "cents": -1177083,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-06-04",
+     "cents": -102300000,
+     "descripcion": "TRANSFERENCIA ENVIADA A CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-06-11",
+     "cents": 45476039,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 27970",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-06-11",
+     "cents": -272856,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-06-18",
+     "cents": 276986000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE VIÑEDOS ALTOS DE CUYO SA CUIT 33-65165183-8 REF 0002-00000829",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-06-18",
+     "cents": -1661916,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-06-22",
+     "cents": 139900000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ÓPTICA MIRADOR SRL CUIT 30-71912957-5",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-06-22",
+     "cents": -839400,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-06-23",
+     "cents": 409400000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ÓPTICA MIRADOR SRL CUIT 30-61517208-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-06-23",
+     "cents": -2456400,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-06-23",
+     "cents": -31035565,
+     "descripcion": "TRANSFERENCIA ENVIADA A PANIFICADORA LA ESPIGA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-06-25",
+     "cents": 138290292,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 77177",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-06-25",
+     "cents": -829742,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-06-26",
+     "cents": 242609320,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 56278",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-06-26",
+     "cents": -1455656,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-06-26",
+     "cents": -2466187,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-06-26",
+     "cents": -517899,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-06-29",
+     "cents": 157689064,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 91554",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-06-29",
+     "cents": -946134,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-06-02",
+     "cents": -98127000,
+     "descripcion": "Transferencia a Logística Andina SAS OP 0001-00000837",
+     "comprobante": "OP 0001-00000837",
+     "asiento": 277
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-06-03",
+     "cents": 295900000,
+     "descripcion": "Cobranza Hotel Cerro Azul SA Rec. 0001-00000834",
+     "comprobante": "0003-00000833",
+     "asiento": 274
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-06-03",
+     "cents": -102300000,
+     "descripcion": "Transferencia a Constructora Delta Norte SRL OP 0001-00000835",
+     "comprobante": "OP 0001-00000835",
+     "asiento": 275
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-06-04",
+     "cents": 202300000,
+     "descripcion": "Ventas con tarjeta lote 84236",
+     "comprobante": "",
+     "asiento": 263
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-06-04",
+     "cents": -5057500,
+     "descripcion": "Arancel tarjeta lote 84236",
+     "comprobante": "",
+     "asiento": 264
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-06-04",
+     "cents": -1062075,
+     "descripcion": "IVA arancel lote 84236",
+     "comprobante": "",
+     "asiento": 265
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-06-11",
+     "cents": 47189000,
+     "descripcion": "Ventas con tarjeta lote 27970",
+     "comprobante": "",
+     "asiento": 266
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-06-11",
+     "cents": -1415670,
+     "descripcion": "Arancel tarjeta lote 27970",
+     "comprobante": "",
+     "asiento": 267
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-06-11",
+     "cents": -297291,
+     "descripcion": "IVA arancel lote 27970",
+     "comprobante": "",
+     "asiento": 268
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-06-18",
+     "cents": 276986000,
+     "descripcion": "Cobranza cliente Viñedos Altos de Cuyo SA",
+     "comprobante": "0002-00000829",
+     "asiento": 272
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-06-22",
+     "cents": 139900000,
+     "descripcion": "Cobro FC A 0002-00000827 Óptica Mirador SRL",
+     "comprobante": "0002-00000827",
+     "asiento": 271
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-06-22",
+     "cents": -31035565,
+     "descripcion": "Pago a proveedor Panificadora La Espiga SRL",
+     "comprobante": "OP 0001-00000836",
+     "asiento": 276
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-06-23",
+     "cents": 409400000,
+     "descripcion": "Cobro FC A 0002-00000831 Óptica Mirador SRL",
+     "comprobante": "0002-00000831",
+     "asiento": 273
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-06-25",
+     "cents": 138290292,
+     "descripcion": "Liquidación tarjeta lote 77177",
+     "comprobante": "",
+     "asiento": 269
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-06-26",
+     "cents": 242609320,
+     "descripcion": "Liquidación tarjeta lote 56278",
+     "comprobante": "",
+     "asiento": 270
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-06-29",
+     "cents": 161200000,
+     "descripcion": "Ventas con tarjeta lote 91554",
+     "comprobante": "",
+     "asiento": 260
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-06-29",
+     "cents": -2901600,
+     "descripcion": "Arancel tarjeta lote 91554",
+     "comprobante": "",
+     "asiento": 261
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-06-29",
+     "cents": -609336,
+     "descripcion": "IVA arancel lote 91554",
+     "comprobante": "",
+     "asiento": 262
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B22"
+     ],
+     "libros": [
+      "L16",
+      "L17",
+      "L18"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4",
+      "L5",
+      "L6"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L7",
+      "L8",
+      "L9"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B5",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B19",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

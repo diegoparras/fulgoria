@@ -1,0 +1,593 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "042-agrupados-nativo",
+ "escenario": "agrupados",
+ "banco": "nativo",
+ "sistema": "debitos_creditos_us",
+ "semilla": 4022,
+ "periodo": {
+  "desde": "2026-06-01",
+  "hasta": "2026-06-30"
+ },
+ "cliente": {
+  "nombre": "Metalúrgica San Telmo SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Depósitos que juntan varias cobranzas y retiros de Mercado Pago que juntan muchas ventas (algunos con más de 4 partidas).",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 1833722429,
+    "bancoCierre": 2843907573,
+    "librosApertura": 1833722429,
+    "librosCierre": 2868337506
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-06-02",
+     "cents": 65411000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-06-02",
+     "cents": -1308220,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-06-02",
+     "cents": 59513670,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 7334",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-06-02",
+     "cents": -1190273,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-06-02",
+     "cents": 58435600,
+     "descripcion": "TRANSFERENCIA DE TERCEROS PANIFICADORA LA ESPIGA SRL - 0003-00000405",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-06-02",
+     "cents": -1168712,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-06-03",
+     "cents": 227835063,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 3935",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-06-03",
+     "cents": -4556701,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-06-05",
+     "cents": 25351486,
+     "descripcion": "TRANSFERENCIA DE TERCEROS MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-06-05",
+     "cents": -507030,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-06-08",
+     "cents": 73438758,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 60927",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-06-08",
+     "cents": -1468775,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-06-08",
+     "cents": -202546462,
+     "descripcion": "TRANSFERENCIA A TERCEROS LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-06-09",
+     "cents": -100040615,
+     "descripcion": "TRANSFERENCIA A TERCEROS DISTRIBUIDORA LOS ÁLAMOS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-06-11",
+     "cents": 89249397,
+     "descripcion": "DEPOSITO POR VENTANILLA",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-06-11",
+     "cents": 322770396,
+     "descripcion": "TRANSFERENCIA DE TERCEROS HOTEL CERRO AZUL SA - 0001-00000403",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-06-11",
+     "cents": -6455408,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-06-15",
+     "cents": 59966000,
+     "descripcion": "DEPOSITO POR VENTANILLA",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-06-15",
+     "cents": 183040711,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 56383",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-06-15",
+     "cents": -3660814,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-06-17",
+     "cents": 111708791,
+     "descripcion": "DEPOSITO POR VENTANILLA",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-06-18",
+     "cents": 60481282,
+     "descripcion": "DEPOSITO POR VENTANILLA",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-06-24",
+     "cents": -3400000,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-06-24",
+     "cents": -714000,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-06-01",
+     "cents": 18588087,
+     "descripcion": "Venta MP #42939991",
+     "comprobante": "",
+     "asiento": 368
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-06-01",
+     "cents": 2356000,
+     "descripcion": "Venta MP #75496786",
+     "comprobante": "",
+     "asiento": 369
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-06-01",
+     "cents": 27400000,
+     "descripcion": "Venta MP #23197162",
+     "comprobante": "",
+     "asiento": 370
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-06-01",
+     "cents": 20811000,
+     "descripcion": "Venta MP #96298784",
+     "comprobante": "",
+     "asiento": 371
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-06-01",
+     "cents": 58435600,
+     "descripcion": "Cobranza cliente Panificadora La Espiga SRL",
+     "comprobante": "0003-00000405",
+     "asiento": 378
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-06-02",
+     "cents": 4407399,
+     "descripcion": "Venta MP #12807023",
+     "comprobante": "",
+     "asiento": 367
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-06-02",
+     "cents": 17200000,
+     "descripcion": "Venta MP #98104332",
+     "comprobante": "",
+     "asiento": 372
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-06-02",
+     "cents": 59513670,
+     "descripcion": "Liquidación tarjeta lote 7334",
+     "comprobante": "",
+     "asiento": 375
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-06-03",
+     "cents": 227835063,
+     "descripcion": "Liquidación tarjeta lote 3935",
+     "comprobante": "",
+     "asiento": 373
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-06-08",
+     "cents": 22491397,
+     "descripcion": "Cobranza Sofía Ramírez - efectivo a depositar",
+     "comprobante": "RC 0001-00000393",
+     "asiento": 357
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-06-08",
+     "cents": 73438758,
+     "descripcion": "Liquidación tarjeta lote 60927",
+     "comprobante": "",
+     "asiento": 374
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-06-08",
+     "cents": -202546462,
+     "descripcion": "Transferencia a Logística Andina SAS OP 0001-00000407",
+     "comprobante": "OP 0001-00000407",
+     "asiento": 379
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-06-09",
+     "cents": 66758000,
+     "descripcion": "Cobranza Mateo Benítez - efectivo a depositar",
+     "comprobante": "RC 0001-00000394",
+     "asiento": 358
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-06-09",
+     "cents": 322770396,
+     "descripcion": "Cobro FC A 0001-00000403 Hotel Cerro Azul SA",
+     "comprobante": "0001-00000403",
+     "asiento": 377
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-06-09",
+     "cents": -100040615,
+     "descripcion": "Pago Distribuidora Los Álamos SRL OP 0001-00000408",
+     "comprobante": "OP 0001-00000408",
+     "asiento": 380
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-06-13",
+     "cents": 32400000,
+     "descripcion": "Cobranza Paula Castro - efectivo a depositar",
+     "comprobante": "RC 0001-00000401",
+     "asiento": 365
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-06-14",
+     "cents": 20700000,
+     "descripcion": "Cobranza Nicolás Romero - efectivo a depositar",
+     "comprobante": "RC 0001-00000398",
+     "asiento": 362
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-06-14",
+     "cents": 8866000,
+     "descripcion": "Cobranza Agustín Molina - efectivo a depositar",
+     "comprobante": "RC 0001-00000400",
+     "asiento": 364
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-06-15",
+     "cents": 18700000,
+     "descripcion": "Cobranza Julieta Medina - efectivo a depositar",
+     "comprobante": "RC 0001-00000402",
+     "asiento": 366
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-06-15",
+     "cents": 183040711,
+     "descripcion": "Liquidación tarjeta lote 56383",
+     "comprobante": "",
+     "asiento": 376
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-06-16",
+     "cents": 35663343,
+     "descripcion": "Cobranza Franco Silva - efectivo a depositar",
+     "comprobante": "RC 0001-00000396",
+     "asiento": 360
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-06-16",
+     "cents": 27887419,
+     "descripcion": "Cobranza Sofía Ramírez - efectivo a depositar",
+     "comprobante": "RC 0001-00000397",
+     "asiento": 361
+    },
+    {
+     "id": "L23",
+     "fecha": "2026-06-17",
+     "cents": 24817939,
+     "descripcion": "Cobranza Carolina Núñez - efectivo a depositar",
+     "comprobante": "RC 0001-00000395",
+     "asiento": 359
+    },
+    {
+     "id": "L24",
+     "fecha": "2026-06-17",
+     "cents": 63121372,
+     "descripcion": "Cobranza Lucas Fernández - efectivo a depositar",
+     "comprobante": "RC 0001-00000399",
+     "asiento": 363
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L10",
+      "L13"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B22"
+     ],
+     "libros": [
+      "L23",
+      "L21"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L22",
+      "L17",
+      "L24"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L18",
+      "L16",
+      "L19"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L6",
+      "L1",
+      "L2"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L3",
+      "L4",
+      "L7"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L20"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

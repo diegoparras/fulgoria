@@ -1,0 +1,23 @@
+Fecha;Asiento;Comprobante;Concepto;Debe;Haber;Saldo
+;;;Saldo anterior;;;26.885.000,00
+09/03/2026;280;;Ventas con tarjeta lote 82213;1.025.760,85;;27.910.760,85
+09/03/2026;281;;Arancel tarjeta lote 82213;;25.644,02;27.885.116,83
+09/03/2026;282;;IVA arancel lote 82213;;5.385,24;27.879.731,59
+09/03/2026;295;0001-00000442;Cobranza Viñedos Altos de Cuyo SA Rec. 0001-00000443;3.536.000,00;;31.415.731,59
+09/03/2026;297;0001-00000446;Cobranza cliente Lácteos Valle Verde SA;4.428.000,00;;35.843.731,59
+09/03/2026;298;OP 0001-00000448;Pago a proveedor Química Litoral SRL;;1.380.000,00;34.463.731,59
+11/03/2026;289;;Ventas con tarjeta lote 64948;1.066.290,00;;35.530.021,59
+11/03/2026;290;;Arancel tarjeta lote 64948;;26.657,25;35.503.364,34
+11/03/2026;291;;IVA arancel lote 64948;;5.598,02;35.497.766,32
+13/03/2026;286;;Ventas con tarjeta lote 33521;2.808.000,00;;38.305.766,32
+13/03/2026;287;;Arancel tarjeta lote 33521;;50.544,00;38.255.222,32
+13/03/2026;288;;IVA arancel lote 33521;;10.614,24;38.244.608,08
+13/03/2026;293;;Liquidación tarjeta lote 87612;1.021.820,75;;39.266.428,83
+23/03/2026;283;;Ventas con tarjeta lote 76685;1.344.570,00;;40.610.998,83
+23/03/2026;284;;Arancel tarjeta lote 76685;;40.337,10;40.570.661,73
+23/03/2026;285;;IVA arancel lote 76685;;8.470,79;40.562.190,94
+23/03/2026;294;0001-00000440;Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000441;3.001.283,82;;43.563.474,76
+23/03/2026;296;0003-00000444;Cobranza cliente Química Litoral SRL;1.227.311,97;;44.790.786,73
+23/03/2026;299;OP 0001-00000449;Pago a proveedor Panificadora La Espiga SRL;;1.691.606,95;43.099.179,78
+25/03/2026;292;;Liquidación tarjeta lote 31195;282.255,43;;43.381.435,21
+;;;Totales;;;43.381.435,21

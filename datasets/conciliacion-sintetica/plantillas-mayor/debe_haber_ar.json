@@ -1,0 +1,27 @@
+{
+  "fulgoria_plantilla_mayor": 1,
+  "sistema": "Debe/Haber es-AR con saldo",
+  "encabezados": [
+    "Fecha",
+    "Asiento",
+    "Comprobante",
+    "Concepto",
+    "Debe",
+    "Haber",
+    "Saldo"
+  ],
+  "mapeo": {
+    "fecha": "Fecha",
+    "asiento": "Asiento",
+    "comprobante": "Comprobante",
+    "descripcion": "Concepto",
+    "debe": "Debe",
+    "haber": "Haber",
+    "saldo": "Saldo"
+  },
+  "formato": {
+    "numeros": "es-AR"
+  },
+  "unirContinuacion": true,
+  "ignorar": []
+}

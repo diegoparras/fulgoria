@@ -1,0 +1,473 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "089-tarjetas_brutas-nativo",
+ "escenario": "tarjetas_brutas",
+ "banco": "nativo",
+ "sistema": "planilla_cliente",
+ "semilla": 8021,
+ "periodo": {
+  "desde": "2026-02-01",
+  "hasta": "2026-02-28"
+ },
+ "cliente": {
+  "nombre": "Química Litoral SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El libro registra la venta con tarjeta en bruto y aparte el arancel y su IVA; el banco acredita el neto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2645888000,
+    "bancoCierre": 3291766377,
+    "librosApertura": 2645888000,
+    "librosCierre": 3303338279
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-02-02",
+     "cents": 34514372,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 93190",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-02-02",
+     "cents": -207086,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-02-09",
+     "cents": 34135200,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 19409",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-02-09",
+     "cents": -204811,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-02-16",
+     "cents": 110734504,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 46220",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-02-16",
+     "cents": -664407,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-02-17",
+     "cents": 11637000,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 68228",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-02-17",
+     "cents": -69822,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-02-19",
+     "cents": -95934449,
+     "descripcion": "TRANSFERENCIA A TERCEROS HOTEL CERRO AZUL SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-02-19",
+     "cents": -575607,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-02-23",
+     "cents": 16274622,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 50209",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-02-23",
+     "cents": -97648,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-02-23",
+     "cents": -104900000,
+     "descripcion": "TRANSFERENCIA A TERCEROS ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-02-23",
+     "cents": -629400,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-02-25",
+     "cents": 330389030,
+     "descripcion": "TRANSFERENCIA DE TERCEROS METALÚRGICA SAN TELMO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-02-25",
+     "cents": -1982334,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-02-25",
+     "cents": 320600000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-02-25",
+     "cents": -1923600,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-02-25",
+     "cents": -4286009,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-02-25",
+     "cents": -900062,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-02-25",
+     "cents": -25716,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-02-25",
+     "cents": -5400,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-02-02",
+     "cents": 35591000,
+     "descripcion": "Ventas con tarjeta lote 93190",
+     "comprobante": "",
+     "asiento": 86
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-02-02",
+     "cents": -889775,
+     "descripcion": "Arancel tarjeta lote 93190",
+     "comprobante": "",
+     "asiento": 87
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-02-02",
+     "cents": -186853,
+     "descripcion": "IVA arancel lote 93190",
+     "comprobante": "",
+     "asiento": 88
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-02-09",
+     "cents": 34135200,
+     "descripcion": "Liquidación tarjeta lote 19409",
+     "comprobante": "",
+     "asiento": 90
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-02-16",
+     "cents": 113200000,
+     "descripcion": "Ventas con tarjeta lote 46220",
+     "comprobante": "",
+     "asiento": 83
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-02-16",
+     "cents": -2037600,
+     "descripcion": "Arancel tarjeta lote 46220",
+     "comprobante": "",
+     "asiento": 84
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-02-16",
+     "cents": -427896,
+     "descripcion": "IVA arancel lote 46220",
+     "comprobante": "",
+     "asiento": 85
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-02-17",
+     "cents": 11637000,
+     "descripcion": "Liquidación tarjeta lote 68228",
+     "comprobante": "",
+     "asiento": 89
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-02-18",
+     "cents": -95934449,
+     "descripcion": "Pago a proveedor Hotel Cerro Azul SA",
+     "comprobante": "OP 0001-00000684",
+     "asiento": 93
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-02-23",
+     "cents": 16636976,
+     "descripcion": "Ventas con tarjeta lote 50209",
+     "comprobante": "",
+     "asiento": 80
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-02-23",
+     "cents": -299466,
+     "descripcion": "Arancel tarjeta lote 50209",
+     "comprobante": "",
+     "asiento": 81
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-02-23",
+     "cents": -62888,
+     "descripcion": "IVA arancel lote 50209",
+     "comprobante": "",
+     "asiento": 82
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-02-23",
+     "cents": 330389030,
+     "descripcion": "Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000681",
+     "comprobante": "0001-00000680",
+     "asiento": 91
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-02-23",
+     "cents": -104900000,
+     "descripcion": "Pago Óptica Mirador SRL OP 0001-00000685",
+     "comprobante": "OP 0001-00000685",
+     "asiento": 94
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-02-25",
+     "cents": 320600000,
+     "descripcion": "Cobranza cliente Transporte Ruta 3 SRL",
+     "comprobante": "0003-00000682",
+     "asiento": 92
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L10",
+      "L11",
+      "L12"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5",
+      "L6",
+      "L7"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1",
+      "L2",
+      "L3"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B19",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

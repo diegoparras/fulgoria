@@ -1,0 +1,564 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "147-adversarial-atlantico",
+ "escenario": "adversarial",
+ "banco": "atlantico",
+ "sistema": "debitos_creditos_us",
+ "semilla": 60052,
+ "periodo": {
+  "desde": "2026-02-01",
+  "hasta": "2026-02-28"
+ },
+ "cliente": {
+  "nombre": "Lácteos Valle Verde SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Trampas para el emparejamiento automático: mismo importe pero otra contraparte, cheque con otro número, homónimos, un centavo de diferencia, transferencia devuelta. La información para no equivocarse está en los documentos.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 775100000,
+    "bancoCierre": 1139547811,
+    "librosApertura": 775100000,
+    "librosCierre": 1051215528
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-02-04",
+     "cents": -137275547,
+     "descripcion": "PAGO DE HABERES LUCAS PEREYRA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-02-04",
+     "cents": -137275547,
+     "descripcion": "PAGO DE HABERES SOFÍA PEREYRA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-02-05",
+     "cents": -83100000,
+     "descripcion": "TRANSFERENCIA A TERCEROS HOTEL CERRO AZUL SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-02-06",
+     "cents": 83100000,
+     "descripcion": "TRANSFERENCIA DEVUELTA HOTEL CERRO AZUL SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-02-09",
+     "cents": -46500000,
+     "descripcion": "TRANSFERENCIA A TERCEROS DISTRIBUIDORA LOS ÁLAMOS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-02-09",
+     "cents": -279000,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-02-09",
+     "cents": -51186000,
+     "descripcion": "CHEQUE N 00080451",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-02-09",
+     "cents": 23704000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-02-09",
+     "cents": 23704000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS LÁCTEOS VALLE VERDE SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-02-16",
+     "cents": 171661000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS DISTRIBUIDORA LOS ÁLAMOS SRL - 0001-00000867",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-02-16",
+     "cents": -1029966,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-02-17",
+     "cents": 87945659,
+     "descripcion": "TRANSFERENCIA DE TERCEROS LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-02-17",
+     "cents": -527674,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-02-17",
+     "cents": 179600000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-02-18",
+     "cents": 189700000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-02-18",
+     "cents": 37762332,
+     "descripcion": "TRANSFERENCIA DE TERCEROS DISTRIBUIDORA LOS ÁLAMOS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-02-20",
+     "cents": 367500000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS COOPERATIVA HORNERO LTDA - 0003-00000869",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-02-20",
+     "cents": -2205000,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-02-20",
+     "cents": -265700000,
+     "descripcion": "TRANSFERENCIA A TERCEROS HOTEL CERRO AZUL SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-02-20",
+     "cents": -1594200,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-02-23",
+     "cents": -71000000,
+     "descripcion": "TRANSFERENCIA A TERCEROS AGRO SUR DEL PLATA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-02-23",
+     "cents": -2100000,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-02-23",
+     "cents": -441000,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-02-23",
+     "cents": -12600,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-02-23",
+     "cents": -2646,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-02-04",
+     "cents": -51186700,
+     "descripcion": "Cheque N° 00080451 a Panificadora La Espiga SRL",
+     "comprobante": "CH 00080451",
+     "asiento": 405
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-02-04",
+     "cents": -137275547,
+     "descripcion": "Sueldo L. Pereyra",
+     "comprobante": "",
+     "asiento": 407
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-02-04",
+     "cents": -137275547,
+     "descripcion": "Sueldo S. Pereyra",
+     "comprobante": "",
+     "asiento": 408
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-02-05",
+     "cents": -83100000,
+     "descripcion": "Pago Hotel Cerro Azul SA",
+     "comprobante": "",
+     "asiento": 410
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-02-06",
+     "cents": -51186000,
+     "descripcion": "Cheque N° 00080457 a Muebles Quebracho SAS",
+     "comprobante": "CH 00080457",
+     "asiento": 406
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-02-09",
+     "cents": -46500000,
+     "descripcion": "Pago Distribuidora Los Álamos SRL OP 0001-00000873",
+     "comprobante": "OP 0001-00000873",
+     "asiento": 399
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-02-09",
+     "cents": 23704000,
+     "descripcion": "Cobranza Constructora Delta Norte SRL CUIT 33-70984475-5",
+     "comprobante": "",
+     "asiento": 411
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-02-09",
+     "cents": 23704000,
+     "descripcion": "Cobranza Lácteos Valle Verde SA CUIT 30-52495805-4",
+     "comprobante": "",
+     "asiento": 412
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-02-13",
+     "cents": 171661000,
+     "descripcion": "Cobro FC A 0001-00000867 Distribuidora Los Álamos SRL",
+     "comprobante": "0001-00000867",
+     "asiento": 396
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-02-16",
+     "cents": 87945659,
+     "descripcion": "Cobranza Librería El Faro SA Rec. 0001-00000872",
+     "comprobante": "0001-00000871",
+     "asiento": 398
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-02-16",
+     "cents": 20355332,
+     "descripcion": "Cobranza Distribuidora Los Álamos SRL CUIT 33-61366142-0 FC 1",
+     "comprobante": "",
+     "asiento": 402
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-02-16",
+     "cents": 179600000,
+     "descripcion": "Cobranza Panificadora La Espiga SRL CUIT 33-70140701-1",
+     "comprobante": "",
+     "asiento": 413
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-02-17",
+     "cents": 189700000,
+     "descripcion": "Cobranza Viñedos Altos de Cuyo SA CUIT 30-69449376-5",
+     "comprobante": "",
+     "asiento": 401
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-02-17",
+     "cents": 17407000,
+     "descripcion": "Cobranza Distribuidora Los Álamos SRL CUIT 33-61366142-0 FC 2",
+     "comprobante": "",
+     "asiento": 403
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-02-18",
+     "cents": 37762332,
+     "descripcion": "Cobranza Ferretería El Tornillo SRL CUIT 30-63752942-7",
+     "comprobante": "",
+     "asiento": 404
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-02-20",
+     "cents": 367500000,
+     "descripcion": "Cobranza Cooperativa Hornero Ltda Rec. 0001-00000870",
+     "comprobante": "0003-00000869",
+     "asiento": 397
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-02-20",
+     "cents": -265700000,
+     "descripcion": "Pago Hotel Cerro Azul SA OP 0001-00000874",
+     "comprobante": "OP 0001-00000874",
+     "asiento": 400
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-02-23",
+     "cents": -71000001,
+     "descripcion": "Pago Agro Sur del Plata SA",
+     "comprobante": "",
+     "asiento": 409
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L11",
+      "L14"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L18"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B15",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "L13",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "L15",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "L5",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "L12",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B11",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

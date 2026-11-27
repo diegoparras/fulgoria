@@ -1,0 +1,24 @@
+Fecha;Comprob.;Descripción;Importe;Saldo
+;;Transporte;;$ 27.619.000,00
+01-09-26;;Ventas con tarjeta lote 58859;$ 2.009.760,00;$ 29.628.760,00
+01-09-26;;Arancel tarjeta lote 58859;($ 36.175,68);$ 29.592.584,32
+01-09-26;;IVA arancel lote 58859;($ 7.596,89);$ 29.584.987,43
+02-09-26;0003-00000285;Cobro FC A 0003-00000285 Distribuidora Los Álamos SRL;$ 1.163.060,00;$ 30.748.047,43
+04-09-26;0003-00000281;Cobro FC A 0003-00000281 Tecnología Austral SAS;$ 971.050,00;$ 31.719.097,43
+08-09-26;0002-00000287;Cobranza cliente Servicios Médicos Lomas SRL;$ 2.400.040,00;$ 34.119.137,43
+08-09-26;OP 0001-00000290;Pago a proveedor Logística Andina SAS;($ 594.839,72);$ 33.524.297,71
+11-09-26;;Ventas con tarjeta lote 70824;$ 1.257.940,00;$ 34.782.237,71
+11-09-26;;Arancel tarjeta lote 70824;($ 22.642,92);$ 34.759.594,79
+11-09-26;;IVA arancel lote 70824;($ 4.755,01);$ 34.754.839,78
+11-09-26;OP 0001-00000289;Pago Óptica Mirador SRL OP 0001-00000289;($ 1.728.130,36);$ 33.026.709,42
+14-09-26;;Liquidación tarjeta lote 89353;$ 1.935.310,45;$ 34.962.019,87
+16-09-26;;Ventas con tarjeta lote 46947;$ 2.024.000,00;$ 36.986.019,87
+16-09-26;;Arancel tarjeta lote 46947;($ 60.720,00);$ 36.925.299,87
+16-09-26;;IVA arancel lote 46947;($ 12.751,20);$ 36.912.548,67
+16-09-26;OP 0001-00000291;Transferencia a Óptica Mirador SRL OP 0001-00000291;($ 978.763,31);$ 35.933.785,36
+21-09-26;0002-00000283;Cobro FC A 0002-00000283 Muebles Quebracho SAS;$ 3.010.280,75;$ 38.944.066,11
+21-09-26;OP 0001-00000292;Pago a proveedor Bodega Piedra Negra SA;($ 2.176.000,00);$ 36.768.066,11
+28-09-26;;Ventas con tarjeta lote 56779;$ 2.387.684,27;$ 39.155.750,38
+28-09-26;;Arancel tarjeta lote 56779;($ 42.978,32);$ 39.112.772,06
+28-09-26;;IVA arancel lote 56779;($ 9.025,45);$ 39.103.746,61
+;;Total general;;$ 39.103.746,61

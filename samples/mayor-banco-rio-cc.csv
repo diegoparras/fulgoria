@@ -1,0 +1,15 @@
+Fecha;Asiento;Comprobante;Concepto;Debe;Haber;Saldo
+;;;Saldo anterior;;;15.000,00
+01/06/2026;100;RC 0001-00000123;Cobranza Cliente Proveedor SRL Rec. 0001-00000123;8.500,00;;23.500,00
+03/06/2026;101;OP 0001-00000456;Pago proveedores varios OP 0001-00000456;;3.200,50;20.299,50
+05/06/2026;102;;Débito automático Edesur;;1.145,00;19.154,50
+07/06/2026;103;RC 0001-00000124;Cobranza Juan Pérez - efectivo a depositar;7.000,00;;26.154,50
+08/06/2026;104;RC 0001-00000125;Cobranza Gómez Hnos - efectivo a depositar;5.000,00;;31.154,50
+15/06/2026;105;;Pago resumen tarjeta corporativa;;6.750,25;24.404,25
+19/06/2026;106;;Alquiler oficina junio;;9.500,00;14.904,25
+22/06/2026;107;;Retiro para fondo fijo;;2.000,00;12.904,25
+23/06/2026;108;FA 0001-00012345;Cobranza Factura A 0001-00012345;18.900,00;;31.804,25
+26/06/2026;109;CH 00004521;Cheque emitido Nro 00004521 a Distribuidora Norte;;3.000,00;28.804,25
+29/06/2026;110;;Sueldos junio;;14.300,00;14.504,25
+30/06/2026;111;;Depósito cheques de terceros;2.500,00;;17.004,25
+;;;Totales;;;17.004,25

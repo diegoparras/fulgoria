@@ -15,6 +15,7 @@ export function buildTemplate({ bank, columns, annotations = [], pageSize, ancho
     if (c.role === "ignorar") continue;
     if (c.role === "fecha") fieldsSpec[c.label] = { type: "date", format: "DD/MM/YYYY" };
     else if (c.role === "descripcion" || c.role === "texto") fieldsSpec[c.label] = { type: "text" };
+    else if (c.role === "signo") fieldsSpec[c.label] = { type: "sign", debit: ["D", "DB"], credit: ["H", "C", "CR"] };
     else if (c.role === "debito") fieldsSpec[c.label] = { type: "amount", locale: "es-AR", sign: "negative", empty_as: null };
     else if (c.role === "credito") fieldsSpec[c.label] = { type: "amount", locale: "es-AR", sign: "positive", empty_as: null };
     else fieldsSpec[c.label] = { type: "amount", locale: "es-AR", sign: "as_is", empty_as: null };

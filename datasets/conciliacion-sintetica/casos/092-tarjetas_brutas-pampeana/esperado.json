@@ -1,0 +1,647 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "092-tarjetas_brutas-pampeana",
+ "escenario": "tarjetas_brutas",
+ "banco": "pampeana",
+ "sistema": "debe_haber_ar",
+ "semilla": 8032,
+ "periodo": {
+  "desde": "2026-03-01",
+  "hasta": "2026-03-31"
+ },
+ "cliente": {
+  "nombre": "Farmacia Del Parque SCS",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El libro registra la venta con tarjeta en bruto y aparte el arancel y su IVA; el banco acredita el neto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 3284000000,
+    "bancoCierre": 4376486903,
+    "librosApertura": 3284000000,
+    "librosCierre": 4408641740
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-03-03",
+     "cents": -265601000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-03-03",
+     "cents": -1593606,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-03-05",
+     "cents": 249315083,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 91186",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-03-05",
+     "cents": -1495890,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-03-05",
+     "cents": -2991781,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-03-09",
+     "cents": 199164614,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 73357",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-03-09",
+     "cents": -1194988,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-03-09",
+     "cents": -2389975,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-03-10",
+     "cents": 175751703,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 95283",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-03-10",
+     "cents": -1054510,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-03-10",
+     "cents": -2109020,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-03-11",
+     "cents": 61921326,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 5936",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-03-11",
+     "cents": -371528,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-03-11",
+     "cents": -743056,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-03-11",
+     "cents": 101900000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE IMPRENTA TINTA FRESCA SRL CUIT 33-55227441-0 REF 0002-00000782",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-03-11",
+     "cents": -611400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-03-11",
+     "cents": -1222800,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-03-13",
+     "cents": 220979898,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 25560",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-03-13",
+     "cents": -1325879,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-03-13",
+     "cents": -2651759,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-03-17",
+     "cents": -17598284,
+     "descripcion": "TRANSFERENCIA ENVIADA A FERRETERÍA EL TORNILLO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-03-17",
+     "cents": -105590,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-03-18",
+     "cents": 271600000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LIBRERÍA EL FARO SA CUIT 30-58025596-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-03-18",
+     "cents": -1629600,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-03-18",
+     "cents": -3259200,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-03-26",
+     "cents": 127208400,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 61622",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-03-26",
+     "cents": -763250,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-03-26",
+     "cents": -1526501,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-03-30",
+     "cents": -4100000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-03-30",
+     "cents": -861000,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-03-30",
+     "cents": -123000,
+     "descripcion": "PERCEP. IVA RG 2408",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-03-30",
+     "cents": -24600,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-03-30",
+     "cents": -5166,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-03-30",
+     "cents": -738,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-03-03",
+     "cents": -265601000,
+     "descripcion": "Transferencia a Transporte Ruta 3 SRL OP 0001-00000785",
+     "comprobante": "OP 0001-00000785",
+     "asiento": 388
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-03-05",
+     "cents": 249315083,
+     "descripcion": "Liquidación tarjeta lote 91186",
+     "comprobante": "",
+     "asiento": 384
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-03-09",
+     "cents": 203599000,
+     "descripcion": "Ventas con tarjeta lote 73357",
+     "comprobante": "",
+     "asiento": 371
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-03-09",
+     "cents": -3664782,
+     "descripcion": "Arancel tarjeta lote 73357",
+     "comprobante": "",
+     "asiento": 372
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-03-09",
+     "cents": -769604,
+     "descripcion": "IVA arancel lote 73357",
+     "comprobante": "",
+     "asiento": 373
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-03-10",
+     "cents": 175751703,
+     "descripcion": "Liquidación tarjeta lote 95283",
+     "comprobante": "",
+     "asiento": 383
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-03-10",
+     "cents": 101900000,
+     "descripcion": "Cobranza Imprenta Tinta Fresca SRL Rec. 0001-00000783",
+     "comprobante": "0002-00000782",
+     "asiento": 386
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-03-11",
+     "cents": 63300000,
+     "descripcion": "Ventas con tarjeta lote 5936",
+     "comprobante": "",
+     "asiento": 374
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-03-11",
+     "cents": -1139400,
+     "descripcion": "Arancel tarjeta lote 5936",
+     "comprobante": "",
+     "asiento": 375
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-03-11",
+     "cents": -239274,
+     "descripcion": "IVA arancel lote 5936",
+     "comprobante": "",
+     "asiento": 376
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-03-13",
+     "cents": 225900000,
+     "descripcion": "Ventas con tarjeta lote 25560",
+     "comprobante": "",
+     "asiento": 380
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-03-13",
+     "cents": -4066200,
+     "descripcion": "Arancel tarjeta lote 25560",
+     "comprobante": "",
+     "asiento": 381
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-03-13",
+     "cents": -853902,
+     "descripcion": "IVA arancel lote 25560",
+     "comprobante": "",
+     "asiento": 382
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-03-16",
+     "cents": -17598284,
+     "descripcion": "Pago Ferretería El Tornillo SRL OP 0001-00000784",
+     "comprobante": "OP 0001-00000784",
+     "asiento": 387
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-03-18",
+     "cents": 271600000,
+     "descripcion": "Cobro FC A 0003-00000780 Librería El Faro SA",
+     "comprobante": "0003-00000780",
+     "asiento": 385
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-03-26",
+     "cents": 132000000,
+     "descripcion": "Ventas con tarjeta lote 61622",
+     "comprobante": "",
+     "asiento": 377
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-03-26",
+     "cents": -3960000,
+     "descripcion": "Arancel tarjeta lote 61622",
+     "comprobante": "",
+     "asiento": 378
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-03-26",
+     "cents": -831600,
+     "descripcion": "IVA arancel lote 61622",
+     "comprobante": "",
+     "asiento": 379
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L3",
+      "L4",
+      "L5"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L8",
+      "L9",
+      "L10"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B26"
+     ],
+     "libros": [
+      "L16",
+      "L17",
+      "L18"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L11",
+      "L12",
+      "L13"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B29",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B31",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B7",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B27",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B19",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B11",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B5",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B32",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B33",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B34",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

@@ -1,0 +1,551 @@
+{
+ "dataset": "desde-plantilla",
+ "version": "1.1.0",
+ "id": "012-desfasaje-banco-del-rio",
+ "escenario": "desfasaje",
+ "banco": "banco-del-rio",
+ "sistema": "debitos_creditos_us",
+ "semilla": 75002,
+ "periodo": {
+  "desde": "2026-05-01",
+  "hasta": "2026-05-31"
+ },
+ "cliente": {
+  "nombre": "Óptica Mirador SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El libro registra con días de diferencia respecto del banco, algunos más allá de la ventana por defecto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 804037000,
+    "bancoCierre": 824974227,
+    "librosApertura": 804037000,
+    "librosCierre": 837157263
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-05-01",
+     "cents": -8647317,
+     "descripcion": "DEB. AUTOM. GAS DEL LITORAL",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-05-04",
+     "cents": -29870000,
+     "descripcion": "DEB. AUTOM. SEGUROS LA PREVISORA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-05-05",
+     "cents": -20750000,
+     "descripcion": "DEB. AUTOM. AGUAS URBANAS",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-05-06",
+     "cents": -270091000,
+     "descripcion": "TRANSFERENCIA ENVIADA A CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-05-07",
+     "cents": 319400000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE QUÍMICA LITORAL SRL CUIT 33-57674631-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-05-07",
+     "cents": -1916400,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-05-12",
+     "cents": -163898824,
+     "descripcion": "TRANSFERENCIA ENVIADA A TEXTIL RÍO BERMEJO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-05-13",
+     "cents": -195800000,
+     "descripcion": "TRANSFERENCIA ENVIADA A FRIGORÍFICO PAMPA ALTA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-05-14",
+     "cents": -178700000,
+     "descripcion": "TRANSFERENCIA ENVIADA A QUÍMICA LITORAL SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-05-15",
+     "cents": 76500000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FRIGORÍFICO PAMPA ALTA SA CUIT 30-51409478-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-05-15",
+     "cents": -459000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-05-18",
+     "cents": 88778147,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ESTUDIO GRÁFICO COBALTO SAS CUIT 30-60025493-2",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-05-18",
+     "cents": -532669,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-05-18",
+     "cents": -216789650,
+     "descripcion": "TRANSFERENCIA ENVIADA A ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-05-25",
+     "cents": -168000000,
+     "descripcion": "TRANSFERENCIA ENVIADA A AGRO SUR DEL PLATA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-05-29",
+     "cents": -2700000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-05-29",
+     "cents": -567000,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-05-31",
+     "cents": 315941520,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE AGRO SUR DEL PLATA SA CUIT 30-50641242-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-05-31",
+     "cents": -1895649,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-05-31",
+     "cents": 356130387,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TEXTIL RÍO BERMEJO SA CUIT 33-65199208-2 REF 0002-00000888",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-05-31",
+     "cents": -2136782,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-05-31",
+     "cents": 329256000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE METALÚRGICA SAN TELMO SRL CUIT 33-54955749-5 REF 0001-00000892",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-05-31",
+     "cents": -1975536,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-05-31",
+     "cents": -58300000,
+     "descripcion": "TRANSFERENCIA ENVIADA A METALÚRGICA SAN TELMO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-05-31",
+     "cents": -142039000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-05-01",
+     "cents": 319400000,
+     "descripcion": "Cobranza cliente Química Litoral SRL",
+     "comprobante": "0003-00000890",
+     "asiento": 19
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-05-01",
+     "cents": -8647317,
+     "descripcion": "Gas del Litoral - débito automático",
+     "comprobante": "",
+     "asiento": 29
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-05-01",
+     "cents": -20750000,
+     "descripcion": "Aguas Urbanas - débito automático",
+     "comprobante": "",
+     "asiento": 30
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-05-04",
+     "cents": -195800000,
+     "descripcion": "Transferencia a Frigorífico Pampa Alta SA OP 0001-00000895",
+     "comprobante": "OP 0001-00000895",
+     "asiento": 22
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-05-04",
+     "cents": -270091000,
+     "descripcion": "Pago a proveedor Constructora Delta Norte SRL",
+     "comprobante": "OP 0001-00000899",
+     "asiento": 26
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-05-04",
+     "cents": -29870000,
+     "descripcion": "Seguros La Previsora - débito automático",
+     "comprobante": "",
+     "asiento": 31
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-05-08",
+     "cents": -178700000,
+     "descripcion": "Pago Química Litoral SRL OP 0001-00000897",
+     "comprobante": "OP 0001-00000897",
+     "asiento": 24
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-05-11",
+     "cents": 76500000,
+     "descripcion": "Cobranza Frigorífico Pampa Alta SA Rec. 0001-00000883",
+     "comprobante": "0002-00000882",
+     "asiento": 15
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-05-11",
+     "cents": 88778147,
+     "descripcion": "Cobranza Estudio Gráfico Cobalto SAS Rec. 0001-00000887",
+     "comprobante": "0003-00000886",
+     "asiento": 17
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-05-11",
+     "cents": -163898824,
+     "descripcion": "Pago a proveedor Textil Río Bermejo SA",
+     "comprobante": "OP 0001-00000901",
+     "asiento": 28
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-05-14",
+     "cents": -168000000,
+     "descripcion": "Transferencia a Agro Sur del Plata SA OP 0001-00000894",
+     "comprobante": "OP 0001-00000894",
+     "asiento": 21
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-05-18",
+     "cents": -216789650,
+     "descripcion": "Pago a proveedor Óptica Mirador SRL",
+     "comprobante": "OP 0001-00000896",
+     "asiento": 23
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-05-21",
+     "cents": -142039000,
+     "descripcion": "Pago a proveedor Tecnología Austral SAS",
+     "comprobante": "OP 0001-00000900",
+     "asiento": 27
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-05-26",
+     "cents": 329256000,
+     "descripcion": "Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000893",
+     "comprobante": "0001-00000892",
+     "asiento": 20
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-05-26",
+     "cents": -58300000,
+     "descripcion": "Pago a proveedor Metalúrgica San Telmo SRL",
+     "comprobante": "OP 0001-00000898",
+     "asiento": 25
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-05-29",
+     "cents": 315941520,
+     "descripcion": "Cobranza Agro Sur del Plata SA Rec. 0001-00000885",
+     "comprobante": "0002-00000884",
+     "asiento": 16
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-05-29",
+     "cents": 356130387,
+     "descripcion": "Cobranza Textil Río Bermejo SA Rec. 0001-00000889",
+     "comprobante": "0002-00000888",
+     "asiento": 18
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B20"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B22"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B24"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B11",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B19",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

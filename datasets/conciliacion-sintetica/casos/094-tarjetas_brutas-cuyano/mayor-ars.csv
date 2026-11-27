@@ -1,0 +1,30 @@
+Empresa: Frigorífico Pampa Alta SA
+Cuenta: 1.1.1.02 Banco Cuyano de Inversión
+Período: 01/03/2026 al 31/03/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,32591467.02
+2026-03-02,Ventas con tarjeta lote 74721,2694176.29,,35285643.31
+2026-03-02,Arancel tarjeta lote 74721,,80825.29,35204818.02
+2026-03-02,IVA arancel lote 74721,,16973.31,35187844.71
+2026-03-03,Cobro FC A 0003-00000789 Metalúrgica San Telmo SRL,130750.00,,35318594.71
+2026-03-05,Ventas con tarjeta lote 90049,792000.00,,36110594.71
+2026-03-05,Arancel tarjeta lote 90049,,19800.00,36090794.71
+2026-03-05,IVA arancel lote 90049,,4158.00,36086636.71
+2026-03-06,Ventas con tarjeta lote 47375,1627545.51,,37714182.22
+2026-03-06,Arancel tarjeta lote 47375,,40688.64,37673493.58
+2026-03-06,IVA arancel lote 47375,,8544.61,37664948.97
+2026-03-09,Ventas con tarjeta lote 21779,2792000.00,,40456948.97
+2026-03-09,Arancel tarjeta lote 21779,,69800.00,40387148.97
+2026-03-09,IVA arancel lote 21779,,14658.00,40372490.97
+2026-03-09,Transferencia a Librería El Faro SA OP 0001-00000794,,435000.00,39937490.97
+2026-03-11,Liquidación tarjeta lote 86638,1604560.50,,41542051.47
+2026-03-16,Ventas con tarjeta lote 56492,706000.00,,42248051.47
+2026-03-16,Arancel tarjeta lote 56492,,12708.00,42235343.47
+2026-03-16,IVA arancel lote 56492,,2668.68,42232674.79
+2026-03-16,Cobranza Librería El Faro SA Rec. 0001-00000792,4363000.00,,46595674.79
+2026-03-23,Ventas con tarjeta lote 34199,1559000.00,,48154674.79
+2026-03-23,Arancel tarjeta lote 34199,,28062.00,48126612.79
+2026-03-23,IVA arancel lote 34199,,5893.02,48120719.77
+2026-03-23,Cobranza Muebles Quebracho SAS Rec. 0001-00000788,1559020.00,,49679739.77
+2026-03-30,Pago Panificadora La Espiga SRL OP 0001-00000793,,2405512.90,47274226.87

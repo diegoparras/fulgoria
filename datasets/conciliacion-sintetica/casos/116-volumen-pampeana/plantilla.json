@@ -1,0 +1,29 @@
+{
+  "banco": "Cooperativa de Crédito Pampeana",
+  "columnas": [
+    {
+      "from": 0,
+      "to": 0.16134453781512606,
+      "role": "fecha",
+      "label": "Fecha"
+    },
+    {
+      "from": 0.16134453781512606,
+      "to": 0.6050420168067226,
+      "role": "descripcion",
+      "label": "Descripción"
+    },
+    {
+      "from": 0.6050420168067226,
+      "to": 0.7663865546218488,
+      "role": "debito",
+      "label": "Débitos"
+    },
+    {
+      "from": 0.7663865546218488,
+      "to": 1,
+      "role": "credito",
+      "label": "Créditos"
+    }
+  ]
+}

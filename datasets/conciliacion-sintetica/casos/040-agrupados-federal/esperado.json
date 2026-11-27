@@ -1,0 +1,722 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "040-agrupados-federal",
+ "escenario": "agrupados",
+ "banco": "federal",
+ "sistema": "debe_haber_ar",
+ "semilla": 4012,
+ "periodo": {
+  "desde": "2026-08-01",
+  "hasta": "2026-08-31"
+ },
+ "cliente": {
+  "nombre": "Constructora Delta Norte SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Depósitos que juntan varias cobranzas y retiros de Mercado Pago que juntan muchas ventas (algunos con más de 4 partidas).",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2692875740,
+    "bancoCierre": 4570235884,
+    "librosApertura": 2692875740,
+    "librosCierre": 4574393444
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-08-03",
+     "cents": 162165893,
+     "descripcion": "DEP EFECTIVO CAJERO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-08-05",
+     "cents": -205800000,
+     "descripcion": "TRF INMEDIATA ENV 30705700067",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-08-07",
+     "cents": 64306928,
+     "descripcion": "ACRED PRISMA LIQ 14230",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-08-10",
+     "cents": 25498090,
+     "descripcion": "DEP EFECTIVO CAJERO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-08-10",
+     "cents": 106919638,
+     "descripcion": "TRF RECIB MERCADO PAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-08-10",
+     "cents": 390700000,
+     "descripcion": "TRF INMEDIATA RECIB 30658272558",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-08-10",
+     "cents": -28800000,
+     "descripcion": "TRF INMEDIATA ENV 30708608846",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-08-12",
+     "cents": 38394649,
+     "descripcion": "TRF RECIB MERCADO PAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-08-14",
+     "cents": 214371910,
+     "descripcion": "DEP EFECTIVO CAJERO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-08-17",
+     "cents": 131024308,
+     "descripcion": "TRF RECIB MERCADO PAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-08-18",
+     "cents": -111700000,
+     "descripcion": "TRF INMEDIATA ENV 33696910982",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-08-21",
+     "cents": 286140840,
+     "descripcion": "ACRED PRISMA LIQ 18915",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-08-24",
+     "cents": 141826053,
+     "descripcion": "DEP EFECTIVO CAJERO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-08-24",
+     "cents": 345900000,
+     "descripcion": "TRF INMEDIATA RECIB 33670711043 0002-00000425",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-08-25",
+     "cents": 182803000,
+     "descripcion": "TRF INMEDIATA RECIB 33514199367",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-08-26",
+     "cents": -3436000,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-08-26",
+     "cents": -721560,
+     "descripcion": "I.V.A. TASA GENERAL",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-08-27",
+     "cents": 269735395,
+     "descripcion": "TRF INMEDIATA RECIB 30509564376 0003-00000429",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-08-31",
+     "cents": -131969000,
+     "descripcion": "TRF INMEDIATA ENV 30713868678",
+     "tipo": "transferencia"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-08-01",
+     "cents": 69247302,
+     "descripcion": "Cobranza Valentina Sosa - efectivo a depositar",
+     "comprobante": "RC 0001-00000416",
+     "asiento": 313
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-08-01",
+     "cents": 55400000,
+     "descripcion": "Cobranza Julieta Medina - efectivo a depositar",
+     "comprobante": "RC 0001-00000417",
+     "asiento": 314
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-08-01",
+     "cents": 37518591,
+     "descripcion": "Cobranza Ignacio Vera - efectivo a depositar",
+     "comprobante": "RC 0001-00000418",
+     "asiento": 315
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-08-04",
+     "cents": -205800000,
+     "descripcion": "Pago a proveedor Textil Río Bermejo SA",
+     "comprobante": "OP 0001-00000436",
+     "asiento": 352
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-08-06",
+     "cents": 13063672,
+     "descripcion": "Venta MP #99679670",
+     "comprobante": "",
+     "asiento": 338
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-08-07",
+     "cents": 24034000,
+     "descripcion": "Venta MP #55856056",
+     "comprobante": "",
+     "asiento": 331
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-08-07",
+     "cents": 7086545,
+     "descripcion": "Venta MP #32747335",
+     "comprobante": "",
+     "asiento": 334
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-08-07",
+     "cents": 2100000,
+     "descripcion": "Venta MP #23180661",
+     "comprobante": "",
+     "asiento": 336
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-08-07",
+     "cents": 64306928,
+     "descripcion": "Liquidación tarjeta lote 14230",
+     "comprobante": "",
+     "asiento": 344
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-08-07",
+     "cents": -28800000,
+     "descripcion": "Pago a proveedor Transporte Ruta 3 SRL",
+     "comprobante": "OP 0001-00000434",
+     "asiento": 350
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-08-08",
+     "cents": 20300000,
+     "descripcion": "Cobranza Nicolás Romero - efectivo a depositar",
+     "comprobante": "RC 0001-00000423",
+     "asiento": 320
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-08-08",
+     "cents": 23816000,
+     "descripcion": "Venta MP #88223589",
+     "comprobante": "",
+     "asiento": 332
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-08-08",
+     "cents": 1926421,
+     "descripcion": "Venta MP #65773955",
+     "comprobante": "",
+     "asiento": 333
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-08-09",
+     "cents": 5198090,
+     "descripcion": "Cobranza Agustín Molina - efectivo a depositar",
+     "comprobante": "RC 0001-00000424",
+     "asiento": 321
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-08-09",
+     "cents": 8893000,
+     "descripcion": "Venta MP #19764120",
+     "comprobante": "",
+     "asiento": 337
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-08-09",
+     "cents": 7200000,
+     "descripcion": "Venta MP #10829716",
+     "comprobante": "",
+     "asiento": 341
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-08-10",
+     "cents": 26000000,
+     "descripcion": "Venta MP #10066656",
+     "comprobante": "",
+     "asiento": 335
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-08-10",
+     "cents": 390700000,
+     "descripcion": "Cobranza cliente Hotel Cerro Azul SA",
+     "comprobante": "0001-00000431",
+     "asiento": 348
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-08-11",
+     "cents": 41761910,
+     "descripcion": "Cobranza Ignacio Vera - efectivo a depositar",
+     "comprobante": "RC 0001-00000415",
+     "asiento": 312
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-08-11",
+     "cents": 5824778,
+     "descripcion": "Venta MP #36132299",
+     "comprobante": "",
+     "asiento": 340
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-08-12",
+     "cents": 76610000,
+     "descripcion": "Cobranza Lucía Ortiz - efectivo a depositar",
+     "comprobante": "RC 0001-00000412",
+     "asiento": 309
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-08-12",
+     "cents": 18969871,
+     "descripcion": "Venta MP #54521464",
+     "comprobante": "",
+     "asiento": 339
+    },
+    {
+     "id": "L23",
+     "fecha": "2026-08-12",
+     "cents": 6400000,
+     "descripcion": "Venta MP #89820796",
+     "comprobante": "",
+     "asiento": 342
+    },
+    {
+     "id": "L24",
+     "fecha": "2026-08-13",
+     "cents": 29200000,
+     "descripcion": "Cobranza Florencia Díaz - efectivo a depositar",
+     "comprobante": "RC 0001-00000413",
+     "asiento": 310
+    },
+    {
+     "id": "L25",
+     "fecha": "2026-08-13",
+     "cents": 2028000,
+     "descripcion": "Venta MP #62600958",
+     "comprobante": "",
+     "asiento": 323
+    },
+    {
+     "id": "L26",
+     "fecha": "2026-08-13",
+     "cents": 10437000,
+     "descripcion": "Venta MP #34389624",
+     "comprobante": "",
+     "asiento": 329
+    },
+    {
+     "id": "L27",
+     "fecha": "2026-08-14",
+     "cents": 66800000,
+     "descripcion": "Cobranza Julieta Medina - efectivo a depositar",
+     "comprobante": "RC 0001-00000414",
+     "asiento": 311
+    },
+    {
+     "id": "L28",
+     "fecha": "2026-08-14",
+     "cents": 21444894,
+     "descripcion": "Venta MP #44383056",
+     "comprobante": "",
+     "asiento": 325
+    },
+    {
+     "id": "L29",
+     "fecha": "2026-08-14",
+     "cents": 12932317,
+     "descripcion": "Venta MP #60883892",
+     "comprobante": "",
+     "asiento": 326
+    },
+    {
+     "id": "L30",
+     "fecha": "2026-08-15",
+     "cents": 19534665,
+     "descripcion": "Venta MP #78938051",
+     "comprobante": "",
+     "asiento": 327
+    },
+    {
+     "id": "L31",
+     "fecha": "2026-08-15",
+     "cents": 24999905,
+     "descripcion": "Venta MP #70126082",
+     "comprobante": "",
+     "asiento": 330
+    },
+    {
+     "id": "L32",
+     "fecha": "2026-08-16",
+     "cents": 13059507,
+     "descripcion": "Venta MP #81669669",
+     "comprobante": "",
+     "asiento": 322
+    },
+    {
+     "id": "L33",
+     "fecha": "2026-08-16",
+     "cents": 12143086,
+     "descripcion": "Venta MP #96086880",
+     "comprobante": "",
+     "asiento": 328
+    },
+    {
+     "id": "L34",
+     "fecha": "2026-08-17",
+     "cents": 14444934,
+     "descripcion": "Venta MP #14332007",
+     "comprobante": "",
+     "asiento": 324
+    },
+    {
+     "id": "L35",
+     "fecha": "2026-08-17",
+     "cents": -111700000,
+     "descripcion": "Pago a proveedor Lácteos Valle Verde SA",
+     "comprobante": "OP 0001-00000433",
+     "asiento": 349
+    },
+    {
+     "id": "L36",
+     "fecha": "2026-08-21",
+     "cents": 29300000,
+     "descripcion": "Cobranza Nicolás Romero - efectivo a depositar",
+     "comprobante": "RC 0001-00000420",
+     "asiento": 317
+    },
+    {
+     "id": "L37",
+     "fecha": "2026-08-21",
+     "cents": 52000000,
+     "descripcion": "Cobranza Franco Silva - efectivo a depositar",
+     "comprobante": "RC 0001-00000422",
+     "asiento": 319
+    },
+    {
+     "id": "L38",
+     "fecha": "2026-08-21",
+     "cents": 286140840,
+     "descripcion": "Liquidación tarjeta lote 18915",
+     "comprobante": "",
+     "asiento": 343
+    },
+    {
+     "id": "L39",
+     "fecha": "2026-08-22",
+     "cents": 11813000,
+     "descripcion": "Cobranza Julieta Medina - efectivo a depositar",
+     "comprobante": "RC 0001-00000421",
+     "asiento": 318
+    },
+    {
+     "id": "L40",
+     "fecha": "2026-08-24",
+     "cents": 48713053,
+     "descripcion": "Cobranza Martina Gómez - efectivo a depositar",
+     "comprobante": "RC 0001-00000419",
+     "asiento": 316
+    },
+    {
+     "id": "L41",
+     "fecha": "2026-08-24",
+     "cents": 345900000,
+     "descripcion": "Cobranza Hotel Cerro Azul SA Rec. 0001-00000426",
+     "comprobante": "0002-00000425",
+     "asiento": 345
+    },
+    {
+     "id": "L42",
+     "fecha": "2026-08-24",
+     "cents": 182803000,
+     "descripcion": "Cobro FC A 0002-00000427 Constructora Delta Norte SRL",
+     "comprobante": "0002-00000427",
+     "asiento": 346
+    },
+    {
+     "id": "L43",
+     "fecha": "2026-08-26",
+     "cents": 269735395,
+     "descripcion": "Cobranza Farmacia Del Parque SCS Rec. 0001-00000430",
+     "comprobante": "0003-00000429",
+     "asiento": 347
+    },
+    {
+     "id": "L44",
+     "fecha": "2026-08-31",
+     "cents": -131969000,
+     "descripcion": "Transferencia a Textil Río Bermejo SA OP 0001-00000435",
+     "comprobante": "OP 0001-00000435",
+     "asiento": 351
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L21",
+      "L24",
+      "L27",
+      "L19"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1",
+      "L2",
+      "L3"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L40",
+      "L36",
+      "L39",
+      "L37"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L11",
+      "L14"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L32",
+      "L25",
+      "L34",
+      "L28",
+      "L29",
+      "L30",
+      "L33",
+      "L26",
+      "L31"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L6",
+      "L12",
+      "L13",
+      "L7",
+      "L17",
+      "L8",
+      "L15",
+      "L5"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L22",
+      "L20",
+      "L16",
+      "L23"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L38"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L41"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L42"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L43"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L18"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L35"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L44"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

@@ -1,0 +1,941 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "041-agrupados-nativo",
+ "escenario": "agrupados",
+ "banco": "nativo",
+ "sistema": "debe_haber_ar",
+ "semilla": 4021,
+ "periodo": {
+  "desde": "2026-02-01",
+  "hasta": "2026-02-28"
+ },
+ "cliente": {
+  "nombre": "Viñedos Altos de Cuyo SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 2,
+ "notas": "Depósitos que juntan varias cobranzas y retiros de Mercado Pago que juntan muchas ventas (algunos con más de 4 partidas).",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 3023736750,
+    "bancoCierre": 4651864486,
+    "librosApertura": 3023736750,
+    "librosCierre": 4669085154
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-02-02",
+     "cents": 177700000,
+     "descripcion": "DEPOSITO POR VENTANILLA",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-02-02",
+     "cents": -1066200,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-02-02",
+     "cents": 64851713,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 64717",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-02-02",
+     "cents": -389110,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-02-06",
+     "cents": 41313588,
+     "descripcion": "DEPOSITO POR VENTANILLA",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-02-06",
+     "cents": -247882,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-02-09",
+     "cents": 74024455,
+     "descripcion": "TRANSFERENCIA DE TERCEROS MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-02-09",
+     "cents": -444147,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-02-09",
+     "cents": 79733567,
+     "descripcion": "TRANSFERENCIA DE TERCEROS FARMACIA DEL PARQUE SCS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-02-09",
+     "cents": -478401,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-02-11",
+     "cents": 95020820,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 35063",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-02-11",
+     "cents": -570125,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-02-11",
+     "cents": 49652170,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 98809",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-02-11",
+     "cents": -297913,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-02-12",
+     "cents": 150686749,
+     "descripcion": "TRANSFERENCIA DE TERCEROS MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-02-12",
+     "cents": -904120,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-02-12",
+     "cents": -90900000,
+     "descripcion": "TRANSFERENCIA A TERCEROS ESTUDIO GRÁFICO COBALTO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-02-12",
+     "cents": -545400,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-02-13",
+     "cents": 134690000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS ÓPTICA MIRADOR SRL - 0001-00000901",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-02-13",
+     "cents": -808140,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-02-17",
+     "cents": -78500000,
+     "descripcion": "TRANSFERENCIA A TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-02-17",
+     "cents": -471000,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-02-18",
+     "cents": 219300000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-02-18",
+     "cents": -1315800,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-02-20",
+     "cents": 181797491,
+     "descripcion": "DEPOSITO POR VENTANILLA",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-02-20",
+     "cents": -1090785,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-02-23",
+     "cents": 129716684,
+     "descripcion": "TRANSFERENCIA DE TERCEROS MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-02-23",
+     "cents": -778300,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-02-23",
+     "cents": 213588542,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 62534",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-02-23",
+     "cents": -1281531,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-02-24",
+     "cents": 291280151,
+     "descripcion": "TRANSFERENCIA DE TERCEROS HOTEL CERRO AZUL SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-02-24",
+     "cents": -1747681,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-02-24",
+     "cents": -88607526,
+     "descripcion": "TRANSFERENCIA A TERCEROS QUÍMICA LITORAL SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-02-24",
+     "cents": -531645,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B35",
+     "fecha": "2026-02-26",
+     "cents": -3493492,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B36",
+     "fecha": "2026-02-26",
+     "cents": -733633,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B37",
+     "fecha": "2026-02-26",
+     "cents": -20961,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B38",
+     "fecha": "2026-02-26",
+     "cents": -4402,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-02-01",
+     "cents": 52300000,
+     "descripcion": "Cobranza Florencia Díaz - efectivo a depositar",
+     "comprobante": "RC 0001-00000893",
+     "asiento": 256
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-02-02",
+     "cents": 69600000,
+     "descripcion": "Cobranza Camila Herrera - efectivo a depositar",
+     "comprobante": "RC 0001-00000892",
+     "asiento": 255
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-02-02",
+     "cents": 55800000,
+     "descripcion": "Cobranza Ignacio Vera - efectivo a depositar",
+     "comprobante": "RC 0001-00000894",
+     "asiento": 257
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-02-02",
+     "cents": 64851713,
+     "descripcion": "Liquidación tarjeta lote 64717",
+     "comprobante": "",
+     "asiento": 281
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-02-04",
+     "cents": 10011000,
+     "descripcion": "Cobranza Valentina Sosa - efectivo a depositar",
+     "comprobante": "RC 0001-00000887",
+     "asiento": 250
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-02-05",
+     "cents": 31302588,
+     "descripcion": "Cobranza Agustín Molina - efectivo a depositar",
+     "comprobante": "RC 0001-00000886",
+     "asiento": 249
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-02-05",
+     "cents": 13976998,
+     "descripcion": "Venta MP #95045056",
+     "comprobante": "",
+     "asiento": 271
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-02-05",
+     "cents": 79733567,
+     "descripcion": "Cobranza cliente Farmacia Del Parque SCS",
+     "comprobante": "0001-00000899",
+     "asiento": 287
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-02-07",
+     "cents": 2102653,
+     "descripcion": "Venta MP #49584823",
+     "comprobante": "",
+     "asiento": 267
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-02-07",
+     "cents": 26947000,
+     "descripcion": "Venta MP #71660277",
+     "comprobante": "",
+     "asiento": 269
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-02-08",
+     "cents": 7365062,
+     "descripcion": "Venta MP #36522328",
+     "comprobante": "",
+     "asiento": 270
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-02-08",
+     "cents": 10600000,
+     "descripcion": "Venta MP #90149976",
+     "comprobante": "",
+     "asiento": 277
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-02-08",
+     "cents": 19200000,
+     "descripcion": "Venta MP #68393413",
+     "comprobante": "",
+     "asiento": 279
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-02-09",
+     "cents": 23632742,
+     "descripcion": "Venta MP #58475278",
+     "comprobante": "",
+     "asiento": 268
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-02-10",
+     "cents": 1560768,
+     "descripcion": "Venta MP #69042543",
+     "comprobante": "",
+     "asiento": 272
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-02-10",
+     "cents": 17711000,
+     "descripcion": "Venta MP #73418744",
+     "comprobante": "",
+     "asiento": 275
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-02-10",
+     "cents": 13642000,
+     "descripcion": "Venta MP #87382516",
+     "comprobante": "",
+     "asiento": 278
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-02-11",
+     "cents": 18800000,
+     "descripcion": "Venta MP #23868829",
+     "comprobante": "",
+     "asiento": 273
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-02-11",
+     "cents": 24209000,
+     "descripcion": "Venta MP #82916651",
+     "comprobante": "",
+     "asiento": 274
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-02-11",
+     "cents": 16800000,
+     "descripcion": "Venta MP #40401234",
+     "comprobante": "",
+     "asiento": 280
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-02-11",
+     "cents": 95020820,
+     "descripcion": "Liquidación tarjeta lote 35063",
+     "comprobante": "",
+     "asiento": 283
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-02-11",
+     "cents": 49652170,
+     "descripcion": "Liquidación tarjeta lote 98809",
+     "comprobante": "",
+     "asiento": 284
+    },
+    {
+     "id": "L23",
+     "fecha": "2026-02-12",
+     "cents": 28163981,
+     "descripcion": "Venta MP #35133645",
+     "comprobante": "",
+     "asiento": 276
+    },
+    {
+     "id": "L24",
+     "fecha": "2026-02-12",
+     "cents": 134690000,
+     "descripcion": "Cobro FC A 0001-00000901 Óptica Mirador SRL",
+     "comprobante": "0001-00000901",
+     "asiento": 288
+    },
+    {
+     "id": "L25",
+     "fecha": "2026-02-12",
+     "cents": -90900000,
+     "descripcion": "Pago Estudio Gráfico Cobalto SAS OP 0001-00000903",
+     "comprobante": "OP 0001-00000903",
+     "asiento": 289
+    },
+    {
+     "id": "L26",
+     "fecha": "2026-02-16",
+     "cents": 219300000,
+     "descripcion": "Cobro FC A 0003-00000895 Transporte Ruta 3 SRL",
+     "comprobante": "0003-00000895",
+     "asiento": 285
+    },
+    {
+     "id": "L27",
+     "fecha": "2026-02-16",
+     "cents": -78500000,
+     "descripcion": "Pago a proveedor Tecnología Austral SAS",
+     "comprobante": "OP 0001-00000905",
+     "asiento": 291
+    },
+    {
+     "id": "L28",
+     "fecha": "2026-02-18",
+     "cents": 22216246,
+     "descripcion": "Cobranza Sofía Ramírez - efectivo a depositar",
+     "comprobante": "RC 0001-00000888",
+     "asiento": 251
+    },
+    {
+     "id": "L29",
+     "fecha": "2026-02-18",
+     "cents": 64883000,
+     "descripcion": "Cobranza Franco Silva - efectivo a depositar",
+     "comprobante": "RC 0001-00000890",
+     "asiento": 253
+    },
+    {
+     "id": "L30",
+     "fecha": "2026-02-19",
+     "cents": 22095000,
+     "descripcion": "Venta MP #30098575",
+     "comprobante": "",
+     "asiento": 262
+    },
+    {
+     "id": "L31",
+     "fecha": "2026-02-20",
+     "cents": 28501916,
+     "descripcion": "Cobranza Ignacio Vera - efectivo a depositar",
+     "comprobante": "RC 0001-00000889",
+     "asiento": 252
+    },
+    {
+     "id": "L32",
+     "fecha": "2026-02-20",
+     "cents": 66196329,
+     "descripcion": "Cobranza Tomás Acosta - efectivo a depositar",
+     "comprobante": "RC 0001-00000891",
+     "asiento": 254
+    },
+    {
+     "id": "L33",
+     "fecha": "2026-02-20",
+     "cents": 12005647,
+     "descripcion": "Venta MP #96733440",
+     "comprobante": "",
+     "asiento": 258
+    },
+    {
+     "id": "L34",
+     "fecha": "2026-02-20",
+     "cents": 24600000,
+     "descripcion": "Venta MP #15782816",
+     "comprobante": "",
+     "asiento": 260
+    },
+    {
+     "id": "L35",
+     "fecha": "2026-02-20",
+     "cents": 21243000,
+     "descripcion": "Venta MP #67386098",
+     "comprobante": "",
+     "asiento": 263
+    },
+    {
+     "id": "L36",
+     "fecha": "2026-02-20",
+     "cents": 23500000,
+     "descripcion": "Venta MP #60655680",
+     "comprobante": "",
+     "asiento": 265
+    },
+    {
+     "id": "L37",
+     "fecha": "2026-02-20",
+     "cents": 14368037,
+     "descripcion": "Venta MP #48596583",
+     "comprobante": "",
+     "asiento": 266
+    },
+    {
+     "id": "L38",
+     "fecha": "2026-02-21",
+     "cents": 1100000,
+     "descripcion": "Venta MP #94410201",
+     "comprobante": "",
+     "asiento": 264
+    },
+    {
+     "id": "L39",
+     "fecha": "2026-02-22",
+     "cents": 1339000,
+     "descripcion": "Venta MP #45357518",
+     "comprobante": "",
+     "asiento": 261
+    },
+    {
+     "id": "L40",
+     "fecha": "2026-02-23",
+     "cents": 9466000,
+     "descripcion": "Venta MP #31289870",
+     "comprobante": "",
+     "asiento": 259
+    },
+    {
+     "id": "L41",
+     "fecha": "2026-02-23",
+     "cents": 213588542,
+     "descripcion": "Liquidación tarjeta lote 62534",
+     "comprobante": "",
+     "asiento": 282
+    },
+    {
+     "id": "L42",
+     "fecha": "2026-02-23",
+     "cents": 291280151,
+     "descripcion": "Cobro FC A 0001-00000897 Hotel Cerro Azul SA",
+     "comprobante": "0001-00000897",
+     "asiento": 286
+    },
+    {
+     "id": "L43",
+     "fecha": "2026-02-23",
+     "cents": -88607526,
+     "descripcion": "Transferencia a Química Litoral SRL OP 0001-00000904",
+     "comprobante": "OP 0001-00000904",
+     "asiento": 290
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L6",
+      "L5"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L28",
+      "L31",
+      "L29",
+      "L32"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L2",
+      "L1",
+      "L3"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L33",
+      "L40",
+      "L34",
+      "L39",
+      "L30",
+      "L35",
+      "L38",
+      "L36",
+      "L37"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L9",
+      "L14",
+      "L10",
+      "L11",
+      "L7"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L15",
+      "L18",
+      "L19",
+      "L16",
+      "L23",
+      "L12",
+      "L17",
+      "L13",
+      "L20"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B29"
+     ],
+     "libros": [
+      "L41"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L21"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L22"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L26"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B31"
+     ],
+     "libros": [
+      "L42"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L24"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L25"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B33"
+     ],
+     "libros": [
+      "L43"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L27"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B35",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B36",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B32",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B34",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B37",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B38",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

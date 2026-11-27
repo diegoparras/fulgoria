@@ -1,0 +1,755 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "142-adversarial-pampeana",
+ "escenario": "adversarial",
+ "banco": "pampeana",
+ "sistema": "debe_haber_ar",
+ "semilla": 60033,
+ "periodo": {
+  "desde": "2026-07-01",
+  "hasta": "2026-07-31"
+ },
+ "cliente": {
+  "nombre": "Transporte Ruta 3 SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 2,
+ "notas": "Trampas para el emparejamiento automático: mismo importe pero otra contraparte, cheque con otro número, homónimos, un centavo de diferencia, transferencia devuelta. La información para no equivocarse está en los documentos.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2721760809,
+    "bancoCierre": 4134404944,
+    "librosApertura": 2721760809,
+    "librosCierre": 4203094414
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-07-01",
+     "cents": -118236199,
+     "descripcion": "TRANSF. SUELDO MARTINA SOSA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-07-01",
+     "cents": -118236199,
+     "descripcion": "TRANSF. SUELDO JOAQUÍN SOSA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-07-02",
+     "cents": 32795019,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ESTUDIO GRÁFICO COBALTO SAS CUIT 33-65530088-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-07-02",
+     "cents": 32795019,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE CONSTRUCTORA DELTA NORTE SRL CUIT 33-58727175-9",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-07-06",
+     "cents": -23219000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TEXTIL RÍO BERMEJO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-07-07",
+     "cents": -15900000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LÁCTEOS VALLE VERDE SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-07-08",
+     "cents": 15900000,
+     "descripcion": "TRANSFERENCIA DEVUELTA DE LÁCTEOS VALLE VERDE SA CUIT 33-55646184-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-07-10",
+     "cents": 405772562,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE MUEBLES QUEBRACHO SAS CUIT 30-57212658-3 REF 0003-00000639",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-07-10",
+     "cents": -2434635,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-07-10",
+     "cents": -8115451,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-07-13",
+     "cents": 416700000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 30-58300234-7 REF 0001-00000633",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-07-13",
+     "cents": -2500200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-07-13",
+     "cents": -8334000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-07-13",
+     "cents": 239793340,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE QUÍMICA LITORAL SRL CUIT 30-70026851-5 REF 0003-00000641",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-07-13",
+     "cents": -1438760,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-07-13",
+     "cents": -4795867,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-07-13",
+     "cents": 119070718,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TECNOLOGÍA AUSTRAL SAS CUIT 30-72843798-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-07-13",
+     "cents": 50108000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE VIÑEDOS ALTOS DE CUYO SA CUIT 33-58233692-5",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-07-14",
+     "cents": 140609000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE COOPERATIVA HORNERO LTDA CUIT 33-52079942-2",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-07-14",
+     "cents": -843654,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-07-14",
+     "cents": -2812180,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-07-14",
+     "cents": -20300000,
+     "descripcion": "CHEQUE CAMARA NRO 00014703",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-07-15",
+     "cents": -179390000,
+     "descripcion": "TRANSFERENCIA ENVIADA A VIÑEDOS ALTOS DE CUYO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-07-15",
+     "cents": -1076340,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-07-16",
+     "cents": -10400000,
+     "descripcion": "TRANSFERENCIA ENVIADA A DISTRIBUIDORA LOS ÁLAMOS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-07-16",
+     "cents": -62400,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-07-20",
+     "cents": 334300000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 33-58932237-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-07-20",
+     "cents": -2005800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-07-20",
+     "cents": -6686000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-07-21",
+     "cents": -133345000,
+     "descripcion": "TRANSFERENCIA ENVIADA A COOPERATIVA HORNERO LTDA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-07-21",
+     "cents": -800070,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-07-29",
+     "cents": 298608546,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE MUEBLES QUEBRACHO SAS CUIT 30-62560077-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-07-29",
+     "cents": -1791651,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-07-29",
+     "cents": -5972171,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B35",
+     "fecha": "2026-07-29",
+     "cents": -4200000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B36",
+     "fecha": "2026-07-29",
+     "cents": -882000,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B37",
+     "fecha": "2026-07-29",
+     "cents": -25200,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B38",
+     "fecha": "2026-07-29",
+     "cents": -5292,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-07-01",
+     "cents": -118236199,
+     "descripcion": "Sueldo M. Sosa",
+     "comprobante": "",
+     "asiento": 128
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-07-01",
+     "cents": -118236199,
+     "descripcion": "Sueldo J. Sosa",
+     "comprobante": "",
+     "asiento": 129
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-07-02",
+     "cents": 32795019,
+     "descripcion": "Cobranza Estudio Gráfico Cobalto SAS CUIT 33-65530088-6",
+     "comprobante": "",
+     "asiento": 132
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-07-02",
+     "cents": 32795019,
+     "descripcion": "Cobranza Constructora Delta Norte SRL CUIT 33-58727175-9",
+     "comprobante": "",
+     "asiento": 133
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-07-06",
+     "cents": -23219001,
+     "descripcion": "Pago Textil Río Bermejo SA",
+     "comprobante": "",
+     "asiento": 130
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-07-07",
+     "cents": -15900000,
+     "descripcion": "Pago Lácteos Valle Verde SA",
+     "comprobante": "",
+     "asiento": 131
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-07-09",
+     "cents": 405772562,
+     "descripcion": "Cobro FC A 0003-00000639 Muebles Quebracho SAS",
+     "comprobante": "0003-00000639",
+     "asiento": 117
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-07-09",
+     "cents": -20300200,
+     "descripcion": "Cheque N° 00014703 a Viñedos Altos de Cuyo SA",
+     "comprobante": "CH 00014703",
+     "asiento": 126
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-07-11",
+     "cents": 7108000,
+     "descripcion": "Cobranza Viñedos Altos de Cuyo SA CUIT 33-58233692-5 FC 1",
+     "comprobante": "",
+     "asiento": 123
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-07-11",
+     "cents": -20300000,
+     "descripcion": "Cheque N° 00014710 a Imprenta Tinta Fresca SRL",
+     "comprobante": "CH 00014710",
+     "asiento": 127
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-07-12",
+     "cents": 119070718,
+     "descripcion": "Cobranza Logística Andina SAS CUIT 33-65350635-5",
+     "comprobante": "",
+     "asiento": 122
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-07-12",
+     "cents": 43000000,
+     "descripcion": "Cobranza Viñedos Altos de Cuyo SA CUIT 33-58233692-5 FC 2",
+     "comprobante": "",
+     "asiento": 124
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-07-13",
+     "cents": 140609000,
+     "descripcion": "Cobranza Cooperativa Hornero Ltda Rec. 0001-00000632",
+     "comprobante": "0002-00000631",
+     "asiento": 113
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-07-13",
+     "cents": 416700000,
+     "descripcion": "Cobro FC A 0001-00000633 Hotel Cerro Azul SA",
+     "comprobante": "0001-00000633",
+     "asiento": 114
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-07-13",
+     "cents": 239793340,
+     "descripcion": "Cobro FC A 0003-00000641 Química Litoral SRL",
+     "comprobante": "0003-00000641",
+     "asiento": 118
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-07-13",
+     "cents": 50108000,
+     "descripcion": "Cobranza Distribuidora Los Álamos SRL CUIT 33-50438912-5",
+     "comprobante": "",
+     "asiento": 125
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-07-15",
+     "cents": -179390000,
+     "descripcion": "Pago a proveedor Viñedos Altos de Cuyo SA",
+     "comprobante": "OP 0001-00000644",
+     "asiento": 120
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-07-16",
+     "cents": -10400000,
+     "descripcion": "Transferencia a Distribuidora Los Álamos SRL OP 0001-00000645",
+     "comprobante": "OP 0001-00000645",
+     "asiento": 121
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-07-20",
+     "cents": 334300000,
+     "descripcion": "Cobranza Hotel Cerro Azul SA Rec. 0001-00000638",
+     "comprobante": "0003-00000637",
+     "asiento": 116
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-07-20",
+     "cents": -133345000,
+     "descripcion": "Transferencia a Cooperativa Hornero Ltda OP 0001-00000643",
+     "comprobante": "OP 0001-00000643",
+     "asiento": 119
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-07-28",
+     "cents": 298608546,
+     "descripcion": "Cobro FC A 0003-00000635 Muebles Quebracho SAS",
+     "comprobante": "0003-00000635",
+     "asiento": 115
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B32"
+     ],
+     "libros": [
+      "L21"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L19"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B30"
+     ],
+     "libros": [
+      "L20"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L18"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L9",
+      "L12"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B22"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "L11",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "L16",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "L10",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "B7",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "B35",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B36",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B33",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B34",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B29",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B9",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B15",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B31",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B37",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B38",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

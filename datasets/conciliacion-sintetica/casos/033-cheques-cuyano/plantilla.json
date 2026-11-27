@@ -1,0 +1,35 @@
+{
+  "banco": "Banco Cuyano de Inversión",
+  "columnas": [
+    {
+      "from": 0,
+      "to": 0.16134453781512606,
+      "role": "fecha",
+      "label": "FECHA"
+    },
+    {
+      "from": 0.16134453781512606,
+      "to": 0.5378151260504201,
+      "role": "descripcion",
+      "label": "DESCRIPCION"
+    },
+    {
+      "from": 0.5378151260504201,
+      "to": 0.680672268907563,
+      "role": "debito",
+      "label": "DEBITOS"
+    },
+    {
+      "from": 0.680672268907563,
+      "to": 0.8117647058823529,
+      "role": "credito",
+      "label": "CREDITOS"
+    },
+    {
+      "from": 0.8117647058823529,
+      "to": 1,
+      "role": "saldo",
+      "label": "SALDO"
+    }
+  ]
+}

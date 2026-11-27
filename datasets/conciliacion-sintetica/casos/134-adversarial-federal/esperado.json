@@ -1,0 +1,575 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "134-adversarial-federal",
+ "escenario": "adversarial",
+ "banco": "federal",
+ "sistema": "importe_signo_tab",
+ "semilla": 60011,
+ "periodo": {
+  "desde": "2026-05-01",
+  "hasta": "2026-05-31"
+ },
+ "cliente": {
+  "nombre": "Estudio Gráfico Cobalto SAS",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Trampas para el emparejamiento automático: mismo importe pero otra contraparte, cheque con otro número, homónimos, un centavo de diferencia, transferencia devuelta. La información para no equivocarse está en los documentos.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 1153327000,
+    "bancoCierre": 1166735753,
+    "librosApertura": 1153327000,
+    "librosCierre": 1108903981
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-05-05",
+     "cents": -146179211,
+     "descripcion": "ACRED HABERES SOFÍA GÓMEZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-05-05",
+     "cents": -146179211,
+     "descripcion": "ACRED HABERES CAMILA GÓMEZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-05-11",
+     "cents": 130300000,
+     "descripcion": "TRF INMEDIATA RECIB 33701957836",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-05-11",
+     "cents": 43260600,
+     "descripcion": "TRF INMEDIATA RECIB 30555136613",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-05-11",
+     "cents": -62210000,
+     "descripcion": "TRF INMEDIATA ENV 30576004180",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-05-12",
+     "cents": 62210000,
+     "descripcion": "TRF INMEDIATA DEVUELTA 30545455710",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-05-14",
+     "cents": 11595880,
+     "descripcion": "TRF INMEDIATA RECIB 33524575391",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-05-14",
+     "cents": 11595880,
+     "descripcion": "TRF INMEDIATA RECIB 30722578100",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-05-18",
+     "cents": -162137000,
+     "descripcion": "TRF INMEDIATA ENV 33722496618",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-05-18",
+     "cents": -972822,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-05-18",
+     "cents": -67200000,
+     "descripcion": "CHQ PAGADO POR CAMARA 00062624",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-05-18",
+     "cents": -63600000,
+     "descripcion": "TRF INMEDIATA ENV 30633911106",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-05-20",
+     "cents": 109467617,
+     "descripcion": "TRF INMEDIATA RECIB 30525983257 0003-00000322",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-05-20",
+     "cents": -656806,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-05-20",
+     "cents": -3284029,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-05-26",
+     "cents": 436788000,
+     "descripcion": "TRF INMEDIATA RECIB 33682381782",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-05-26",
+     "cents": -2620728,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-05-26",
+     "cents": -13103640,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-05-26",
+     "cents": -180051073,
+     "descripcion": "TRF INMEDIATA ENV 30700910519",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-05-26",
+     "cents": -1080306,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-05-26",
+     "cents": -3526821,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-05-26",
+     "cents": -740632,
+     "descripcion": "I.V.A. TASA GENERAL",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-05-26",
+     "cents": -21161,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-05-26",
+     "cents": -4444,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-05-28",
+     "cents": 64065000,
+     "descripcion": "TRF INMEDIATA RECIB 30555617417",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-05-28",
+     "cents": -384390,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-05-28",
+     "cents": -1921950,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-05-05",
+     "cents": -146179211,
+     "descripcion": "Sueldo S. Gómez",
+     "comprobante": "",
+     "asiento": 305
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-05-05",
+     "cents": -146179211,
+     "descripcion": "Sueldo C. Gómez",
+     "comprobante": "",
+     "asiento": 306
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-05-09",
+     "cents": 28738699,
+     "descripcion": "Cobranza Lácteos Valle Verde SA CUIT 30-55513661-3 FC 1",
+     "comprobante": "",
+     "asiento": 300
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-05-10",
+     "cents": 130300000,
+     "descripcion": "Cobranza Muebles Quebracho SAS CUIT 30-50451610-1",
+     "comprobante": "",
+     "asiento": 299
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-05-10",
+     "cents": 14521901,
+     "descripcion": "Cobranza Lácteos Valle Verde SA CUIT 30-55513661-3 FC 2",
+     "comprobante": "",
+     "asiento": 301
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-05-11",
+     "cents": 43260600,
+     "descripcion": "Cobranza Hotel Cerro Azul SA CUIT 30-72104418-8",
+     "comprobante": "",
+     "asiento": 302
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-05-11",
+     "cents": -62210000,
+     "descripcion": "Pago Viñedos Altos de Cuyo SA",
+     "comprobante": "",
+     "asiento": 308
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-05-13",
+     "cents": -67200100,
+     "descripcion": "Cheque N° 00062624 a Transporte Ruta 3 SRL",
+     "comprobante": "CH 00062624",
+     "asiento": 303
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-05-14",
+     "cents": 11595880,
+     "descripcion": "Cobranza Librería El Faro SA CUIT 33-52457539-1",
+     "comprobante": "",
+     "asiento": 309
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-05-14",
+     "cents": 11595880,
+     "descripcion": "Cobranza Logística Andina SAS CUIT 30-72257810-0",
+     "comprobante": "",
+     "asiento": 310
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-05-15",
+     "cents": -162137000,
+     "descripcion": "Pago a proveedor Tecnología Austral SAS",
+     "comprobante": "OP 0001-00000328",
+     "asiento": 297
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-05-15",
+     "cents": -67200000,
+     "descripcion": "Cheque N° 00062630 a Tecnología Austral SAS",
+     "comprobante": "CH 00062630",
+     "asiento": 304
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-05-18",
+     "cents": -63600001,
+     "descripcion": "Pago Constructora Delta Norte SRL",
+     "comprobante": "",
+     "asiento": 307
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-05-19",
+     "cents": 109467617,
+     "descripcion": "Cobranza Tecnología Austral SAS Rec. 0001-00000323",
+     "comprobante": "0003-00000322",
+     "asiento": 294
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-05-25",
+     "cents": 436788000,
+     "descripcion": "Cobranza Logística Andina SAS Rec. 0001-00000325",
+     "comprobante": "0001-00000324",
+     "asiento": 295
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-05-25",
+     "cents": -180051073,
+     "descripcion": "Pago Óptica Mirador SRL OP 0001-00000329",
+     "comprobante": "OP 0001-00000329",
+     "asiento": 298
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-05-27",
+     "cents": 64065000,
+     "descripcion": "Cobranza Viñedos Altos de Cuyo SA Rec. 0001-00000327",
+     "comprobante": "0003-00000326",
+     "asiento": 296
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L3",
+      "L5"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B3",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "L4",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "L6",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "L12",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B15",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B27",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

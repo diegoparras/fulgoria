@@ -1,0 +1,690 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "030-cheques-nativo",
+ "escenario": "cheques",
+ "banco": "nativo",
+ "sistema": "debe_haber_ar",
+ "semilla": 3022,
+ "periodo": {
+  "desde": "2026-02-01",
+  "hasta": "2026-02-28"
+ },
+ "cliente": {
+  "nombre": "Viñedos Altos de Cuyo SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Muchos cheques emitidos que se debitan días después, varios pendientes al cierre y un cheque de tercero rechazado.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 1195528092,
+    "bancoCierre": 1163911996,
+    "librosApertura": 1195528092,
+    "librosCierre": -84705225
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-02-05",
+     "cents": 125033000,
+     "descripcion": "DEPOSITO CHEQUES 48 HS",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-02-05",
+     "cents": -750198,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-02-06",
+     "cents": 207604000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS LOGÍSTICA ANDINA SAS - 0002-00000130",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-02-06",
+     "cents": -1245624,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-02-06",
+     "cents": -6228120,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-02-11",
+     "cents": -29699409,
+     "descripcion": "CHEQUE N 00052858",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-02-11",
+     "cents": -178196,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-02-12",
+     "cents": -127339000,
+     "descripcion": "CHEQUE N 00052861",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-02-12",
+     "cents": -764034,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-02-16",
+     "cents": -109718288,
+     "descripcion": "ECHEQ N 00052833",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-02-16",
+     "cents": -658310,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-02-16",
+     "cents": 320200000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS AGRO SUR DEL PLATA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-02-16",
+     "cents": -1921200,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-02-16",
+     "cents": -9606000,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-02-16",
+     "cents": 67580492,
+     "descripcion": "DEPOSITO CHEQUES 48 HS",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-02-19",
+     "cents": -164600000,
+     "descripcion": "ECHEQ N 00052829",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-02-19",
+     "cents": -987600,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-02-23",
+     "cents": -103000000,
+     "descripcion": "CHEQUE N 00052847",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-02-23",
+     "cents": -618000,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-02-23",
+     "cents": 154400000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-02-23",
+     "cents": -926400,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-02-23",
+     "cents": -4632000,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-02-23",
+     "cents": -67580492,
+     "descripcion": "RECHAZO CHEQUE N 00052883",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-02-23",
+     "cents": -940901,
+     "descripcion": "COMISION RECHAZO CHEQUE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-02-23",
+     "cents": -1834348,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-02-23",
+     "cents": -385213,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-02-23",
+     "cents": -55030,
+     "descripcion": "PERC. IVA",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-02-23",
+     "cents": -11006,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-02-23",
+     "cents": -2311,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-02-23",
+     "cents": -330,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-02-24",
+     "cents": -51608718,
+     "descripcion": "ECHEQ N 00052850",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-02-24",
+     "cents": -309652,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-02-27",
+     "cents": -219516111,
+     "descripcion": "CHEQUE N 00052864",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-02-27",
+     "cents": -1317097,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-02-02",
+     "cents": -103000000,
+     "descripcion": "Cheque N° 00052847 a Transporte Ruta 3 SRL",
+     "comprobante": "CH 00052847",
+     "asiento": 188
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-02-02",
+     "cents": -166000000,
+     "descripcion": "Cheque N° 00052879 a Química Litoral SRL",
+     "comprobante": "CH 00052879",
+     "asiento": 196
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-02-04",
+     "cents": 125033000,
+     "descripcion": "Depósito cheque cliente",
+     "comprobante": "",
+     "asiento": 200
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-02-05",
+     "cents": -109718288,
+     "descripcion": "ECHEQ N° 00052833 a Servicios Médicos Lomas SRL",
+     "comprobante": "CH 00052833",
+     "asiento": 185
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-02-05",
+     "cents": 207604000,
+     "descripcion": "Cobro FC A 0002-00000130 Logística Andina SAS",
+     "comprobante": "0002-00000130",
+     "asiento": 199
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-02-09",
+     "cents": -164600000,
+     "descripcion": "ECHEQ N° 00052829 a Constructora Delta Norte SRL",
+     "comprobante": "CH 00052829",
+     "asiento": 184
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-02-09",
+     "cents": -207889000,
+     "descripcion": "Cheque N° 00052851 a Imprenta Tinta Fresca SRL",
+     "comprobante": "CH 00052851",
+     "asiento": 190
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-02-10",
+     "cents": -29699409,
+     "descripcion": "Cheque N° 00052858 a Cooperativa Hornero Ltda",
+     "comprobante": "CH 00052858",
+     "asiento": 191
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-02-10",
+     "cents": -127339000,
+     "descripcion": "Cheque N° 00052861 a Imprenta Tinta Fresca SRL",
+     "comprobante": "CH 00052861",
+     "asiento": 192
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-02-13",
+     "cents": 67580492,
+     "descripcion": "Depósito cheque N° 00052883 cliente Librería El Faro SA",
+     "comprobante": "CH 00052883",
+     "asiento": 201
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-02-16",
+     "cents": -219516111,
+     "descripcion": "Cheque N° 00052864 a Cooperativa Hornero Ltda",
+     "comprobante": "CH 00052864",
+     "asiento": 193
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-02-16",
+     "cents": 320200000,
+     "descripcion": "Cobranza Agro Sur del Plata SA Rec. 0001-00000129",
+     "comprobante": "0001-00000128",
+     "asiento": 198
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-02-17",
+     "cents": -209159000,
+     "descripcion": "Cheque N° 00052825 a Cooperativa Hornero Ltda",
+     "comprobante": "CH 00052825",
+     "asiento": 183
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-02-17",
+     "cents": -51608718,
+     "descripcion": "ECHEQ N° 00052850 a Tecnología Austral SAS",
+     "comprobante": "CH 00052850",
+     "asiento": 189
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-02-20",
+     "cents": -224367417,
+     "descripcion": "ECHEQ N° 00052875 a Hotel Cerro Azul SA",
+     "comprobante": "CH 00052875",
+     "asiento": 195
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-02-20",
+     "cents": 154400000,
+     "descripcion": "Cobranza cliente Logística Andina SAS",
+     "comprobante": "0001-00000126",
+     "asiento": 197
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-02-23",
+     "cents": -191000000,
+     "descripcion": "Cheque N° 00052842 a Muebles Quebracho SAS",
+     "comprobante": "CH 00052842",
+     "asiento": 187
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-02-26",
+     "cents": -248853866,
+     "descripcion": "ECHEQ N° 00052839 a Cooperativa Hornero Ltda",
+     "comprobante": "CH 00052839",
+     "asiento": 186
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-02-26",
+     "cents": -102300000,
+     "descripcion": "Cheque N° 00052871 a Transporte Ruta 3 SRL",
+     "comprobante": "CH 00052871",
+     "asiento": 194
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B31"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B33"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B20"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L13",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L18",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L17",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L7",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L19",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L15",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L2",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "debito_no_identificado"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B27",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B11",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B19",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B32",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B7",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B9",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B34",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B5",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B29",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

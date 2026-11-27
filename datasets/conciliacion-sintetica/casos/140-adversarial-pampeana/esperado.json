@@ -1,0 +1,564 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "140-adversarial-pampeana",
+ "escenario": "adversarial",
+ "banco": "pampeana",
+ "sistema": "planilla_cliente",
+ "semilla": 60031,
+ "periodo": {
+  "desde": "2026-04-01",
+  "hasta": "2026-04-30"
+ },
+ "cliente": {
+  "nombre": "Farmacia Del Parque SCS",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Trampas para el emparejamiento automático: mismo importe pero otra contraparte, cheque con otro número, homónimos, un centavo de diferencia, transferencia devuelta. La información para no equivocarse está en los documentos.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 407085360,
+    "bancoCierre": 72122830,
+    "librosApertura": 407085360,
+    "librosCierre": 76383479
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-04-01",
+     "cents": -146200000,
+     "descripcion": "TRANSF. SUELDO LUCAS FERNÁNDEZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-04-01",
+     "cents": -146200000,
+     "descripcion": "TRANSF. SUELDO MARTINA FERNÁNDEZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-04-01",
+     "cents": -43396924,
+     "descripcion": "TRANSFERENCIA ENVIADA A IMPRENTA TINTA FRESCA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-04-02",
+     "cents": -267710257,
+     "descripcion": "TRANSFERENCIA ENVIADA A LÁCTEOS VALLE VERDE SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-04-06",
+     "cents": 52595000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE AGRO SUR DEL PLATA SA CUIT 33-62063957-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-04-06",
+     "cents": 52595000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TRANSPORTE RUTA 3 SRL CUIT 33-62871352-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-04-08",
+     "cents": 348701109,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FRIGORÍFICO PAMPA ALTA SA CUIT 30-66248971-5",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-04-08",
+     "cents": -6974022,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-04-10",
+     "cents": -55414717,
+     "descripcion": "CHEQUE CAMARA NRO 00083747",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-04-13",
+     "cents": 19200000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FRIGORÍFICO PAMPA ALTA SA CUIT 30-56801815-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-04-13",
+     "cents": -31000000,
+     "descripcion": "TRANSFERENCIA ENVIADA A ESTUDIO GRÁFICO COBALTO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-04-14",
+     "cents": -10300000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-04-14",
+     "cents": 31000000,
+     "descripcion": "TRANSFERENCIA DEVUELTA DE ESTUDIO GRÁFICO COBALTO SAS CUIT 33-68259706-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-04-14",
+     "cents": 10427000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 30-58568085-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-04-17",
+     "cents": 75748243,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ÓPTICA MIRADOR SRL CUIT 30-70464075-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-04-20",
+     "cents": 159004000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TRANSPORTE RUTA 3 SRL CUIT 33-69379672-0 REF 0003-00000404",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-04-20",
+     "cents": -3180080,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-04-20",
+     "cents": -128900000,
+     "descripcion": "TRANSFERENCIA ENVIADA A QUÍMICA LITORAL SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-04-27",
+     "cents": -3500000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-04-27",
+     "cents": -735000,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-04-29",
+     "cents": 26911101,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FARMACIA DEL PARQUE SCS CUIT 30-65599815-9 REF 0001-00000406",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-04-29",
+     "cents": -538222,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-04-29",
+     "cents": -267094761,
+     "descripcion": "TRANSFERENCIA ENVIADA A PANIFICADORA LA ESPIGA SRL",
+     "tipo": "transferencia"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-04-01",
+     "cents": -146200000,
+     "descripcion": "Sueldo L. Fernández",
+     "comprobante": "",
+     "asiento": 258
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-04-01",
+     "cents": -146200000,
+     "descripcion": "Sueldo M. Fernández",
+     "comprobante": "",
+     "asiento": 259
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-04-01",
+     "cents": -43396925,
+     "descripcion": "Pago Imprenta Tinta Fresca SRL",
+     "comprobante": "",
+     "asiento": 260
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-04-02",
+     "cents": -267710257,
+     "descripcion": "Pago a proveedor Lácteos Valle Verde SA",
+     "comprobante": "OP 0001-00000411",
+     "asiento": 249
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-04-05",
+     "cents": -55414917,
+     "descripcion": "Cheque N° 00083747 a Óptica Mirador SRL",
+     "comprobante": "CH 00083747",
+     "asiento": 256
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-04-06",
+     "cents": 348701109,
+     "descripcion": "Cobranza Frigorífico Pampa Alta SA Rec. 0001-00000409",
+     "comprobante": "0002-00000408",
+     "asiento": 247
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-04-06",
+     "cents": 52595000,
+     "descripcion": "Cobranza Agro Sur del Plata SA CUIT 33-62063957-0",
+     "comprobante": "",
+     "asiento": 262
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-04-06",
+     "cents": 52595000,
+     "descripcion": "Cobranza Transporte Ruta 3 SRL CUIT 33-62871352-4",
+     "comprobante": "",
+     "asiento": 263
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-04-07",
+     "cents": -55414717,
+     "descripcion": "Cheque N° 00083749 a Servicios Médicos Lomas SRL",
+     "comprobante": "CH 00083749",
+     "asiento": 257
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-04-12",
+     "cents": 19200000,
+     "descripcion": "Cobranza Constructora Delta Norte SRL CUIT 33-57426426-5",
+     "comprobante": "",
+     "asiento": 252
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-04-13",
+     "cents": -31000000,
+     "descripcion": "Pago Estudio Gráfico Cobalto SAS",
+     "comprobante": "",
+     "asiento": 261
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-04-13",
+     "cents": 10427000,
+     "descripcion": "Cobranza Transporte Ruta 3 SRL CUIT 33-60948385-2",
+     "comprobante": "",
+     "asiento": 264
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-04-14",
+     "cents": -10300000,
+     "descripcion": "Transferencia a Librería El Faro SA OP 0001-00000410",
+     "comprobante": "OP 0001-00000410",
+     "asiento": 248
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-04-15",
+     "cents": 53246000,
+     "descripcion": "Cobranza Óptica Mirador SRL CUIT 30-70464075-3 FC 1",
+     "comprobante": "",
+     "asiento": 253
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-04-16",
+     "cents": 22502243,
+     "descripcion": "Cobranza Óptica Mirador SRL CUIT 30-70464075-3 FC 2",
+     "comprobante": "",
+     "asiento": 254
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-04-17",
+     "cents": 75748243,
+     "descripcion": "Cobranza Lácteos Valle Verde SA CUIT 30-63076228-2",
+     "comprobante": "",
+     "asiento": 255
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-04-20",
+     "cents": 159004000,
+     "descripcion": "Cobranza cliente Transporte Ruta 3 SRL",
+     "comprobante": "0003-00000404",
+     "asiento": 245
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-04-20",
+     "cents": -128900000,
+     "descripcion": "Pago Química Litoral SRL OP 0001-00000412",
+     "comprobante": "OP 0001-00000412",
+     "asiento": 250
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-04-28",
+     "cents": 26911101,
+     "descripcion": "Cobranza cliente Farmacia Del Parque SCS",
+     "comprobante": "0001-00000406",
+     "asiento": 246
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-04-28",
+     "cents": -267094761,
+     "descripcion": "Transferencia a Panificadora La Espiga SRL OP 0001-00000413",
+     "comprobante": "OP 0001-00000413",
+     "asiento": 251
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L19"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L18"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L20"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L14",
+      "L15"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "L10",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "L16",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "L9",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "L12",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "B19",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+Empresa: Metalúrgica San Telmo SRL
+Cuenta: 1.1.1.02 Banco del Plata Austral
+Período: 01/02/2026 al 28/02/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,1495187.67
+2026-02-01,Gas del Litoral - débito automático,,62000.00,1433187.67
+2026-02-05,Cobranza cliente Tecnología Austral SAS,2100560.81,,3533748.48
+2026-02-09,Cobranza Hotel Cerro Azul SA Rec. 0001-00000587,2873167.08,,6406915.56
+2026-02-12,Pago a proveedor Lácteos Valle Verde SA,,469000.00,5937915.56
+2026-02-13,Gas del Litoral - débito automático,,230511.03,5707404.53
+2026-02-16,Cobro FC A 0002-00000582 Frigorífico Pampa Alta SA,3606530.00,,9313934.53
+2026-02-16,Cobranza Constructora Delta Norte SRL Rec. 0001-00000585,1894000.00,,11207934.53
+2026-02-16,Cobranza Viñedos Altos de Cuyo SA Rec. 0001-00000589,1586000.00,,12793934.53
+2026-02-20,Pago Tecnología Austral SAS OP 0001-00000593,,2868000.00,9925934.53
+2026-02-23,Transferencia a Muebles Quebracho SAS OP 0001-00000591,,362000.00,9563934.53
+2026-02-23,Transferencia a Farmacia Del Parque SCS OP 0001-00000592,,1926840.70,7637093.83
+2026-02-25,Cheque N° 00076920 a Química Litoral SRL,,494000.00,7143093.83
+2026-02-28,Depósito cheque cliente,610000.00,,7753093.83

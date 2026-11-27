@@ -1,0 +1,527 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "052-repetidos-federal",
+ "escenario": "repetidos",
+ "banco": "federal",
+ "sistema": "debitos_creditos_us",
+ "semilla": 5012,
+ "periodo": {
+  "desde": "2026-04-01",
+  "hasta": "2026-04-30"
+ },
+ "cliente": {
+  "nombre": "Óptica Mirador SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Sueldos idénticos el mismo día, alquileres y cuotas iguales: la ambigüedad que nunca debe quedar en verde.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2536522762,
+    "bancoCierre": 1049889917,
+    "librosApertura": 2536522762,
+    "librosCierre": 1055455165
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-04-03",
+     "cents": -142100000,
+     "descripcion": "ACRED HABERES JOAQUÍN PEREYRA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-04-03",
+     "cents": -142100000,
+     "descripcion": "ACRED HABERES JULIETA MEDINA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-04-03",
+     "cents": -142100000,
+     "descripcion": "ACRED HABERES IGNACIO VERA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-04-03",
+     "cents": -142100000,
+     "descripcion": "ACRED HABERES VALENTINA SOSA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-04-03",
+     "cents": -142100000,
+     "descripcion": "ACRED HABERES PAULA CASTRO",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-04-03",
+     "cents": -142100000,
+     "descripcion": "ACRED HABERES SOFÍA RAMÍREZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-04-03",
+     "cents": -142100000,
+     "descripcion": "ACRED HABERES CAMILA HERRERA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-04-03",
+     "cents": -142100000,
+     "descripcion": "ACRED HABERES LUCÍA ORTIZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-04-06",
+     "cents": -68371677,
+     "descripcion": "TRF INMEDIATA ENV 30579842438",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-04-13",
+     "cents": -116656000,
+     "descripcion": "TRF INMEDIATA ENV 33705493028",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-04-13",
+     "cents": 25176929,
+     "descripcion": "TRF INMEDIATA RECIB 30706421951",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-04-13",
+     "cents": -151062,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-04-13",
+     "cents": 25176929,
+     "descripcion": "TRF INMEDIATA RECIB 30652779294",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-04-13",
+     "cents": -151062,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-04-20",
+     "cents": -116656000,
+     "descripcion": "TRF INMEDIATA ENV 33582357388",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-04-24",
+     "cents": -77270907,
+     "descripcion": "TRF INMEDIATA ENV 33518031347",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-04-27",
+     "cents": -4100000,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-04-27",
+     "cents": -861000,
+     "descripcion": "I.V.A. TASA GENERAL",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-04-28",
+     "cents": 25176929,
+     "descripcion": "TRF INMEDIATA RECIB 30579694455",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-04-28",
+     "cents": -151062,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-04-28",
+     "cents": -66020729,
+     "descripcion": "TRF INMEDIATA ENV 33605218267",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-04-29",
+     "cents": 25176929,
+     "descripcion": "TRF INMEDIATA RECIB 30651860934",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-04-29",
+     "cents": -151062,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-04-03",
+     "cents": -142100000,
+     "descripcion": "Sueldo marzo - Joaquín Pereyra",
+     "comprobante": "",
+     "asiento": 158
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-04-03",
+     "cents": -142100000,
+     "descripcion": "Sueldo marzo - Julieta Medina",
+     "comprobante": "",
+     "asiento": 159
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-04-03",
+     "cents": -142100000,
+     "descripcion": "Sueldo marzo - Ignacio Vera",
+     "comprobante": "",
+     "asiento": 160
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-04-03",
+     "cents": -142100000,
+     "descripcion": "Sueldo marzo - Valentina Sosa",
+     "comprobante": "",
+     "asiento": 161
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-04-03",
+     "cents": -142100000,
+     "descripcion": "Sueldo marzo - Paula Castro",
+     "comprobante": "",
+     "asiento": 162
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-04-03",
+     "cents": -142100000,
+     "descripcion": "Sueldo marzo - Sofía Ramírez",
+     "comprobante": "",
+     "asiento": 163
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-04-03",
+     "cents": -142100000,
+     "descripcion": "Sueldo marzo - Camila Herrera",
+     "comprobante": "",
+     "asiento": 164
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-04-03",
+     "cents": -142100000,
+     "descripcion": "Sueldo marzo - Lucía Ortiz",
+     "comprobante": "",
+     "asiento": 165
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-04-06",
+     "cents": -68371677,
+     "descripcion": "Transferencia a Viñedos Altos de Cuyo SA OP 0001-00000582",
+     "comprobante": "OP 0001-00000582",
+     "asiento": 174
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-04-10",
+     "cents": 25176929,
+     "descripcion": "Cobranza cliente Agro Sur del Plata SA",
+     "comprobante": "0003-00000576",
+     "asiento": 170
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-04-13",
+     "cents": -116656000,
+     "descripcion": "Pago a proveedor Lácteos Valle Verde SA",
+     "comprobante": "OP 0001-00000570",
+     "asiento": 166
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-04-13",
+     "cents": 25176929,
+     "descripcion": "Cobro FC A 0001-00000578 Óptica Mirador SRL",
+     "comprobante": "0001-00000578",
+     "asiento": 171
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-04-20",
+     "cents": -116656000,
+     "descripcion": "Pago Óptica Mirador SRL OP 0001-00000571",
+     "comprobante": "OP 0001-00000571",
+     "asiento": 167
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-04-24",
+     "cents": -77270907,
+     "descripcion": "Transferencia a Cooperativa Hornero Ltda OP 0001-00000580",
+     "comprobante": "OP 0001-00000580",
+     "asiento": 172
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-04-27",
+     "cents": 25176929,
+     "descripcion": "Cobranza Agro Sur del Plata SA Rec. 0001-00000573",
+     "comprobante": "0003-00000572",
+     "asiento": 168
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-04-28",
+     "cents": 25176929,
+     "descripcion": "Cobranza Servicios Médicos Lomas SRL Rec. 0001-00000575",
+     "comprobante": "0002-00000574",
+     "asiento": 169
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-04-28",
+     "cents": -66020729,
+     "descripcion": "Transferencia a Ferretería El Tornillo SRL OP 0001-00000581",
+     "comprobante": "OP 0001-00000581",
+     "asiento": 173
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B22"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

@@ -1,0 +1,583 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "094-tarjetas_brutas-cuyano",
+ "escenario": "tarjetas_brutas",
+ "banco": "cuyano",
+ "sistema": "debitos_creditos_us",
+ "semilla": 8042,
+ "periodo": {
+  "desde": "2026-03-01",
+  "hasta": "2026-03-31"
+ },
+ "cliente": {
+  "nombre": "Frigorífico Pampa Alta SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El libro registra la venta con tarjeta en bruto y aparte el arancel y su IVA; el banco acredita el neto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor-ars.csv",
+   "saldos": {
+    "bancoApertura": 3259146702,
+    "bancoCierre": 4720478687,
+    "librosApertura": 3259146702,
+    "librosCierre": 4727422687
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-03-02",
+     "cents": 259637769,
+     "descripcion": "ACRED PRISMA LIQ 74721",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-03-04",
+     "cents": 13075000,
+     "descripcion": "TRF INMEDIATA RECIB 33653172716 0003-00000789",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-03-05",
+     "cents": 76804200,
+     "descripcion": "ACRED PRISMA LIQ 90049",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-03-06",
+     "cents": 157831226,
+     "descripcion": "ACRED PRISMA LIQ 47375",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-03-09",
+     "cents": 270754200,
+     "descripcion": "ACRED PRISMA LIQ 21779",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-03-09",
+     "cents": -43500000,
+     "descripcion": "TRF INMEDIATA ENV 33539348324",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-03-11",
+     "cents": 160456050,
+     "descripcion": "ACRED PRISMA LIQ 86638",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-03-16",
+     "cents": 69062332,
+     "descripcion": "ACRED PRISMA LIQ 56492",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-03-17",
+     "cents": 436300000,
+     "descripcion": "TRF INMEDIATA RECIB 30559286849",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-03-23",
+     "cents": 152504498,
+     "descripcion": "ACRED PRISMA LIQ 34199",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-03-24",
+     "cents": 155902000,
+     "descripcion": "TRF INMEDIATA RECIB 33581381935",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-03-27",
+     "cents": -5600000,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-03-27",
+     "cents": -1176000,
+     "descripcion": "I.V.A. TASA GENERAL",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-03-27",
+     "cents": -168000,
+     "descripcion": "PERCEPCION IVA",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-03-30",
+     "cents": -240551290,
+     "descripcion": "TRF INMEDIATA ENV 30688092236",
+     "tipo": "transferencia"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-03-02",
+     "cents": 269417629,
+     "descripcion": "Ventas con tarjeta lote 74721",
+     "comprobante": "",
+     "asiento": 135
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-03-02",
+     "cents": -8082529,
+     "descripcion": "Arancel tarjeta lote 74721",
+     "comprobante": "",
+     "asiento": 136
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-03-02",
+     "cents": -1697331,
+     "descripcion": "IVA arancel lote 74721",
+     "comprobante": "",
+     "asiento": 137
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-03-03",
+     "cents": 13075000,
+     "descripcion": "Cobro FC A 0003-00000789 Metalúrgica San Telmo SRL",
+     "comprobante": "0003-00000789",
+     "asiento": 146
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-03-05",
+     "cents": 79200000,
+     "descripcion": "Ventas con tarjeta lote 90049",
+     "comprobante": "",
+     "asiento": 141
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-03-05",
+     "cents": -1980000,
+     "descripcion": "Arancel tarjeta lote 90049",
+     "comprobante": "",
+     "asiento": 142
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-03-05",
+     "cents": -415800,
+     "descripcion": "IVA arancel lote 90049",
+     "comprobante": "",
+     "asiento": 143
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-03-06",
+     "cents": 162754551,
+     "descripcion": "Ventas con tarjeta lote 47375",
+     "comprobante": "",
+     "asiento": 129
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-03-06",
+     "cents": -4068864,
+     "descripcion": "Arancel tarjeta lote 47375",
+     "comprobante": "",
+     "asiento": 130
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-03-06",
+     "cents": -854461,
+     "descripcion": "IVA arancel lote 47375",
+     "comprobante": "",
+     "asiento": 131
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-03-09",
+     "cents": 279200000,
+     "descripcion": "Ventas con tarjeta lote 21779",
+     "comprobante": "",
+     "asiento": 138
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-03-09",
+     "cents": -6980000,
+     "descripcion": "Arancel tarjeta lote 21779",
+     "comprobante": "",
+     "asiento": 139
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-03-09",
+     "cents": -1465800,
+     "descripcion": "IVA arancel lote 21779",
+     "comprobante": "",
+     "asiento": 140
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-03-09",
+     "cents": -43500000,
+     "descripcion": "Transferencia a Librería El Faro SA OP 0001-00000794",
+     "comprobante": "OP 0001-00000794",
+     "asiento": 149
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-03-11",
+     "cents": 160456050,
+     "descripcion": "Liquidación tarjeta lote 86638",
+     "comprobante": "",
+     "asiento": 144
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-03-16",
+     "cents": 70600000,
+     "descripcion": "Ventas con tarjeta lote 56492",
+     "comprobante": "",
+     "asiento": 126
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-03-16",
+     "cents": -1270800,
+     "descripcion": "Arancel tarjeta lote 56492",
+     "comprobante": "",
+     "asiento": 127
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-03-16",
+     "cents": -266868,
+     "descripcion": "IVA arancel lote 56492",
+     "comprobante": "",
+     "asiento": 128
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-03-16",
+     "cents": 436300000,
+     "descripcion": "Cobranza Librería El Faro SA Rec. 0001-00000792",
+     "comprobante": "0001-00000791",
+     "asiento": 147
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-03-23",
+     "cents": 155900000,
+     "descripcion": "Ventas con tarjeta lote 34199",
+     "comprobante": "",
+     "asiento": 132
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-03-23",
+     "cents": -2806200,
+     "descripcion": "Arancel tarjeta lote 34199",
+     "comprobante": "",
+     "asiento": 133
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-03-23",
+     "cents": -589302,
+     "descripcion": "IVA arancel lote 34199",
+     "comprobante": "",
+     "asiento": 134
+    },
+    {
+     "id": "L23",
+     "fecha": "2026-03-23",
+     "cents": 155902000,
+     "descripcion": "Cobranza Muebles Quebracho SAS Rec. 0001-00000788",
+     "comprobante": "0003-00000787",
+     "asiento": 145
+    },
+    {
+     "id": "L24",
+     "fecha": "2026-03-30",
+     "cents": -240551290,
+     "descripcion": "Pago Panificadora La Espiga SRL OP 0001-00000793",
+     "comprobante": "OP 0001-00000793",
+     "asiento": 148
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L16",
+      "L17",
+      "L18"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L8",
+      "L9",
+      "L10"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L20",
+      "L21",
+      "L22"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1",
+      "L2",
+      "L3"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L11",
+      "L12",
+      "L13"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L5",
+      "L6",
+      "L7"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L23"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L19"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L24"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  },
+  {
+   "segmento": 1,
+   "moneda": "USD",
+   "mayor": "mayor-usd.csv",
+   "saldos": {
+    "bancoApertura": 7597509,
+    "bancoCierre": 5964009,
+    "librosApertura": 7597509,
+    "librosCierre": 5964637
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-03-09",
+     "cents": -720356,
+     "descripcion": "TRF INMEDIATA ENV 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-03-11",
+     "cents": -473804,
+     "descripcion": "TRF INMEDIATA ENV 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-03-30",
+     "cents": -438712,
+     "descripcion": "TRF INMEDIATA ENV 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-03-30",
+     "cents": -628,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-03-09",
+     "cents": -720356,
+     "descripcion": "Pago proveedor exterior (USD)",
+     "comprobante": "",
+     "asiento": 378
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-03-11",
+     "cents": -473804,
+     "descripcion": "Pago proveedor exterior (USD)",
+     "comprobante": "",
+     "asiento": 380
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-03-30",
+     "cents": -438712,
+     "descripcion": "Pago proveedor exterior (USD)",
+     "comprobante": "",
+     "asiento": 379
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

@@ -1,0 +1,647 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "138-adversarial-nativo",
+ "escenario": "adversarial",
+ "banco": "nativo",
+ "sistema": "planilla_cliente",
+ "semilla": 60022,
+ "periodo": {
+  "desde": "2026-03-01",
+  "hasta": "2026-03-31"
+ },
+ "cliente": {
+  "nombre": "Estudio Gráfico Cobalto SAS",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 2,
+ "notas": "Trampas para el emparejamiento automático: mismo importe pero otra contraparte, cheque con otro número, homónimos, un centavo de diferencia, transferencia devuelta. La información para no equivocarse está en los documentos.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 3080170128,
+    "bancoCierre": 3314426827,
+    "librosApertura": 3080170128,
+    "librosCierre": 3298814905
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-03-02",
+     "cents": -22649000,
+     "descripcion": "TRANSFERENCIA A TERCEROS QUÍMICA LITORAL SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-03-02",
+     "cents": -135894,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-03-03",
+     "cents": -59609354,
+     "descripcion": "TRANSFERENCIA A TERCEROS MUEBLES QUEBRACHO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-03-04",
+     "cents": -91631024,
+     "descripcion": "TRANSFERENCIA A TERCEROS QUÍMICA LITORAL SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-03-04",
+     "cents": -549786,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-03-04",
+     "cents": -117000000,
+     "descripcion": "PAGO DE HABERES MARTINA SOSA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-03-04",
+     "cents": -117000000,
+     "descripcion": "PAGO DE HABERES SOFÍA SOSA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-03-04",
+     "cents": -68700000,
+     "descripcion": "TRANSFERENCIA A TERCEROS CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-03-04",
+     "cents": 59609354,
+     "descripcion": "TRANSFERENCIA DEVUELTA MUEBLES QUEBRACHO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-03-10",
+     "cents": 199056874,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-03-10",
+     "cents": -1194341,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-03-11",
+     "cents": 123100000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS SERVICIOS MÉDICOS LOMAS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-03-11",
+     "cents": 55960695,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-03-12",
+     "cents": -24956000,
+     "descripcion": "CHEQUE N 00009044",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-03-16",
+     "cents": 178938000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS SERVICIOS MÉDICOS LOMAS SRL - 0003-00000235",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-03-16",
+     "cents": -1073628,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-03-23",
+     "cents": 61012796,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TEXTIL RÍO BERMEJO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-03-23",
+     "cents": 61012796,
+     "descripcion": "TRANSFERENCIA DE TERCEROS SERVICIOS MÉDICOS LOMAS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-03-27",
+     "cents": 159305000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS PANIFICADORA LA ESPIGA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-03-27",
+     "cents": -955830,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-03-30",
+     "cents": -3891000,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-03-30",
+     "cents": -817110,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-03-30",
+     "cents": -23346,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-03-30",
+     "cents": -4903,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-03-31",
+     "cents": 287700000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS SERVICIOS MÉDICOS LOMAS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-03-31",
+     "cents": -1726200,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-03-31",
+     "cents": -161200000,
+     "descripcion": "TRANSFERENCIA A TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-03-31",
+     "cents": -967200,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-03-31",
+     "cents": -275700000,
+     "descripcion": "TRANSFERENCIA A TERCEROS IMPRENTA TINTA FRESCA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-03-31",
+     "cents": -1654200,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-03-02",
+     "cents": -22649000,
+     "descripcion": "Pago Química Litoral SRL OP 0001-00000243",
+     "comprobante": "OP 0001-00000243",
+     "asiento": 239
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-03-03",
+     "cents": -59609354,
+     "descripcion": "Pago Muebles Quebracho SAS",
+     "comprobante": "",
+     "asiento": 250
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-03-04",
+     "cents": -91631024,
+     "descripcion": "Pago a proveedor Química Litoral SRL",
+     "comprobante": "OP 0001-00000241",
+     "asiento": 237
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-03-04",
+     "cents": -117000000,
+     "descripcion": "Sueldo M. Sosa",
+     "comprobante": "",
+     "asiento": 247
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-03-04",
+     "cents": -117000000,
+     "descripcion": "Sueldo S. Sosa",
+     "comprobante": "",
+     "asiento": 248
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-03-04",
+     "cents": -68700001,
+     "descripcion": "Pago Constructora Delta Norte SRL",
+     "comprobante": "",
+     "asiento": 249
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-03-07",
+     "cents": -24956700,
+     "descripcion": "Cheque N° 00009044 a Textil Río Bermejo SA",
+     "comprobante": "CH 00009044",
+     "asiento": 245
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-03-09",
+     "cents": 199056874,
+     "descripcion": "Cobro FC A 0002-00000239 Transporte Ruta 3 SRL",
+     "comprobante": "0002-00000239",
+     "asiento": 236
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-03-09",
+     "cents": 45261000,
+     "descripcion": "Cobranza Tecnología Austral SAS CUIT 30-72356317-4 FC 1",
+     "comprobante": "",
+     "asiento": 242
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-03-09",
+     "cents": -24956000,
+     "descripcion": "Cheque N° 00009051 a Estudio Gráfico Cobalto SAS",
+     "comprobante": "CH 00009051",
+     "asiento": 246
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-03-10",
+     "cents": 123100000,
+     "descripcion": "Cobranza Frigorífico Pampa Alta SA CUIT 33-61597582-1",
+     "comprobante": "",
+     "asiento": 241
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-03-10",
+     "cents": 10699695,
+     "descripcion": "Cobranza Tecnología Austral SAS CUIT 30-72356317-4 FC 2",
+     "comprobante": "",
+     "asiento": 243
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-03-11",
+     "cents": 55960695,
+     "descripcion": "Cobranza Cooperativa Hornero Ltda CUIT 30-52625857-2",
+     "comprobante": "",
+     "asiento": 244
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-03-12",
+     "cents": 178938000,
+     "descripcion": "Cobranza Servicios Médicos Lomas SRL Rec. 0001-00000236",
+     "comprobante": "0003-00000235",
+     "asiento": 234
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-03-23",
+     "cents": 61012796,
+     "descripcion": "Cobranza Textil Río Bermejo SA CUIT 33-66259586-7",
+     "comprobante": "",
+     "asiento": 251
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-03-23",
+     "cents": 61012796,
+     "descripcion": "Cobranza Servicios Médicos Lomas SRL CUIT 33-57285598-3",
+     "comprobante": "",
+     "asiento": 252
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-03-25",
+     "cents": 159305000,
+     "descripcion": "Cobranza Panificadora La Espiga SRL Rec. 0001-00000238",
+     "comprobante": "0003-00000237",
+     "asiento": 235
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-03-30",
+     "cents": 287700000,
+     "descripcion": "Cobro FC A 0001-00000233 Servicios Médicos Lomas SRL",
+     "comprobante": "0001-00000233",
+     "asiento": 233
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-03-30",
+     "cents": -161200000,
+     "descripcion": "Transferencia a Tecnología Austral SAS OP 0001-00000242",
+     "comprobante": "OP 0001-00000242",
+     "asiento": 238
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-03-30",
+     "cents": -275700000,
+     "descripcion": "Pago a proveedor Imprenta Tinta Fresca SRL",
+     "comprobante": "OP 0001-00000244",
+     "asiento": 240
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L18"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L19"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B29"
+     ],
+     "libros": [
+      "L20"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L9",
+      "L12"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "L11",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "L13",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "L10",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "B9",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B11",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B5",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

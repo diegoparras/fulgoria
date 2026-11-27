@@ -1,0 +1,23 @@
+{
+  "fulgoria_plantilla_mayor": 1,
+  "sistema": "Planilla del cliente (Excel guardado como CSV)",
+  "encabezados": [
+    "FECHA",
+    "DESCRIPCION",
+    "INGRESOS",
+    "EGRESOS",
+    "SALDO"
+  ],
+  "mapeo": {
+    "fecha": "FECHA",
+    "descripcion": "DESCRIPCION",
+    "debe": "INGRESOS",
+    "haber": "EGRESOS",
+    "saldo": "SALDO"
+  },
+  "formato": {
+    "numeros": "es-AR"
+  },
+  "unirContinuacion": true,
+  "ignorar": []
+}

@@ -1,0 +1,878 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "048-agrupados-atlantico",
+ "escenario": "agrupados",
+ "banco": "atlantico",
+ "sistema": "planilla_cliente",
+ "semilla": 4052,
+ "periodo": {
+  "desde": "2026-08-01",
+  "hasta": "2026-08-31"
+ },
+ "cliente": {
+  "nombre": "Cooperativa Hornero Ltda",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 2,
+ "notas": "Depósitos que juntan varias cobranzas y retiros de Mercado Pago que juntan muchas ventas (algunos con más de 4 partidas).",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2677522908,
+    "bancoCierre": 4775020102,
+    "librosApertura": 2677522908,
+    "librosCierre": 4794062655
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-08-05",
+     "cents": -17600000,
+     "descripcion": "TRANSFERENCIA A TERCEROS LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-08-05",
+     "cents": -105600,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-08-06",
+     "cents": 50947962,
+     "descripcion": "DEPOSITO POR VENTANILLA",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-08-06",
+     "cents": -305688,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-08-10",
+     "cents": 191770226,
+     "descripcion": "DEPOSITO POR VENTANILLA",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-08-10",
+     "cents": -1150621,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-08-13",
+     "cents": 132265612,
+     "descripcion": "DEPOSITO POR VENTANILLA",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-08-13",
+     "cents": -793594,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-08-14",
+     "cents": 198365244,
+     "descripcion": "TRANSFERENCIA DE TERCEROS MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-08-14",
+     "cents": -1190191,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-08-17",
+     "cents": 67397625,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 56399",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-08-17",
+     "cents": -404386,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-08-17",
+     "cents": 333099776,
+     "descripcion": "TRANSFERENCIA DE TERCEROS VIÑEDOS ALTOS DE CUYO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-08-17",
+     "cents": -1998599,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-08-18",
+     "cents": 94371247,
+     "descripcion": "TRANSFERENCIA DE TERCEROS MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-08-18",
+     "cents": -566227,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-08-18",
+     "cents": 51985000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-08-18",
+     "cents": -311910,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-08-18",
+     "cents": 266173662,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 18838",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-08-18",
+     "cents": -1597042,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-08-19",
+     "cents": 274600000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-08-19",
+     "cents": -1647600,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-08-21",
+     "cents": 179476643,
+     "descripcion": "TRANSFERENCIA DE TERCEROS LÁCTEOS VALLE VERDE SA - 0003-00000861",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-08-21",
+     "cents": -1076860,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-08-24",
+     "cents": -115400000,
+     "descripcion": "TRANSFERENCIA A TERCEROS FRIGORÍFICO PAMPA ALTA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-08-24",
+     "cents": -692400,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-08-25",
+     "cents": 74686750,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 9758",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-08-25",
+     "cents": -448121,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-08-25",
+     "cents": -3900000,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-08-25",
+     "cents": -819000,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-08-25",
+     "cents": -23400,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-08-25",
+     "cents": -4914,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-08-27",
+     "cents": 70800000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS ESTUDIO GRÁFICO COBALTO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-08-27",
+     "cents": -424800,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B35",
+     "fecha": "2026-08-31",
+     "cents": 263600000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B36",
+     "fecha": "2026-08-31",
+     "cents": -1581600,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-08-04",
+     "cents": 2047962,
+     "descripcion": "Cobranza Ignacio Vera - efectivo a depositar",
+     "comprobante": "RC 0001-00000853",
+     "asiento": 370
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-08-05",
+     "cents": -17600000,
+     "descripcion": "Pago Logística Andina SAS OP 0001-00000866",
+     "comprobante": "OP 0001-00000866",
+     "asiento": 401
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-08-06",
+     "cents": 48900000,
+     "descripcion": "Cobranza Mateo Benítez - efectivo a depositar",
+     "comprobante": "RC 0001-00000854",
+     "asiento": 371
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-08-07",
+     "cents": 55435067,
+     "descripcion": "Cobranza Franco Silva - efectivo a depositar",
+     "comprobante": "RC 0001-00000850",
+     "asiento": 367
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-08-07",
+     "cents": 32821000,
+     "descripcion": "Cobranza Santiago Rojas - efectivo a depositar",
+     "comprobante": "RC 0001-00000851",
+     "asiento": 368
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-08-09",
+     "cents": 21314159,
+     "descripcion": "Cobranza Florencia Díaz - efectivo a depositar",
+     "comprobante": "RC 0001-00000849",
+     "asiento": 366
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-08-09",
+     "cents": 82200000,
+     "descripcion": "Cobranza Tomás Acosta - efectivo a depositar",
+     "comprobante": "RC 0001-00000852",
+     "asiento": 369
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-08-10",
+     "cents": 15907000,
+     "descripcion": "Cobranza Tomás Acosta - efectivo a depositar",
+     "comprobante": "RC 0001-00000846",
+     "asiento": 363
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-08-10",
+     "cents": 25900000,
+     "descripcion": "Venta MP #24220686",
+     "comprobante": "",
+     "asiento": 380
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-08-10",
+     "cents": 20000000,
+     "descripcion": "Venta MP #94933482",
+     "comprobante": "",
+     "asiento": 381
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-08-11",
+     "cents": 29185380,
+     "descripcion": "Venta MP #53619890",
+     "comprobante": "",
+     "asiento": 382
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-08-11",
+     "cents": 19414000,
+     "descripcion": "Venta MP #21183005",
+     "comprobante": "",
+     "asiento": 384
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-08-11",
+     "cents": 17521885,
+     "descripcion": "Venta MP #62214481",
+     "comprobante": "",
+     "asiento": 385
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-08-11",
+     "cents": 28966000,
+     "descripcion": "Venta MP #37551642",
+     "comprobante": "",
+     "asiento": 386
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-08-11",
+     "cents": 16023650,
+     "descripcion": "Venta MP #90417202",
+     "comprobante": "",
+     "asiento": 388
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-08-12",
+     "cents": 29158612,
+     "descripcion": "Cobranza Valentina Sosa - efectivo a depositar",
+     "comprobante": "RC 0001-00000847",
+     "asiento": 364
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-08-12",
+     "cents": 87200000,
+     "descripcion": "Cobranza Tomás Acosta - efectivo a depositar",
+     "comprobante": "RC 0001-00000848",
+     "asiento": 365
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-08-12",
+     "cents": 19754329,
+     "descripcion": "Venta MP #15738411",
+     "comprobante": "",
+     "asiento": 383
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-08-14",
+     "cents": 4644506,
+     "descripcion": "Venta MP #18733120",
+     "comprobante": "",
+     "asiento": 378
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-08-14",
+     "cents": 21600000,
+     "descripcion": "Venta MP #91155220",
+     "comprobante": "",
+     "asiento": 387
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-08-14",
+     "cents": 12571000,
+     "descripcion": "Venta MP #29282558",
+     "comprobante": "",
+     "asiento": 391
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-08-15",
+     "cents": 19000000,
+     "descripcion": "Venta MP #62639691",
+     "comprobante": "",
+     "asiento": 375
+    },
+    {
+     "id": "L23",
+     "fecha": "2026-08-15",
+     "cents": 8265275,
+     "descripcion": "Venta MP #70106818",
+     "comprobante": "",
+     "asiento": 379
+    },
+    {
+     "id": "L24",
+     "fecha": "2026-08-16",
+     "cents": 28547000,
+     "descripcion": "Venta MP #82160801",
+     "comprobante": "",
+     "asiento": 377
+    },
+    {
+     "id": "L25",
+     "fecha": "2026-08-17",
+     "cents": 24135000,
+     "descripcion": "Venta MP #42147674",
+     "comprobante": "",
+     "asiento": 372
+    },
+    {
+     "id": "L26",
+     "fecha": "2026-08-17",
+     "cents": 26189000,
+     "descripcion": "Venta MP #46605387",
+     "comprobante": "",
+     "asiento": 389
+    },
+    {
+     "id": "L27",
+     "fecha": "2026-08-17",
+     "cents": 13225000,
+     "descripcion": "Venta MP #44491941",
+     "comprobante": "",
+     "asiento": 390
+    },
+    {
+     "id": "L28",
+     "fecha": "2026-08-17",
+     "cents": 67397625,
+     "descripcion": "Liquidación tarjeta lote 56399",
+     "comprobante": "",
+     "asiento": 393
+    },
+    {
+     "id": "L29",
+     "fecha": "2026-08-17",
+     "cents": 333099776,
+     "descripcion": "Cobranza Viñedos Altos de Cuyo SA Rec. 0001-00000858",
+     "comprobante": "0001-00000857",
+     "asiento": 396
+    },
+    {
+     "id": "L30",
+     "fecha": "2026-08-17",
+     "cents": 274600000,
+     "descripcion": "Cobranza cliente Constructora Delta Norte SRL",
+     "comprobante": "0001-00000863",
+     "asiento": 399
+    },
+    {
+     "id": "L31",
+     "fecha": "2026-08-18",
+     "cents": 2838000,
+     "descripcion": "Venta MP #87127845",
+     "comprobante": "",
+     "asiento": 373
+    },
+    {
+     "id": "L32",
+     "fecha": "2026-08-18",
+     "cents": 4700000,
+     "descripcion": "Venta MP #93319955",
+     "comprobante": "",
+     "asiento": 374
+    },
+    {
+     "id": "L33",
+     "fecha": "2026-08-18",
+     "cents": 2241466,
+     "descripcion": "Venta MP #76681464",
+     "comprobante": "",
+     "asiento": 376
+    },
+    {
+     "id": "L34",
+     "fecha": "2026-08-18",
+     "cents": 266173662,
+     "descripcion": "Liquidación tarjeta lote 18838",
+     "comprobante": "",
+     "asiento": 394
+    },
+    {
+     "id": "L35",
+     "fecha": "2026-08-21",
+     "cents": 179476643,
+     "descripcion": "Cobranza cliente Lácteos Valle Verde SA",
+     "comprobante": "0003-00000861",
+     "asiento": 398
+    },
+    {
+     "id": "L36",
+     "fecha": "2026-08-21",
+     "cents": -115400000,
+     "descripcion": "Pago a proveedor Frigorífico Pampa Alta SA",
+     "comprobante": "OP 0001-00000865",
+     "asiento": 400
+    },
+    {
+     "id": "L37",
+     "fecha": "2026-08-25",
+     "cents": 74686750,
+     "descripcion": "Liquidación tarjeta lote 9758",
+     "comprobante": "",
+     "asiento": 392
+    },
+    {
+     "id": "L38",
+     "fecha": "2026-08-25",
+     "cents": 70800000,
+     "descripcion": "Cobranza cliente Estudio Gráfico Cobalto SAS",
+     "comprobante": "0003-00000859",
+     "asiento": 397
+    },
+    {
+     "id": "L39",
+     "fecha": "2026-08-31",
+     "cents": 263600000,
+     "descripcion": "Cobro FC A 0002-00000855 Librería El Faro SA",
+     "comprobante": "0002-00000855",
+     "asiento": 395
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L8",
+      "L16",
+      "L17"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L6",
+      "L4",
+      "L5",
+      "L7"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L1",
+      "L3"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L25",
+      "L31",
+      "L32",
+      "L22",
+      "L33",
+      "L24",
+      "L19",
+      "L23"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L9",
+      "L10",
+      "L11",
+      "L18",
+      "L12",
+      "L13",
+      "L14",
+      "L20",
+      "L15"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L26",
+      "L27",
+      "L21"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L37"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L28"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L34"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B35"
+     ],
+     "libros": [
+      "L39"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L29"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B33"
+     ],
+     "libros": [
+      "L38"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L35"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L30"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L36"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B29",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B36",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B34",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B31",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B32",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

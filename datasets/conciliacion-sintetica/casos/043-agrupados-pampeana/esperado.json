@@ -1,0 +1,644 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "043-agrupados-pampeana",
+ "escenario": "agrupados",
+ "banco": "pampeana",
+ "sistema": "debitos_creditos_us",
+ "semilla": 4031,
+ "periodo": {
+  "desde": "2026-04-01",
+  "hasta": "2026-04-30"
+ },
+ "cliente": {
+  "nombre": "Estudio Gráfico Cobalto SAS",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Depósitos que juntan varias cobranzas y retiros de Mercado Pago que juntan muchas ventas (algunos con más de 4 partidas).",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 1480863000,
+    "bancoCierre": 3104109917,
+    "librosApertura": 1480863000,
+    "librosCierre": 3110572419
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-04-03",
+     "cents": 188000000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ESTUDIO GRÁFICO COBALTO SAS CUIT 30-52538424-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-04-06",
+     "cents": 92765420,
+     "descripcion": "TRANSF DE MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-04-06",
+     "cents": 71706348,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 95021",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-04-07",
+     "cents": 161893669,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-04-08",
+     "cents": 47410417,
+     "descripcion": "TRANSF DE MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-04-09",
+     "cents": 21781000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE PANIFICADORA LA ESPIGA SRL CUIT 30-67361297-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-04-15",
+     "cents": 124524000,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-04-16",
+     "cents": -30930000,
+     "descripcion": "TRANSFERENCIA ENVIADA A ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-04-21",
+     "cents": -125623000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LÁCTEOS VALLE VERDE SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-04-22",
+     "cents": 135377100,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 38151",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-04-22",
+     "cents": 228600000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TEXTIL RÍO BERMEJO SA CUIT 30-70485449-4 REF 0002-00000211",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-04-23",
+     "cents": 152411902,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-04-27",
+     "cents": 159643875,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-04-27",
+     "cents": 153817684,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-04-27",
+     "cents": 116101004,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-04-28",
+     "cents": 132230000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE MUEBLES QUEBRACHO SAS CUIT 33-55711594-9 REF 0003-00000213",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-04-28",
+     "cents": -5340911,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-04-28",
+     "cents": -1121591,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-04-01",
+     "cents": 188000000,
+     "descripcion": "Cobranza cliente Estudio Gráfico Cobalto SAS",
+     "comprobante": "0002-00000209",
+     "asiento": 57
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-04-02",
+     "cents": 23500000,
+     "descripcion": "Venta MP #30222805",
+     "comprobante": "",
+     "asiento": 51
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-04-04",
+     "cents": 17942752,
+     "descripcion": "Venta MP #98040356",
+     "comprobante": "",
+     "asiento": 50
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-04-04",
+     "cents": 20768356,
+     "descripcion": "Venta MP #52178662",
+     "comprobante": "",
+     "asiento": 52
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-04-05",
+     "cents": 86625544,
+     "descripcion": "Cobranza Lucas Fernández - efectivo a depositar",
+     "comprobante": "RC 0001-00000189",
+     "asiento": 26
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-04-05",
+     "cents": 4955514,
+     "descripcion": "Venta MP #52083497",
+     "comprobante": "",
+     "asiento": 47
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-04-05",
+     "cents": 28400000,
+     "descripcion": "Venta MP #78592387",
+     "comprobante": "",
+     "asiento": 54
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-04-06",
+     "cents": 75268125,
+     "descripcion": "Cobranza Martina Gómez - efectivo a depositar",
+     "comprobante": "RC 0001-00000190",
+     "asiento": 27
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-04-06",
+     "cents": 2154312,
+     "descripcion": "Venta MP #68611638",
+     "comprobante": "",
+     "asiento": 53
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-04-06",
+     "cents": 71706348,
+     "descripcion": "Liquidación tarjeta lote 95021",
+     "comprobante": "",
+     "asiento": 55
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-04-07",
+     "cents": 14627999,
+     "descripcion": "Venta MP #78537465",
+     "comprobante": "",
+     "asiento": 46
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-04-08",
+     "cents": 16755000,
+     "descripcion": "Venta MP #38585591",
+     "comprobante": "",
+     "asiento": 48
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-04-08",
+     "cents": 11071904,
+     "descripcion": "Venta MP #41732346",
+     "comprobante": "",
+     "asiento": 49
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-04-08",
+     "cents": 21781000,
+     "descripcion": "Cobranza Panificadora La Espiga SRL Rec. 0001-00000216",
+     "comprobante": "0003-00000215",
+     "asiento": 60
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-04-14",
+     "cents": 22799000,
+     "descripcion": "Cobranza Lucía Ortiz - efectivo a depositar",
+     "comprobante": "RC 0001-00000192",
+     "asiento": 29
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-04-15",
+     "cents": 35725000,
+     "descripcion": "Cobranza Sofía Ramírez - efectivo a depositar",
+     "comprobante": "RC 0001-00000191",
+     "asiento": 28
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-04-15",
+     "cents": 66000000,
+     "descripcion": "Cobranza Tomás Acosta - efectivo a depositar",
+     "comprobante": "RC 0001-00000193",
+     "asiento": 30
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-04-15",
+     "cents": -30930000,
+     "descripcion": "Pago Óptica Mirador SRL OP 0001-00000218",
+     "comprobante": "OP 0001-00000218",
+     "asiento": 62
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-04-20",
+     "cents": 35018840,
+     "descripcion": "Cobranza Valentina Sosa - efectivo a depositar",
+     "comprobante": "RC 0001-00000199",
+     "asiento": 36
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-04-20",
+     "cents": 228600000,
+     "descripcion": "Cobranza cliente Textil Río Bermejo SA",
+     "comprobante": "0002-00000211",
+     "asiento": 58
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-04-20",
+     "cents": -125623000,
+     "descripcion": "Pago a proveedor Lácteos Valle Verde SA",
+     "comprobante": "OP 0001-00000217",
+     "asiento": 61
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-04-22",
+     "cents": 50796062,
+     "descripcion": "Cobranza Santiago Rojas - efectivo a depositar",
+     "comprobante": "RC 0001-00000198",
+     "asiento": 35
+    },
+    {
+     "id": "L23",
+     "fecha": "2026-04-22",
+     "cents": 33400000,
+     "descripcion": "Cobranza Nicolás Romero - efectivo a depositar",
+     "comprobante": "RC 0001-00000200",
+     "asiento": 37
+    },
+    {
+     "id": "L24",
+     "fecha": "2026-04-22",
+     "cents": 135377100,
+     "descripcion": "Liquidación tarjeta lote 38151",
+     "comprobante": "",
+     "asiento": 56
+    },
+    {
+     "id": "L25",
+     "fecha": "2026-04-23",
+     "cents": 33197000,
+     "descripcion": "Cobranza Joaquín Pereyra - efectivo a depositar",
+     "comprobante": "RC 0001-00000201",
+     "asiento": 38
+    },
+    {
+     "id": "L26",
+     "fecha": "2026-04-24",
+     "cents": 47200000,
+     "descripcion": "Cobranza Ignacio Vera - efectivo a depositar",
+     "comprobante": "RC 0001-00000195",
+     "asiento": 32
+    },
+    {
+     "id": "L27",
+     "fecha": "2026-04-24",
+     "cents": 81538344,
+     "descripcion": "Cobranza Ignacio Vera - efectivo a depositar",
+     "comprobante": "RC 0001-00000196",
+     "asiento": 33
+    },
+    {
+     "id": "L28",
+     "fecha": "2026-04-24",
+     "cents": 48200000,
+     "descripcion": "Cobranza Nicolás Romero - efectivo a depositar",
+     "comprobante": "RC 0001-00000205",
+     "asiento": 42
+    },
+    {
+     "id": "L29",
+     "fecha": "2026-04-25",
+     "cents": 48535277,
+     "descripcion": "Cobranza Sofía Ramírez - efectivo a depositar",
+     "comprobante": "RC 0001-00000204",
+     "asiento": 41
+    },
+    {
+     "id": "L30",
+     "fecha": "2026-04-25",
+     "cents": 27600000,
+     "descripcion": "Cobranza Sofía Ramírez - efectivo a depositar",
+     "comprobante": "RC 0001-00000207",
+     "asiento": 44
+    },
+    {
+     "id": "L31",
+     "fecha": "2026-04-26",
+     "cents": 23000000,
+     "descripcion": "Cobranza Lucas Fernández - efectivo a depositar",
+     "comprobante": "RC 0001-00000194",
+     "asiento": 31
+    },
+    {
+     "id": "L32",
+     "fecha": "2026-04-26",
+     "cents": 30482407,
+     "descripcion": "Cobranza Martina Gómez - efectivo a depositar",
+     "comprobante": "RC 0001-00000203",
+     "asiento": 40
+    },
+    {
+     "id": "L33",
+     "fecha": "2026-04-26",
+     "cents": 52600000,
+     "descripcion": "Cobranza Santiago Rojas - efectivo a depositar",
+     "comprobante": "RC 0001-00000206",
+     "asiento": 43
+    },
+    {
+     "id": "L34",
+     "fecha": "2026-04-26",
+     "cents": 35901004,
+     "descripcion": "Cobranza Lucas Fernández - efectivo a depositar",
+     "comprobante": "RC 0001-00000208",
+     "asiento": 45
+    },
+    {
+     "id": "L35",
+     "fecha": "2026-04-27",
+     "cents": 7905531,
+     "descripcion": "Cobranza Joaquín Pereyra - efectivo a depositar",
+     "comprobante": "RC 0001-00000197",
+     "asiento": 34
+    },
+    {
+     "id": "L36",
+     "fecha": "2026-04-27",
+     "cents": 26600000,
+     "descripcion": "Cobranza Julieta Medina - efectivo a depositar",
+     "comprobante": "RC 0001-00000202",
+     "asiento": 39
+    },
+    {
+     "id": "L37",
+     "fecha": "2026-04-27",
+     "cents": 132230000,
+     "descripcion": "Cobro FC A 0003-00000213 Muebles Quebracho SAS",
+     "comprobante": "0003-00000213",
+     "asiento": 59
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L5",
+      "L8"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L16",
+      "L15",
+      "L17"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L31",
+      "L26",
+      "L27",
+      "L35"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L22",
+      "L19",
+      "L23",
+      "L25"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L36",
+      "L32",
+      "L29",
+      "L28"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L33",
+      "L30",
+      "L34"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L11",
+      "L6",
+      "L12",
+      "L13"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L3",
+      "L2",
+      "L4",
+      "L9",
+      "L7"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L24"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L20"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L37"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L21"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L18"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

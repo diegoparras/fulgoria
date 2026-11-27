@@ -1,0 +1,23 @@
+Empresa: Agro Sur del Plata SA
+Cuenta: 1.1.1.02 Banco del Plata Austral
+Período: 01/10/2026 al 31/10/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,7439290.00
+2026-10-05,Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000667,1835639.88,,9274929.88
+2026-10-05,Cobranza cliente Bodega Piedra Negra SA,171000.00,,9445929.88
+2026-10-07,Pago Panificadora La Espiga SRL OP 0001-00000678,,1561000.00,7884929.88
+2026-10-12,Pago Muebles Quebracho SAS OP 0001-00000680,,495000.00,7389929.88
+2026-10-12,Transferencia a Bodega Piedra Negra SA OP 0001-00000681,,2273237.23,5116692.65
+2026-10-13,Pago a proveedor Tecnología Austral SAS,,2257000.00,2859692.65
+2026-10-21,Cobro FC A 0003-00000664 Imprenta Tinta Fresca SRL,2868000.00,,5727692.65
+2026-10-21,Cobranza cliente Lácteos Valle Verde SA,3832330.00,,9560022.65
+2026-10-21,Cobranza cliente Cooperativa Hornero Ltda,2002388.55,,11562411.20
+2026-10-23,Cobro FC A 0002-00000674 Hotel Cerro Azul SA,205000.00,,11767411.20
+2026-10-26,Cobranza cliente Agro Sur del Plata SA,102000.00,,11869411.20
+2026-10-26,Pago a proveedor Transporte Ruta 3 SRL,,1932171.50,9937239.70
+2026-10-29,Transferencia a Hotel Cerro Azul SA OP 0001-00000679,,1634038.75,8303200.95
+2026-10-31,Impuesto ley 25.413 del mes,,127125.96,8176074.99
+2026-10-31,Retenciones SIRCREB del mes,,88130.87,8087944.12
+2026-10-31,Comisiones bancarias del mes,,15582.68,8072361.44
+2026-10-31,IVA comisiones bancarias del mes,,3272.36,8069089.08

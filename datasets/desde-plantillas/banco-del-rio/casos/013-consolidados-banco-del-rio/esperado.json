@@ -1,0 +1,470 @@
+{
+ "dataset": "desde-plantilla",
+ "version": "1.1.0",
+ "id": "013-consolidados-banco-del-rio",
+ "escenario": "consolidados",
+ "banco": "banco-del-rio",
+ "sistema": "debitos_creditos_us",
+ "semilla": 76001,
+ "periodo": {
+  "desde": "2026-09-01",
+  "hasta": "2026-09-30"
+ },
+ "cliente": {
+  "nombre": "Librería El Faro SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El cliente registra los gastos e impuestos bancarios en un solo asiento mensual por concepto (1 libro = muchas líneas del banco).",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 1585112950,
+    "bancoCierre": 2127368320,
+    "librosApertura": 1585112950,
+    "librosCierre": 2127368320
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-09-08",
+     "cents": -29975000,
+     "descripcion": "TRANSFERENCIA ENVIADA A COOPERATIVA HORNERO LTDA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-09-08",
+     "cents": -179850,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-09-15",
+     "cents": 123000000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE VIÑEDOS ALTOS DE CUYO SA CUIT 30-71628637-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-09-15",
+     "cents": -738000,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-09-15",
+     "cents": -2460000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-09-15",
+     "cents": -240400000,
+     "descripcion": "TRANSFERENCIA ENVIADA A METALÚRGICA SAN TELMO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-09-15",
+     "cents": -1442400,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-09-15",
+     "cents": -116100000,
+     "descripcion": "TRANSFERENCIA ENVIADA A COOPERATIVA HORNERO LTDA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-09-15",
+     "cents": -696600,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-09-21",
+     "cents": 10104773,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FRIGORÍFICO PAMPA ALTA SA CUIT 30-67238772-4 REF 0001-00000728",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-09-21",
+     "cents": -60629,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-09-21",
+     "cents": -202095,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-09-21",
+     "cents": -59900000,
+     "descripcion": "TRANSFERENCIA ENVIADA A COOPERATIVA HORNERO LTDA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-09-21",
+     "cents": -359400,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-09-22",
+     "cents": 232611000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FARMACIA DEL PARQUE SCS CUIT 33-58953747-0 REF 0003-00000726",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-09-22",
+     "cents": -1395666,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-09-22",
+     "cents": -4652220,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-09-23",
+     "cents": 239554490,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE DISTRIBUIDORA LOS ÁLAMOS SRL CUIT 30-64514624-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-09-23",
+     "cents": -1437327,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-09-23",
+     "cents": -4791090,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-09-28",
+     "cents": 414500000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TRANSPORTE RUTA 3 SRL CUIT 33-55217612-5",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-09-28",
+     "cents": -2487000,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-09-28",
+     "cents": -8290000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-09-28",
+     "cents": -1600000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-09-28",
+     "cents": -336000,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-09-28",
+     "cents": -9600,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-09-28",
+     "cents": -2016,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-09-07",
+     "cents": -29975000,
+     "descripcion": "Transferencia a Cooperativa Hornero Ltda OP 0001-00000739",
+     "comprobante": "OP 0001-00000739",
+     "asiento": 363
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-09-15",
+     "cents": 123000000,
+     "descripcion": "Cobro FC A 0003-00000734 Viñedos Altos de Cuyo SA",
+     "comprobante": "0003-00000734",
+     "asiento": 359
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-09-15",
+     "cents": -240400000,
+     "descripcion": "Pago a proveedor Metalúrgica San Telmo SRL",
+     "comprobante": "OP 0001-00000737",
+     "asiento": 361
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-09-15",
+     "cents": -116100000,
+     "descripcion": "Transferencia a Cooperativa Hornero Ltda OP 0001-00000738",
+     "comprobante": "OP 0001-00000738",
+     "asiento": 362
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-09-21",
+     "cents": 232611000,
+     "descripcion": "Cobranza cliente Farmacia Del Parque SCS",
+     "comprobante": "0003-00000726",
+     "asiento": 355
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-09-21",
+     "cents": 10104773,
+     "descripcion": "Cobranza cliente Frigorífico Pampa Alta SA",
+     "comprobante": "0001-00000728",
+     "asiento": 356
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-09-21",
+     "cents": 239554490,
+     "descripcion": "Cobranza Distribuidora Los Álamos SRL Rec. 0001-00000731",
+     "comprobante": "0002-00000730",
+     "asiento": 357
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-09-21",
+     "cents": -59900000,
+     "descripcion": "Pago a proveedor Cooperativa Hornero Ltda",
+     "comprobante": "OP 0001-00000736",
+     "asiento": 360
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-09-28",
+     "cents": 414500000,
+     "descripcion": "Cobro FC A 0001-00000732 Transporte Ruta 3 SRL",
+     "comprobante": "0001-00000732",
+     "asiento": 358
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-09-30",
+     "cents": -8808488,
+     "descripcion": "Impuesto ley 25.413 del mes",
+     "comprobante": "",
+     "asiento": 364
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-09-30",
+     "cents": -20395405,
+     "descripcion": "Retenciones SIRCREB del mes",
+     "comprobante": "",
+     "asiento": 365
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-09-30",
+     "cents": -1600000,
+     "descripcion": "Comisiones bancarias del mes",
+     "comprobante": "",
+     "asiento": 366
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-09-30",
+     "cents": -336000,
+     "descripcion": "IVA comisiones bancarias del mes",
+     "comprobante": "",
+     "asiento": 367
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B16",
+      "B11",
+      "B19",
+      "B22",
+      "B4",
+      "B14",
+      "B7",
+      "B9",
+      "B2",
+      "B26",
+      "B27"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B17",
+      "B12",
+      "B20",
+      "B23",
+      "B5"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B24"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "consolidado"
+    }
+   ],
+   "pendientes": [],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

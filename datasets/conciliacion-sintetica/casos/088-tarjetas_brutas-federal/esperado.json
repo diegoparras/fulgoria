@@ -1,0 +1,425 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "088-tarjetas_brutas-federal",
+ "escenario": "tarjetas_brutas",
+ "banco": "federal",
+ "sistema": "planilla_cliente",
+ "semilla": 8012,
+ "periodo": {
+  "desde": "2026-04-01",
+  "hasta": "2026-04-30"
+ },
+ "cliente": {
+  "nombre": "Hotel Cerro Azul SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El libro registra la venta con tarjeta en bruto y aparte el arancel y su IVA; el banco acredita el neto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 279307945,
+    "bancoCierre": 1184132358,
+    "librosApertura": 279307945,
+    "librosCierre": 1204785671
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-04-02",
+     "cents": 151101731,
+     "descripcion": "ACRED PRISMA LIQ 62017",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-04-02",
+     "cents": -1813221,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-04-03",
+     "cents": 280900000,
+     "descripcion": "TRF INMEDIATA RECIB 30576765408",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-04-03",
+     "cents": -3370800,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-04-16",
+     "cents": -252216031,
+     "descripcion": "TRF INMEDIATA ENV 33664318275",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-04-20",
+     "cents": 138622236,
+     "descripcion": "ACRED PRISMA LIQ 83895",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-04-20",
+     "cents": -1663467,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-04-20",
+     "cents": -49332309,
+     "descripcion": "TRF INMEDIATA ENV 30600411574",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-04-22",
+     "cents": 215256000,
+     "descripcion": "TRF INMEDIATA RECIB 30661012508",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-04-22",
+     "cents": -2583072,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-04-24",
+     "cents": -4900000,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-04-24",
+     "cents": -1029000,
+     "descripcion": "I.V.A. TASA GENERAL",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-04-27",
+     "cents": 234985127,
+     "descripcion": "ACRED PRISMA LIQ 71388",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-04-27",
+     "cents": -2819822,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-04-28",
+     "cents": 75576780,
+     "descripcion": "ACRED PRISMA LIQ 27625",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-04-28",
+     "cents": -906921,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-04-28",
+     "cents": 130584192,
+     "descripcion": "TRF INMEDIATA RECIB 33712471757 0001-00000326",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-04-28",
+     "cents": -1567010,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-04-01",
+     "cents": 280900000,
+     "descripcion": "Cobro FC A 0001-00000322 Librería El Faro SA",
+     "comprobante": "0001-00000322",
+     "asiento": 373
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-04-02",
+     "cents": 151101731,
+     "descripcion": "Liquidación tarjeta lote 62017",
+     "comprobante": "",
+     "asiento": 372
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-04-15",
+     "cents": -252216031,
+     "descripcion": "Pago Ferretería El Tornillo SRL OP 0001-00000328",
+     "comprobante": "OP 0001-00000328",
+     "asiento": 376
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-04-17",
+     "cents": -49332309,
+     "descripcion": "Pago Librería El Faro SA OP 0001-00000329",
+     "comprobante": "OP 0001-00000329",
+     "asiento": 377
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-04-20",
+     "cents": 141708651,
+     "descripcion": "Ventas con tarjeta lote 83895",
+     "comprobante": "",
+     "asiento": 369
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-04-20",
+     "cents": -2550756,
+     "descripcion": "Arancel tarjeta lote 83895",
+     "comprobante": "",
+     "asiento": 370
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-04-20",
+     "cents": -535659,
+     "descripcion": "IVA arancel lote 83895",
+     "comprobante": "",
+     "asiento": 371
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-04-21",
+     "cents": 215256000,
+     "descripcion": "Cobranza cliente Imprenta Tinta Fresca SRL",
+     "comprobante": "0001-00000324",
+     "asiento": 374
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-04-27",
+     "cents": 243836388,
+     "descripcion": "Ventas con tarjeta lote 71388",
+     "comprobante": "",
+     "asiento": 366
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-04-27",
+     "cents": -7315092,
+     "descripcion": "Arancel tarjeta lote 71388",
+     "comprobante": "",
+     "asiento": 367
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-04-27",
+     "cents": -1536169,
+     "descripcion": "IVA arancel lote 71388",
+     "comprobante": "",
+     "asiento": 368
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-04-27",
+     "cents": 130584192,
+     "descripcion": "Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000327",
+     "comprobante": "0001-00000326",
+     "asiento": 375
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-04-28",
+     "cents": 77259492,
+     "descripcion": "Ventas con tarjeta lote 27625",
+     "comprobante": "",
+     "asiento": 363
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-04-28",
+     "cents": -1390671,
+     "descripcion": "Arancel tarjeta lote 27625",
+     "comprobante": "",
+     "asiento": 364
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-04-28",
+     "cents": -292041,
+     "descripcion": "IVA arancel lote 27625",
+     "comprobante": "",
+     "asiento": 365
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L13",
+      "L14",
+      "L15"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L9",
+      "L10",
+      "L11"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L5",
+      "L6",
+      "L7"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B11",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B7",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

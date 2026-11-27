@@ -1,0 +1,21 @@
+{
+  "fulgoria_plantilla_mayor": 1,
+  "sistema": "Importe con signo, tabulado, sin saldo",
+  "encabezados": [
+    "Fecha",
+    "N° Asiento",
+    "Leyenda",
+    "Importe"
+  ],
+  "mapeo": {
+    "fecha": "Fecha",
+    "asiento": "N° Asiento",
+    "descripcion": "Leyenda",
+    "importe": "Importe"
+  },
+  "formato": {
+    "numeros": "us"
+  },
+  "unirContinuacion": true,
+  "ignorar": []
+}

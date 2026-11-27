@@ -1,0 +1,643 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "070-desfasaje-cuyano",
+ "escenario": "desfasaje",
+ "banco": "cuyano",
+ "sistema": "comillas_coma",
+ "semilla": 6042,
+ "periodo": {
+  "desde": "2026-04-01",
+  "hasta": "2026-04-30"
+ },
+ "cliente": {
+  "nombre": "Servicios Médicos Lomas SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El libro registra con días de diferencia respecto del banco, algunos más allá de la ventana por defecto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor-ars.csv",
+   "saldos": {
+    "bancoApertura": 182570753,
+    "bancoCierre": 788601341,
+    "librosApertura": 182570753,
+    "librosCierre": 792445341
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-04-06",
+     "cents": 416365000,
+     "descripcion": "TRF INMEDIATA RECIB 33634785650 0001-00000115",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-04-07",
+     "cents": -258971000,
+     "descripcion": "TRF INMEDIATA ENV 30649630700",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-04-13",
+     "cents": -263054196,
+     "descripcion": "TRF INMEDIATA ENV 30575542774",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-04-13",
+     "cents": -14900000,
+     "descripcion": "DEBITO AUTOMATICO SEGUROS LA PREVISORA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-04-14",
+     "cents": 356491529,
+     "descripcion": "TRF INMEDIATA RECIB 30716346346 0001-00000117",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-04-17",
+     "cents": 114206246,
+     "descripcion": "TRF INMEDIATA RECIB 33597713350",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-04-20",
+     "cents": -20640000,
+     "descripcion": "TRF INMEDIATA ENV 33524758763",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-04-20",
+     "cents": -116748000,
+     "descripcion": "TRF INMEDIATA ENV 30592739433",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-04-20",
+     "cents": -34600000,
+     "descripcion": "TRF INMEDIATA ENV 33570698104",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-04-20",
+     "cents": -26600000,
+     "descripcion": "DEBITO AUTOMATICO ENERGÍA METROPOLITANA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-04-23",
+     "cents": 140912981,
+     "descripcion": "TRF INMEDIATA RECIB 30537257772 0001-00000123",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-04-27",
+     "cents": 349000000,
+     "descripcion": "TRF INMEDIATA RECIB 33571326421 0002-00000119",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-04-27",
+     "cents": -99800000,
+     "descripcion": "TRF INMEDIATA ENV 30604410025",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-04-27",
+     "cents": -22000000,
+     "descripcion": "DEBITO AUTOMATICO AGUAS URBANAS",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-04-27",
+     "cents": -3100000,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-04-27",
+     "cents": -651000,
+     "descripcion": "I.V.A. TASA GENERAL",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-04-27",
+     "cents": -93000,
+     "descripcion": "PERCEPCION IVA",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-04-29",
+     "cents": -178802008,
+     "descripcion": "TRF INMEDIATA ENV 30715202839",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-04-30",
+     "cents": 263887036,
+     "descripcion": "TRF INMEDIATA RECIB 30673379008 0003-00000113",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-04-30",
+     "cents": 150300000,
+     "descripcion": "TRF INMEDIATA RECIB 33586669848",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-04-30",
+     "cents": -145173000,
+     "descripcion": "TRF INMEDIATA ENV 30556206615",
+     "tipo": "transferencia"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-04-01",
+     "cents": 416365000,
+     "descripcion": "Cobranza Agro Sur del Plata SA Rec. 0001-00000116",
+     "comprobante": "0001-00000115",
+     "asiento": 277
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-04-02",
+     "cents": -14900000,
+     "descripcion": "Seguros La Previsora - débito automático",
+     "comprobante": "",
+     "asiento": 292
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-04-06",
+     "cents": -263054196,
+     "descripcion": "Pago a proveedor Cooperativa Hornero Ltda",
+     "comprobante": "OP 0001-00000132",
+     "asiento": 288
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-04-06",
+     "cents": -258971000,
+     "descripcion": "Pago Logística Andina SAS OP 0001-00000133",
+     "comprobante": "OP 0001-00000133",
+     "asiento": 289
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-04-07",
+     "cents": 356491529,
+     "descripcion": "Cobro FC A 0001-00000117 Ferretería El Tornillo SRL",
+     "comprobante": "0001-00000117",
+     "asiento": 278
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-04-08",
+     "cents": -116748000,
+     "descripcion": "Pago a proveedor Estudio Gráfico Cobalto SAS",
+     "comprobante": "OP 0001-00000129",
+     "asiento": 285
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-04-13",
+     "cents": 140912981,
+     "descripcion": "Cobro FC A 0001-00000123 Hotel Cerro Azul SA",
+     "comprobante": "0001-00000123",
+     "asiento": 281
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-04-13",
+     "cents": -20640000,
+     "descripcion": "Pago a proveedor Estudio Gráfico Cobalto SAS",
+     "comprobante": "OP 0001-00000127",
+     "asiento": 283
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-04-14",
+     "cents": 349000000,
+     "descripcion": "Cobro FC A 0002-00000119 Estudio Gráfico Cobalto SAS",
+     "comprobante": "0002-00000119",
+     "asiento": 279
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-04-15",
+     "cents": 114206246,
+     "descripcion": "Cobranza Transporte Ruta 3 SRL Rec. 0001-00000126",
+     "comprobante": "0003-00000125",
+     "asiento": 282
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-04-16",
+     "cents": -22000000,
+     "descripcion": "Aguas Urbanas - débito automático",
+     "comprobante": "",
+     "asiento": 293
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-04-17",
+     "cents": -26600000,
+     "descripcion": "Energía Metropolitana - débito automático",
+     "comprobante": "",
+     "asiento": 291
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-04-20",
+     "cents": -99800000,
+     "descripcion": "Pago Distribuidora Los Álamos SRL OP 0001-00000130",
+     "comprobante": "OP 0001-00000130",
+     "asiento": 286
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-04-20",
+     "cents": -34600000,
+     "descripcion": "Pago Constructora Delta Norte SRL OP 0001-00000131",
+     "comprobante": "OP 0001-00000131",
+     "asiento": 287
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-04-20",
+     "cents": -178802008,
+     "descripcion": "Pago a proveedor Imprenta Tinta Fresca SRL",
+     "comprobante": "OP 0001-00000134",
+     "asiento": 290
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-04-22",
+     "cents": -145173000,
+     "descripcion": "Pago Librería El Faro SA OP 0001-00000128",
+     "comprobante": "OP 0001-00000128",
+     "asiento": 284
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-04-23",
+     "cents": 263887036,
+     "descripcion": "Cobranza Panificadora La Espiga SRL Rec. 0001-00000114",
+     "comprobante": "0003-00000113",
+     "asiento": 276
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-04-23",
+     "cents": 150300000,
+     "descripcion": "Cobranza Transporte Ruta 3 SRL Rec. 0001-00000122",
+     "comprobante": "0002-00000121",
+     "asiento": 280
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B20"
+     ],
+     "libros": [
+      "L18"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B15",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  },
+  {
+   "segmento": 1,
+   "moneda": "USD",
+   "mayor": "mayor-usd.csv",
+   "saldos": {
+    "bancoApertura": 2036896,
+    "bancoCierre": 1388159,
+    "librosApertura": 2036896,
+    "librosCierre": 1389680
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-04-02",
+     "cents": 585332,
+     "descripcion": "TRF INMEDIATA RECIB 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-04-07",
+     "cents": -619214,
+     "descripcion": "TRF INMEDIATA ENV 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-04-20",
+     "cents": -685922,
+     "descripcion": "TRF INMEDIATA ENV 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-04-21",
+     "cents": 72588,
+     "descripcion": "TRF INMEDIATA RECIB 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-04-27",
+     "cents": -1521,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-04-02",
+     "cents": 585332,
+     "descripcion": "Cobro exportación (USD)",
+     "comprobante": "",
+     "asiento": 124
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-04-07",
+     "cents": -619214,
+     "descripcion": "Pago proveedor exterior (USD)",
+     "comprobante": "",
+     "asiento": 122
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-04-20",
+     "cents": -685922,
+     "descripcion": "Pago proveedor exterior (USD)",
+     "comprobante": "",
+     "asiento": 125
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-04-21",
+     "cents": 72588,
+     "descripcion": "Cobro exportación (USD)",
+     "comprobante": "",
+     "asiento": 123
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B5",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

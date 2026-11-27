@@ -2,7 +2,9 @@
 // Columnas con ROLES (no 5 fijas). Fila-ancla por monto presente (robusto a fechas
 // corridas, descripciones multilínea, páginas de pie legal). Saldo adaptativo.
 
-export const ROLES = ["fecha", "descripcion", "importe", "debito", "credito", "saldo", "texto", "ignorar"];
+export const ROLES = ["fecha", "descripcion", "importe", "debito", "credito", "saldo", "signo", "texto", "ignorar"];
+// "signo": columna que indica si el importe es débito o crédito (D/H, DB/CR, -/+). Algunos bancos
+// imprimen el importe siempre positivo y el sentido en otra columna.
 const AMOUNT_ROLES = new Set(["importe", "debito", "credito", "saldo"]);
 const MOV_ROLES = new Set(["importe", "debito", "credito"]); // suman al saldo
 // Fecha: ISO año-primero (2003-10-14, separador / - .) O día-primero con barras (14/10/2003).
@@ -43,6 +45,17 @@ export function parseAmount(s) {
   const n = Number(clean);
   return neg ? -n : n;
 }
+
+// Columna de signo → -1 (débito), +1 (crédito/haber) o 0 (no se sabe).
+export function signOf(s) {
+  const t = String(s || "").trim().toUpperCase();
+  if (/^(D|DB|DEB|DEBE|DEBITO|DÉBITO|-)(?![A-ZÁÉÍÓÚ])/.test(t)) return -1;
+  if (/^(H|C|CR|CRED|CREDITO|CRÉDITO|HABER|\+)(?![A-ZÁÉÍÓÚ])/.test(t)) return 1;
+  return 0;
+}
+// Fecha sin año (DD/MM) al inicio de la celda de fecha: algunos bancos la imprimen así y el año
+// sale del período del resumen.
+const DATE_DM_RE = /^\s*(\d{1,2}\/\d{1,2})(?![\/\d])/;
 
 // Para CELDAS de columna (texto unido): toma el ÚLTIMO importe con decimales —el de la
 // derecha en columnas right-aligned— para que un nº de referencia pegado adelante no lo
@@ -134,11 +147,22 @@ export function extract(pages, columns, rules = []) {
   const saldoIdx = idxByRole("saldo");
   const fechaIdx = idxByRole("fecha");
   const descIdx = idxByRole("descripcion");
+  const signoIdx = idxByRole("signo");
   const movIdxs = columns.map((c, i) => (MOV_ROLES.has(c.role) ? i : -1)).filter((i) => i >= 0);
-
+  // Importe de una celda con su signo: débito siempre −, crédito siempre +, importe con signo tal
+  // cual, salvo que haya columna de signo (D/H), que manda sobre el importe.
+  const valOf = (text, i) => {
+    const v = parseAmountCell(text[i]);
+    if (v == null) return null;
+    const r = columns[i].role;
+    if (r === "debito") return -Math.abs(v);
+    if (r === "credito") return Math.abs(v);
+    if (r === "importe" && signoIdx >= 0) { const sg = signOf(text[signoIdx]); if (sg) return sg * Math.abs(v); }
+    return v;
+  };
   const netOf = (text) => {
     let s = 0, any = false;
-    for (const i of movIdxs) { const v = parseAmountCell(text[i]); if (v == null) continue; any = true; const r = columns[i].role; s += r === "debito" ? -Math.abs(v) : r === "credito" ? Math.abs(v) : v; }
+    for (const i of movIdxs) { const v = valOf(text, i); if (v == null) continue; any = true; s += v; }
     return { net: s, any };
   };
 
@@ -177,13 +201,16 @@ export function extract(pages, columns, rules = []) {
       const lineText = norm(text.join(" ")); // rótulos pueden caer en fecha/combte, no en descripción
       // Reglas de exclusión: filas que el usuario marcó como basura → se ignoran (no rompen continuidad).
       if (rules.length && rowExcluded(text, lineText, columns, rules)) { current = null; continue; }
-      const dateMatch = (fechaIdx >= 0 ? text[fechaIdx] : "").match(DATE_RE);
+      const fechaCell = fechaIdx >= 0 ? text[fechaIdx] : "";
+      const dateMatch = fechaCell.match(DATE_RE) || fechaCell.match(DATE_DM_RE);
       const isMain = saldoMode ? saldoVal != null : anyMov;
 
+      // Sin columna de saldo, el saldo inicial/final viene en un rótulo ("Saldo inicial al 01/06: $ 1.234,56").
+      const rotuloVal = saldoVal ?? (saldoIdx < 0 ? parseAmountCell(lineText) : null);
       // Apertura: arranca una cuenta nueva (descarta lo de arriba: resúmenes, totales).
-      if (OPENING_LABELS.some((l) => lineText.includes(l))) { if (saldoVal != null) startSegment(saldoVal, detectCurrency(lineText), true); else current = null; continue; }
+      if (OPENING_LABELS.some((l) => lineText.includes(l))) { if (rotuloVal != null) startSegment(rotuloVal, detectCurrency(lineText), true); else current = null; continue; }
       // Cierre: cierra la cuenta actual.
-      if (CLOSING_LABELS.some((l) => lineText.includes(l))) { if (seg && !seg.closed && saldoVal != null && seg.movements.length > 0) { seg.closing = saldoVal; seg.closed = true; } current = null; continue; }
+      if (CLOSING_LABELS.some((l) => lineText.includes(l))) { if (seg && !seg.closed && rotuloVal != null && seg.movements.length > 0) { seg.closing = rotuloVal; seg.closed = true; } current = null; continue; }
 
       if (!seg) { if (isMain) startSegment(null, null, false); else continue; } // sin rótulo: cuenta implícita al 1er movimiento
       if (seg.closed) { current = null; continue; } // cuenta cerrada: esperar próxima apertura
@@ -199,8 +226,8 @@ export function extract(pages, columns, rules = []) {
         }
         seg.breaks = 0; // la cadena reanudó
         const amounts = {}, cells = {};
-        columns.forEach((c, i) => { cells[c.label] = text[i]; if (AMOUNT_ROLES.has(c.role)) amounts[c.label] = parseAmountCell(text[i]); });
-        current = { fecha: dateMatch ? dateMatch[0] : "", descripcion: descIdx >= 0 ? text[descIdx] : "", saldo: saldoVal, amounts, cells, _page: pg.index };
+        columns.forEach((c, i) => { cells[c.label] = text[i]; if (AMOUNT_ROLES.has(c.role)) amounts[c.label] = c.role === "importe" && signoIdx >= 0 ? valOf(text, i) : parseAmountCell(text[i]); });
+        current = { fecha: dateMatch ? dateMatch[0] : "", descripcion: descIdx >= 0 ? text[descIdx] : "", saldo: saldoVal, amounts, cells, _page: pg.index, _y: Math.round(line.cy * 1e4) / 1e4 }; // _y: evidencia (dónde está la fila)
         seg.movements.push(current); lastY = gy;
         if (saldoVal != null) seg.last = saldoVal;
       } else if (current && !anyMov && gy - lastY <= 0.05) {
@@ -228,6 +255,16 @@ export function extract(pages, columns, rules = []) {
   return { segments: segs, movements, opening: segs[0] ? segs[0].opening : null, closing: segs.length ? segs[segs.length - 1].closing : null, columns };
 }
 
+// Año del documento: de las fechas de los movimientos si lo traen; si no (bancos que imprimen
+// DD/MM), del encabezado ("Período 01/03/2026 al 31/03/2026"). null si no aparece en ningún lado.
+export function docYear(pages, movements = []) {
+  const deMov = movements.map((m) => (String(m.fecha || "").match(/\b(20\d{2}|19\d{2})\b/) || [])[1]).find(Boolean);
+  if (deMov) return Number(deMov);
+  const lines = (pages[0]?.items || []).filter((it) => it.y < 0.35).map((it) => it.str).join(" ");
+  const per = lines.match(/per[ií]odo[^0-9]*\d{1,2}\/\d{1,2}\/(\d{4})/i) || lines.match(/\d{1,2}\/\d{1,2}\/(20\d{2})/) || lines.match(/\b(20\d{2})\b/);
+  return per ? Number(per[1]) : null;
+}
+
 // Detecta la moneda desde la línea de apertura ("$"/"U$S"/"USD"/"dólares").
 function detectCurrency(text) {
   const t = text.toLowerCase();
@@ -236,7 +273,8 @@ function detectCurrency(text) {
   return null;
 }
 
-function sumMov(mov, columns) {
+// Neto con signo de un movimiento (créditos +, débitos −). Exportado para el núcleo de conciliación.
+export function sumMov(mov, columns) {
   let s = 0, any = false;
   for (const c of columns) {
     if (!MOV_ROLES.has(c.role)) continue;
@@ -318,25 +356,115 @@ export function matchScore(pages, anchors) {
 // --- Auto-detección genérica (best-effort; el usuario corrige) ---
 // Clusteriza sobre la página con MÁS importes (la tabla de movimientos), así evita
 // carátulas/resúmenes que suelen estar en la página 1.
+// --- Auto-detección VERIFICADA: la regla del saldo elige la interpretación ---
+// La auto-detección geométrica (autoDetectBase) propone UNA lectura de las columnas, pero hay
+// ambigüedades que la geometría no resuelve: ¿la última columna de importes es el saldo o los
+// créditos? ¿débito/crédito o al revés? ¿hay una columna D/H? Se prueban las hipótesis
+// razonables y gana la que hace cerrar los saldos (global y fila a fila). Si ninguna cierra,
+// queda la base y `verificado: false`.
 export function autoDetect(pages) {
+  const base = autoDetectBase(pages).columns;
+  const bases = [base, autoDetectBase(pages, "derecha").columns];
+  let best = null;
+  for (const cols of bases.flatMap((b) => hipotesis(b, pages))) {
+    const sc = puntajeLectura(pages, cols);
+    if (!best || sc.puntaje > best.puntaje) best = { cols, ...sc };
+  }
+  return { columns: best.cols, verificado: best.verificado };
+}
+
+/** ¿Con estas columnas cierran los saldos? → { verificado, puntaje } (lo usa la IA para bancos nuevos). */
+export function evaluarColumnas(pages, columns) { return puntajeLectura(pages, columns); }
+
+function puntajeLectura(pages, columns) {
+  let ext;
+  try { ext = extract(pages, columns); } catch { return { puntaje: -1, verificado: false }; }
+  if (!ext.segments.length) return { puntaje: 0, verificado: false };
+  let p = 0, todos = true;
+  for (const seg of ext.segments) {
+    const b = balanceCheck({ ...seg, columns });
+    if (b.globalOk) p += 1000; else todos = false;
+    if (b.rowOk) p += 100;
+    p += Math.min(seg.movements.length, 99);
+  }
+  return { puntaje: p, verificado: todos };
+}
+
+function hipotesis(base, pages) {
+  const AMT = new Set(["importe", "debito", "credito", "saldo"]);
+  const fijas = base.filter((c) => !AMT.has(c.role));
+  const montos = base.filter((c) => AMT.has(c.role));
+  const out = [base];
+  if (!montos.length) return out;
+  const conRoles = (roles) => [...fijas, ...montos.map((c, i) => ({ ...c, role: roles[i], label: ROLE_LABEL[roles[i]] + (roles.filter((r) => r === roles[i]).length > 1 ? ` ${i + 1}` : "") }))].sort((a, b) => a.from - b.from);
+  const n = montos.length;
+  const asign = [];
+  // Con saldo en la última columna de importes…
+  if (n === 2) asign.push(["importe", "saldo"]);
+  if (n === 3) asign.push(["debito", "credito", "saldo"], ["credito", "debito", "saldo"], ["importe", "importe", "saldo"]);
+  // …o sin saldo corrido (los saldos vienen en rótulos).
+  if (n === 1) asign.push(["importe"]);
+  if (n === 2) asign.push(["debito", "credito"], ["credito", "debito"], ["importe", "importe"]);
+  for (const a of asign) out.push(conRoles(a));
+  // Columna de signo (D/H): ítems que son solo "D"/"H"/"DB"/"CR" alineados en una banda angosta.
+  const signo = bandaSigno(pages);
+  if (signo) for (const cols of [...out]) if (cols.some((c) => c.role === "importe")) out.push(insertarBanda(cols, signo));
+  return out;
+}
+const ROLE_LABEL = { importe: "Importe", debito: "Débito", credito: "Crédito", saldo: "Saldo", signo: "D/H" };
+
+function bandaSigno(pages) {
+  const its = pages.flatMap((p) => p.items).filter((it) => /^(D|H|DB|CR|C)$/i.test(it.str.trim()));
+  if (its.length < 3) return null;
+  // La banda más poblada (agrupando por x con tolerancia).
+  const bands = clusterBands(its.map((it) => ({ a: it.x, b: it.x + it.w })), 0.01).sort((p, q) => q.n - p.n);
+  const b = bands[0];
+  if (!b || b.n < 3 || b.b - b.a > 0.05) return null;
+  return { from: b.a - 0.006, to: b.b + 0.006 };
+}
+function insertarBanda(cols, banda) {
+  const out = [];
+  let { from, to } = banda;
+  for (const c of cols) {
+    if (c.to <= banda.from || c.from >= banda.to) { out.push({ ...c }); continue; }
+    // Recorta la columna que se superpone con la banda de signo. Un resto angosto (no entra un
+    // importe) no queda como columna aparte: lo absorbe la banda de signo.
+    const izq = c.from < banda.from ? { ...c, to: banda.from } : null;
+    const der = c.to > banda.to ? { ...c, from: banda.to } : null;
+    const util = (x) => x && x.to - x.from >= 0.03;
+    if (util(izq)) out.push(izq); else if (izq) from = Math.min(from, izq.from);
+    if (util(der)) out.push(util(izq) ? { ...der, label: der.label + " (2)" } : der); else if (der) to = Math.max(to, der.to);
+  }
+  out.push({ from, to, role: "signo", label: "D/H" });
+  return out.sort((a, b) => a.from - b.from);
+}
+
+// ¿El ítem ES un importe (y no un texto que contiene uno, como "Saldo inicial al 01/06: $ 1.234,56")?
+const esCeldaImporte = (s) => parseAmount(s) != null && /^(?:U\$S|USD|\$)?\s*[-(]?\s*(?:\$\s*)?\d[\d.,]*\s*[-)]?$/i.test(String(s).trim());
+
+function autoDetectBase(pages, agrupar = "solape") {
   // Clusteriza sobre la página con MÁS importes (la tabla de movimientos), así evita
   // carátulas/resúmenes que suelen estar en la página 1.
   let items = pages[0] ? pages[0].items : [];
-  let bestN = items.filter((it) => parseAmount(it.str) != null).length;
+  let bestN = items.filter((it) => esCeldaImporte(it.str)).length;
   for (const p of pages) {
-    const n = p.items.filter((it) => parseAmount(it.str) != null).length;
+    const n = p.items.filter((it) => esCeldaImporte(it.str)).length;
     if (n > bestN) { bestN = n; items = p.items; }
   }
-  // Líneas de datos: las que tienen al menos un importe.
-  const amountItems = items.filter((it) => parseAmount(it.str) != null);
+  // Celdas de importe: ítems que son un importe (no rótulos que contienen uno).
+  const amountItems = items.filter((it) => esCeldaImporte(it.str));
   // Fechas de la columna de fecha viven a la izquierda y son CASI solo una fecha (no texto que
   // apenas la contiene, como "Período: 01/06/2026 al 30/06/2026" del header, que ensancharía la
   // banda y se tragaría la descripción). Pido la fecha al inicio y ocupando casi todo el ítem.
-  const isDateCell = (s) => { const t = s.trim(); const m = t.match(DATE_RE); return !!m && m.index === 0 && t.length - m[0].length <= 2; };
+  const isDateCell = (s) => { const t = s.trim(); const m = t.match(DATE_RE) || t.match(/^\d{1,2}\/\d{1,2}$/); return !!m && m.index === 0 && t.length - m[0].length <= 2; };
   const dateItems = items.filter((it) => it.x < 0.30 && isDateCell(it.str));
   if (amountItems.length < 3) return { columns: defaultColumns() };
 
-  const amountCols = clusterBands(amountItems.map((it) => ({ a: it.x, b: it.x + it.w })));
+  // Columnas de importes: por solapamiento horizontal o por BORDE DERECHO común (los importes van
+  // alineados a la derecha; así se separan columnas muy juntas que el solapamiento fusiona).
+  const amountCols = agrupar === "derecha"
+    ? clusterRightEdges(amountItems)
+    : clusterBands(amountItems.map((it) => ({ a: it.x, b: it.x + it.w })));
   const dateBand = dateItems.length ? span(dateItems.map((it) => ({ a: it.x, b: it.x + it.w }))) : { a: 0.0, b: 0.10 };
 
   // Signo: ¿hay importes negativos en columnas que NO sean la última (saldo)?
@@ -393,6 +521,19 @@ function clusterBands(intervals, gap = 0.03) {
   bands.push(cur);
   // Descartar singletons (ruido); columnas reales pueden tener pocas filas (saldo de Credicoop = 2×).
   return bands.filter((b) => b.n >= 2);
+}
+
+// Agrupa ítems por su borde derecho (tolerancia ~0,8% del ancho); cada grupo es una columna de
+// importes alineados a la derecha: [{a: x mínimo, b: borde derecho, n}] de izquierda a derecha.
+function clusterRightEdges(items, tol = 0.008) {
+  const xs = [...items].sort((p, q) => (p.x + p.w) - (q.x + q.w));
+  const groups = [];
+  for (const it of xs) {
+    const r = it.x + it.w, g = groups[groups.length - 1];
+    if (g && r - g.r <= tol) { g.a = Math.min(g.a, it.x); g.b = Math.max(g.b, r); g.r = r; g.n++; }
+    else groups.push({ a: it.x, b: r, r, n: 1 });
+  }
+  return groups.filter((g) => g.n >= 2).map(({ a, b, n }) => ({ a, b, n }));
 }
 
 function span(intervals) { return { a: Math.min(...intervals.map((i) => i.a)), b: Math.max(...intervals.map((i) => i.b)) }; }

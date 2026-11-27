@@ -1,0 +1,956 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "038-agrupados-plata",
+ "escenario": "agrupados",
+ "banco": "plata",
+ "sistema": "comillas_coma",
+ "semilla": 4002,
+ "periodo": {
+  "desde": "2026-03-01",
+  "hasta": "2026-03-31"
+ },
+ "cliente": {
+  "nombre": "Logística Andina SAS",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 2,
+ "notas": "Depósitos que juntan varias cobranzas y retiros de Mercado Pago que juntan muchas ventas (algunos con más de 4 partidas).",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2508978085,
+    "bancoCierre": 3731770654,
+    "librosApertura": 2508978085,
+    "librosCierre": 3751657835
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-03-02",
+     "cents": 106087056,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-03-02",
+     "cents": -636522,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-03-04",
+     "cents": 56207000,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-03-04",
+     "cents": -337242,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-03-05",
+     "cents": 86200000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE IMPRENTA TINTA FRESCA SRL CUIT 33-50854151-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-03-05",
+     "cents": -517200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-03-10",
+     "cents": 145065707,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-03-10",
+     "cents": -870394,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-03-13",
+     "cents": 68101720,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 16148",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-03-13",
+     "cents": -408610,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-03-17",
+     "cents": 284656156,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 82339",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-03-17",
+     "cents": -1707937,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-03-19",
+     "cents": 88673138,
+     "descripcion": "TRANSF DE MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-03-19",
+     "cents": -532039,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-03-19",
+     "cents": 285734610,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 91200",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-03-19",
+     "cents": -1714408,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-03-19",
+     "cents": -260803059,
+     "descripcion": "TRANSFERENCIA ENVIADA A HOTEL CERRO AZUL SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-03-19",
+     "cents": -1564818,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-03-20",
+     "cents": -31080000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-03-20",
+     "cents": -186480,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-03-23",
+     "cents": 40979000,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-03-23",
+     "cents": -245874,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-03-23",
+     "cents": 146500000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE IMPRENTA TINTA FRESCA SRL CUIT 30-59105806-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-03-23",
+     "cents": -879000,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-03-24",
+     "cents": 112023131,
+     "descripcion": "TRANSF DE MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-03-24",
+     "cents": -672139,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-03-25",
+     "cents": 50870000,
+     "descripcion": "TRANSF DE MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-03-25",
+     "cents": -305220,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-03-27",
+     "cents": 55500930,
+     "descripcion": "TRANSF DE MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-03-27",
+     "cents": -333006,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-03-30",
+     "cents": 204955361,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE QUÍMICA LITORAL SRL CUIT 33-59719839-1 REF 0003-00000642",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-03-30",
+     "cents": -1229732,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-03-30",
+     "cents": -196991000,
+     "descripcion": "TRANSFERENCIA ENVIADA A IMPRENTA TINTA FRESCA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-03-30",
+     "cents": -1181946,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B35",
+     "fecha": "2026-03-30",
+     "cents": -5262469,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B36",
+     "fecha": "2026-03-30",
+     "cents": -1105118,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B37",
+     "fecha": "2026-03-30",
+     "cents": -157874,
+     "descripcion": "PERCEP. IVA RG 2408",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B38",
+     "fecha": "2026-03-30",
+     "cents": -31575,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B39",
+     "fecha": "2026-03-30",
+     "cents": -6631,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B40",
+     "fecha": "2026-03-30",
+     "cents": -947,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-03-01",
+     "cents": 18387056,
+     "descripcion": "Cobranza Lucía Ortiz - efectivo a depositar",
+     "comprobante": "RC 0001-00000636",
+     "asiento": 127
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-03-01",
+     "cents": 87700000,
+     "descripcion": "Cobranza Paula Castro - efectivo a depositar",
+     "comprobante": "RC 0001-00000637",
+     "asiento": 128
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-03-03",
+     "cents": 17094000,
+     "descripcion": "Cobranza Nicolás Romero - efectivo a depositar",
+     "comprobante": "RC 0001-00000629",
+     "asiento": 120
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-03-03",
+     "cents": 39113000,
+     "descripcion": "Cobranza Lucía Ortiz - efectivo a depositar",
+     "comprobante": "RC 0001-00000630",
+     "asiento": 121
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-03-03",
+     "cents": 86200000,
+     "descripcion": "Cobranza Imprenta Tinta Fresca SRL Rec. 0001-00000641",
+     "comprobante": "0001-00000640",
+     "asiento": 157
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-03-07",
+     "cents": 78065707,
+     "descripcion": "Cobranza Joaquín Pereyra - efectivo a depositar",
+     "comprobante": "RC 0001-00000631",
+     "asiento": 122
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-03-07",
+     "cents": 5600000,
+     "descripcion": "Cobranza Ignacio Vera - efectivo a depositar",
+     "comprobante": "RC 0001-00000632",
+     "asiento": 123
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-03-09",
+     "cents": 61400000,
+     "descripcion": "Cobranza Santiago Rojas - efectivo a depositar",
+     "comprobante": "RC 0001-00000633",
+     "asiento": 124
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-03-13",
+     "cents": 68101720,
+     "descripcion": "Liquidación tarjeta lote 16148",
+     "comprobante": "",
+     "asiento": 154
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-03-16",
+     "cents": 1600000,
+     "descripcion": "Venta MP #91203377",
+     "comprobante": "",
+     "asiento": 133
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-03-16",
+     "cents": 16065590,
+     "descripcion": "Venta MP #91563542",
+     "comprobante": "",
+     "asiento": 135
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-03-17",
+     "cents": 25403011,
+     "descripcion": "Venta MP #19885627",
+     "comprobante": "",
+     "asiento": 131
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-03-17",
+     "cents": 11139501,
+     "descripcion": "Venta MP #98168229",
+     "comprobante": "",
+     "asiento": 132
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-03-17",
+     "cents": 6302771,
+     "descripcion": "Venta MP #62263047",
+     "comprobante": "",
+     "asiento": 134
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-03-17",
+     "cents": 284656156,
+     "descripcion": "Liquidación tarjeta lote 82339",
+     "comprobante": "",
+     "asiento": 153
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-03-18",
+     "cents": 971265,
+     "descripcion": "Venta MP #63615439",
+     "comprobante": "",
+     "asiento": 130
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-03-18",
+     "cents": -260803059,
+     "descripcion": "Pago Hotel Cerro Azul SA OP 0001-00000646",
+     "comprobante": "OP 0001-00000646",
+     "asiento": 161
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-03-19",
+     "cents": 6791000,
+     "descripcion": "Venta MP #40111312",
+     "comprobante": "",
+     "asiento": 129
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-03-19",
+     "cents": 20400000,
+     "descripcion": "Venta MP #90574202",
+     "comprobante": "",
+     "asiento": 136
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-03-19",
+     "cents": 285734610,
+     "descripcion": "Liquidación tarjeta lote 91200",
+     "comprobante": "",
+     "asiento": 155
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-03-19",
+     "cents": -31080000,
+     "descripcion": "Transferencia a Transporte Ruta 3 SRL OP 0001-00000644",
+     "comprobante": "OP 0001-00000644",
+     "asiento": 159
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-03-20",
+     "cents": 31879000,
+     "descripcion": "Cobranza Nicolás Romero - efectivo a depositar",
+     "comprobante": "RC 0001-00000635",
+     "asiento": 126
+    },
+    {
+     "id": "L23",
+     "fecha": "2026-03-20",
+     "cents": 2181536,
+     "descripcion": "Venta MP #75750033",
+     "comprobante": "",
+     "asiento": 145
+    },
+    {
+     "id": "L24",
+     "fecha": "2026-03-20",
+     "cents": 16000000,
+     "descripcion": "Venta MP #51595551",
+     "comprobante": "",
+     "asiento": 148
+    },
+    {
+     "id": "L25",
+     "fecha": "2026-03-20",
+     "cents": 28500000,
+     "descripcion": "Venta MP #32493313",
+     "comprobante": "",
+     "asiento": 151
+    },
+    {
+     "id": "L26",
+     "fecha": "2026-03-21",
+     "cents": 9100000,
+     "descripcion": "Cobranza Carolina Núñez - efectivo a depositar",
+     "comprobante": "RC 0001-00000634",
+     "asiento": 125
+    },
+    {
+     "id": "L27",
+     "fecha": "2026-03-21",
+     "cents": 20200000,
+     "descripcion": "Venta MP #25568124",
+     "comprobante": "",
+     "asiento": 142
+    },
+    {
+     "id": "L28",
+     "fecha": "2026-03-21",
+     "cents": 12566728,
+     "descripcion": "Venta MP #53425263",
+     "comprobante": "",
+     "asiento": 147
+    },
+    {
+     "id": "L29",
+     "fecha": "2026-03-22",
+     "cents": 9848000,
+     "descripcion": "Venta MP #55826133",
+     "comprobante": "",
+     "asiento": 143
+    },
+    {
+     "id": "L30",
+     "fecha": "2026-03-23",
+     "cents": 16649218,
+     "descripcion": "Venta MP #22005875",
+     "comprobante": "",
+     "asiento": 137
+    },
+    {
+     "id": "L31",
+     "fecha": "2026-03-23",
+     "cents": 22462976,
+     "descripcion": "Venta MP #28170406",
+     "comprobante": "",
+     "asiento": 138
+    },
+    {
+     "id": "L32",
+     "fecha": "2026-03-23",
+     "cents": 1479736,
+     "descripcion": "Venta MP #64121265",
+     "comprobante": "",
+     "asiento": 141
+    },
+    {
+     "id": "L33",
+     "fecha": "2026-03-23",
+     "cents": 18187461,
+     "descripcion": "Venta MP #21672551",
+     "comprobante": "",
+     "asiento": 146
+    },
+    {
+     "id": "L34",
+     "fecha": "2026-03-23",
+     "cents": 3711970,
+     "descripcion": "Venta MP #44215408",
+     "comprobante": "",
+     "asiento": 149
+    },
+    {
+     "id": "L35",
+     "fecha": "2026-03-23",
+     "cents": 11300000,
+     "descripcion": "Venta MP #32634231",
+     "comprobante": "",
+     "asiento": 150
+    },
+    {
+     "id": "L36",
+     "fecha": "2026-03-23",
+     "cents": 19575436,
+     "descripcion": "Venta MP #59692605",
+     "comprobante": "",
+     "asiento": 152
+    },
+    {
+     "id": "L37",
+     "fecha": "2026-03-23",
+     "cents": 146500000,
+     "descripcion": "Cobro FC A 0001-00000638 Imprenta Tinta Fresca SRL",
+     "comprobante": "0001-00000638",
+     "asiento": 156
+    },
+    {
+     "id": "L38",
+     "fecha": "2026-03-25",
+     "cents": 11692000,
+     "descripcion": "Venta MP #75828872",
+     "comprobante": "",
+     "asiento": 139
+    },
+    {
+     "id": "L39",
+     "fecha": "2026-03-25",
+     "cents": 20822000,
+     "descripcion": "Venta MP #82406677",
+     "comprobante": "",
+     "asiento": 144
+    },
+    {
+     "id": "L40",
+     "fecha": "2026-03-27",
+     "cents": 3217000,
+     "descripcion": "Venta MP #13716760",
+     "comprobante": "",
+     "asiento": 140
+    },
+    {
+     "id": "L41",
+     "fecha": "2026-03-27",
+     "cents": 204955361,
+     "descripcion": "Cobro FC A 0003-00000642 Química Litoral SRL",
+     "comprobante": "0003-00000642",
+     "asiento": 158
+    },
+    {
+     "id": "L42",
+     "fecha": "2026-03-27",
+     "cents": -196991000,
+     "descripcion": "Transferencia a Imprenta Tinta Fresca SRL OP 0001-00000645",
+     "comprobante": "OP 0001-00000645",
+     "asiento": 160
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3",
+      "L4"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L6",
+      "L7",
+      "L8"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L26",
+      "L22"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1",
+      "L2"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L18",
+      "L16",
+      "L12",
+      "L13",
+      "L10",
+      "L14",
+      "L11",
+      "L19"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B29"
+     ],
+     "libros": [
+      "L30",
+      "L31",
+      "L38",
+      "L40",
+      "L32"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L27",
+      "L29",
+      "L39"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L23",
+      "L33",
+      "L28",
+      "L24",
+      "L34",
+      "L35",
+      "L25",
+      "L36"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L20"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L37"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B31"
+     ],
+     "libros": [
+      "L41"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L21"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B33"
+     ],
+     "libros": [
+      "L42"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B35",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B36",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B37",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B32",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B34",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B38",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B39",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B40",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

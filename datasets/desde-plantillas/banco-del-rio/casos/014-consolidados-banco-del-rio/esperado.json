@@ -1,0 +1,798 @@
+{
+ "dataset": "desde-plantilla",
+ "version": "1.1.0",
+ "id": "014-consolidados-banco-del-rio",
+ "escenario": "consolidados",
+ "banco": "banco-del-rio",
+ "sistema": "importe_signo_tab",
+ "semilla": 76002,
+ "periodo": {
+  "desde": "2026-09-01",
+  "hasta": "2026-09-30"
+ },
+ "cliente": {
+  "nombre": "Panificadora La Espiga SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 2,
+ "notas": "El cliente registra los gastos e impuestos bancarios en un solo asiento mensual por concepto (1 libro = muchas líneas del banco).",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 1714000000,
+    "bancoCierre": 2389648754,
+    "librosApertura": 1714000000,
+    "librosCierre": 2389648754
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-09-01",
+     "cents": -77330029,
+     "descripcion": "TRANSFERENCIA ENVIADA A LÁCTEOS VALLE VERDE SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-09-01",
+     "cents": -463980,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-09-04",
+     "cents": 59030672,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FERRETERÍA EL TORNILLO SRL CUIT 33-53701937-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-09-04",
+     "cents": -354184,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-09-04",
+     "cents": -885460,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-09-08",
+     "cents": 203629056,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ÓPTICA MIRADOR SRL CUIT 33-58294441-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-09-08",
+     "cents": -1221774,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-09-08",
+     "cents": -3054436,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-09-08",
+     "cents": 269201935,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE IMPRENTA TINTA FRESCA SRL CUIT 33-61009036-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-09-08",
+     "cents": -1615212,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-09-08",
+     "cents": -4038029,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-09-09",
+     "cents": -268368877,
+     "descripcion": "TRANSFERENCIA ENVIADA A CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-09-09",
+     "cents": -1610213,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-09-10",
+     "cents": 28107713,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FARMACIA DEL PARQUE SCS CUIT 30-65174278-8 REF 0001-00000909",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-09-10",
+     "cents": -168646,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-09-10",
+     "cents": -421616,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-09-14",
+     "cents": 188700000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE CONSTRUCTORA DELTA NORTE SRL CUIT 30-60946207-4 REF 0003-00000895",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-09-14",
+     "cents": -1132200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-09-14",
+     "cents": -2830500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-09-15",
+     "cents": 345300000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TRANSPORTE RUTA 3 SRL CUIT 33-71643488-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-09-15",
+     "cents": -2071800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-09-15",
+     "cents": -5179500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-09-16",
+     "cents": 221681562,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE IMPRENTA TINTA FRESCA SRL CUIT 30-58179172-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-09-16",
+     "cents": -1330089,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-09-16",
+     "cents": -3325223,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-09-17",
+     "cents": 267500000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE PANIFICADORA LA ESPIGA SRL CUIT 30-52274988-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-09-17",
+     "cents": -1605000,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-09-17",
+     "cents": -4012500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-09-17",
+     "cents": -262483831,
+     "descripcion": "TRANSFERENCIA ENVIADA A ESTUDIO GRÁFICO COBALTO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-09-17",
+     "cents": -1574903,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-09-18",
+     "cents": -86546993,
+     "descripcion": "TRANSFERENCIA ENVIADA A BODEGA PIEDRA NEGRA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-09-18",
+     "cents": -519282,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-09-21",
+     "cents": 432363000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FERRETERÍA EL TORNILLO SRL CUIT 30-71036824-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-09-21",
+     "cents": -2594178,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B35",
+     "fecha": "2026-09-21",
+     "cents": -6485445,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B36",
+     "fecha": "2026-09-25",
+     "cents": -278930069,
+     "descripcion": "TRANSFERENCIA ENVIADA A ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B37",
+     "fecha": "2026-09-25",
+     "cents": -1673580,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B38",
+     "fecha": "2026-09-25",
+     "cents": -45600000,
+     "descripcion": "TRANSFERENCIA ENVIADA A HOTEL CERRO AZUL SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B39",
+     "fecha": "2026-09-25",
+     "cents": -273600,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B40",
+     "fecha": "2026-09-25",
+     "cents": -224593000,
+     "descripcion": "TRANSFERENCIA ENVIADA A FRIGORÍFICO PAMPA ALTA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B41",
+     "fecha": "2026-09-25",
+     "cents": -1347558,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B42",
+     "fecha": "2026-09-28",
+     "cents": -83760747,
+     "descripcion": "TRANSFERENCIA ENVIADA A TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B43",
+     "fecha": "2026-09-28",
+     "cents": -502564,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B44",
+     "fecha": "2026-09-28",
+     "cents": -2534003,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B45",
+     "fecha": "2026-09-28",
+     "cents": -532141,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B46",
+     "fecha": "2026-09-28",
+     "cents": -15204,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B47",
+     "fecha": "2026-09-28",
+     "cents": -3193,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B48",
+     "fecha": "2026-09-30",
+     "cents": 42006512,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FERRETERÍA EL TORNILLO SRL CUIT 30-54298275-2",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B49",
+     "fecha": "2026-09-30",
+     "cents": -252039,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B50",
+     "fecha": "2026-09-30",
+     "cents": -630098,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-09-01",
+     "cents": -77330029,
+     "descripcion": "Transferencia a Lácteos Valle Verde SA OP 0001-00000915",
+     "comprobante": "OP 0001-00000915",
+     "asiento": 263
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-09-03",
+     "cents": 59030672,
+     "descripcion": "Cobranza Ferretería El Tornillo SRL Rec. 0001-00000902",
+     "comprobante": "0003-00000901",
+     "asiento": 255
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-09-07",
+     "cents": 269201935,
+     "descripcion": "Cobranza cliente Imprenta Tinta Fresca SRL",
+     "comprobante": "0003-00000905",
+     "asiento": 257
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-09-08",
+     "cents": 203629056,
+     "descripcion": "Cobranza Óptica Mirador SRL Rec. 0001-00000904",
+     "comprobante": "0001-00000903",
+     "asiento": 256
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-09-08",
+     "cents": 28107713,
+     "descripcion": "Cobranza cliente Farmacia Del Parque SCS",
+     "comprobante": "0001-00000909",
+     "asiento": 259
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-09-08",
+     "cents": -268368877,
+     "descripcion": "Transferencia a Constructora Delta Norte SRL OP 0001-00000917",
+     "comprobante": "OP 0001-00000917",
+     "asiento": 265
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-09-11",
+     "cents": 188700000,
+     "descripcion": "Cobranza cliente Constructora Delta Norte SRL",
+     "comprobante": "0003-00000895",
+     "asiento": 252
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-09-14",
+     "cents": 345300000,
+     "descripcion": "Cobranza cliente Transporte Ruta 3 SRL",
+     "comprobante": "0002-00000893",
+     "asiento": 251
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-09-14",
+     "cents": 221681562,
+     "descripcion": "Cobro FC A 0001-00000897 Imprenta Tinta Fresca SRL",
+     "comprobante": "0001-00000897",
+     "asiento": 253
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-09-16",
+     "cents": 267500000,
+     "descripcion": "Cobranza cliente Panificadora La Espiga SRL",
+     "comprobante": "0003-00000907",
+     "asiento": 258
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-09-16",
+     "cents": -262483831,
+     "descripcion": "Transferencia a Estudio Gráfico Cobalto SAS OP 0001-00000920",
+     "comprobante": "OP 0001-00000920",
+     "asiento": 268
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-09-17",
+     "cents": -86546993,
+     "descripcion": "Pago Bodega Piedra Negra SA OP 0001-00000918",
+     "comprobante": "OP 0001-00000918",
+     "asiento": 266
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-09-18",
+     "cents": 432363000,
+     "descripcion": "Cobro FC A 0002-00000899 Ferretería El Tornillo SRL",
+     "comprobante": "0002-00000899",
+     "asiento": 254
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-09-24",
+     "cents": -278930069,
+     "descripcion": "Pago a proveedor Óptica Mirador SRL",
+     "comprobante": "OP 0001-00000913",
+     "asiento": 261
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-09-24",
+     "cents": -45600000,
+     "descripcion": "Transferencia a Hotel Cerro Azul SA OP 0001-00000914",
+     "comprobante": "OP 0001-00000914",
+     "asiento": 262
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-09-25",
+     "cents": -83760747,
+     "descripcion": "Pago Transporte Ruta 3 SRL OP 0001-00000916",
+     "comprobante": "OP 0001-00000916",
+     "asiento": 264
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-09-25",
+     "cents": -224593000,
+     "descripcion": "Pago a proveedor Frigorífico Pampa Alta SA",
+     "comprobante": "OP 0001-00000919",
+     "asiento": 267
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-09-28",
+     "cents": 42006512,
+     "descripcion": "Cobro FC A 0001-00000911 Ferretería El Tornillo SRL",
+     "comprobante": "0001-00000911",
+     "asiento": 260
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-09-30",
+     "cents": -20329199,
+     "descripcion": "Impuesto ley 25.413 del mes",
+     "comprobante": "",
+     "asiento": 269
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-09-30",
+     "cents": -30862807,
+     "descripcion": "Retenciones SIRCREB del mes",
+     "comprobante": "",
+     "asiento": 270
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-09-30",
+     "cents": -2534003,
+     "descripcion": "Comisiones bancarias del mes",
+     "comprobante": "",
+     "asiento": 271
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-09-30",
+     "cents": -532141,
+     "descripcion": "IVA comisiones bancarias del mes",
+     "comprobante": "",
+     "asiento": 272
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B20"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B33"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B26"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B48"
+     ],
+     "libros": [
+      "L18"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B36"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B38"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B42"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B31"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B40"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B29"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21",
+      "B18",
+      "B24",
+      "B34",
+      "B4",
+      "B7",
+      "B10",
+      "B27",
+      "B15",
+      "B49",
+      "B37",
+      "B39",
+      "B2",
+      "B43",
+      "B13",
+      "B32",
+      "B41",
+      "B30",
+      "B46",
+      "B47"
+     ],
+     "libros": [
+      "L19"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B22",
+      "B19",
+      "B25",
+      "B35",
+      "B5",
+      "B8",
+      "B11",
+      "B28",
+      "B16",
+      "B50"
+     ],
+     "libros": [
+      "L20"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B44"
+     ],
+     "libros": [
+      "L21"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B45"
+     ],
+     "libros": [
+      "L22"
+     ],
+     "tipo": "consolidado"
+    }
+   ],
+   "pendientes": [],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+  "fulgoria_pendientes": 1,
+  "periodo": "2026-07",
+  "pendientes": [
+    {
+      "id": "A-L9",
+      "lado": "libros",
+      "fecha": "2026-07-26",
+      "cents": -36467000,
+      "descripcion": "Cheque N° 00013664 a Química Litoral SRL",
+      "referencia": "",
+      "saldo": null,
+      "entidades": {
+        "cheque": "13664"
+      },
+      "evidencia": {},
+      "periodo": "2026-07"
+    },
+    {
+      "id": "A-L13",
+      "lado": "libros",
+      "fecha": "2026-07-31",
+      "cents": 53400000,
+      "descripcion": "Depósito valores a depositar",
+      "referencia": "",
+      "saldo": null,
+      "entidades": {},
+      "evidencia": {},
+      "periodo": "2026-07"
+    },
+    {
+      "id": "A-B3",
+      "lado": "banco",
+      "fecha": "2026-07-13",
+      "cents": 18109207,
+      "descripcion": "TRF INMEDIATA RECIB 30000000000",
+      "referencia": "",
+      "saldo": null,
+      "entidades": {},
+      "evidencia": {},
+      "periodo": "2026-07"
+    }
+  ]
+}

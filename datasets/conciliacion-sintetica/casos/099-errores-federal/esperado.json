@@ -1,0 +1,577 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "099-errores-federal",
+ "escenario": "errores",
+ "banco": "federal",
+ "sistema": "planilla_cliente",
+ "semilla": 9011,
+ "periodo": {
+  "desde": "2026-10-01",
+  "hasta": "2026-10-31"
+ },
+ "cliente": {
+  "nombre": "Bodega Piedra Negra SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Importe transpuesto, registro duplicado, créditos que el cliente no registró e ingresos registrados que nunca llegaron al banco.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2584022202,
+    "bancoCierre": 3229418828,
+    "librosApertura": 2584022202,
+    "librosCierre": 2994959749
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-10-01",
+     "cents": 269300000,
+     "descripcion": "TRF INMEDIATA RECIB 33571997598",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-10-01",
+     "cents": -1615800,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-10-05",
+     "cents": -233200000,
+     "descripcion": "TRF INMEDIATA ENV 33575615835",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-10-05",
+     "cents": -67300000,
+     "descripcion": "TRF INMEDIATA ENV 33620390858",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-10-05",
+     "cents": 56911270,
+     "descripcion": "TRF INMEDIATA RECIB 27404194904",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-10-05",
+     "cents": -341468,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-10-06",
+     "cents": -16700000,
+     "descripcion": "DEBITO AUTOMATICO INTERNET FIBRA SUR",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-10-07",
+     "cents": 361652000,
+     "descripcion": "TRF INMEDIATA RECIB 33593164883",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-10-07",
+     "cents": -2169912,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-10-08",
+     "cents": -271359390,
+     "descripcion": "TRF INMEDIATA ENV 33558632696",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-10-09",
+     "cents": 430634880,
+     "descripcion": "TRF INMEDIATA RECIB 30525626772",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-10-09",
+     "cents": -2583809,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-10-12",
+     "cents": -136954269,
+     "descripcion": "TRF INMEDIATA ENV 30612390394",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-10-14",
+     "cents": 194135403,
+     "descripcion": "TRF INMEDIATA RECIB 33603284459",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-10-14",
+     "cents": -1164812,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-10-19",
+     "cents": 214300000,
+     "descripcion": "TRF INMEDIATA RECIB 30657412038",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-10-19",
+     "cents": -1285800,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-10-23",
+     "cents": -37537000,
+     "descripcion": "TRF INMEDIATA ENV 30722541851",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-10-26",
+     "cents": 198994185,
+     "descripcion": "TRF INMEDIATA RECIB 30670731002 0002-00000279",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-10-26",
+     "cents": -1193965,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-10-26",
+     "cents": -3600000,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-10-26",
+     "cents": -756000,
+     "descripcion": "I.V.A. TASA GENERAL",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-10-27",
+     "cents": -267499631,
+     "descripcion": "TRF INMEDIATA ENV 33728036104",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-10-28",
+     "cents": 223376000,
+     "descripcion": "TRF INMEDIATA RECIB 30589525392",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-10-28",
+     "cents": -1340256,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-10-29",
+     "cents": -195200000,
+     "descripcion": "TRF INMEDIATA ENV 30552932745",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-10-30",
+     "cents": -62105000,
+     "descripcion": "TRF INMEDIATA ENV 33717723282",
+     "tipo": "transferencia"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-10-01",
+     "cents": 269300000,
+     "descripcion": "Cobranza Hotel Cerro Azul SA Rec. 0001-00000284",
+     "comprobante": "0003-00000283",
+     "asiento": 71
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-10-02",
+     "cents": -233200000,
+     "descripcion": "Transferencia a Muebles Quebracho SAS OP 0001-00000291",
+     "comprobante": "OP 0001-00000291",
+     "asiento": 77
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-10-02",
+     "cents": -67300000,
+     "descripcion": "Pago Química Litoral SRL OP 0001-00000293",
+     "comprobante": "OP 0001-00000293",
+     "asiento": 79
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-10-06",
+     "cents": 361652000,
+     "descripcion": "Cobranza cliente Logística Andina SAS",
+     "comprobante": "0001-00000281",
+     "asiento": 70
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-10-08",
+     "cents": -271359390,
+     "descripcion": "Pago Viñedos Altos de Cuyo SA OP 0001-00000288",
+     "comprobante": "OP 0001-00000288",
+     "asiento": 74
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-10-09",
+     "cents": 430634880,
+     "descripcion": "Cobranza Bodega Piedra Negra SA Rec. 0001-00000286",
+     "comprobante": "0001-00000285",
+     "asiento": 72
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-10-12",
+     "cents": -136954269,
+     "descripcion": "Pago a proveedor Química Litoral SRL",
+     "comprobante": "OP 0001-00000287",
+     "asiento": 73
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-10-12",
+     "cents": 57200000,
+     "descripcion": "Cobranza Agro Sur del Plata SA (depósito)",
+     "comprobante": "",
+     "asiento": 82
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-10-13",
+     "cents": 194135403,
+     "descripcion": "Cobranza cliente Farmacia Del Parque SCS",
+     "comprobante": "0003-00000273",
+     "asiento": 66
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-10-19",
+     "cents": 214300000,
+     "descripcion": "Cobro FC A 0001-00000277 Textil Río Bermejo SA",
+     "comprobante": "0001-00000277",
+     "asiento": 68
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-10-22",
+     "cents": -37537000,
+     "descripcion": "Pago Muebles Quebracho SAS OP 0001-00000290",
+     "comprobante": "OP 0001-00000290",
+     "asiento": 76
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-10-23",
+     "cents": 198994185,
+     "descripcion": "Cobro FC A 0002-00000279 Agro Sur del Plata SA",
+     "comprobante": "0002-00000279",
+     "asiento": 69
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-10-26",
+     "cents": 223376000,
+     "descripcion": "Cobranza Bodega Piedra Negra SA Rec. 0001-00000276",
+     "comprobante": "0002-00000275",
+     "asiento": 67
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-10-26",
+     "cents": -267499631,
+     "descripcion": "Transferencia a Transporte Ruta 3 SRL OP 0001-00000294",
+     "comprobante": "OP 0001-00000294",
+     "asiento": 80
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-10-26",
+     "cents": -267499631,
+     "descripcion": "Transferencia a Transporte Ruta 3 SRL OP 0001-00000294",
+     "comprobante": "OP 0001-00000294",
+     "asiento": 81
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-10-29",
+     "cents": -195200000,
+     "descripcion": "Transferencia a Frigorífico Pampa Alta SA OP 0001-00000289",
+     "comprobante": "OP 0001-00000289",
+     "asiento": 75
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-10-29",
+     "cents": -62105000,
+     "descripcion": "Transferencia a Logística Andina SAS OP 0001-00000292",
+     "comprobante": "OP 0001-00000292",
+     "asiento": 78
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B24"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B26"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L15",
+     "lado": "libros",
+     "tipo": "egreso_pendiente"
+    },
+    {
+     "id": "B5",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "B7",
+     "lado": "banco",
+     "tipo": "debito_no_identificado"
+    },
+    {
+     "id": "L8",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B15",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B9",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

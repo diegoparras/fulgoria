@@ -23,7 +23,7 @@ const ICON = {
 
 const ROLE_LABELS = {
   fecha: "Fecha", descripcion: "Descripción", importe: "Importe (con signo)",
-  debito: "Débito", credito: "Crédito", saldo: "Saldo", texto: "Texto / dato", ignorar: "Ignorar",
+  debito: "Débito", credito: "Crédito", saldo: "Saldo", signo: "Signo (D/H)", texto: "Texto / dato", ignorar: "Ignorar",
 };
 
 const state = {
@@ -920,6 +920,9 @@ function saveTemplateLS(tpl) {
   const all = savedTemplates().filter((t) => t.id !== tpl.meta.template_id);
   all.push({ id: tpl.meta.template_id, bank: tpl.meta.bank, tpl });
   try { localStorage.setItem(LS_KEY, JSON.stringify(all)); } catch {}
+  // Con el modo estudio activo, la plantilla queda para todo el estudio (sin persistencia: 404, se ignora).
+  fetch("/api/v1/plantillas", { method: "PUT", credentials: "same-origin", headers: { "content-type": "application/json" },
+    body: JSON.stringify({ tipo: "banco", nombre: tpl.meta.bank || tpl.meta.template_id, plantilla: tpl }) }).catch(() => {});
 }
 function refreshSavedTemplates() {
   const sel = $("savedTpl");

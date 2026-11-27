@@ -1,0 +1,35 @@
+{
+  "banco": "Banco Federal del Sur",
+  "columnas": [
+    {
+      "from": 0,
+      "to": 0.13781512605042018,
+      "role": "fecha",
+      "label": "Fecha"
+    },
+    {
+      "from": 0.13781512605042018,
+      "to": 0.5042016806722689,
+      "role": "descripcion",
+      "label": "Descripción"
+    },
+    {
+      "from": 0.5042016806722689,
+      "to": 0.6252100840336134,
+      "role": "texto",
+      "label": "Referencia"
+    },
+    {
+      "from": 0.6252100840336134,
+      "to": 0.8,
+      "role": "importe",
+      "label": "Importe"
+    },
+    {
+      "from": 0.8,
+      "to": 1,
+      "role": "saldo",
+      "label": "Saldo"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+Empresa: Viñedos Altos de Cuyo SA
+Cuenta: 1.1.1.02 Banco del Río
+Período: 01/05/2026 al 31/05/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,15351111.87
+2026-05-01,Alquileres Centro SA - débito automático,,79000.00,15272111.87
+2026-05-04,Cobro FC A 0002-00000616 Textil Río Bermejo SA,737000.00,,16009111.87
+2026-05-11,Cobranza cliente Ferretería El Tornillo SRL,1462819.26,,17471931.13
+2026-05-11,Pago Ferretería El Tornillo SRL OP 0001-00000623,,2725930.00,14746001.13
+2026-05-18,Cobranza Óptica Mirador SRL Rec. 0001-00000607,3747000.00,,18493001.13
+2026-05-18,Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000609,128059.18,,18621060.31
+2026-05-18,Cobranza Cooperativa Hornero Ltda Rec. 0001-00000615,4073000.00,,22694060.31
+2026-05-18,Pago Logística Andina SAS OP 0001-00000622,,2594389.62,20099670.69
+2026-05-21,Cobranza cliente Cooperativa Hornero Ltda,1139270.00,,21238940.69
+2026-05-22,Cobro FC A 0002-00000612 Servicios Médicos Lomas SRL,3605000.00,,24843940.69
+2026-05-25,Cobro FC A 0001-00000618 Óptica Mirador SRL,1006000.00,,25849940.69
+2026-05-25,Pago a proveedor Distribuidora Los Álamos SRL,,1100871.37,24749069.32
+2026-05-27,Cheque N° 00074518 a Constructora Delta Norte SRL,,1814350.00,22934719.32
+2026-05-29,Alquileres Centro SA - débito automático,,233284.62,22701434.70
+2026-05-30,Depósito valores a depositar,1436000.00,,24137434.70

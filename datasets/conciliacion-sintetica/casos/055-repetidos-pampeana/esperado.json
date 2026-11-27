@@ -1,0 +1,503 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "055-repetidos-pampeana",
+ "escenario": "repetidos",
+ "banco": "pampeana",
+ "sistema": "importe_signo_tab",
+ "semilla": 5031,
+ "periodo": {
+  "desde": "2026-04-01",
+  "hasta": "2026-04-30"
+ },
+ "cliente": {
+  "nombre": "Viñedos Altos de Cuyo SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Sueldos idénticos el mismo día, alquileres y cuotas iguales: la ambigüedad que nunca debe quedar en verde.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2172700000,
+    "bancoCierre": 948099200,
+    "librosApertura": 2172700000,
+    "librosCierre": 955117200
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-04-01",
+     "cents": -81532000,
+     "descripcion": "TRANSFERENCIA ENVIADA A QUÍMICA LITORAL SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-04-03",
+     "cents": 7689005,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LOGÍSTICA ANDINA SAS CUIT 33-57379383-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-04-03",
+     "cents": -116500000,
+     "descripcion": "TRANSFERENCIA ENVIADA A SERVICIOS MÉDICOS LOMAS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-04-06",
+     "cents": -97300000,
+     "descripcion": "TRANSF. SUELDO SOFÍA RAMÍREZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-04-06",
+     "cents": -97300000,
+     "descripcion": "TRANSF. SUELDO SANTIAGO ROJAS",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-04-06",
+     "cents": -97300000,
+     "descripcion": "TRANSF. SUELDO FRANCO SILVA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-04-06",
+     "cents": -97300000,
+     "descripcion": "TRANSF. SUELDO VALENTINA SOSA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-04-06",
+     "cents": -97300000,
+     "descripcion": "TRANSF. SUELDO PAULA CASTRO",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-04-06",
+     "cents": -97300000,
+     "descripcion": "TRANSF. SUELDO MARTINA GÓMEZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-04-06",
+     "cents": -97300000,
+     "descripcion": "TRANSF. SUELDO SANTIAGO ROJAS",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-04-06",
+     "cents": -97300000,
+     "descripcion": "TRANSF. SUELDO CAROLINA NÚÑEZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-04-07",
+     "cents": 7689005,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TECNOLOGÍA AUSTRAL SAS CUIT 30-63649961-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-04-09",
+     "cents": -81532000,
+     "descripcion": "TRANSFERENCIA ENVIADA A COOPERATIVA HORNERO LTDA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-04-15",
+     "cents": 7689005,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE IMPRENTA TINTA FRESCA SRL CUIT 33-51810843-9 REF 0001-00000613",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-04-16",
+     "cents": -30024820,
+     "descripcion": "TRANSFERENCIA ENVIADA A ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-04-22",
+     "cents": -137200000,
+     "descripcion": "TRANSFERENCIA ENVIADA A FARMACIA DEL PARQUE SCS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-04-23",
+     "cents": 7689005,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE CONSTRUCTORA DELTA NORTE SRL CUIT 33-53699281-8 REF 0001-00000611",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-04-27",
+     "cents": -23150000,
+     "descripcion": "TRANSFERENCIA ENVIADA A BODEGA PIEDRA NEGRA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-04-27",
+     "cents": -5800000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-04-27",
+     "cents": -1218000,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-04-01",
+     "cents": -81532000,
+     "descripcion": "Pago Química Litoral SRL OP 0001-00000607",
+     "comprobante": "OP 0001-00000607",
+     "asiento": 35
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-04-02",
+     "cents": 7689005,
+     "descripcion": "Cobranza Logística Andina SAS Rec. 0001-00000616",
+     "comprobante": "0002-00000615",
+     "asiento": 40
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-04-03",
+     "cents": -116500000,
+     "descripcion": "Pago a proveedor Servicios Médicos Lomas SRL",
+     "comprobante": "OP 0001-00000620",
+     "asiento": 44
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-04-06",
+     "cents": -97300000,
+     "descripcion": "Sueldo marzo - Sofía Ramírez",
+     "comprobante": "",
+     "asiento": 27
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-04-06",
+     "cents": -97300000,
+     "descripcion": "Sueldo marzo - Santiago Rojas",
+     "comprobante": "",
+     "asiento": 28
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-04-06",
+     "cents": -97300000,
+     "descripcion": "Sueldo marzo - Franco Silva",
+     "comprobante": "",
+     "asiento": 29
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-04-06",
+     "cents": -97300000,
+     "descripcion": "Sueldo marzo - Valentina Sosa",
+     "comprobante": "",
+     "asiento": 30
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-04-06",
+     "cents": -97300000,
+     "descripcion": "Sueldo marzo - Paula Castro",
+     "comprobante": "",
+     "asiento": 31
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-04-06",
+     "cents": -97300000,
+     "descripcion": "Sueldo marzo - Martina Gómez",
+     "comprobante": "",
+     "asiento": 32
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-04-06",
+     "cents": -97300000,
+     "descripcion": "Sueldo marzo - Santiago Rojas",
+     "comprobante": "",
+     "asiento": 33
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-04-06",
+     "cents": -97300000,
+     "descripcion": "Sueldo marzo - Carolina Núñez",
+     "comprobante": "",
+     "asiento": 34
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-04-06",
+     "cents": 7689005,
+     "descripcion": "Cobranza cliente Tecnología Austral SAS",
+     "comprobante": "0003-00000609",
+     "asiento": 37
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-04-09",
+     "cents": -81532000,
+     "descripcion": "Transferencia a Cooperativa Hornero Ltda OP 0001-00000608",
+     "comprobante": "OP 0001-00000608",
+     "asiento": 36
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-04-13",
+     "cents": 7689005,
+     "descripcion": "Cobranza cliente Imprenta Tinta Fresca SRL",
+     "comprobante": "0001-00000613",
+     "asiento": 39
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-04-16",
+     "cents": -30024820,
+     "descripcion": "Pago Óptica Mirador SRL OP 0001-00000618",
+     "comprobante": "OP 0001-00000618",
+     "asiento": 42
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-04-22",
+     "cents": -137200000,
+     "descripcion": "Pago a proveedor Farmacia Del Parque SCS",
+     "comprobante": "OP 0001-00000617",
+     "asiento": 41
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-04-23",
+     "cents": 7689005,
+     "descripcion": "Cobranza cliente Constructora Delta Norte SRL",
+     "comprobante": "0001-00000611",
+     "asiento": 38
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-04-27",
+     "cents": -23150000,
+     "descripcion": "Transferencia a Bodega Piedra Negra SA OP 0001-00000619",
+     "comprobante": "OP 0001-00000619",
+     "asiento": 43
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L18"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B19",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

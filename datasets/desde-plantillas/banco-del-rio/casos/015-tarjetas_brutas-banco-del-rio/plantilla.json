@@ -1,0 +1,35 @@
+{
+  "banco": "Banco del Río",
+  "columnas": [
+    {
+      "from": 0,
+      "to": 0.1529,
+      "role": "fecha",
+      "label": "FECHA"
+    },
+    {
+      "from": 0.1529,
+      "to": 0.6,
+      "role": "descripcion",
+      "label": "DETALLE"
+    },
+    {
+      "from": 0.6,
+      "to": 0.7059,
+      "role": "debito",
+      "label": "DEBITO"
+    },
+    {
+      "from": 0.7059,
+      "to": 0.8361,
+      "role": "credito",
+      "label": "CREDITO"
+    },
+    {
+      "from": 0.8361,
+      "to": 1,
+      "role": "saldo",
+      "label": "SALDO"
+    }
+  ]
+}

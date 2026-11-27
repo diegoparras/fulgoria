@@ -1,0 +1,481 @@
+{
+ "dataset": "desde-plantilla",
+ "version": "1.1.0",
+ "id": "002-basico-banco-del-rio",
+ "escenario": "basico",
+ "banco": "banco-del-rio",
+ "sistema": "importe_signo_tab",
+ "semilla": 70002,
+ "periodo": {
+  "desde": "2026-08-01",
+  "hasta": "2026-08-31"
+ },
+ "cliente": {
+  "nombre": "Textil Río Bermejo SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Pocos movimientos, la mayoría 1 a 1, gastos bancarios sin registrar, un cheque pendiente y un depósito en tránsito.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 719304522,
+    "bancoCierre": 1514056290,
+    "librosApertura": 719304522,
+    "librosCierre": 1431398206
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-08-03",
+     "cents": -284636000,
+     "descripcion": "TRANSFERENCIA ENVIADA A AGRO SUR DEL PLATA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-08-03",
+     "cents": -1707816,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-08-03",
+     "cents": -14030151,
+     "descripcion": "DEB. AUTOM. TELEFONÍA FEDERAL",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-08-03",
+     "cents": -84181,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-08-05",
+     "cents": 342300000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE CONSTRUCTORA DELTA NORTE SRL CUIT 30-67324853-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-08-05",
+     "cents": -2053800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-08-05",
+     "cents": -18148745,
+     "descripcion": "DEB. AUTOM. TELEFONÍA FEDERAL",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-08-05",
+     "cents": -108892,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-08-06",
+     "cents": 377564000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE COOPERATIVA HORNERO LTDA CUIT 33-69852408-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-08-06",
+     "cents": -2265384,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-08-12",
+     "cents": 390592000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE BODEGA PIEDRA NEGRA SA CUIT 33-63139191-0 REF 0001-00000232",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-08-12",
+     "cents": -2343552,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-08-13",
+     "cents": 163134495,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TRANSPORTE RUTA 3 SRL CUIT 30-64150158-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-08-13",
+     "cents": -978807,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-08-18",
+     "cents": -97613046,
+     "descripcion": "TRANSFERENCIA ENVIADA A TEXTIL RÍO BERMEJO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-08-18",
+     "cents": -585678,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-08-24",
+     "cents": 129500000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE MUEBLES QUEBRACHO SAS CUIT 30-60506826-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-08-24",
+     "cents": -777000,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-08-25",
+     "cents": -178600000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-08-25",
+     "cents": -1071600,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-08-25",
+     "cents": -2739000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-08-25",
+     "cents": -575190,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-08-25",
+     "cents": -16434,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-08-25",
+     "cents": -3451,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-08-01",
+     "cents": -14030151,
+     "descripcion": "Telefonía Federal - débito automático",
+     "comprobante": "",
+     "asiento": 62
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-08-02",
+     "cents": -18148745,
+     "descripcion": "Telefonía Federal - débito automático",
+     "comprobante": "",
+     "asiento": 61
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-08-03",
+     "cents": 342300000,
+     "descripcion": "Cobro FC A 0003-00000234 Constructora Delta Norte SRL",
+     "comprobante": "0003-00000234",
+     "asiento": 54
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-08-03",
+     "cents": -284636000,
+     "descripcion": "Transferencia a Agro Sur del Plata SA OP 0001-00000243",
+     "comprobante": "OP 0001-00000243",
+     "asiento": 59
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-08-04",
+     "cents": 377564000,
+     "descripcion": "Cobro FC A 0003-00000236 Cooperativa Hornero Ltda",
+     "comprobante": "0003-00000236",
+     "asiento": 55
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-08-10",
+     "cents": 390592000,
+     "descripcion": "Cobranza Bodega Piedra Negra SA Rec. 0001-00000233",
+     "comprobante": "0001-00000232",
+     "asiento": 53
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-08-13",
+     "cents": 163134495,
+     "descripcion": "Cobranza Transporte Ruta 3 SRL Rec. 0001-00000239",
+     "comprobante": "0002-00000238",
+     "asiento": 56
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-08-17",
+     "cents": -97613046,
+     "descripcion": "Transferencia a Textil Río Bermejo SA OP 0001-00000244",
+     "comprobante": "OP 0001-00000244",
+     "asiento": 60
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-08-24",
+     "cents": 129500000,
+     "descripcion": "Cobro FC A 0001-00000240 Muebles Quebracho SAS",
+     "comprobante": "0001-00000240",
+     "asiento": 57
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-08-24",
+     "cents": -178600000,
+     "descripcion": "Transferencia a Transporte Ruta 3 SRL OP 0001-00000242",
+     "comprobante": "OP 0001-00000242",
+     "asiento": 58
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-08-27",
+     "cents": -140568869,
+     "descripcion": "ECHEQ N° 00056101 a Óptica Mirador SRL",
+     "comprobante": "CH 00056101",
+     "asiento": 63
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-08-31",
+     "cents": 42600000,
+     "descripcion": "Depósito cheques de terceros",
+     "comprobante": "",
+     "asiento": 64
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L11",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L12",
+     "lado": "libros",
+     "tipo": "deposito_transito"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

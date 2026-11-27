@@ -1,0 +1,541 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "127-arrastre-pampeana-mes1",
+ "escenario": "arrastre",
+ "banco": "pampeana",
+ "sistema": "debe_haber_ar",
+ "semilla": 50003,
+ "periodo": {
+  "desde": "2026-08-01",
+  "hasta": "2026-08-31"
+ },
+ "cliente": {
+  "nombre": "Estudio Gráfico Cobalto SAS",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Mes 1 de 2: deja cheques pendientes, un depósito en tránsito y un crédito sin identificar para el mes siguiente.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 739806000,
+    "bancoCierre": 2293173976,
+    "librosApertura": 739806000,
+    "librosCierre": 2300258774
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-08-03",
+     "cents": 410300000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE MUEBLES QUEBRACHO SAS CUIT 33-55068222-8 REF 0002-00000776",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-08-03",
+     "cents": -4923600,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-08-11",
+     "cents": 224800000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE IMPRENTA TINTA FRESCA SRL CUIT 33-51726157-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-08-11",
+     "cents": -2697600,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-08-12",
+     "cents": 294266781,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE MUEBLES QUEBRACHO SAS CUIT 33-55608275-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-08-12",
+     "cents": -3531201,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-08-12",
+     "cents": 127600000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE SERVICIOS MÉDICOS LOMAS SRL CUIT 33-51843742-4 REF 0001-00000772",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-08-12",
+     "cents": -1531200,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-08-12",
+     "cents": 78995984,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ESTUDIO GRÁFICO COBALTO SAS CUIT 30-50707074-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-08-12",
+     "cents": -947952,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-08-13",
+     "cents": 14519050,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE QUÍMICA LITORAL SRL CUIT 30-50675407-7 REF 0003-00000770",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-08-13",
+     "cents": -174229,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-08-17",
+     "cents": 344200000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE COOPERATIVA HORNERO LTDA CUIT 30-65055567-4 REF 0003-00000774",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-08-17",
+     "cents": -4130400,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-08-19",
+     "cents": -94832000,
+     "descripcion": "TRANSFERENCIA ENVIADA A BODEGA PIEDRA NEGRA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-08-19",
+     "cents": -233206000,
+     "descripcion": "TRANSFERENCIA ENVIADA A SERVICIOS MÉDICOS LOMAS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-08-21",
+     "cents": -7105000,
+     "descripcion": "TRANSFERENCIA ENVIADA A CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-08-24",
+     "cents": -2499351,
+     "descripcion": "DEB. AUTOM. AGUAS URBANAS",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-08-24",
+     "cents": -14300000,
+     "descripcion": "DEB. AUTOM. SEGUROS LA PREVISORA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-08-25",
+     "cents": -27400000,
+     "descripcion": "TRANSFERENCIA ENVIADA A FERRETERÍA EL TORNILLO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-08-25",
+     "cents": 42067030,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE CLIENTE SIN DATOS CUIT 30-00000000-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-08-26",
+     "cents": 425800000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE QUÍMICA LITORAL SRL CUIT 33-51754921-0 REF 0003-00000780",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-08-26",
+     "cents": -5109600,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-08-26",
+     "cents": -5613831,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-08-26",
+     "cents": -1178905,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-08-03",
+     "cents": 410300000,
+     "descripcion": "Cobro FC A 0002-00000776 Muebles Quebracho SAS",
+     "comprobante": "0002-00000776",
+     "asiento": 168
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-08-10",
+     "cents": 294266781,
+     "descripcion": "Cobro FC A 0003-00000766 Muebles Quebracho SAS",
+     "comprobante": "0003-00000766",
+     "asiento": 163
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-08-10",
+     "cents": 224800000,
+     "descripcion": "Cobranza cliente Imprenta Tinta Fresca SRL",
+     "comprobante": "0003-00000768",
+     "asiento": 164
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-08-10",
+     "cents": 127600000,
+     "descripcion": "Cobro FC A 0001-00000772 Servicios Médicos Lomas SRL",
+     "comprobante": "0001-00000772",
+     "asiento": 166
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-08-10",
+     "cents": 78995984,
+     "descripcion": "Cobranza Estudio Gráfico Cobalto SAS Rec. 0001-00000779",
+     "comprobante": "0002-00000778",
+     "asiento": 169
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-08-13",
+     "cents": 14519050,
+     "descripcion": "Cobranza Química Litoral SRL Rec. 0001-00000771",
+     "comprobante": "0003-00000770",
+     "asiento": 165
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-08-14",
+     "cents": 344200000,
+     "descripcion": "Cobro FC A 0003-00000774 Cooperativa Hornero Ltda",
+     "comprobante": "0003-00000774",
+     "asiento": 167
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-08-18",
+     "cents": -94832000,
+     "descripcion": "Pago a proveedor Bodega Piedra Negra SA",
+     "comprobante": "OP 0001-00000783",
+     "asiento": 172
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-08-18",
+     "cents": -233206000,
+     "descripcion": "Pago Servicios Médicos Lomas SRL OP 0001-00000785",
+     "comprobante": "OP 0001-00000785",
+     "asiento": 174
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-08-21",
+     "cents": -7105000,
+     "descripcion": "Transferencia a Constructora Delta Norte SRL OP 0001-00000784",
+     "comprobante": "OP 0001-00000784",
+     "asiento": 173
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-08-22",
+     "cents": -2499351,
+     "descripcion": "Aguas Urbanas - débito automático",
+     "comprobante": "",
+     "asiento": 175
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-08-22",
+     "cents": -14300000,
+     "descripcion": "Seguros La Previsora - débito automático",
+     "comprobante": "",
+     "asiento": 176
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-08-24",
+     "cents": 425800000,
+     "descripcion": "Cobranza cliente Química Litoral SRL",
+     "comprobante": "0003-00000780",
+     "asiento": 170
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-08-24",
+     "cents": -27400000,
+     "descripcion": "Pago Ferretería El Tornillo SRL OP 0001-00000782",
+     "comprobante": "OP 0001-00000782",
+     "asiento": 171
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-08-28",
+     "cents": -46141690,
+     "descripcion": "Cheque N° 00008988 a Tecnología Austral SAS",
+     "comprobante": "CH 00008988",
+     "asiento": 177
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-08-29",
+     "cents": 65455000,
+     "descripcion": "Depósito cheque cliente",
+     "comprobante": "",
+     "asiento": 178
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B22"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B20"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L15",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L16",
+     "lado": "libros",
+     "tipo": "deposito_transito"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

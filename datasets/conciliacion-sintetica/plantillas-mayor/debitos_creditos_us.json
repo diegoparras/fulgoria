@@ -1,0 +1,23 @@
+{
+  "fulgoria_plantilla_mayor": 1,
+  "sistema": "Débitos/Créditos con números US y títulos",
+  "encabezados": [
+    "Fecha",
+    "Detalle",
+    "Débitos",
+    "Créditos",
+    "Saldo"
+  ],
+  "mapeo": {
+    "fecha": "Fecha",
+    "descripcion": "Detalle",
+    "debe": "Débitos",
+    "haber": "Créditos",
+    "saldo": "Saldo"
+  },
+  "formato": {
+    "numeros": "us"
+  },
+  "unirContinuacion": true,
+  "ignorar": []
+}

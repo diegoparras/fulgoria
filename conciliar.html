@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fulgoria · Conciliar</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles/escriba-ui.css" />
+  <link rel="stylesheet" href="styles/app.css" />
+  <link rel="stylesheet" href="styles/conciliar.css" />
+  <script src="src/theme-init.js"></script>
+</head>
+<body class="conciliar">
+  <header class="topbar">
+    <div class="brand">
+      <a class="logo" href="./" title="Ir al extractor" aria-label="Ir al extractor">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="64" height="64" rx="15" fill="#3b76d9"/>
+          <path d="M13 2 L3 14 h9 l-1 8 L21 10 h-9 l1 -8 z" transform="translate(2,2) scale(2.5)" fill="#ffffff"/>
+        </svg>
+      </a>
+      <div class="brand-text"><h1>Fulgoria <span class="brand-sub">Conciliar</span></h1></div>
+    </div>
+    <div class="actions">
+      <div class="seg" role="tablist" aria-label="Modo">
+        <button id="modoAuto" class="seg-btn on" role="tab" aria-selected="true" title="Solo lo que necesita tu decisión">Automático</button>
+        <button id="modoSport" class="seg-btn" role="tab" aria-selected="false" title="Todos los mandos y la mesa de conciliación">Deportivo</button>
+      </div>
+      <a class="btn sm ghost" href="./" title="Marcar columnas de un banco nuevo">Extractor</a>
+      <button id="themeBtn" class="icon-btn" title="Cambiar tema" aria-label="Cambiar tema"></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Modo estudio (solo si el servidor tiene persistencia): cliente, cuenta y mes -->
+    <section id="cartera" class="c-cartera" hidden>
+      <label class="c-sel">Cliente<select id="selCliente"></select></label>
+      <button class="btn sm ghost" id="nuevoCliente" title="Agregar un cliente">+ Cliente</button>
+      <label class="c-sel">Cuenta<select id="selCuenta"></select></label>
+      <button class="btn sm ghost" id="nuevaCuenta" title="Agregar una cuenta bancaria al cliente">+ Cuenta</button>
+      <label class="c-sel">Mes<input type="month" id="selMes" /></label>
+      <button class="btn sm" id="verTablero">Tablero</button>
+      <button class="btn sm ghost" id="verUsuarios" hidden>Usuarios</button>
+      <span class="c-guardado"><span id="guardado"></span><span id="sesion" class="c-sesion"></span></span>
+    </section>
+
+    <!-- Carga: un solo lugar para soltar todo -->
+    <section id="drop" class="c-drop">
+      <div class="c-drop-card">
+        <h2>Conciliá en un paso</h2>
+        <p>Soltá acá el <b>extracto</b> (PDF o imagen) y el <b>mayor de la cuenta Banco</b> (CSV), juntos o de a uno.
+          Fulgoria los lee, verifica los saldos, empareja y te muestra solo lo que necesita tu decisión. Nada sale de tu computadora.</p>
+        <div class="c-drop-btns">
+          <label class="btn primary">
+            <svg class="ico" width="15" height="15" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
+            Elegir archivos<input id="fileInput" type="file" multiple accept="application/pdf,image/*,.csv,.txt,text/csv" hidden />
+          </label>
+          <button id="btnEjemplo" class="btn ghost">Probar con el ejemplo</button>
+        </div>
+      </div>
+      <div id="docs" class="c-docs"></div>
+    </section>
+
+    <div id="progress" class="ocr-progress" style="display:none"></div>
+
+    <!-- Resultado -->
+    <section id="result" class="c-result" hidden>
+      <div class="c-main">
+        <div id="flujo" class="c-flujo" hidden></div>
+        <div id="estado" class="c-estado"></div>
+        <div id="bandeja" class="c-bandeja"></div>
+        <div id="mesa" class="c-mesa" hidden></div>
+        <details id="papelBox" class="c-papel">
+          <summary>Papel de trabajo</summary>
+          <div id="papel"></div>
+          <div class="c-exports">
+            <button class="btn sm" data-exp="md">Papel (Markdown)</button>
+            <button class="btn sm" data-exp="csv">Papel (CSV)</button>
+            <button class="btn sm" data-exp="asientos">Asientos (CSV)</button>
+            <button class="btn sm" data-exp="arrastre" title="Las partidas pendientes, para cargarlas al conciliar el mes siguiente">Pendientes para el mes siguiente</button>
+            <button class="btn sm ghost" data-exp="json">Todo (JSON)</button>
+          </div>
+        </details>
+      </div>
+      <aside id="mandos" class="c-mandos" hidden></aside>
+    </section>
+  </main>
+
+  <div id="modal" class="modal-back" hidden>
+    <div class="modal-card c-modal-card" role="dialog" aria-modal="true">
+      <button class="modal-x" id="modalX" aria-label="Cerrar"><svg class="ico" width="14" height="14" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <h3 class="modal-tit" id="modalTit"></h3>
+      <div class="modal-cuerpo" id="modalBody"></div>
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+
+  <script type="module" src="src/conciliar.js"></script>
+</body>
+</html>

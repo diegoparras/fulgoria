@@ -59,7 +59,7 @@ function luhnOk(s) {
   return total % 10 === 0;
 }
 
-function cuitOk(d11) {
+export function cuitOk(d11) {
   if (d11.length !== 11) return false;
   const n = [...d11].map(Number);
   const w = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];

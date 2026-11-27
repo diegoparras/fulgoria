@@ -1,0 +1,587 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "095-tarjetas_brutas-atlantico",
+ "escenario": "tarjetas_brutas",
+ "banco": "atlantico",
+ "sistema": "debitos_creditos_us",
+ "semilla": 8051,
+ "periodo": {
+  "desde": "2026-01-01",
+  "hasta": "2026-01-31"
+ },
+ "cliente": {
+  "nombre": "Muebles Quebracho SAS",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El libro registra la venta con tarjeta en bruto y aparte el arancel y su IVA; el banco acredita el neto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 3331206329,
+    "bancoCierre": 3707693426,
+    "librosApertura": 3331206329,
+    "librosCierre": 3727063712
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-01-01",
+     "cents": 79217264,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 93187",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-01-01",
+     "cents": -475304,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-01-06",
+     "cents": 127173336,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 72182",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-01-06",
+     "cents": -763040,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-01-08",
+     "cents": -281700000,
+     "descripcion": "TRANSFERENCIA A TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-01-08",
+     "cents": -1690200,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-01-08",
+     "cents": -254796000,
+     "descripcion": "TRANSFERENCIA A TERCEROS ESTUDIO GRÁFICO COBALTO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-01-08",
+     "cents": -1528776,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-01-12",
+     "cents": 423296000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS BODEGA PIEDRA NEGRA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-01-12",
+     "cents": -2539776,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-01-16",
+     "cents": 135207110,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 72563",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-01-16",
+     "cents": -811243,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-01-16",
+     "cents": 209060067,
+     "descripcion": "TRANSFERENCIA DE TERCEROS METALÚRGICA SAN TELMO SRL - 0001-00000423",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-01-16",
+     "cents": -1254360,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-01-19",
+     "cents": 89595446,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 65290",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-01-19",
+     "cents": -537573,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-01-19",
+     "cents": 170513082,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 80257",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-01-19",
+     "cents": -1023078,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-01-26",
+     "cents": -198300000,
+     "descripcion": "TRANSFERENCIA A TERCEROS LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-01-26",
+     "cents": -1189800,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-01-26",
+     "cents": -5560734,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-01-26",
+     "cents": -1167754,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-01-26",
+     "cents": -166822,
+     "descripcion": "PERC. IVA",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-01-26",
+     "cents": -33364,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-01-26",
+     "cents": -7007,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-01-26",
+     "cents": -1001,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-01-29",
+     "cents": -103408922,
+     "descripcion": "TRANSFERENCIA A TERCEROS ESTUDIO GRÁFICO COBALTO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-01-29",
+     "cents": -620454,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-01-01",
+     "cents": 82201166,
+     "descripcion": "Ventas con tarjeta lote 93187",
+     "comprobante": "",
+     "asiento": 149
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-01-01",
+     "cents": -2466035,
+     "descripcion": "Arancel tarjeta lote 93187",
+     "comprobante": "",
+     "asiento": 150
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-01-01",
+     "cents": -517867,
+     "descripcion": "IVA arancel lote 93187",
+     "comprobante": "",
+     "asiento": 151
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-01-06",
+     "cents": 127173336,
+     "descripcion": "Liquidación tarjeta lote 72182",
+     "comprobante": "",
+     "asiento": 158
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-01-07",
+     "cents": -281700000,
+     "descripcion": "Pago Tecnología Austral SAS OP 0001-00000426",
+     "comprobante": "OP 0001-00000426",
+     "asiento": 162
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-01-07",
+     "cents": -254796000,
+     "descripcion": "Transferencia a Estudio Gráfico Cobalto SAS OP 0001-00000428",
+     "comprobante": "OP 0001-00000428",
+     "asiento": 164
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-01-12",
+     "cents": 423296000,
+     "descripcion": "Cobranza cliente Bodega Piedra Negra SA",
+     "comprobante": "0003-00000421",
+     "asiento": 159
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-01-16",
+     "cents": 140300000,
+     "descripcion": "Ventas con tarjeta lote 72563",
+     "comprobante": "",
+     "asiento": 152
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-01-16",
+     "cents": -4209000,
+     "descripcion": "Arancel tarjeta lote 72563",
+     "comprobante": "",
+     "asiento": 153
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-01-16",
+     "cents": -883890,
+     "descripcion": "IVA arancel lote 72563",
+     "comprobante": "",
+     "asiento": 154
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-01-16",
+     "cents": 209060067,
+     "descripcion": "Cobro FC A 0001-00000423 Metalúrgica San Telmo SRL",
+     "comprobante": "0001-00000423",
+     "asiento": 160
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-01-19",
+     "cents": 92390251,
+     "descripcion": "Ventas con tarjeta lote 65290",
+     "comprobante": "",
+     "asiento": 146
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-01-19",
+     "cents": -2309756,
+     "descripcion": "Arancel tarjeta lote 65290",
+     "comprobante": "",
+     "asiento": 147
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-01-19",
+     "cents": -485049,
+     "descripcion": "IVA arancel lote 65290",
+     "comprobante": "",
+     "asiento": 148
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-01-19",
+     "cents": 175832000,
+     "descripcion": "Ventas con tarjeta lote 80257",
+     "comprobante": "",
+     "asiento": 155
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-01-19",
+     "cents": -4395800,
+     "descripcion": "Arancel tarjeta lote 80257",
+     "comprobante": "",
+     "asiento": 156
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-01-19",
+     "cents": -923118,
+     "descripcion": "IVA arancel lote 80257",
+     "comprobante": "",
+     "asiento": 157
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-01-23",
+     "cents": -198300000,
+     "descripcion": "Pago Logística Andina SAS OP 0001-00000427",
+     "comprobante": "OP 0001-00000427",
+     "asiento": 163
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-01-28",
+     "cents": -103408922,
+     "descripcion": "Pago a proveedor Estudio Gráfico Cobalto SAS",
+     "comprobante": "OP 0001-00000425",
+     "asiento": 161
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L12",
+      "L13",
+      "L14"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1",
+      "L2",
+      "L3"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L8",
+      "L9",
+      "L10"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L15",
+      "L16",
+      "L17"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L19"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L18"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

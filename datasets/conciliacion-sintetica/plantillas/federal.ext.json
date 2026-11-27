@@ -1,0 +1,157 @@
+{
+  "fulgoria_template": "0.1",
+  "meta": {
+    "template_id": "banco-federal-del-sur-v1",
+    "country": "AR",
+    "bank": "Banco Federal del Sur",
+    "document_type": "extracto_bancario",
+    "format_version": 1,
+    "fingerprint": "extfp1:a1e37d00",
+    "source": "digital",
+    "contributor": "dataset-sintetico",
+    "created_at": "2026-11-27",
+    "multipage": true
+  },
+  "match": {
+    "page_size": {
+      "w_pt": 595,
+      "h_pt": 842,
+      "tol": 0.02
+    },
+    "anchors": [
+      {
+        "text": "Fecha",
+        "box": {
+          "x": 0.0605,
+          "y": 0.1276
+        },
+        "match": "equals_ci"
+      },
+      {
+        "text": "Descripción",
+        "box": {
+          "x": 0.1412,
+          "y": 0.1276
+        },
+        "match": "equals_ci"
+      },
+      {
+        "text": "Referencia",
+        "box": {
+          "x": 0.5109,
+          "y": 0.1276
+        },
+        "match": "equals_ci"
+      },
+      {
+        "text": "Importe",
+        "box": {
+          "x": 0.7366,
+          "y": 0.1276
+        },
+        "match": "equals_ci"
+      },
+      {
+        "text": "Saldo",
+        "box": {
+          "x": 0.9018,
+          "y": 0.1276
+        },
+        "match": "equals_ci"
+      }
+    ],
+    "min_anchors": 3
+  },
+  "geometry": {
+    "coords": "normalized",
+    "row_detection": {
+      "strategy": "amount_anchor",
+      "date_regex": "\\d{2}/\\d{2}/\\d{2,4}",
+      "continuation": "append_description",
+      "table_bound": "saldo_continuity"
+    },
+    "columns": [
+      {
+        "field": "Fecha",
+        "role": "fecha",
+        "x_band": {
+          "from": 0,
+          "to": 0.1378
+        }
+      },
+      {
+        "field": "Descripción",
+        "role": "descripcion",
+        "x_band": {
+          "from": 0.1378,
+          "to": 0.5042
+        }
+      },
+      {
+        "field": "Referencia",
+        "role": "texto",
+        "x_band": {
+          "from": 0.5042,
+          "to": 0.6252
+        }
+      },
+      {
+        "field": "Importe",
+        "role": "importe",
+        "x_band": {
+          "from": 0.6252,
+          "to": 0.8
+        }
+      },
+      {
+        "field": "Saldo",
+        "role": "saldo",
+        "x_band": {
+          "from": 0.8,
+          "to": 1
+        }
+      }
+    ]
+  },
+  "fields": {
+    "Fecha": {
+      "type": "date",
+      "format": "DD/MM/YYYY"
+    },
+    "Descripción": {
+      "type": "text"
+    },
+    "Referencia": {
+      "type": "text"
+    },
+    "Importe": {
+      "type": "amount",
+      "locale": "es-AR",
+      "sign": "as_is",
+      "empty_as": null
+    },
+    "Saldo": {
+      "type": "amount",
+      "locale": "es-AR",
+      "sign": "as_is",
+      "empty_as": null
+    }
+  },
+  "annotations": [],
+  "rules": [],
+  "validation": {
+    "balance_rule": {
+      "enabled": true,
+      "formula": "opening + sum(importe) == closing",
+      "tolerance": 0.01,
+      "per_row_check": true
+    },
+    "row_invariants": []
+  },
+  "community": {
+    "votes_up": 0,
+    "votes_down": 0,
+    "verified_count": 0,
+    "verified_rate": null
+  }
+}

@@ -1,0 +1,818 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "039-agrupados-federal",
+ "escenario": "agrupados",
+ "banco": "federal",
+ "sistema": "comillas_coma",
+ "semilla": 4011,
+ "periodo": {
+  "desde": "2026-03-01",
+  "hasta": "2026-03-31"
+ },
+ "cliente": {
+  "nombre": "Química Litoral SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Depósitos que juntan varias cobranzas y retiros de Mercado Pago que juntan muchas ventas (algunos con más de 4 partidas).",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 3357220900,
+    "bancoCierre": 4795817224,
+    "librosApertura": 3357220900,
+    "librosCierre": 4821832888
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-03-02",
+     "cents": 111478714,
+     "descripcion": "DEP EFECTIVO CAJERO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-03-02",
+     "cents": -668872,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-03-02",
+     "cents": 117682642,
+     "descripcion": "TRF RECIB MERCADO PAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-03-02",
+     "cents": -706096,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-03-02",
+     "cents": -1412192,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-03-03",
+     "cents": 113180054,
+     "descripcion": "ACRED PRISMA LIQ 32930",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-03-03",
+     "cents": -679080,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-03-03",
+     "cents": -1358161,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-03-04",
+     "cents": 279662596,
+     "descripcion": "TRF INMEDIATA RECIB 33634528879",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-03-04",
+     "cents": -1677976,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-03-04",
+     "cents": -3355951,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-03-05",
+     "cents": -13830000,
+     "descripcion": "TRF INMEDIATA ENV 30522146044",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-03-05",
+     "cents": -82980,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-03-11",
+     "cents": 181124008,
+     "descripcion": "TRF INMEDIATA RECIB 30566110837",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-03-11",
+     "cents": -1086744,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-03-11",
+     "cents": -2173488,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-03-16",
+     "cents": 118475959,
+     "descripcion": "TRF RECIB MERCADO PAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-03-16",
+     "cents": -710856,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-03-16",
+     "cents": -1421712,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-03-17",
+     "cents": 55784000,
+     "descripcion": "DEP EFECTIVO CAJERO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-03-17",
+     "cents": -334704,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-03-18",
+     "cents": -35600000,
+     "descripcion": "TRF INMEDIATA ENV 30510764931",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-03-18",
+     "cents": -213600,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-03-23",
+     "cents": 185635000,
+     "descripcion": "DEP EFECTIVO CAJERO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-03-23",
+     "cents": -1113810,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-03-23",
+     "cents": 263592187,
+     "descripcion": "ACRED PRISMA LIQ 83220",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-03-23",
+     "cents": -1581553,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-03-23",
+     "cents": -3163106,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-03-24",
+     "cents": 87426828,
+     "descripcion": "TRF RECIB MERCADO PAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-03-24",
+     "cents": -524561,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-03-24",
+     "cents": -1049122,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-03-25",
+     "cents": -2219000,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-03-25",
+     "cents": -465990,
+     "descripcion": "I.V.A. TASA GENERAL",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-03-25",
+     "cents": -13314,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B35",
+     "fecha": "2026-03-25",
+     "cents": -2796,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-03-01",
+     "cents": 44364470,
+     "descripcion": "Cobranza Santiago Rojas - efectivo a depositar",
+     "comprobante": "RC 0001-00000667",
+     "asiento": 360
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-03-01",
+     "cents": 4229000,
+     "descripcion": "Cobranza Paula Castro - efectivo a depositar",
+     "comprobante": "RC 0001-00000668",
+     "asiento": 361
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-03-01",
+     "cents": 62885244,
+     "descripcion": "Cobranza Mateo Benítez - efectivo a depositar",
+     "comprobante": "RC 0001-00000669",
+     "asiento": 362
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-03-01",
+     "cents": 3171325,
+     "descripcion": "Venta MP #91907244",
+     "comprobante": "",
+     "asiento": 380
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-03-01",
+     "cents": 1294000,
+     "descripcion": "Venta MP #42568106",
+     "comprobante": "",
+     "asiento": 381
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-03-01",
+     "cents": 16900000,
+     "descripcion": "Venta MP #64632054",
+     "comprobante": "",
+     "asiento": 382
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-03-01",
+     "cents": 25700000,
+     "descripcion": "Venta MP #29295428",
+     "comprobante": "",
+     "asiento": 383
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-03-01",
+     "cents": 17336068,
+     "descripcion": "Venta MP #60074993",
+     "comprobante": "",
+     "asiento": 385
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-03-01",
+     "cents": 22647249,
+     "descripcion": "Venta MP #55462524",
+     "comprobante": "",
+     "asiento": 386
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-03-01",
+     "cents": 600000,
+     "descripcion": "Venta MP #55319793",
+     "comprobante": "",
+     "asiento": 387
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-03-01",
+     "cents": 2434000,
+     "descripcion": "Venta MP #57891160",
+     "comprobante": "",
+     "asiento": 388
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-03-02",
+     "cents": 27600000,
+     "descripcion": "Venta MP #60961933",
+     "comprobante": "",
+     "asiento": 384
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-03-02",
+     "cents": 279662596,
+     "descripcion": "Cobranza Bodega Piedra Negra SA Rec. 0001-00000678",
+     "comprobante": "0002-00000677",
+     "asiento": 392
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-03-03",
+     "cents": 113180054,
+     "descripcion": "Liquidación tarjeta lote 32930",
+     "comprobante": "",
+     "asiento": 390
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-03-04",
+     "cents": -13830000,
+     "descripcion": "Pago a proveedor Tecnología Austral SAS",
+     "comprobante": "OP 0001-00000680",
+     "asiento": 394
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-03-09",
+     "cents": 181124008,
+     "descripcion": "Cobranza cliente Distribuidora Los Álamos SRL",
+     "comprobante": "0003-00000675",
+     "asiento": 391
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-03-12",
+     "cents": 19351602,
+     "descripcion": "Venta MP #72040842",
+     "comprobante": "",
+     "asiento": 378
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-03-13",
+     "cents": 13900000,
+     "descripcion": "Venta MP #29682275",
+     "comprobante": "",
+     "asiento": 375
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-03-13",
+     "cents": 12400000,
+     "descripcion": "Venta MP #99256583",
+     "comprobante": "",
+     "asiento": 377
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-03-14",
+     "cents": 27053357,
+     "descripcion": "Venta MP #56282990",
+     "comprobante": "",
+     "asiento": 373
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-03-14",
+     "cents": 15211000,
+     "descripcion": "Venta MP #21386053",
+     "comprobante": "",
+     "asiento": 376
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-03-15",
+     "cents": 53484000,
+     "descripcion": "Cobranza Camila Herrera - efectivo a depositar",
+     "comprobante": "RC 0001-00000670",
+     "asiento": 363
+    },
+    {
+     "id": "L23",
+     "fecha": "2026-03-15",
+     "cents": 12100000,
+     "descripcion": "Venta MP #91667049",
+     "comprobante": "",
+     "asiento": 374
+    },
+    {
+     "id": "L24",
+     "fecha": "2026-03-16",
+     "cents": 18460000,
+     "descripcion": "Venta MP #82207887",
+     "comprobante": "",
+     "asiento": 379
+    },
+    {
+     "id": "L25",
+     "fecha": "2026-03-17",
+     "cents": 2300000,
+     "descripcion": "Cobranza Lucas Fernández - efectivo a depositar",
+     "comprobante": "RC 0001-00000671",
+     "asiento": 364
+    },
+    {
+     "id": "L26",
+     "fecha": "2026-03-17",
+     "cents": -35600000,
+     "descripcion": "Pago Ferretería El Tornillo SRL OP 0001-00000679",
+     "comprobante": "OP 0001-00000679",
+     "asiento": 393
+    },
+    {
+     "id": "L27",
+     "fecha": "2026-03-20",
+     "cents": 22600000,
+     "descripcion": "Venta MP #29393987",
+     "comprobante": "",
+     "asiento": 370
+    },
+    {
+     "id": "L28",
+     "fecha": "2026-03-21",
+     "cents": 64600000,
+     "descripcion": "Cobranza Joaquín Pereyra - efectivo a depositar",
+     "comprobante": "RC 0001-00000674",
+     "asiento": 367
+    },
+    {
+     "id": "L29",
+     "fecha": "2026-03-21",
+     "cents": 20020122,
+     "descripcion": "Venta MP #81834293",
+     "comprobante": "",
+     "asiento": 369
+    },
+    {
+     "id": "L30",
+     "fecha": "2026-03-21",
+     "cents": 4409706,
+     "descripcion": "Venta MP #52188840",
+     "comprobante": "",
+     "asiento": 371
+    },
+    {
+     "id": "L31",
+     "fecha": "2026-03-22",
+     "cents": 88800000,
+     "descripcion": "Cobranza Tomás Acosta - efectivo a depositar",
+     "comprobante": "RC 0001-00000673",
+     "asiento": 366
+    },
+    {
+     "id": "L32",
+     "fecha": "2026-03-22",
+     "cents": 25153000,
+     "descripcion": "Venta MP #12791338",
+     "comprobante": "",
+     "asiento": 368
+    },
+    {
+     "id": "L33",
+     "fecha": "2026-03-22",
+     "cents": 15244000,
+     "descripcion": "Venta MP #55114476",
+     "comprobante": "",
+     "asiento": 372
+    },
+    {
+     "id": "L34",
+     "fecha": "2026-03-23",
+     "cents": 32235000,
+     "descripcion": "Cobranza Lucas Fernández - efectivo a depositar",
+     "comprobante": "RC 0001-00000672",
+     "asiento": 365
+    },
+    {
+     "id": "L35",
+     "fecha": "2026-03-23",
+     "cents": 263592187,
+     "descripcion": "Liquidación tarjeta lote 83220",
+     "comprobante": "",
+     "asiento": 389
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1",
+      "L2",
+      "L3"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B20"
+     ],
+     "libros": [
+      "L22",
+      "L25"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B24"
+     ],
+     "libros": [
+      "L34",
+      "L31",
+      "L28"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B29"
+     ],
+     "libros": [
+      "L32",
+      "L29",
+      "L27",
+      "L30",
+      "L33"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L20",
+      "L23",
+      "L18",
+      "L21",
+      "L19",
+      "L17",
+      "L24"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L4",
+      "L5",
+      "L6",
+      "L7",
+      "L12",
+      "L8",
+      "L9",
+      "L10",
+      "L11"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B26"
+     ],
+     "libros": [
+      "L35"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B22"
+     ],
+     "libros": [
+      "L26"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B32",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B33",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B31",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B19",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B5",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B27",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B7",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B15",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B11",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B34",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B35",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}
