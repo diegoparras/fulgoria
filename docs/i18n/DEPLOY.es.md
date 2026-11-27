@@ -151,6 +151,34 @@ DOCS_CLAVE=<openssl rand -hex 32>
 **AWS S3**: igual, con `S3_ENDPOINT=https://s3.<región>.amazonaws.com` y `S3_REGION=<región>`; un usuario
 IAM limitado a `s3:GetObject`, `s3:PutObject` y `s3:DeleteObject` sobre `arn:aws:s3:::<bucket>/*`.
 
+**Roles.** En el modo estudio cada persona tiene un rol: `lector` (solo mira), `preparador` (carga
+documentos, concilia y marca *preparado*), `revisor` (además revisa, cierra y reabre meses) y `admin`
+(además administra usuarios). *Standalone*: el usuario del `.env` es admin y da de alta al resto desde
+**Conciliar → Usuarios** (se guardan en la base del estudio con bcrypt; los cambios de rol y las bajas
+rigen en el momento). *Federado con Lockatus*: el rol viene en el token del hub; los nombres se
+traducen con `LOCKATUS_ROLES=contador=preparador,socio=revisor`; un rol desconocido entra como
+`lector`. Con `REVISION_INDEPENDIENTE=on`, quien preparó un mes no puede revisarlo.
+
+## 5. IA para bancos nuevos (opcional)
+
+Cuando un extracto no se lee con una plantilla ni con la auto‑detección, la IA propone las columnas.
+**Al modelo no le llega el extracto**: solo un esqueleto anónimo (posición y tipo de cada celda,
+importes y fechas reducidos a su formato; ni nombres, ni montos, ni cuentas), que el servidor vuelve a
+sanear. La regla del saldo decide: una propuesta se usa solo si los saldos cierran, y entonces queda
+como plantilla del banco (la IA se usa una vez por banco, no por extracto).
+
+```ini
+IA_PROVEEDOR=anthropic            # anthropic | openai | openrouter | local
+IA_MODELO=claude-opus-5-5         # por defecto con anthropic; obligatorio con los demás
+IA_API_KEY=<clave>                # anthropic puede usar ANTHROPIC_API_KEY; local no necesita
+IA_URL=                           # local: p. ej. http://ollama:11434/v1 (Ollama), LM Studio, vLLM
+IA_MAX_POR_HORA=30                # consultas por persona y por hora
+```
+
+Con Claude, el pedido usa salida estructurada (JSON Schema) y fallback del servidor si el modelo
+declina. GPT, OpenRouter y los modelos locales van por la API de chat compatible con OpenAI (salida
+estructurada si el modelo la admite; si no, JSON simple).
+
 ---
 
 ## Referencia de variables
@@ -172,6 +200,9 @@ IAM limitado a `s3:GetObject`, `s3:PutObject` y `s3:DeleteObject` sobre `arn:aws
 | `DOCS_CLAVE` | — | Clave de 32 bytes (hex/base64) para cifrar los documentos con AES‑256‑GCM. Recomendada. |
 | `BACKUP_HORAS` | `24` | Cada cuántas horas se copia la base. `0` lo desactiva. |
 | `DOC_MAX_MB` | `25` | Tamaño máximo de un documento subido. |
+| `REVISION_INDEPENDIENTE` | `off` | `on`: quien preparó un mes no puede revisarlo. |
+| `LOCKATUS_ROLES` | — | Federado: traduce los roles de Lockatus a `lector`/`preparador`/`revisor`/`admin`. |
+| `IA_PROVEEDOR`, `IA_MODELO`, `IA_API_KEY`, `IA_URL`, `IA_MAX_POR_HORA` | — | IA para bancos nuevos (sección 5). |
 
 Lista completa con comentarios: [`.env.example`](../../.env.example).
 

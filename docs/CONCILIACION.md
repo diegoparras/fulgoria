@@ -105,6 +105,23 @@ control de concurrencia (si dos personas editan el mismo mes, la segunda recibe 
 registro de auditoría. Código: `server/persistencia.js` (SQLite con `node:sqlite`), `server/blobs.js`
 (disco / S3 con firma SigV4 vía `aws4fetch`, cifrado AES-256-GCM), `server/api.js` (`/api/v1`).
 
+## Roles
+
+`server/roles.js`: lector → preparador → revisor → admin. Standalone (usuarios en la base, el del
+`.env` es admin) o federado con Lockatus (`LOCKATUS_ROLES`). La API controla cada acción
+(`exige(permiso)`), la pantalla muestra solo lo que el rol puede hacer y `REVISION_INDEPENDIENTE=on`
+impide revisar lo propio.
+
+## IA para bancos nuevos
+
+`src/ia.js` arma un esqueleto anónimo del PDF (posiciones y tipos de celda, importes y fechas como
+patrón) y elige entre las propuestas del modelo con la regla del saldo (`evaluarColumnas`);
+`server/ia.js` sanea el esqueleto otra vez y llama al proveedor: Claude con el SDK oficial (salida
+estructurada, fallback del servidor) o GPT / OpenRouter / local por la API compatible con OpenAI. Una
+propuesta que cierra queda guardada como plantilla del banco. Verificado sobre los 148 casos del
+dataset: ninguna fuga de datos en el esqueleto y, con una propuesta correcta y una equivocada, la
+regla del saldo eligió siempre la correcta.
+
 ## Dataset sintético y benchmark
 
 `datasets/conciliacion-sintetica/` tiene 148 casos con la respuesta correcta (ver su README), entre
@@ -140,7 +157,7 @@ contra ellos (`RESULTADOS.md`). Lo que el dataset encontró y se corrigió:
 
 ## Pendiente
 
-- Modo estudio: usuarios con roles (preparador / revisor) desde Lockatus; hoy cualquiera con login puede todo.
+- IA también en el Extractor (hoy se ofrece en Conciliar) y para clasificar leyendas nuevas.
 - Traducciones de la pantalla de conciliación (hoy solo en español).
 - Editor de reglas de clasificación propias en la interfaz (el motor ya las acepta).
 - Lectura de XLSX (las plantillas de mayor ya existen; falta leer el archivo Excel).

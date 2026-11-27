@@ -96,6 +96,18 @@ function passwordOk(input) {
 
 const app = express();
 app.disable("x-powered-by");
+let persistencia = null; // modo estudio (PERSISTENCIA=on)
+if (PERSISTENCIA) {
+  const { crearPersistencia } = require("./server/persistencia.js");
+  persistencia = crearPersistencia({
+    dataDir: DATA_DIR,
+    almacenamiento: String(process.env.ALMACENAMIENTO || "disco").toLowerCase(),
+    s3: { endpoint: process.env.S3_ENDPOINT, region: process.env.S3_REGION || "auto", bucket: process.env.S3_BUCKET, accessKeyId: process.env.S3_ACCESS_KEY_ID, secretAccessKey: process.env.S3_SECRET_ACCESS_KEY, prefijo: process.env.S3_PREFIJO || "" },
+    clave: process.env.DOCS_CLAVE || "",
+    backupHoras: Number(process.env.BACKUP_HORAS ?? 24),
+    revisionIndependiente: String(process.env.REVISION_INDEPENDIENTE || "off").toLowerCase() === "on",
+  });
+}
 app.set("trust proxy", 1); // detrás del reverse proxy de EasyPanel (termina TLS)
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false, limit: "16kb" }));
@@ -115,7 +127,21 @@ function verify(token) {
   if (a.length !== e.length || !crypto.timingSafeEqual(a, e)) return null;
   try { const p = JSON.parse(Buffer.from(data, "base64url").toString()); return p.exp > Date.now() ? p : null; } catch { return null; }
 }
-const authed = (req) => !AUTH_ENABLED || !!verify(req.cookies[COOKIE]);
+// Identidad de la sesión: { u, rol }. Standalone: el usuario del .env es admin y los demás salen de
+// la base del estudio (se relee en cada pedido: desactivar a alguien o cambiarle el rol tiene efecto
+// inmediato). Federado: el rol viene de Lockatus (ver server/roles.js). Sin login: "local", admin.
+const { rolDesdeLockatus, parsearMapa } = require("./server/roles.js");
+const MAPA_LK = parsearMapa(process.env.LOCKATUS_ROLES || "");
+function identidad(req) {
+  if (!AUTH_ENABLED) return { u: "local", rol: "admin" };
+  const p = verify(req.cookies[COOKIE]);
+  if (!p || !p.u) return null;
+  if (AUTH_MODE === "federado") return { u: p.u, rol: rolDesdeLockatus(p.role, MAPA_LK) };
+  if (p.u === AUTH_USER) return { u: p.u, rol: "admin" };
+  const x = persistencia && persistencia.usuario(p.u);
+  return x && x.activo ? { u: x.usuario, rol: x.rol } : null;
+}
+const authed = (req) => !!identidad(req);
 
 // --- Headers de seguridad + CSP. Permite lo que la app necesita (workers/wasm de PDF.js y
 //     Tesseract, data:/blob: para canvas/chevron) y nada más. Todo same-origin: sin CDN. ---
@@ -208,13 +234,15 @@ app.post("/login", (req, res) => {
   const ip = req.ip || "?";
   const f = fails.get(ip);
   if (f && f.count >= 8 && Date.now() - f.t < 60000) return res.redirect("/login?e=2");
-  const ok = !!AUTH_USER && req.body.user === AUTH_USER && passwordOk(req.body.password);
+  // El usuario del .env (admin) o, con el modo estudio, un usuario dado de alta en la base.
+  const ok = (!!AUTH_USER && req.body.user === AUTH_USER && passwordOk(req.body.password))
+    || (!!persistencia && !!persistencia.verificarUsuario(req.body.user, req.body.password));
   if (!ok) {
     fails.set(ip, { count: (f && Date.now() - f.t < 60000 ? f.count : 0) + 1, t: Date.now() });
     return res.redirect("/login?e=1");
   }
   fails.delete(ip);
-  res.cookie(COOKIE, sign({ u: AUTH_USER, exp: Date.now() + TTL_MS }), { httpOnly: true, secure: COOKIE_SECURE, sameSite: "lax", maxAge: TTL_MS });
+  res.cookie(COOKIE, sign({ u: String(req.body.user), exp: Date.now() + TTL_MS }), { httpOnly: true, secure: COOKIE_SECURE, sameSite: "lax", maxAge: TTL_MS });
   res.redirect("/");
 });
 app.get("/logout", (req, res) => {
@@ -249,23 +277,33 @@ app.get("/api/novedades", (req, res) => {
 
 // --- API del estudio (/api/v1): solo con PERSISTENCIA=on. Sin ella, /api/v1/estado avisa que el
 //     modo es local (la app funciona igual, sin guardar nada en el servidor). ---
-const usuarioDe = (req) => { const p = verify(req.cookies[COOKIE]); return (p && p.u) || (AUTH_ENABLED ? "?" : "local"); };
-let persistencia = null;
-if (PERSISTENCIA) {
-  const { crearPersistencia } = require("./server/persistencia.js");
+if (persistencia) {
   const { crearApi } = require("./server/api.js");
-  persistencia = crearPersistencia({
-    dataDir: DATA_DIR,
-    almacenamiento: String(process.env.ALMACENAMIENTO || "disco").toLowerCase(),
-    s3: { endpoint: process.env.S3_ENDPOINT, region: process.env.S3_REGION || "auto", bucket: process.env.S3_BUCKET, accessKeyId: process.env.S3_ACCESS_KEY_ID, secretAccessKey: process.env.S3_SECRET_ACCESS_KEY, prefijo: process.env.S3_PREFIJO || "" },
-    clave: process.env.DOCS_CLAVE || "",
-    backupHoras: Number(process.env.BACKUP_HORAS ?? 24),
-  });
-  app.use("/api/v1", crearApi(persistencia, { maxDocMB: Number(process.env.DOC_MAX_MB || 25), usuario: usuarioDe }));
+  const modoUsuarios = !AUTH_ENABLED ? "sin_login" : AUTH_MODE === "federado" ? "lockatus" : "local";
+  app.use("/api/v1", crearApi(persistencia, { maxDocMB: Number(process.env.DOC_MAX_MB || 25), usuario: identidad, modoUsuarios }));
   console.log(`[fulgoria] persistencia ON · base ${path.join(DATA_DIR, "fulgoria.sqlite")} · documentos en ${persistencia.almacenamiento}${persistencia.cifrado ? " (cifrados)" : ""}`);
 } else {
   app.get("/api/v1/estado", (req, res) => res.json({ persistencia: false }));
 }
+
+// --- IA para bancos nuevos (opcional, IA_PROVEEDOR). Recibe solo el esqueleto anónimo del extracto
+//     (posiciones y tipos de celda, nunca datos) y propone columnas; la regla del saldo decide en el
+//     navegador. Ver server/ia.js. ---
+const { crearIA } = require("./server/ia.js");
+const ia = crearIA({
+  proveedor: process.env.IA_PROVEEDOR, modelo: process.env.IA_MODELO,
+  apiKey: process.env.IA_API_KEY || (String(process.env.IA_PROVEEDOR || "").toLowerCase() === "anthropic" ? process.env.ANTHROPIC_API_KEY : ""),
+  url: process.env.IA_URL, maxPorHora: Number(process.env.IA_MAX_POR_HORA || 30),
+});
+app.get("/api/ia/estado", (req, res) => res.json(ia.disponible ? { disponible: true, proveedor: ia.proveedor, modelo: ia.modelo } : { disponible: false }));
+app.post("/api/ia/columnas", express.json({ limit: "256kb" }), async (req, res) => {
+  if (!ia.disponible) return res.status(404).json({ error: 404, mensaje: "La IA no está configurada (IA_PROVEEDOR)." });
+  const yo = identidad(req) || { u: "?", rol: "lector" };
+  if (persistencia && !["preparador", "revisor", "admin"].includes(yo.rol)) return res.status(403).json({ error: 403, mensaje: "Tu rol no permite usar la IA." });
+  try { res.json(await ia.proponerColumnas(req.body?.esqueleto, yo.u)); }
+  catch (e) { res.status(e.status || 502).json({ error: e.status || 502, mensaje: e.message }); }
+});
+if (ia.disponible) console.log(`[fulgoria] IA para bancos nuevos: ${ia.proveedor} · ${ia.modelo}`);
 
 // --- Estáticos: WHITELIST explícita. Nunca se sirven .env, server.js, node_modules ni
 //     samples/private (PII). Solo el ejemplo sintético es público. ---

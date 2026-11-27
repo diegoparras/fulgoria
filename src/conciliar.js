@@ -7,7 +7,9 @@
 //
 // Todo corre en el navegador: el PDF y el mayor nunca salen de la máquina.
 import { loadPdf, renderToCanvas } from "./pdf.js";
-import { extract, balanceCheck, autoDetect, matchScore, docYear } from "./extract.js";
+import { extract, balanceCheck, autoDetect, matchScore, docYear, extractAnchors } from "./extract.js";
+import { buildTemplate } from "./template.js";
+import { esqueletoDePdf, elegirPropuesta } from "./ia.js";
 import {
   fromExtract, resolveConfig, DEFAULTS, reconcile, arrastreSiguiente, pairKey,
   papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, fmtCents, fmtISO,
@@ -56,7 +58,7 @@ document.addEventListener("drop", (e) => { if (e.dataTransfer?.files?.length) ha
 $("btnEjemplo").addEventListener("click", cargarEjemplo);
 
 async function handleFiles(files) {
-  if (soloLectura()) return toast("El mes está cerrado. Reabrilo para cambiar los documentos.");
+  if (soloLectura()) return toast(puedo("editar") ? "El mes está cerrado. Reabrilo para cambiar los documentos." : "Tu rol solo permite ver.");
   for (const f of files) {
     const n = f.name.toLowerCase();
     try {
@@ -317,7 +319,7 @@ function renderDocs() {
     if (x.error) return `<div class="c-doc">${dot("rojo")}<div><div class="k">Extracto</div><div class="n">${esc(x.name)}</div><div class="s">${esc(x.error)}</div></div></div>`;
     const ok = x.check.globalOk;
     return `<div class="c-doc">${dot(ok ? "verde" : "rojo")}<div><div class="k">Extracto${x.banco ? " · " + esc(x.banco) : ""}</div><div class="n">${esc(x.name)}</div>
-      <div class="s">${x.data.movs.length} movimientos · saldo ${fmtCents(x.data.apertura)} → ${fmtCents(x.data.cierre)} · ${ok ? "lectura verificada con la regla del saldo" : `<b>la lectura no cierra</b> (diferencia ${fmtCents(Math.round(((x.check.closing ?? 0) - (x.check.computed ?? 0)) * 100))}): abrilo en el <a class="link" href="./">Extractor</a> para ajustar las columnas`}${x.plantilla ? " · plantilla reconocida" : ""}${x.pdf.scanned ? " · OCR" : ""}</div>${sel}</div></div>`;
+      <div class="s">${x.data.movs.length} movimientos · saldo ${fmtCents(x.data.apertura)} → ${fmtCents(x.data.cierre)} · ${ok ? "lectura verificada con la regla del saldo" : `<b>la lectura no cierra</b> (diferencia ${fmtCents(Math.round(((x.check.closing ?? 0) - (x.check.computed ?? 0)) * 100))}): ${iaEstado.disponible && !soloLectura() ? "pedile a la IA que lea las columnas, o ajustalas" : "ajustá las columnas"} en el <a class="link" href="./">Extractor</a>`}${x.plantilla === "ia" ? " · columnas leídas por la IA" : x.plantilla ? " · plantilla reconocida" : ""}${x.pdf.scanned ? " · OCR" : ""}</div>${!ok && iaEstado.disponible && !soloLectura() ? `<button class="btn sm primary" data-ia="1" style="margin-top:8px">Pedirle a la IA que lea las columnas</button>` : ""}${sel}</div></div>`;
   })() : `<div class="c-doc falta">${ICON.doc}<div><div class="k">Extracto</div><div class="s">Falta el PDF o la imagen del extracto bancario.</div></div></div>`;
   const docM = m ? (m.error
     ? `<div class="c-doc">${dot("rojo")}<div><div class="k">Mayor</div><div class="n">${esc(m.name)}</div><div class="s">${esc(m.error)}</div>${m.rows ? `<button class="btn sm primary" data-mapear="1" style="margin-top:8px">Indicar columnas</button>` : ""}</div></div>`
@@ -521,8 +523,9 @@ document.addEventListener("click", (e) => {
   if (b.closest("summary") && b.tagName === "BUTTON") e.preventDefault(); // un botón en el encabezado no abre/cierra la tarjeta
   const d = b.dataset;
   if (d.ev) return verEvidencia(d.ev);
-  if (soloLectura() && (d.conf || d.rech || d.confall || d.mapear || b.id === "emparejar" || b.id === "limpiarDec")) return toast("El mes está cerrado. Reabrilo para hacer cambios.");
+  if (soloLectura() && (d.conf || d.rech || d.confall || d.mapear || b.id === "emparejar" || b.id === "limpiarDec")) return toast(puedo("editar") ? "El mes está cerrado. Reabrilo para hacer cambios." : "Tu rol solo permite ver.");
   if (d.mapear) return abrirMapeo();
+  if (d.ia) return pedirColumnasIA();
   if (d.conf) { const m = state.rec.matches.find((x) => x.id === d.conf); state.decisiones.confirmados.push({ banco: m.banco, libros: m.libros }); return run(); }
   if (d.rech) {
     const m = state.rec.matches.find((x) => x.id === d.rech);
@@ -678,7 +681,9 @@ setModo(state.modo);
 // `abierto` = el mes cuyos datos están en pantalla ({ cuentaId, periodo }). Todo guardado va a ESE mes,
 // nunca al que esté eligiendo el usuario en ese momento; `gen` descarta aperturas que quedaron viejas.
 const est = { activo: false, usuario: null, clientes: [], cuentas: [], cliente: null, cuenta: null, periodo: null, per: null, anterior: null, docs: { extracto: null, mayor: null }, ultimo: "", timer: 0, abierto: null, gen: 0 };
-const soloLectura = () => est.activo && est.per?.estado === "cerrado";
+const puedo = (permiso) => !est.activo || (est.permisos || []).includes(permiso);
+// Solo lectura: mes cerrado, o un rol que no puede modificar (lector).
+const soloLectura = () => est.activo && (est.per?.estado === "cerrado" || !puedo("editar"));
 
 async function srv(metodo, ruta, body, headers = {}) {
   try {
@@ -698,8 +703,11 @@ function setGuardado(txt, mal = false) { const g = $("guardado"); g.textContent 
 async function iniciarEstudio() {
   const r = await srv("GET", "/estado");
   if (!r.ok || !r.body.persistencia) return; // modo local: todo como siempre
-  est.activo = true; est.usuario = r.body.usuario;
+  est.activo = true; est.usuario = r.body.usuario; est.rol = r.body.rol || "admin"; est.permisos = r.body.permisos || ["leer", "editar", "preparar", "revisar", "administrar"];
   $("cartera").hidden = false;
+  $("nuevoCliente").hidden = $("nuevaCuenta").hidden = !puedo("editar");
+  if (r.body.modoUsuarios === "local" && puedo("administrar")) $("verUsuarios").hidden = false;
+  $("sesion").textContent = r.body.modoUsuarios === "sin_login" ? "" : `${est.usuario} · ${est.rol}`;
   $("selMes").value = new Date().toISOString().slice(0, 7);
   est.periodo = $("selMes").value;
   setGuardado(`Guardando en el ${r.body.almacenamiento === "s3" ? "bucket" : "servidor"} del estudio${r.body.cifrado ? " (cifrado)" : ""}`);
@@ -835,6 +843,7 @@ async function guardarPeriodo(accion) {
     return true;
   }
   if (r.status === 409) { toast("Otra persona guardó cambios en este mes: lo vuelvo a abrir con lo último."); await abrirPeriodo(); return false; }
+  if (r.status === 403) { setGuardado(r.body.mensaje, true); toast(r.body.mensaje); return false; }
   setGuardado(r.body.mensaje || "No se pudo guardar", true);
   if (accion) toast(r.body.mensaje || "No se pudo guardar");
   return false;
@@ -850,17 +859,66 @@ function renderFlujo() {
   const p = est.per || { estado: "borrador" };
   const quien = (u, t) => (u ? `<b>${esc(u)}</b> · ${new Date(t).toLocaleDateString("es-AR")}` : "—");
   const dif = state.rec.diferenciaNoExplicada;
-  const boton = {
+  const boton = soloLecturaPorRol() ? "" : {
     borrador: `<button class="btn sm primary" data-flujo="preparar">Marcar preparado</button>`,
     preparado: `<button class="btn sm primary" data-flujo="revisar">Marcar revisado</button>`,
     revisado: `<button class="btn sm primary" data-flujo="cerrar"${dif !== 0 ? ` disabled title="Con diferencia no explicada no se cierra"` : ""}>Cerrar el mes</button>`,
     cerrado: `<button class="btn sm ghost" data-flujo="reabrir">Reabrir</button>`,
   }[p.estado];
+  // Cada botón solo para quien puede usarlo: preparar (preparador+), revisar/cerrar/reabrir (revisor+).
+  const permisoDe = { borrador: "preparar", preparado: "revisar", revisado: "revisar", cerrado: "revisar" }[p.estado];
+  const accion = puedo(permisoDe) ? boton : `<span class="paso">${{ borrador: "Lo prepara un preparador o revisor", preparado: "Lo revisa un revisor", revisado: "Lo cierra un revisor", cerrado: "Lo reabre un revisor" }[p.estado]}</span>`;
   const ant = est.anterior ? `<span class="paso">Mes anterior: ${ESTADO_TXT[est.anterior.estado] || est.anterior.estado}${state.arrastre.length ? ` · ${state.arrastre.length} pendientes arrastrados` : ""}</span>` : "";
   f.innerHTML = `<span class="c-chip ${p.estado}">${ESTADO_TXT[p.estado]}</span>
     <span class="paso">Preparó: ${quien(p.preparo, p.preparoEn)}</span><span class="paso">Revisó: ${quien(p.reviso, p.revisoEn)}</span>
-    ${p.estado === "cerrado" ? `<span class="paso">Cerró: ${quien(p.cerro, p.cerroEn)}</span>` : ""}${ant}<span class="sp"></span>${boton}`;
+    ${p.estado === "cerrado" ? `<span class="paso">Cerró: ${quien(p.cerro, p.cerroEn)}</span>` : ""}${ant}<span class="sp"></span>${accion}`;
 }
+
+function soloLecturaPorRol() { return est.activo && !puedo("editar") && !puedo("preparar"); }
+
+// ---------------- usuarios (modo standalone, solo admin)
+async function abrirUsuarios() {
+  const r = await srv("GET", "/usuarios");
+  if (!r.ok) return toast(r.body.mensaje || "No pude abrir los usuarios.");
+  const { roles, usuarios } = r.body;
+  const optRol = (sel) => roles.map((x) => `<option value="${x}"${x === sel ? " selected" : ""}>${x}</option>`).join("");
+  const filas = usuarios.map((x) => `<tr><td><b>${esc(x.usuario)}</b>${x.nombre ? `<div class="muted">${esc(x.nombre)}</div>` : ""}</td>
+    <td><select data-u-rol="${esc(x.usuario)}">${optRol(x.rol)}</select></td>
+    <td><label class="chk"><input type="checkbox" data-u-activo="${esc(x.usuario)}"${x.activo ? " checked" : ""} /> activo</label></td>
+    <td><button class="lnk" data-u-clave="${esc(x.usuario)}">cambiar contraseña</button></td></tr>`).join("");
+  abrirModal("Usuarios del estudio", `<p>El usuario del archivo de configuración (<b>${esc(est.usuario)}</b>) es administrador. Los cambios de rol y las bajas rigen en el momento.</p>
+    <p class="muted" style="font-size:12.5px">lector: mira · preparador: carga, concilia y marca preparado · revisor: además revisa, cierra y reabre · admin: además administra usuarios</p>
+    <div class="c-tablero"><table><thead><tr><th>Usuario</th><th>Rol</th><th>Estado</th><th></th></tr></thead><tbody>${filas || `<tr><td colspan="4" class="vacio">Todavía no hay otros usuarios.</td></tr>`}</tbody></table></div>
+    <form class="c-form" id="altaUsuario"><b style="margin-top:10px">Agregar usuario</b>
+      <label>Usuario<input name="usuario" required placeholder="ana.gomez" autocomplete="off" /></label>
+      <label>Nombre (opcional)<input name="nombre" placeholder="Ana Gómez" /></label>
+      <label>Contraseña inicial (10 caracteres o más)<input name="password" type="password" required minlength="10" autocomplete="new-password" /></label>
+      <label>Rol<select name="rol">${optRol("preparador")}</select></label>
+      <div class="modal-acciones"><button class="btn primary" type="submit">Agregar</button></div></form>`, { ancho: true });
+  const body = $("modalBody");
+  body.querySelectorAll("[data-u-rol]").forEach((el) => el.addEventListener("change", async () => {
+    const x = await srv("PATCH", `/usuarios/${encodeURIComponent(el.dataset.uRol)}`, { rol: el.value });
+    toast(x.ok ? "Rol actualizado." : x.body.mensaje);
+  }));
+  body.querySelectorAll("[data-u-activo]").forEach((el) => el.addEventListener("change", async () => {
+    const x = await srv("PATCH", `/usuarios/${encodeURIComponent(el.dataset.uActivo)}`, { activo: el.checked });
+    toast(x.ok ? (el.checked ? "Usuario activado." : "Usuario desactivado: ya no puede entrar.") : x.body.mensaje);
+  }));
+  body.querySelectorAll("[data-u-clave]").forEach((el) => el.addEventListener("click", () => {
+    const quien = el.dataset.uClave;
+    formModal(`Nueva contraseña para ${esc(quien)}`, [{ k: "password", t: "Contraseña (10 caracteres o más)", req: true }], async (d) => {
+      const x = await srv("PATCH", `/usuarios/${encodeURIComponent(quien)}`, { password: d.password });
+      toast(x.ok ? "Contraseña cambiada." : x.body.mensaje); return x.ok;
+    });
+  }));
+  $("altaUsuario").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const x = await srv("POST", "/usuarios", Object.fromEntries(new FormData(e.target)));
+    if (!x.ok) return toast(x.body.mensaje);
+    toast("Usuario agregado."); abrirUsuarios();
+  });
+}
+$("verUsuarios").addEventListener("click", abrirUsuarios);
 
 // ---------------- mandos por cuenta
 function guardarMandosCuenta() {
@@ -939,3 +997,54 @@ document.addEventListener("click", async (e) => {
 });
 
 iniciarEstudio();
+
+
+// =====================================================================================================
+// IA para bancos nuevos: la IA propone columnas a partir de un esqueleto anónimo; la regla del saldo
+// decide. Si cierra, queda guardada como plantilla del banco (la IA se usa una vez por banco).
+// =====================================================================================================
+const iaEstado = { disponible: false };
+async function iniciarIA() {
+  try { const r = await fetch("/api/ia/estado", { credentials: "same-origin" }); if (r.ok) Object.assign(iaEstado, await r.json()); } catch {}
+  if (iaEstado.disponible && state.extracto) renderDocs();
+}
+const NOMBRE_PROVEEDOR = { anthropic: "Claude (Anthropic)", openai: "OpenAI", openrouter: "OpenRouter", local: "el modelo local del estudio" };
+
+function pedirColumnasIA() {
+  const x = state.extracto;
+  if (!x?.pdf) return;
+  const esq = esqueletoDePdf(x.pdf.pages);
+  const quien = `${NOMBRE_PROVEEDOR[iaEstado.proveedor] || iaEstado.proveedor} · ${iaEstado.modelo}`;
+  abrirModal("Leer las columnas con IA", `<p>Se envía a <b>${esc(quien)}</b> solo el <b>esqueleto</b> del extracto: dónde está cada celda y de qué tipo es. Los importes y las fechas van como formato (9.999,99), sin nombres, descripciones, montos ni cuentas. Esto es exactamente lo que viaja (primeras líneas de ${esq.lineas.length}):</p>
+    <textarea class="c-msg" readonly>${esc(esq.lineas.slice(0, 12).join("\n"))}</textarea>
+    <p class="muted" style="font-size:12.5px">La IA propone hasta tres lecturas; Fulgoria solo acepta la que hace cerrar los saldos.</p>
+    <div class="modal-acciones"><button class="btn primary" id="iaEnviar">Enviar</button></div>`);
+  $("iaEnviar").addEventListener("click", async () => {
+    $("iaEnviar").disabled = true; $("iaEnviar").textContent = "Consultando…";
+    let j;
+    try {
+      const r = await fetch("/api/ia/columnas", { method: "POST", credentials: "same-origin", headers: { "content-type": "application/json" }, body: JSON.stringify({ esqueleto: esq }) });
+      j = await r.json();
+      if (!r.ok) throw new Error(j.mensaje || `error ${r.status}`);
+    } catch (e) { cerrarModal(); return toast("No se pudo consultar a la IA: " + e.message); }
+    cerrarModal();
+    const elegida = elegirPropuesta(x.pdf.pages, j.propuestas);
+    if (!elegida) return toast("La IA no propuso columnas utilizables. Marcalas en el Extractor.");
+    if (!elegida.verificado) return toast("La IA propuso columnas, pero con ninguna cierran los saldos: no las uso. Marcalas en el Extractor.");
+    // Cierra: se aplica y se guarda como plantilla del banco (también para el estudio, si hay modo estudio).
+    x.columns = elegida.columnas; x.ext = extract(x.pdf.pages, x.columns); x.plantilla = "ia";
+    elegirSegmento(0);
+    try {
+      const pg = x.pdf.pages[0];
+      const tpl = buildTemplate({ bank: x.banco || x.name.replace(/\.[^.]+$/, ""), columns: x.columns, pageSize: { w: pg.W, h: pg.H }, anchors: extractAnchors(x.pdf.pages, x.columns), contributor: "ia", createdAt: new Date().toISOString().slice(0, 10) });
+      const todas = (safeJson(lsGet(LS_TPL)) || []).filter((t) => t.id !== tpl.meta.template_id);
+      todas.push({ id: tpl.meta.template_id, bank: tpl.meta.bank, tpl });
+      lsSet(LS_TPL, JSON.stringify(todas));
+      if (est.activo && puedo("editar")) srv("PUT", "/plantillas", { tipo: "banco", nombre: tpl.meta.bank, plantilla: tpl });
+    } catch (e) { console.warn("plantilla", e); }
+    resetDecisiones();
+    run();
+    toast(`La IA leyó las columnas y los saldos cierran (propuesta ${elegida.indice + 1}). Quedó guardada la plantilla de este banco.`, 5000);
+  });
+}
+iniciarIA();

@@ -2,6 +2,7 @@
 // JSON en todas las respuestas; errores como { error, mensaje }.
 "use strict";
 const express = require("express");
+const { ROLES, permisosDe, puede } = require("./roles.js");
 
 const PERIODO_RE = /^\d{4}-(0[1-9]|1[0-2])$/;
 const ID_RE = /^[0-9a-f-]{36}$/i;
@@ -10,22 +11,32 @@ const TIPOS_PLANTILLA = new Set(["banco", "mayor"]);
 
 const txt = (v, max = 200) => (v == null ? null : String(v).trim().slice(0, max) || null);
 
-function crearApi(p, { maxDocMB = 25, usuario = () => "local" } = {}) {
+/**
+ * @param p persistencia
+ * @param {{ maxDocMB?: number, usuario?: (req) => ({u: string, rol: string}|null), modoUsuarios?: "local"|"lockatus"|"sin_login" }} o
+ */
+function crearApi(p, { maxDocMB = 25, usuario = () => ({ u: "local", rol: "admin" }), modoUsuarios = "sin_login" } = {}) {
   const r = express.Router();
-  const u = (req) => usuario(req);
+  const quien = (req) => usuario(req) || { u: "?", rol: "lector" };
+  const u = (req) => quien(req).u;
   const mal = (res, status, mensaje, extra = {}) => res.status(status).json({ error: status, mensaje, ...extra });
+  const TXT_PERMISO = { editar: "cargar o modificar", preparar: "marcar como preparado", revisar: "revisar, cerrar o reabrir", administrar: "administrar usuarios" };
+  const exige = (permiso) => (req, res, next) => (puede(quien(req).rol, permiso) ? next() : mal(res, 403, `Tu rol (${quien(req).rol}) no permite ${TXT_PERMISO[permiso] || permiso}.`));
   const idOk = (req, res, next) => { for (const k of ["id", "doc"]) if (req.params[k] && !ID_RE.test(req.params[k])) return mal(res, 400, "Identificador inválido."); next(); };
 
-  r.get("/estado", (req, res) => res.json({ persistencia: true, almacenamiento: p.almacenamiento, cifrado: p.cifrado, usuario: u(req), maxDocMB }));
+  r.get("/estado", (req, res) => {
+    const q = quien(req);
+    res.json({ persistencia: true, almacenamiento: p.almacenamiento, cifrado: p.cifrado, usuario: q.u, rol: q.rol, permisos: permisosDe(q.rol), modoUsuarios, maxDocMB });
+  });
 
   // ---------------- clientes
   r.get("/clientes", (req, res) => res.json(p.clientes({ archivados: req.query.archivados === "1" })));
-  r.post("/clientes", express.json({ limit: "64kb" }), (req, res) => {
+  r.post("/clientes", exige("editar"), express.json({ limit: "64kb" }), (req, res) => {
     const nombre = txt(req.body?.nombre);
     if (!nombre) return mal(res, 400, "Falta el nombre del cliente.");
     res.status(201).json(p.crearCliente(u(req), { nombre, cuit: txt(req.body.cuit, 20), notas: txt(req.body.notas, 2000) }));
   });
-  r.patch("/clientes/:id", idOk, express.json({ limit: "64kb" }), (req, res) => {
+  r.patch("/clientes/:id", idOk, exige("editar"), express.json({ limit: "64kb" }), (req, res) => {
     const b = req.body || {};
     const c = p.editarCliente(u(req), req.params.id, { nombre: txt(b.nombre) ?? undefined, cuit: b.cuit === undefined ? undefined : txt(b.cuit, 20), notas: b.notas === undefined ? undefined : txt(b.notas, 2000), archivado: b.archivado });
     c ? res.json(c) : mal(res, 404, "No existe el cliente.");
@@ -33,7 +44,7 @@ function crearApi(p, { maxDocMB = 25, usuario = () => "local" } = {}) {
 
   // ---------------- cuentas
   r.get("/clientes/:id/cuentas", idOk, (req, res) => res.json(p.cuentas(req.params.id)));
-  r.post("/clientes/:id/cuentas", idOk, express.json({ limit: "256kb" }), (req, res) => {
+  r.post("/clientes/:id/cuentas", idOk, exige("editar"), express.json({ limit: "256kb" }), (req, res) => {
     const b = req.body || {};
     const nombre = txt(b.nombre);
     if (!nombre) return mal(res, 400, "Falta el nombre de la cuenta (p. ej. \"Cuenta corriente en pesos\").");
@@ -41,7 +52,7 @@ function crearApi(p, { maxDocMB = 25, usuario = () => "local" } = {}) {
     const c = p.crearCuenta(u(req), req.params.id, { nombre, banco: txt(b.banco), moneda, cbu: txt(b.cbu, 30), mandos: b.mandos || null });
     c ? res.status(201).json(c) : mal(res, 404, "No existe el cliente.");
   });
-  r.patch("/cuentas/:id", idOk, express.json({ limit: "256kb" }), (req, res) => {
+  r.patch("/cuentas/:id", idOk, exige("editar"), express.json({ limit: "256kb" }), (req, res) => {
     const b = req.body || {};
     const c = p.editarCuenta(u(req), req.params.id, {
       ...(b.nombre !== undefined && { nombre: txt(b.nombre) }), ...(b.banco !== undefined && { banco: txt(b.banco) }),
@@ -61,6 +72,9 @@ function crearApi(p, { maxDocMB = 25, usuario = () => "local" } = {}) {
   r.put("/cuentas/:id/periodos/:periodo", idOk, express.json({ limit: "12mb" }), (req, res) => {
     if (!PERIODO_RE.test(req.params.periodo)) return mal(res, 400, "Período inválido (AAAA-MM).");
     const b = req.body || {};
+    // Permiso según lo que se pide: guardar contenido, preparar, o revisar/cerrar/reabrir.
+    const permiso = b.accion === "preparar" ? "preparar" : ["revisar", "cerrar", "reabrir"].includes(b.accion) ? "revisar" : "editar";
+    if (!puede(quien(req).rol, permiso)) return mal(res, 403, `Tu rol (${quien(req).rol}) no permite ${TXT_PERMISO[permiso]}.`);
     for (const k of ["extractoDoc", "mayorDoc"]) if (b[k] != null && (!ID_RE.test(b[k]) || !p.documento(b[k]))) return mal(res, 400, "Documento inexistente.");
     const out = p.guardarPeriodo(u(req), req.params.id, req.params.periodo, b);
     if (out.error) return mal(res, out.error, out.msg, out.actual ? { actual: out.actual } : {});
@@ -68,7 +82,7 @@ function crearApi(p, { maxDocMB = 25, usuario = () => "local" } = {}) {
   });
 
   // ---------------- documentos (el archivo va como cuerpo crudo)
-  r.post("/documentos", express.raw({ type: () => true, limit: `${maxDocMB}mb` }), async (req, res, next) => {
+  r.post("/documentos", exige("editar"), express.raw({ type: () => true, limit: `${maxDocMB}mb` }), async (req, res, next) => {
     try {
       const tipo = String(req.get("x-tipo") || "");
       if (!TIPOS_DOC.has(tipo)) return mal(res, 400, "x-tipo debe ser extracto o mayor.");
@@ -96,7 +110,7 @@ function crearApi(p, { maxDocMB = 25, usuario = () => "local" } = {}) {
     res.json(p.cartera({ hasta, n: Math.min(Math.max(Number(req.query.meses) || 6, 1), 24) }));
   });
   r.get("/plantillas", (req, res) => res.json(p.plantillas(TIPOS_PLANTILLA.has(req.query.tipo) ? req.query.tipo : null)));
-  r.put("/plantillas", express.json({ limit: "1mb" }), (req, res) => {
+  r.put("/plantillas", exige("editar"), express.json({ limit: "1mb" }), (req, res) => {
     const b = req.body || {};
     if (!TIPOS_PLANTILLA.has(b.tipo)) return mal(res, 400, "tipo debe ser banco o mayor.");
     const nombre = txt(b.nombre, 120);
@@ -106,8 +120,24 @@ function crearApi(p, { maxDocMB = 25, usuario = () => "local" } = {}) {
     if (b.tipo === "banco" && !b.plantilla.geometry) return mal(res, 400, "No es una plantilla de banco.");
     res.json(p.guardarPlantilla(u(req), { tipo: b.tipo, nombre, plantilla: b.plantilla }));
   });
-  r.delete("/plantillas/:id", idOk, (req, res) => (p.borrarPlantilla(u(req), req.params.id) ? res.status(204).end() : mal(res, 404, "No existe la plantilla.")));
+  r.delete("/plantillas/:id", idOk, exige("revisar"), (req, res) => (p.borrarPlantilla(u(req), req.params.id) ? res.status(204).end() : mal(res, 404, "No existe la plantilla.")));
   r.get("/eventos", (req, res) => res.json(p.eventos({ entidad: txt(req.query.entidad, 20), entidadId: txt(req.query.id, 40), limite: Number(req.query.limite) || 100 })));
+
+  // ---------------- usuarios (solo modo standalone: en federado los administra Lockatus)
+  if (modoUsuarios === "local") {
+    r.get("/usuarios", exige("administrar"), (req, res) => res.json({ roles: ROLES, usuarios: p.usuarios() }));
+    r.post("/usuarios", exige("administrar"), express.json({ limit: "16kb" }), (req, res) => {
+      const b = req.body || {};
+      const out = p.crearUsuario(u(req), { usuario: String(b.usuario || "").trim(), nombre: txt(b.nombre, 120), password: b.password, rol: b.rol });
+      out.error ? mal(res, out.error, out.msg) : res.status(201).json(out.usuario);
+    });
+    r.patch("/usuarios/:usuario", exige("administrar"), express.json({ limit: "16kb" }), (req, res) => {
+      const b = req.body || {};
+      if (req.params.usuario === u(req) && (b.activo === false || (b.rol && b.rol !== "admin"))) return mal(res, 400, "No podés quitarte el acceso ni el rol de admin a vos mismo.");
+      const out = p.editarUsuario(u(req), req.params.usuario, { ...(b.nombre !== undefined && { nombre: txt(b.nombre, 120) }), ...(b.password !== undefined && { password: b.password }), ...(b.rol !== undefined && { rol: b.rol }), ...(b.activo !== undefined && { activo: !!b.activo }) });
+      out.error ? mal(res, out.error, out.msg) : res.json(out.usuario);
+    });
+  }
 
   r.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     if (err.type === "entity.too.large") return mal(res, 413, `El archivo supera el máximo de ${maxDocMB} MB.`);

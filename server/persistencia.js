@@ -17,6 +17,8 @@ const { DatabaseSync } = require("node:sqlite");
 process.emitWarning = _emit;
 
 const { crearBlobs } = require("./blobs.js");
+const { ROLES } = require("./roles.js");
+const bcrypt = require("bcryptjs");
 
 const ESQUEMA = `
 PRAGMA journal_mode = WAL;
@@ -44,6 +46,9 @@ CREATE TABLE IF NOT EXISTS plantillas (
 CREATE TABLE IF NOT EXISTS eventos (
   id INTEGER PRIMARY KEY AUTOINCREMENT, fecha TEXT, usuario TEXT, accion TEXT, entidad TEXT,
   entidad_id TEXT, detalle TEXT);
+CREATE TABLE IF NOT EXISTS usuarios (
+  usuario TEXT PRIMARY KEY, nombre TEXT, hash TEXT NOT NULL, rol TEXT NOT NULL, activo INTEGER NOT NULL DEFAULT 1,
+  creado TEXT, actualizado TEXT);
 CREATE INDEX IF NOT EXISTS ix_cuentas_cliente ON cuentas(cliente_id);
 CREATE INDEX IF NOT EXISTS ix_periodos_cuenta ON periodos(cuenta_id, periodo);
 CREATE INDEX IF NOT EXISTS ix_eventos_entidad ON eventos(entidad, entidad_id);
@@ -57,7 +62,7 @@ const J = (s) => (s == null ? null : JSON.parse(s));
 function mesAnterior(p) { const [y, m] = p.split("-").map(Number); return m === 1 ? `${y - 1}-12` : `${y}-${String(m - 1).padStart(2, "0")}`; }
 function meses(hasta, n) { const out = [hasta]; while (out.length < n) out.unshift(mesAnterior(out[0])); return out; }
 
-function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, backupHoras = 24 } = {}) {
+function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, backupHoras = 24, revisionIndependiente = false } = {}) {
   fs.mkdirSync(dataDir, { recursive: true });
   const db = new DatabaseSync(path.join(dataDir, "fulgoria.sqlite"));
   db.exec(ESQUEMA);
@@ -185,6 +190,7 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
         n.estado = "preparado"; n.preparo = u; n.preparoEn = t;
       } else if (accion === "revisar") {
         if (n.estado !== "preparado") return { error: 422, msg: "Primero hay que marcarlo como preparado." };
+        if (revisionIndependiente && n.preparo === u) return { error: 403, msg: "Lo tiene que revisar otra persona: vos lo preparaste." };
         n.estado = "revisado"; n.reviso = u; n.revisoEn = t;
       } else if (accion === "cerrar") {
         if (n.estado !== "revisado") return { error: 422, msg: "Solo se cierra un mes revisado." };
@@ -245,6 +251,43 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
       const r = q("DELETE FROM plantillas WHERE id = ?").run(id);
       if (r.changes) evento(u, "borrar", "plantilla", id, null);
       return r.changes > 0;
+    },
+
+    // ---------------- usuarios (modo standalone; en federado los maneja Lockatus)
+    usuarios() {
+      return q("SELECT usuario, nombre, rol, activo, creado, actualizado FROM usuarios ORDER BY usuario").all()
+        .map((x) => ({ usuario: x.usuario, nombre: x.nombre, rol: x.rol, activo: !!x.activo, creado: x.creado }));
+    },
+    usuario(usuario) {
+      const x = q("SELECT usuario, nombre, rol, activo FROM usuarios WHERE usuario = ?").get(String(usuario || ""));
+      return x && { usuario: x.usuario, nombre: x.nombre, rol: x.rol, activo: !!x.activo };
+    },
+    /** Usuario activo con esa contraseña → { usuario, rol }; si no, null. */
+    verificarUsuario(usuario, password) {
+      const x = q("SELECT * FROM usuarios WHERE usuario = ?").get(String(usuario || ""));
+      if (!x || !x.activo || !bcrypt.compareSync(String(password || ""), x.hash)) return null;
+      return { usuario: x.usuario, rol: x.rol };
+    },
+    crearUsuario(u, { usuario, nombre = null, password, rol }) {
+      if (!/^[a-zA-Z0-9._@-]{2,60}$/.test(usuario || "")) return { error: 400, msg: "Usuario inválido (letras, números, punto, guion, arroba)." };
+      if (!ROLES.includes(rol)) return { error: 400, msg: "Rol inválido." };
+      if (String(password || "").length < 10) return { error: 400, msg: "La contraseña tiene que tener al menos 10 caracteres." };
+      if (q("SELECT 1 FROM usuarios WHERE usuario = ?").get(usuario)) return { error: 409, msg: "Ese usuario ya existe." };
+      const t = ahora();
+      q("INSERT INTO usuarios (usuario, nombre, hash, rol, activo, creado, actualizado) VALUES (?, ?, ?, ?, 1, ?, ?)").run(usuario, nombre, bcrypt.hashSync(password, 12), rol, t, t);
+      evento(u, "crear", "usuario", usuario, { rol });
+      return { usuario: api.usuario(usuario) };
+    },
+    editarUsuario(u, usuario, { nombre, password, rol, activo }) {
+      const x = q("SELECT * FROM usuarios WHERE usuario = ?").get(usuario);
+      if (!x) return { error: 404, msg: "No existe el usuario." };
+      if (rol !== undefined && !ROLES.includes(rol)) return { error: 400, msg: "Rol inválido." };
+      if (password !== undefined && String(password).length < 10) return { error: 400, msg: "La contraseña tiene que tener al menos 10 caracteres." };
+      q("UPDATE usuarios SET nombre = ?, hash = ?, rol = ?, activo = ?, actualizado = ? WHERE usuario = ?").run(
+        nombre === undefined ? x.nombre : nombre, password === undefined ? x.hash : bcrypt.hashSync(password, 12),
+        rol === undefined ? x.rol : rol, activo === undefined ? x.activo : activo ? 1 : 0, ahora(), usuario);
+      evento(u, "editar", "usuario", usuario, { ...(rol !== undefined && { rol }), ...(activo !== undefined && { activo }), ...(password !== undefined && { password: "cambiada" }) });
+      return { usuario: api.usuario(usuario) };
     },
 
     eventos({ entidad, entidadId, limite = 100 } = {}) {

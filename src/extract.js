@@ -373,6 +373,9 @@ export function autoDetect(pages) {
   return { columns: best.cols, verificado: best.verificado };
 }
 
+/** ¿Con estas columnas cierran los saldos? → { verificado, puntaje } (lo usa la IA para bancos nuevos). */
+export function evaluarColumnas(pages, columns) { return puntajeLectura(pages, columns); }
+
 function puntajeLectura(pages, columns) {
   let ext;
   try { ext = extract(pages, columns); } catch { return { puntaje: -1, verificado: false }; }
