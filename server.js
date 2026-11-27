@@ -336,8 +336,11 @@ app.post("/api/ia/columnas", express.json({ limit: "256kb" }), async (req, res) 
 // --- Estáticos: WHITELIST explícita. Nunca se sirven .env, server.js, node_modules ni
 //     samples/private (PII). Solo el ejemplo sintético es público. ---
 const staticOpts = { index: false, redirect: false };
-app.use("/src", express.static(path.join(__dirname, "src"), { ...staticOpts, maxAge: "1h" }));
-app.use("/styles", express.static(path.join(__dirname, "styles"), { ...staticOpts, maxAge: "1h" }));
+// El código de la app se revalida siempre (ETag → 304 si no cambió): así, después de un deploy,
+// nadie queda con el JS viejo y la página nueva (botones que no aparecen, etc.).
+const revalidar = { ...staticOpts, etag: true, lastModified: true, setHeaders: (res) => res.setHeader("Cache-Control", "no-cache") };
+app.use("/src", express.static(path.join(__dirname, "src"), revalidar));
+app.use("/styles", express.static(path.join(__dirname, "styles"), revalidar));
 app.use("/vendor", express.static(path.join(__dirname, "vendor"), { ...staticOpts, maxAge: "7d" }));
 app.get("/favicon.svg", (req, res) => res.sendFile(path.join(__dirname, "favicon.svg")));
 app.get("/samples/banco-rio-cc.pdf", (req, res) => res.sendFile(path.join(__dirname, "samples", "banco-rio-cc.pdf")));

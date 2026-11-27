@@ -5,6 +5,14 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 [Versionado Semantico](https://semver.org/lang/es/). Cada deploy sube la version y agrega su
 seccion aca: sin ella el CI no publica la imagen.
 
+## [1.2.1] - 2026-11-27
+
+### Corregido
+- Despues de un deploy el navegador podia seguir usando el codigo anterior hasta una hora (por
+  ejemplo, no aparecia el boton **IA** en Conciliar). Ahora el codigo de la app se revalida siempre.
+- En modo estudio, la pantalla Conciliar ya no dice "Nada sale de tu computadora": dice que los
+  documentos se guardan en el servidor del estudio (cifrados, si corresponde).
+
 ## [1.2.0] - 2026-11-27
 
 ### Nuevo
