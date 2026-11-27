@@ -5,6 +5,29 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 [Versionado Semantico](https://semver.org/lang/es/). Cada deploy sube la version y agrega su
 seccion aca: sin ella el CI no publica la imagen.
 
+## [1.3.0] - 2026-11-27
+
+### Cambiado
+- **Un solo header en todas las pantallas**: logo (lleva al inicio), "Fulgoria" y la seccion en
+  gris (**Fulgoria Conciliar**, **Fulgoria Extractor**; en la portada, solo "Fulgoria"), los
+  controles de la seccion a la derecha y el mismo menu ⋮ en todas: secciones (Inicio, Conciliar,
+  Extractor), idioma, tema, novedades, "Acerca de" y salir. En Conciliar ya no hay un boton
+  "Extractor" suelto ni el del tema: estan en el menu, igual que en el resto.
+- **Automatico / Deportivo**: el elegido se ve en el azul de Fulgoria, con texto blanco; tambien
+  se cambia con las flechas del teclado.
+- **Extractor**: al abrir un documento la portada se hace a un lado y queda el trabajo arriba de
+  todo. Se llega tambien desde el menu (Secciones > Extractor), con su propia tarjeta para
+  soltar el extracto, igual a la de Conciliar.
+- **Diseno unificado**: las mismas tarjetas, zonas para soltar archivos, botones y ventanas en
+  las dos pantallas, en claro, oscuro y celular. Cada seccion tiene su matiz (petroleo en
+  Conciliar, indigo en el Extractor) en su icono y en su zona principal.
+
+### Corregido
+- Todo campo de contrasena tiene el boton para mostrarla u ocultarla (clave de API de la IA,
+  alta de usuarios y nueva contrasena, que antes se veia en claro).
+- Los titulos de las ventanas de Conciliar salian chicos y en azul.
+- En tema oscuro, el boton del login usaba otro azul y se leia mal.
+
 ## [1.2.1] - 2026-11-27
 
 ### Corregido
