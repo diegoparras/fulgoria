@@ -17,6 +17,16 @@ export default {
   "menu.theme.light": "浅色主题",
   "menu.about": "关于 Fulgoria",
 
+  // Header compartido: secciones
+  "nav.home": "首页",
+  "nav.home.title": "返回首页",
+  "nav.conciliar": "对账",
+  "nav.extractor": "提取器",
+  "nav.sections": "栏目",
+  "nav.soloEs": "对账功能目前仅提供西班牙语。",
+  "doc.title.conciliar": "Fulgoria · 对账",
+  "empty.title.ext": "把对账单变成数据",
+
   // 关于（标准弹窗）
   "about.title": "关于 Fulgoria",
   "about.tagline": "从任何文档中提取数据，100% 在您的浏览器中完成。",

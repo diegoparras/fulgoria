@@ -46,8 +46,9 @@ function applyI18n() {
     el.setAttribute("title", v);
     if (el.hasAttribute("aria-label")) el.setAttribute("aria-label", v);
   });
-  document.title = t("doc.title");
+  // El <title> de cada página lleva su propio data-i18n (se traduce arriba, con el resto).
   document.documentElement.lang = active;
+  document.dispatchEvent(new CustomEvent("fulgoria:idioma", { detail: { lang: active } }));
 }
 
 async function loadTable(lang) {

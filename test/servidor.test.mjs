@@ -224,3 +224,17 @@ test("el código de la app se revalida siempre (después de un deploy nadie qued
   const status = await new Promise((ok) => get(BASE.replace("/api/v1", "") + "/src/conciliar.js", { headers: { "if-none-match": etag } }, (res) => { res.resume(); ok(res.statusCode); }));
   assert.equal(status, 304);
 });
+
+test("todas las páginas arman el mismo header (src/header.js) y llevan la versión para el Acerca de", async () => {
+  const raiz = BASE.replace("/api/v1", "");
+  const { version } = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
+  for (const ruta of ["/", "/conciliar", "/conciliar.html"]) {
+    const html = await (await fetch(raiz + ruta)).text();
+    assert.match(html, /<header class="topbar" data-topbar data-pagina="(inicio|conciliar)">/, ruta);
+    assert.match(html, /<script src="src\/header\.js"><\/script>/, ruta);
+    assert.ok(html.includes(`<meta name="fulgoria-version" content="${version}" />`), ruta);
+  }
+  const js = await fetch(raiz + "/src/header.js");
+  assert.equal(js.status, 200);
+  assert.equal(js.headers.get("cache-control"), "no-cache");
+});

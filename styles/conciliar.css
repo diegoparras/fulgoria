@@ -2,27 +2,17 @@
    Semáforo con puntos de color planos (sin glow, sin emojis), cifras tabulares. */
 /* [hidden] tiene que ganarle a los display:grid/flex de los componentes (modal, resultado). */
 .conciliar [hidden] { display: none !important; }
-.conciliar main { max-width: 1240px; margin: 0 auto; padding: 22px 26px 60px; }
-.brand-sub { font-weight: 500; color: var(--muted); margin-left: 4px; }
-.conciliar .logo { text-decoration: none; }
+.conciliar main { max-width: 1240px; margin: 0 auto; }
 .num { font-variant-numeric: tabular-nums; white-space: nowrap; }
 .muted { color: var(--muted); }
 
-/* Control segmentado Automático / Deportivo */
-.seg { display: inline-flex; padding: 3px; border-radius: 999px; background: var(--panel-2); border: 1px solid var(--line-soft); }
-.seg-btn { border: 0; background: transparent; color: var(--muted); padding: 6px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 600; }
-.seg-btn:hover { background: transparent; color: var(--ink); }
-.seg-btn.on { background: var(--panel); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+/* El selector Automático / Deportivo y el header son los compartidos (app.css, src/header.js). */
 
 /* Carga */
 .c-drop { display: grid; gap: 14px; }
-.c-drop-card { border: 1.5px dashed var(--line-strong); border-radius: var(--radius-lg); padding: 30px 28px; text-align: center; background: var(--panel); transition: border-color .15s, background .15s; }
-.c-drop.hover .c-drop-card { border-color: var(--accent); background: var(--panel-2); }
-.c-drop-card h2 { margin: 0 0 8px; font-size: 24px; letter-spacing: -.02em; }
-.c-drop-card p { margin: 0 auto; max-width: 640px; color: var(--muted); line-height: 1.6; }
-.c-drop-btns { display: flex; gap: 10px; justify-content: center; margin-top: 18px; flex-wrap: wrap; }
+/* La tarjeta de arrastre es la compartida (.dropzone en app.css), con el matiz de Conciliar. */
 .c-drop.compacta .c-drop-card { padding: 14px 18px; }
-.c-drop.compacta .c-drop-card h2, .c-drop.compacta .c-drop-card p { display: none; }
+.c-drop.compacta .c-drop-card h2, .c-drop.compacta .c-drop-card p, .c-drop.compacta .dz-mark { display: none; }
 .c-drop.compacta .c-drop-btns { margin-top: 0; }
 .c-docs { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
 .c-doc { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); }
@@ -118,7 +108,7 @@
 .c-exports { display: flex; gap: 8px; flex-wrap: wrap; padding: 12px 16px 14px; border-top: 1px solid var(--line-soft); }
 
 /* Mandos (deportivo) */
-.c-mandos { border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); padding: 14px 16px; align-self: start; position: sticky; top: 76px; max-height: calc(100vh - 96px); overflow: auto; }
+.c-mandos { border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); padding: 14px 16px; align-self: start; position: sticky; top: calc(var(--topbar-h) + 16px); max-height: calc(100vh - var(--topbar-h) - 36px); overflow: auto; }
 .c-mandos h3 { margin: 0 0 2px; font-size: 15px; }
 .c-mandos .grp { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line-soft); }
 .c-mandos .grp-t { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
@@ -139,12 +129,8 @@
 .c-err { padding: 12px 14px; border-radius: var(--r); border: 1px solid color-mix(in srgb, var(--fail) 35%, transparent); background: color-mix(in srgb, var(--fail) 8%, var(--panel)); color: var(--ink); font-size: 13px; }
 .c-err b { color: var(--fail); }
 
-.conciliar .actions a.btn { text-decoration: none; }
-/* Celular: barra en dos líneas si hace falta, tarjetas con el título a lo ancho. */
+/* Celular: tarjetas con el título a lo ancho (el header ya se acomoda solo, ver app.css). */
 @media (max-width: 640px) {
-  .conciliar main { padding: 14px 16px 48px; }
-  .conciliar .topbar { flex-wrap: wrap; gap: 10px; }
-  .conciliar .brand-sub, .conciliar .actions a.btn { display: none; }
   .c-card > summary { flex-wrap: wrap; row-gap: 8px; }
   .c-card > summary .t { flex: 1 1 calc(100% - 60px); }
   .c-card > summary .acts { order: 5; width: 100%; }

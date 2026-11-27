@@ -17,6 +17,16 @@ export default {
   "menu.theme.light": "Tema chiaro",
   "menu.about": "Informazioni su Fulgoria",
 
+  // Header compartido: secciones
+  "nav.home": "Home",
+  "nav.home.title": "Vai alla home",
+  "nav.conciliar": "Riconcilia",
+  "nav.extractor": "Estrattore",
+  "nav.sections": "Sezioni",
+  "nav.soloEs": "La riconciliazione per ora è solo in spagnolo.",
+  "doc.title.conciliar": "Fulgoria · Riconcilia",
+  "empty.title.ext": "Trasforma l'estratto in dati",
+
   // Informazioni (modale canonica)
   "about.title": "Informazioni su Fulgoria",
   "about.tagline": "Estrai dati da qualsiasi documento, 100% nel tuo browser.",

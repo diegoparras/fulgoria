@@ -3,33 +3,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fulgoria · Conciliar</title>
+  <title data-i18n="doc.title.conciliar">Fulgoria · Conciliar</title>
+  <!-- Versión real de la app: el server la inyecta desde package.json (ver server.js). -->
+  <meta name="fulgoria-version" content="" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles/escriba-ui.css" />
   <link rel="stylesheet" href="styles/app.css" />
   <link rel="stylesheet" href="styles/conciliar.css" />
   <script src="src/theme-init.js"></script>
 </head>
-<body class="conciliar">
-  <header class="topbar">
-    <div class="brand">
-      <a class="logo" href="./" title="Ir al extractor" aria-label="Ir al extractor">
-        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="64" height="64" rx="15" fill="#3b76d9"/>
-          <path d="M13 2 L3 14 h9 l-1 8 L21 10 h-9 l1 -8 z" transform="translate(2,2) scale(2.5)" fill="#ffffff"/>
-        </svg>
-      </a>
-      <div class="brand-text"><h1>Fulgoria <span class="brand-sub">Conciliar</span></h1></div>
-    </div>
-    <div class="actions">
+<body class="conciliar" data-seccion="conciliar">
+  <!-- Header compartido (src/header.js): el mismo de todas las páginas. Acá solo va el control
+       propio de Conciliar, que queda a la derecha, antes del menú ⋮. -->
+  <header class="topbar" data-topbar data-pagina="conciliar">
+    <div class="topbar-ctrl">
       <div class="seg" role="tablist" aria-label="Modo">
-        <button id="modoAuto" class="seg-btn on" role="tab" aria-selected="true" title="Solo lo que necesita tu decisión">Automático</button>
-        <button id="modoSport" class="seg-btn" role="tab" aria-selected="false" title="Todos los mandos y la mesa de conciliación">Deportivo</button>
+        <button id="modoAuto" class="seg-btn on" type="button" role="tab" aria-selected="true" title="Solo lo que necesita tu decisión">Automático</button>
+        <button id="modoSport" class="seg-btn" type="button" role="tab" aria-selected="false" tabindex="-1" title="Todos los mandos y la mesa de conciliación">Deportivo</button>
       </div>
-      <a class="btn sm ghost" href="./" title="Marcar columnas de un banco nuevo">Extractor</a>
-      <button id="themeBtn" class="icon-btn" title="Cambiar tema" aria-label="Cambiar tema"></button>
     </div>
   </header>
+  <script src="src/header.js"></script>
 
   <main>
     <!-- Modo estudio (solo si el servidor tiene persistencia): cliente, cuenta y mes -->
@@ -47,11 +41,14 @@
 
     <!-- Carga: un solo lugar para soltar todo -->
     <section id="drop" class="c-drop">
-      <div class="c-drop-card">
+      <div class="c-drop-card dropzone">
+        <div class="dz-mark" aria-hidden="true">
+          <svg class="ico" width="26" height="26" viewBox="0 0 24 24"><path d="M7 7h12l-4-4M17 17H5l4 4"/></svg>
+        </div>
         <h2>Conciliá en un paso</h2>
         <p>Soltá acá el <b>extracto</b> (PDF o imagen) y el <b>mayor de la cuenta Banco</b> (CSV), juntos o de a uno.
           Fulgoria los lee, verifica los saldos, empareja y te muestra solo lo que necesita tu decisión. <span id="dondeQueda">Nada sale de tu computadora.</span></p>
-        <div class="c-drop-btns">
+        <div class="c-drop-btns dz-btns">
           <label class="btn primary">
             <svg class="ico" width="15" height="15" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
             Elegir archivos<input id="fileInput" type="file" multiple accept="application/pdf,image/*,.csv,.txt,text/csv" hidden />

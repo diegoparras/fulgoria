@@ -63,7 +63,7 @@ Reglas de clasificación propias del cliente: `reconcile({ ..., reglas: [{ tipo,
 
 ## Interfaz (`conciliar.html` + `src/conciliar.js`)
 
-En la app: menú ⋮ → **Conciliar con el mayor** (o `/conciliar`). Todo corre en el navegador.
+En la app: botón **Conciliar** de la portada, o menú ⋮ → Secciones → **Conciliar** (desde cualquier pantalla), o `/conciliar`. Todo corre en el navegador.
 
 - **Automático**: soltás el extracto (PDF/imagen) y el mayor (CSV). Reusa las plantillas que
   guardó el Extractor; si no hay, auto-detecta. Muestra el estado general (semáforo, saldos,

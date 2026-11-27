@@ -55,9 +55,10 @@ const OIDC_COOKIE = "fulgoria_oidc"; // cookie de transacción (verifier/state/n
 // La versión real de la app (APP_VERSION, de package.json, arriba) se inyecta en el <meta>
 // para el "Acerca de".
 
-// index.html con el destino de Escriba y la versión inyectados en sus <meta> (una sola lectura al arrancar).
+// Las páginas (index.html y conciliar.html) con el destino de Escriba y la versión inyectados en sus
+// <meta> (una sola lectura al arrancar). La versión la muestra el "Acerca de" del header compartido.
 const escAttr = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-const INDEX_HTML = fs.readFileSync(path.join(__dirname, "index.html"), "utf8")
+const pagina = (archivo) => fs.readFileSync(path.join(__dirname, archivo), "utf8")
   .replace(
     '<meta name="fulgoria-escriba-url" content="" />',
     `<meta name="fulgoria-escriba-url" content="${escAttr(ESCRIBA_URL)}" />`,
@@ -66,6 +67,8 @@ const INDEX_HTML = fs.readFileSync(path.join(__dirname, "index.html"), "utf8")
     '<meta name="fulgoria-version" content="" />',
     `<meta name="fulgoria-version" content="${escAttr(APP_VERSION)}" />`,
   );
+const INDEX_HTML = pagina("index.html");
+const CONCILIAR_HTML = pagina("conciliar.html");
 
 if (AUTH_ENABLED && AUTH_MODE === "federado" && (!SESSION_SECRET || !LK_ISSUER)) {
   console.error("AUTH_MODE=federado requiere SESSION_SECRET y LOCKATUS_ISSUER en el .env.");
@@ -346,7 +349,7 @@ app.get("/favicon.svg", (req, res) => res.sendFile(path.join(__dirname, "favicon
 app.get("/samples/banco-rio-cc.pdf", (req, res) => res.sendFile(path.join(__dirname, "samples", "banco-rio-cc.pdf")));
 app.get("/", (req, res) => res.type("html").send(INDEX_HTML));
 // Conciliación (extracto ↔ mayor). Igual que el extractor: todo se procesa en el navegador.
-app.get(["/conciliar", "/conciliar.html"], (req, res) => res.sendFile(path.join(__dirname, "conciliar.html")));
+app.get(["/conciliar", "/conciliar.html"], (req, res) => res.type("html").send(CONCILIAR_HTML));
 app.get("/samples/mayor-banco-rio-cc.csv", (req, res) => res.type("text/csv").sendFile(path.join(__dirname, "samples", "mayor-banco-rio-cc.csv")));
 app.use((req, res) => res.status(404).send("No encontrado"));
 

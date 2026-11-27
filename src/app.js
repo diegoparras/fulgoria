@@ -5,7 +5,7 @@ import { ocrCanvas, imageFileToCanvas } from "./ocr.js";
 import { extract, balanceCheck, autoDetect, extractAnchors, matchScore, setAmountMode, parseAmount, ROLES } from "./extract.js";
 import { buildTemplate, toYaml, toJson, rowsToCsv, rowsToMarkdown, download, resolveColFmt, formatAmount, formatDate } from "./template.js";
 import { Anonymizer } from "./anon.js";
-import { initI18n, t as tr } from "./i18n.js";
+import { t as tr } from "./i18n.js";
 
 const $ = (id) => document.getElementById(id);
 // i18n: `tr(key)` traduce; `ti(key, {n})` interpola {n}/{total} en strings dinámicos.
@@ -77,6 +77,7 @@ async function onFile(file) {
     $("bankName").value = state.bank;
     $("emptyState").style.display = "none";
     $("workspace").style.display = "grid";
+    window.FulgoriaHeader?.seccion("extractor"); // con el documento abierto, la página es el Extractor
     // Datos primero: tabla + saldo no dependen del canvas.
     renderColumnsPanel();
     renderAnnotations();
@@ -939,43 +940,20 @@ function esc(s) { return (s ?? "").toString().replace(/[&<>"]/g, (c) => ({ "&": 
 
 // ---------- wire ----------
 $("fileInput").addEventListener("change", (e) => { if (e.target.files[0]) onFile(e.target.files[0]); });
-$("btnSample").addEventListener("click", async () => {
+// "Ver un ejemplo": en el menú ⋮ y en la tarjeta del Extractor.
+async function abrirEjemplo() {
   const res = await fetch("samples/banco-rio-cc.pdf");
   onFile(new File([await res.blob()], "banco-rio-cc.pdf", { type: "application/pdf" }));
-});
+}
+$("btnSample").addEventListener("click", abrirEjemplo);
+document.querySelectorAll("[data-ejemplo]").forEach((b) => b.addEventListener("click", abrirEjemplo));
 $("btnPrev").addEventListener("click", async () => { if (state.curPage > 0) { state.curPage--; await renderCurrentPage(); } });
 $("btnNext").addEventListener("click", async () => { if (state.curPage < state.pdf.numPages - 1) { state.curPage++; await renderCurrentPage(); } });
 $("btnRecalc").addEventListener("click", () => { if (state.pdf) { cancelPlacing(); recompute(); renderCurrentPage().catch(() => {}); } });
 $("btnReset").addEventListener("click", () => { if (state.pdf) { state.columns = autoDetect(state.pdf.pages).columns; resetEdits(); cancelPlacing(); renderColumnsPanel(); recompute(); renderCurrentPage().catch(() => {}); } });
 $("btnNewCol").addEventListener("click", () => { if (state.pdf) startPlacing(); });
-// Menú de acciones (•••)
-const actionMenu = $("actionMenu"), btnMenu = $("btnMenu");
-function closeMenu() { actionMenu.hidden = true; btnMenu.setAttribute("aria-expanded", "false"); }
-function toggleMenu() { actionMenu.hidden ? (actionMenu.hidden = false, btnMenu.setAttribute("aria-expanded", "true")) : closeMenu(); }
-btnMenu.addEventListener("click", (e) => { e.stopPropagation(); toggleMenu(); });
-// Cerrar al elegir una acción (menos abrir el select de plantillas, que se usa adentro)
-actionMenu.addEventListener("click", (e) => { if (!e.target.closest("#savedTplRow") && !e.target.closest("#langRow")) closeMenu(); });
-document.addEventListener("click", (e) => { if (!actionMenu.hidden && !e.target.closest(".menu-wrap")) closeMenu(); });
-
-// Tema claro/oscuro (ecosistema Escriba) — claro por defecto, persistido; ahora vive en el menú ⋮.
-const SUN_SVG = '<svg class="ico" width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
-const MOON_SVG = '<svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>';
-function paintTheme() {
-  const dark = document.documentElement.getAttribute("data-theme") === "dark";
-  // Ítem de menú: ícono (a dónde vas) + etiqueta i18n ("Tema claro"/"Tema oscuro").
-  const label = dark ? tr("menu.theme.light") : tr("menu.theme.dark");
-  $("themeBtn").innerHTML = (dark ? SUN_SVG : MOON_SVG) + `<span>${label}</span>`;
-  $("themeBtn").title = label;
-  $("themeBtn").setAttribute("aria-label", label);
-}
-paintTheme();
-$("themeBtn").addEventListener("click", () => {
-  const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-  if (next === "dark") document.documentElement.setAttribute("data-theme", "dark");
-  else document.documentElement.removeAttribute("data-theme");
-  try { localStorage.setItem("fulgoria.theme", next); } catch {}
-  paintTheme();
-});
+// El header (logo, secciones, menú ⋮, idioma, tema, novedades, "Acerca de", salir) lo arma
+// src/header.js, igual en todas las páginas. Acá solo se enganchan los ítems propios del Extractor.
 
 // Enviar a Escriba (mismo origen): dejo lo extraído en sessionStorage y abro Escriba.
 // El documento nunca sale del navegador; el handoff es local (tu Escriba del ecosistema).
@@ -1030,58 +1008,6 @@ function coachOnce() {
 $("btnHelp").addEventListener("click", () => { $("helpModal").hidden = false; });
 $("helpModal").addEventListener("click", (e) => { if (e.target.closest("[data-close]")) $("helpModal").hidden = true; });
 
-// Modal "Acerca de Fulgoria" (canónico): versión real + autoría. La versión la inyecta el
-// server desde package.json en <meta name="fulgoria-version">.
-(() => {
-  const v = (document.querySelector('meta[name="fulgoria-version"]')?.content || "").trim();
-  $("aboutVersion").textContent = v ? "v" + v : "—";
-})();
-$("btnAbout").addEventListener("click", () => { $("aboutModal").hidden = false; });
-$("aboutModal").addEventListener("click", (e) => { if (e.target.closest("[data-close]")) $("aboutModal").hidden = true; });
-
-// Modal "Novedades": que cambio en cada version. Sale del CHANGELOG.md (GET /api/novedades).
-// Aparece solo al entrar despues de una actualizacion (una vez por navegador: la ultima version
-// vista queda en localStorage); el historial queda en el menu y en "Acerca de" > "Qué cambió".
-const NOV_KEY = "fulgoria.versionVista";
-const novEsc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-// Primero se escapa el HTML; recien despues se convierten **negrita** y `codigo`.
-const novMd = (s) => novEsc(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/`([^`]+)`/g, "<code>$1</code>");
-function novHtml(versiones) {
-  return versiones.map((v) =>
-    `<div class="nov-ver"><b>v${novEsc(v.version)}</b>${v.fecha ? `<span>${novEsc(v.fecha)}</span>` : ""}</div>` +
-    v.secciones.map((s) => `<div class="nov-sec">${novMd(s.titulo)}</div><ul class="nov-list">${s.items.map((i) => `<li>${novMd(i)}</li>`).join("")}</ul>`).join(""),
-  ).join("");
-}
-async function novFetch(qs) {
-  const r = await fetch("/api/novedades" + qs, { credentials: "same-origin", headers: { accept: "application/json" } });
-  if (!r.ok) throw new Error("HTTP " + r.status);
-  return r.json();
-}
-function showNews(r, lead) {
-  $("newsLead").innerHTML = lead;
-  $("newsBody").innerHTML = r.versiones.length ? novHtml(r.versiones) : `<p class="modal-lead">${novEsc(tr("news.empty"))}</p>`;
-  $("newsModal").hidden = false;
-}
-async function avisarNovedades() {
-  let vista = null;
-  try { vista = localStorage.getItem(NOV_KEY); } catch {}
-  let r;
-  try { r = await novFetch(vista ? "?desde=" + encodeURIComponent(vista) : ""); } catch { return; }
-  try { localStorage.setItem(NOV_KEY, r.version); } catch {}
-  if (vista === r.version || !r.versiones.length) return;
-  if (document.querySelector(".modal:not([hidden])")) return; // no tapar lo que el usuario abrio
-  showNews(r, ti("news.updated", { v: "<b>v" + novEsc(r.version) + "</b>" }));
-}
-async function novedadesTodas() {
-  $("aboutModal").hidden = true;
-  try {
-    const r = await novFetch("?todas=1");
-    showNews({ ...r, versiones: r.versiones.slice(0, 15) }, ti("news.history", { v: "<b>v" + novEsc(r.version) + "</b>" }));
-  } catch { toast(tr("news.error")); }
-}
-$("btnNews").addEventListener("click", novedadesTodas);
-$("aboutNews").addEventListener("click", novedadesTodas);
-$("newsModal").addEventListener("click", (e) => { if (e.target.closest("[data-close]")) $("newsModal").hidden = true; });
 // Editor de tabla
 $("btnEdit").addEventListener("click", openEditor);
 $("editorClear").addEventListener("click", clearEdits);
@@ -1110,10 +1036,7 @@ window.addEventListener("keydown", (e) => {
 });
 window.addEventListener("keydown", (e) => {
   if (e.key !== "Escape") return;
-  if (!$("actionMenu").hidden) closeMenu();
-  else if (!$("editorModal").hidden) closeEditor();
-  else if (!$("newsModal").hidden) $("newsModal").hidden = true;
-  else if (!$("aboutModal").hidden) $("aboutModal").hidden = true;
+  if (!$("editorModal").hidden) closeEditor();
   else if (!$("helpModal").hidden) $("helpModal").hidden = true;
   else if (state.placing) cancelPlacing();
 });
@@ -1140,11 +1063,7 @@ const dz = $("emptyState");
 ["dragleave", "drop"].forEach((ev) => dz.addEventListener(ev, (e) => { e.preventDefault(); dz.classList.remove("hover"); }));
 dz.addEventListener("drop", (e) => { const f = e.dataTransfer.files[0]; if (f) onFile(f); });
 
-// i18n del ecosistema: arma el selector de idioma y aplica las traducciones (data-i18n).
-// El ítem de tema arma su texto por JS (no data-i18n): repintar tras cargar el idioma inicial
-// y en cada cambio de idioma.
-initI18n().then(paintTheme).catch(() => {}).then(() => setTimeout(avisarNovedades, 400));
-$("langSelect").addEventListener("change", () => { setTimeout(paintTheme, 0); });
+// El i18n (selector de idioma y traducciones data-i18n) lo inicia el header compartido.
 
 applyAmountMode(); // aplicar modo de lectura de importes guardado
 wireSettings();

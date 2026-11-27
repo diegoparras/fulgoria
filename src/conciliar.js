@@ -26,8 +26,6 @@ const ICON = {
   arrow: svg(16, '<path d="M7 7h12l-4-4M17 17H5l4 4"/>'),
   doc: svg(18, '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>'),
   sheet: svg(18, '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/>'),
-  sun: svg(17, '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'),
-  moon: svg(17, '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>'),
 };
 // Lo que llega del servidor (o de un mes anterior) puede traer cualquier cosa: solo colores conocidos y fechas escapadas.
 const COLORES = new Set(["verde", "amarillo", "rojo"]);
@@ -564,8 +562,10 @@ document.addEventListener("keydown", (e) => { if (e.key === "Escape") cerrarModa
 // Modo
 function setModo(m) {
   state.modo = m; lsSet(LS_MODO, m);
-  $("modoAuto").classList.toggle("on", m === "auto"); $("modoAuto").setAttribute("aria-selected", m === "auto");
-  $("modoSport").classList.toggle("on", m === "sport"); $("modoSport").setAttribute("aria-selected", m === "sport");
+  for (const [id, v] of [["modoAuto", "auto"], ["modoSport", "sport"]]) {
+    const b = $(id);
+    b.classList.toggle("on", m === v); b.setAttribute("aria-selected", m === v); b.tabIndex = m === v ? 0 : -1;
+  }
   if (state.rec) renderResult();
 }
 $("modoAuto").addEventListener("click", () => setModo("auto"));
@@ -660,18 +660,7 @@ function lsGet(k) { try { return localStorage.getItem(k); } catch { return null;
 function lsSet(k, v) { try { localStorage.setItem(k, v); } catch {} }
 function safeJson(s) { try { return s ? JSON.parse(s) : null; } catch { return null; } }
 
-function paintTheme() {
-  const dark = document.documentElement.getAttribute("data-theme") === "dark";
-  $("themeBtn").innerHTML = dark ? ICON.sun : ICON.moon;
-  $("themeBtn").title = dark ? "Tema claro" : "Tema oscuro";
-}
-$("themeBtn").addEventListener("click", () => {
-  const dark = document.documentElement.getAttribute("data-theme") === "dark";
-  if (dark) document.documentElement.removeAttribute("data-theme"); else document.documentElement.setAttribute("data-theme", "dark");
-  lsSet("fulgoria.theme", dark ? "light" : "dark");
-  paintTheme();
-});
-paintTheme();
+// El header (logo, secciones, menú ⋮ con idioma, tema, novedades y salir) lo arma src/header.js.
 setModo(state.modo);
 
 

@@ -17,6 +17,16 @@ export default {
   "menu.theme.light": "Thème clair",
   "menu.about": "À propos de Fulgoria",
 
+  // Header compartido: secciones
+  "nav.home": "Accueil",
+  "nav.home.title": "Aller à l'accueil",
+  "nav.conciliar": "Rapprocher",
+  "nav.extractor": "Extracteur",
+  "nav.sections": "Sections",
+  "nav.soloEs": "Le rapprochement n'existe pour l'instant qu'en espagnol.",
+  "doc.title.conciliar": "Fulgoria · Rapprocher",
+  "empty.title.ext": "Transformez le relevé en données",
+
   // À propos (modale canonique)
   "about.title": "À propos de Fulgoria",
   "about.tagline": "Extrayez les données de n'importe quel document, 100 % dans votre navigateur.",

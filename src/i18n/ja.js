@@ -17,6 +17,16 @@ export default {
   "menu.theme.light": "ライトテーマ",
   "menu.about": "Fulgoria について",
 
+  // Header compartido: secciones
+  "nav.home": "ホーム",
+  "nav.home.title": "ホームへ",
+  "nav.conciliar": "照合",
+  "nav.extractor": "抽出",
+  "nav.sections": "セクション",
+  "nav.soloEs": "照合は現在スペイン語のみです。",
+  "doc.title.conciliar": "Fulgoria · 照合",
+  "empty.title.ext": "明細をデータに",
+
   // Fulgoria について（標準モーダル）
   "about.title": "Fulgoria について",
   "about.tagline": "あらゆるドキュメントからデータを抽出。すべてブラウザ内で完結。",
