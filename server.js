@@ -209,8 +209,8 @@ function loginPage(err) {
   const msg = err ? `<p class="err">${err}</p>` : "";
   return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Fulgoria — Ingresar</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><style>
-:root{--bg:#fafbfc;--panel:#fff;--ink:#16181d;--muted:#5f6b7a;--line:rgba(15,23,42,.12);--accent:#3b76d9}
-@media(prefers-color-scheme:dark){:root{--bg:#090c11;--panel:#111720;--ink:#eaeef4;--muted:#8a95a4;--line:rgba(255,255,255,.11);--accent:#5aa2ff}}
+:root{--bg:#fafbfc;--panel:#fff;--ink:#16181d;--muted:#5f6b7a;--line:rgba(15,23,42,.12);--accent:#3b76d9;--on-accent:#fff}
+@media(prefers-color-scheme:dark){:root{--bg:#090c11;--panel:#111720;--ink:#eaeef4;--muted:#8a95a4;--line:rgba(255,255,255,.11);--accent:#6f9eea;--on-accent:#07101b}}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--bg);color:var(--ink);
 font:15px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif;padding:20px}
 .card{width:100%;max-width:340px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px 28px;
@@ -220,7 +220,7 @@ box-shadow:0 12px 40px rgba(15,23,42,.12);text-align:center}
 label{display:block;text-align:left;font-size:12.5px;color:var(--muted);margin:12px 0 5px}
 input{width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:14px}
 input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
-button{width:100%;margin-top:20px;padding:12px;border:0;border-radius:10px;background:var(--accent);color:#fff;font:inherit;font-weight:600;font-size:15px;cursor:pointer}
+button{width:100%;margin-top:20px;padding:12px;border:0;border-radius:10px;background:var(--accent);color:var(--on-accent);font:inherit;font-weight:600;font-size:15px;cursor:pointer}
 button:hover{filter:brightness(1.06)}.err{color:#cf222e;font-size:13px;margin:14px 0 0}
 .pwrap{position:relative;display:flex;align-items:center}.pwrap>input{flex:1 1 auto;padding-right:38px}
 .ptog{position:absolute;right:5px;top:50%;transform:translateY(-50%);width:30px;height:30px;display:grid;place-items:center;background:none;border:0;border-radius:7px;color:var(--muted);cursor:pointer}
