@@ -200,7 +200,7 @@ export function extract(pages, columns, rules = []) {
         seg.breaks = 0; // la cadena reanudó
         const amounts = {}, cells = {};
         columns.forEach((c, i) => { cells[c.label] = text[i]; if (AMOUNT_ROLES.has(c.role)) amounts[c.label] = parseAmountCell(text[i]); });
-        current = { fecha: dateMatch ? dateMatch[0] : "", descripcion: descIdx >= 0 ? text[descIdx] : "", saldo: saldoVal, amounts, cells, _page: pg.index };
+        current = { fecha: dateMatch ? dateMatch[0] : "", descripcion: descIdx >= 0 ? text[descIdx] : "", saldo: saldoVal, amounts, cells, _page: pg.index, _y: Math.round(line.cy * 1e4) / 1e4 }; // _y: evidencia (dónde está la fila)
         seg.movements.push(current); lastY = gy;
         if (saldoVal != null) seg.last = saldoVal;
       } else if (current && !anyMov && gy - lastY <= 0.05) {
@@ -236,7 +236,8 @@ function detectCurrency(text) {
   return null;
 }
 
-function sumMov(mov, columns) {
+// Neto con signo de un movimiento (créditos +, débitos −). Exportado para el núcleo de conciliación.
+export function sumMov(mov, columns) {
   let s = 0, any = false;
   for (const c of columns) {
     if (!MOV_ROLES.has(c.role)) continue;
