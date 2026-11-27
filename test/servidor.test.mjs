@@ -231,8 +231,11 @@ test("todas las páginas arman el mismo header (src/header.js) y llevan la versi
   for (const ruta of ["/", "/conciliar", "/conciliar.html"]) {
     const html = await (await fetch(raiz + ruta)).text();
     assert.match(html, /<header class="topbar" data-topbar data-pagina="(inicio|conciliar)">/, ruta);
-    assert.match(html, /<script src="src\/header\.js"><\/script>/, ruta);
+    assert.ok(html.includes(`<script src="src/header.js?v=${version}"></script>`), ruta);
     assert.ok(html.includes(`<meta name="fulgoria-version" content="${version}" />`), ruta);
+    // Estilos y scripts piden su versión: un CSS guardado de la versión anterior no se mezcla.
+    assert.ok(html.includes(`<link rel="stylesheet" href="styles/app.css?v=${version}" />`), ruta);
+    assert.doesNotMatch(html, /(href="styles\/|src="src\/)[\w.-]+\.(css|js)"/, ruta);
   }
   const js = await fetch(raiz + "/src/header.js");
   assert.equal(js.status, 200);

@@ -5,6 +5,17 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 [Versionado Semantico](https://semver.org/lang/es/). Cada deploy sube la version y agrega su
 seccion aca: sin ella el CI no publica la imagen.
 
+## [1.3.1] - 2026-11-27
+
+### Cambiado
+- **Automatico / Deportivo**: el modo elegido se distingue por color: Automatico en el azul de
+  Fulgoria y Deportivo en rojo aventura, los dos con texto blanco.
+
+### Arreglado
+- **Estilos de la version anterior despues de un deploy**: las paginas piden sus estilos y scripts
+  con el numero de version (`app.css?v=1.3.1`). Un navegador o un proxy que guardo el CSS viejo ya
+  no lo mezcla con la pagina nueva (por eso en 1.3.0 el modo elegido podia verse en blanco).
+
 ## [1.3.0] - 2026-11-27
 
 ### Cambiado

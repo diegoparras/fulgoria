@@ -66,7 +66,10 @@ const pagina = (archivo) => fs.readFileSync(path.join(__dirname, archivo), "utf8
   .replace(
     '<meta name="fulgoria-version" content="" />',
     `<meta name="fulgoria-version" content="${escAttr(APP_VERSION)}" />`,
-  );
+  )
+  // Cada versión pide sus estilos y scripts con su número (?v=1.3.1): un navegador o un proxy que
+  // guardó el CSS de la versión anterior no puede mezclarlo con la página nueva.
+  .replace(/(href="styles\/[\w.-]+\.css|src="src\/[\w.-]+\.js)"/g, `$1?v=${encodeURIComponent(APP_VERSION)}"`);
 const INDEX_HTML = pagina("index.html");
 const CONCILIAR_HTML = pagina("conciliar.html");
 
