@@ -485,7 +485,8 @@ body.busy { cursor: progress; }
 }
 .hero .sub { margin: 14px auto 0; max-width: 620px; color: var(--muted); font-size: clamp(16px, 1.9vw, 19px); line-height: 1.5; }
 /* Acción PRINCIPAL de la app: "Abrir PDF o imagen" vive en el hero (no en el header). */
-.hero-cta { margin: 22px 0 0; display: flex; justify-content: center; }
+.hero-cta { margin: 22px 0 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+a.btn { text-decoration: none; }
 
 /* Caja de anonimización (componente compartido AnonOptions) — con aire, jerarquía y un select con cuerpo.
    AnonOptions trae estilos inline mínimos; los overrides van SCOPED a #anonOptionsMount → no tocan a Escriba. */

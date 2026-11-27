@@ -159,3 +159,56 @@ test("seguridad: el Content-Type del documento no lo elige quien lo sube; datos 
   const fila = cart.clientes.find((c) => c.id === cli.id).cuentas[0].periodos["2026-03"];
   assert.equal(fila.semaforo, null);
 });
+
+test("IA desde la pantalla: sin IA / local / externa, solo admin, clave cifrada que no vuelve", async () => {
+  const { createServer } = await import("node:http");
+  const vistos = [];
+  const prov = createServer((req, res) => { let b = ""; req.on("data", (d) => (b += d)); req.on("end", () => {
+    vistos.push({ url: req.url, auth: req.headers.authorization || null });
+    res.writeHead(200, { "content-type": "application/json" });
+    res.end(JSON.stringify(req.url.endsWith("/models") ? { data: [{ id: "modelo-a" }] } : { choices: [{ message: { content: JSON.stringify({ propuestas: [{ explicacion: "x", columnas: [{ desde: 0, hasta: 0.2, rol: "fecha" }] }] }) } }] }));
+  }); }).listen(0);
+  test.after(() => { prov.closeAllConnections(); prov.close(); });
+  const URLP = `http://127.0.0.1:${prov.address().port}/v1`;
+  const estadoIA = async () => (await fetch(BASE.replace("/api/v1", "") + "/api/ia/estado")).json();
+
+  const v0 = (await api("GET", "/ia/config")).body;
+  assert.equal(v0.modo, "ninguna");
+  assert.ok(v0.proveedores.gemini && v0.proveedores.openai && !v0.proveedores.local);
+  assert.equal((await api("PUT", "/ia/config", { modo: "otra" })).status, 400);
+  assert.equal((await api("PUT", "/ia/config", { modo: "externa", externa: { proveedor: "openai", modelo: "gpt-6-luna" } })).status, 400); // falta la clave
+  assert.equal((await api("PUT", "/ia/config", { modo: "externa", externa: { proveedor: "local", modelo: "x" } })).status, 400); // local no es externa
+  assert.equal((await api("PUT", "/ia/config", { modo: "local", local: { modelo: "m", temperatura: 7 } })).status, 400);
+
+  // IA local: sin clave; listar modelos, probar y guardar.
+  assert.deepEqual((await api("POST", "/ia/modelos", { modo: "local", local: { url: URLP } })).body.modelos, ["modelo-a"]);
+  assert.equal((await api("POST", "/ia/probar", { modo: "local", local: { modelo: "modelo-a", url: URLP } })).body.propuestas, 1);
+  let g = await api("PUT", "/ia/config", { modo: "local", local: { modelo: "modelo-a", url: URLP } });
+  assert.equal(g.status, 200);
+  assert.deepEqual(await estadoIA(), { disponible: true, proveedor: "local", modelo: "modelo-a" });
+
+  // IA externa: la clave se guarda cifrada y no vuelve; la config local se conserva.
+  g = await api("PUT", "/ia/config", { modo: "externa", externa: { proveedor: "openai", modelo: "modelo-a", url: URLP, apiKey: "sk-secreta-1234" } });
+  assert.equal(g.status, 200);
+  assert.equal(g.body.externa.clave, "…1234");
+  assert.equal(g.body.local.modelo, "modelo-a");
+  assert.ok(!JSON.stringify(g.body).includes("sk-secreta"));
+  const enBase = JSON.stringify(persistencia.ajuste("ia"));
+  assert.ok(!enBase.includes("sk-secreta") && enBase.includes("claveCifrada"));
+  assert.deepEqual(await estadoIA(), { disponible: true, proveedor: "openai", modelo: "modelo-a" });
+  // Cambiar el modelo sin reenviar la clave la mantiene; cambiar de proveedor la exige.
+  assert.equal((await api("PUT", "/ia/config", { modo: "externa", externa: { proveedor: "openai", modelo: "otro", url: URLP } })).status, 200);
+  assert.equal((await api("PUT", "/ia/config", { modo: "externa", externa: { proveedor: "gemini", modelo: "gemini-x" } })).status, 400);
+  vistos.length = 0;
+  await api("POST", "/ia/probar", { modo: "externa", externa: { proveedor: "openai", modelo: "otro", url: URLP } });
+  assert.equal(vistos[0].auth, "Bearer sk-secreta-1234"); // usó la guardada
+
+  // Volver a local sin reescribirla, y apagar.
+  assert.equal((await api("PUT", "/ia/config", { modo: "local", local: { modelo: "modelo-a", url: URLP } })).body.externa.clave, "…1234");
+  g = await api("PUT", "/ia/config", { modo: "ninguna" });
+  assert.equal(g.body.modo, "ninguna");
+  assert.equal(g.body.enUso, null);
+  assert.deepEqual(await estadoIA(), { disponible: false });
+  // Volver al .env (en el test no hay IA en el .env).
+  assert.equal((await api("DELETE", "/ia/config")).body.origen, "ninguno");
+});

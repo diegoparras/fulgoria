@@ -3,7 +3,7 @@ export default {
   "doc.title": "Fulgoria — extract data from any document",
   "lang.label": "Language",
 
-  "open": "Open PDF or image",
+  "open": "Open statement (PDF or image)",
   "open.title": "Open a PDF or image to extract",
   "theme": "Toggle theme",
   "logout": "Log out",
@@ -32,17 +32,24 @@ export default {
   "news.empty": "There are no notes for this version.",
   "news.error": "Could not load what's new.",
 
-  "hero.title": "Your statements, as clean data.",
-  "hero.sub": "Mark the columns once and Fulgoria reads everything. 100% local, exact, yours.",
+  "hero.conciliar": "Reconcile",
 
-  "empty.title": "Your statement, as clean data",
-  "empty.body": "Drag a PDF or image here —or tap <em>Open</em> above. Mark the columns once and the app reads everything. Nothing is uploaded anywhere.",
+  "hero.conciliar.title": "Reconcile the bank statement against the Bank account ledger",
+
+  "tag.balance": "Balance rule",
+
+  "menu.conciliar": "Reconcile with the ledger",
+
+  "hero.title": "Bank reconciliations that do themselves.",
+  "hero.sub": "Drop the bank statement and the ledger: Fulgoria reads them, checks the balances, matches entries and shows you only what needs your decision.",
+
+  "empty.title": "Just need the statement as data?",
+  "empty.body": "Drag a PDF or image here. Mark the columns once, Fulgoria reads everything and checks it with the balance rule. The statement is processed in your browser.",
   "tag.pdf": "PDF",
   "tag.image": "Image",
   "tag.ocr": "Scanned · OCR",
   "tag.multipage": "Multi-page",
   "tag.multiaccount": "Multi-account",
-  "tag.local": "100% local",
 
   "pane.extract": "Statement",
   "pager.prev": "Previous page",

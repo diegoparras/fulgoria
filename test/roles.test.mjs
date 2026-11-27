@@ -53,6 +53,7 @@ test("roles standalone: alta de usuarios, permisos por rol, revisión independie
   assert.equal((await carla("GET", "/clientes")).status, 200);
   assert.equal((await carla("POST", "/clientes", { nombre: "X" })).status, 403);
   assert.equal((await ana("GET", "/usuarios")).status, 403);
+  for (const quien of [ana, carla]) { assert.equal((await quien("GET", "/ia/config")).status, 403); assert.equal((await quien("PUT", "/ia/config", { modo: "ninguna" })).status, 403); }
 
   // Preparador: carga y prepara; no revisa.
   const cli = (await ana("POST", "/clientes", { nombre: "Agro Sur SA" })).body;

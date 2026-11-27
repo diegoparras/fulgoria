@@ -211,3 +211,16 @@ body.solo-lectura .c-drop-card { display: none; }
 .c-sesion { display: block; font-size: 11.5px; color: var(--muted); text-align: right; }
 .c-sesion:empty { display: none; }
 #guardado.bad { color: var(--fail); }
+
+/* Configuración de la IA */
+.c-fila { display: flex; gap: 6px; align-items: center; }
+.c-fila input { flex: 1; min-width: 0; }
+.c-nota.bad, .modal .bad { color: var(--fail); }
+.c-modos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.c-modo { display: flex !important; gap: 8px; align-items: flex-start; border: 1px solid var(--line); border-radius: 10px; padding: 10px; cursor: pointer; }
+.c-modo:has(input:checked) { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+.c-modo input { margin-top: 3px; }
+.c-modo span { display: grid; gap: 3px; color: var(--ink); font-size: 13px; }
+.c-modo small { color: var(--muted-2); font-size: 11.5px; line-height: 1.4; }
+@media (max-width: 640px) { .c-modos { grid-template-columns: 1fr; } }
+.c-modo-est { color: var(--ink) !important; font-weight: 600; }

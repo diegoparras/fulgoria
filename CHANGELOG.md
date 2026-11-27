@@ -5,6 +5,25 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 [Versionado Semantico](https://semver.org/lang/es/). Cada deploy sube la version y agrega su
 seccion aca: sin ella el CI no publica la imagen.
 
+## [1.2.0] - 2026-11-27
+
+### Nuevo
+- **IA configurable por el admin** (Conciliar → IA): se elige **Sin IA**, **IA local** (Ollama, LM
+  Studio, vLLM: nada sale del estudio) o **IA externa** (Claude, OpenAI, **Gemini** u OpenRouter),
+  y cada opcion muestra lo que tiene configurado. Se guardan las dos configuraciones, asi que se
+  pasa de una a otra sin volver a cargar nada; lo que ya este en el `.env` aparece precargado.
+  Modelo con la lista de los que habilita el servidor o la clave, URL y temperatura opcionales,
+  boton **Probar** antes de guardar. La clave queda cifrada con `DOCS_CLAVE` y no vuelve a
+  mostrarse. Lo elegido manda sobre el `.env` ("Sin IA" la apaga aunque el `.env` tenga una);
+  **Volver al .env** lo borra.
+- **Modelos que no aceptan temperatura** (los de razonamiento de OpenAI como GPT-6 Luna, los Claude
+  actuales): si el proveedor la rechaza, se reintenta sin ella y se recuerda para ese modelo. A las
+  APIs compatibles con OpenAI ya no se les manda `max_tokens`.
+
+### Cambiado
+- **Portada nueva**: la conciliacion pasa al frente ("Conciliaciones bancarias que se hacen solas")
+  con un boton directo a Conciliar; el extractor queda como segunda opcion. En los 7 idiomas.
+
 ## [1.1.0] - 2026-11-27
 
 ### Nuevo

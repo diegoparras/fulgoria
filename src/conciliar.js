@@ -710,6 +710,7 @@ async function iniciarEstudio() {
   $("cartera").hidden = false;
   $("nuevoCliente").hidden = $("nuevaCuenta").hidden = !puedo("editar");
   if (r.body.modoUsuarios === "local" && puedo("administrar")) $("verUsuarios").hidden = false;
+  if (puedo("administrar")) $("verIA").hidden = false;
   $("sesion").textContent = r.body.modoUsuarios === "sin_login" ? "" : `${est.usuario} · ${est.rol}`;
   $("selMes").value = new Date().toISOString().slice(0, 7);
   est.periodo = $("selMes").value;
@@ -923,6 +924,94 @@ async function abrirUsuarios() {
 }
 $("verUsuarios").addEventListener("click", abrirUsuarios);
 
+// ---------------- configuración de la IA (solo admin): sin IA, IA local o IA externa
+async function abrirConfigIA() {
+  const r = await srv("GET", "/ia/config");
+  if (!r.ok) return toast(r.body.mensaje || "No pude abrir la configuración de la IA.");
+  const v = r.body, L = v.local || {}, E = v.externa || {}, provs = v.proveedores;
+  const nombreProv = (k) => (k === "local" ? "IA local" : provs[k]?.nombre || k);
+  const enUso = v.enUso
+    ? `En uso: <b>${esc(nombreProv(v.enUso.proveedor))} · ${esc(v.enUso.modelo)}</b> (${v.enUso.origen === "panel" ? "elegida acá" : "desde el .env del servidor"})`
+    : v.modo === "ninguna" && v.origen === "panel" ? "La IA está <b>apagada</b>." : `Sin IA en uso${v.error ? ` · <span class="bad">${esc(v.error)}</span>` : ""}.`;
+  const estadoL = L.modelo ? `${esc(L.modelo)}${L.desdeEnv ? " · del .env" : ""}` : "sin configurar";
+  const estadoE = E.proveedor ? `${esc(nombreProv(E.proveedor))}${E.modelo ? " · " + esc(E.modelo) : ""}${E.clave ? ` · clave ${esc(E.clave)}` : ""}` : "sin configurar";
+  const opcion = (k, t, d, est) => `<label class="c-modo"><input type="radio" name="modo" value="${k}"${v.modo === k ? " checked" : ""} /><span><b>${t}</b><small>${d}</small>${est ? `<small class="c-modo-est">${est}</small>` : ""}</span></label>`;
+  const provSel = E.proveedor || "anthropic";
+  abrirModal("IA para bancos nuevos", `<p>${enUso}</p>
+    <form class="c-form" id="iaForm" autocomplete="off">
+      <div class="c-modos">
+        ${opcion("ninguna", "Sin IA", "Las columnas de un banco nuevo se marcan a mano.")}
+        ${opcion("local", "IA local", "Corre en tu servidor: nada sale del estudio.", estadoL)}
+        ${opcion("externa", "IA externa", "Claude, OpenAI, Gemini u OpenRouter.", estadoE)}
+      </div>
+      <div id="iaLocal" class="c-form">
+        <label>Modelo<span class="c-fila"><input name="lModelo" list="iaModelosL" value="${esc(L.modelo || "")}" placeholder="p. ej. qwen2.5:7b" /><button type="button" class="btn sm ghost" data-listar="local">Ver modelos</button></span><datalist id="iaModelosL"></datalist></label>
+        <label>URL del servidor de modelos<input name="lUrl" value="${esc(L.url || "")}" placeholder="por defecto: ${esc(v.urlLocal)} · en EasyPanel: http://<proyecto>_ollama:11434/v1" /></label>
+        <label>Temperatura (opcional)<input name="lTemp" type="number" min="0" max="2" step="0.1" value="${L.temperatura ?? ""}" placeholder="vacía = no se manda" /></label>
+      </div>
+      <div id="iaExterna" class="c-form">
+        <label>Proveedor<select name="eProv">${Object.entries(provs).map(([k, x]) => `<option value="${esc(k)}"${k === provSel ? " selected" : ""}>${esc(x.nombre)}</option>`).join("")}</select></label>
+        <label>Modelo<span class="c-fila"><input name="eModelo" list="iaModelosE" value="${esc(E.modelo || "")}" /><button type="button" class="btn sm ghost" data-listar="externa">Ver modelos</button></span><datalist id="iaModelosE"></datalist></label>
+        <label>Clave de API<input name="eClave" type="password" autocomplete="new-password" /></label>
+        <label>URL (opcional)<input name="eUrl" value="${esc(E.url || "")}" /></label>
+        <label>Temperatura (opcional)<input name="eTemp" type="number" min="0" max="2" step="0.1" value="${E.temperatura ?? ""}" placeholder="vacía = no se manda" /></label>
+        <p class="muted" style="font-size:12px;margin:0">Al modelo externo solo le llega el esqueleto anónimo del extracto (posiciones y tipos de celda, sin nombres, montos ni cuentas).${v.puedeGuardarClave ? " La clave se guarda cifrada y no se vuelve a mostrar." : " <b>Para guardar una clave hace falta DOCS_CLAVE en el servidor.</b>"}</p>
+      </div>
+      <label id="iaMax">Consultas por persona y por hora<input name="maxPorHora" type="number" min="1" max="1000" step="1" value="${v.maxPorHora ?? 30}" /></label>
+      <p id="iaTempNota" class="muted" style="font-size:12px;margin:0">Temperatura: vacía es lo recomendado. Hay modelos que no la aceptan (los de razonamiento de OpenAI, los Claude actuales): si el modelo la rechaza, Fulgoria reintenta sin ella.</p>
+      <div id="iaRes" class="c-nota" hidden></div>
+      <div class="modal-acciones">${v.origen === "panel" && v.env ? `<button type="button" class="btn ghost" id="iaEnv">Volver al .env</button>` : ""}<button type="button" class="btn" id="iaProbar">Probar</button><button class="btn primary" type="submit">Guardar</button></div>
+    </form>`, { ancho: true });
+  const f = $("iaForm");
+  const modo = () => f.querySelector("input[name=modo]:checked")?.value || "ninguna";
+  const datos = (m = modo()) => {
+    const d = { modo: m, maxPorHora: f.maxPorHora.value };
+    if (m === "local") d.local = { modelo: f.lModelo.value, url: f.lUrl.value, temperatura: f.lTemp.value };
+    if (m === "externa") d.externa = { proveedor: f.eProv.value, modelo: f.eModelo.value, url: f.eUrl.value, temperatura: f.eTemp.value, ...(f.eClave.value ? { apiKey: f.eClave.value } : {}) };
+    return d;
+  };
+  const nota = (txt, mal = false) => { const n = $("iaRes"); n.hidden = false; n.textContent = txt; n.classList.toggle("bad", mal); };
+  const ajustar = () => {
+    const m = modo(), p = provs[f.eProv.value];
+    $("iaLocal").hidden = m !== "local"; $("iaExterna").hidden = m !== "externa";
+    $("iaMax").hidden = $("iaTempNota").hidden = $("iaProbar").hidden = m === "ninguna";
+    f.eUrl.placeholder = p.url ? `por defecto: ${p.url}` : "por defecto la del proveedor";
+    f.eModelo.placeholder = p.modelo ? `por defecto: ${p.modelo}` : "el nombre exacto del modelo";
+    f.eClave.placeholder = f.eProv.value === E.proveedor && E.clave ? `guardada (${E.clave}); dejala vacía para mantenerla` : "pegala acá";
+    $("iaRes").hidden = true;
+  };
+  f.addEventListener("change", (e) => { if (e.target.name === "modo" || e.target.name === "eProv") ajustar(); });
+  ajustar();
+  f.querySelectorAll("[data-listar]").forEach((b) => b.addEventListener("click", async () => {
+    const m = b.dataset.listar;
+    nota("Pidiendo la lista de modelos…");
+    const x = await srv("POST", "/ia/modelos", datos(m));
+    if (!x.ok) return nota(x.body.mensaje || "No pude listar los modelos.", true);
+    $(m === "local" ? "iaModelosL" : "iaModelosE").innerHTML = x.body.modelos.map((id) => `<option value="${esc(id)}"></option>`).join("");
+    nota(x.body.modelos.length ? `${x.body.modelos.length} modelos disponibles: empezá a escribir en Modelo para elegir.` : "El servidor no devolvió modelos (en Ollama: ollama pull <modelo>).");
+  }));
+  $("iaProbar").addEventListener("click", async () => {
+    nota("Probando con un extracto de ejemplo (no es de ningún cliente)…");
+    const x = await srv("POST", "/ia/probar", datos());
+    nota(x.ok ? `Funciona: respondió ${x.body.propuestas} propuesta(s) en ${(x.body.ms / 1000).toFixed(1)} s.` : x.body.mensaje || "No funcionó.", !x.ok);
+  });
+  $("iaEnv")?.addEventListener("click", async () => {
+    const x = await srv("DELETE", "/ia/config");
+    if (!x.ok) return nota(x.body.mensaje || "No pude volver al .env.", true);
+    cerrarModal(); toast("La IA vuelve a tomar la configuración del .env."); refrescarIA();
+  });
+  f.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const x = await srv("PUT", "/ia/config", datos());
+    if (!x.ok) return nota(x.body.mensaje || "No pude guardar.", true);
+    cerrarModal();
+    toast(x.body.enUso ? `IA activa: ${nombreProv(x.body.enUso.proveedor)} · ${x.body.enUso.modelo}` : "IA apagada: las columnas de un banco nuevo se marcan a mano.");
+    refrescarIA();
+  });
+}
+async function refrescarIA() { iaEstado.disponible = false; await iniciarIA(); if (state.extracto) renderDocs(); }
+$("verIA").addEventListener("click", abrirConfigIA);
+
 // ---------------- mandos por cuenta
 function guardarMandosCuenta() {
   est.cuenta.mandos = structuredClone(state.mandos);
@@ -1011,7 +1100,7 @@ async function iniciarIA() {
   try { const r = await fetch("/api/ia/estado", { credentials: "same-origin" }); if (r.ok) Object.assign(iaEstado, await r.json()); } catch {}
   if (iaEstado.disponible && state.extracto) renderDocs();
 }
-const NOMBRE_PROVEEDOR = { anthropic: "Claude (Anthropic)", openai: "OpenAI", openrouter: "OpenRouter", local: "el modelo local del estudio" };
+const NOMBRE_PROVEEDOR = { anthropic: "Claude (Anthropic)", openai: "OpenAI", gemini: "Gemini (Google)", openrouter: "OpenRouter", local: "el modelo local del estudio" };
 
 function pedirColumnasIA() {
   const x = state.extracto;

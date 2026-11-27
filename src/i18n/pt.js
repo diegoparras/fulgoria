@@ -3,7 +3,7 @@ export default {
   "doc.title": "Fulgoria — extraia dados de qualquer documento",
   "lang.label": "Idioma",
 
-  "open": "Abrir PDF ou imagem",
+  "open": "Abrir extrato (PDF ou imagem)",
   "open.title": "Abrir um PDF ou imagem para extrair",
   "theme": "Alternar tema",
   "logout": "Sair",
@@ -32,17 +32,24 @@ export default {
   "news.empty": "Não há notas para esta versão.",
   "news.error": "Não foi possível carregar as novidades.",
 
-  "hero.title": "Seus extratos, em dados limpos.",
-  "hero.sub": "Você marca as colunas uma vez e a Fulgoria lê tudo. 100% local, exato, seu.",
+  "hero.conciliar": "Conciliar",
 
-  "empty.title": "Seu extrato, em dados limpos",
-  "empty.body": "Arraste um PDF ou imagem aqui —ou toque em <em>Abrir</em> acima. Você marca as colunas uma vez e o sistema lê tudo. Nada é enviado para lugar nenhum.",
+  "hero.conciliar.title": "Conciliar o extrato com o razão da conta Banco",
+
+  "tag.balance": "Regra do saldo",
+
+  "menu.conciliar": "Conciliar com o razão",
+
+  "hero.title": "Conciliações bancárias que se fazem sozinhas.",
+  "hero.sub": "Solte o extrato e o razão: o Fulgoria lê, verifica os saldos, concilia e mostra só o que precisa da sua decisão.",
+
+  "empty.title": "Só precisa do extrato em dados?",
+  "empty.body": "Arraste um PDF ou imagem aqui. Marque as colunas uma vez, o Fulgoria lê tudo e confere com a regra do saldo. O extrato é processado no seu navegador.",
   "tag.pdf": "PDF",
   "tag.image": "Imagem",
   "tag.ocr": "Digitalizado · OCR",
   "tag.multipage": "Multipágina",
   "tag.multiaccount": "Multiconta",
-  "tag.local": "100% local",
 
   "pane.extract": "Extrato",
   "pager.prev": "Página anterior",
