@@ -409,3 +409,12 @@ test("conflicto de identidad — lo que el documento contradice nunca se confirm
     [L("L1", "2026-06-09", 1200000, "Cobranza Lácteos Valle Verde CUIT 20-12345678-6"), L("L2", "2026-06-08", 700000, "Cobranza Agro Sur CUIT 30-71234567-1"), L("L3", "2026-06-09", 500000, "Cobranza Agro Sur CUIT 30-71234567-1")], cfg);
   assert.equal(pairKey(r.matches[0]), "B1|L2,L3");
 });
+
+test("mandos guardados: un valor de otro tipo no pisa el default", async () => {
+  const { resolveConfig, DEFAULTS } = await import("../src/core/index.js");
+  const sec = Object.keys(DEFAULTS).find((k) => typeof DEFAULTS[k] === "object" && Object.values(DEFAULTS[k]).some((v) => typeof v === "number"));
+  const k = Object.keys(DEFAULTS[sec]).find((x) => typeof DEFAULTS[sec][x] === "number");
+  const c = resolveConfig({ [sec]: { [k]: '"><b>' } }, { [sec]: { [k]: 7 } });
+  assert.equal(c[sec][k], 7);
+  assert.equal(resolveConfig({ [sec]: { [k]: '"><b>' } })[sec][k], DEFAULTS[sec][k]);
+});

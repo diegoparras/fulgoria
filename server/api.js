@@ -8,6 +8,18 @@ const PERIODO_RE = /^\d{4}-(0[1-9]|1[0-2])$/;
 const ID_RE = /^[0-9a-f-]{36}$/i;
 const TIPOS_DOC = new Set(["extracto", "mayor"]);
 const TIPOS_PLANTILLA = new Set(["banco", "mayor"]);
+// Tipos de documento que se aceptan y se devuelven; cualquier otro se guarda como binario. Nunca se
+// devuelve el Content-Type que mandó quien subió el archivo (podría ser text/javascript o text/html).
+const MIMES_DOC = new Set(["application/pdf", "text/csv", "text/plain", "application/vnd.ms-excel",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "image/png", "image/jpeg", "image/webp", "image/tiff"]);
+const mimeDoc = (v) => { const m = String(v || "").split(";")[0].trim().toLowerCase(); return MIMES_DOC.has(m) ? m : "application/octet-stream"; };
+const esObjeto = (v) => v != null && typeof v === "object" && !Array.isArray(v);
+/** Mandos: objeto de secciones con valores simples (número, texto corto, sí/no), nada más. */
+function mandosValidos(m, prof = 0) {
+  if (m === null) return true;
+  if (!esObjeto(m) || prof > 3) return false;
+  return Object.values(m).every((v) => (esObjeto(v) ? mandosValidos(v, prof + 1) : typeof v === "number" ? Number.isFinite(v) : typeof v === "boolean" || (typeof v === "string" && v.length <= 2000) || (Array.isArray(v) && v.every((x) => typeof x === "string" && x.length <= 200))));
+}
 
 const txt = (v, max = 200) => (v == null ? null : String(v).trim().slice(0, max) || null);
 
@@ -49,11 +61,12 @@ function crearApi(p, { maxDocMB = 25, usuario = () => ({ u: "local", rol: "admin
     const nombre = txt(b.nombre);
     if (!nombre) return mal(res, 400, "Falta el nombre de la cuenta (p. ej. \"Cuenta corriente en pesos\").");
     const moneda = b.moneda === "USD" ? "USD" : "ARS";
-    const c = p.crearCuenta(u(req), req.params.id, { nombre, banco: txt(b.banco), moneda, cbu: txt(b.cbu, 30), mandos: b.mandos || null });
+    const c = p.crearCuenta(u(req), req.params.id, { nombre, banco: txt(b.banco), moneda, cbu: txt(b.cbu, 30), mandos: mandosValidos(b.mandos ?? null) ? b.mandos ?? null : null });
     c ? res.status(201).json(c) : mal(res, 404, "No existe el cliente.");
   });
   r.patch("/cuentas/:id", idOk, exige("editar"), express.json({ limit: "256kb" }), (req, res) => {
     const b = req.body || {};
+    if (b.mandos !== undefined && !mandosValidos(b.mandos)) return mal(res, 400, "Mandos inválidos.");
     const c = p.editarCuenta(u(req), req.params.id, {
       ...(b.nombre !== undefined && { nombre: txt(b.nombre) }), ...(b.banco !== undefined && { banco: txt(b.banco) }),
       ...(b.moneda !== undefined && { moneda: b.moneda === "USD" ? "USD" : "ARS" }), ...(b.cbu !== undefined && { cbu: txt(b.cbu, 30) }),
@@ -76,6 +89,8 @@ function crearApi(p, { maxDocMB = 25, usuario = () => ({ u: "local", rol: "admin
     const permiso = b.accion === "preparar" ? "preparar" : ["revisar", "cerrar", "reabrir"].includes(b.accion) ? "revisar" : "editar";
     if (!puede(quien(req).rol, permiso)) return mal(res, 403, `Tu rol (${quien(req).rol}) no permite ${TXT_PERMISO[permiso]}.`);
     for (const k of ["extractoDoc", "mayorDoc"]) if (b[k] != null && (!ID_RE.test(b[k]) || !p.documento(b[k]))) return mal(res, 400, "Documento inexistente.");
+    if (b.resumen != null && !esObjeto(b.resumen)) return mal(res, 400, "Resumen inválido.");
+    if (b.pendientes != null && !Array.isArray(b.pendientes)) return mal(res, 400, "Pendientes inválidos.");
     const out = p.guardarPeriodo(u(req), req.params.id, req.params.periodo, b);
     if (out.error) return mal(res, out.error, out.msg, out.actual ? { actual: out.actual } : {});
     res.json(out.periodo);
@@ -89,7 +104,7 @@ function crearApi(p, { maxDocMB = 25, usuario = () => ({ u: "local", rol: "admin
       if (!Buffer.isBuffer(req.body) || !req.body.length) return mal(res, 400, "Archivo vacío.");
       let nombre = "documento";
       try { nombre = decodeURIComponent(String(req.get("x-nombre") || "documento")).slice(0, 200); } catch {}
-      const mime = String(req.get("content-type") || "application/octet-stream").slice(0, 100);
+      const mime = mimeDoc(req.get("content-type"));
       res.status(201).json(await p.guardarDocumento(u(req), { tipo, nombre, mime, datos: req.body }));
     } catch (e) { next(e); }
   });
@@ -97,7 +112,8 @@ function crearApi(p, { maxDocMB = 25, usuario = () => ({ u: "local", rol: "admin
     try {
       const d = await p.leerDocumento(req.params.doc);
       if (!d || !d.datos) return mal(res, 404, "No existe el documento.");
-      res.setHeader("Content-Type", d.meta.mime || "application/octet-stream");
+      res.setHeader("Content-Type", mimeDoc(d.meta.mime)); // también para lo guardado antes de este control
+      res.setHeader("Content-Security-Policy", "default-src 'none'; sandbox");
       res.setHeader("Content-Disposition", `attachment; filename*=UTF-8''${encodeURIComponent(d.meta.nombre || "documento")}`);
       res.setHeader("Cache-Control", "private, no-store");
       res.send(d.datos);

@@ -40,6 +40,14 @@ seccion aca: sin ella el CI no publica la imagen.
   saldo (prueba varias lecturas y se queda con la que cierra). Las plantillas que se guardan quedan
   tambien para todo el estudio si el modo estudio esta activo.
 
+### Seguridad
+- Los documentos guardados se devuelven solo con tipos conocidos (PDF, CSV, imagenes, planillas) y
+  con una politica que impide ejecutarlos: el tipo que manda quien sube el archivo ya no se respeta.
+- La pantalla Conciliar escapa todo lo que viene del servidor (semaforo del tablero, fechas y filas
+  de los pendientes arrastrados, mandos de la cuenta) y el servidor valida la forma del resumen, de
+  los pendientes y de los mandos. Cerraba un camino para que un preparador ejecutara codigo en la
+  sesion de un admin.
+
 ## [1.0.1] - 2026-11-20
 
 ### Nuevo

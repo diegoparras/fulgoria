@@ -225,7 +225,7 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
       for (const r of per) {
         const res = J(r.resumen) || {};
         if (!porCuenta.has(r.cuenta_id)) porCuenta.set(r.cuenta_id, {});
-        porCuenta.get(r.cuenta_id)[r.periodo] = { estado: r.estado, semaforo: res.estado || null, diferencia: res.diferenciaNoExplicada ?? null, atencion: res.atencion ?? null };
+        porCuenta.get(r.cuenta_id)[r.periodo] = { estado: r.estado, semaforo: ["verde", "amarillo", "rojo"].includes(res.estado) ? res.estado : null, diferencia: res.diferenciaNoExplicada ?? null, atencion: res.atencion ?? null };
       }
       return {
         meses: ms,

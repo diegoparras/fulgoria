@@ -12,7 +12,7 @@ import { buildTemplate } from "./template.js";
 import { esqueletoDePdf, elegirPropuesta } from "./ia.js";
 import {
   fromExtract, resolveConfig, DEFAULTS, reconcile, arrastreSiguiente, pairKey,
-  papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, fmtCents, fmtISO,
+  papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, fmtCents, fmtISO as fmtISOcrudo,
   parseCsv, parseLedgerRows, detectLedgerColumns, adivinarFilaEncabezado, crearPlantillaMayor, reconocerPlantillaMayor, ROLES_MAYOR,
 } from "./core/index.js";
 
@@ -29,7 +29,10 @@ const ICON = {
   sun: svg(17, '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'),
   moon: svg(17, '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>'),
 };
-const dot = (c, lg) => `<span class="dot ${c}${lg ? " lg" : ""}"></span>`;
+// Lo que llega del servidor (o de un mes anterior) puede traer cualquier cosa: solo colores conocidos y fechas escapadas.
+const COLORES = new Set(["verde", "amarillo", "rojo"]);
+const dot = (c, lg) => `<span class="dot ${COLORES.has(c) ? c : "amarillo"}${lg ? " lg" : ""}"></span>`;
+const fmtISO = (iso) => esc(fmtISOcrudo(typeof iso === "string" ? iso : ""));
 
 const LS_MANDOS = "fulgoria.conciliar.mandos";
 const LS_MODO = "fulgoria.conciliar.modo";
@@ -371,7 +374,7 @@ function itemRow(id, extra = "") {
   const m = mov(id);
   const p = state.rec.pendientes.find((x) => x.id === id);
   const why = p?.motivo ? `<span class="why">${esc(p.motivo)}${p.antiguedadDias != null ? ` · ${p.antiguedadDias} día${p.antiguedadDias === 1 ? "" : "s"}` : ""}</span>` : "";
-  const ev = m.evidencia?.page != null ? `<button class="lnk" data-ev="${esc(id)}">Ver en el extracto</button>` : m.evidencia?.row != null ? `<span class="muted" style="font-size:12px">${esc(m.evidencia.doc || "mayor")} · fila ${m.evidencia.row}</span>` : "";
+  const ev = m.evidencia?.page != null ? `<button class="lnk" data-ev="${esc(id)}">Ver en el extracto</button>` : m.evidencia?.row != null ? `<span class="muted" style="font-size:12px">${esc(m.evidencia.doc || "mayor")} · fila ${esc(m.evidencia.row)}</span>` : "";
   return `<div class="c-item"><span class="f">${fmtISO(m.fecha)}</span><span class="d">${esc(m.descripcion)}${m.arrastre ? ' <span class="muted">(mes anterior)</span>' : ""}${why}</span><span class="i ${m.cents < 0 ? "neg" : ""}">${fmtCents(m.cents)}</span>${ev || extra ? `<span class="x">${ev}${extra}</span>` : ""}</div>`;
 }
 function pairHtml(mt, acts = true) {
@@ -495,7 +498,7 @@ function renderMandos() {
     const v = getPath(c, m.k);
     if (m.tipo === "bool") html.push(`<label class="chk"><input type="checkbox" data-m="${m.k}" data-t="bool"${v ? " checked" : ""} />${esc(m.t)}</label>`);
     else if (m.tipo === "text") html.push(`<label class="f wide"><span class="muted" style="font-size:11.5px">${esc(m.t)}</span><input data-m="${m.k}" data-t="text" value="${esc(v)}" /></label>`);
-    else html.push(`<label class="f">${esc(m.t)}<input type="number" min="0" step="${m.tipo === "money" ? "0.01" : "1"}" data-m="${m.k}" data-t="${m.tipo}" value="${m.tipo === "money" ? v / 100 : v}" /></label>`);
+    else html.push(`<label class="f">${esc(m.t)}<input type="number" min="0" step="${m.tipo === "money" ? "0.01" : "1"}" data-m="${m.k}" data-t="${m.tipo}" value="${esc(m.tipo === "money" ? v / 100 : v)}" /></label>`);
   }
   if (open) html.push("</div>");
   html.push(`<div class="grp"><button class="btn sm ghost" id="mandosReset">Volver a los valores por defecto</button></div>`);

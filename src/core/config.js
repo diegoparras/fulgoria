@@ -72,6 +72,7 @@ export function resolveConfig(...capas) {
 function merge(dst, src) {
   for (const [k, v] of Object.entries(src)) {
     if (isObj(v) && isObj(dst[k])) merge(dst[k], v);
+    else if (dst[k] != null && v != null && typeof v !== typeof dst[k]) continue; // tipo distinto al default: se ignora
     else dst[k] = structuredClone(v);
   }
 }

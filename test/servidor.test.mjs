@@ -137,3 +137,25 @@ test("validaciones de entrada", async () => {
   assert.equal((await api("POST", "/documentos", Buffer.from("x"), { "x-tipo": "otro" })).status, 400);
   assert.equal((await api("PUT", "/cuentas/00000000-0000-0000-0000-000000000000/periodos/2026-06", { extractoDoc: "00000000-0000-0000-0000-000000000000" })).status, 400);
 });
+
+test("seguridad: el Content-Type del documento no lo elige quien lo sube; datos del mes con forma inválida", async () => {
+  const js = Buffer.from("fetch('/api/v1/usuarios',{method:'POST'})");
+  const d = (await api("POST", "/documentos", js, { "x-tipo": "extracto", "x-nombre": "x.js", "content-type": "text/javascript" })).body;
+  const r = await fetch(`${BASE}/documentos/${d.id}`);
+  assert.equal(r.headers.get("content-type"), "application/octet-stream");
+  assert.match(r.headers.get("content-security-policy"), /sandbox/);
+  const pdf = await fetch(`${BASE}/documentos/${(await api("POST", "/documentos", PDF, { "x-tipo": "extracto", "content-type": "application/pdf; charset=binary" })).body.id}`);
+  assert.equal(pdf.headers.get("content-type"), "application/pdf");
+
+  const cli = (await api("POST", "/clientes", { nombre: "Cliente de prueba de seguridad" })).body;
+  const cta = (await api("POST", `/clientes/${cli.id}/cuentas`, { nombre: "Caja de ahorro" })).body;
+  assert.equal((await api("PATCH", `/cuentas/${cta.id}`, { mandos: "<img>" })).status, 400);
+  assert.equal((await api("PATCH", `/cuentas/${cta.id}`, { mandos: { match: { ventana: { a: { b: { c: 1 } } } } } })).status, 400);
+  assert.equal((await api("PUT", `/cuentas/${cta.id}/periodos/2026-03`, { resumen: "x" })).status, 400);
+  assert.equal((await api("PUT", `/cuentas/${cta.id}/periodos/2026-03`, { pendientes: { a: 1 } })).status, 400);
+  // Un "semáforo" que no es un color no llega al tablero.
+  assert.equal((await api("PUT", `/cuentas/${cta.id}/periodos/2026-03`, { resumen: { estado: 'x"><iframe srcdoc="">' } })).status, 200);
+  const cart = (await api("GET", "/cartera?hasta=2026-03&meses=1")).body;
+  const fila = cart.clientes.find((c) => c.id === cli.id).cuentas[0].periodos["2026-03"];
+  assert.equal(fila.semaforo, null);
+});
