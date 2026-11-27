@@ -900,7 +900,7 @@ async function abrirUsuarios() {
   }));
   body.querySelectorAll("[data-u-clave]").forEach((el) => el.addEventListener("click", () => {
     const quien = el.dataset.uClave;
-    formModal(`Nueva contraseña para ${esc(quien)}`, [{ k: "password", t: "Contraseña (10 caracteres o más)", req: true }], async (d) => {
+    formModal(`Nueva contraseña para ${esc(quien)}`, [{ k: "password", t: "Contraseña (10 caracteres o más)", req: true, tipo: "password" }], async (d) => {
       const x = await srv("PATCH", `/usuarios/${encodeURIComponent(quien)}`, { password: d.password });
       toast(x.ok ? "Contraseña cambiada." : x.body.mensaje); return x.ok;
     });
@@ -1013,7 +1013,7 @@ function guardarMandosCuenta() {
 function formModal(titulo, campos, alGuardar) {
   abrirModal(titulo, `<form class="c-form" id="altaForm">${campos.map((c) => c.opciones
     ? `<label>${c.t}<select name="${c.k}">${c.opciones.map((o) => `<option value="${o}">${o}</option>`).join("")}</select></label>`
-    : `<label>${c.t}<input name="${c.k}" ${c.req ? "required" : ""} placeholder="${esc(c.ph || "")}" /></label>`).join("")}
+    : `<label>${c.t}<input name="${c.k}" ${c.req ? "required" : ""}${c.tipo ? ` type="${c.tipo}" autocomplete="new-password"` : ""} placeholder="${esc(c.ph || "")}" /></label>`).join("")}
     <div class="modal-acciones"><button class="btn primary" type="submit">Guardar</button></div></form>`);
   $("altaForm").querySelector("input")?.focus();
   $("altaForm").addEventListener("submit", async (e) => {

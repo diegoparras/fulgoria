@@ -256,6 +256,28 @@
     })
     .catch(() => {});
 
+  // ---- Ojito mostrar/ocultar en TODO campo de contraseña (también en los que se arman después) ----
+  const OJO = '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>';
+  const OJO_NO = '<path d="M9.9 4.24A9.1 9.1 0 0 1 12 4c6.4 0 10 7 10 7a13.2 13.2 0 0 1-1.67 2.68M6.6 6.6A13.5 13.5 0 0 0 2 12s3.6 7 10 7a9.7 9.7 0 0 0 5.4-1.6"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><path d="M2 2l20 20"/>';
+  function ojitos(raiz) {
+    const lista = raiz.matches && raiz.matches('input[type="password"]') ? [raiz] : raiz.querySelectorAll ? raiz.querySelectorAll('input[type="password"]') : [];
+    for (const i of lista) {
+      if (i.dataset.ojo) continue;
+      i.dataset.ojo = "1";
+      const w = document.createElement("span"); w.className = "pass-wrap";
+      i.parentNode.insertBefore(w, i); w.appendChild(i);
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "pass-toggle"; b.innerHTML = ico(16, OJO);
+      const pintar = () => { const v = i.type === "text"; b.innerHTML = ico(16, v ? OJO_NO : OJO); b.title = v ? "Ocultar" : "Mostrar"; b.setAttribute("aria-label", v ? "Ocultar la contraseña" : "Mostrar la contraseña"); b.setAttribute("aria-pressed", String(v)); };
+      b.addEventListener("click", (e) => { e.preventDefault(); i.type = i.type === "password" ? "text" : "password"; pintar(); i.focus(); });
+      pintar();
+      w.appendChild(b);
+    }
+  }
+  new MutationObserver((ms) => { for (const m of ms) for (const n of m.addedNodes) if (n.nodeType === 1) ojitos(n); })
+    .observe(document.documentElement, { childList: true, subtree: true });
+  document.addEventListener("DOMContentLoaded", () => ojitos(document));
+
   // ---- i18n (mismo módulo que usa la página: una sola instancia) -------------------------------
   const listo = (SRC ? import(new URL("i18n.js", SRC).href) : Promise.reject(new Error("sin src")))
     .then(async (m) => {
