@@ -159,3 +159,37 @@ test("seguridad: el Content-Type del documento no lo elige quien lo sube; datos 
   const fila = cart.clientes.find((c) => c.id === cli.id).cuentas[0].periodos["2026-03"];
   assert.equal(fila.semaforo, null);
 });
+
+test("IA desde la pantalla: solo admin, clave cifrada que no vuelve, probar y volver al .env", async () => {
+  const { createServer } = await import("node:http");
+  const prov = createServer((req, res) => { let b = ""; req.on("data", (d) => (b += d)); req.on("end", () => {
+    res.writeHead(200, { "content-type": "application/json" });
+    res.end(JSON.stringify(req.url.endsWith("/models") ? { data: [{ id: "modelo-a" }] } : { choices: [{ message: { content: JSON.stringify({ propuestas: [{ explicacion: "x", columnas: [{ desde: 0, hasta: 0.2, rol: "fecha" }] }] }) } }] }));
+  }); }).listen(0);
+  test.after(() => { prov.closeAllConnections(); prov.close(); });
+  const URLP = `http://127.0.0.1:${prov.address().port}/v1`;
+
+  const v0 = (await api("GET", "/ia/config")).body;
+  assert.ok(v0.proveedores.gemini && v0.proveedores.openai);
+  assert.equal((await api("PUT", "/ia/config", { proveedor: "openai", modelo: "gpt-6-luna" })).status, 400); // falta la clave
+  assert.equal((await api("PUT", "/ia/config", { proveedor: "inventado", modelo: "x" })).status, 400);
+  assert.equal((await api("PUT", "/ia/config", { proveedor: "openai", modelo: "m", apiKey: "k", temperatura: 7 })).status, 400);
+  assert.deepEqual((await api("POST", "/ia/modelos", { proveedor: "openai", apiKey: "sk-secreta-1234", url: URLP })).body.modelos, ["modelo-a"]);
+  assert.equal((await api("POST", "/ia/probar", { proveedor: "openai", modelo: "modelo-a", apiKey: "sk-secreta-1234", url: URLP })).body.propuestas, 1);
+
+  const g = await api("PUT", "/ia/config", { proveedor: "openai", modelo: "modelo-a", apiKey: "sk-secreta-1234", url: URLP, temperatura: "" });
+  assert.equal(g.status, 200);
+  assert.equal(g.body.config.clave, "…1234");
+  assert.equal(g.body.enUso.origen, "panel");
+  assert.ok(!JSON.stringify(g.body).includes("sk-secreta"));
+  // En la base queda cifrada.
+  const enBase = JSON.stringify(persistencia.ajuste("ia"));
+  assert.ok(!enBase.includes("sk-secreta") && enBase.includes("claveCifrada"));
+  // Cambiar el modelo sin reenviar la clave la mantiene; cambiar de proveedor la exige.
+  assert.equal((await api("PUT", "/ia/config", { proveedor: "openai", modelo: "otro", url: URLP })).status, 200);
+  assert.equal((await api("PUT", "/ia/config", { proveedor: "gemini", modelo: "gemini-x" })).status, 400);
+  const estado = await (await fetch(BASE.replace("/api/v1", "") + "/api/ia/estado")).json();
+  assert.deepEqual(estado, { disponible: true, proveedor: "openai", modelo: "otro" });
+  // Volver al .env (en el test no hay IA en el .env).
+  assert.equal((await api("DELETE", "/ia/config")).body.enUso, null);
+});

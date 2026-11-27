@@ -108,6 +108,37 @@ if (PERSISTENCIA) {
     revisionIndependiente: String(process.env.REVISION_INDEPENDIENTE || "off").toLowerCase() === "on",
   });
 }
+// --- IA para bancos nuevos (opcional). Recibe solo el esqueleto anónimo del extracto (posiciones y
+//     tipos de celda, nunca datos) y propone columnas; la regla del saldo decide en el navegador.
+//     La configura un admin desde Conciliar → IA (queda en la base, con la clave cifrada) o, si no,
+//     el .env (IA_PROVEEDOR…). Ver server/ia.js. ---
+const { crearIA } = require("./server/ia.js");
+const IA_ENV = {
+  proveedor: process.env.IA_PROVEEDOR, modelo: process.env.IA_MODELO,
+  apiKey: process.env.IA_API_KEY || (String(process.env.IA_PROVEEDOR || "").toLowerCase() === "anthropic" ? process.env.ANTHROPIC_API_KEY : ""),
+  url: process.env.IA_URL, temperatura: process.env.IA_TEMPERATURA || null, maxPorHora: Number(process.env.IA_MAX_POR_HORA || 30),
+};
+function iaSegura(cfg, origen) {
+  try { return Object.assign(crearIA(cfg), { origen }); }
+  catch (e) { console.error(`[fulgoria] IA mal configurada (${origen}): ${e.message}`); return { disponible: false, origen, error: e.message }; }
+}
+const gestorIA = {
+  actual: { disponible: false, origen: "ninguno" },
+  env: IA_ENV.proveedor ? { proveedor: String(IA_ENV.proveedor).toLowerCase(), modelo: IA_ENV.modelo || null } : null,
+  crear: (cfg) => crearIA(cfg),
+  recargar() {
+    const g = persistencia && persistencia.ajuste("ia");
+    if (g && g.proveedor) {
+      let apiKey = "";
+      try { apiKey = persistencia.descifrarSecreto(g.claveCifrada); } catch { console.error("[fulgoria] no pude descifrar la clave de la IA (¿cambió DOCS_CLAVE?)"); }
+      this.actual = iaSegura({ ...g, apiKey }, "panel");
+    } else this.actual = IA_ENV.proveedor ? iaSegura(IA_ENV, "env") : { disponible: false, origen: "ninguno" };
+    if (this.actual.disponible) console.log(`[fulgoria] IA para bancos nuevos: ${this.actual.proveedor} · ${this.actual.modelo} (${this.actual.origen === "panel" ? "configurada desde la pantalla" : ".env"})`);
+    return this.actual;
+  },
+};
+gestorIA.recargar();
+
 app.set("trust proxy", 1); // detrás del reverse proxy de EasyPanel (termina TLS)
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false, limit: "16kb" }));
@@ -280,30 +311,22 @@ app.get("/api/novedades", (req, res) => {
 if (persistencia) {
   const { crearApi } = require("./server/api.js");
   const modoUsuarios = !AUTH_ENABLED ? "sin_login" : AUTH_MODE === "federado" ? "lockatus" : "local";
-  app.use("/api/v1", crearApi(persistencia, { maxDocMB: Number(process.env.DOC_MAX_MB || 25), usuario: identidad, modoUsuarios }));
+  app.use("/api/v1", crearApi(persistencia, { maxDocMB: Number(process.env.DOC_MAX_MB || 25), usuario: identidad, modoUsuarios, ia: gestorIA }));
   console.log(`[fulgoria] persistencia ON · base ${path.join(DATA_DIR, "fulgoria.sqlite")} · documentos en ${persistencia.almacenamiento}${persistencia.cifrado ? " (cifrados)" : ""}`);
 } else {
   app.get("/api/v1/estado", (req, res) => res.json({ persistencia: false }));
 }
 
-// --- IA para bancos nuevos (opcional, IA_PROVEEDOR). Recibe solo el esqueleto anónimo del extracto
-//     (posiciones y tipos de celda, nunca datos) y propone columnas; la regla del saldo decide en el
-//     navegador. Ver server/ia.js. ---
-const { crearIA } = require("./server/ia.js");
-const ia = crearIA({
-  proveedor: process.env.IA_PROVEEDOR, modelo: process.env.IA_MODELO,
-  apiKey: process.env.IA_API_KEY || (String(process.env.IA_PROVEEDOR || "").toLowerCase() === "anthropic" ? process.env.ANTHROPIC_API_KEY : ""),
-  url: process.env.IA_URL, maxPorHora: Number(process.env.IA_MAX_POR_HORA || 30),
-});
-app.get("/api/ia/estado", (req, res) => res.json(ia.disponible ? { disponible: true, proveedor: ia.proveedor, modelo: ia.modelo } : { disponible: false }));
+
+app.get("/api/ia/estado", (req, res) => { const ia = gestorIA.actual; res.json(ia.disponible ? { disponible: true, proveedor: ia.proveedor, modelo: ia.modelo } : { disponible: false }); });
 app.post("/api/ia/columnas", express.json({ limit: "256kb" }), async (req, res) => {
-  if (!ia.disponible) return res.status(404).json({ error: 404, mensaje: "La IA no está configurada (IA_PROVEEDOR)." });
+  const ia = gestorIA.actual;
+  if (!ia.disponible) return res.status(404).json({ error: 404, mensaje: "La IA no está configurada." });
   const yo = identidad(req) || { u: "?", rol: "lector" };
   if (persistencia && !["preparador", "revisor", "admin"].includes(yo.rol)) return res.status(403).json({ error: 403, mensaje: "Tu rol no permite usar la IA." });
   try { res.json(await ia.proponerColumnas(req.body?.esqueleto, yo.u)); }
   catch (e) { res.status(e.status || 502).json({ error: e.status || 502, mensaje: e.message }); }
 });
-if (ia.disponible) console.log(`[fulgoria] IA para bancos nuevos: ${ia.proveedor} · ${ia.modelo}`);
 
 // --- Estáticos: WHITELIST explícita. Nunca se sirven .env, server.js, node_modules ni
 //     samples/private (PII). Solo el ejemplo sintético es público. ---

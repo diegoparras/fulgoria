@@ -2,10 +2,12 @@
 // (src/ia.js), lo vuelve a sanear acá por las dudas y le pide al modelo configurado hasta tres
 // lecturas posibles de las columnas. El navegador prueba cada una con la regla del saldo.
 //
-//   IA_PROVEEDOR = anthropic | openai | openrouter | local      (vacío = sin IA)
+//   IA_PROVEEDOR = anthropic | openai | gemini | openrouter | local   (vacío = sin IA)
+//   (o desde la pantalla, por un admin: queda en la base y manda sobre el .env)
 //   IA_MODELO    = modelo (anthropic: claude-opus-5-5 por defecto; los demás: obligatorio)
 //   IA_API_KEY   = clave del proveedor (anthropic: también sirve ANTHROPIC_API_KEY; local: no hace falta)
-//   IA_URL       = URL base (openai: https://api.openai.com/v1 · openrouter: https://openrouter.ai/api/v1
+//   IA_TEMPERATURA = opcional (0 a 2); si el modelo no la acepta se reintenta sin ella
+//   IA_URL       = URL base (openai: https://api.openai.com/v1 · gemini: …/v1beta/openai · openrouter: https://openrouter.ai/api/v1
 //                  · local: http://localhost:11434/v1 para Ollama, o la de LM Studio / vLLM)
 "use strict";
 
@@ -90,73 +92,153 @@ function primerJson(txt) {
 }
 
 // ---------------------------------------------------------------- proveedores
+// Parámetros opcionales: la temperatura solo se manda si el admin la fijó, y si el modelo la rechaza
+// (los de razonamiento de OpenAI, los Claude actuales, etc.) se reintenta sin ella y se recuerda
+// para ese modelo. Tampoco se manda max_tokens a las APIs compatibles con OpenAI: varios modelos
+// nuevos lo rechazan (piden max_completion_tokens) y la respuesta es corta de todos modos.
+const rechazaTemperatura = (txt) => /temperature/i.test(String(txt || ""));
+
 // Claude: SDK oficial de Anthropic, salida estructurada (JSON Schema) y fallback del servidor si el
 // modelo declina (solo en los modelos que lo admiten).
 const CON_FALLBACK = new Set(["claude-opus-5-5", "claude-opus-5", "claude-fable-5-2", "claude-fable-5-1", "claude-sonnet-5-5"]);
-function proveedorAnthropic({ modelo, apiKey, url }) {
+function proveedorAnthropic({ modelo, apiKey, url, temperatura }) {
   const { Anthropic } = require("@anthropic-ai/sdk");
   const client = new Anthropic({ apiKey, ...(url ? { baseURL: url } : {}) });
-  return async (texto) => {
+  let conTemperatura = temperatura != null;
+  const traducir = (e) => {
+    if (e instanceof Anthropic.AuthenticationError) return new Error("La clave de Anthropic no es válida.");
+    if (e instanceof Anthropic.RateLimitError) return new Error("Anthropic está limitando los pedidos: probá en un rato.");
+    if (e instanceof Anthropic.APIError) return new Error(`Anthropic respondió ${e.status}: ${e.message}`);
+    return e;
+  };
+  const llamar = async (texto) => {
     const fallback = CON_FALLBACK.has(modelo) ? { betas: ["server-side-fallback-2026-07-01"], fallbacks: "default" } : {};
     let r;
-    try {
-      r = await client.beta.messages.create({
-        model: modelo, max_tokens: 16000, system: SISTEMA,
-        output_config: { effort: "medium", format: { type: "json_schema", schema: ESQUEMA } },
-        messages: [{ role: "user", content: texto }],
-        ...fallback,
-      });
-    } catch (e) {
-      if (e instanceof Anthropic.AuthenticationError) throw new Error("La clave de Anthropic no es válida (IA_API_KEY).");
-      if (e instanceof Anthropic.RateLimitError) throw new Error("Anthropic está limitando los pedidos: probá en un rato.");
-      if (e instanceof Anthropic.APIError) throw new Error(`Anthropic respondió ${e.status}: ${e.message}`);
-      throw e;
+    for (;;) {
+      try {
+        r = await client.beta.messages.create({
+          model: modelo, max_tokens: 16000, system: SISTEMA,
+          output_config: { effort: "medium", format: { type: "json_schema", schema: ESQUEMA } },
+          messages: [{ role: "user", content: texto }],
+          ...(conTemperatura ? { temperature: temperatura } : {}),
+          ...fallback,
+        });
+        break;
+      } catch (e) {
+        if (conTemperatura && e instanceof Anthropic.BadRequestError && rechazaTemperatura(e.message)) { conTemperatura = false; continue; }
+        throw traducir(e);
+      }
     }
     if (r.stop_reason === "refusal") throw new Error("El modelo declinó el pedido.");
     if (r.stop_reason === "max_tokens") throw new Error("La respuesta del modelo quedó cortada.");
     return JSON.parse(r.content.filter((b) => b.type === "text").map((b) => b.text).join(""));
   };
-}
-// GPT, OpenRouter y modelos locales (Ollama, LM Studio, vLLM): API de chat compatible con OpenAI.
-function proveedorCompatible({ modelo, apiKey, url }) {
-  const base = String(url).replace(/\/$/, "");
-  return async (texto) => {
-    const pedir = (response_format) => fetch(base + "/chat/completions", {
-      method: "POST",
-      headers: { "content-type": "application/json", ...(apiKey ? { authorization: `Bearer ${apiKey}` } : {}) },
-      body: JSON.stringify({ model: modelo, messages: [{ role: "system", content: SISTEMA }, { role: "user", content: texto }], response_format }),
-    });
-    let r = await pedir({ type: "json_schema", json_schema: { name: "columnas", strict: true, schema: ESQUEMA } });
-    if (r.status === 400 || r.status === 422) r = await pedir({ type: "json_object" }); // modelo sin salida estructurada
-    if (!r.ok) throw new Error(`El proveedor respondió ${r.status}: ${(await r.text()).slice(0, 200)}`);
-    const j = await r.json();
-    return primerJson(j?.choices?.[0]?.message?.content);
+  llamar.modelos = async () => {
+    try { const out = []; for await (const m of client.models.list()) out.push(m.id); return out; }
+    catch (e) { throw traducir(e); }
   };
+  return llamar;
 }
 
-const URL_POR_DEFECTO = { openai: "https://api.openai.com/v1", openrouter: "https://openrouter.ai/api/v1", local: "http://localhost:11434/v1" };
+// GPT, Gemini, OpenRouter y modelos locales (Ollama, LM Studio, vLLM): API de chat compatible con
+// OpenAI. Si el modelo no admite salida con esquema se pasa a json_object, y si tampoco, a texto
+// libre (se toma el primer JSON de la respuesta).
+function proveedorCompatible({ modelo, apiKey, url, temperatura, nombre = "El proveedor" }) {
+  const base = String(url).replace(/\/$/, "");
+  const headers = { "content-type": "application/json", ...(apiKey ? { authorization: `Bearer ${apiKey}` } : {}) };
+  let conTemperatura = temperatura != null;
+  const llamar = async (texto) => {
+    let formato = { type: "json_schema", json_schema: { name: "columnas", strict: true, schema: ESQUEMA } };
+    for (let intento = 0; ; intento++) {
+      const r = await fetch(base + "/chat/completions", {
+        method: "POST", headers,
+        body: JSON.stringify({
+          model: modelo, messages: [{ role: "system", content: SISTEMA }, { role: "user", content: texto }],
+          ...(formato ? { response_format: formato } : {}),
+          ...(conTemperatura ? { temperature: temperatura } : {}),
+        }),
+      });
+      if (r.ok) { const j = await r.json(); return primerJson(j?.choices?.[0]?.message?.content); }
+      const cuerpo = (await r.text()).slice(0, 400);
+      if ((r.status === 400 || r.status === 422) && intento < 4) {
+        if (conTemperatura && rechazaTemperatura(cuerpo)) { conTemperatura = false; continue; }
+        if (formato?.type === "json_schema") { formato = { type: "json_object" }; continue; }
+        if (formato) { formato = null; continue; }
+      }
+      if (r.status === 401 || r.status === 403) throw new Error(`${nombre} rechazó la clave de API (${r.status}).`);
+      throw new Error(`${nombre} respondió ${r.status}: ${cuerpo.slice(0, 200)}`);
+    }
+  };
+  llamar.modelos = async () => {
+    const r = await fetch(base + "/models", { headers });
+    if (!r.ok) throw new Error(`${nombre} respondió ${r.status} al listar modelos.`);
+    const j = await r.json();
+    return (Array.isArray(j?.data) ? j.data : Array.isArray(j?.models) ? j.models : []).map((m) => String(m.id || m.name || "").replace(/^models\//, "")).filter(Boolean);
+  };
+  return llamar;
+}
 
-function crearIA({ proveedor, modelo, apiKey, url, maxPorHora = 30 } = {}) {
+const PROVEEDORES = {
+  anthropic: { nombre: "Claude (Anthropic)", modelo: "claude-opus-5-5", clave: true },
+  openai: { nombre: "OpenAI", url: "https://api.openai.com/v1", clave: true },
+  gemini: { nombre: "Gemini (Google)", url: "https://generativelanguage.googleapis.com/v1beta/openai", clave: true },
+  openrouter: { nombre: "OpenRouter", url: "https://openrouter.ai/api/v1", clave: true },
+  local: { nombre: "Modelo local (Ollama, LM Studio, vLLM)", url: "http://localhost:11434/v1", clave: false },
+};
+const URL_POR_DEFECTO = Object.fromEntries(Object.entries(PROVEEDORES).filter(([, v]) => v.url).map(([k, v]) => [k, v.url]));
+
+// Un esqueleto mínimo para probar la conexión (no es de ningún extracto).
+const ESQUELETO_PRUEBA = { paginas: 1, lineas: [
+  "0.060-0.120 rotulo(FECHA) | 0.180-0.300 rotulo(CONCEPTO) | 0.640-0.700 rotulo(DEBITO) | 0.760-0.820 rotulo(CREDITO) | 0.900-0.960 rotulo(SALDO)",
+  "0.060-0.140 fecha(99/99/9999) | 0.180-0.480 texto | 0.740-0.820 importe(9.999,99) | 0.880-0.960 importe(9.999,99)",
+  "0.060-0.140 fecha(99/99/9999) | 0.180-0.480 texto | 0.650-0.700 importe(999,99) | 0.880-0.960 importe(9.999,99)",
+] };
+
+/** Normaliza lo que manda el admin (o el .env). Lanza un Error con un mensaje para mostrar. */
+function validarConfig(c = {}) {
+  const proveedor = String(c.proveedor || "").toLowerCase();
+  if (!PROVEEDORES[proveedor]) throw new Error(`Proveedor desconocido: ${c.proveedor}. Opciones: ${Object.keys(PROVEEDORES).join(", ")}.`);
+  const modelo = String(c.modelo || PROVEEDORES[proveedor].modelo || "").trim().slice(0, 200);
+  if (!modelo) throw new Error("Falta el modelo.");
+  const url = String(c.url || "").trim();
+  if (url && (!/^https?:\/\/[^\s]+$/i.test(url) || url.length > 500)) throw new Error("La URL tiene que empezar con http:// o https://.");
+  let temperatura = c.temperatura === "" || c.temperatura == null ? null : Number(c.temperatura);
+  if (temperatura != null && !(Number.isFinite(temperatura) && temperatura >= 0 && temperatura <= 2)) throw new Error("La temperatura va de 0 a 2 (o vacía para no mandarla).");
+  const maxPorHora = c.maxPorHora == null || c.maxPorHora === "" ? 30 : Number(c.maxPorHora);
+  if (!(Number.isInteger(maxPorHora) && maxPorHora >= 1 && maxPorHora <= 1000)) throw new Error("Consultas por hora: un número entero de 1 a 1000.");
+  return { proveedor, modelo, url, temperatura, maxPorHora };
+}
+
+function crearIA({ proveedor, modelo, apiKey, url, temperatura = null, maxPorHora = 30 } = {}) {
   const p = String(proveedor || "").toLowerCase();
   if (!p) return { disponible: false };
-  if (!["anthropic", "openai", "openrouter", "local"].includes(p)) throw new Error(`IA_PROVEEDOR desconocido: ${proveedor}`);
-  const m = modelo || (p === "anthropic" ? "claude-opus-5-5" : "");
+  if (!PROVEEDORES[p]) throw new Error(`IA_PROVEEDOR desconocido: ${proveedor}`);
+  const m = modelo || PROVEEDORES[p].modelo || "";
   if (!m) throw new Error(`IA_PROVEEDOR=${p} requiere IA_MODELO.`);
-  if (p !== "local" && !apiKey) throw new Error(`IA_PROVEEDOR=${p} requiere IA_API_KEY.`);
-  const llamar = p === "anthropic" ? proveedorAnthropic({ modelo: m, apiKey, url }) : proveedorCompatible({ modelo: m, apiKey, url: url || URL_POR_DEFECTO[p] });
+  if (PROVEEDORES[p].clave && !apiKey) throw new Error(`IA_PROVEEDOR=${p} requiere IA_API_KEY.`);
+  const t = temperatura == null || temperatura === "" ? null : Number(temperatura);
+  const llamar = p === "anthropic"
+    ? proveedorAnthropic({ modelo: m, apiKey, url, temperatura: t })
+    : proveedorCompatible({ modelo: m, apiKey, url: url || URL_POR_DEFECTO[p], temperatura: t, nombre: PROVEEDORES[p].nombre });
   const usos = new Map(); // usuario → marcas de tiempo (límite por hora: cada pedido cuesta)
+  const consultar = async (esqueleto) => {
+    const lineas = sanear(esqueleto);
+    if (lineas.length < 3) { const e = new Error("El esqueleto del extracto llegó vacío."); e.status = 400; throw e; }
+    const texto = `Esqueleto del extracto (${Number(esqueleto.paginas) || 1} páginas; se muestran ${lineas.length} líneas):\n` + lineas.map((l, i) => `L${i + 1}: ${l}`).join("\n");
+    return validar(await llamar(texto));
+  };
   return {
-    disponible: true, proveedor: p, modelo: m,
+    disponible: true, proveedor: p, modelo: m, temperatura: t,
     async proponerColumnas(esqueleto, usuario = "?") {
-      const ahora = Date.now(), lista = (usos.get(usuario) || []).filter((t) => ahora - t < 3600e3);
+      const ahora = Date.now(), lista = (usos.get(usuario) || []).filter((x) => ahora - x < 3600e3);
       if (lista.length >= maxPorHora) { const e = new Error(`Llegaste al máximo de ${maxPorHora} consultas a la IA por hora.`); e.status = 429; throw e; }
       lista.push(ahora); usos.set(usuario, lista);
-      const lineas = sanear(esqueleto);
-      if (lineas.length < 3) { const e = new Error("El esqueleto del extracto llegó vacío."); e.status = 400; throw e; }
-      const texto = `Esqueleto del extracto (${Number(esqueleto.paginas) || 1} páginas; se muestran ${lineas.length} líneas):\n` + lineas.map((l, i) => `L${i + 1}: ${l}`).join("\n");
-      return validar(await llamar(texto));
+      return consultar(esqueleto);
     },
+    /** Prueba real de punta a punta con un esqueleto de ejemplo (para el admin). */
+    async probar() { const t0 = Date.now(); const r = await consultar(ESQUELETO_PRUEBA); return { ms: Date.now() - t0, propuestas: r.propuestas.length }; },
+    listarModelos: () => llamar.modelos(),
   };
 }
 
-module.exports = { crearIA, sanear, ESQUEMA, SISTEMA };
+module.exports = { crearIA, sanear, validarConfig, PROVEEDORES, ESQUEMA, SISTEMA };

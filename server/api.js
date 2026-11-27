@@ -3,6 +3,7 @@
 "use strict";
 const express = require("express");
 const { ROLES, permisosDe, puede } = require("./roles.js");
+const { validarConfig, PROVEEDORES } = require("./ia.js");
 
 const PERIODO_RE = /^\d{4}-(0[1-9]|1[0-2])$/;
 const ID_RE = /^[0-9a-f-]{36}$/i;
@@ -27,12 +28,12 @@ const txt = (v, max = 200) => (v == null ? null : String(v).trim().slice(0, max)
  * @param p persistencia
  * @param {{ maxDocMB?: number, usuario?: (req) => ({u: string, rol: string}|null), modoUsuarios?: "local"|"lockatus"|"sin_login" }} o
  */
-function crearApi(p, { maxDocMB = 25, usuario = () => ({ u: "local", rol: "admin" }), modoUsuarios = "sin_login" } = {}) {
+function crearApi(p, { maxDocMB = 25, usuario = () => ({ u: "local", rol: "admin" }), modoUsuarios = "sin_login", ia = null } = {}) {
   const r = express.Router();
   const quien = (req) => usuario(req) || { u: "?", rol: "lector" };
   const u = (req) => quien(req).u;
   const mal = (res, status, mensaje, extra = {}) => res.status(status).json({ error: status, mensaje, ...extra });
-  const TXT_PERMISO = { editar: "cargar o modificar", preparar: "marcar como preparado", revisar: "revisar, cerrar o reabrir", administrar: "administrar usuarios" };
+  const TXT_PERMISO = { editar: "cargar o modificar", preparar: "marcar como preparado", revisar: "revisar, cerrar o reabrir", administrar: "administrar usuarios y la IA" };
   const exige = (permiso) => (req, res, next) => (puede(quien(req).rol, permiso) ? next() : mal(res, 403, `Tu rol (${quien(req).rol}) no permite ${TXT_PERMISO[permiso] || permiso}.`));
   const idOk = (req, res, next) => { for (const k of ["id", "doc"]) if (req.params[k] && !ID_RE.test(req.params[k])) return mal(res, 400, "Identificador inválido."); next(); };
 
@@ -138,6 +139,63 @@ function crearApi(p, { maxDocMB = 25, usuario = () => ({ u: "local", rol: "admin
   });
   r.delete("/plantillas/:id", idOk, exige("revisar"), (req, res) => (p.borrarPlantilla(u(req), req.params.id) ? res.status(204).end() : mal(res, 404, "No existe la plantilla.")));
   r.get("/eventos", (req, res) => res.json(p.eventos({ entidad: txt(req.query.entidad, 20), entidadId: txt(req.query.id, 40), limite: Number(req.query.limite) || 100 })));
+
+  // ---------------- IA (solo admin). La clave de API se guarda cifrada con DOCS_CLAVE y nunca vuelve
+  // al navegador: solo sus últimos 4 caracteres, para reconocerla.
+  if (ia) {
+    const vistaIA = () => {
+      const g = p.ajuste("ia"), a = ia.actual;
+      return {
+        enUso: a.disponible ? { proveedor: a.proveedor, modelo: a.modelo, origen: a.origen } : null,
+        error: a.error || null,
+        config: g ? { proveedor: g.proveedor, modelo: g.modelo, url: g.url || "", temperatura: g.temperatura, maxPorHora: g.maxPorHora, clave: g.claveFin ? `…${g.claveFin}` : null } : null,
+        env: ia.env,
+        proveedores: Object.fromEntries(Object.entries(PROVEEDORES).map(([k, v]) => [k, { nombre: v.nombre, url: v.url || "", modelo: v.modelo || "", clave: v.clave }])),
+        puedeGuardarClave: p.puedeGuardarSecretos,
+      };
+    };
+    // Config pedida + clave (la nueva, o la guardada si es del mismo proveedor).
+    const armarIA = (b) => {
+      const cfg = validarConfig(b || {});
+      const g = p.ajuste("ia");
+      const nueva = typeof b?.apiKey === "string" ? b.apiKey.trim().slice(0, 500) : "";
+      const mismaClave = !nueva && g && g.proveedor === cfg.proveedor && g.claveCifrada;
+      const apiKey = nueva || (mismaClave ? p.descifrarSecreto(g.claveCifrada) : "");
+      if (PROVEEDORES[cfg.proveedor].clave && !apiKey) throw new Error(`Falta la clave de API de ${PROVEEDORES[cfg.proveedor].nombre}.`);
+      return { cfg, apiKey, nueva, guardada: mismaClave ? g : null };
+    };
+    const conIA = (fn) => async (req, res) => {
+      let x;
+      try { x = armarIA(req.body); } catch (e) { return mal(res, 400, e.message); }
+      try { res.json(await fn(x, req)); } catch (e) { mal(res, e.status && e.status < 500 ? e.status : 502, e.message); }
+    };
+    r.get("/ia/config", exige("administrar"), (req, res) => res.json(vistaIA()));
+    r.put("/ia/config", exige("administrar"), express.json({ limit: "16kb" }), conIA(async ({ cfg, apiKey, nueva, guardada }, req) => {
+      ia.crear({ ...cfg, apiKey }); // valida que arme (proveedor, modelo, clave)
+      let claveCifrada = guardada?.claveCifrada || null, claveFin = guardada?.claveFin || null;
+      if (nueva) {
+        if (!p.puedeGuardarSecretos) { const e = new Error("Para guardar una clave de API hace falta DOCS_CLAVE en el servidor."); e.status = 409; throw e; }
+        claveCifrada = p.cifrarSecreto(nueva); claveFin = nueva.slice(-4);
+      }
+      if (!PROVEEDORES[cfg.proveedor].clave && !nueva) claveCifrada = claveFin = null;
+      p.guardarAjuste(u(req), "ia", { ...cfg, claveCifrada, claveFin });
+      p.evento(u(req), "configurar", "ia", null, { proveedor: cfg.proveedor, modelo: cfg.modelo, claveNueva: !!nueva });
+      ia.recargar();
+      return vistaIA();
+    }));
+    r.delete("/ia/config", exige("administrar"), (req, res) => {
+      p.guardarAjuste(u(req), "ia", null);
+      p.evento(u(req), "configurar", "ia", null, { volverA: ".env" });
+      ia.recargar();
+      res.json(vistaIA());
+    });
+    // Probar y listar modelos con lo que está en el formulario, antes de guardar.
+    r.post("/ia/probar", exige("administrar"), express.json({ limit: "16kb" }), conIA(({ cfg, apiKey }) => ia.crear({ ...cfg, apiKey }).probar()));
+    r.post("/ia/modelos", exige("administrar"), express.json({ limit: "16kb" }), (req, res, next) => { req.body = { ...(req.body || {}), modelo: req.body?.modelo || "-" }; next(); }, conIA(async ({ cfg, apiKey }) => {
+      const m = await ia.crear({ ...cfg, apiKey }).listarModelos();
+      return { modelos: [...new Set(m)].sort().slice(0, 1000) };
+    }));
+  }
 
   // ---------------- usuarios (solo modo standalone: en federado los administra Lockatus)
   if (modoUsuarios === "local") {

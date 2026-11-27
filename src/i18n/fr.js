@@ -3,7 +3,7 @@ export default {
   "doc.title": "Fulgoria — extrayez les données de n'importe quel document",
   "lang.label": "Langue",
 
-  "open": "Ouvrir un PDF ou une image",
+  "open": "Ouvrir un relevé (PDF ou image)",
   "open.title": "Ouvrir un PDF ou une image à extraire",
   "theme": "Changer de thème",
   "logout": "Se déconnecter",
@@ -32,17 +32,24 @@ export default {
   "news.empty": "Aucune note pour cette version.",
   "news.error": "Impossible de charger les nouveautés.",
 
-  "hero.title": "Vos relevés, en données propres.",
-  "hero.sub": "Marquez les colonnes une fois et Fulgoria lit tout. 100 % local, exact, à vous.",
+  "hero.conciliar": "Rapprocher",
 
-  "empty.title": "Votre relevé, en données propres",
-  "empty.body": "Glissez un PDF ou une image ici —ou touchez <em>Ouvrir</em> en haut. Marquez les colonnes une fois et l'application lit tout. Rien n'est envoyé nulle part.",
+  "hero.conciliar.title": "Rapprocher le relevé bancaire du grand livre du compte Banque",
+
+  "tag.balance": "Règle du solde",
+
+  "menu.conciliar": "Rapprocher avec le grand livre",
+
+  "hero.title": "Des rapprochements bancaires qui se font tout seuls.",
+  "hero.sub": "Déposez le relevé et le grand livre : Fulgoria les lit, vérifie les soldes, rapproche les écritures et ne vous montre que ce qui demande votre décision.",
+
+  "empty.title": "Besoin seulement du relevé en données ?",
+  "empty.body": "Glissez un PDF ou une image ici. Marquez les colonnes une fois, Fulgoria lit tout et le vérifie avec la règle du solde. Le relevé est traité dans votre navigateur.",
   "tag.pdf": "PDF",
   "tag.image": "Image",
   "tag.ocr": "Numérisé · OCR",
   "tag.multipage": "Multipage",
   "tag.multiaccount": "Multicompte",
-  "tag.local": "100 % local",
 
   "pane.extract": "Relevé",
   "pager.prev": "Page précédente",

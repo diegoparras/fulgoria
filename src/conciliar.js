@@ -710,6 +710,7 @@ async function iniciarEstudio() {
   $("cartera").hidden = false;
   $("nuevoCliente").hidden = $("nuevaCuenta").hidden = !puedo("editar");
   if (r.body.modoUsuarios === "local" && puedo("administrar")) $("verUsuarios").hidden = false;
+  if (puedo("administrar")) $("verIA").hidden = false;
   $("sesion").textContent = r.body.modoUsuarios === "sin_login" ? "" : `${est.usuario} · ${est.rol}`;
   $("selMes").value = new Date().toISOString().slice(0, 7);
   est.periodo = $("selMes").value;
@@ -923,6 +924,66 @@ async function abrirUsuarios() {
 }
 $("verUsuarios").addEventListener("click", abrirUsuarios);
 
+// ---------------- configuración de la IA (solo admin)
+async function abrirConfigIA() {
+  const r = await srv("GET", "/ia/config");
+  if (!r.ok) return toast(r.body.mensaje || "No pude abrir la configuración de la IA.");
+  const v = r.body, c = v.config || {}, provs = v.proveedores;
+  const enUso = v.enUso
+    ? `En uso: <b>${esc(provs[v.enUso.proveedor]?.nombre || v.enUso.proveedor)} · ${esc(v.enUso.modelo)}</b> (${v.enUso.origen === "panel" ? "configurada acá" : "desde el .env del servidor"})`
+    : `Sin IA en uso${v.error ? ` · <span class="bad">${esc(v.error)}</span>` : ""}.`;
+  const sel = c.proveedor || v.env?.proveedor || "anthropic";
+  abrirModal("IA para bancos nuevos", `<p>${enUso}</p>
+    <p class="muted" style="font-size:12.5px">Cuando un extracto no se lee bien, la IA propone las columnas. Al modelo solo le llega el esqueleto anónimo del extracto y la regla del saldo decide si sirve. Lo que guardes acá manda sobre el .env.</p>
+    <form class="c-form" id="iaForm" autocomplete="off">
+      <label>Proveedor<select name="proveedor">${Object.entries(provs).map(([k, x]) => `<option value="${esc(k)}"${k === sel ? " selected" : ""}>${esc(x.nombre)}</option>`).join("")}</select></label>
+      <label>Modelo<span class="c-fila"><input name="modelo" list="iaModelos" value="${esc(c.modelo || "")}" /><button type="button" class="btn sm ghost" id="iaListar">Ver modelos</button></span><datalist id="iaModelos"></datalist></label>
+      <label id="iaClaveL">Clave de API<input name="apiKey" type="password" autocomplete="new-password" placeholder="${c.clave && c.proveedor === sel ? `guardada (${esc(c.clave)}); dejala vacía para mantenerla` : "pegala acá"}" /></label>
+      <label>URL (opcional)<input name="url" value="${esc(c.url || "")}" /></label>
+      <label>Temperatura (opcional)<input name="temperatura" type="number" min="0" max="2" step="0.1" value="${c.temperatura ?? ""}" placeholder="vacía = no se manda" /></label>
+      <label>Consultas por persona y por hora<input name="maxPorHora" type="number" min="1" max="1000" step="1" value="${c.maxPorHora ?? 30}" /></label>
+      <p class="muted" style="font-size:12px;margin:0">Temperatura: vacía es lo recomendado. Hay modelos que no la aceptan (los de razonamiento de OpenAI, los Claude actuales): si el modelo la rechaza, Fulgoria reintenta sin ella.${v.puedeGuardarClave ? " La clave se guarda cifrada y no se vuelve a mostrar." : " <b>Para guardar una clave hace falta DOCS_CLAVE en el servidor.</b>"}</p>
+      <div id="iaRes" class="c-nota" hidden></div>
+      <div class="modal-acciones">${v.config ? `<button type="button" class="btn ghost" id="iaEnv">Volver al .env</button>` : ""}<button type="button" class="btn" id="iaProbar">Probar</button><button class="btn primary" type="submit">Guardar</button></div>
+    </form>`);
+  const f = $("iaForm");
+  const datos = () => { const d = Object.fromEntries(new FormData(f)); if (!d.apiKey) delete d.apiKey; return d; };
+  const nota = (txt, mal = false) => { const n = $("iaRes"); n.hidden = false; n.textContent = txt; n.classList.toggle("bad", mal); };
+  const ajustar = () => {
+    const p = provs[f.proveedor.value];
+    f.url.placeholder = p.url ? `por defecto: ${p.url}` : "por defecto la del proveedor";
+    f.modelo.placeholder = p.modelo ? `por defecto: ${p.modelo}` : "p. ej. el nombre exacto del modelo";
+    $("iaClaveL").hidden = !p.clave;
+    if (f.proveedor.value !== c.proveedor) f.apiKey.placeholder = "pegala acá";
+  };
+  f.proveedor.addEventListener("change", ajustar); ajustar();
+  $("iaListar").addEventListener("click", async () => {
+    nota("Pidiendo la lista de modelos…");
+    const x = await srv("POST", "/ia/modelos", datos());
+    if (!x.ok) return nota(x.body.mensaje || "No pude listar los modelos.", true);
+    $("iaModelos").innerHTML = x.body.modelos.map((m) => `<option value="${esc(m)}"></option>`).join("");
+    nota(`${x.body.modelos.length} modelos disponibles: empezá a escribir en Modelo para elegir.`);
+  });
+  $("iaProbar").addEventListener("click", async () => {
+    nota("Probando con un extracto de ejemplo (no es de ningún cliente)…");
+    const x = await srv("POST", "/ia/probar", datos());
+    nota(x.ok ? `Funciona: respondió ${x.body.propuestas} propuesta(s) en ${(x.body.ms / 1000).toFixed(1)} s.` : x.body.mensaje || "No funcionó.", !x.ok);
+  });
+  $("iaEnv")?.addEventListener("click", async () => {
+    const x = await srv("DELETE", "/ia/config");
+    if (!x.ok) return nota(x.body.mensaje || "No pude volver al .env.", true);
+    cerrarModal(); toast("La IA vuelve a tomar la configuración del .env."); refrescarIA();
+  });
+  f.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const x = await srv("PUT", "/ia/config", datos());
+    if (!x.ok) return nota(x.body.mensaje || "No pude guardar.", true);
+    cerrarModal(); toast(`IA guardada: ${provs[x.body.enUso?.proveedor]?.nombre || ""} · ${x.body.enUso?.modelo || ""}`); refrescarIA();
+  });
+}
+async function refrescarIA() { iaEstado.disponible = false; await iniciarIA(); if (state.extracto) renderDocs(); }
+$("verIA").addEventListener("click", abrirConfigIA);
+
 // ---------------- mandos por cuenta
 function guardarMandosCuenta() {
   est.cuenta.mandos = structuredClone(state.mandos);
@@ -1011,7 +1072,7 @@ async function iniciarIA() {
   try { const r = await fetch("/api/ia/estado", { credentials: "same-origin" }); if (r.ok) Object.assign(iaEstado, await r.json()); } catch {}
   if (iaEstado.disponible && state.extracto) renderDocs();
 }
-const NOMBRE_PROVEEDOR = { anthropic: "Claude (Anthropic)", openai: "OpenAI", openrouter: "OpenRouter", local: "el modelo local del estudio" };
+const NOMBRE_PROVEEDOR = { anthropic: "Claude (Anthropic)", openai: "OpenAI", gemini: "Gemini (Google)", openrouter: "OpenRouter", local: "el modelo local del estudio" };
 
 function pedirColumnasIA() {
   const x = state.extracto;

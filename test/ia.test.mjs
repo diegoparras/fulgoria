@@ -124,3 +124,36 @@ test("proveedor Anthropic (SDK oficial): JSON Schema, esfuerzo, fallback del ser
   await assert.rejects(ia.proponerColumnas(ESQ, "bruno"), /declinó/);
   await assert.rejects(ia.proponerColumnas(ESQ, "bruno"), /máximo de 2 consultas/); // límite por hora
 });
+
+test("temperatura: si el modelo la rechaza se reintenta sin ella y se recuerda; Gemini por la API compatible", async () => {
+  const f = servidorFalso((req, body) => {
+    if (req.url.endsWith("/models")) return [200, { data: [{ id: "models/gemini-x" }, { id: "gpt-6-luna" }] }];
+    if (body.temperature != null) return [400, { error: { message: "Unsupported value: 'temperature' does not support 0.2 with this model." } }];
+    return [200, { choices: [{ message: { content: JSON.stringify(PROPUESTA) } }] }];
+  });
+  test.after(f.cerrar);
+  const ia = crearIA({ proveedor: "openai", modelo: "gpt-6-luna", apiKey: "sk-x", url: f.url + "/v1", temperatura: 0.2 });
+  await ia.proponerColumnas(ESQ, "ana");
+  assert.equal(f.pedidos[0].body.temperature, 0.2);
+  assert.equal(f.pedidos[1].body.temperature, undefined);
+  assert.equal(f.pedidos[1].body.response_format.type, "json_schema"); // no se pierde el esquema por la temperatura
+  assert.equal(f.pedidos[0].body.max_tokens, undefined);
+  await ia.proponerColumnas(ESQ, "ana");
+  assert.equal(f.pedidos[2].body.temperature, undefined); // recordado: no lo vuelve a intentar
+  assert.equal(f.pedidos.length, 3);
+  assert.deepEqual(await ia.listarModelos(), ["gemini-x", "gpt-6-luna"]);
+  const g = crearIA({ proveedor: "gemini", modelo: "gemini-x", apiKey: "k" });
+  assert.equal(g.proveedor, "gemini");
+  assert.throws(() => crearIA({ proveedor: "gemini", modelo: "x" }), /IA_API_KEY/);
+});
+
+test("Anthropic: temperatura rechazada → reintento sin ella", async () => {
+  const f = servidorFalso((req, body) => body.temperature != null
+    ? [400, { type: "error", error: { type: "invalid_request_error", message: "temperature is not supported on this model" } }]
+    : [200, { id: "m", type: "message", role: "assistant", model: "claude-opus-5-5", content: [{ type: "text", text: JSON.stringify(PROPUESTA) }], stop_reason: "end_turn", stop_sequence: null, usage: { input_tokens: 1, output_tokens: 1 } }]);
+  test.after(f.cerrar);
+  const ia = crearIA({ proveedor: "anthropic", apiKey: "sk-test", url: f.url, temperatura: 0.5 });
+  const r = await ia.proponerColumnas(ESQ, "x");
+  assert.equal(r.propuestas.length, 1);
+  assert.equal(f.pedidos.filter((p) => p.url.startsWith("/v1/messages")).at(-1).body.temperature, undefined);
+});

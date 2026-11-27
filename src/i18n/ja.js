@@ -3,7 +3,7 @@ export default {
   "doc.title": "Fulgoria — あらゆる書類からデータを抽出",
   "lang.label": "言語",
 
-  "open": "PDF または画像を開く",
+  "open": "明細を開く（PDF または画像）",
   "open.title": "抽出する PDF または画像を開く",
   "theme": "テーマを切り替え",
   "logout": "ログアウト",
@@ -32,17 +32,24 @@ export default {
   "news.empty": "このバージョンのノートはありません。",
   "news.error": "新機能を読み込めませんでした。",
 
-  "hero.title": "明細を、きれいなデータに。",
-  "hero.sub": "一度だけ列を指定すれば、Fulgoria がすべて読み取ります。100% ローカル、正確、あなただけのもの。",
+  "hero.conciliar": "照合する",
 
-  "empty.title": "明細を、きれいなデータに",
-  "empty.body": "PDF または画像をここにドラッグ — または上の <em>開く</em> をタップ。一度だけ列を指定すれば、アプリがすべて読み取ります。データはどこにもアップロードされません。",
+  "hero.conciliar.title": "銀行明細を銀行勘定の元帳と照合する",
+
+  "tag.balance": "残高ルール",
+
+  "menu.conciliar": "元帳と照合",
+
+  "hero.title": "自動で終わる銀行照合。",
+  "hero.sub": "銀行明細と元帳をドロップするだけ。Fulgoria が読み取り、残高を確認し、取引を突き合わせ、判断が必要なものだけを表示します。",
+
+  "empty.title": "明細をデータにするだけでいいですか？",
+  "empty.body": "PDF または画像をここにドラッグ。列を一度指定すれば、Fulgoria がすべて読み取り、残高ルールで検証します。明細はブラウザ内で処理されます。",
   "tag.pdf": "PDF",
   "tag.image": "画像",
   "tag.ocr": "スキャン · OCR",
   "tag.multipage": "複数ページ",
   "tag.multiaccount": "複数口座",
-  "tag.local": "100% ローカル",
 
   "pane.extract": "明細",
   "pager.prev": "前のページ",

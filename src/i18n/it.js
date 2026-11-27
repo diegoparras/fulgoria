@@ -3,7 +3,7 @@ export default {
   "doc.title": "Fulgoria — estrai dati da qualsiasi documento",
   "lang.label": "Lingua",
 
-  "open": "Apri PDF o immagine",
+  "open": "Apri estratto (PDF o immagine)",
   "open.title": "Apri un PDF o un'immagine da estrarre",
   "theme": "Cambia tema",
   "logout": "Esci",
@@ -32,17 +32,24 @@ export default {
   "news.empty": "Non ci sono note per questa versione.",
   "news.error": "Impossibile caricare le novità.",
 
-  "hero.title": "I tuoi estratti conto, in dati puliti.",
-  "hero.sub": "Segni le colonne una volta e Fulgoria legge tutto. 100% locale, preciso, tuo.",
+  "hero.conciliar": "Riconcilia",
 
-  "empty.title": "Il tuo estratto conto, in dati puliti",
-  "empty.body": "Trascina qui un PDF o un'immagine —oppure tocca <em>Apri</em> in alto. Segni le colonne una volta e l'app legge tutto. Niente viene caricato da nessuna parte.",
+  "hero.conciliar.title": "Riconciliare l'estratto conto con il mastro del conto Banca",
+
+  "tag.balance": "Regola del saldo",
+
+  "menu.conciliar": "Riconcilia con il mastro",
+
+  "hero.title": "Riconciliazioni bancarie che si fanno da sole.",
+  "hero.sub": "Trascina l'estratto conto e il mastro: Fulgoria li legge, verifica i saldi, abbina i movimenti e ti mostra solo ciò che richiede una tua decisione.",
+
+  "empty.title": "Ti serve solo l'estratto in dati?",
+  "empty.body": "Trascina qui un PDF o un'immagine. Segni le colonne una volta, Fulgoria legge tutto e lo verifica con la regola del saldo. L'estratto viene elaborato nel tuo browser.",
   "tag.pdf": "PDF",
   "tag.image": "Immagine",
   "tag.ocr": "Scansionato · OCR",
   "tag.multipage": "Multipagina",
   "tag.multiaccount": "Multi-conto",
-  "tag.local": "100% locale",
 
   "pane.extract": "Estratto conto",
   "pager.prev": "Pagina precedente",

@@ -167,16 +167,30 @@ importes y fechas reducidos a su formato; ni nombres, ni montos, ni cuentas), qu
 sanear. La regla del saldo decide: una propuesta se usa solo si los saldos cierran, y entonces queda
 como plantilla del banco (la IA se usa una vez por banco, no por extracto).
 
+**Desde la pantalla (recomendado).** En modo estudio, un admin abre **Conciliar → IA** y elige el
+proveedor (Claude, OpenAI, Gemini, OpenRouter o un modelo local), el modelo (**Ver modelos** lista los
+que habilita la clave), la clave de API, una URL opcional y una temperatura opcional; después
+**Probar** y **Guardar**. La clave se guarda cifrada con `DOCS_CLAVE` y nunca vuelve al navegador
+(solo sus últimos 4 caracteres). Lo que se guarda ahí manda sobre el `.env`; **Volver al .env** lo borra.
+
+**Temperatura:** dejala vacía (recomendado). Hay modelos que no la aceptan (los de razonamiento de
+OpenAI, como GPT‑6 Luna, y los Claude actuales): si el proveedor la rechaza, Fulgoria reintenta sin
+ella y lo recuerda para ese modelo. Por lo mismo, a las APIs compatibles con OpenAI nunca se les manda
+`max_tokens`.
+
+**O desde el `.env`:**
+
 ```ini
-IA_PROVEEDOR=anthropic            # anthropic | openai | openrouter | local
+IA_PROVEEDOR=anthropic            # anthropic | openai | gemini | openrouter | local
 IA_MODELO=claude-opus-5-5         # por defecto con anthropic; obligatorio con los demás
 IA_API_KEY=<clave>                # anthropic puede usar ANTHROPIC_API_KEY; local no necesita
 IA_URL=                           # local: p. ej. http://ollama:11434/v1 (Ollama), LM Studio, vLLM
+IA_TEMPERATURA=                   # opcional, 0 a 2; vacía = no se manda
 IA_MAX_POR_HORA=30                # consultas por persona y por hora
 ```
 
 Con Claude, el pedido usa salida estructurada (JSON Schema) y fallback del servidor si el modelo
-declina. GPT, OpenRouter y los modelos locales van por la API de chat compatible con OpenAI (salida
+declina. GPT, Gemini, OpenRouter y los modelos locales van por la API de chat compatible con OpenAI (salida
 estructurada si el modelo la admite; si no, JSON simple).
 
 ---
@@ -202,7 +216,7 @@ estructurada si el modelo la admite; si no, JSON simple).
 | `DOC_MAX_MB` | `25` | Tamaño máximo de un documento subido. |
 | `REVISION_INDEPENDIENTE` | `off` | `on`: quien preparó un mes no puede revisarlo. |
 | `LOCKATUS_ROLES` | — | Federado: traduce los roles de Lockatus a `lector`/`preparador`/`revisor`/`admin`. |
-| `IA_PROVEEDOR`, `IA_MODELO`, `IA_API_KEY`, `IA_URL`, `IA_MAX_POR_HORA` | — | IA para bancos nuevos (sección 5). |
+| `IA_PROVEEDOR`, `IA_MODELO`, `IA_API_KEY`, `IA_URL`, `IA_TEMPERATURA`, `IA_MAX_POR_HORA` | — | IA para bancos nuevos (sección 5). Un admin también la configura desde la pantalla. |
 
 Lista completa con comentarios: [`.env.example`](../../.env.example).
 

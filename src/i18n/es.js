@@ -5,7 +5,7 @@ export default {
   "lang.label": "Idioma",
 
   // Topbar
-  "open": "Abrir PDF o imagen",
+  "open": "Abrir extracto (PDF o imagen)",
   "open.title": "Abrir un PDF o imagen para extraer",
   "theme": "Cambiar tema",
   "logout": "Salir",
@@ -35,18 +35,21 @@ export default {
   "news.error": "No se pudieron cargar las novedades.",
 
   // Hero
-  "hero.title": "Tus extractos, en datos limpios.",
-  "hero.sub": "Marcás las columnas una vez y Fulgoria lee todo. 100% local, exacto, tuyo.",
+  "hero.conciliar": "Conciliar",
+  "hero.conciliar.title": "Conciliar el extracto contra el mayor de la cuenta Banco",
+  "tag.balance": "Regla del saldo",
+  "menu.conciliar": "Conciliar con el mayor",
+  "hero.title": "Conciliaciones bancarias que se hacen solas.",
+  "hero.sub": "Soltás el extracto y el mayor: Fulgoria lee, verifica los saldos, empareja y te muestra solo lo que necesita tu decisión.",
 
   // Empty state
-  "empty.title": "Tu extracto, en datos limpios",
-  "empty.body": "Arrastrá un PDF o imagen acá —o tocá <em>Abrir</em> arriba. Marcás las columnas una vez y el sistema lee todo. Nada se sube a ningún lado.",
+  "empty.title": "¿Solo necesitás el extracto en datos?",
+  "empty.body": "Arrastrá un PDF o imagen acá. Marcás las columnas una vez, Fulgoria lee todo y lo verifica con la regla del saldo. El extracto se procesa en tu navegador.",
   "tag.pdf": "PDF",
   "tag.image": "Imagen",
   "tag.ocr": "Escaneado · OCR",
   "tag.multipage": "Multipágina",
   "tag.multiaccount": "Multi-cuenta",
-  "tag.local": "100% local",
 
   // Panel izquierdo (PDF + columnas)
   "pane.extract": "Extracto",

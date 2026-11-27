@@ -173,16 +173,29 @@ and type, amounts and dates reduced to their format — no names, amounts or acc
 again on the server. The balance rule decides: a proposal is used only if the balances close, and it
 is then saved as the bank's template (the AI is used once per bank, not once per statement).
 
+**From the screen (recommended).** In studio mode an admin opens **Reconcile → AI** and picks the
+provider (Claude, OpenAI, Gemini, OpenRouter or a local model), the model (**See models** lists the
+ones the key can use), the API key, an optional URL and an optional temperature, then **Test** and
+**Save**. The key is stored encrypted with `DOCS_CLAVE` and never sent back to the browser (only its
+last 4 characters). What is saved there overrides the `.env`; **Back to .env** removes it.
+
+**Temperature:** leave it empty (recommended). Some models reject it (OpenAI reasoning models such as
+GPT‑6 Luna, current Claude models): if the provider rejects it, Fulgoria retries without it and
+remembers that for the model. `max_tokens` is never sent to OpenAI‑compatible APIs for the same reason.
+
+**Or from the `.env`:**
+
 ```ini
-IA_PROVEEDOR=anthropic            # anthropic | openai | openrouter | local
+IA_PROVEEDOR=anthropic            # anthropic | openai | gemini | openrouter | local
 IA_MODELO=claude-opus-5-5         # default for anthropic; required for the others
 IA_API_KEY=<key>                  # anthropic may use ANTHROPIC_API_KEY; local needs none
 IA_URL=                           # local: e.g. http://ollama:11434/v1 (Ollama), LM Studio, vLLM
+IA_TEMPERATURA=                   # optional, 0–2; empty = not sent
 IA_MAX_POR_HORA=30                # queries per person per hour
 ```
 
 With Claude, the request uses structured outputs (JSON Schema) and server‑side fallback if the model
-declines. GPT / OpenRouter / local models go through the OpenAI‑compatible chat API (structured
+declines. GPT / Gemini / OpenRouter / local models go through the OpenAI‑compatible chat API (structured
 output when supported, plain JSON otherwise).
 
 ---
@@ -208,7 +221,7 @@ output when supported, plain JSON otherwise).
 | `DOC_MAX_MB` | `25` | Maximum size of an uploaded document. |
 | `REVISION_INDEPENDIENTE` | `off` | `on`: whoever prepared a month cannot review it. |
 | `LOCKATUS_ROLES` | — | Federated: map Lockatus role names to `lector`/`preparador`/`revisor`/`admin`. |
-| `IA_PROVEEDOR`, `IA_MODELO`, `IA_API_KEY`, `IA_URL`, `IA_MAX_POR_HORA` | — | AI for new banks (see section 5). |
+| `IA_PROVEEDOR`, `IA_MODELO`, `IA_API_KEY`, `IA_URL`, `IA_TEMPERATURA`, `IA_MAX_POR_HORA` | — | AI for new banks (see section 5). An admin can also set it from the screen. |
 
 Full list with comments: [`.env.example`](../.env.example).
 

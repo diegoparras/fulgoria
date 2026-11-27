@@ -3,7 +3,7 @@ export default {
   "doc.title": "Fulgoria — 从任意文档中提取数据",
   "lang.label": "语言",
 
-  "open": "打开 PDF 或图片",
+  "open": "打开对账单（PDF 或图片）",
   "open.title": "打开 PDF 或图片以提取数据",
   "theme": "切换主题",
   "logout": "退出",
@@ -32,17 +32,24 @@ export default {
   "news.empty": "此版本没有更新说明。",
   "news.error": "无法加载更新内容。",
 
-  "hero.title": "把对账单变成干净的数据。",
-  "hero.sub": "只需标记一次列，Fulgoria 就能读取全部内容。100% 本地、精确、归你所有。",
+  "hero.conciliar": "对账",
 
-  "empty.title": "把对账单变成干净的数据",
-  "empty.body": "把 PDF 或图片拖到这里 —或点击上方的<em>打开</em>。只需标记一次列，系统就能读取全部内容。任何数据都不会上传到任何地方。",
+  "hero.conciliar.title": "将银行对账单与银行账户总账核对",
+
+  "tag.balance": "余额规则",
+
+  "menu.conciliar": "与总账对账",
+
+  "hero.title": "自动完成的银行对账。",
+  "hero.sub": "放入银行对账单和总账：Fulgoria 自动读取、核对余额、匹配分录，只把需要你决定的事项展示出来。",
+
+  "empty.title": "只需要把对账单转成数据？",
+  "empty.body": "把 PDF 或图片拖到这里。只需标记一次列，Fulgoria 读取全部内容并用余额规则校验。对账单在你的浏览器中处理。",
   "tag.pdf": "PDF",
   "tag.image": "图片",
   "tag.ocr": "扫描件 · OCR",
   "tag.multipage": "多页",
   "tag.multiaccount": "多账户",
-  "tag.local": "100% 本地",
 
   "pane.extract": "对账单",
   "pager.prev": "上一页",

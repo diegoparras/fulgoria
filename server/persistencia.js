@@ -16,7 +16,7 @@ process.emitWarning = function (w, ...a) { if (String(w && w.message || w).inclu
 const { DatabaseSync } = require("node:sqlite");
 process.emitWarning = _emit;
 
-const { crearBlobs } = require("./blobs.js");
+const { crearBlobs, claveDesde, cifrar, descifrar } = require("./blobs.js");
 const { ROLES } = require("./roles.js");
 const bcrypt = require("bcryptjs");
 
@@ -49,6 +49,8 @@ CREATE TABLE IF NOT EXISTS eventos (
 CREATE TABLE IF NOT EXISTS usuarios (
   usuario TEXT PRIMARY KEY, nombre TEXT, hash TEXT NOT NULL, rol TEXT NOT NULL, activo INTEGER NOT NULL DEFAULT 1,
   creado TEXT, actualizado TEXT);
+CREATE TABLE IF NOT EXISTS ajustes (
+  clave TEXT PRIMARY KEY, valor TEXT, actualizado TEXT, por TEXT);
 CREATE INDEX IF NOT EXISTS ix_cuentas_cliente ON cuentas(cliente_id);
 CREATE INDEX IF NOT EXISTS ix_periodos_cuenta ON periodos(cuenta_id, periodo);
 CREATE INDEX IF NOT EXISTS ix_eventos_entidad ON eventos(entidad, entidad_id);
@@ -67,6 +69,7 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
   const db = new DatabaseSync(path.join(dataDir, "fulgoria.sqlite"));
   db.exec(ESQUEMA);
   const blobs = crearBlobs({ almacenamiento, dataDir, s3, clave });
+  const claveSecretos = claveDesde(clave); // la misma DOCS_CLAVE cifra las claves de API guardadas
   const q = (sql) => db.prepare(sql);
 
   const evento = (usuario, accion, entidad, entidadId, detalle) =>
@@ -83,6 +86,19 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
 
   const api = {
     almacenamiento: blobs.tipo, cifrado: blobs.cifrado, evento,
+
+    // ---------------- ajustes del estudio (p. ej. la IA). Los secretos van cifrados con DOCS_CLAVE.
+    ajuste(k) { const r = q("SELECT valor FROM ajustes WHERE clave = ?").get(k); return r ? J(r.valor) : null; },
+    guardarAjuste(u, k, valor) {
+      if (valor == null) q("DELETE FROM ajustes WHERE clave = ?").run(k);
+      else q("INSERT INTO ajustes (clave, valor, actualizado, por) VALUES (?, ?, ?, ?) ON CONFLICT(clave) DO UPDATE SET valor = excluded.valor, actualizado = excluded.actualizado, por = excluded.por").run(k, JSON.stringify(valor), ahora(), u);
+    },
+    puedeGuardarSecretos: !!claveSecretos,
+    cifrarSecreto(txt) {
+      if (!claveSecretos) throw new Error("Para guardar una clave de API hace falta DOCS_CLAVE en el servidor.");
+      return cifrar(claveSecretos, Buffer.from(String(txt), "utf8")).toString("base64");
+    },
+    descifrarSecreto(b64) { return b64 && claveSecretos ? descifrar(claveSecretos, Buffer.from(b64, "base64")).toString("utf8") : ""; },
 
     // ---------------- clientes y cuentas
     clientes({ archivados = false } = {}) {

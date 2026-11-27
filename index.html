@@ -53,7 +53,7 @@
           </div>
           <a href="conciliar.html" class="menu-item" role="menuitem" title="Conciliar el extracto contra el mayor de la cuenta Banco">
             <svg class="ico" width="16" height="16" viewBox="0 0 24 24"><path d="M7 7h12l-4-4M17 17H5l4 4"/></svg>
-            <span>Conciliar con el mayor</span>
+            <span data-i18n="menu.conciliar">Conciliar con el mayor</span>
           </a>
           <button id="btnHelp" class="menu-item" role="menuitem">
             <svg class="ico" width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12" y2="17"/></svg>
@@ -80,10 +80,14 @@
   </header>
 
   <header class="hero">
-    <h1 data-i18n="hero.title">Tus extractos, en datos limpios.</h1>
-    <p class="sub" data-i18n="hero.sub">Marcás las columnas una vez y Fulgoria lee todo. 100% local, exacto, tuyo.</p>
+    <h1 data-i18n="hero.title">Conciliaciones bancarias que se hacen solas.</h1>
+    <p class="sub" data-i18n="hero.sub">Soltás el extracto y el mayor: Fulgoria lee, verifica los saldos, empareja y te muestra solo lo que necesita tu decisión.</p>
     <div class="hero-cta">
-      <label class="btn primary" data-i18n-title="open.title" title="Abrir un PDF o imagen para extraer">
+      <a class="btn primary" href="conciliar.html" data-i18n-title="hero.conciliar.title" title="Conciliar el extracto contra el mayor de la cuenta Banco">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h12l-4-4M17 17H5l4 4"/></svg>
+        <span class="btn-txt" data-i18n="hero.conciliar">Conciliar</span>
+      </a>
+      <label class="btn" data-i18n-title="open.title" title="Abrir un PDF o imagen para extraer">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg>
         <span class="btn-txt" data-i18n="open">Abrir PDF o imagen</span><input id="fileInput" type="file" accept="application/pdf,image/*" hidden />
       </label>
@@ -100,10 +104,9 @@
             <path d="M13 2 L3 14 h9 l-1 8 L21 10 h-9 l1 -8 z" fill="#3b76d9"/>
           </svg>
         </div>
-        <h2 data-i18n="empty.title">Tu extracto, en datos limpios</h2>
-        <p data-i18n-html="empty.body">Arrastrá un PDF o imagen acá —o tocá <em>Abrir</em> arriba. Marcás las columnas una vez
-           y el sistema lee todo. Nada se sube a ningún lado.</p>
-        <div class="empty-tags"><span data-i18n="tag.pdf">PDF</span><span data-i18n="tag.image">Imagen</span><span data-i18n="tag.ocr">Escaneado · OCR</span><span data-i18n="tag.multipage">Multipágina</span><span data-i18n="tag.multiaccount">Multi-cuenta</span><span data-i18n="tag.local">100% local</span></div>
+        <h2 data-i18n="empty.title">¿Solo necesitás el extracto en datos?</h2>
+        <p data-i18n-html="empty.body">Arrastrá un PDF o imagen acá. Marcás las columnas una vez, Fulgoria lee todo y lo verifica con la regla del saldo. El extracto se procesa en tu navegador.</p>
+        <div class="empty-tags"><span data-i18n="tag.pdf">PDF</span><span data-i18n="tag.image">Imagen</span><span data-i18n="tag.ocr">Escaneado · OCR</span><span data-i18n="tag.multipage">Multipágina</span><span data-i18n="tag.multiaccount">Multi-cuenta</span><span data-i18n="tag.balance">Regla del saldo</span></div>
       </div>
     </section>
 
