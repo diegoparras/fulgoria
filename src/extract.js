@@ -356,25 +356,112 @@ export function matchScore(pages, anchors) {
 // --- Auto-detección genérica (best-effort; el usuario corrige) ---
 // Clusteriza sobre la página con MÁS importes (la tabla de movimientos), así evita
 // carátulas/resúmenes que suelen estar en la página 1.
+// --- Auto-detección VERIFICADA: la regla del saldo elige la interpretación ---
+// La auto-detección geométrica (autoDetectBase) propone UNA lectura de las columnas, pero hay
+// ambigüedades que la geometría no resuelve: ¿la última columna de importes es el saldo o los
+// créditos? ¿débito/crédito o al revés? ¿hay una columna D/H? Se prueban las hipótesis
+// razonables y gana la que hace cerrar los saldos (global y fila a fila). Si ninguna cierra,
+// queda la base y `verificado: false`.
 export function autoDetect(pages) {
+  const base = autoDetectBase(pages).columns;
+  const bases = [base, autoDetectBase(pages, "derecha").columns];
+  let best = null;
+  for (const cols of bases.flatMap((b) => hipotesis(b, pages))) {
+    const sc = puntajeLectura(pages, cols);
+    if (!best || sc.puntaje > best.puntaje) best = { cols, ...sc };
+  }
+  return { columns: best.cols, verificado: best.verificado };
+}
+
+function puntajeLectura(pages, columns) {
+  let ext;
+  try { ext = extract(pages, columns); } catch { return { puntaje: -1, verificado: false }; }
+  if (!ext.segments.length) return { puntaje: 0, verificado: false };
+  let p = 0, todos = true;
+  for (const seg of ext.segments) {
+    const b = balanceCheck({ ...seg, columns });
+    if (b.globalOk) p += 1000; else todos = false;
+    if (b.rowOk) p += 100;
+    p += Math.min(seg.movements.length, 99);
+  }
+  return { puntaje: p, verificado: todos };
+}
+
+function hipotesis(base, pages) {
+  const AMT = new Set(["importe", "debito", "credito", "saldo"]);
+  const fijas = base.filter((c) => !AMT.has(c.role));
+  const montos = base.filter((c) => AMT.has(c.role));
+  const out = [base];
+  if (!montos.length) return out;
+  const conRoles = (roles) => [...fijas, ...montos.map((c, i) => ({ ...c, role: roles[i], label: ROLE_LABEL[roles[i]] + (roles.filter((r) => r === roles[i]).length > 1 ? ` ${i + 1}` : "") }))].sort((a, b) => a.from - b.from);
+  const n = montos.length;
+  const asign = [];
+  // Con saldo en la última columna de importes…
+  if (n === 2) asign.push(["importe", "saldo"]);
+  if (n === 3) asign.push(["debito", "credito", "saldo"], ["credito", "debito", "saldo"], ["importe", "importe", "saldo"]);
+  // …o sin saldo corrido (los saldos vienen en rótulos).
+  if (n === 1) asign.push(["importe"]);
+  if (n === 2) asign.push(["debito", "credito"], ["credito", "debito"], ["importe", "importe"]);
+  for (const a of asign) out.push(conRoles(a));
+  // Columna de signo (D/H): ítems que son solo "D"/"H"/"DB"/"CR" alineados en una banda angosta.
+  const signo = bandaSigno(pages);
+  if (signo) for (const cols of [...out]) if (cols.some((c) => c.role === "importe")) out.push(insertarBanda(cols, signo));
+  return out;
+}
+const ROLE_LABEL = { importe: "Importe", debito: "Débito", credito: "Crédito", saldo: "Saldo", signo: "D/H" };
+
+function bandaSigno(pages) {
+  const its = pages.flatMap((p) => p.items).filter((it) => /^(D|H|DB|CR|C)$/i.test(it.str.trim()));
+  if (its.length < 3) return null;
+  // La banda más poblada (agrupando por x con tolerancia).
+  const bands = clusterBands(its.map((it) => ({ a: it.x, b: it.x + it.w })), 0.01).sort((p, q) => q.n - p.n);
+  const b = bands[0];
+  if (!b || b.n < 3 || b.b - b.a > 0.05) return null;
+  return { from: b.a - 0.006, to: b.b + 0.006 };
+}
+function insertarBanda(cols, banda) {
+  const out = [];
+  let { from, to } = banda;
+  for (const c of cols) {
+    if (c.to <= banda.from || c.from >= banda.to) { out.push({ ...c }); continue; }
+    // Recorta la columna que se superpone con la banda de signo. Un resto angosto (no entra un
+    // importe) no queda como columna aparte: lo absorbe la banda de signo.
+    const izq = c.from < banda.from ? { ...c, to: banda.from } : null;
+    const der = c.to > banda.to ? { ...c, from: banda.to } : null;
+    const util = (x) => x && x.to - x.from >= 0.03;
+    if (util(izq)) out.push(izq); else if (izq) from = Math.min(from, izq.from);
+    if (util(der)) out.push(util(izq) ? { ...der, label: der.label + " (2)" } : der); else if (der) to = Math.max(to, der.to);
+  }
+  out.push({ from, to, role: "signo", label: "D/H" });
+  return out.sort((a, b) => a.from - b.from);
+}
+
+// ¿El ítem ES un importe (y no un texto que contiene uno, como "Saldo inicial al 01/06: $ 1.234,56")?
+const esCeldaImporte = (s) => parseAmount(s) != null && /^(?:U\$S|USD|\$)?\s*[-(]?\s*(?:\$\s*)?\d[\d.,]*\s*[-)]?$/i.test(String(s).trim());
+
+function autoDetectBase(pages, agrupar = "solape") {
   // Clusteriza sobre la página con MÁS importes (la tabla de movimientos), así evita
   // carátulas/resúmenes que suelen estar en la página 1.
   let items = pages[0] ? pages[0].items : [];
-  let bestN = items.filter((it) => parseAmount(it.str) != null).length;
+  let bestN = items.filter((it) => esCeldaImporte(it.str)).length;
   for (const p of pages) {
-    const n = p.items.filter((it) => parseAmount(it.str) != null).length;
+    const n = p.items.filter((it) => esCeldaImporte(it.str)).length;
     if (n > bestN) { bestN = n; items = p.items; }
   }
-  // Líneas de datos: las que tienen al menos un importe.
-  const amountItems = items.filter((it) => parseAmount(it.str) != null);
+  // Celdas de importe: ítems que son un importe (no rótulos que contienen uno).
+  const amountItems = items.filter((it) => esCeldaImporte(it.str));
   // Fechas de la columna de fecha viven a la izquierda y son CASI solo una fecha (no texto que
   // apenas la contiene, como "Período: 01/06/2026 al 30/06/2026" del header, que ensancharía la
   // banda y se tragaría la descripción). Pido la fecha al inicio y ocupando casi todo el ítem.
-  const isDateCell = (s) => { const t = s.trim(); const m = t.match(DATE_RE); return !!m && m.index === 0 && t.length - m[0].length <= 2; };
+  const isDateCell = (s) => { const t = s.trim(); const m = t.match(DATE_RE) || t.match(/^\d{1,2}\/\d{1,2}$/); return !!m && m.index === 0 && t.length - m[0].length <= 2; };
   const dateItems = items.filter((it) => it.x < 0.30 && isDateCell(it.str));
   if (amountItems.length < 3) return { columns: defaultColumns() };
 
-  const amountCols = clusterBands(amountItems.map((it) => ({ a: it.x, b: it.x + it.w })));
+  // Columnas de importes: por solapamiento horizontal o por BORDE DERECHO común (los importes van
+  // alineados a la derecha; así se separan columnas muy juntas que el solapamiento fusiona).
+  const amountCols = agrupar === "derecha"
+    ? clusterRightEdges(amountItems)
+    : clusterBands(amountItems.map((it) => ({ a: it.x, b: it.x + it.w })));
   const dateBand = dateItems.length ? span(dateItems.map((it) => ({ a: it.x, b: it.x + it.w }))) : { a: 0.0, b: 0.10 };
 
   // Signo: ¿hay importes negativos en columnas que NO sean la última (saldo)?
@@ -431,6 +518,19 @@ function clusterBands(intervals, gap = 0.03) {
   bands.push(cur);
   // Descartar singletons (ruido); columnas reales pueden tener pocas filas (saldo de Credicoop = 2×).
   return bands.filter((b) => b.n >= 2);
+}
+
+// Agrupa ítems por su borde derecho (tolerancia ~0,8% del ancho); cada grupo es una columna de
+// importes alineados a la derecha: [{a: x mínimo, b: borde derecho, n}] de izquierda a derecha.
+function clusterRightEdges(items, tol = 0.008) {
+  const xs = [...items].sort((p, q) => (p.x + p.w) - (q.x + q.w));
+  const groups = [];
+  for (const it of xs) {
+    const r = it.x + it.w, g = groups[groups.length - 1];
+    if (g && r - g.r <= tol) { g.a = Math.min(g.a, it.x); g.b = Math.max(g.b, r); g.r = r; g.n++; }
+    else groups.push({ a: it.x, b: r, r, n: 1 });
+  }
+  return groups.filter((g) => g.n >= 2).map(({ a, b, n }) => ({ a, b, n }));
 }
 
 function span(intervals) { return { a: Math.min(...intervals.map((i) => i.a)), b: Math.max(...intervals.map((i) => i.b)) }; }

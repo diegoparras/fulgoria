@@ -1,6 +1,6 @@
 # Dataset sintético de conciliación bancaria
 
-130 casos de conciliación bancaria con **la respuesta correcta incluida**: un extracto en PDF, el
+148 casos de conciliación bancaria con **la respuesta correcta incluida**: un extracto en PDF, el
 mayor de la cuenta Banco en CSV y un `esperado.json` que dice qué empareja con qué, qué queda
 pendiente y de qué tipo. Pensado para medir y mejorar cualquier herramienta de conciliación
 (Fulgoria u otra) contra los problemas reales de los estudios contables argentinos.
@@ -9,8 +9,8 @@ pendiente y de qué tipo. Pensado para medir y mejorar cualquier herramienta de 
 CUIT se generan al azar con dígito verificador válido para que los detectores funcionen; no
 corresponden a nadie en particular. Cada PDF lo dice en el pie: *Documento sintético de prueba*.
 
-- 130 casos · 150 cuentas (los extractos con pesos y dólares traen dos) · ~9.400 líneas de
-  extracto · ~4.700 registros de mayor · ~7 MB.
+- 148 casos · 171 cuentas (los extractos con pesos y dólares traen dos) · ~10.000 líneas de
+  extracto · ~5.100 registros de mayor · ~9 MB.
 - Reproducible: `node tools/dataset/gen.mjs` regenera exactamente los mismos archivos.
 - Licencia: Apache-2.0, como el resto del repositorio. Usalo, copialo, mejoralo.
 
@@ -70,7 +70,7 @@ cuenta (crédito en el extracto, Debe en el mayor), negativo = sale. Fechas ISO.
 
 ## Escenarios
 
-Cada escenario × 6 formatos de banco × 2 variantes; *arrastre* son 5 pares de meses seguidos.
+Cada escenario × 6 formatos de banco × 2 variantes; *arrastre* son 5 pares de meses seguidos y *adversarial*, 3 variantes por banco.
 
 | Escenario | Qué prueba |
 |---|---|
@@ -85,6 +85,7 @@ Cada escenario × 6 formatos de banco × 2 variantes; *arrastre* son 5 pares de 
 | `errores` | Importe transpuesto, registro duplicado, crédito y débito que el cliente no registró, ingreso registrado que nunca llegó |
 | `volumen` | 400 a 560 líneas del extracto en hasta 17 páginas |
 | `arrastre` | Mes 1 deja cheques, depósitos y un crédito sin identificar; el mes 2 trae `pendientes-anterior.json` y los resuelve |
+| `adversarial` | **Trampas** para la confirmación automática: mismo importe pero otro CUIT o cliente, el total de otro cliente, un cheque con otro número, homónimos con inicial, un centavo de diferencia, transferencia devuelta, dos cobranzas gemelas. El dato que delata la trampa siempre está en los documentos |
 
 ## Formatos de extracto (bancos ficticios)
 
@@ -118,7 +119,7 @@ no son la exportación exacta de ningún producto comercial.
 
 ```bash
 cd tools && npm install && cd ..
-node tools/dataset/gen.mjs            # regenera los 130 casos (mismas semillas = mismos archivos)
+node tools/dataset/gen.mjs            # regenera los 148 casos (mismas semillas = mismos archivos)
 node tools/dataset/bench.mjs          # mide Fulgoria y reescribe RESULTADOS.md
 node tools/dataset/bench.mjs --auto   # además mide la lectura sin plantilla (auto-detección)
 node tools/dataset/bench.mjs --detalle 027   # qué falló en los casos que contienen "027"

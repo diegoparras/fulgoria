@@ -233,7 +233,65 @@ export const ESCENARIOS = {
   tarjetas_brutas: { titulo: "Tarjetas en bruto", desc: "El libro registra la venta con tarjeta en bruto y aparte el arancel y su IVA; el banco acredita el neto." },
   errores: { titulo: "Errores de registración", desc: "Importe transpuesto, registro duplicado, créditos que el cliente no registró e ingresos registrados que nunca llegaron al banco." },
   volumen: { titulo: "Volumen", desc: "Un mes con cientos de movimientos repartidos en varias páginas." },
+  adversarial: { titulo: "Adversarial", desc: "Trampas para el emparejamiento automático: mismo importe pero otra contraparte, cheque con otro número, homónimos, un centavo de diferencia, transferencia devuelta. La información para no equivocarse está en los documentos." },
 };
+
+// ---------------------------------------------------------------- trampas (escenario adversarial)
+// Cada trampa ofrece un emparejamiento tentador (mismo importe, fechas cercanas) que es INCORRECTO,
+// y deja en los documentos el dato que lo delata (CUIT, nombre o número de cheque distintos).
+
+/** Mismo importe, otra contraparte: el banco recibió de X; el libro registró una cobranza de Y. */
+function trampaContraparte(c) {
+  const { r, voc } = c;
+  const [x, y] = r.shuffle(EMPRESAS).slice(0, 2), cx = cuit(r), cy = cuit(r);
+  const cents = r.cents(100000, 2000000), f = habil(iso(c.anio, c.mes, r.int(3, 18)));
+  c.pendB(c.b(f, cents, voc.trfRecibida(x, fmtCuit(cx), null), "transferencia"), "credito_no_identificado");
+  c.pendL(c.l(addDays(f, -1), cents, `Cobranza ${y} CUIT ${fmtCuit(cy)}`), "ingreso_no_acreditado");
+}
+/** Un depósito de X que es la suma de dos cobranzas de X, y una cobranza de Z por el mismo total. */
+function trampaTotalDeOtro(c) {
+  const { r, voc } = c;
+  const [x, z] = r.shuffle(EMPRESAS).slice(0, 2), cx = cuit(r), cz = cuit(r);
+  const a = r.cents(50000, 600000), b = r.cents(50000, 600000), f = habil(iso(c.anio, c.mes, r.int(5, 18)));
+  const bi = c.b(f, a + b, voc.trfRecibida(x, fmtCuit(cx), null), "transferencia");
+  c.par(bi, [c.l(addDays(f, -2), a, `Cobranza ${x} CUIT ${fmtCuit(cx)} FC 1`), c.l(addDays(f, -1), b, `Cobranza ${x} CUIT ${fmtCuit(cx)} FC 2`)], "agrupado");
+  c.pendL(c.l(f, a + b, `Cobranza ${z} CUIT ${fmtCuit(cz)}`), "ingreso_no_acreditado");
+}
+/** El banco debitó el cheque N; el libro tiene otro cheque (M) por el mismo importe, y el N con el importe mal tipeado. */
+function trampaChequeNumero(c) {
+  const { r, voc } = c;
+  const n1 = c.cheque(), n2 = c.cheque(), cents = -r.cents(80000, 900000), f = habil(iso(c.anio, c.mes, r.int(8, 20)));
+  const bi = c.b(f, cents, voc.cheque(n1), "cheque");
+  const li = c.l(addDays(f, -5), cents - 100 * r.int(1, 9), `Cheque N° ${n1} a ${r.pick(EMPRESAS)}`, `CH ${n1}`);
+  c.par(bi, li, "error_importe");
+  c.pendL(c.l(addDays(f, -3), cents, `Cheque N° ${n2} a ${r.pick(EMPRESAS)}`, `CH ${n2}`), "cheque_pendiente");
+}
+/** Homónimos: mismo apellido, mismo sueldo, y el libro solo pone la inicial del nombre. */
+function trampaHomonimos(c) {
+  const { r, voc } = c;
+  const ap = r.pick(["Gómez", "Fernández", "Pereyra", "Sosa"]), [n1, n2] = r.shuffle(["Martina", "Lucas", "Sofía", "Joaquín", "Camila"]).slice(0, 2);
+  const cents = -r.cents(900000, 2000000), f = habil(iso(c.anio, c.mes, r.int(1, 5)));
+  for (const n of [n1, n2]) c.par(c.b(f, cents, voc.sueldo(`${n} ${ap}`), "sueldos"), c.l(f, cents, `Sueldo ${n[0]}. ${ap}`));
+}
+/** Un centavo de diferencia: es la misma operación, pero no puede confirmarse sola. */
+function trampaCentavo(c) {
+  const { r, voc } = c;
+  const q = r.pick(EMPRESAS), cents = -r.cents(100000, 900000), f = c.dia();
+  c.par(c.b(f, cents, voc.trfEnviada(q, fmtCuit(cuit(r))), "transferencia"), c.l(f, cents - 1, `Pago ${q}`), "error_importe");
+}
+/** Transferencia enviada y devuelta por el banco: el libro solo registró el pago. */
+function trampaDevolucion(c) {
+  const { r, voc } = c;
+  const q = r.pick(EMPRESAS), cents = -r.cents(100000, 900000), f = habil(iso(c.anio, c.mes, r.int(3, 15)));
+  c.par(c.b(f, cents, voc.trfEnviada(q, fmtCuit(cuit(r))), "transferencia"), c.l(f, cents, `Pago ${q}`));
+  c.pendB(c.b(habil(addDays(f, 1)), -cents, voc.trfRecibida(q, fmtCuit(cuit(r)), null).replace(/RECIBIDA|RECIB|DE TERCEROS/, "DEVUELTA"), "transferencia"), "credito_no_identificado");
+}
+/** Dos cobranzas del mismo importe el mismo día, de clientes distintos. */
+function trampaGemelas(c) {
+  const { r, voc } = c;
+  const [x, y] = r.shuffle(EMPRESAS).slice(0, 2), cents = r.cents(100000, 900000), f = c.dia();
+  for (const q of [x, y]) { const cq = cuit(r); c.par(c.b(f, cents, voc.trfRecibida(q, fmtCuit(cq), null), "transferencia"), c.l(f, cents, `Cobranza ${q} CUIT ${fmtCuit(cq)}`)); }
+}
 
 export function generarEscenario(c, esc) {
   const r = c.r;
@@ -344,6 +402,14 @@ export function generarEscenario(c, esc) {
       rep(r.int(3, 6), () => debitoAutomatico(c));
       sueldos(c, { n: r.int(6, 14) });
       rep(2, () => vep(c));
+      ajustesSinRegistrar(gastosBancarios(c));
+      break;
+    case "adversarial":
+      rep(r.int(3, 6), () => cobranzaTrf(c));
+      rep(r.int(2, 4), () => pagoTrf(c));
+      trampaContraparte(c); trampaTotalDeOtro(c); trampaChequeNumero(c); trampaHomonimos(c);
+      trampaCentavo(c); trampaDevolucion(c); trampaGemelas(c);
+      if (r.chance(0.5)) trampaContraparte(c);
       ajustesSinRegistrar(gastosBancarios(c));
       break;
     default: throw new Error("escenario " + esc);

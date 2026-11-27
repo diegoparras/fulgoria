@@ -22,7 +22,7 @@ import { buildTemplate } from "../../src/template.js";
 import { makeMov } from "../../src/core/model.js";
 import { parseCsv, detectLedgerColumns, crearPlantillaMayor } from "../../src/core/index.js";
 
-const VERSION = "1.0.0";
+const VERSION = "1.1.0";
 const args = process.argv.slice(2);
 const SEMILLAS = Number(args[args.indexOf("--semillas") + 1]) || 2;
 const PLANTILLA = args.includes("--plantilla") ? resolve(args[args.indexOf("--plantilla") + 1]) : null;
@@ -38,7 +38,9 @@ if (existsSync(CASOS)) rmSync(CASOS, { recursive: true });
 mkdirSync(CASOS, { recursive: true });
 mkdirSync(join(ROOT, "plantillas"), { recursive: true });
 
-const bancos = Object.keys(BANCOS), sistemas = Object.keys(SISTEMAS), escenarios = Object.keys(ESCENARIOS);
+const bancos = Object.keys(BANCOS), sistemas = Object.keys(SISTEMAS);
+// "adversarial" se genera al final (después de arrastre) para no cambiar los ids de los casos anteriores.
+const escenarios = Object.keys(ESCENARIOS).filter((e) => e !== "adversarial");
 const indice = [];
 let n = 0;
 
@@ -190,6 +192,17 @@ for (let bi = 0; bi < bancos.length; bi++) {
   const k2 = cuenta(c2, "ARS", "mayor.csv", k1.saldos.bancoCierre, k1.saldos.librosCierre + ajustes1);
   const id2 = `${String(++n).padStart(3, "0")}-arrastre-${banco}-mes2`;
   await escribirCaso({ id: id2, esc: "arrastre", banco, sistema, semilla: semilla + 1, cuentas: [k2], periodo: { desde: c2.desde, hasta: c2.hasta }, cliente, pendientesAnterior: { periodo: c1.hasta.slice(0, 7), movs: arrastre }, notas: `Mes 2 de 2 (sigue a ${id1}): se cargan los pendientes del mes anterior; el libro ya incluye los ajustes bancarios del mes 1.` });
+}
+
+// Adversarial: trampas para el emparejamiento automático (3 variantes por banco).
+for (let bi = 0; bi < bancos.length; bi++) for (let s = 1; s <= 3; s++) {
+  const banco = bancos[bi], sistema = sistemas[(bi + s) % sistemas.length], semilla = 60000 + 10 * bi + s;
+  const { r, mes, cliente } = nuevoCaso(semilla, "adversarial");
+  const c = new Caso({ r, anio: 2026, mes, voc: BANCOS[banco].voc, cliente });
+  generarEscenario(c, "adversarial");
+  const cuentas = [cuenta(c, "ARS", BANCOS[banco].dosCuentas ? "mayor-ars.csv" : "mayor.csv", r.cents(500000, 40000000))];
+  if (BANCOS[banco].dosCuentas) cuentas.push(cuentaUSD(semilla, c));
+  await escribirCaso({ id: `${String(++n).padStart(3, "0")}-adversarial-${banco}`, esc: "adversarial", banco, sistema, semilla, cuentas, periodo: { desde: c.desde, hasta: c.hasta }, cliente });
 }
 
 // ---------------------------------------------------------------- plantillas de Fulgoria por banco

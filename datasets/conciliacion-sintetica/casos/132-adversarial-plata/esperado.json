@@ -1,0 +1,660 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "132-adversarial-plata",
+ "escenario": "adversarial",
+ "banco": "plata",
+ "sistema": "importe_signo_tab",
+ "semilla": 60002,
+ "periodo": {
+  "desde": "2026-04-01",
+  "hasta": "2026-04-30"
+ },
+ "cliente": {
+  "nombre": "Logística Andina SAS",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 2,
+ "notas": "Trampas para el emparejamiento automático: mismo importe pero otra contraparte, cheque con otro número, homónimos, un centavo de diferencia, transferencia devuelta. La información para no equivocarse está en los documentos.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 3464500000,
+    "bancoCierre": 3538610590,
+    "librosApertura": 3464500000,
+    "librosCierre": 3498546691
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-04-01",
+     "cents": -167559000,
+     "descripcion": "TRANSFERENCIA ENVIADA A ESTUDIO GRÁFICO COBALTO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-04-01",
+     "cents": -1005354,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-04-01",
+     "cents": -199900000,
+     "descripcion": "TRANSF. SUELDO CAMILA GÓMEZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-04-01",
+     "cents": -199900000,
+     "descripcion": "TRANSF. SUELDO JOAQUÍN GÓMEZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-04-08",
+     "cents": 54419078,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE QUÍMICA LITORAL SRL CUIT 33-55609950-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-04-08",
+     "cents": -56668000,
+     "descripcion": "CHEQUE CAMARA NRO 00026316",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-04-10",
+     "cents": 114087215,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE SERVICIOS MÉDICOS LOMAS SRL CUIT 30-60470825-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-04-10",
+     "cents": -684523,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-04-10",
+     "cents": -253828522,
+     "descripcion": "TRANSFERENCIA ENVIADA A QUÍMICA LITORAL SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-04-10",
+     "cents": -1522971,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-04-13",
+     "cents": -53798695,
+     "descripcion": "TRANSFERENCIA ENVIADA A ESTUDIO GRÁFICO COBALTO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-04-13",
+     "cents": 14282000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TRANSPORTE RUTA 3 SRL CUIT 33-60346612-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-04-13",
+     "cents": 14282000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LOGÍSTICA ANDINA SAS CUIT 30-71834334-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-04-13",
+     "cents": 34305828,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LOGÍSTICA ANDINA SAS CUIT 33-51301296-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-04-14",
+     "cents": 53798695,
+     "descripcion": "TRANSFERENCIA DEVUELTA DE ESTUDIO GRÁFICO COBALTO SAS CUIT 33-53888016-2",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-04-15",
+     "cents": 155000000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE VIÑEDOS ALTOS DE CUYO SA CUIT 33-60191980-5",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-04-15",
+     "cents": -930000,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-04-15",
+     "cents": 87500000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE VIÑEDOS ALTOS DE CUYO SA CUIT 30-68554638-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-04-16",
+     "cents": 432900000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE QUÍMICA LITORAL SRL CUIT 33-67855952-6 REF 0003-00000228",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-04-16",
+     "cents": -2597400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-04-17",
+     "cents": -105968190,
+     "descripcion": "TRANSFERENCIA ENVIADA A PANIFICADORA LA ESPIGA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-04-17",
+     "cents": -635809,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-04-21",
+     "cents": 241342000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LÁCTEOS VALLE VERDE SA CUIT 30-65284789-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-04-21",
+     "cents": -1448052,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-04-23",
+     "cents": -74200000,
+     "descripcion": "TRANSFERENCIA ENVIADA A HOTEL CERRO AZUL SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-04-27",
+     "cents": -5739522,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-04-27",
+     "cents": -1205300,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-04-27",
+     "cents": -172186,
+     "descripcion": "PERCEP. IVA RG 2408",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-04-27",
+     "cents": -34437,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-04-27",
+     "cents": -7232,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-04-27",
+     "cents": -1033,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-04-01",
+     "cents": -167559000,
+     "descripcion": "Transferencia a Estudio Gráfico Cobalto SAS OP 0001-00000232",
+     "comprobante": "OP 0001-00000232",
+     "asiento": 362
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-04-01",
+     "cents": -199900000,
+     "descripcion": "Sueldo C. Gómez",
+     "comprobante": "",
+     "asiento": 371
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-04-01",
+     "cents": -199900000,
+     "descripcion": "Sueldo J. Gómez",
+     "comprobante": "",
+     "asiento": 372
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-04-03",
+     "cents": -56668100,
+     "descripcion": "Cheque N° 00026316 a Panificadora La Espiga SRL",
+     "comprobante": "CH 00026316",
+     "asiento": 369
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-04-05",
+     "cents": -56668000,
+     "descripcion": "Cheque N° 00026323 a Distribuidora Los Álamos SRL",
+     "comprobante": "CH 00026323",
+     "asiento": 370
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-04-06",
+     "cents": 34600000,
+     "descripcion": "Cobranza Química Litoral SRL CUIT 33-55609950-8 FC 1",
+     "comprobante": "",
+     "asiento": 366
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-04-07",
+     "cents": 19819078,
+     "descripcion": "Cobranza Química Litoral SRL CUIT 33-55609950-8 FC 2",
+     "comprobante": "",
+     "asiento": 367
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-04-08",
+     "cents": 54419078,
+     "descripcion": "Cobranza Metalúrgica San Telmo SRL CUIT 30-53715631-3",
+     "comprobante": "",
+     "asiento": 368
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-04-10",
+     "cents": 114087215,
+     "descripcion": "Cobranza Servicios Médicos Lomas SRL Rec. 0001-00000225",
+     "comprobante": "0001-00000224",
+     "asiento": 358
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-04-10",
+     "cents": -253828522,
+     "descripcion": "Transferencia a Química Litoral SRL OP 0001-00000234",
+     "comprobante": "OP 0001-00000234",
+     "asiento": 364
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-04-12",
+     "cents": 34305828,
+     "descripcion": "Cobranza Servicios Médicos Lomas SRL CUIT 33-58663289-8",
+     "comprobante": "",
+     "asiento": 377
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-04-13",
+     "cents": 155000000,
+     "descripcion": "Cobranza Viñedos Altos de Cuyo SA Rec. 0001-00000227",
+     "comprobante": "0003-00000226",
+     "asiento": 359
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-04-13",
+     "cents": -53798695,
+     "descripcion": "Pago Estudio Gráfico Cobalto SAS",
+     "comprobante": "",
+     "asiento": 374
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-04-13",
+     "cents": 14282000,
+     "descripcion": "Cobranza Transporte Ruta 3 SRL CUIT 33-60346612-3",
+     "comprobante": "",
+     "asiento": 375
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-04-13",
+     "cents": 14282000,
+     "descripcion": "Cobranza Logística Andina SAS CUIT 30-71834334-4",
+     "comprobante": "",
+     "asiento": 376
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-04-14",
+     "cents": 432900000,
+     "descripcion": "Cobro FC A 0003-00000228 Química Litoral SRL",
+     "comprobante": "0003-00000228",
+     "asiento": 360
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-04-14",
+     "cents": 87500000,
+     "descripcion": "Cobranza Panificadora La Espiga SRL CUIT 30-50302200-8",
+     "comprobante": "",
+     "asiento": 365
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-04-17",
+     "cents": -105968190,
+     "descripcion": "Pago a proveedor Panificadora La Espiga SRL",
+     "comprobante": "OP 0001-00000233",
+     "asiento": 363
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-04-20",
+     "cents": 241342000,
+     "descripcion": "Cobro FC A 0002-00000230 Lácteos Valle Verde SA",
+     "comprobante": "0002-00000230",
+     "asiento": 361
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-04-23",
+     "cents": -74200001,
+     "descripcion": "Pago Hotel Cerro Azul SA",
+     "comprobante": "",
+     "asiento": 373
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L19"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L18"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L6",
+      "L7"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L20"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "L17",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "L8",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "L5",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "B15",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "L11",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B27",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B29",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B31",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

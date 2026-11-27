@@ -1,6 +1,6 @@
 {
  "dataset": "desde-plantilla",
- "version": "1.0.0",
+ "version": "1.1.0",
  "id": "006-cheques-banco-del-rio",
  "escenario": "cheques",
  "banco": "banco-del-rio",

@@ -10,7 +10,7 @@ import {
   parseMoneyCents, fmtCents, toISO, daysBetween, extractEntities, classify, classifyAll,
   makeMov, resolveConfig, parseLedgerCsv, matchAll, subsetSums, pairKey, reconcile, arrastreSiguiente,
   continuidad, papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, fromExtract,
-  parseCsv, adivinarFilaEncabezado, crearPlantillaMayor, reconocerPlantillaMayor, parseLedgerConPlantilla,
+  parseCsv, conflictoIdentidad, adivinarFilaEncabezado, crearPlantillaMayor, reconocerPlantillaMayor, parseLedgerConPlantilla,
 } from "../src/core/index.js";
 
 // --- Fixture: movimientos del extracto de ejemplo (tools/gen-sample.mjs) ---
@@ -382,4 +382,30 @@ test("plantilla de mayor — se arma una vez a mano y se reconoce sola la próxi
   assert.equal(led.movs[2].entidades.cheque, "4521");
   assert.equal(led.avisos.length, 0); // el subtotal se saltea sin aviso
   assert.throws(() => crearPlantillaMayor({ sistema: "x", rows, headerRow, map: { descripcion: 2 } }), /al menos Fecha/);
+});
+
+test("conflicto de identidad — lo que el documento contradice nunca se confirma solo", () => {
+  const cfg = resolveConfig();
+  // Cheque: el banco debitó el 4521; el libro tiene el 4612 por el mismo importe → no se empareja.
+  let r = matchAll([B("B1", "2026-06-10", -500000, "CHEQUE CAMARA NRO 00004521")], [L("L1", "2026-06-08", -500000, "Cheque N° 00004612 a Proveedor")], cfg);
+  assert.equal(r.matches.length, 0);
+  // CUIT distinto: tampoco.
+  r = matchAll([B("B1", "2026-06-10", 900000, "TRANSFERENCIA RECIBIDA DE AGRO SUR SA CUIT 30-71234567-1")], [L("L1", "2026-06-09", 900000, "Cobranza Lácteos Valle Verde SA CUIT 20-12345678-6")], cfg);
+  assert.equal(r.matches.length, 0);
+  // Solo el nombre no coincide: se propone, pero en amarillo y diciendo por qué.
+  r = matchAll([B("B1", "2026-06-10", 900000, "TRANSFERENCIA RECIBIDA DE AGRO SUR SA")], [L("L1", "2026-06-09", 900000, "Cobranza Lácteos Valle Verde")], cfg);
+  assert.equal(r.matches[0].estrategia, "conflicto");
+  assert.equal(r.matches[0].certeza, "amarillo");
+  assert.match(r.matches[0].motivos.join(" "), /contraparte no coincide/);
+  // Factura en el banco y recibo en el libro de la misma cobranza: NO es conflicto.
+  const b = makeMov({ id: "B1", lado: "banco", fecha: "2026-06-02", cents: 100, descripcion: "TRANSFERENCIA RECIBIDA DE AGRO SUR SA REF 0002-00000859" });
+  const l = makeMov({ id: "L1", lado: "libros", fecha: "2026-06-02", cents: 100, descripcion: "Cobranza Agro Sur SA Rec. 0001-00000868" });
+  assert.equal(conflictoIdentidad(b, l), null);
+  // Un depósito con palabras de lugar ("SUCURSAL CENTRO") no choca con el nombre de quien depositó.
+  const dep = makeMov({ id: "B2", lado: "banco", fecha: "2026-06-02", cents: 100, descripcion: "DEPOSITO EFECTIVO SUCURSAL CENTRO" });
+  assert.equal(conflictoIdentidad(dep, makeMov({ id: "L2", lado: "libros", fecha: "2026-06-02", cents: 100, descripcion: "Cobranza Juan Pérez" })), null);
+  // Con la alternativa correcta disponible (agrupado del mismo cliente), el motor la encuentra.
+  r = matchAll([B("B1", "2026-06-10", 1200000, "TRANSFERENCIA RECIBIDA DE AGRO SUR SA CUIT 30-71234567-1")],
+    [L("L1", "2026-06-09", 1200000, "Cobranza Lácteos Valle Verde CUIT 20-12345678-6"), L("L2", "2026-06-08", 700000, "Cobranza Agro Sur CUIT 30-71234567-1"), L("L3", "2026-06-09", 500000, "Cobranza Agro Sur CUIT 30-71234567-1")], cfg);
+  assert.equal(pairKey(r.matches[0]), "B1|L2,L3");
 });

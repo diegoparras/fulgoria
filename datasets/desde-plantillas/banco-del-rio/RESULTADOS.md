@@ -7,7 +7,7 @@ Este archivo se regenera: es la foto del estado actual del lector y del motor co
 
 | | Cuentas | Lectura extracto | Lectura mayor | Pares encontrados | Pares confirmados solos | Verdes incorrectos | Amarillos incorrectos | Pendientes bien tipificados | Ajustes bien clasificados | Falsos ajustes | Diferencia 0 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| **Total** | 20 | 100% | 100% | 99.4% | 89.1% | **0** | 2 | 100% | 100% | 0 | 100% |
+| **Total** | 20 | 100% | 100% | 99.7% | 90.4% | **0** | 0 | 100% | 100% | 0 | 100% |
 
 ## Por escenario
 
@@ -17,18 +17,18 @@ Este archivo se regenera: es la foto del estado actual del lector y del motor co
 | ruido_fiscal | 2 | 100% | 100% | 100% | 100% | **0** | 0 | 100% | 100% | 0 | 100% |
 | cheques | 2 | 100% | 100% | 100% | 100% | **0** | 0 | 100% | 100% | 0 | 100% |
 | agrupados | 2 | 100% | 100% | 100% | 59.5% | **0** | 0 | 100% | 100% | 0 | 100% |
-| repetidos | 2 | 100% | 100% | 92.6% | 77.8% | **0** | 2 | 100% | 100% | 0 | 100% |
+| repetidos | 2 | 100% | 100% | 100% | 92.6% | **0** | 0 | 100% | 100% | 0 | 100% |
 | desfasaje | 2 | 100% | 100% | 100% | 78.1% | **0** | 0 | 100% | 100% | 0 | 100% |
 | consolidados | 2 | 100% | 100% | 100% | 88.6% | **0** | 0 | 100% | 100% | 0 | 100% |
 | tarjetas_brutas | 2 | 100% | 100% | 100% | 58.3% | **0** | 0 | 100% | 100% | 0 | 100% |
 | errores | 2 | 100% | 100% | 91.7% | 83.3% | **0** | 0 | 100% | 100% | 0 | 100% |
-| volumen | 2 | 100% | 100% | 100% | 93.9% | **0** | 0 | 100% | 100% | 0 | 100% |
+| volumen | 2 | 100% | 100% | 100% | 95% | **0** | 0 | 100% | 100% | 0 | 100% |
 
 ## Por formato de banco
 
 | | Cuentas | Lectura extracto | Lectura mayor | Pares encontrados | Pares confirmados solos | Verdes incorrectos | Amarillos incorrectos | Pendientes bien tipificados | Ajustes bien clasificados | Falsos ajustes | Diferencia 0 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| banco-del-rio | 20 | 100% | 100% | 99.4% | 89.1% | **0** | 2 | 100% | 100% | 0 | 100% |
+| banco-del-rio | 20 | 100% | 100% | 99.7% | 90.4% | **0** | 0 | 100% | 100% | 0 | 100% |
 
 ## Por formato de mayor
 
@@ -37,16 +37,21 @@ Este archivo se regenera: es la foto del estado actual del lector y del motor co
 | debitos_creditos_us | 3 | 100% | 100% | 100% | 88.4% | **0** | 0 | 100% | 100% | 0 | 100% |
 | importe_signo_tab | 4 | 100% | 100% | 100% | 90.3% | **0** | 0 | 100% | 100% | 0 | 100% |
 | parentesis_transporte | 4 | 100% | 100% | 98.3% | 86.7% | **0** | 0 | 100% | 100% | 0 | 100% |
-| planilla_cliente | 4 | 100% | 100% | 99.6% | 89.6% | **0** | 0 | 100% | 100% | 0 | 100% |
+| planilla_cliente | 4 | 100% | 100% | 99.6% | 91.3% | **0** | 0 | 100% | 100% | 0 | 100% |
 | comillas_coma | 3 | 100% | 100% | 100% | 92.5% | **0** | 0 | 100% | 100% | 0 | 100% |
-| debe_haber_ar | 2 | 100% | 100% | 93.3% | 66.7% | **0** | 2 | 100% | 100% | 0 | 100% |
+| debe_haber_ar | 2 | 100% | 100% | 100% | 80% | **0** | 0 | 100% | 100% | 0 | 100% |
 
 ## Pares esperados que el motor no encontró, por tipo
 
 | Tipo de par | Cantidad |
 |---|---:|
-| referencia | 2 |
 | error_importe | 2 |
+
+## Auto-detección de columnas (sin plantilla)
+
+| | Cuentas | Lectura extracto | Lectura mayor | Pares encontrados | Pares confirmados solos | Verdes incorrectos | Amarillos incorrectos | Pendientes bien tipificados | Ajustes bien clasificados | Falsos ajustes | Diferencia 0 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| **Total (auto)** | 20 | 100% | 100% | 99.7% | 90.4% | **0** | 0 | 100% | 100% | 0 | 100% |
 
 ## Cómo leer la tabla
 

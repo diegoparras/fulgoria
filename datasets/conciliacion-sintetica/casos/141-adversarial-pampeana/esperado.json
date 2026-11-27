@@ -1,0 +1,563 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.1.0",
+ "id": "141-adversarial-pampeana",
+ "escenario": "adversarial",
+ "banco": "pampeana",
+ "sistema": "comillas_coma",
+ "semilla": 60032,
+ "periodo": {
+  "desde": "2026-01-01",
+  "hasta": "2026-01-31"
+ },
+ "cliente": {
+  "nombre": "Agro Sur del Plata SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Trampas para el emparejamiento automático: mismo importe pero otra contraparte, cheque con otro número, homónimos, un centavo de diferencia, transferencia devuelta. La información para no equivocarse está en los documentos.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 481025773,
+    "bancoCierre": 756397034,
+    "librosApertura": 481025773,
+    "librosCierre": 773053188
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-01-05",
+     "cents": -283496000,
+     "descripcion": "TRANSFERENCIA ENVIADA A VIÑEDOS ALTOS DE CUYO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-01-05",
+     "cents": -135846000,
+     "descripcion": "TRANSF. SUELDO JOAQUÍN PEREYRA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-01-05",
+     "cents": -135846000,
+     "descripcion": "TRANSF. SUELDO SOFÍA PEREYRA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-01-07",
+     "cents": -154325000,
+     "descripcion": "TRANSFERENCIA ENVIADA A FERRETERÍA EL TORNILLO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-01-09",
+     "cents": 140374215,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TECNOLOGÍA AUSTRAL SAS CUIT 33-69441086-9",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-01-09",
+     "cents": -4211226,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-01-09",
+     "cents": 70800000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TRANSPORTE RUTA 3 SRL CUIT 33-70223976-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-01-12",
+     "cents": 439406000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FERRETERÍA EL TORNILLO SRL CUIT 33-50016660-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-01-12",
+     "cents": -13182180,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-01-12",
+     "cents": -113597000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LÁCTEOS VALLE VERDE SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-01-12",
+     "cents": -36014535,
+     "descripcion": "CHEQUE CAMARA NRO 00007693",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-01-14",
+     "cents": -54475000,
+     "descripcion": "TRANSFERENCIA ENVIADA A ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-01-15",
+     "cents": -70372953,
+     "descripcion": "TRANSFERENCIA ENVIADA A IMPRENTA TINTA FRESCA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-01-15",
+     "cents": 54475000,
+     "descripcion": "TRANSFERENCIA DEVUELTA DE ÓPTICA MIRADOR SRL CUIT 33-59889445-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-01-16",
+     "cents": 90655619,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE QUÍMICA LITORAL SRL CUIT 33-56123893-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-01-20",
+     "cents": 384500000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LÁCTEOS VALLE VERDE SA CUIT 33-64797711-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-01-20",
+     "cents": -11535000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-01-22",
+     "cents": 49517299,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TECNOLOGÍA AUSTRAL SAS CUIT 33-69378307-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-01-22",
+     "cents": 49517299,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LÁCTEOS VALLE VERDE SA CUIT 33-50563875-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-01-26",
+     "cents": 16444507,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE VIÑEDOS ALTOS DE CUYO SA CUIT 30-66673721-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-01-26",
+     "cents": -493335,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-01-26",
+     "cents": -5584233,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-01-26",
+     "cents": -1172689,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-01-26",
+     "cents": -167527,
+     "descripcion": "PERCEP. IVA RG 2408",
+     "tipo": "percepcion_iva"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-01-05",
+     "cents": -283496000,
+     "descripcion": "Pago a proveedor Viñedos Altos de Cuyo SA",
+     "comprobante": "OP 0001-00000701",
+     "asiento": 189
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-01-05",
+     "cents": -135846000,
+     "descripcion": "Sueldo J. Pereyra",
+     "comprobante": "",
+     "asiento": 198
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-01-05",
+     "cents": -135846000,
+     "descripcion": "Sueldo S. Pereyra",
+     "comprobante": "",
+     "asiento": 199
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-01-06",
+     "cents": -154325000,
+     "descripcion": "Transferencia a Ferretería El Tornillo SRL OP 0001-00000703",
+     "comprobante": "OP 0001-00000703",
+     "asiento": 191
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-01-07",
+     "cents": 33400000,
+     "descripcion": "Cobranza Transporte Ruta 3 SRL CUIT 33-70223976-7 FC 1",
+     "comprobante": "",
+     "asiento": 193
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-01-07",
+     "cents": -36015035,
+     "descripcion": "Cheque N° 00007693 a Ferretería El Tornillo SRL",
+     "comprobante": "CH 00007693",
+     "asiento": 196
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-01-08",
+     "cents": 140374215,
+     "descripcion": "Cobro FC A 0001-00000699 Tecnología Austral SAS",
+     "comprobante": "0001-00000699",
+     "asiento": 188
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-01-08",
+     "cents": 37400000,
+     "descripcion": "Cobranza Transporte Ruta 3 SRL CUIT 33-70223976-7 FC 2",
+     "comprobante": "",
+     "asiento": 194
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-01-09",
+     "cents": 70800000,
+     "descripcion": "Cobranza Cooperativa Hornero Ltda CUIT 33-66342055-6",
+     "comprobante": "",
+     "asiento": 195
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-01-09",
+     "cents": -36014535,
+     "descripcion": "Cheque N° 00007699 a Constructora Delta Norte SRL",
+     "comprobante": "CH 00007699",
+     "asiento": 197
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-01-12",
+     "cents": 439406000,
+     "descripcion": "Cobranza cliente Ferretería El Tornillo SRL",
+     "comprobante": "0003-00000697",
+     "asiento": 187
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-01-12",
+     "cents": -113597000,
+     "descripcion": "Pago Lácteos Valle Verde SA OP 0001-00000702",
+     "comprobante": "OP 0001-00000702",
+     "asiento": 190
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-01-14",
+     "cents": -54475000,
+     "descripcion": "Pago Óptica Mirador SRL",
+     "comprobante": "",
+     "asiento": 201
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-01-15",
+     "cents": 90655619,
+     "descripcion": "Cobranza Distribuidora Los Álamos SRL CUIT 33-53815832-7",
+     "comprobante": "",
+     "asiento": 192
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-01-15",
+     "cents": -70372954,
+     "descripcion": "Pago Imprenta Tinta Fresca SRL",
+     "comprobante": "",
+     "asiento": 200
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-01-19",
+     "cents": 384500000,
+     "descripcion": "Cobranza cliente Lácteos Valle Verde SA",
+     "comprobante": "0001-00000695",
+     "asiento": 186
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-01-22",
+     "cents": 49517299,
+     "descripcion": "Cobranza Tecnología Austral SAS CUIT 33-69378307-6",
+     "comprobante": "",
+     "asiento": 202
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-01-22",
+     "cents": 49517299,
+     "descripcion": "Cobranza Lácteos Valle Verde SA CUIT 33-50563875-7",
+     "comprobante": "",
+     "asiento": 203
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-01-26",
+     "cents": 16444507,
+     "descripcion": "Cobranza cliente Viñedos Altos de Cuyo SA",
+     "comprobante": "0003-00000693",
+     "asiento": 185
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B20"
+     ],
+     "libros": [
+      "L19"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L5",
+      "L8"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L18"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B15",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "L14",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "L9",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "L10",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B9",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

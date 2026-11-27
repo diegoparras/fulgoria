@@ -1,6 +1,6 @@
 {
  "dataset": "conciliacion-sintetica",
- "version": "1.0.0",
+ "version": "1.1.0",
  "id": "022-ruido_fiscal-cuyano",
  "escenario": "ruido_fiscal",
  "banco": "cuyano",

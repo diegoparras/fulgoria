@@ -1,0 +1,26 @@
+Empresa: Muebles Quebracho SAS
+Cuenta: 1.1.1.02 Banco del Plata Austral
+Período: 01/08/2026 al 31/08/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,17543260.66
+2026-08-03,Pago Ferretería El Tornillo SRL,,354793.75,17188466.91
+2026-08-04,Sueldo M. Gómez,,1756000.00,15432466.91
+2026-08-04,Sueldo L. Gómez,,1756000.00,13676466.91
+2026-08-05,Cobranza Ferretería El Tornillo SRL CUIT 30-55043929-4,1736460.00,,15412926.91
+2026-08-05,Cheque N° 00031598 a Textil Río Bermejo SA,,237416.00,15175510.91
+2026-08-06,Pago Constructora Delta Norte SRL,,353324.16,14822186.75
+2026-08-07,Pago Farmacia Del Parque SCS OP 0001-00000443,,1965278.45,12856908.30
+2026-08-07,Cheque N° 00031605 a Logística Andina SAS,,237410.00,12619498.30
+2026-08-10,Pago a proveedor Química Litoral SRL,,2022706.26,10596792.04
+2026-08-13,Cobranza Frigorífico Pampa Alta SA CUIT 30-59264420-3,127034.78,,10723826.82
+2026-08-13,Cobranza Ferretería El Tornillo SRL CUIT 30-52230906-7,127034.78,,10850861.60
+2026-08-14,Cobro FC A 0001-00000433 Imprenta Tinta Fresca SRL,1262317.09,,12113178.69
+2026-08-16,Cobranza Química Litoral SRL CUIT 30-51108058-0 FC 1,229000.00,,12342178.69
+2026-08-17,Cobro FC A 0003-00000435 Transporte Ruta 3 SRL,876000.00,,13218178.69
+2026-08-17,Cobranza cliente Servicios Médicos Lomas SRL,1291550.00,,14509728.69
+2026-08-17,Cobranza Química Litoral SRL CUIT 30-51108058-0 FC 2,289351.38,,14799080.07
+2026-08-18,Cobranza Estudio Gráfico Cobalto SAS CUIT 33-63141601-8,518351.38,,15317431.45
+2026-08-20,Cobranza cliente Distribuidora Los Álamos SRL,868959.88,,16186391.33
+2026-08-21,Cobro FC A 0003-00000431 Imprenta Tinta Fresca SRL,3905369.21,,20091760.54
+2026-08-27,Cobranza cliente Librería El Faro SA,1420000.00,,21511760.54

@@ -10,8 +10,8 @@
 // que necesita un clic. Nunca se pinta de verde algo que tenga una alternativa igual de buena:
 // un emparejamiento verde equivocado es el peor error posible del producto.
 import { daysBetween } from "./dates.js";
-import { similarity } from "./text.js";
-import { sharedEntities } from "./entities.js";
+import { similarity, tokens, normText } from "./text.js";
+import { sharedEntities, valoresEntidad } from "./entities.js";
 import { fmtCents } from "./money.js";
 
 /**
@@ -25,6 +25,36 @@ import { fmtCents } from "./money.js";
  * @property {number} diferenciaCents Σlibros − Σbanco (0 salvo en "tolerancia")
  * @property {string[]} motivos      explicación legible de por qué se emparejó
  */
+
+// ---------------------------------------------------------------- conflicto de identidad
+// Si los dos lados traen un dato que identifica la operación y NO coincide (otro CUIT, otro número
+// de cheque, otro VEP, o nombres de contraparte sin ninguna palabra en común),
+// el par no puede confirmarse solo aunque el importe sea idéntico.
+const GENERICAS = new Set(("TRANSFERENCIA TRANSFERENCIAS TRANSF TRF RECIBIDA RECIBIDO RECIB ENVIADA ENVIADO ENV INMEDIATA TERCEROS DEVUELTA DEVOLUCION " +
+  "COBRANZA COBRANZAS COBRO COBROS PAGO PAGOS CLIENTE CLIENTES PROVEEDOR PROVEEDORES DEPOSITO DEPOSITOS EFECTIVO DEPOSITAR VALORES " +
+  "CHEQUE CHEQUES CHQ ECHEQ EMITIDO PAGADO CAMARA DEBITO DEBITOS DEB AUTOM AUTOMATICO AUT CREDITO CREDITOS ACRED ACREDITACION " +
+  "FACTURA FACT RECIBO ORDEN SUELDO SUELDOS HABERES VARIOS CUENTA PROPIA BANCO BANCOS IMPUESTO VENTA VENTAS LIQUIDACION LIQ TARJETA " +
+  "LOTE COMERCIO SUCURSAL CAJERO VENTANILLA OTROS SEGUN INTERESES PLAZO FIJO COMISION RETENCION PERCEPCION SERVICIO SERVICIOS ALQUILER " +
+  "CORPORATIVA RESUMEN IDENTIFICADA ANTERIOR MERCADOPAGO MERCADO MES ENERO FEBRERO MARZO ABRIL MAYO JUNIO JULIO AGOSTO SEPTIEMBRE " +
+  "OCTUBRE NOVIEMBRE DICIEMBRE CUIT CBU CVU REF NRO").split(" "));
+const nombres = (desc) => tokens(desc).filter((t) => /^[A-Z]{3,}$/.test(t) && !GENERICAS.has(t));
+const pre5 = (t) => t.slice(0, 5);
+export function conflictoIdentidad(b, l) {
+  // Comprobante NO cuenta como conflicto: el banco puede citar la factura y el libro el recibo de la
+  // misma cobranza. Cheque, VEP y CUIT sí identifican una sola operación / contraparte.
+  for (const k of ["cheque", "vep", "cuit"]) {
+    const x = valoresEntidad(b.entidades, k), y = valoresEntidad(l.entidades, k);
+    if (x.length && y.length && !x.some((v) => y.includes(v))) return `${k === "vep" ? "VEP" : k === "cuit" ? "CUIT" : k} distinto (${x.join(", ")} / ${y.join(", ")})`;
+  }
+  // Nombres: solo cuando la leyenda del banco nombra a la contraparte (transferencias, sueldos) y
+  // trae al menos dos palabras de nombre; en depósitos y débitos las palabras suelen ser de lugar
+  // ("SUCURSAL CENTRO") y no dicen quién es.
+  if (/TRANSF|\bTRF\b|\bTEF\b|HABERES|SUELDO|DEBIN/.test(normText(b.descripcion))) {
+    const nb = nombres(b.descripcion), nl = nombres(l.descripcion);
+    if (nb.length >= 2 && nl.length && !nb.some((x) => nl.some((y) => pre5(x) === pre5(y)))) return "la contraparte no coincide";
+  }
+  return null;
+}
 
 const isChequeLike = (m) => !!m.entidades?.cheque || /CHEQ|\bCH\b|\bCHQ\b/i.test(m.descripcion || "");
 
@@ -62,6 +92,8 @@ export function matchAll(banco, libros, cfg, decisiones = {}, extra = {}) {
     matches.push({ id: "M" + ++seq, banco: bs.map((m) => m.id), libros: ls.map((m) => m.id), diferenciaCents: sl - sb, ...props });
     return true;
   };
+
+  const conflictivos = []; // pares con importe idéntico pero identidad en conflicto (se ofrecen al final)
 
   // --- 0. Emparejamientos hechos a mano (modo deportivo): mandan sobre todo lo demás ---
   for (const d of decisiones.manuales || []) {
@@ -113,6 +145,8 @@ export function matchAll(banco, libros, cfg, decisiones = {}, extra = {}) {
     for (const b of freeB.values()) {
       for (const l of byAmount.get(b.cents) || []) {
         if (!inWin(b, l)) continue;
+        const cf = conflictoIdentidad(b, l);
+        if (cf) { conflictivos.push({ b, l, cf }); continue; }
         const d = daysBetween(l.fecha, b.fecha);
         const w = win(l, b);
         const sim = similarity(b.descripcion, l.descripcion);
@@ -149,6 +183,7 @@ export function matchAll(banco, libros, cfg, decisiones = {}, extra = {}) {
     const grupo = (uno, pool, ladoUno) => {
       const cands = pool
         .filter((x) => Math.sign(x.cents) === Math.sign(uno.cents) && Math.abs(x.cents) < Math.abs(uno.cents))
+        .filter((x) => !(ladoUno === "banco" ? conflictoIdentidad(uno, x) : conflictoIdentidad(x, uno)))
         .filter((x) => {
           // El banco registra el total DESPUÉS (o el mismo día) que las partidas del libro.
           const d = ladoUno === "banco" ? daysBetween(x.fecha, uno.fecha) : daysBetween(uno.fecha, x.fecha);
@@ -230,7 +265,9 @@ export function matchAll(banco, libros, cfg, decisiones = {}, extra = {}) {
     const byAmount = groupBy([...freeL.values()], (l) => l.cents);
     for (const b of freeB.values()) for (const l of byAmount.get(b.cents) || []) {
       const d = daysBetween(l.fecha, b.fecha);
-      if (d != null && Math.abs(d) <= mc.ventanaAmpliadaDias) pairs.push({ b, l, d });
+      if (d == null || Math.abs(d) > mc.ventanaAmpliadaDias) continue;
+      const cf = conflictoIdentidad(b, l);
+      if (cf) conflictivos.push({ b, l, cf }); else pairs.push({ b, l, d });
     }
     for (const p of pairs.sort((x, y) => Math.abs(x.d) - Math.abs(y.d))) {
       if (!freeB.has(p.b.id) || !freeL.has(p.l.id)) continue;
@@ -238,7 +275,16 @@ export function matchAll(banco, libros, cfg, decisiones = {}, extra = {}) {
     }
   }
 
-  // --- 7. Tolerancia de importe (solo si se configuró) ---
+  // --- 7. Importe idéntico con identidad en conflicto: solo como propuesta, explicando el conflicto ---
+  // Si lo que no coincide es un dato duro (CUIT, cheque, VEP), ni siquiera se propone:
+  // las dos partidas quedan pendientes y, si hiciera falta, se unen a mano en la mesa. Si es solo el
+  // nombre (que se escribe de mil maneras), se propone en amarillo con el motivo a la vista.
+  for (const p of conflictivos.filter((x) => x.cf === "la contraparte no coincide").sort((x, y) => Math.abs(daysBetween(x.l.fecha, x.b.fecha)) - Math.abs(daysBetween(y.l.fecha, y.b.fecha)))) {
+    if (!freeB.has(p.b.id) || !freeL.has(p.l.id)) continue;
+    take([p.b], [p.l], { estrategia: "conflicto", certeza: "amarillo", puntaje: 0.3, motivos: ["importe idéntico", diasTxt(daysBetween(p.l.fecha, p.b.fecha)), `pero ${p.cf}: revisar antes de confirmar`] });
+  }
+
+  // --- 8. Tolerancia de importe (solo si se configuró) ---
   if (mc.estrategias.tolerancia && mc.toleranciaCents > 0) {
     const pairs = [];
     for (const b of freeB.values()) for (const l of freeL.values()) {

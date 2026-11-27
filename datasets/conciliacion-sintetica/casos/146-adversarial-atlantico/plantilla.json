@@ -1,0 +1,47 @@
+{
+  "banco": "Banco Atlántico",
+  "columnas": [
+    {
+      "from": 0,
+      "to": 0.10756302521008404,
+      "role": "fecha",
+      "label": "Fecha"
+    },
+    {
+      "from": 0.10756302521008404,
+      "to": 0.16470588235294117,
+      "role": "texto",
+      "label": "F. valor"
+    },
+    {
+      "from": 0.16470588235294117,
+      "to": 0.48739495798319327,
+      "role": "descripcion",
+      "label": "Concepto"
+    },
+    {
+      "from": 0.48739495798319327,
+      "to": 0.561344537815126,
+      "role": "texto",
+      "label": "Comprob."
+    },
+    {
+      "from": 0.561344537815126,
+      "to": 0.6991596638655462,
+      "role": "debito",
+      "label": "Débitos"
+    },
+    {
+      "from": 0.6991596638655462,
+      "to": 0.826890756302521,
+      "role": "credito",
+      "label": "Créditos"
+    },
+    {
+      "from": 0.826890756302521,
+      "to": 1,
+      "role": "saldo",
+      "label": "Saldo"
+    }
+  ]
+}

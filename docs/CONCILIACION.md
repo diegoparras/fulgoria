@@ -95,25 +95,36 @@ tránsito, cuatro gastos/impuestos sin registrar y un crédito que el cliente no
 
 ## Dataset sintético y benchmark
 
-`datasets/conciliacion-sintetica/` tiene 130 casos con la respuesta correcta (ver su README) y
-`node tools/dataset/bench.mjs` mide el lector y el motor contra ellos (`RESULTADOS.md`). Lo que el
-dataset encontró y se corrigió:
+`datasets/conciliacion-sintetica/` tiene 148 casos con la respuesta correcta (ver su README), entre
+ellos un set **adversarial** de trampas, y `node tools/dataset/bench.mjs` mide el lector y el motor
+contra ellos (`RESULTADOS.md`). Lo que el dataset encontró y se corrigió:
 
 | | Antes | Después |
 |---|---:|---:|
-| Extractos leídos exactos (con plantilla) | 56% | 100% |
-| Pares encontrados | 65,3% | 99,7% |
-| Pares confirmados solos | 60,4% | 90,4% |
-| Verdes incorrectos (con plantilla / sin plantilla) | 0 / 1 | 0 / 0 |
+| Extractos leídos exactos, con plantilla | 56% | 100% |
+| Extractos leídos exactos, sin plantilla (auto-detección) | 64% | 99,4% |
+| Pares encontrados (sin contar el set adversarial) | 65,3% | 99,7% |
+| Verdes incorrectos en el set adversarial | 62 | 0 |
+| Verdes incorrectos en todo el dataset | 0 / 1 sin plantilla | 0 / 0 |
 | Falsos ajustes (operaciones tomadas por gastos del banco) | 21 | 0 |
 
 - Lector: rol **Signo (D/H)**; saldo inicial/final tomado de los rótulos cuando no hay saldo
   corrido; fechas sin año (DD/MM) con el año del encabezado (`docYear`).
+- **Auto-detección verificada**: prueba varias lecturas de las columnas (con o sin saldo,
+  débito/crédito o al revés, columna D/H, agrupando importes por solapamiento o por borde derecho) y
+  la regla del saldo elige la que cierra. Los rótulos con importe ("Saldo inicial al…: $ …") ya no
+  se confunden con celdas de importe.
 - Motor: estrategias **consolidado** (asiento mensual = N líneas del banco), **neto** (venta bruta −
   arancel − IVA = acreditación), **ampliado** (importe exacto con fecha lejana, en amarillo),
   agrupados de hasta 8 partidas y desempate por nombre en importes repetidos.
-- Regla nueva: si la lectura de un documento no está verificada, **nada se confirma solo**.
+- **Conflicto de identidad**: si cheque, VEP o CUIT no coinciden, el par no se confirma ni se
+  propone; si solo no coincide el nombre de la contraparte (en transferencias y sueldos), se propone
+  en amarillo con el motivo. El comprobante no cuenta como conflicto (factura vs. recibo de la misma
+  cobranza). El motor sigue buscando la alternativa correcta (por ejemplo, el agrupado del mismo cliente).
+- Regla: si la lectura de un documento no está verificada, **nada se confirma solo**.
 - Clasificador: el débito automático de un seguro ya no se toma por comisión del banco.
+- Entidades: número de cheque con palabras en el medio ("CHEQUE CAMARA NRO …"); todos los
+  comprobantes que cita una operación, no solo el primero.
 
 ## Pendiente
 

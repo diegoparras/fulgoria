@@ -1,6 +1,6 @@
 {
  "dataset": "conciliacion-sintetica",
- "version": "1.0.0",
+ "version": "1.1.0",
  "id": "024-ruido_fiscal-atlantico",
  "escenario": "ruido_fiscal",
  "banco": "atlantico",
