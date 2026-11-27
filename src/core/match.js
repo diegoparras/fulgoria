@@ -41,9 +41,11 @@ export function pairKey({ banco, libros }) {
  *           confirmados?: Array<{banco:string[], libros:string[]}> }} [decisiones]
  *   Decisiones del usuario: emparejamientos hechos a mano (van primero, en verde), propuestas
  *   rechazadas (el motor no las vuelve a ofrecer y busca otra) y propuestas confirmadas (pasan a verde).
+ * @param {{ clasif?: Map<string, {tipo:string, grupo:string}> }} [extra]  clasificación de las líneas del banco
+ *   (la usa la estrategia "consolidado").
  * @returns {{ matches: Match[], libresBanco: import("./model.js").Mov[], libresLibros: import("./model.js").Mov[] }}
  */
-export function matchAll(banco, libros, cfg, decisiones = {}) {
+export function matchAll(banco, libros, cfg, decisiones = {}, extra = {}) {
   const mc = cfg.match;
   const freeB = new Map(banco.map((m) => [m.id, m]));
   const freeL = new Map(libros.map((m) => [m.id, m]));
@@ -120,15 +122,23 @@ export function matchAll(banco, libros, cfg, decisiones = {}) {
       }
     }
     const countB = countBy(pairs, (p) => p.b.id), countL = countBy(pairs, (p) => p.l.id);
+    const porB = groupBy(pairs, (p) => p.b.id), porL = groupBy(pairs, (p) => p.l.id);
+    // Desempate por nombre: con importes repetidos (sueldos iguales), si la descripción coincide
+    // claramente con UN solo candidato de cada lado y con ninguno más, el par queda probado.
+    const nombreUnico = (p) => p.sim >= 0.4
+      && porB.get(p.b.id).every((q) => q === p || q.sim <= p.sim - 0.3)
+      && porL.get(p.l.id).every((q) => q === p || q.sim <= p.sim - 0.3);
     for (const p of pairs.sort((x, y) => y.puntaje - x.puntaje || Math.abs(x.d) - Math.abs(y.d))) {
       if (!freeB.has(p.b.id) || !freeL.has(p.l.id)) continue;
       const nb = countB.get(p.b.id), nl = countL.get(p.l.id);
       const unico = nb === 1 && nl === 1;
-      const verde = unico || (mc.intercambiablesVerde && p.b.cents === p.l.cents);
+      const porNombre = !unico && nombreUnico(p);
+      const verde = unico || porNombre || (mc.intercambiablesVerde && p.b.cents === p.l.cents);
       const motivos = ["importe idéntico", diasTxt(p.d)];
       if (p.cuit) motivos.push(`mismo CUIT ${p.b.entidades.cuit}`);
       if (p.sim >= 0.3) motivos.push("descripciones parecidas");
-      if (!unico) motivos.push(`hay ${Math.max(nb, nl)} movimientos con el mismo importe en la ventana: elegí el de fecha más cercana`);
+      if (porNombre) motivos.push(`hay ${Math.max(nb, nl)} movimientos con el mismo importe, pero la descripción coincide solo con este`);
+      else if (!unico) motivos.push(`hay ${Math.max(nb, nl)} movimientos con el mismo importe en la ventana: elegí el de fecha más cercana`);
       take([p.b], [p.l], { estrategia: "exacto", certeza: verde ? "verde" : "amarillo", puntaje: p.puntaje, motivos });
     }
   }
@@ -172,7 +182,63 @@ export function matchAll(banco, libros, cfg, decisiones = {}) {
     }
   }
 
-  // --- 4. Tolerancia de importe (solo si se configuró) ---
+  // --- 4. Consolidado: un asiento del mes = todas las líneas del banco de un mismo concepto ---
+  // (p. ej. "Impuesto ley 25.413 del mes" contra las 30 líneas del impuesto). Sin ventana de fechas.
+  if (mc.estrategias.consolidado && extra.clasif) {
+    const ajustable = (m) => { const c = extra.clasif.get(m.id); return c && (c.grupo === "fiscal" || c.grupo === "gasto_bancario" || c.grupo === "financiero"); };
+    for (const l of [...freeL.values()].sort((x, y) => Math.abs(y.cents) - Math.abs(x.cents))) {
+      if (!freeL.has(l.id)) continue;
+      const libres = [...freeB.values()].filter((b) => ajustable(b) && Math.sign(b.cents) === Math.sign(l.cents));
+      const grupos = [...groupBy(libres, (b) => extra.clasif.get(b.id).tipo).entries()];
+      grupos.push(["impuestos y gastos bancarios", libres]); // todo junto, por si el cliente hace un solo asiento
+      for (const [tipo, bs] of grupos) {
+        if (bs.length < 2 || bs.reduce((t, b) => t + b.cents, 0) !== l.cents) continue;
+        if (take(bs, [l], {
+          estrategia: "consolidado", certeza: "amarillo", puntaje: 0.7,
+          motivos: [`el registro del libro (${fmtCents(l.cents)}) es el total del mes de ${bs.length} líneas de ${String(tipo).replace(/_/g, " ")}`],
+        })) break;
+      }
+    }
+  }
+
+  // --- 5. Neto: el banco acredita la venta MENOS arancel/IVA/retenciones que el libro registró aparte ---
+  // (liquidaciones de tarjeta: libro = venta bruta + arancel − IVA del arancel; banco = neto).
+  if (mc.estrategias.neto) {
+    const nt = mc.neto;
+    for (const b of [...freeB.values()].filter((x) => x.cents > 0)) {
+      if (!freeB.has(b.id)) continue;
+      const brutos = [...freeL.values()].filter((x) => x.cents > b.cents && (x.cents - b.cents) * 100 <= x.cents * nt.maxDescuentoPct && inWin(b, x));
+      let hecho = false;
+      for (const x of brutos) {
+        const negs = [...freeL.values()].filter((y) => y.cents < 0 && Math.abs(daysBetween(y.fecha, x.fecha) ?? 99) <= nt.ventanaDias).slice(0, 12);
+        const falta = x.cents - b.cents; // lo que tienen que sumar (en valor absoluto) los descuentos
+        const uno = negs.find((y) => -y.cents === falta);
+        const sol = uno ? [uno] : subsetSums(negs, -falta, nt.maxItems, 1)[0];
+        if (!sol) continue;
+        hecho = take([b], [x, ...sol], {
+          estrategia: "neto", certeza: "amarillo", puntaje: 0.65,
+          motivos: [`el banco acreditó ${fmtCents(b.cents)}: la venta de ${fmtCents(x.cents)} menos ${sol.length} descuento${sol.length > 1 ? "s" : ""} (arancel, IVA, retenciones) registrados en el libro`],
+        });
+        if (hecho) break;
+      }
+    }
+  }
+
+  // --- 6. Importe exacto con fecha lejana (fuera de la ventana pero dentro de la ampliada): amarillo ---
+  if (mc.estrategias.ampliado) {
+    const pairs = [];
+    const byAmount = groupBy([...freeL.values()], (l) => l.cents);
+    for (const b of freeB.values()) for (const l of byAmount.get(b.cents) || []) {
+      const d = daysBetween(l.fecha, b.fecha);
+      if (d != null && Math.abs(d) <= mc.ventanaAmpliadaDias) pairs.push({ b, l, d });
+    }
+    for (const p of pairs.sort((x, y) => Math.abs(x.d) - Math.abs(y.d))) {
+      if (!freeB.has(p.b.id) || !freeL.has(p.l.id)) continue;
+      take([p.b], [p.l], { estrategia: "ampliado", certeza: "amarillo", puntaje: 0.55, motivos: ["importe idéntico", diasTxt(p.d) + " (más que la ventana habitual)"] });
+    }
+  }
+
+  // --- 7. Tolerancia de importe (solo si se configuró) ---
   if (mc.estrategias.tolerancia && mc.toleranciaCents > 0) {
     const pairs = [];
     for (const b of freeB.values()) for (const l of freeL.values()) {

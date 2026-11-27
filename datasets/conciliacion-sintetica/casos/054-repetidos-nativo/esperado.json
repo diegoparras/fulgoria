@@ -1,0 +1,479 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "054-repetidos-nativo",
+ "escenario": "repetidos",
+ "banco": "nativo",
+ "sistema": "importe_signo_tab",
+ "semilla": 5022,
+ "periodo": {
+  "desde": "2026-05-01",
+  "hasta": "2026-05-31"
+ },
+ "cliente": {
+  "nombre": "Química Litoral SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Sueldos idénticos el mismo día, alquileres y cuotas iguales: la ambigüedad que nunca debe quedar en verde.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2345733554,
+    "bancoCierre": 998420408,
+    "librosApertura": 2345733554,
+    "librosCierre": 1006140208
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-05-04",
+     "cents": -103700000,
+     "descripcion": "PAGO DE HABERES MARTINA GÓMEZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-05-04",
+     "cents": -103700000,
+     "descripcion": "PAGO DE HABERES MATEO BENÍTEZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-05-04",
+     "cents": -103700000,
+     "descripcion": "PAGO DE HABERES LUCÍA ORTIZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-05-04",
+     "cents": -103700000,
+     "descripcion": "PAGO DE HABERES JOAQUÍN PEREYRA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-05-04",
+     "cents": -103700000,
+     "descripcion": "PAGO DE HABERES PAULA CASTRO",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-05-04",
+     "cents": -103700000,
+     "descripcion": "PAGO DE HABERES LUCAS FERNÁNDEZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-05-08",
+     "cents": -12273306,
+     "descripcion": "TRANSFERENCIA A TERCEROS IMPRENTA TINTA FRESCA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-05-11",
+     "cents": -108800000,
+     "descripcion": "TRANSFERENCIA A TERCEROS LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-05-11",
+     "cents": 12100000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS COOPERATIVA HORNERO LTDA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-05-11",
+     "cents": -145200,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-05-12",
+     "cents": -288320040,
+     "descripcion": "TRANSFERENCIA A TERCEROS QUÍMICA LITORAL SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-05-13",
+     "cents": -247600000,
+     "descripcion": "TRANSFERENCIA A TERCEROS LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-05-14",
+     "cents": 12100000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS BODEGA PIEDRA NEGRA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-05-14",
+     "cents": -145200,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-05-15",
+     "cents": -108800000,
+     "descripcion": "TRANSFERENCIA A TERCEROS TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-05-19",
+     "cents": 12100000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS PANIFICADORA LA ESPIGA SRL - 0003-00000490",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-05-19",
+     "cents": -145200,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-05-22",
+     "cents": 12100000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS HOTEL CERRO AZUL SA - 0003-00000494",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-05-22",
+     "cents": -145200,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-05-25",
+     "cents": -5900000,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-05-25",
+     "cents": -1239000,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-05-04",
+     "cents": -103700000,
+     "descripcion": "Sueldo abril - Martina Gómez",
+     "comprobante": "",
+     "asiento": 254
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-05-04",
+     "cents": -103700000,
+     "descripcion": "Sueldo abril - Mateo Benítez",
+     "comprobante": "",
+     "asiento": 255
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-05-04",
+     "cents": -103700000,
+     "descripcion": "Sueldo abril - Lucía Ortiz",
+     "comprobante": "",
+     "asiento": 256
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-05-04",
+     "cents": -103700000,
+     "descripcion": "Sueldo abril - Joaquín Pereyra",
+     "comprobante": "",
+     "asiento": 257
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-05-04",
+     "cents": -103700000,
+     "descripcion": "Sueldo abril - Paula Castro",
+     "comprobante": "",
+     "asiento": 258
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-05-04",
+     "cents": -103700000,
+     "descripcion": "Sueldo abril - Lucas Fernández",
+     "comprobante": "",
+     "asiento": 259
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-05-07",
+     "cents": 12100000,
+     "descripcion": "Cobranza Cooperativa Hornero Ltda Rec. 0001-00000497",
+     "comprobante": "0002-00000496",
+     "asiento": 265
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-05-08",
+     "cents": -12273306,
+     "descripcion": "Pago a proveedor Imprenta Tinta Fresca SRL",
+     "comprobante": "OP 0001-00000500",
+     "asiento": 268
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-05-11",
+     "cents": -108800000,
+     "descripcion": "Pago a proveedor Librería El Faro SA",
+     "comprobante": "OP 0001-00000489",
+     "asiento": 261
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-05-11",
+     "cents": -288320040,
+     "descripcion": "Transferencia a Química Litoral SRL OP 0001-00000499",
+     "comprobante": "OP 0001-00000499",
+     "asiento": 267
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-05-13",
+     "cents": 12100000,
+     "descripcion": "Cobranza Bodega Piedra Negra SA Rec. 0001-00000493",
+     "comprobante": "0002-00000492",
+     "asiento": 263
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-05-13",
+     "cents": -247600000,
+     "descripcion": "Pago a proveedor Librería El Faro SA",
+     "comprobante": "OP 0001-00000498",
+     "asiento": 266
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-05-15",
+     "cents": -108800000,
+     "descripcion": "Pago a proveedor Transporte Ruta 3 SRL",
+     "comprobante": "OP 0001-00000488",
+     "asiento": 260
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-05-18",
+     "cents": 12100000,
+     "descripcion": "Cobranza cliente Panificadora La Espiga SRL",
+     "comprobante": "0003-00000490",
+     "asiento": 262
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-05-20",
+     "cents": 12100000,
+     "descripcion": "Cobro FC A 0003-00000494 Hotel Cerro Azul SA",
+     "comprobante": "0003-00000494",
+     "asiento": 264
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B19",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

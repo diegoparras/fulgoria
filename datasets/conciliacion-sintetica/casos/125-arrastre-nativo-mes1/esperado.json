@@ -1,0 +1,625 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "125-arrastre-nativo-mes1",
+ "escenario": "arrastre",
+ "banco": "nativo",
+ "sistema": "comillas_coma",
+ "semilla": 50002,
+ "periodo": {
+  "desde": "2026-01-01",
+  "hasta": "2026-01-31"
+ },
+ "cliente": {
+  "nombre": "Servicios Médicos Lomas SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 2,
+ "notas": "Mes 1 de 2: deja cheques pendientes, un depósito en tránsito y un crédito sin identificar para el mes siguiente.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 737271265,
+    "bancoCierre": 921227111,
+    "librosApertura": 737271265,
+    "librosCierre": 1008860721
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-01-05",
+     "cents": -259400000,
+     "descripcion": "TRANSFERENCIA A TERCEROS BODEGA PIEDRA NEGRA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-01-05",
+     "cents": -1556400,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-01-06",
+     "cents": 278634000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS PANIFICADORA LA ESPIGA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-01-06",
+     "cents": -1671804,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-01-06",
+     "cents": -5572680,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-01-12",
+     "cents": 444510824,
+     "descripcion": "TRANSFERENCIA DE TERCEROS MUEBLES QUEBRACHO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-01-12",
+     "cents": -2667065,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-01-12",
+     "cents": -8890216,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-01-12",
+     "cents": -226902457,
+     "descripcion": "TRANSFERENCIA A TERCEROS SERVICIOS MÉDICOS LOMAS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-01-12",
+     "cents": -1361415,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-01-12",
+     "cents": -226718609,
+     "descripcion": "TRANSFERENCIA A TERCEROS ESTUDIO GRÁFICO COBALTO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-01-12",
+     "cents": -1360312,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-01-14",
+     "cents": -96700000,
+     "descripcion": "TRANSFERENCIA A TERCEROS BODEGA PIEDRA NEGRA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-01-14",
+     "cents": -580200,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-01-19",
+     "cents": 166107038,
+     "descripcion": "TRANSFERENCIA DE TERCEROS HOTEL CERRO AZUL SA - 0002-00000431",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-01-19",
+     "cents": -996642,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-01-19",
+     "cents": -3322141,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-01-19",
+     "cents": -143252000,
+     "descripcion": "TRANSFERENCIA A TERCEROS ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-01-19",
+     "cents": -859512,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-01-19",
+     "cents": 12129268,
+     "descripcion": "TRANSFERENCIA DE TERCEROS CLIENTE SIN DATOS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-01-26",
+     "cents": 387200000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TRANSPORTE RUTA 3 SRL - 0002-00000437",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-01-26",
+     "cents": -2323200,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-01-26",
+     "cents": -7744000,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-01-26",
+     "cents": -180613000,
+     "descripcion": "TRANSFERENCIA A TERCEROS FRIGORÍFICO PAMPA ALTA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-01-26",
+     "cents": -1083678,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-01-26",
+     "cents": -29329288,
+     "descripcion": "DEB AUT AGUAS URBANAS",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-01-26",
+     "cents": -175976,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-01-26",
+     "cents": -2333675,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-01-26",
+     "cents": -490072,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-01-26",
+     "cents": -14002,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-01-26",
+     "cents": -2940,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-01-27",
+     "cents": 104000000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS HOTEL CERRO AZUL SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-01-27",
+     "cents": -624000,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-01-27",
+     "cents": -2080000,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-01-05",
+     "cents": 278634000,
+     "descripcion": "Cobranza cliente Panificadora La Espiga SRL",
+     "comprobante": "0003-00000435",
+     "asiento": 215
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-01-05",
+     "cents": -259400000,
+     "descripcion": "Transferencia a Bodega Piedra Negra SA OP 0001-00000440",
+     "comprobante": "OP 0001-00000440",
+     "asiento": 218
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-01-09",
+     "cents": 444510824,
+     "descripcion": "Cobranza cliente Muebles Quebracho SAS",
+     "comprobante": "0003-00000433",
+     "asiento": 214
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-01-12",
+     "cents": -226902457,
+     "descripcion": "Pago Servicios Médicos Lomas SRL OP 0001-00000439",
+     "comprobante": "OP 0001-00000439",
+     "asiento": 217
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-01-12",
+     "cents": -226718609,
+     "descripcion": "Transferencia a Estudio Gráfico Cobalto SAS OP 0001-00000441",
+     "comprobante": "OP 0001-00000441",
+     "asiento": 219
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-01-14",
+     "cents": -96700000,
+     "descripcion": "Pago Bodega Piedra Negra SA OP 0001-00000443",
+     "comprobante": "OP 0001-00000443",
+     "asiento": 221
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-01-15",
+     "cents": 166107038,
+     "descripcion": "Cobranza cliente Hotel Cerro Azul SA",
+     "comprobante": "0002-00000431",
+     "asiento": 213
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-01-19",
+     "cents": -143252000,
+     "descripcion": "Pago Óptica Mirador SRL OP 0001-00000442",
+     "comprobante": "OP 0001-00000442",
+     "asiento": 220
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-01-23",
+     "cents": 387200000,
+     "descripcion": "Cobranza cliente Transporte Ruta 3 SRL",
+     "comprobante": "0002-00000437",
+     "asiento": 216
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-01-23",
+     "cents": -29329288,
+     "descripcion": "Aguas Urbanas - débito automático",
+     "comprobante": "",
+     "asiento": 223
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-01-26",
+     "cents": -180613000,
+     "descripcion": "Pago Frigorífico Pampa Alta SA OP 0001-00000444",
+     "comprobante": "OP 0001-00000444",
+     "asiento": 222
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-01-27",
+     "cents": 104000000,
+     "descripcion": "Cobranza cliente Hotel Cerro Azul SA",
+     "comprobante": "0003-00000429",
+     "asiento": 212
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-01-27",
+     "cents": -22341811,
+     "descripcion": "ECHEQ N° 00011768 a Bodega Piedra Negra SA",
+     "comprobante": "CH 00011768",
+     "asiento": 224
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-01-29",
+     "cents": 76394759,
+     "descripcion": "Depósito cheques de terceros",
+     "comprobante": "",
+     "asiento": 225
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B32"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B24"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B26"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L13",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L14",
+     "lado": "libros",
+     "tipo": "deposito_transito"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B29",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B33",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B34",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B7",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B5",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B19",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B27",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B31",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

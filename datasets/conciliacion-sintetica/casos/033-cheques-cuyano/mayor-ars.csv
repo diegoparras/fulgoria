@@ -1,0 +1,34 @@
+Empresa: Distribuidora Los Álamos SRL
+Cuenta: 1.1.1.02 Banco Cuyano de Inversión
+Período: 01/04/2026 al 30/04/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,2814000.00
+2026-04-01,ECHEQ N° 00085484 a Librería El Faro SA,,2150461.44,663538.56
+2026-04-01,ECHEQ N° 00085525 a Frigorífico Pampa Alta SA,,447000.00,216538.56
+2026-04-02,Cheque N° 00085471 a Viñedos Altos de Cuyo SA,,1596800.00,-1380261.44
+2026-04-02,Cheque N° 00085524 a Farmacia Del Parque SCS,,1609873.26,-2990134.70
+2026-04-03,ECHEQ N° 00085490 a Óptica Mirador SRL,,633179.43,-3623314.13
+2026-04-06,Cheque N° 00085481 a Farmacia Del Parque SCS,,1975860.00,-5599174.13
+2026-04-06,Depósito cheque cliente,1315873.09,,-4283301.04
+2026-04-07,Depósito cheque N° 00085527 cliente Panificadora La Espiga SRL,69055.60,,-4214245.44
+2026-04-08,Cheque N° 00085466 a Frigorífico Pampa Alta SA,,746000.00,-4960245.44
+2026-04-08,ECHEQ N° 00085470 a Agro Sur del Plata SA,,1257000.00,-6217245.44
+2026-04-08,Cheque N° 00085498 a Constructora Delta Norte SRL,,1158000.00,-7375245.44
+2026-04-08,Cheque N° 00085502 a Agro Sur del Plata SA,,628650.31,-8003895.75
+2026-04-09,Cobranza Logística Andina SAS Rec. 0001-00000826,1633436.99,,-6370458.76
+2026-04-13,Cheque N° 00085477 a Distribuidora Los Álamos SRL,,997390.00,-7367848.76
+2026-04-14,Cobranza cliente Ferretería El Tornillo SRL,3616941.12,,-3750907.64
+2026-04-15,Cheque N° 00085462 a Textil Río Bermejo SA,,2279200.00,-6030107.64
+2026-04-15,Cheque N° 00085485 a Cooperativa Hornero Ltda,,1392028.72,-7422136.36
+2026-04-20,Cheque N° 00085492 a Distribuidora Los Álamos SRL,,1126000.00,-8548136.36
+2026-04-20,ECHEQ N° 00085508 a Panificadora La Espiga SRL,,770000.00,-9318136.36
+2026-04-22,Cheque N° 00085465 a Distribuidora Los Álamos SRL,,1161000.00,-10479136.36
+2026-04-23,ECHEQ N° 00085511 a Imprenta Tinta Fresca SRL,,242493.25,-10721629.61
+2026-04-24,Cheque N° 00085505 a Transporte Ruta 3 SRL,,1388000.00,-12109629.61
+2026-04-24,Cheque N° 00085514 a Distribuidora Los Álamos SRL,,123605.81,-12233235.42
+2026-04-25,Cheque N° 00085521 a Imprenta Tinta Fresca SRL,,858627.60,-13091863.02
+2026-04-27,Cheque N° 00085499 a Distribuidora Los Álamos SRL,,2156230.00,-15248093.02
+2026-04-27,Cobranza cliente Tecnología Austral SAS,3193780.00,,-12054313.02
+2026-04-27,Cobranza Estudio Gráfico Cobalto SAS Rec. 0001-00000828,1885485.22,,-10168827.80
+2026-04-27,Cobro FC A 0002-00000829 Textil Río Bermejo SA,1670700.00,,-8498127.80

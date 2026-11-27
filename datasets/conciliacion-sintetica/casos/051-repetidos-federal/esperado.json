@@ -1,0 +1,431 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "051-repetidos-federal",
+ "escenario": "repetidos",
+ "banco": "federal",
+ "sistema": "debe_haber_ar",
+ "semilla": 5011,
+ "periodo": {
+  "desde": "2026-10-01",
+  "hasta": "2026-10-31"
+ },
+ "cliente": {
+  "nombre": "Imprenta Tinta Fresca SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Sueldos idénticos el mismo día, alquileres y cuotas iguales: la ambigüedad que nunca debe quedar en verde.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2296000000,
+    "bancoCierre": 1057922872,
+    "librosApertura": 2296000000,
+    "librosCierre": 1063246872
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-10-01",
+     "cents": -102783043,
+     "descripcion": "ACRED HABERES JOAQUÍN PEREYRA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-10-01",
+     "cents": -102783043,
+     "descripcion": "ACRED HABERES MATEO BENÍTEZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-10-01",
+     "cents": -102783043,
+     "descripcion": "ACRED HABERES IGNACIO VERA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-10-01",
+     "cents": -102783043,
+     "descripcion": "ACRED HABERES CAMILA HERRERA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-10-01",
+     "cents": -102783043,
+     "descripcion": "ACRED HABERES AGUSTÍN MOLINA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-10-01",
+     "cents": -102783043,
+     "descripcion": "ACRED HABERES LUCAS FERNÁNDEZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-10-01",
+     "cents": -102783043,
+     "descripcion": "ACRED HABERES JULIETA MEDINA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-10-01",
+     "cents": -102783043,
+     "descripcion": "ACRED HABERES NICOLÁS ROMERO",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-10-02",
+     "cents": 11700000,
+     "descripcion": "TRF INMEDIATA RECIB 30508561349",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-10-12",
+     "cents": -105600000,
+     "descripcion": "TRF INMEDIATA ENV 30541728305",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-10-14",
+     "cents": -58094392,
+     "descripcion": "TRF INMEDIATA ENV 30637650900",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-10-15",
+     "cents": -23200000,
+     "descripcion": "TRF INMEDIATA ENV 30576125689",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-10-19",
+     "cents": 11700000,
+     "descripcion": "TRF INMEDIATA RECIB 30682157905",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-10-20",
+     "cents": -188900000,
+     "descripcion": "TRF INMEDIATA ENV 33634868688",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-10-22",
+     "cents": -58094392,
+     "descripcion": "TRF INMEDIATA ENV 33719984733",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-10-27",
+     "cents": -4400000,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-10-27",
+     "cents": -924000,
+     "descripcion": "I.V.A. TASA GENERAL",
+     "tipo": "iva_comision"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-10-01",
+     "cents": -102783043,
+     "descripcion": "Sueldo septiembre - Joaquín Pereyra",
+     "comprobante": "",
+     "asiento": 82
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-10-01",
+     "cents": -102783043,
+     "descripcion": "Sueldo septiembre - Mateo Benítez",
+     "comprobante": "",
+     "asiento": 83
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-10-01",
+     "cents": -102783043,
+     "descripcion": "Sueldo septiembre - Ignacio Vera",
+     "comprobante": "",
+     "asiento": 84
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-10-01",
+     "cents": -102783043,
+     "descripcion": "Sueldo septiembre - Camila Herrera",
+     "comprobante": "",
+     "asiento": 85
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-10-01",
+     "cents": -102783043,
+     "descripcion": "Sueldo septiembre - Agustín Molina",
+     "comprobante": "",
+     "asiento": 86
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-10-01",
+     "cents": -102783043,
+     "descripcion": "Sueldo septiembre - Lucas Fernández",
+     "comprobante": "",
+     "asiento": 87
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-10-01",
+     "cents": -102783043,
+     "descripcion": "Sueldo septiembre - Julieta Medina",
+     "comprobante": "",
+     "asiento": 88
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-10-01",
+     "cents": -102783043,
+     "descripcion": "Sueldo septiembre - Nicolás Romero",
+     "comprobante": "",
+     "asiento": 89
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-10-01",
+     "cents": 11700000,
+     "descripcion": "Cobro FC A 0003-00000691 Textil Río Bermejo SA",
+     "comprobante": "0003-00000691",
+     "asiento": 93
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-10-09",
+     "cents": -105600000,
+     "descripcion": "Transferencia a Bodega Piedra Negra SA OP 0001-00000694",
+     "comprobante": "OP 0001-00000694",
+     "asiento": 95
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-10-14",
+     "cents": -58094392,
+     "descripcion": "Pago a proveedor Tecnología Austral SAS",
+     "comprobante": "OP 0001-00000687",
+     "asiento": 90
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-10-15",
+     "cents": -23200000,
+     "descripcion": "Transferencia a Metalúrgica San Telmo SRL OP 0001-00000693",
+     "comprobante": "OP 0001-00000693",
+     "asiento": 94
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-10-19",
+     "cents": 11700000,
+     "descripcion": "Cobranza Distribuidora Los Álamos SRL Rec. 0001-00000690",
+     "comprobante": "0002-00000689",
+     "asiento": 92
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-10-20",
+     "cents": -188900000,
+     "descripcion": "Transferencia a Servicios Médicos Lomas SRL OP 0001-00000695",
+     "comprobante": "OP 0001-00000695",
+     "asiento": 96
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-10-21",
+     "cents": -58094392,
+     "descripcion": "Transferencia a Logística Andina SAS OP 0001-00000688",
+     "comprobante": "OP 0001-00000688",
+     "asiento": 91
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

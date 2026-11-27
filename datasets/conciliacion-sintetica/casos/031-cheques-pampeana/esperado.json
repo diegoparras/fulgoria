@@ -1,0 +1,741 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "031-cheques-pampeana",
+ "escenario": "cheques",
+ "banco": "pampeana",
+ "sistema": "debe_haber_ar",
+ "semilla": 3031,
+ "periodo": {
+  "desde": "2026-08-01",
+  "hasta": "2026-08-31"
+ },
+ "cliente": {
+  "nombre": "Óptica Mirador SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Muchos cheques emitidos que se debitan días después, varios pendientes al cierre y un cheque de tercero rechazado.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 1652100000,
+    "bancoCierre": 1551904783,
+    "librosApertura": 1652100000,
+    "librosCierre": 435883734
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-08-04",
+     "cents": 53600000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE CONSTRUCTORA DELTA NORTE SRL CUIT 30-58976874-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-08-04",
+     "cents": -321600,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-08-05",
+     "cents": 168329800,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TECNOLOGÍA AUSTRAL SAS CUIT 33-60028146-7 REF 0002-00000531",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-08-05",
+     "cents": -1009979,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-08-05",
+     "cents": 98683242,
+     "descripcion": "DEPOSITO DE CHEQUES",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-08-05",
+     "cents": -592099,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-08-07",
+     "cents": 44584933,
+     "descripcion": "DEPOSITO DE CHEQUES",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-08-10",
+     "cents": 221400000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 30-68974195-5",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-08-10",
+     "cents": -1328400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-08-10",
+     "cents": -44584933,
+     "descripcion": "CHEQUE RECHAZADO NRO 00046624",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-08-10",
+     "cents": -1376621,
+     "descripcion": "COMISION CHEQUE RECHAZADO",
+     "tipo": "comision"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-08-11",
+     "cents": -205500000,
+     "descripcion": "CHEQUE CAMARA NRO 00046581",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-08-11",
+     "cents": -1233000,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-08-17",
+     "cents": -228800000,
+     "descripcion": "CHEQUE CAMARA NRO 00046588",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-08-17",
+     "cents": -1372800,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-08-24",
+     "cents": -211590000,
+     "descripcion": "ECHEQ PAGADO NRO 00046574",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-08-24",
+     "cents": -1269540,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-08-24",
+     "cents": -124612535,
+     "descripcion": "CHEQUE CAMARA NRO 00046583",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-08-24",
+     "cents": -747675,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-08-24",
+     "cents": 311150363,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LIBRERÍA EL FARO SA CUIT 30-56419476-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-08-24",
+     "cents": -1866902,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-08-24",
+     "cents": 343391382,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TECNOLOGÍA AUSTRAL SAS CUIT 30-72731004-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-08-24",
+     "cents": -2060348,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-08-25",
+     "cents": -125682000,
+     "descripcion": "ECHEQ PAGADO NRO 00046575",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-08-25",
+     "cents": -754092,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-08-26",
+     "cents": -181378000,
+     "descripcion": "CHEQUE CAMARA NRO 00046562",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-08-26",
+     "cents": -1088268,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-08-31",
+     "cents": -198108454,
+     "descripcion": "ECHEQ PAGADO NRO 00046566",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-08-31",
+     "cents": -1188651,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-08-31",
+     "cents": -4000000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-08-31",
+     "cents": -840000,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-08-31",
+     "cents": -24000,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-08-31",
+     "cents": -5040,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-08-03",
+     "cents": -132100000,
+     "descripcion": "Cheque N° 00046612 a Estudio Gráfico Cobalto SAS",
+     "comprobante": "CH 00046612",
+     "asiento": 238
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-08-03",
+     "cents": -46290706,
+     "descripcion": "ECHEQ N° 00046617 a Textil Río Bermejo SA",
+     "comprobante": "CH 00046617",
+     "asiento": 239
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-08-03",
+     "cents": 168329800,
+     "descripcion": "Cobro FC A 0002-00000531 Tecnología Austral SAS",
+     "comprobante": "0002-00000531",
+     "asiento": 240
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-08-03",
+     "cents": 53600000,
+     "descripcion": "Cobranza cliente Constructora Delta Norte SRL",
+     "comprobante": "0002-00000539",
+     "asiento": 244
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-08-03",
+     "cents": 98683242,
+     "descripcion": "Depósito cheque cliente",
+     "comprobante": "",
+     "asiento": 245
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-08-05",
+     "cents": -228800000,
+     "descripcion": "Cheque N° 00046588 a Viñedos Altos de Cuyo SA",
+     "comprobante": "CH 00046588",
+     "asiento": 232
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-08-06",
+     "cents": -181378000,
+     "descripcion": "Cheque N° 00046562 a Lácteos Valle Verde SA",
+     "comprobante": "CH 00046562",
+     "asiento": 223
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-08-06",
+     "cents": -205500000,
+     "descripcion": "Cheque N° 00046581 a Estudio Gráfico Cobalto SAS",
+     "comprobante": "CH 00046581",
+     "asiento": 228
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-08-06",
+     "cents": 44584933,
+     "descripcion": "Depósito cheque N° 00046624 cliente Metalúrgica San Telmo SRL",
+     "comprobante": "CH 00046624",
+     "asiento": 246
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-08-07",
+     "cents": -211590000,
+     "descripcion": "ECHEQ N° 00046574 a Química Litoral SRL",
+     "comprobante": "CH 00046574",
+     "asiento": 226
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-08-10",
+     "cents": 221400000,
+     "descripcion": "Cobranza Hotel Cerro Azul SA Rec. 0001-00000534",
+     "comprobante": "0003-00000533",
+     "asiento": 241
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-08-11",
+     "cents": -125682000,
+     "descripcion": "ECHEQ N° 00046575 a Hotel Cerro Azul SA",
+     "comprobante": "CH 00046575",
+     "asiento": 227
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-08-12",
+     "cents": -198108454,
+     "descripcion": "ECHEQ N° 00046566 a Distribuidora Los Álamos SRL",
+     "comprobante": "CH 00046566",
+     "asiento": 224
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-08-17",
+     "cents": -124612535,
+     "descripcion": "Cheque N° 00046583 a Estudio Gráfico Cobalto SAS",
+     "comprobante": "CH 00046583",
+     "asiento": 229
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-08-20",
+     "cents": 343391382,
+     "descripcion": "Cobranza cliente Tecnología Austral SAS",
+     "comprobante": "0003-00000537",
+     "asiento": 243
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-08-21",
+     "cents": -132800385,
+     "descripcion": "Cheque N° 00046587 a Muebles Quebracho SAS",
+     "comprobante": "CH 00046587",
+     "asiento": 231
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-08-24",
+     "cents": -69600000,
+     "descripcion": "Cheque N° 00046585 a Panificadora La Espiga SRL",
+     "comprobante": "CH 00046585",
+     "asiento": 230
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-08-24",
+     "cents": -202140421,
+     "descripcion": "Cheque N° 00046589 a Frigorífico Pampa Alta SA",
+     "comprobante": "CH 00046589",
+     "asiento": 233
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-08-24",
+     "cents": 311150363,
+     "descripcion": "Cobro FC A 0002-00000535 Librería El Faro SA",
+     "comprobante": "0002-00000535",
+     "asiento": 242
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-08-25",
+     "cents": -249820763,
+     "descripcion": "ECHEQ N° 00046592 a Metalúrgica San Telmo SRL",
+     "comprobante": "CH 00046592",
+     "asiento": 234
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-08-26",
+     "cents": -88500000,
+     "descripcion": "ECHEQ N° 00046599 a Óptica Mirador SRL",
+     "comprobante": "CH 00046599",
+     "asiento": 235
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-08-26",
+     "cents": -20810043,
+     "descripcion": "Cheque N° 00046605 a Óptica Mirador SRL",
+     "comprobante": "CH 00046605",
+     "asiento": 237
+    },
+    {
+     "id": "L23",
+     "fecha": "2026-08-27",
+     "cents": -118061000,
+     "descripcion": "Cheque N° 00046571 a Muebles Quebracho SAS",
+     "comprobante": "CH 00046571",
+     "asiento": 225
+    },
+    {
+     "id": "L24",
+     "fecha": "2026-08-27",
+     "cents": -121561679,
+     "descripcion": "Cheque N° 00046600 a Metalúrgica San Telmo SRL",
+     "comprobante": "CH 00046600",
+     "asiento": 236
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B26"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B28"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B24"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B20"
+     ],
+     "libros": [
+      "L19"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B22"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L23",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L17",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L16",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L18",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L20",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L21",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L24",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L22",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L1",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L2",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "debito_no_identificado"
+    },
+    {
+     "id": "B11",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B31",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B27",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B29",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B19",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B15",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B9",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B32",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B33",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

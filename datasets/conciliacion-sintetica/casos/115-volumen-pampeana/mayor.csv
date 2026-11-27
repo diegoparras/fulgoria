@@ -1,0 +1,238 @@
+Empresa: Librería El Faro SA
+Cuenta: 1.1.1.02 Cooperativa de Crédito Pampeana
+Período: 01/10/2026 al 31/10/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,1468669.66
+2026-10-01,Cobro FC A 0001-00000121 Distribuidora Los Álamos SRL,564000.00,,2032669.66
+2026-10-01,Cobranza cliente Cooperativa Hornero Ltda,564620.00,,2597289.66
+2026-10-01,Cobranza Hotel Cerro Azul SA Rec. 0001-00000236,1131000.00,,3728289.66
+2026-10-01,Pago Hotel Cerro Azul SA OP 0001-00000303,,1684189.60,2044100.06
+2026-10-01,Transferencia a Lácteos Valle Verde SA OP 0001-00000327,,398716.47,1645383.59
+2026-10-01,Pago a proveedor Tecnología Austral SAS,,2284000.00,-638616.41
+2026-10-01,ECHEQ N° 00015497 a Química Litoral SRL,,2355020.08,-2993636.49
+2026-10-01,Cobranza Nicolás Romero - efectivo a depositar,581000.00,,-2412636.49
+2026-10-01,Cobranza Agustín Molina - efectivo a depositar,27203.21,,-2385433.28
+2026-10-01,Cobranza Martina Gómez - efectivo a depositar,553357.66,,-1832075.62
+2026-10-02,Cobro FC A 0003-00000115 Bodega Piedra Negra SA,3943000.00,,2110924.38
+2026-10-02,Cobranza Farmacia Del Parque SCS Rec. 0001-00000238,4161512.72,,6272437.10
+2026-10-02,Transferencia a Metalúrgica San Telmo SRL OP 0001-00000364,,1032100.41,5240336.69
+2026-10-02,Pago Panificadora La Espiga SRL OP 0001-00000369,,758750.00,4481586.69
+2026-10-02,Cheque N° 00015431 a Viñedos Altos de Cuyo SA,,1286339.89,3195246.80
+2026-10-02,Cheque N° 00015490 a Bodega Piedra Negra SA,,757920.00,2437326.80
+2026-10-05,Cobranza cliente Bodega Piedra Negra SA,1794000.00,,4231326.80
+2026-10-05,Cobranza cliente Transporte Ruta 3 SRL,445000.00,,4676326.80
+2026-10-05,Cobranza cliente Metalúrgica San Telmo SRL,852411.60,,5528738.40
+2026-10-05,Cobranza Hotel Cerro Azul SA Rec. 0001-00000190,3572000.00,,9100738.40
+2026-10-05,Cobranza Estudio Gráfico Cobalto SAS Rec. 0001-00000232,2882471.71,,11983210.11
+2026-10-05,Cobro FC A 0002-00000259 Viñedos Altos de Cuyo SA,929000.00,,12912210.11
+2026-10-05,Cobranza cliente Constructora Delta Norte SRL,2193259.75,,15105469.86
+2026-10-05,Cobranza cliente Servicios Médicos Lomas SRL,89000.00,,15194469.86
+2026-10-05,Cobranza cliente Muebles Quebracho SAS,4062000.00,,19256469.86
+2026-10-05,Pago Ferretería El Tornillo SRL OP 0001-00000313,,1892000.00,17364469.86
+2026-10-05,Pago Panificadora La Espiga SRL OP 0001-00000315,,2746000.00,14618469.86
+2026-10-05,Pago a proveedor Logística Andina SAS,,701630.45,13916839.41
+2026-10-05,Pago Textil Río Bermejo SA OP 0001-00000330,,2229000.00,11687839.41
+2026-10-05,Pago a proveedor Logística Andina SAS,,78800.00,11609039.41
+2026-10-05,Transferencia a Imprenta Tinta Fresca SRL OP 0001-00000337,,2707687.58,8901351.83
+2026-10-05,Pago a proveedor Imprenta Tinta Fresca SRL,,1232000.00,7669351.83
+2026-10-05,Transferencia a Frigorífico Pampa Alta SA OP 0001-00000345,,842547.28,6826804.55
+2026-10-05,Pago Óptica Mirador SRL OP 0001-00000358,,1021000.00,5805804.55
+2026-10-05,Cheque N° 00015468 a Bodega Piedra Negra SA,,807540.00,4998264.55
+2026-10-05,Cheque N° 00015478 a Logística Andina SAS,,1864014.45,3134250.10
+2026-10-05,Cheque N° 00015484 a Agro Sur del Plata SA,,1634700.00,1499550.10
+2026-10-05,Sueldo septiembre - Martina Gómez,,1327000.00,172550.10
+2026-10-05,Sueldo septiembre - Santiago Rojas,,1789697.78,-1617147.68
+2026-10-05,Sueldo septiembre - Ignacio Vera,,2376000.00,-3993147.68
+2026-10-05,Sueldo septiembre - Joaquín Pereyra,,1663000.00,-5656147.68
+2026-10-05,Sueldo septiembre - Paula Castro,,2190294.64,-7846442.32
+2026-10-05,Sueldo septiembre - Sofía Ramírez,,2314640.00,-10161082.32
+2026-10-05,Sueldo septiembre - Camila Herrera,,1242290.00,-11403372.32
+2026-10-06,Cobranza cliente Cooperativa Hornero Ltda,4305000.00,,-7098372.32
+2026-10-06,Cobranza Panificadora La Espiga SRL Rec. 0001-00000138,2959000.00,,-4139372.32
+2026-10-06,Cobranza Viñedos Altos de Cuyo SA Rec. 0001-00000160,1841287.43,,-2298084.89
+2026-10-06,Cobranza Viñedos Altos de Cuyo SA Rec. 0001-00000200,792890.00,,-1505194.89
+2026-10-06,Cobro FC A 0002-00000265 Ferretería El Tornillo SRL,2481912.57,,976717.68
+2026-10-06,ECHEQ N° 00015416 a Muebles Quebracho SAS,,1018650.00,-41932.32
+2026-10-06,Cheque N° 00015436 a Hotel Cerro Azul SA,,115570.00,-157502.32
+2026-10-06,Cheque N° 00015489 a Metalúrgica San Telmo SRL,,2445290.00,-2602792.32
+2026-10-07,Cobranza Tecnología Austral SAS Rec. 0001-00000178,2901910.00,,299117.68
+2026-10-07,Cobranza cliente Ferretería El Tornillo SRL,654444.96,,953562.64
+2026-10-07,Cobranza cliente Estudio Gráfico Cobalto SAS,2392510.00,,3346072.64
+2026-10-07,ECHEQ N° 00015455 a Transporte Ruta 3 SRL,,1177316.80,2168755.84
+2026-10-07,Cobranza Camila Herrera - efectivo a depositar,840194.46,,3008950.30
+2026-10-07,Cobranza Joaquín Pereyra - efectivo a depositar,705293.71,,3714244.01
+2026-10-08,Cobro FC A 0003-00000111 Ferretería El Tornillo SRL,468900.00,,4183144.01
+2026-10-08,Cobro FC A 0002-00000143 Servicios Médicos Lomas SRL,513000.00,,4696144.01
+2026-10-08,Cobranza Farmacia Del Parque SCS Rec. 0001-00000174,1963000.00,,6659144.01
+2026-10-08,Cobranza Tecnología Austral SAS Rec. 0001-00000292,1681830.00,,8340974.01
+2026-10-08,Pago Agro Sur del Plata SA OP 0001-00000356,,2096460.00,6244514.01
+2026-10-08,Cobranza Paula Castro - efectivo a depositar,725800.00,,6970314.01
+2026-10-09,Cobranza Tecnología Austral SAS Rec. 0001-00000214,4060560.00,,11030874.01
+2026-10-09,Cobro FC A 0002-00000279 Metalúrgica San Telmo SRL,3025000.00,,14055874.01
+2026-10-09,Pago a proveedor Transporte Ruta 3 SRL,,1028760.00,13027114.01
+2026-10-09,Pago a proveedor Frigorífico Pampa Alta SA,,2984530.00,10042584.01
+2026-10-09,Pago a proveedor Tecnología Austral SAS,,554763.85,9487820.16
+2026-10-09,Pago a proveedor Tecnología Austral SAS,,2298653.59,7189166.57
+2026-10-09,Cheque N° 00015474 a Metalúrgica San Telmo SRL,,1538954.05,5650212.52
+2026-10-09,Cobranza Lucas Fernández - efectivo a depositar,736446.83,,6386659.35
+2026-10-11,Cobranza Santiago Rojas - efectivo a depositar,323500.00,,6710159.35
+2026-10-11,Cobranza Franco Silva - efectivo a depositar,261053.41,,6971212.76
+2026-10-11,Cobranza Lucía Ortiz - efectivo a depositar,340797.04,,7312009.80
+2026-10-12,Cobranza cliente Viñedos Altos de Cuyo SA,2457807.88,,9769817.68
+2026-10-12,Cobro FC A 0001-00000131 Tecnología Austral SAS,1683138.34,,11452956.02
+2026-10-12,Cobranza Viñedos Altos de Cuyo SA Rec. 0001-00000146,2411713.22,,13864669.24
+2026-10-12,Cobranza Lácteos Valle Verde SA Rec. 0001-00000164,1643533.09,,15508202.33
+2026-10-12,Cobro FC A 0002-00000165 Panificadora La Espiga SRL,3957156.43,,19465358.76
+2026-10-12,Cobro FC A 0003-00000171 Química Litoral SRL,635900.00,,20101258.76
+2026-10-12,Cobro FC A 0002-00000209 Química Litoral SRL,1894610.00,,21995868.76
+2026-10-12,Cobranza Constructora Delta Norte SRL Rec. 0001-00000222,905815.27,,22901684.03
+2026-10-12,Cobranza Tecnología Austral SAS Rec. 0001-00000234,1309820.91,,24211504.94
+2026-10-12,Cobro FC A 0002-00000257 Estudio Gráfico Cobalto SAS,995000.00,,25206504.94
+2026-10-12,Cobro FC A 0001-00000261 Bodega Piedra Negra SA,2576400.00,,27782904.94
+2026-10-12,Cobranza cliente Farmacia Del Parque SCS,2122000.00,,29904904.94
+2026-10-12,Cobro FC A 0003-00000277 Estudio Gráfico Cobalto SAS,2933000.00,,32837904.94
+2026-10-12,Transferencia a Química Litoral SRL OP 0001-00000311,,756875.02,32081029.92
+2026-10-12,Pago Imprenta Tinta Fresca SRL OP 0001-00000314,,2311000.00,29770029.92
+2026-10-12,Pago Cooperativa Hornero Ltda OP 0001-00000318,,1917948.55,27852081.37
+2026-10-12,Transferencia a Estudio Gráfico Cobalto SAS OP 0001-00000328,,321234.16,27530847.21
+2026-10-12,Transferencia a Viñedos Altos de Cuyo SA OP 0001-00000338,,2583150.00,24947697.21
+2026-10-12,Pago Óptica Mirador SRL OP 0001-00000342,,2200300.00,22747397.21
+2026-10-12,Transferencia a Lácteos Valle Verde SA OP 0001-00000346,,2168450.00,20578947.21
+2026-10-12,Transferencia a Panificadora La Espiga SRL OP 0001-00000347,,442746.33,20136200.88
+2026-10-12,Transferencia a Óptica Mirador SRL OP 0001-00000351,,2278000.00,17858200.88
+2026-10-12,Pago Imprenta Tinta Fresca SRL OP 0001-00000365,,1187956.74,16670244.14
+2026-10-12,Pago Distribuidora Los Álamos SRL OP 0001-00000366,,1342445.78,15327798.36
+2026-10-12,ECHEQ N° 00015423 a Bodega Piedra Negra SA,,660000.00,14667798.36
+2026-10-12,Cheque N° 00015441 a Bodega Piedra Negra SA,,2440500.00,12227298.36
+2026-10-12,Cobranza Martina Gómez - efectivo a depositar,336000.00,,12563298.36
+2026-10-13,Cobranza Librería El Faro SA Rec. 0001-00000152,2064520.00,,14627818.36
+2026-10-13,Cobro FC A 0002-00000185 Estudio Gráfico Cobalto SAS,956851.48,,15584669.84
+2026-10-13,Cobranza Agro Sur del Plata SA Rec. 0001-00000206,4210352.92,,19795022.76
+2026-10-13,Cobro FC A 0001-00000287 Tecnología Austral SAS,3997000.00,,23792022.76
+2026-10-13,Transferencia a Tecnología Austral SAS OP 0001-00000331,,1893000.00,21899022.76
+2026-10-13,Transferencia a Lácteos Valle Verde SA OP 0001-00000333,,2341000.00,19558022.76
+2026-10-13,Pago Transporte Ruta 3 SRL OP 0001-00000344,,786000.00,18772022.76
+2026-10-13,Cobranza Camila Herrera - efectivo a depositar,875872.19,,19647894.95
+2026-10-14,Cobro FC A 0001-00000113 Lácteos Valle Verde SA,1054000.00,,20701894.95
+2026-10-14,Pago a proveedor Librería El Faro SA,,207985.66,20493909.29
+2026-10-14,Transferencia a Tecnología Austral SAS OP 0001-00000353,,740000.00,19753909.29
+2026-10-14,Cobranza Joaquín Pereyra - efectivo a depositar,130690.00,,19884599.29
+2026-10-14,Pago IVA VEP 695322502,,1944000.00,17940599.29
+2026-10-15,Cobranza Viñedos Altos de Cuyo SA Rec. 0001-00000120,651529.98,,18592129.27
+2026-10-15,Cobranza Distribuidora Los Álamos SRL Rec. 0001-00000134,3595000.00,,22187129.27
+2026-10-15,Cobranza cliente Ferretería El Tornillo SRL,1403919.51,,23591048.78
+2026-10-15,Cobro FC A 0001-00000193 Farmacia Del Parque SCS,2378000.00,,25969048.78
+2026-10-15,Cobro FC A 0001-00000223 Lácteos Valle Verde SA,3504233.00,,29473281.78
+2026-10-15,Cobranza Librería El Faro SA Rec. 0001-00000228,3766541.17,,33239822.95
+2026-10-15,Cobranza Agro Sur del Plata SA Rec. 0001-00000240,638613.77,,33878436.72
+2026-10-15,Cobranza cliente Tecnología Austral SAS,3987820.00,,37866256.72
+2026-10-15,Pago a proveedor Logística Andina SAS,,693361.03,37172895.69
+2026-10-15,Pago Viñedos Altos de Cuyo SA OP 0001-00000357,,1839000.00,35333895.69
+2026-10-15,Cheque N° 00015448 a Servicios Médicos Lomas SRL,,1230612.91,34103282.78
+2026-10-15,Energía Metropolitana - débito automático,,226000.00,33877282.78
+2026-10-16,Cobranza cliente Lácteos Valle Verde SA,1527610.00,,35404892.78
+2026-10-16,Cobranza cliente Servicios Médicos Lomas SRL,3395040.91,,38799933.69
+2026-10-16,Cobranza Julieta Medina - efectivo a depositar,675587.39,,39475521.08
+2026-10-16,Telefonía Federal - débito automático,,235420.00,39240101.08
+2026-10-17,Cobranza Lucas Fernández - efectivo a depositar,532855.52,,39772956.60
+2026-10-17,Cobranza Lucas Fernández - efectivo a depositar,535910.72,,40308867.32
+2026-10-17,Seguros La Previsora - débito automático,,318580.07,39990287.25
+2026-10-18,Cobranza Franco Silva - efectivo a depositar,208344.10,,40198631.35
+2026-10-18,Cobranza Franco Silva - efectivo a depositar,466239.87,,40664871.22
+2026-10-18,Cobranza Tomás Acosta - efectivo a depositar,563000.00,,41227871.22
+2026-10-19,Cobranza Tecnología Austral SAS Rec. 0001-00000110,3443750.00,,44671621.22
+2026-10-19,Cobranza Librería El Faro SA Rec. 0001-00000140,3102451.45,,47774072.67
+2026-10-19,Cobranza cliente Distribuidora Los Álamos SRL,3034000.00,,50808072.67
+2026-10-19,Cobro FC A 0001-00000161 Distribuidora Los Álamos SRL,3960295.21,,54768367.88
+2026-10-19,Cobro FC A 0002-00000167 Frigorífico Pampa Alta SA,1431570.00,,56199937.88
+2026-10-19,Cobranza cliente Química Litoral SRL,2092510.00,,58292447.88
+2026-10-19,Cobranza cliente Hotel Cerro Azul SA,2306640.00,,60599087.88
+2026-10-19,Cobranza cliente Muebles Quebracho SAS,3703710.00,,64302797.88
+2026-10-19,Cobranza cliente Agro Sur del Plata SA,1583000.00,,65885797.88
+2026-10-19,Cobranza cliente Óptica Mirador SRL,2253149.06,,68138946.94
+2026-10-19,Cobro FC A 0002-00000247 Lácteos Valle Verde SA,2265592.00,,70404538.94
+2026-10-19,Cobranza Hotel Cerro Azul SA Rec. 0001-00000296,1535380.00,,71939918.94
+2026-10-19,Pago Frigorífico Pampa Alta SA OP 0001-00000310,,2022130.00,69917788.94
+2026-10-19,Pago a proveedor Agro Sur del Plata SA,,401970.21,69515818.73
+2026-10-19,Pago Librería El Faro SA OP 0001-00000343,,1430732.39,68085086.34
+2026-10-19,Pago Química Litoral SRL OP 0001-00000367,,2792000.00,65293086.34
+2026-10-19,Cheque N° 00015409 a Farmacia Del Parque SCS,,2199115.99,63093970.35
+2026-10-19,Cheque N° 00015486 a Librería El Faro SA,,1814319.27,61279651.08
+2026-10-19,Cobranza Joaquín Pereyra - efectivo a depositar,357000.00,,61636651.08
+2026-10-19,Cobranza Santiago Rojas - efectivo a depositar,220381.80,,61857032.88
+2026-10-19,Cobranza Valentina Sosa - efectivo a depositar,808563.62,,62665596.50
+2026-10-19,Cobranza Paula Castro - efectivo a depositar,821000.00,,63486596.50
+2026-10-19,Cobranza Florencia Díaz - efectivo a depositar,899270.00,,64385866.50
+2026-10-19,F.931 VEP 761763030,,1415970.00,62969896.50
+2026-10-20,Cobro FC A 0002-00000103 Panificadora La Espiga SRL,4494000.00,,67463896.50
+2026-10-20,Cobranza cliente Textil Río Bermejo SA,2977958.48,,70441854.98
+2026-10-20,Cobranza Librería El Faro SA Rec. 0001-00000184,3675000.00,,74116854.98
+2026-10-20,Cobranza cliente Agro Sur del Plata SA,3023270.00,,77140124.98
+2026-10-20,Cobranza cliente Agro Sur del Plata SA,4480000.00,,81620124.98
+2026-10-20,Cobranza Estudio Gráfico Cobalto SAS Rec. 0001-00000298,2854156.63,,84474281.61
+2026-10-20,Pago Panificadora La Espiga SRL OP 0001-00000317,,1200383.24,83273898.37
+2026-10-20,Transferencia a Muebles Quebracho SAS OP 0001-00000324,,2282043.11,80991855.26
+2026-10-20,Pago Logística Andina SAS OP 0001-00000334,,893210.00,80098645.26
+2026-10-20,Cobranza Mateo Benítez - efectivo a depositar,830000.00,,80928645.26
+2026-10-20,Cobranza Paula Castro - efectivo a depositar,220287.50,,81148932.76
+2026-10-21,Cobro FC A 0003-00000191 Metalúrgica San Telmo SRL,2592000.00,,83740932.76
+2026-10-21,Cobro FC A 0003-00000241 Transporte Ruta 3 SRL,2678870.00,,86419802.76
+2026-10-21,Cobro FC A 0003-00000253 Textil Río Bermejo SA,2424000.00,,88843802.76
+2026-10-21,Cobro FC A 0001-00000255 Ferretería El Tornillo SRL,1058810.00,,89902612.76
+2026-10-21,Transferencia a Imprenta Tinta Fresca SRL OP 0001-00000329,,895543.24,89007069.52
+2026-10-21,Transferencia a Lácteos Valle Verde SA OP 0001-00000359,,1091400.00,87915669.52
+2026-10-21,Cobranza Valentina Sosa - efectivo a depositar,175802.88,,88091472.40
+2026-10-22,Cobranza cliente Logística Andina SAS,1420057.38,,89511529.78
+2026-10-22,Cobranza cliente Química Litoral SRL,4109213.87,,93620743.65
+2026-10-22,Cobranza cliente Librería El Faro SA,2957000.00,,96577743.65
+2026-10-22,Cobranza Servicios Médicos Lomas SRL Rec. 0001-00000142,1212723.19,,97790466.84
+2026-10-22,Cobranza Servicios Médicos Lomas SRL Rec. 0001-00000180,1415017.97,,99205484.81
+2026-10-22,Cobranza cliente Panificadora La Espiga SRL,1653410.00,,100858894.81
+2026-10-22,Pago a proveedor Frigorífico Pampa Alta SA,,791755.38,100067139.43
+2026-10-22,Pago Ferretería El Tornillo SRL OP 0001-00000305,,2334860.00,97732279.43
+2026-10-22,Pago Farmacia Del Parque SCS OP 0001-00000307,,1682000.00,96050279.43
+2026-10-22,Transferencia a Distribuidora Los Álamos SRL OP 0001-00000335,,727656.35,95322623.08
+2026-10-22,Pago a proveedor Agro Sur del Plata SA,,1871640.00,93450983.08
+2026-10-22,ECHEQ N° 00015424 a Hotel Cerro Azul SA,,2454000.00,90996983.08
+2026-10-22,Cheque N° 00015461 a Imprenta Tinta Fresca SRL,,347000.00,90649983.08
+2026-10-23,Cobro FC A 0001-00000219 Química Litoral SRL,520100.00,,91170083.08
+2026-10-23,Cobro FC A 0002-00000251 Constructora Delta Norte SRL,1175877.92,,92345961.00
+2026-10-23,Cobranza Imprenta Tinta Fresca SRL Rec. 0001-00000282,1226000.00,,93571961.00
+2026-10-23,Cobranza Camila Herrera - efectivo a depositar,890920.00,,94462881.00
+2026-10-24,Cobranza Carolina Núñez - efectivo a depositar,263000.00,,94725881.00
+2026-10-24,Cobranza Nicolás Romero - efectivo a depositar,296959.42,,95022840.42
+2026-10-24,Cobranza Florencia Díaz - efectivo a depositar,799000.00,,95821840.42
+2026-10-25,Cobranza Franco Silva - efectivo a depositar,270000.00,,96091840.42
+2026-10-26,Cobro FC A 0003-00000155 Agro Sur del Plata SA,3926220.00,,100018060.42
+2026-10-26,Cobro FC A 0001-00000249 Estudio Gráfico Cobalto SAS,1408358.74,,101426419.16
+2026-10-26,Cobro FC A 0002-00000263 Ferretería El Tornillo SRL,2652000.00,,104078419.16
+2026-10-26,Cobranza Transporte Ruta 3 SRL Rec. 0001-00000300,1476000.00,,105554419.16
+2026-10-26,Pago a proveedor Frigorífico Pampa Alta SA,,293154.89,105261264.27
+2026-10-26,Pago a proveedor Óptica Mirador SRL,,2250528.13,103010736.14
+2026-10-26,Pago a proveedor Cooperativa Hornero Ltda,,1932469.54,101078266.60
+2026-10-26,Pago Farmacia Del Parque SCS OP 0001-00000322,,2907891.26,98170375.34
+2026-10-26,Pago a proveedor Textil Río Bermejo SA,,2377000.00,95793375.34
+2026-10-26,Pago a proveedor Muebles Quebracho SAS,,2014581.44,93778793.90
+2026-10-26,Transferencia a Muebles Quebracho SAS OP 0001-00000349,,2881990.00,90896803.90
+2026-10-26,Pago a proveedor Tecnología Austral SAS,,191000.00,90705803.90
+2026-10-26,Transferencia a Panificadora La Espiga SRL OP 0001-00000362,,1339540.00,89366263.90
+2026-10-26,Cobranza Tomás Acosta - efectivo a depositar,288000.00,,89654263.90
+2026-10-27,Cobro FC A 0002-00000181 Química Litoral SRL,428845.75,,90083109.65
+2026-10-27,Cobro FC A 0003-00000215 Frigorífico Pampa Alta SA,2530052.22,,92613161.87
+2026-10-27,Cobro FC A 0003-00000229 Constructora Delta Norte SRL,619000.00,,93232161.87
+2026-10-27,Cobro FC A 0003-00000271 Librería El Faro SA,3940110.00,,97172271.87
+2026-10-27,Transferencia a Química Litoral SRL OP 0001-00000320,,2061580.00,95110691.87
+2026-10-27,Transferencia a Logística Andina SAS OP 0001-00000323,,2744525.24,92366166.63
+2026-10-27,Pago a proveedor Logística Andina SAS,,2775965.37,89590201.26
+2026-10-28,Cobranza Imprenta Tinta Fresca SRL Rec. 0001-00000204,2958950.91,,92549152.17
+2026-10-28,Cobro FC A 0003-00000269 Viñedos Altos de Cuyo SA,4369960.00,,96919112.17
+2026-10-28,Transferencia a Textil Río Bermejo SA OP 0001-00000301,,840000.00,96079112.17
+2026-10-28,Pago a proveedor Constructora Delta Norte SRL,,129000.00,95950112.17
+2026-10-28,ECHEQ N° 00015420 a Logística Andina SAS,,2491000.00,93459112.17
+2026-10-29,Cobranza Química Litoral SRL Rec. 0001-00000218,3980183.62,,97439295.79
+2026-10-29,Cobranza Cooperativa Hornero Ltda Rec. 0001-00000226,211000.00,,97650295.79
+2026-10-29,Transferencia a Servicios Médicos Lomas SRL OP 0001-00000308,,2406000.00,95244295.79
+2026-10-29,Pago a proveedor Muebles Quebracho SAS,,782000.00,94462295.79
+2026-10-29,Transferencia a Cooperativa Hornero Ltda OP 0001-00000355,,1980693.43,92481602.36
+2026-10-29,Transferencia a Estudio Gráfico Cobalto SAS OP 0001-00000368,,631170.00,91850432.36

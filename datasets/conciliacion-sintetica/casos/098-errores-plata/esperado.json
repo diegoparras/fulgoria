@@ -1,0 +1,457 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "098-errores-plata",
+ "escenario": "errores",
+ "banco": "plata",
+ "sistema": "planilla_cliente",
+ "semilla": 9002,
+ "periodo": {
+  "desde": "2026-08-01",
+  "hasta": "2026-08-31"
+ },
+ "cliente": {
+  "nombre": "Servicios Médicos Lomas SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Importe transpuesto, registro duplicado, créditos que el cliente no registró e ingresos registrados que nunca llegaron al banco.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2732300000,
+    "bancoCierre": 3482275100,
+    "librosApertura": 2732300000,
+    "librosCierre": 3229782552
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-08-03",
+     "cents": 68300000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE AGUSTÍN MOLINA CUIT 20-19243014-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-08-05",
+     "cents": 443200000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE PANIFICADORA LA ESPIGA SRL CUIT 33-57758358-2",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-08-05",
+     "cents": -45300791,
+     "descripcion": "TRANSFERENCIA ENVIADA A LÁCTEOS VALLE VERDE SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-08-07",
+     "cents": 294883201,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE CONSTRUCTORA DELTA NORTE SRL CUIT 33-72393305-1 REF 0002-00000420",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-08-07",
+     "cents": -290739000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-08-07",
+     "cents": -18070000,
+     "descripcion": "DEB. AUTOM. TELEFONÍA FEDERAL",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-08-10",
+     "cents": 312200328,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TEXTIL RÍO BERMEJO SA CUIT 30-69455528-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-08-14",
+     "cents": 371400000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE VIÑEDOS ALTOS DE CUYO SA CUIT 30-61430062-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-08-18",
+     "cents": -270100000,
+     "descripcion": "TRANSFERENCIA ENVIADA A METALÚRGICA SAN TELMO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-08-20",
+     "cents": 317754186,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE COOPERATIVA HORNERO LTDA CUIT 30-68653625-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-08-20",
+     "cents": 12495511,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE SERVICIOS MÉDICOS LOMAS SRL CUIT 30-72269812-2 REF 0002-00000428",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-08-20",
+     "cents": -63500000,
+     "descripcion": "TRANSFERENCIA ENVIADA A FARMACIA DEL PARQUE SCS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-08-21",
+     "cents": -111900575,
+     "descripcion": "TRANSFERENCIA ENVIADA A FARMACIA DEL PARQUE SCS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-08-25",
+     "cents": -128500000,
+     "descripcion": "TRANSFERENCIA ENVIADA A DISTRIBUIDORA LOS ÁLAMOS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-08-25",
+     "cents": -254698000,
+     "descripcion": "TRANSFERENCIA ENVIADA A HOTEL CERRO AZUL SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-08-31",
+     "cents": 117700000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE PANIFICADORA LA ESPIGA SRL CUIT 33-66317673-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-08-31",
+     "cents": -4256000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-08-31",
+     "cents": -893760,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-08-05",
+     "cents": 443200000,
+     "descripcion": "Cobro FC A 0003-00000422 Panificadora La Espiga SRL",
+     "comprobante": "0003-00000422",
+     "asiento": 107
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-08-05",
+     "cents": -45300791,
+     "descripcion": "Transferencia a Lácteos Valle Verde SA OP 0001-00000430",
+     "comprobante": "OP 0001-00000430",
+     "asiento": 111
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-08-06",
+     "cents": 294883201,
+     "descripcion": "Cobranza Constructora Delta Norte SRL Rec. 0001-00000421",
+     "comprobante": "0002-00000420",
+     "asiento": 106
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-08-06",
+     "cents": 312200328,
+     "descripcion": "Cobranza Textil Río Bermejo SA Rec. 0001-00000427",
+     "comprobante": "0003-00000426",
+     "asiento": 109
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-08-06",
+     "cents": -290739000,
+     "descripcion": "Transferencia a Transporte Ruta 3 SRL OP 0001-00000432",
+     "comprobante": "OP 0001-00000432",
+     "asiento": 113
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-08-10",
+     "cents": 47285692,
+     "descripcion": "Cobranza Química Litoral SRL (depósito)",
+     "comprobante": "",
+     "asiento": 119
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-08-13",
+     "cents": 371400000,
+     "descripcion": "Cobranza Viñedos Altos de Cuyo SA Rec. 0001-00000417",
+     "comprobante": "0002-00000416",
+     "asiento": 104
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-08-17",
+     "cents": -270100000,
+     "descripcion": "Transferencia a Metalúrgica San Telmo SRL OP 0001-00000431",
+     "comprobante": "OP 0001-00000431",
+     "asiento": 112
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-08-18",
+     "cents": 12495511,
+     "descripcion": "Cobro FC A 0002-00000428 Servicios Médicos Lomas SRL",
+     "comprobante": "0002-00000428",
+     "asiento": 110
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-08-19",
+     "cents": 317754186,
+     "descripcion": "Cobranza Cooperativa Hornero Ltda Rec. 0001-00000419",
+     "comprobante": "0002-00000418",
+     "asiento": 105
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-08-19",
+     "cents": -63500000,
+     "descripcion": "Pago a proveedor Farmacia Del Parque SCS",
+     "comprobante": "OP 0001-00000435",
+     "asiento": 116
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-08-21",
+     "cents": -111900575,
+     "descripcion": "Pago Farmacia Del Parque SCS OP 0001-00000433",
+     "comprobante": "OP 0001-00000433",
+     "asiento": 114
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-08-24",
+     "cents": -128500000,
+     "descripcion": "Pago Distribuidora Los Álamos SRL OP 0001-00000434",
+     "comprobante": "OP 0001-00000434",
+     "asiento": 115
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-08-24",
+     "cents": -254698000,
+     "descripcion": "Pago Hotel Cerro Azul SA OP 0001-00000436",
+     "comprobante": "OP 0001-00000436",
+     "asiento": 117
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-08-24",
+     "cents": -254698000,
+     "descripcion": "Pago Hotel Cerro Azul SA OP 0001-00000436",
+     "comprobante": "OP 0001-00000436",
+     "asiento": 118
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-08-28",
+     "cents": 117700000,
+     "descripcion": "Cobranza Panificadora La Espiga SRL Rec. 0001-00000425",
+     "comprobante": "0002-00000424",
+     "asiento": 108
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L15",
+     "lado": "libros",
+     "tipo": "egreso_pendiente"
+    },
+    {
+     "id": "B1",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "debito_no_identificado"
+    },
+    {
+     "id": "L6",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

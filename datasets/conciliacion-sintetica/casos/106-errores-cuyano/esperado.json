@@ -1,0 +1,669 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "106-errores-cuyano",
+ "escenario": "errores",
+ "banco": "cuyano",
+ "sistema": "importe_signo_tab",
+ "semilla": 9042,
+ "periodo": {
+  "desde": "2026-01-01",
+  "hasta": "2026-01-31"
+ },
+ "cliente": {
+  "nombre": "Óptica Mirador SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Importe transpuesto, registro duplicado, créditos que el cliente no registró e ingresos registrados que nunca llegaron al banco.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor-ars.csv",
+   "saldos": {
+    "bancoApertura": 3150300000,
+    "bancoCierre": 3393411111,
+    "librosApertura": 3150300000,
+    "librosCierre": 3191732176
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-01-06",
+     "cents": 432149983,
+     "descripcion": "TRF INMEDIATA RECIB 30576875971",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-01-06",
+     "cents": -5185800,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-01-06",
+     "cents": -110200000,
+     "descripcion": "TRF INMEDIATA ENV 30707019588",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-01-06",
+     "cents": -155200000,
+     "descripcion": "TRF INMEDIATA ENV 33676794919",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-01-06",
+     "cents": 84335035,
+     "descripcion": "TRF INMEDIATA RECIB 27447671900",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-01-06",
+     "cents": -1012020,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-01-12",
+     "cents": -1900000,
+     "descripcion": "DEBITO AUTOMATICO INTERNET FIBRA SUR",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-01-13",
+     "cents": 238900000,
+     "descripcion": "TRF INMEDIATA RECIB 30577229674 0001-00000581",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-01-13",
+     "cents": -2866800,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-01-19",
+     "cents": 71731247,
+     "descripcion": "TRF INMEDIATA RECIB 33524669329 0003-00000579",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-01-19",
+     "cents": -860775,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-01-19",
+     "cents": 20823000,
+     "descripcion": "TRF INMEDIATA RECIB 33598080564",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-01-19",
+     "cents": -249876,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-01-19",
+     "cents": -21856549,
+     "descripcion": "TRF INMEDIATA ENV 30621214094",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-01-20",
+     "cents": -222100000,
+     "descripcion": "TRF INMEDIATA ENV 33540574974",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-01-20",
+     "cents": -241302908,
+     "descripcion": "TRF INMEDIATA ENV 33548104357",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-01-22",
+     "cents": -42681000,
+     "descripcion": "TRF INMEDIATA ENV 33655684226",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-01-22",
+     "cents": -149400000,
+     "descripcion": "TRF INMEDIATA ENV 33569918842",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-01-23",
+     "cents": 151383403,
+     "descripcion": "TRF INMEDIATA RECIB 33716274611",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-01-23",
+     "cents": -1816601,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-01-26",
+     "cents": 207019000,
+     "descripcion": "TRF INMEDIATA RECIB 30607757980",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-01-26",
+     "cents": -2484228,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-01-26",
+     "cents": -3400000,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-01-26",
+     "cents": -714000,
+     "descripcion": "I.V.A. TASA GENERAL",
+     "tipo": "iva_comision"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-01-05",
+     "cents": 432149983,
+     "descripcion": "Cobro FC A 0003-00000577 Constructora Delta Norte SRL",
+     "comprobante": "0003-00000577",
+     "asiento": 318
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-01-05",
+     "cents": -155200000,
+     "descripcion": "Pago Estudio Gráfico Cobalto SAS OP 0001-00000595",
+     "comprobante": "OP 0001-00000595",
+     "asiento": 330
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-01-05",
+     "cents": -155200000,
+     "descripcion": "Pago Estudio Gráfico Cobalto SAS OP 0001-00000595",
+     "comprobante": "OP 0001-00000595",
+     "asiento": 331
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-01-05",
+     "cents": 17366000,
+     "descripcion": "Cobranza Ferretería El Tornillo SRL (depósito)",
+     "comprobante": "",
+     "asiento": 332
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-01-06",
+     "cents": -110200000,
+     "descripcion": "Transferencia a Librería El Faro SA OP 0001-00000594",
+     "comprobante": "OP 0001-00000594",
+     "asiento": 329
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-01-12",
+     "cents": 238900000,
+     "descripcion": "Cobro FC A 0001-00000581 Servicios Médicos Lomas SRL",
+     "comprobante": "0001-00000581",
+     "asiento": 320
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-01-16",
+     "cents": 71731247,
+     "descripcion": "Cobranza cliente Óptica Mirador SRL",
+     "comprobante": "0003-00000579",
+     "asiento": 319
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-01-16",
+     "cents": 20823000,
+     "descripcion": "Cobro FC A 0002-00000587 Panificadora La Espiga SRL",
+     "comprobante": "0002-00000587",
+     "asiento": 323
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-01-19",
+     "cents": -222100000,
+     "descripcion": "Pago a proveedor Agro Sur del Plata SA",
+     "comprobante": "OP 0001-00000589",
+     "asiento": 324
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-01-19",
+     "cents": -21856549,
+     "descripcion": "Transferencia a Ferretería El Tornillo SRL OP 0001-00000590",
+     "comprobante": "OP 0001-00000590",
+     "asiento": 325
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-01-19",
+     "cents": -241302908,
+     "descripcion": "Transferencia a Agro Sur del Plata SA OP 0001-00000592",
+     "comprobante": "OP 0001-00000592",
+     "asiento": 327
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-01-21",
+     "cents": -42681000,
+     "descripcion": "Pago Óptica Mirador SRL OP 0001-00000591",
+     "comprobante": "OP 0001-00000591",
+     "asiento": 326
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-01-21",
+     "cents": -149400000,
+     "descripcion": "Transferencia a Librería El Faro SA OP 0001-00000593",
+     "comprobante": "OP 0001-00000593",
+     "asiento": 328
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-01-22",
+     "cents": 207019000,
+     "descripcion": "Cobranza cliente Bodega Piedra Negra SA",
+     "comprobante": "0002-00000583",
+     "asiento": 321
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-01-22",
+     "cents": 151383403,
+     "descripcion": "Cobranza Frigorífico Pampa Alta SA Rec. 0001-00000586",
+     "comprobante": "0001-00000585",
+     "asiento": 322
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L3",
+     "lado": "libros",
+     "tipo": "egreso_pendiente"
+    },
+    {
+     "id": "B5",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "B7",
+     "lado": "banco",
+     "tipo": "debito_no_identificado"
+    },
+    {
+     "id": "L4",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B11",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B9",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  },
+  {
+   "segmento": 1,
+   "moneda": "USD",
+   "mayor": "mayor-usd.csv",
+   "saldos": {
+    "bancoApertura": 8766740,
+    "bancoCierre": 7548873,
+    "librosApertura": 8766740,
+    "librosCierre": 7550573
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-01-08",
+     "cents": -667484,
+     "descripcion": "TRF INMEDIATA ENV 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-01-09",
+     "cents": 349764,
+     "descripcion": "TRF INMEDIATA RECIB 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-01-14",
+     "cents": 454031,
+     "descripcion": "TRF INMEDIATA RECIB 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-01-15",
+     "cents": -647916,
+     "descripcion": "TRF INMEDIATA ENV 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-01-28",
+     "cents": -704562,
+     "descripcion": "TRF INMEDIATA ENV 30000000000",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-01-28",
+     "cents": -1700,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-01-08",
+     "cents": -667484,
+     "descripcion": "Pago proveedor exterior (USD)",
+     "comprobante": "",
+     "asiento": 241
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-01-09",
+     "cents": 349764,
+     "descripcion": "Cobro exportación (USD)",
+     "comprobante": "",
+     "asiento": 238
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-01-14",
+     "cents": 454031,
+     "descripcion": "Cobro exportación (USD)",
+     "comprobante": "",
+     "asiento": 237
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-01-15",
+     "cents": -647916,
+     "descripcion": "Pago proveedor exterior (USD)",
+     "comprobante": "",
+     "asiento": 239
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-01-28",
+     "cents": -704562,
+     "descripcion": "Pago proveedor exterior (USD)",
+     "comprobante": "",
+     "asiento": 240
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

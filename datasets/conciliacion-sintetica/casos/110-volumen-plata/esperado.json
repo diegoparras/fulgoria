@@ -1,0 +1,8389 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "110-volumen-plata",
+ "escenario": "volumen",
+ "banco": "plata",
+ "sistema": "comillas_coma",
+ "semilla": 10002,
+ "periodo": {
+  "desde": "2026-02-01",
+  "hasta": "2026-02-28"
+ },
+ "cliente": {
+  "nombre": "Servicios Médicos Lomas SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 15,
+ "notas": "Un mes con cientos de movimientos repartidos en varias páginas.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 3785613000,
+    "bancoCierre": 22994460241,
+    "librosApertura": 3785613000,
+    "librosCierre": 22447518321
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-02-02",
+     "cents": 346700000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TEXTIL RÍO BERMEJO SA CUIT 33-66732906-5",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-02-02",
+     "cents": -2080200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-02-02",
+     "cents": -5200500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-02-02",
+     "cents": 433709000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LÁCTEOS VALLE VERDE SA CUIT 30-57064552-4 REF 0001-00000541",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-02-02",
+     "cents": -2602254,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-02-02",
+     "cents": -6505635,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-02-02",
+     "cents": -195800000,
+     "descripcion": "TRANSFERENCIA ENVIADA A FARMACIA DEL PARQUE SCS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-02-02",
+     "cents": -1174800,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-02-02",
+     "cents": -34346717,
+     "descripcion": "DEB. AUTOM. AGUAS URBANAS",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-02-02",
+     "cents": -206080,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-02-02",
+     "cents": -107102647,
+     "descripcion": "TRANSF. SUELDO LUCAS FERNÁNDEZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-02-02",
+     "cents": -642616,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-02-02",
+     "cents": -206900000,
+     "descripcion": "TRANSF. SUELDO FLORENCIA DÍAZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-02-02",
+     "cents": -1241400,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-02-02",
+     "cents": -196789000,
+     "descripcion": "TRANSF. SUELDO IGNACIO VERA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-02-02",
+     "cents": -1180734,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-02-02",
+     "cents": -139365924,
+     "descripcion": "TRANSF. SUELDO VALENTINA SOSA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-02-02",
+     "cents": -836196,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-02-02",
+     "cents": -158000000,
+     "descripcion": "TRANSF. SUELDO AGUSTÍN MOLINA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-02-02",
+     "cents": -948000,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-02-02",
+     "cents": -107179529,
+     "descripcion": "TRANSF. SUELDO SOFÍA RAMÍREZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-02-02",
+     "cents": -643077,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-02-03",
+     "cents": 325059000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE BODEGA PIEDRA NEGRA SA CUIT 33-53249689-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-02-03",
+     "cents": -1950354,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-02-03",
+     "cents": -4875885,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-02-03",
+     "cents": 170386215,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FRIGORÍFICO PAMPA ALTA SA CUIT 30-53732615-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-02-03",
+     "cents": -1022317,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-02-03",
+     "cents": -2555793,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-02-03",
+     "cents": 89820000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TECNOLOGÍA AUSTRAL SAS CUIT 30-68233725-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-02-03",
+     "cents": -538920,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-02-03",
+     "cents": -1347300,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-02-03",
+     "cents": 230900000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE MUEBLES QUEBRACHO SAS CUIT 30-62344348-1 REF 0003-00000469",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-02-03",
+     "cents": -1385400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-02-03",
+     "cents": -3463500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B35",
+     "fecha": "2026-02-03",
+     "cents": 312410000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ÓPTICA MIRADOR SRL CUIT 33-50333181-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B36",
+     "fecha": "2026-02-03",
+     "cents": -1874460,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B37",
+     "fecha": "2026-02-03",
+     "cents": -4686150,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B38",
+     "fecha": "2026-02-03",
+     "cents": -193844843,
+     "descripcion": "TRANSFERENCIA ENVIADA A DISTRIBUIDORA LOS ÁLAMOS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B39",
+     "fecha": "2026-02-03",
+     "cents": -1163069,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B40",
+     "fecha": "2026-02-03",
+     "cents": -249071659,
+     "descripcion": "TRANSFERENCIA ENVIADA A LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B41",
+     "fecha": "2026-02-03",
+     "cents": -1494430,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B42",
+     "fecha": "2026-02-03",
+     "cents": -244509760,
+     "descripcion": "TRANSFERENCIA ENVIADA A HOTEL CERRO AZUL SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B43",
+     "fecha": "2026-02-03",
+     "cents": -1467059,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B44",
+     "fecha": "2026-02-03",
+     "cents": -193200000,
+     "descripcion": "TRANSFERENCIA ENVIADA A DISTRIBUIDORA LOS ÁLAMOS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B45",
+     "fecha": "2026-02-03",
+     "cents": -1159200,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B46",
+     "fecha": "2026-02-04",
+     "cents": 368300000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE QUÍMICA LITORAL SRL CUIT 33-58597701-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B47",
+     "fecha": "2026-02-04",
+     "cents": -2209800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B48",
+     "fecha": "2026-02-04",
+     "cents": -5524500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B49",
+     "fecha": "2026-02-04",
+     "cents": 252775000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FERRETERÍA EL TORNILLO SRL CUIT 30-72157326-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B50",
+     "fecha": "2026-02-04",
+     "cents": -1516650,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B51",
+     "fecha": "2026-02-04",
+     "cents": -3791625,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B52",
+     "fecha": "2026-02-04",
+     "cents": 337517104,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ÓPTICA MIRADOR SRL CUIT 30-70177090-7 REF 0001-00000409",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B53",
+     "fecha": "2026-02-04",
+     "cents": -2025103,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B54",
+     "fecha": "2026-02-04",
+     "cents": -5062757,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B55",
+     "fecha": "2026-02-04",
+     "cents": 251181000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TECNOLOGÍA AUSTRAL SAS CUIT 30-59717315-2",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B56",
+     "fecha": "2026-02-04",
+     "cents": -1507086,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B57",
+     "fecha": "2026-02-04",
+     "cents": -3767715,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B58",
+     "fecha": "2026-02-04",
+     "cents": 293800000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LÁCTEOS VALLE VERDE SA CUIT 33-63970907-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B59",
+     "fecha": "2026-02-04",
+     "cents": -1762800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B60",
+     "fecha": "2026-02-04",
+     "cents": -4407000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B61",
+     "fecha": "2026-02-04",
+     "cents": 287725887,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TEXTIL RÍO BERMEJO SA CUIT 33-62295765-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B62",
+     "fecha": "2026-02-04",
+     "cents": -1726355,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B63",
+     "fecha": "2026-02-04",
+     "cents": -4315888,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B64",
+     "fecha": "2026-02-04",
+     "cents": 24083511,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE BODEGA PIEDRA NEGRA SA CUIT 33-66558877-2 REF 0002-00000451",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B65",
+     "fecha": "2026-02-04",
+     "cents": -144501,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B66",
+     "fecha": "2026-02-04",
+     "cents": -361253,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B67",
+     "fecha": "2026-02-04",
+     "cents": -5700000,
+     "descripcion": "TRANSFERENCIA ENVIADA A IMPRENTA TINTA FRESCA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B68",
+     "fecha": "2026-02-04",
+     "cents": -34200,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B69",
+     "fecha": "2026-02-05",
+     "cents": 284897875,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE CONSTRUCTORA DELTA NORTE SRL CUIT 33-54593392-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B70",
+     "fecha": "2026-02-05",
+     "cents": -1709387,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B71",
+     "fecha": "2026-02-05",
+     "cents": -4273468,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B72",
+     "fecha": "2026-02-05",
+     "cents": 169652593,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TEXTIL RÍO BERMEJO SA CUIT 30-64185996-2 REF 0001-00000393",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B73",
+     "fecha": "2026-02-05",
+     "cents": -1017916,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B74",
+     "fecha": "2026-02-05",
+     "cents": -2544789,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B75",
+     "fecha": "2026-02-05",
+     "cents": 428500000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TEXTIL RÍO BERMEJO SA CUIT 33-53464784-6 REF 0002-00000463",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B76",
+     "fecha": "2026-02-05",
+     "cents": -2571000,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B77",
+     "fecha": "2026-02-05",
+     "cents": -6427500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B78",
+     "fecha": "2026-02-05",
+     "cents": 159700113,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LÁCTEOS VALLE VERDE SA CUIT 30-55367489-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B79",
+     "fecha": "2026-02-05",
+     "cents": -958201,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B80",
+     "fecha": "2026-02-05",
+     "cents": -2395502,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B81",
+     "fecha": "2026-02-05",
+     "cents": -290800000,
+     "descripcion": "TRANSFERENCIA ENVIADA A MUEBLES QUEBRACHO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B82",
+     "fecha": "2026-02-05",
+     "cents": -1744800,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B83",
+     "fecha": "2026-02-05",
+     "cents": -157430000,
+     "descripcion": "TRANSFERENCIA ENVIADA A ESTUDIO GRÁFICO COBALTO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B84",
+     "fecha": "2026-02-05",
+     "cents": -944580,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B85",
+     "fecha": "2026-02-05",
+     "cents": -162500000,
+     "descripcion": "TRANSFERENCIA ENVIADA A METALÚRGICA SAN TELMO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B86",
+     "fecha": "2026-02-05",
+     "cents": -975000,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B87",
+     "fecha": "2026-02-05",
+     "cents": 180809363,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B88",
+     "fecha": "2026-02-05",
+     "cents": -1084856,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B89",
+     "fecha": "2026-02-06",
+     "cents": 187139000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE CONSTRUCTORA DELTA NORTE SRL CUIT 30-56164345-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B90",
+     "fecha": "2026-02-06",
+     "cents": -1122834,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B91",
+     "fecha": "2026-02-06",
+     "cents": -2807085,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B92",
+     "fecha": "2026-02-06",
+     "cents": 367381920,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE VIÑEDOS ALTOS DE CUYO SA CUIT 33-58675692-9 REF 0001-00000433",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B93",
+     "fecha": "2026-02-06",
+     "cents": -2204292,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B94",
+     "fecha": "2026-02-06",
+     "cents": -5510729,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B95",
+     "fecha": "2026-02-06",
+     "cents": -116300000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B96",
+     "fecha": "2026-02-06",
+     "cents": -697800,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B97",
+     "fecha": "2026-02-06",
+     "cents": 184274000,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B98",
+     "fecha": "2026-02-06",
+     "cents": -1105644,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B99",
+     "fecha": "2026-02-09",
+     "cents": 369300000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LIBRERÍA EL FARO SA CUIT 30-64095160-1 REF 0001-00000343",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B100",
+     "fecha": "2026-02-09",
+     "cents": -2215800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B101",
+     "fecha": "2026-02-09",
+     "cents": -5539500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B102",
+     "fecha": "2026-02-09",
+     "cents": 70000000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE AGRO SUR DEL PLATA SA CUIT 33-60759435-5 REF 0003-00000403",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B103",
+     "fecha": "2026-02-09",
+     "cents": -420000,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B104",
+     "fecha": "2026-02-09",
+     "cents": -1050000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B105",
+     "fecha": "2026-02-09",
+     "cents": 260793262,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE SERVICIOS MÉDICOS LOMAS SRL CUIT 33-54626012-2 REF 0002-00000439",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B106",
+     "fecha": "2026-02-09",
+     "cents": -1564760,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B107",
+     "fecha": "2026-02-09",
+     "cents": -3911899,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B108",
+     "fecha": "2026-02-09",
+     "cents": 405900000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE VIÑEDOS ALTOS DE CUYO SA CUIT 33-59455043-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B109",
+     "fecha": "2026-02-09",
+     "cents": -2435400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B110",
+     "fecha": "2026-02-09",
+     "cents": -6088500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B111",
+     "fecha": "2026-02-09",
+     "cents": 369746209,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE COOPERATIVA HORNERO LTDA CUIT 30-69194086-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B112",
+     "fecha": "2026-02-09",
+     "cents": -2218477,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B113",
+     "fecha": "2026-02-09",
+     "cents": -5546193,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B114",
+     "fecha": "2026-02-09",
+     "cents": 256000000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE BODEGA PIEDRA NEGRA SA CUIT 33-63842709-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B115",
+     "fecha": "2026-02-09",
+     "cents": -1536000,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B116",
+     "fecha": "2026-02-09",
+     "cents": -3840000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B117",
+     "fecha": "2026-02-09",
+     "cents": 113200000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE MUEBLES QUEBRACHO SAS CUIT 30-50127186-8 REF 0002-00000515",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B118",
+     "fecha": "2026-02-09",
+     "cents": -679200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B119",
+     "fecha": "2026-02-09",
+     "cents": -1698000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B120",
+     "fecha": "2026-02-09",
+     "cents": 58974142,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 33-68512267-2",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B121",
+     "fecha": "2026-02-09",
+     "cents": -353845,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B122",
+     "fecha": "2026-02-09",
+     "cents": -884612,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B123",
+     "fecha": "2026-02-09",
+     "cents": -101587619,
+     "descripcion": "TRANSFERENCIA ENVIADA A DISTRIBUIDORA LOS ÁLAMOS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B124",
+     "fecha": "2026-02-09",
+     "cents": -609526,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B125",
+     "fecha": "2026-02-09",
+     "cents": -94500000,
+     "descripcion": "TRANSFERENCIA ENVIADA A MUEBLES QUEBRACHO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B126",
+     "fecha": "2026-02-09",
+     "cents": -567000,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B127",
+     "fecha": "2026-02-09",
+     "cents": -77533700,
+     "descripcion": "TRANSFERENCIA ENVIADA A TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B128",
+     "fecha": "2026-02-09",
+     "cents": -465202,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B129",
+     "fecha": "2026-02-09",
+     "cents": 85624258,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B130",
+     "fecha": "2026-02-09",
+     "cents": -513746,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B131",
+     "fecha": "2026-02-09",
+     "cents": -193100251,
+     "descripcion": "PAGO VEP 191726455 AFIP",
+     "tipo": "vep_arca"
+    },
+    {
+     "id": "B132",
+     "fecha": "2026-02-09",
+     "cents": -1158602,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B133",
+     "fecha": "2026-02-10",
+     "cents": 441454250,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE MUEBLES QUEBRACHO SAS CUIT 33-50841358-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B134",
+     "fecha": "2026-02-10",
+     "cents": -2648726,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B135",
+     "fecha": "2026-02-10",
+     "cents": -6621814,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B136",
+     "fecha": "2026-02-10",
+     "cents": 328579003,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FARMACIA DEL PARQUE SCS CUIT 30-65992462-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B137",
+     "fecha": "2026-02-10",
+     "cents": -1971474,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B138",
+     "fecha": "2026-02-10",
+     "cents": -4928685,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B139",
+     "fecha": "2026-02-10",
+     "cents": 264786000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FRIGORÍFICO PAMPA ALTA SA CUIT 33-51858424-9",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B140",
+     "fecha": "2026-02-10",
+     "cents": -1588716,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B141",
+     "fecha": "2026-02-10",
+     "cents": -3971790,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B142",
+     "fecha": "2026-02-10",
+     "cents": 175900000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE COOPERATIVA HORNERO LTDA CUIT 33-56825358-8 REF 0002-00000529",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B143",
+     "fecha": "2026-02-10",
+     "cents": -1055400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B144",
+     "fecha": "2026-02-10",
+     "cents": -2638500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B145",
+     "fecha": "2026-02-10",
+     "cents": 123554458,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FRIGORÍFICO PAMPA ALTA SA CUIT 33-69862080-9",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B146",
+     "fecha": "2026-02-10",
+     "cents": -741327,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B147",
+     "fecha": "2026-02-10",
+     "cents": -1853317,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B148",
+     "fecha": "2026-02-10",
+     "cents": -16167000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B149",
+     "fecha": "2026-02-10",
+     "cents": -97002,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B150",
+     "fecha": "2026-02-10",
+     "cents": -152627051,
+     "descripcion": "TRANSFERENCIA ENVIADA A TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B151",
+     "fecha": "2026-02-10",
+     "cents": -915762,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B152",
+     "fecha": "2026-02-10",
+     "cents": -244700000,
+     "descripcion": "TRANSFERENCIA ENVIADA A PANIFICADORA LA ESPIGA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B153",
+     "fecha": "2026-02-10",
+     "cents": -1468200,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B154",
+     "fecha": "2026-02-10",
+     "cents": -161600000,
+     "descripcion": "TRANSFERENCIA ENVIADA A FRIGORÍFICO PAMPA ALTA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B155",
+     "fecha": "2026-02-10",
+     "cents": -969600,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B156",
+     "fecha": "2026-02-10",
+     "cents": -175478000,
+     "descripcion": "TRANSFERENCIA ENVIADA A CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B157",
+     "fecha": "2026-02-10",
+     "cents": -1052868,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B158",
+     "fecha": "2026-02-11",
+     "cents": 196739000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE SERVICIOS MÉDICOS LOMAS SRL CUIT 30-69844046-1 REF 0003-00000331",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B159",
+     "fecha": "2026-02-11",
+     "cents": -1180434,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B160",
+     "fecha": "2026-02-11",
+     "cents": -2951085,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B161",
+     "fecha": "2026-02-11",
+     "cents": 173456213,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TECNOLOGÍA AUSTRAL SAS CUIT 30-52357073-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B162",
+     "fecha": "2026-02-11",
+     "cents": -1040737,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B163",
+     "fecha": "2026-02-11",
+     "cents": -2601843,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B164",
+     "fecha": "2026-02-11",
+     "cents": 377700000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FRIGORÍFICO PAMPA ALTA SA CUIT 33-66226919-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B165",
+     "fecha": "2026-02-11",
+     "cents": -2266200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B166",
+     "fecha": "2026-02-11",
+     "cents": -5665500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B167",
+     "fecha": "2026-02-11",
+     "cents": 399618000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ESTUDIO GRÁFICO COBALTO SAS CUIT 33-69087488-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B168",
+     "fecha": "2026-02-11",
+     "cents": -2397708,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B169",
+     "fecha": "2026-02-11",
+     "cents": -5994270,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B170",
+     "fecha": "2026-02-11",
+     "cents": 334726000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE QUÍMICA LITORAL SRL CUIT 33-56436574-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B171",
+     "fecha": "2026-02-11",
+     "cents": -2008356,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B172",
+     "fecha": "2026-02-11",
+     "cents": -5020890,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B173",
+     "fecha": "2026-02-11",
+     "cents": 82444000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TEXTIL RÍO BERMEJO SA CUIT 33-66251226-0 REF 0003-00000487",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B174",
+     "fecha": "2026-02-11",
+     "cents": -494664,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B175",
+     "fecha": "2026-02-11",
+     "cents": -1236660,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B176",
+     "fecha": "2026-02-11",
+     "cents": 446800000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 30-65501808-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B177",
+     "fecha": "2026-02-11",
+     "cents": -2680800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B178",
+     "fecha": "2026-02-11",
+     "cents": -6702000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B179",
+     "fecha": "2026-02-11",
+     "cents": -161200000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B180",
+     "fecha": "2026-02-11",
+     "cents": -967200,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B181",
+     "fecha": "2026-02-11",
+     "cents": -33500000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B182",
+     "fecha": "2026-02-11",
+     "cents": -201000,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B183",
+     "fecha": "2026-02-12",
+     "cents": 260200000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE DISTRIBUIDORA LOS ÁLAMOS SRL CUIT 33-66580271-5 REF 0003-00000329",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B184",
+     "fecha": "2026-02-12",
+     "cents": -1561200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B185",
+     "fecha": "2026-02-12",
+     "cents": -3903000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B186",
+     "fecha": "2026-02-12",
+     "cents": 39300000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE METALÚRGICA SAN TELMO SRL CUIT 33-61529107-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B187",
+     "fecha": "2026-02-12",
+     "cents": -235800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B188",
+     "fecha": "2026-02-12",
+     "cents": -589500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B189",
+     "fecha": "2026-02-12",
+     "cents": -153400000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B190",
+     "fecha": "2026-02-12",
+     "cents": -920400,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B191",
+     "fecha": "2026-02-12",
+     "cents": -232800000,
+     "descripcion": "TRANSFERENCIA ENVIADA A CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B192",
+     "fecha": "2026-02-12",
+     "cents": -1396800,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B193",
+     "fecha": "2026-02-12",
+     "cents": -171608000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B194",
+     "fecha": "2026-02-12",
+     "cents": -1029648,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B195",
+     "fecha": "2026-02-12",
+     "cents": -30600000,
+     "descripcion": "TRANSFERENCIA ENVIADA A PANIFICADORA LA ESPIGA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B196",
+     "fecha": "2026-02-12",
+     "cents": -183600,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B197",
+     "fecha": "2026-02-12",
+     "cents": 170223869,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B198",
+     "fecha": "2026-02-12",
+     "cents": -1021343,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B199",
+     "fecha": "2026-02-12",
+     "cents": 105900000,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B200",
+     "fecha": "2026-02-12",
+     "cents": -635400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B201",
+     "fecha": "2026-02-13",
+     "cents": 272400000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE BODEGA PIEDRA NEGRA SA CUIT 33-59699052-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B202",
+     "fecha": "2026-02-13",
+     "cents": -1634400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B203",
+     "fecha": "2026-02-13",
+     "cents": -4086000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B204",
+     "fecha": "2026-02-13",
+     "cents": 96100000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LOGÍSTICA ANDINA SAS CUIT 30-72117626-2",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B205",
+     "fecha": "2026-02-13",
+     "cents": -576600,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B206",
+     "fecha": "2026-02-13",
+     "cents": -1441500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B207",
+     "fecha": "2026-02-13",
+     "cents": -95466000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B208",
+     "fecha": "2026-02-13",
+     "cents": -572796,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B209",
+     "fecha": "2026-02-16",
+     "cents": 35800000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 33-56229538-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B210",
+     "fecha": "2026-02-16",
+     "cents": -214800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B211",
+     "fecha": "2026-02-16",
+     "cents": -537000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B212",
+     "fecha": "2026-02-16",
+     "cents": 382800000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FERRETERÍA EL TORNILLO SRL CUIT 30-66277658-7 REF 0002-00000335",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B213",
+     "fecha": "2026-02-16",
+     "cents": -2296800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B214",
+     "fecha": "2026-02-16",
+     "cents": -5742000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B215",
+     "fecha": "2026-02-16",
+     "cents": 295871042,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ÓPTICA MIRADOR SRL CUIT 30-67805337-2",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B216",
+     "fecha": "2026-02-16",
+     "cents": -1775226,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B217",
+     "fecha": "2026-02-16",
+     "cents": -4438066,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B218",
+     "fecha": "2026-02-16",
+     "cents": 108200000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE IMPRENTA TINTA FRESCA SRL CUIT 30-60391085-7 REF 0001-00000383",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B219",
+     "fecha": "2026-02-16",
+     "cents": -649200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B220",
+     "fecha": "2026-02-16",
+     "cents": -1623000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B221",
+     "fecha": "2026-02-16",
+     "cents": 329300000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE MUEBLES QUEBRACHO SAS CUIT 33-66329258-2 REF 0002-00000387",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B222",
+     "fecha": "2026-02-16",
+     "cents": -1975800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B223",
+     "fecha": "2026-02-16",
+     "cents": -4939500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B224",
+     "fecha": "2026-02-16",
+     "cents": 275300000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LOGÍSTICA ANDINA SAS CUIT 33-63601260-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B225",
+     "fecha": "2026-02-16",
+     "cents": -1651800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B226",
+     "fecha": "2026-02-16",
+     "cents": -4129500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B227",
+     "fecha": "2026-02-16",
+     "cents": 332300000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE IMPRENTA TINTA FRESCA SRL CUIT 33-64131611-9 REF 0002-00000445",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B228",
+     "fecha": "2026-02-16",
+     "cents": -1993800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B229",
+     "fecha": "2026-02-16",
+     "cents": -4984500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B230",
+     "fecha": "2026-02-16",
+     "cents": 40000000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ÓPTICA MIRADOR SRL CUIT 33-50832412-5",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B231",
+     "fecha": "2026-02-16",
+     "cents": -240000,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B232",
+     "fecha": "2026-02-16",
+     "cents": -600000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B233",
+     "fecha": "2026-02-16",
+     "cents": 111180000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FERRETERÍA EL TORNILLO SRL CUIT 33-58584930-3 REF 0001-00000467",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B234",
+     "fecha": "2026-02-16",
+     "cents": -667080,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B235",
+     "fecha": "2026-02-16",
+     "cents": -1667700,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B236",
+     "fecha": "2026-02-16",
+     "cents": 49290703,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 33-50983809-2",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B237",
+     "fecha": "2026-02-16",
+     "cents": -295744,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B238",
+     "fecha": "2026-02-16",
+     "cents": -739361,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B239",
+     "fecha": "2026-02-16",
+     "cents": 381452654,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE MUEBLES QUEBRACHO SAS CUIT 30-60603826-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B240",
+     "fecha": "2026-02-16",
+     "cents": -2288716,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B241",
+     "fecha": "2026-02-16",
+     "cents": -5721790,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B242",
+     "fecha": "2026-02-16",
+     "cents": -92800000,
+     "descripcion": "TRANSFERENCIA ENVIADA A MUEBLES QUEBRACHO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B243",
+     "fecha": "2026-02-16",
+     "cents": -556800,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B244",
+     "fecha": "2026-02-16",
+     "cents": -163600000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B245",
+     "fecha": "2026-02-16",
+     "cents": -981600,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B246",
+     "fecha": "2026-02-16",
+     "cents": -28618000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B247",
+     "fecha": "2026-02-16",
+     "cents": -171708,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B248",
+     "fecha": "2026-02-16",
+     "cents": -57564868,
+     "descripcion": "CHEQUE CAMARA NRO 00030967",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B249",
+     "fecha": "2026-02-16",
+     "cents": -345389,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B250",
+     "fecha": "2026-02-16",
+     "cents": -113400000,
+     "descripcion": "CHEQUE CAMARA NRO 00030986",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B251",
+     "fecha": "2026-02-16",
+     "cents": -680400,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B252",
+     "fecha": "2026-02-16",
+     "cents": 217296632,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B253",
+     "fecha": "2026-02-16",
+     "cents": -1303780,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B254",
+     "fecha": "2026-02-16",
+     "cents": 126321339,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B255",
+     "fecha": "2026-02-16",
+     "cents": -757928,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B256",
+     "fecha": "2026-02-16",
+     "cents": 182894047,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B257",
+     "fecha": "2026-02-16",
+     "cents": -1097364,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B258",
+     "fecha": "2026-02-16",
+     "cents": 207051000,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B259",
+     "fecha": "2026-02-16",
+     "cents": -1242306,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B260",
+     "fecha": "2026-02-17",
+     "cents": 225438000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TEXTIL RÍO BERMEJO SA CUIT 33-58644494-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B261",
+     "fecha": "2026-02-17",
+     "cents": -1352628,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B262",
+     "fecha": "2026-02-17",
+     "cents": -3381570,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B263",
+     "fecha": "2026-02-17",
+     "cents": 303400000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TEXTIL RÍO BERMEJO SA CUIT 33-68581393-4 REF 0003-00000355",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B264",
+     "fecha": "2026-02-17",
+     "cents": -1820400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B265",
+     "fecha": "2026-02-17",
+     "cents": -4551000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B266",
+     "fecha": "2026-02-17",
+     "cents": 138900000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 33-56141544-2",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B267",
+     "fecha": "2026-02-17",
+     "cents": -833400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B268",
+     "fecha": "2026-02-17",
+     "cents": -2083500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B269",
+     "fecha": "2026-02-17",
+     "cents": 24100000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LÁCTEOS VALLE VERDE SA CUIT 33-66622079-5",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B270",
+     "fecha": "2026-02-17",
+     "cents": -144600,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B271",
+     "fecha": "2026-02-17",
+     "cents": -361500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B272",
+     "fecha": "2026-02-17",
+     "cents": 387197390,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE BODEGA PIEDRA NEGRA SA CUIT 30-64056875-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B273",
+     "fecha": "2026-02-17",
+     "cents": -2323184,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B274",
+     "fecha": "2026-02-17",
+     "cents": -5807961,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B275",
+     "fecha": "2026-02-17",
+     "cents": 384200000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FARMACIA DEL PARQUE SCS CUIT 33-66499335-5",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B276",
+     "fecha": "2026-02-17",
+     "cents": -2305200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B277",
+     "fecha": "2026-02-17",
+     "cents": -5763000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B278",
+     "fecha": "2026-02-17",
+     "cents": -93104000,
+     "descripcion": "TRANSFERENCIA ENVIADA A IMPRENTA TINTA FRESCA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B279",
+     "fecha": "2026-02-17",
+     "cents": -558624,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B280",
+     "fecha": "2026-02-17",
+     "cents": -180700000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B281",
+     "fecha": "2026-02-17",
+     "cents": -1084200,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B282",
+     "fecha": "2026-02-17",
+     "cents": -164900000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B283",
+     "fecha": "2026-02-17",
+     "cents": -989400,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B284",
+     "fecha": "2026-02-17",
+     "cents": -218947000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B285",
+     "fecha": "2026-02-17",
+     "cents": -1313682,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B286",
+     "fecha": "2026-02-17",
+     "cents": -200552362,
+     "descripcion": "TRANSFERENCIA ENVIADA A METALÚRGICA SAN TELMO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B287",
+     "fecha": "2026-02-17",
+     "cents": -1203314,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B288",
+     "fecha": "2026-02-17",
+     "cents": 245422971,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B289",
+     "fecha": "2026-02-17",
+     "cents": -1472538,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B290",
+     "fecha": "2026-02-17",
+     "cents": -15639000,
+     "descripcion": "DEB. AUTOM. SEGUROS LA PREVISORA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B291",
+     "fecha": "2026-02-17",
+     "cents": -93834,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B292",
+     "fecha": "2026-02-18",
+     "cents": 94800000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE AGRO SUR DEL PLATA SA CUIT 33-72483662-9",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B293",
+     "fecha": "2026-02-18",
+     "cents": -568800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B294",
+     "fecha": "2026-02-18",
+     "cents": -1422000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B295",
+     "fecha": "2026-02-18",
+     "cents": 323200000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE COOPERATIVA HORNERO LTDA CUIT 33-67856085-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B296",
+     "fecha": "2026-02-18",
+     "cents": -1939200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B297",
+     "fecha": "2026-02-18",
+     "cents": -4848000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B298",
+     "fecha": "2026-02-18",
+     "cents": 248526000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TEXTIL RÍO BERMEJO SA CUIT 33-58899575-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B299",
+     "fecha": "2026-02-18",
+     "cents": -1491156,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B300",
+     "fecha": "2026-02-18",
+     "cents": -3727890,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B301",
+     "fecha": "2026-02-18",
+     "cents": 430618000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE BODEGA PIEDRA NEGRA SA CUIT 33-59274113-5",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B302",
+     "fecha": "2026-02-18",
+     "cents": -2583708,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B303",
+     "fecha": "2026-02-18",
+     "cents": -6459270,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B304",
+     "fecha": "2026-02-18",
+     "cents": 170900000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE DISTRIBUIDORA LOS ÁLAMOS SRL CUIT 33-51085332-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B305",
+     "fecha": "2026-02-18",
+     "cents": -1025400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B306",
+     "fecha": "2026-02-18",
+     "cents": -2563500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B307",
+     "fecha": "2026-02-18",
+     "cents": 407490000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LOGÍSTICA ANDINA SAS CUIT 30-64962366-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B308",
+     "fecha": "2026-02-18",
+     "cents": -2444940,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B309",
+     "fecha": "2026-02-18",
+     "cents": -6112350,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B310",
+     "fecha": "2026-02-18",
+     "cents": 406600000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE MUEBLES QUEBRACHO SAS CUIT 33-61738513-4 REF 0001-00000459",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B311",
+     "fecha": "2026-02-18",
+     "cents": -2439600,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B312",
+     "fecha": "2026-02-18",
+     "cents": -6099000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B313",
+     "fecha": "2026-02-18",
+     "cents": 81808000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LIBRERÍA EL FARO SA CUIT 33-60199807-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B314",
+     "fecha": "2026-02-18",
+     "cents": -490848,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B315",
+     "fecha": "2026-02-18",
+     "cents": -1227120,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B316",
+     "fecha": "2026-02-18",
+     "cents": -129800000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B317",
+     "fecha": "2026-02-18",
+     "cents": -778800,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B318",
+     "fecha": "2026-02-19",
+     "cents": 223001000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ESTUDIO GRÁFICO COBALTO SAS CUIT 30-54078839-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B319",
+     "fecha": "2026-02-19",
+     "cents": -1338006,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B320",
+     "fecha": "2026-02-19",
+     "cents": -3345015,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B321",
+     "fecha": "2026-02-19",
+     "cents": 23912202,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LOGÍSTICA ANDINA SAS CUIT 33-52256131-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B322",
+     "fecha": "2026-02-19",
+     "cents": -143473,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B323",
+     "fecha": "2026-02-19",
+     "cents": -358683,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B324",
+     "fecha": "2026-02-19",
+     "cents": 317012766,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE QUÍMICA LITORAL SRL CUIT 30-61230027-1 REF 0003-00000495",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B325",
+     "fecha": "2026-02-19",
+     "cents": -1902077,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B326",
+     "fecha": "2026-02-19",
+     "cents": -4755191,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B327",
+     "fecha": "2026-02-19",
+     "cents": 220600000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 30-57580876-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B328",
+     "fecha": "2026-02-19",
+     "cents": -1323600,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B329",
+     "fecha": "2026-02-19",
+     "cents": -3309000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B330",
+     "fecha": "2026-02-19",
+     "cents": 447900000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 33-58288002-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B331",
+     "fecha": "2026-02-19",
+     "cents": -2687400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B332",
+     "fecha": "2026-02-19",
+     "cents": -6718500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B333",
+     "fecha": "2026-02-19",
+     "cents": -163200000,
+     "descripcion": "TRANSFERENCIA ENVIADA A FERRETERÍA EL TORNILLO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B334",
+     "fecha": "2026-02-19",
+     "cents": -979200,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B335",
+     "fecha": "2026-02-19",
+     "cents": -33500000,
+     "descripcion": "TRANSFERENCIA ENVIADA A MUEBLES QUEBRACHO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B336",
+     "fecha": "2026-02-19",
+     "cents": -201000,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B337",
+     "fecha": "2026-02-20",
+     "cents": 404929000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE METALÚRGICA SAN TELMO SRL CUIT 33-58621766-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B338",
+     "fecha": "2026-02-20",
+     "cents": -2429574,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B339",
+     "fecha": "2026-02-20",
+     "cents": -6073935,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B340",
+     "fecha": "2026-02-20",
+     "cents": 52700000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE SERVICIOS MÉDICOS LOMAS SRL CUIT 33-62698135-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B341",
+     "fecha": "2026-02-20",
+     "cents": -316200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B342",
+     "fecha": "2026-02-20",
+     "cents": -790500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B343",
+     "fecha": "2026-02-20",
+     "cents": 374200000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE CONSTRUCTORA DELTA NORTE SRL CUIT 30-54067739-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B344",
+     "fecha": "2026-02-20",
+     "cents": -2245200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B345",
+     "fecha": "2026-02-20",
+     "cents": -5613000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B346",
+     "fecha": "2026-02-20",
+     "cents": 177000000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FARMACIA DEL PARQUE SCS CUIT 30-53768225-2",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B347",
+     "fecha": "2026-02-20",
+     "cents": -1062000,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B348",
+     "fecha": "2026-02-20",
+     "cents": -2655000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B349",
+     "fecha": "2026-02-20",
+     "cents": 220300000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE PANIFICADORA LA ESPIGA SRL CUIT 30-60187705-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B350",
+     "fecha": "2026-02-20",
+     "cents": -1321800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B351",
+     "fecha": "2026-02-20",
+     "cents": -3304500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B352",
+     "fecha": "2026-02-20",
+     "cents": 338569000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FARMACIA DEL PARQUE SCS CUIT 33-61903907-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B353",
+     "fecha": "2026-02-20",
+     "cents": -2031414,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B354",
+     "fecha": "2026-02-20",
+     "cents": -5078535,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B355",
+     "fecha": "2026-02-20",
+     "cents": -166550016,
+     "descripcion": "TRANSFERENCIA ENVIADA A CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B356",
+     "fecha": "2026-02-20",
+     "cents": -999300,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B357",
+     "fecha": "2026-02-20",
+     "cents": -152211424,
+     "descripcion": "CHEQUE CAMARA NRO 00030957",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B358",
+     "fecha": "2026-02-20",
+     "cents": -913269,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B359",
+     "fecha": "2026-02-23",
+     "cents": 447278364,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TRANSPORTE RUTA 3 SRL CUIT 30-63683340-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B360",
+     "fecha": "2026-02-23",
+     "cents": -2683670,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B361",
+     "fecha": "2026-02-23",
+     "cents": -6709175,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B362",
+     "fecha": "2026-02-23",
+     "cents": 149075000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE VIÑEDOS ALTOS DE CUYO SA CUIT 33-54921592-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B363",
+     "fecha": "2026-02-23",
+     "cents": -894450,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B364",
+     "fecha": "2026-02-23",
+     "cents": -2236125,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B365",
+     "fecha": "2026-02-23",
+     "cents": 264289000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE AGRO SUR DEL PLATA SA CUIT 30-55168326-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B366",
+     "fecha": "2026-02-23",
+     "cents": -1585734,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B367",
+     "fecha": "2026-02-23",
+     "cents": -3964335,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B368",
+     "fecha": "2026-02-23",
+     "cents": 236400000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FERRETERÍA EL TORNILLO SRL CUIT 30-62738442-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B369",
+     "fecha": "2026-02-23",
+     "cents": -1418400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B370",
+     "fecha": "2026-02-23",
+     "cents": -3546000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B371",
+     "fecha": "2026-02-23",
+     "cents": 191500000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LÁCTEOS VALLE VERDE SA CUIT 33-67005236-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B372",
+     "fecha": "2026-02-23",
+     "cents": -1149000,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B373",
+     "fecha": "2026-02-23",
+     "cents": -2872500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B374",
+     "fecha": "2026-02-23",
+     "cents": 21281000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE AGRO SUR DEL PLATA SA CUIT 33-55401269-3 REF 0003-00000435",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B375",
+     "fecha": "2026-02-23",
+     "cents": -127686,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B376",
+     "fecha": "2026-02-23",
+     "cents": -319215,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B377",
+     "fecha": "2026-02-23",
+     "cents": 228000000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LOGÍSTICA ANDINA SAS CUIT 30-59419569-4 REF 0003-00000437",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B378",
+     "fecha": "2026-02-23",
+     "cents": -1368000,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B379",
+     "fecha": "2026-02-23",
+     "cents": -3420000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B380",
+     "fecha": "2026-02-23",
+     "cents": 237400000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TECNOLOGÍA AUSTRAL SAS CUIT 33-62895700-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B381",
+     "fecha": "2026-02-23",
+     "cents": -1424400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B382",
+     "fecha": "2026-02-23",
+     "cents": -3561000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B383",
+     "fecha": "2026-02-23",
+     "cents": 438604133,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FARMACIA DEL PARQUE SCS CUIT 33-55787156-5 REF 0002-00000465",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B384",
+     "fecha": "2026-02-23",
+     "cents": -2631625,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B385",
+     "fecha": "2026-02-23",
+     "cents": -6579062,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B386",
+     "fecha": "2026-02-23",
+     "cents": 447523000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE SERVICIOS MÉDICOS LOMAS SRL CUIT 33-65838327-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B387",
+     "fecha": "2026-02-23",
+     "cents": -2685138,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B388",
+     "fecha": "2026-02-23",
+     "cents": -6712845,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B389",
+     "fecha": "2026-02-23",
+     "cents": 351090163,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE MUEBLES QUEBRACHO SAS CUIT 33-55087169-1 REF 0001-00000485",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B390",
+     "fecha": "2026-02-23",
+     "cents": -2106541,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B391",
+     "fecha": "2026-02-23",
+     "cents": -5266352,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B392",
+     "fecha": "2026-02-23",
+     "cents": 202400000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LOGÍSTICA ANDINA SAS CUIT 33-50780679-7 REF 0001-00000493",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B393",
+     "fecha": "2026-02-23",
+     "cents": -1214400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B394",
+     "fecha": "2026-02-23",
+     "cents": -3036000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B395",
+     "fecha": "2026-02-23",
+     "cents": 298800000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE VIÑEDOS ALTOS DE CUYO SA CUIT 30-70869127-1 REF 0002-00000507",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B396",
+     "fecha": "2026-02-23",
+     "cents": -1792800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B397",
+     "fecha": "2026-02-23",
+     "cents": -4482000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B398",
+     "fecha": "2026-02-23",
+     "cents": 397300000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE QUÍMICA LITORAL SRL CUIT 30-71699577-8 REF 0003-00000519",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B399",
+     "fecha": "2026-02-23",
+     "cents": -2383800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B400",
+     "fecha": "2026-02-23",
+     "cents": -5959500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B401",
+     "fecha": "2026-02-23",
+     "cents": -118200000,
+     "descripcion": "TRANSFERENCIA ENVIADA A DISTRIBUIDORA LOS ÁLAMOS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B402",
+     "fecha": "2026-02-23",
+     "cents": -709200,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B403",
+     "fecha": "2026-02-23",
+     "cents": -247400000,
+     "descripcion": "TRANSFERENCIA ENVIADA A COOPERATIVA HORNERO LTDA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B404",
+     "fecha": "2026-02-23",
+     "cents": -1484400,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B405",
+     "fecha": "2026-02-23",
+     "cents": -266771670,
+     "descripcion": "TRANSFERENCIA ENVIADA A ESTUDIO GRÁFICO COBALTO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B406",
+     "fecha": "2026-02-23",
+     "cents": -1600630,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B407",
+     "fecha": "2026-02-23",
+     "cents": -100012000,
+     "descripcion": "TRANSFERENCIA ENVIADA A ESTUDIO GRÁFICO COBALTO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B408",
+     "fecha": "2026-02-23",
+     "cents": -600072,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B409",
+     "fecha": "2026-02-23",
+     "cents": -45435368,
+     "descripcion": "TRANSFERENCIA ENVIADA A PANIFICADORA LA ESPIGA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B410",
+     "fecha": "2026-02-23",
+     "cents": -272612,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B411",
+     "fecha": "2026-02-23",
+     "cents": -176541789,
+     "descripcion": "ECHEQ PAGADO NRO 00031014",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B412",
+     "fecha": "2026-02-23",
+     "cents": -1059251,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B413",
+     "fecha": "2026-02-23",
+     "cents": -21600000,
+     "descripcion": "PAGO VEP 653181662 AFIP",
+     "tipo": "vep_arca"
+    },
+    {
+     "id": "B414",
+     "fecha": "2026-02-23",
+     "cents": -129600,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B415",
+     "fecha": "2026-02-24",
+     "cents": 38481985,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE QUÍMICA LITORAL SRL CUIT 33-72807987-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B416",
+     "fecha": "2026-02-24",
+     "cents": -230892,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B417",
+     "fecha": "2026-02-24",
+     "cents": -577230,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B418",
+     "fecha": "2026-02-24",
+     "cents": 381839188,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE DISTRIBUIDORA LOS ÁLAMOS SRL CUIT 33-52450369-2 REF 0001-00000539",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B419",
+     "fecha": "2026-02-24",
+     "cents": -2291035,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B420",
+     "fecha": "2026-02-24",
+     "cents": -5727588,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B421",
+     "fecha": "2026-02-24",
+     "cents": -149200000,
+     "descripcion": "TRANSFERENCIA ENVIADA A IMPRENTA TINTA FRESCA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B422",
+     "fecha": "2026-02-24",
+     "cents": -895200,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B423",
+     "fecha": "2026-02-24",
+     "cents": -246150000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B424",
+     "fecha": "2026-02-24",
+     "cents": -1476900,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B425",
+     "fecha": "2026-02-24",
+     "cents": -196240484,
+     "descripcion": "TRANSFERENCIA ENVIADA A SERVICIOS MÉDICOS LOMAS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B426",
+     "fecha": "2026-02-24",
+     "cents": -1177443,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B427",
+     "fecha": "2026-02-24",
+     "cents": -2000000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B428",
+     "fecha": "2026-02-24",
+     "cents": -420000,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B429",
+     "fecha": "2026-02-24",
+     "cents": -60000,
+     "descripcion": "PERCEP. IVA RG 2408",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B430",
+     "fecha": "2026-02-24",
+     "cents": -12000,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B431",
+     "fecha": "2026-02-24",
+     "cents": -2520,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B432",
+     "fecha": "2026-02-24",
+     "cents": -360,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B433",
+     "fecha": "2026-02-25",
+     "cents": 428896000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE SERVICIOS MÉDICOS LOMAS SRL CUIT 33-59276617-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B434",
+     "fecha": "2026-02-25",
+     "cents": -2573376,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B435",
+     "fecha": "2026-02-25",
+     "cents": -6433440,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B436",
+     "fecha": "2026-02-25",
+     "cents": 235900000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE SERVICIOS MÉDICOS LOMAS SRL CUIT 30-65007081-6 REF 0002-00000419",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B437",
+     "fecha": "2026-02-25",
+     "cents": -1415400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B438",
+     "fecha": "2026-02-25",
+     "cents": -3538500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B439",
+     "fecha": "2026-02-25",
+     "cents": 234900000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TECNOLOGÍA AUSTRAL SAS CUIT 33-52810886-0 REF 0003-00000425",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B440",
+     "fecha": "2026-02-25",
+     "cents": -1409400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B441",
+     "fecha": "2026-02-25",
+     "cents": -3523500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B442",
+     "fecha": "2026-02-25",
+     "cents": 79534000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE SERVICIOS MÉDICOS LOMAS SRL CUIT 33-71253945-9",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B443",
+     "fecha": "2026-02-25",
+     "cents": -477204,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B444",
+     "fecha": "2026-02-25",
+     "cents": -1193010,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B445",
+     "fecha": "2026-02-25",
+     "cents": 87800000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE AGRO SUR DEL PLATA SA CUIT 30-62470640-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B446",
+     "fecha": "2026-02-25",
+     "cents": -526800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B447",
+     "fecha": "2026-02-25",
+     "cents": -1317000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B448",
+     "fecha": "2026-02-25",
+     "cents": -169200000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B449",
+     "fecha": "2026-02-25",
+     "cents": -1015200,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B450",
+     "fecha": "2026-02-25",
+     "cents": -146100000,
+     "descripcion": "CHEQUE CAMARA NRO 00031015",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B451",
+     "fecha": "2026-02-25",
+     "cents": -876600,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B452",
+     "fecha": "2026-02-26",
+     "cents": 159053757,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ESTUDIO GRÁFICO COBALTO SAS CUIT 33-66168648-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B453",
+     "fecha": "2026-02-26",
+     "cents": -954323,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B454",
+     "fecha": "2026-02-26",
+     "cents": -2385806,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B455",
+     "fecha": "2026-02-26",
+     "cents": 340968153,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE BODEGA PIEDRA NEGRA SA CUIT 33-55996827-2",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B456",
+     "fecha": "2026-02-26",
+     "cents": -2045809,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B457",
+     "fecha": "2026-02-26",
+     "cents": -5114522,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B458",
+     "fecha": "2026-02-26",
+     "cents": 71274000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 33-60788134-6 REF 0002-00000511",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B459",
+     "fecha": "2026-02-26",
+     "cents": -427644,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B460",
+     "fecha": "2026-02-26",
+     "cents": -1069110,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B461",
+     "fecha": "2026-02-26",
+     "cents": 253100000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE DISTRIBUIDORA LOS ÁLAMOS SRL CUIT 33-50599329-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B462",
+     "fecha": "2026-02-26",
+     "cents": -1518600,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B463",
+     "fecha": "2026-02-26",
+     "cents": -3796500,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B464",
+     "fecha": "2026-02-26",
+     "cents": -30600000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B465",
+     "fecha": "2026-02-26",
+     "cents": -183600,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B466",
+     "fecha": "2026-02-26",
+     "cents": -184600000,
+     "descripcion": "TRANSFERENCIA ENVIADA A DISTRIBUIDORA LOS ÁLAMOS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B467",
+     "fecha": "2026-02-26",
+     "cents": -1107600,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B468",
+     "fecha": "2026-02-26",
+     "cents": -202752000,
+     "descripcion": "TRANSFERENCIA ENVIADA A MUEBLES QUEBRACHO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B469",
+     "fecha": "2026-02-26",
+     "cents": -1216512,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B470",
+     "fecha": "2026-02-26",
+     "cents": -12680000,
+     "descripcion": "DEB. AUTOM. TELEFONÍA FEDERAL",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B471",
+     "fecha": "2026-02-26",
+     "cents": -76080,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B472",
+     "fecha": "2026-02-27",
+     "cents": 445543000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE QUÍMICA LITORAL SRL CUIT 33-60861112-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B473",
+     "fecha": "2026-02-27",
+     "cents": -2673258,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B474",
+     "fecha": "2026-02-27",
+     "cents": -6683145,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B475",
+     "fecha": "2026-02-27",
+     "cents": 358400000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LIBRERÍA EL FARO SA CUIT 30-51626174-5 REF 0002-00000431",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B476",
+     "fecha": "2026-02-27",
+     "cents": -2150400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B477",
+     "fecha": "2026-02-27",
+     "cents": -5376000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B478",
+     "fecha": "2026-02-27",
+     "cents": -110953000,
+     "descripcion": "ECHEQ PAGADO NRO 00030990",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B479",
+     "fecha": "2026-02-27",
+     "cents": -665718,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B480",
+     "fecha": "2026-02-28",
+     "cents": 226600000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE SERVICIOS MÉDICOS LOMAS SRL CUIT 30-64994465-9",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B481",
+     "fecha": "2026-02-28",
+     "cents": -1359600,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B482",
+     "fecha": "2026-02-28",
+     "cents": -3399000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B483",
+     "fecha": "2026-02-28",
+     "cents": 139600000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TECNOLOGÍA AUSTRAL SAS CUIT 33-63903137-9 REF 0002-00000537",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B484",
+     "fecha": "2026-02-28",
+     "cents": -837600,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B485",
+     "fecha": "2026-02-28",
+     "cents": -2094000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-02-01",
+     "cents": -34346717,
+     "descripcion": "Aguas Urbanas - débito automático",
+     "comprobante": "",
+     "asiento": 587
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-02-02",
+     "cents": 325059000,
+     "descripcion": "Cobranza Bodega Piedra Negra SA Rec. 0001-00000334",
+     "comprobante": "0002-00000333",
+     "asiento": 384
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-02-02",
+     "cents": 368300000,
+     "descripcion": "Cobranza cliente Química Litoral SRL",
+     "comprobante": "0002-00000371",
+     "asiento": 403
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-02-02",
+     "cents": 89820000,
+     "descripcion": "Cobro FC A 0003-00000391 Tecnología Austral SAS",
+     "comprobante": "0003-00000391",
+     "asiento": 413
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-02-02",
+     "cents": 252775000,
+     "descripcion": "Cobranza Ferretería El Tornillo SRL Rec. 0001-00000396",
+     "comprobante": "0001-00000395",
+     "asiento": 415
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-02-02",
+     "cents": 337517104,
+     "descripcion": "Cobranza Óptica Mirador SRL Rec. 0001-00000410",
+     "comprobante": "0001-00000409",
+     "asiento": 422
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-02-02",
+     "cents": 346700000,
+     "descripcion": "Cobranza Textil Río Bermejo SA Rec. 0001-00000416",
+     "comprobante": "0003-00000415",
+     "asiento": 425
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-02-02",
+     "cents": 293800000,
+     "descripcion": "Cobro FC A 0003-00000441 Lácteos Valle Verde SA",
+     "comprobante": "0003-00000441",
+     "asiento": 438
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-02-02",
+     "cents": 287725887,
+     "descripcion": "Cobranza cliente Textil Río Bermejo SA",
+     "comprobante": "0001-00000449",
+     "asiento": 442
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-02-02",
+     "cents": 24083511,
+     "descripcion": "Cobranza cliente Bodega Piedra Negra SA",
+     "comprobante": "0002-00000451",
+     "asiento": 443
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-02-02",
+     "cents": 230900000,
+     "descripcion": "Cobranza Muebles Quebracho SAS Rec. 0001-00000470",
+     "comprobante": "0003-00000469",
+     "asiento": 452
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-02-02",
+     "cents": 312410000,
+     "descripcion": "Cobranza Óptica Mirador SRL Rec. 0001-00000510",
+     "comprobante": "0002-00000509",
+     "asiento": 472
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-02-02",
+     "cents": 433709000,
+     "descripcion": "Cobro FC A 0001-00000541 Lácteos Valle Verde SA",
+     "comprobante": "0001-00000541",
+     "asiento": 488
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-02-02",
+     "cents": -195800000,
+     "descripcion": "Transferencia a Farmacia Del Parque SCS OP 0001-00000545",
+     "comprobante": "OP 0001-00000545",
+     "asiento": 490
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-02-02",
+     "cents": -193844843,
+     "descripcion": "Pago a proveedor Distribuidora Los Álamos SRL",
+     "comprobante": "OP 0001-00000554",
+     "asiento": 499
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-02-02",
+     "cents": -193200000,
+     "descripcion": "Pago a proveedor Distribuidora Los Álamos SRL",
+     "comprobante": "OP 0001-00000588",
+     "asiento": 533
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-02-02",
+     "cents": -176541789,
+     "descripcion": "ECHEQ N° 00031014 a Distribuidora Los Álamos SRL",
+     "comprobante": "CH 00031014",
+     "asiento": 551
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-02-02",
+     "cents": -146100000,
+     "descripcion": "Cheque N° 00031015 a Logística Andina SAS",
+     "comprobante": "CH 00031015",
+     "asiento": 552
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-02-02",
+     "cents": 46000000,
+     "descripcion": "Cobranza Mateo Benítez - efectivo a depositar",
+     "comprobante": "RC 0001-00000599",
+     "asiento": 558
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-02-02",
+     "cents": -107102647,
+     "descripcion": "Sueldo enero - Lucas Fernández",
+     "comprobante": "",
+     "asiento": 588
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-02-02",
+     "cents": -206900000,
+     "descripcion": "Sueldo enero - Florencia Díaz",
+     "comprobante": "",
+     "asiento": 589
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-02-02",
+     "cents": -196789000,
+     "descripcion": "Sueldo enero - Ignacio Vera",
+     "comprobante": "",
+     "asiento": 590
+    },
+    {
+     "id": "L23",
+     "fecha": "2026-02-02",
+     "cents": -139365924,
+     "descripcion": "Sueldo enero - Valentina Sosa",
+     "comprobante": "",
+     "asiento": 591
+    },
+    {
+     "id": "L24",
+     "fecha": "2026-02-02",
+     "cents": -158000000,
+     "descripcion": "Sueldo enero - Agustín Molina",
+     "comprobante": "",
+     "asiento": 592
+    },
+    {
+     "id": "L25",
+     "fecha": "2026-02-02",
+     "cents": -107179529,
+     "descripcion": "Sueldo enero - Sofía Ramírez",
+     "comprobante": "",
+     "asiento": 593
+    },
+    {
+     "id": "L26",
+     "fecha": "2026-02-03",
+     "cents": 284897875,
+     "descripcion": "Cobro FC A 0003-00000341 Constructora Delta Norte SRL",
+     "comprobante": "0003-00000341",
+     "asiento": 388
+    },
+    {
+     "id": "L27",
+     "fecha": "2026-02-03",
+     "cents": 170386215,
+     "descripcion": "Cobranza Frigorífico Pampa Alta SA Rec. 0001-00000382",
+     "comprobante": "0002-00000381",
+     "asiento": 408
+    },
+    {
+     "id": "L28",
+     "fecha": "2026-02-03",
+     "cents": 251181000,
+     "descripcion": "Cobro FC A 0002-00000427 Tecnología Austral SAS",
+     "comprobante": "0002-00000427",
+     "asiento": 431
+    },
+    {
+     "id": "L29",
+     "fecha": "2026-02-03",
+     "cents": -5700000,
+     "descripcion": "Pago a proveedor Imprenta Tinta Fresca SRL",
+     "comprobante": "OP 0001-00000555",
+     "asiento": 500
+    },
+    {
+     "id": "L30",
+     "fecha": "2026-02-03",
+     "cents": -249071659,
+     "descripcion": "Transferencia a Librería El Faro SA OP 0001-00000578",
+     "comprobante": "OP 0001-00000578",
+     "asiento": 523
+    },
+    {
+     "id": "L31",
+     "fecha": "2026-02-03",
+     "cents": -244509760,
+     "descripcion": "Pago Hotel Cerro Azul SA OP 0001-00000583",
+     "comprobante": "OP 0001-00000583",
+     "asiento": 528
+    },
+    {
+     "id": "L32",
+     "fecha": "2026-02-04",
+     "cents": 187139000,
+     "descripcion": "Cobro FC A 0003-00000365 Constructora Delta Norte SRL",
+     "comprobante": "0003-00000365",
+     "asiento": 400
+    },
+    {
+     "id": "L33",
+     "fecha": "2026-02-04",
+     "cents": 169652593,
+     "descripcion": "Cobro FC A 0001-00000393 Textil Río Bermejo SA",
+     "comprobante": "0001-00000393",
+     "asiento": 414
+    },
+    {
+     "id": "L34",
+     "fecha": "2026-02-04",
+     "cents": 367381920,
+     "descripcion": "Cobranza Viñedos Altos de Cuyo SA Rec. 0001-00000434",
+     "comprobante": "0001-00000433",
+     "asiento": 434
+    },
+    {
+     "id": "L35",
+     "fecha": "2026-02-04",
+     "cents": 159700113,
+     "descripcion": "Cobranza cliente Lácteos Valle Verde SA",
+     "comprobante": "0003-00000499",
+     "asiento": 467
+    },
+    {
+     "id": "L36",
+     "fecha": "2026-02-04",
+     "cents": -162500000,
+     "descripcion": "Pago a proveedor Metalúrgica San Telmo SRL",
+     "comprobante": "OP 0001-00000573",
+     "asiento": 518
+    },
+    {
+     "id": "L37",
+     "fecha": "2026-02-04",
+     "cents": -152211424,
+     "descripcion": "Cheque N° 00030957 a Cooperativa Hornero Ltda",
+     "comprobante": "CH 00030957",
+     "asiento": 540
+    },
+    {
+     "id": "L38",
+     "fecha": "2026-02-04",
+     "cents": 50950000,
+     "descripcion": "Cobranza Joaquín Pereyra - efectivo a depositar",
+     "comprobante": "RC 0001-00000598",
+     "asiento": 557
+    },
+    {
+     "id": "L39",
+     "fecha": "2026-02-04",
+     "cents": 6271000,
+     "descripcion": "Cobranza Florencia Díaz - efectivo a depositar",
+     "comprobante": "RC 0001-00000609",
+     "asiento": 568
+    },
+    {
+     "id": "L40",
+     "fecha": "2026-02-04",
+     "cents": 38200000,
+     "descripcion": "Cobranza Camila Herrera - efectivo a depositar",
+     "comprobante": "RC 0001-00000610",
+     "asiento": 569
+    },
+    {
+     "id": "L41",
+     "fecha": "2026-02-05",
+     "cents": 369300000,
+     "descripcion": "Cobro FC A 0001-00000343 Librería El Faro SA",
+     "comprobante": "0001-00000343",
+     "asiento": 389
+    },
+    {
+     "id": "L42",
+     "fecha": "2026-02-05",
+     "cents": 428500000,
+     "descripcion": "Cobro FC A 0002-00000463 Textil Río Bermejo SA",
+     "comprobante": "0002-00000463",
+     "asiento": 449
+    },
+    {
+     "id": "L43",
+     "fecha": "2026-02-05",
+     "cents": -290800000,
+     "descripcion": "Transferencia a Muebles Quebracho SAS OP 0001-00000566",
+     "comprobante": "OP 0001-00000566",
+     "asiento": 511
+    },
+    {
+     "id": "L44",
+     "fecha": "2026-02-05",
+     "cents": -157430000,
+     "descripcion": "Transferencia a Estudio Gráfico Cobalto SAS OP 0001-00000569",
+     "comprobante": "OP 0001-00000569",
+     "asiento": 514
+    },
+    {
+     "id": "L45",
+     "fecha": "2026-02-05",
+     "cents": -116300000,
+     "descripcion": "Pago Librería El Faro SA OP 0001-00000579",
+     "comprobante": "OP 0001-00000579",
+     "asiento": 524
+    },
+    {
+     "id": "L46",
+     "fecha": "2026-02-05",
+     "cents": -113400000,
+     "descripcion": "Cheque N° 00030986 a Bodega Piedra Negra SA",
+     "comprobante": "CH 00030986",
+     "asiento": 545
+    },
+    {
+     "id": "L47",
+     "fecha": "2026-02-05",
+     "cents": 83859363,
+     "descripcion": "Cobranza Nicolás Romero - efectivo a depositar",
+     "comprobante": "RC 0001-00000600",
+     "asiento": 559
+    },
+    {
+     "id": "L48",
+     "fecha": "2026-02-05",
+     "cents": 58500000,
+     "descripcion": "Cobranza Santiago Rojas - efectivo a depositar",
+     "comprobante": "RC 0001-00000608",
+     "asiento": 567
+    },
+    {
+     "id": "L49",
+     "fecha": "2026-02-06",
+     "cents": 260793262,
+     "descripcion": "Cobro FC A 0002-00000439 Servicios Médicos Lomas SRL",
+     "comprobante": "0002-00000439",
+     "asiento": 437
+    },
+    {
+     "id": "L50",
+     "fecha": "2026-02-06",
+     "cents": 369746209,
+     "descripcion": "Cobranza cliente Cooperativa Hornero Ltda",
+     "comprobante": "0002-00000489",
+     "asiento": 462
+    },
+    {
+     "id": "L51",
+     "fecha": "2026-02-06",
+     "cents": 256000000,
+     "descripcion": "Cobro FC A 0001-00000497 Bodega Piedra Negra SA",
+     "comprobante": "0001-00000497",
+     "asiento": 466
+    },
+    {
+     "id": "L52",
+     "fecha": "2026-02-06",
+     "cents": 113200000,
+     "descripcion": "Cobro FC A 0002-00000515 Muebles Quebracho SAS",
+     "comprobante": "0002-00000515",
+     "asiento": 475
+    },
+    {
+     "id": "L53",
+     "fecha": "2026-02-06",
+     "cents": -101587619,
+     "descripcion": "Transferencia a Distribuidora Los Álamos SRL OP 0001-00000557",
+     "comprobante": "OP 0001-00000557",
+     "asiento": 502
+    },
+    {
+     "id": "L54",
+     "fecha": "2026-02-06",
+     "cents": 81303000,
+     "descripcion": "Cobranza Tomás Acosta - efectivo a depositar",
+     "comprobante": "RC 0001-00000607",
+     "asiento": 566
+    },
+    {
+     "id": "L55",
+     "fecha": "2026-02-07",
+     "cents": 4758016,
+     "descripcion": "Cobranza Mateo Benítez - efectivo a depositar",
+     "comprobante": "RC 0001-00000625",
+     "asiento": 584
+    },
+    {
+     "id": "L56",
+     "fecha": "2026-02-08",
+     "cents": 80866242,
+     "descripcion": "Cobranza Valentina Sosa - efectivo a depositar",
+     "comprobante": "RC 0001-00000624",
+     "asiento": 583
+    },
+    {
+     "id": "L57",
+     "fecha": "2026-02-09",
+     "cents": 196739000,
+     "descripcion": "Cobro FC A 0003-00000331 Servicios Médicos Lomas SRL",
+     "comprobante": "0003-00000331",
+     "asiento": 383
+    },
+    {
+     "id": "L58",
+     "fecha": "2026-02-09",
+     "cents": 441454250,
+     "descripcion": "Cobranza Muebles Quebracho SAS Rec. 0001-00000362",
+     "comprobante": "0003-00000361",
+     "asiento": 398
+    },
+    {
+     "id": "L59",
+     "fecha": "2026-02-09",
+     "cents": 173456213,
+     "descripcion": "Cobro FC A 0002-00000363 Tecnología Austral SAS",
+     "comprobante": "0002-00000363",
+     "asiento": 399
+    },
+    {
+     "id": "L60",
+     "fecha": "2026-02-09",
+     "cents": 70000000,
+     "descripcion": "Cobranza cliente Agro Sur del Plata SA",
+     "comprobante": "0003-00000403",
+     "asiento": 419
+    },
+    {
+     "id": "L61",
+     "fecha": "2026-02-09",
+     "cents": 399618000,
+     "descripcion": "Cobranza cliente Estudio Gráfico Cobalto SAS",
+     "comprobante": "0002-00000423",
+     "asiento": 429
+    },
+    {
+     "id": "L62",
+     "fecha": "2026-02-09",
+     "cents": 334726000,
+     "descripcion": "Cobranza cliente Química Litoral SRL",
+     "comprobante": "0002-00000471",
+     "asiento": 453
+    },
+    {
+     "id": "L63",
+     "fecha": "2026-02-09",
+     "cents": 405900000,
+     "descripcion": "Cobro FC A 0003-00000479 Viñedos Altos de Cuyo SA",
+     "comprobante": "0003-00000479",
+     "asiento": 457
+    },
+    {
+     "id": "L64",
+     "fecha": "2026-02-09",
+     "cents": 264786000,
+     "descripcion": "Cobro FC A 0001-00000491 Frigorífico Pampa Alta SA",
+     "comprobante": "0001-00000491",
+     "asiento": 463
+    },
+    {
+     "id": "L65",
+     "fecha": "2026-02-09",
+     "cents": 58974142,
+     "descripcion": "Cobro FC A 0001-00000517 Hotel Cerro Azul SA",
+     "comprobante": "0001-00000517",
+     "asiento": 476
+    },
+    {
+     "id": "L66",
+     "fecha": "2026-02-09",
+     "cents": 446800000,
+     "descripcion": "Cobro FC A 0001-00000527 Hotel Cerro Azul SA",
+     "comprobante": "0001-00000527",
+     "asiento": 481
+    },
+    {
+     "id": "L67",
+     "fecha": "2026-02-09",
+     "cents": 175900000,
+     "descripcion": "Cobranza Cooperativa Hornero Ltda Rec. 0001-00000530",
+     "comprobante": "0002-00000529",
+     "asiento": 482
+    },
+    {
+     "id": "L68",
+     "fecha": "2026-02-09",
+     "cents": 123554458,
+     "descripcion": "Cobranza cliente Frigorífico Pampa Alta SA",
+     "comprobante": "0001-00000543",
+     "asiento": 489
+    },
+    {
+     "id": "L69",
+     "fecha": "2026-02-09",
+     "cents": -16167000,
+     "descripcion": "Pago Logística Andina SAS OP 0001-00000551",
+     "comprobante": "OP 0001-00000551",
+     "asiento": 496
+    },
+    {
+     "id": "L70",
+     "fecha": "2026-02-09",
+     "cents": -152627051,
+     "descripcion": "Pago Transporte Ruta 3 SRL OP 0001-00000552",
+     "comprobante": "OP 0001-00000552",
+     "asiento": 497
+    },
+    {
+     "id": "L71",
+     "fecha": "2026-02-09",
+     "cents": -244700000,
+     "descripcion": "Transferencia a Panificadora La Espiga SRL OP 0001-00000556",
+     "comprobante": "OP 0001-00000556",
+     "asiento": 501
+    },
+    {
+     "id": "L72",
+     "fecha": "2026-02-09",
+     "cents": -94500000,
+     "descripcion": "Transferencia a Muebles Quebracho SAS OP 0001-00000558",
+     "comprobante": "OP 0001-00000558",
+     "asiento": 503
+    },
+    {
+     "id": "L73",
+     "fecha": "2026-02-09",
+     "cents": -175478000,
+     "descripcion": "Transferencia a Constructora Delta Norte SRL OP 0001-00000574",
+     "comprobante": "OP 0001-00000574",
+     "asiento": 519
+    },
+    {
+     "id": "L74",
+     "fecha": "2026-02-09",
+     "cents": -77533700,
+     "descripcion": "Pago a proveedor Tecnología Austral SAS",
+     "comprobante": "OP 0001-00000580",
+     "asiento": 525
+    },
+    {
+     "id": "L75",
+     "fecha": "2026-02-09",
+     "cents": -209993000,
+     "descripcion": "Cheque N° 00030956 a Lácteos Valle Verde SA",
+     "comprobante": "CH 00030956",
+     "asiento": 539
+    },
+    {
+     "id": "L76",
+     "fecha": "2026-02-09",
+     "cents": -57564868,
+     "descripcion": "Cheque N° 00030967 a Ferretería El Tornillo SRL",
+     "comprobante": "CH 00030967",
+     "asiento": 542
+    },
+    {
+     "id": "L77",
+     "fecha": "2026-02-09",
+     "cents": -110953000,
+     "descripcion": "ECHEQ N° 00030990 a Viñedos Altos de Cuyo SA",
+     "comprobante": "CH 00030990",
+     "asiento": 546
+    },
+    {
+     "id": "L78",
+     "fecha": "2026-02-09",
+     "cents": 15500000,
+     "descripcion": "Cobranza Franco Silva - efectivo a depositar",
+     "comprobante": "RC 0001-00000622",
+     "asiento": 581
+    },
+    {
+     "id": "L79",
+     "fecha": "2026-02-09",
+     "cents": -193100251,
+     "descripcion": "Pago IVA VEP 191726455",
+     "comprobante": "VEP 191726455",
+     "asiento": 595
+    },
+    {
+     "id": "L80",
+     "fecha": "2026-02-10",
+     "cents": 260200000,
+     "descripcion": "Cobranza Distribuidora Los Álamos SRL Rec. 0001-00000330",
+     "comprobante": "0003-00000329",
+     "asiento": 382
+    },
+    {
+     "id": "L81",
+     "fecha": "2026-02-10",
+     "cents": 328579003,
+     "descripcion": "Cobro FC A 0003-00000411 Farmacia Del Parque SCS",
+     "comprobante": "0003-00000411",
+     "asiento": 423
+    },
+    {
+     "id": "L82",
+     "fecha": "2026-02-10",
+     "cents": 377700000,
+     "descripcion": "Cobranza cliente Frigorífico Pampa Alta SA",
+     "comprobante": "0001-00000421",
+     "asiento": 428
+    },
+    {
+     "id": "L83",
+     "fecha": "2026-02-10",
+     "cents": -161600000,
+     "descripcion": "Transferencia a Frigorífico Pampa Alta SA OP 0001-00000572",
+     "comprobante": "OP 0001-00000572",
+     "asiento": 517
+    },
+    {
+     "id": "L84",
+     "fecha": "2026-02-10",
+     "cents": -33500000,
+     "descripcion": "Pago Librería El Faro SA OP 0001-00000591",
+     "comprobante": "OP 0001-00000591",
+     "asiento": 536
+    },
+    {
+     "id": "L85",
+     "fecha": "2026-02-10",
+     "cents": 25000000,
+     "descripcion": "Cobranza Santiago Rojas - efectivo a depositar",
+     "comprobante": "RC 0001-00000615",
+     "asiento": 574
+    },
+    {
+     "id": "L86",
+     "fecha": "2026-02-10",
+     "cents": 76792000,
+     "descripcion": "Cobranza Camila Herrera - efectivo a depositar",
+     "comprobante": "RC 0001-00000616",
+     "asiento": 575
+    },
+    {
+     "id": "L87",
+     "fecha": "2026-02-10",
+     "cents": 20500000,
+     "descripcion": "Cobranza Carolina Núñez - efectivo a depositar",
+     "comprobante": "RC 0001-00000623",
+     "asiento": 582
+    },
+    {
+     "id": "L88",
+     "fecha": "2026-02-11",
+     "cents": 82444000,
+     "descripcion": "Cobranza Textil Río Bermejo SA Rec. 0001-00000488",
+     "comprobante": "0003-00000487",
+     "asiento": 461
+    },
+    {
+     "id": "L89",
+     "fecha": "2026-02-11",
+     "cents": -153400000,
+     "descripcion": "Pago a proveedor Transporte Ruta 3 SRL",
+     "comprobante": "OP 0001-00000546",
+     "asiento": 491
+    },
+    {
+     "id": "L90",
+     "fecha": "2026-02-11",
+     "cents": -161200000,
+     "descripcion": "Pago Logística Andina SAS OP 0001-00000575",
+     "comprobante": "OP 0001-00000575",
+     "asiento": 520
+    },
+    {
+     "id": "L91",
+     "fecha": "2026-02-11",
+     "cents": -171608000,
+     "descripcion": "Transferencia a Tecnología Austral SAS OP 0001-00000576",
+     "comprobante": "OP 0001-00000576",
+     "asiento": 521
+    },
+    {
+     "id": "L92",
+     "fecha": "2026-02-11",
+     "cents": -30600000,
+     "descripcion": "Transferencia a Panificadora La Espiga SRL OP 0001-00000581",
+     "comprobante": "OP 0001-00000581",
+     "asiento": 526
+    },
+    {
+     "id": "L93",
+     "fecha": "2026-02-11",
+     "cents": 69900000,
+     "descripcion": "Cobranza Joaquín Pereyra - efectivo a depositar",
+     "comprobante": "RC 0001-00000621",
+     "asiento": 580
+    },
+    {
+     "id": "L94",
+     "fecha": "2026-02-12",
+     "cents": 272400000,
+     "descripcion": "Cobro FC A 0001-00000375 Bodega Piedra Negra SA",
+     "comprobante": "0001-00000375",
+     "asiento": 405
+    },
+    {
+     "id": "L95",
+     "fecha": "2026-02-12",
+     "cents": 40000000,
+     "descripcion": "Cobro FC A 0001-00000447 Óptica Mirador SRL",
+     "comprobante": "0001-00000447",
+     "asiento": 441
+    },
+    {
+     "id": "L96",
+     "fecha": "2026-02-12",
+     "cents": 39300000,
+     "descripcion": "Cobranza cliente Metalúrgica San Telmo SRL",
+     "comprobante": "0002-00000453",
+     "asiento": 444
+    },
+    {
+     "id": "L97",
+     "fecha": "2026-02-12",
+     "cents": -232800000,
+     "descripcion": "Transferencia a Constructora Delta Norte SRL OP 0001-00000567",
+     "comprobante": "OP 0001-00000567",
+     "asiento": 512
+    },
+    {
+     "id": "L98",
+     "fecha": "2026-02-12",
+     "cents": 68431869,
+     "descripcion": "Cobranza Joaquín Pereyra - efectivo a depositar",
+     "comprobante": "RC 0001-00000614",
+     "asiento": 573
+    },
+    {
+     "id": "L99",
+     "fecha": "2026-02-13",
+     "cents": 329300000,
+     "descripcion": "Cobranza Muebles Quebracho SAS Rec. 0001-00000388",
+     "comprobante": "0002-00000387",
+     "asiento": 411
+    },
+    {
+     "id": "L100",
+     "fecha": "2026-02-13",
+     "cents": 275300000,
+     "descripcion": "Cobranza Logística Andina SAS Rec. 0001-00000444",
+     "comprobante": "0002-00000443",
+     "asiento": 439
+    },
+    {
+     "id": "L101",
+     "fecha": "2026-02-13",
+     "cents": 111180000,
+     "descripcion": "Cobranza cliente Ferretería El Tornillo SRL",
+     "comprobante": "0001-00000467",
+     "asiento": 451
+    },
+    {
+     "id": "L102",
+     "fecha": "2026-02-13",
+     "cents": 96100000,
+     "descripcion": "Cobranza Logística Andina SAS Rec. 0001-00000506",
+     "comprobante": "0001-00000505",
+     "asiento": 470
+    },
+    {
+     "id": "L103",
+     "fecha": "2026-02-13",
+     "cents": 381452654,
+     "descripcion": "Cobranza Muebles Quebracho SAS Rec. 0001-00000532",
+     "comprobante": "0003-00000531",
+     "asiento": 483
+    },
+    {
+     "id": "L104",
+     "fecha": "2026-02-13",
+     "cents": -95466000,
+     "descripcion": "Transferencia a Librería El Faro SA OP 0001-00000550",
+     "comprobante": "OP 0001-00000550",
+     "asiento": 495
+    },
+    {
+     "id": "L105",
+     "fecha": "2026-02-13",
+     "cents": -28618000,
+     "descripcion": "Transferencia a Logística Andina SAS OP 0001-00000593",
+     "comprobante": "OP 0001-00000593",
+     "asiento": 538
+    },
+    {
+     "id": "L106",
+     "fecha": "2026-02-13",
+     "cents": 51734000,
+     "descripcion": "Cobranza Valentina Sosa - efectivo a depositar",
+     "comprobante": "RC 0001-00000595",
+     "asiento": 554
+    },
+    {
+     "id": "L107",
+     "fecha": "2026-02-13",
+     "cents": 59921339,
+     "descripcion": "Cobranza Tomás Acosta - efectivo a depositar",
+     "comprobante": "RC 0001-00000601",
+     "asiento": 560
+    },
+    {
+     "id": "L108",
+     "fecha": "2026-02-13",
+     "cents": 88526580,
+     "descripcion": "Cobranza Joaquín Pereyra - efectivo a depositar",
+     "comprobante": "RC 0001-00000612",
+     "asiento": 571
+    },
+    {
+     "id": "L109",
+     "fecha": "2026-02-13",
+     "cents": 57145397,
+     "descripcion": "Cobranza Paula Castro - efectivo a depositar",
+     "comprobante": "RC 0001-00000613",
+     "asiento": 572
+    },
+    {
+     "id": "L110",
+     "fecha": "2026-02-13",
+     "cents": 54270000,
+     "descripcion": "Cobranza Martina Gómez - efectivo a depositar",
+     "comprobante": "RC 0001-00000618",
+     "asiento": 577
+    },
+    {
+     "id": "L111",
+     "fecha": "2026-02-14",
+     "cents": 34295188,
+     "descripcion": "Cobranza Camila Herrera - efectivo a depositar",
+     "comprobante": "RC 0001-00000596",
+     "asiento": 555
+    },
+    {
+     "id": "L112",
+     "fecha": "2026-02-14",
+     "cents": 52424399,
+     "descripcion": "Cobranza Paula Castro - efectivo a depositar",
+     "comprobante": "RC 0001-00000603",
+     "asiento": 562
+    },
+    {
+     "id": "L113",
+     "fecha": "2026-02-14",
+     "cents": 24073391,
+     "descripcion": "Cobranza Camila Herrera - efectivo a depositar",
+     "comprobante": "RC 0001-00000605",
+     "asiento": 564
+    },
+    {
+     "id": "L114",
+     "fecha": "2026-02-15",
+     "cents": 65541069,
+     "descripcion": "Cobranza Lucas Fernández - efectivo a depositar",
+     "comprobante": "RC 0001-00000594",
+     "asiento": 553
+    },
+    {
+     "id": "L115",
+     "fecha": "2026-02-15",
+     "cents": 65726375,
+     "descripcion": "Cobranza Camila Herrera - efectivo a depositar",
+     "comprobante": "RC 0001-00000597",
+     "asiento": 556
+    },
+    {
+     "id": "L116",
+     "fecha": "2026-02-15",
+     "cents": 66400000,
+     "descripcion": "Cobranza Camila Herrera - efectivo a depositar",
+     "comprobante": "RC 0001-00000602",
+     "asiento": 561
+    },
+    {
+     "id": "L117",
+     "fecha": "2026-02-15",
+     "cents": 16900000,
+     "descripcion": "Cobranza Julieta Medina - efectivo a depositar",
+     "comprobante": "RC 0001-00000617",
+     "asiento": 576
+    },
+    {
+     "id": "L118",
+     "fecha": "2026-02-15",
+     "cents": 59981000,
+     "descripcion": "Cobranza Joaquín Pereyra - efectivo a depositar",
+     "comprobante": "RC 0001-00000619",
+     "asiento": 578
+    },
+    {
+     "id": "L119",
+     "fecha": "2026-02-15",
+     "cents": -15639000,
+     "descripcion": "Seguros La Previsora - débito automático",
+     "comprobante": "",
+     "asiento": 585
+    },
+    {
+     "id": "L120",
+     "fecha": "2026-02-16",
+     "cents": 35800000,
+     "descripcion": "Cobranza Hotel Cerro Azul SA Rec. 0001-00000328",
+     "comprobante": "0001-00000327",
+     "asiento": 381
+    },
+    {
+     "id": "L121",
+     "fecha": "2026-02-16",
+     "cents": 382800000,
+     "descripcion": "Cobranza cliente Ferretería El Tornillo SRL",
+     "comprobante": "0002-00000335",
+     "asiento": 385
+    },
+    {
+     "id": "L122",
+     "fecha": "2026-02-16",
+     "cents": 295871042,
+     "descripcion": "Cobranza cliente Óptica Mirador SRL",
+     "comprobante": "0001-00000337",
+     "asiento": 386
+    },
+    {
+     "id": "L123",
+     "fecha": "2026-02-16",
+     "cents": 94800000,
+     "descripcion": "Cobro FC A 0002-00000349 Agro Sur del Plata SA",
+     "comprobante": "0002-00000349",
+     "asiento": 392
+    },
+    {
+     "id": "L124",
+     "fecha": "2026-02-16",
+     "cents": 323200000,
+     "descripcion": "Cobranza Cooperativa Hornero Ltda Rec. 0001-00000352",
+     "comprobante": "0001-00000351",
+     "asiento": 393
+    },
+    {
+     "id": "L125",
+     "fecha": "2026-02-16",
+     "cents": 225438000,
+     "descripcion": "Cobranza cliente Textil Río Bermejo SA",
+     "comprobante": "0001-00000353",
+     "asiento": 394
+    },
+    {
+     "id": "L126",
+     "fecha": "2026-02-16",
+     "cents": 303400000,
+     "descripcion": "Cobranza Textil Río Bermejo SA Rec. 0001-00000356",
+     "comprobante": "0003-00000355",
+     "asiento": 395
+    },
+    {
+     "id": "L127",
+     "fecha": "2026-02-16",
+     "cents": 138900000,
+     "descripcion": "Cobranza Hotel Cerro Azul SA Rec. 0001-00000378",
+     "comprobante": "0003-00000377",
+     "asiento": 406
+    },
+    {
+     "id": "L128",
+     "fecha": "2026-02-16",
+     "cents": 108200000,
+     "descripcion": "Cobranza Imprenta Tinta Fresca SRL Rec. 0001-00000384",
+     "comprobante": "0001-00000383",
+     "asiento": 409
+    },
+    {
+     "id": "L129",
+     "fecha": "2026-02-16",
+     "cents": 170900000,
+     "descripcion": "Cobranza Distribuidora Los Álamos SRL Rec. 0001-00000406",
+     "comprobante": "0003-00000405",
+     "asiento": 420
+    },
+    {
+     "id": "L130",
+     "fecha": "2026-02-16",
+     "cents": 24100000,
+     "descripcion": "Cobro FC A 0003-00000417 Lácteos Valle Verde SA",
+     "comprobante": "0003-00000417",
+     "asiento": 426
+    },
+    {
+     "id": "L131",
+     "fecha": "2026-02-16",
+     "cents": 332300000,
+     "descripcion": "Cobranza Imprenta Tinta Fresca SRL Rec. 0001-00000446",
+     "comprobante": "0002-00000445",
+     "asiento": 440
+    },
+    {
+     "id": "L132",
+     "fecha": "2026-02-16",
+     "cents": 406600000,
+     "descripcion": "Cobro FC A 0001-00000459 Muebles Quebracho SAS",
+     "comprobante": "0001-00000459",
+     "asiento": 447
+    },
+    {
+     "id": "L133",
+     "fecha": "2026-02-16",
+     "cents": 387197390,
+     "descripcion": "Cobranza Bodega Piedra Negra SA Rec. 0001-00000484",
+     "comprobante": "0001-00000483",
+     "asiento": 459
+    },
+    {
+     "id": "L134",
+     "fecha": "2026-02-16",
+     "cents": 384200000,
+     "descripcion": "Cobranza Farmacia Del Parque SCS Rec. 0001-00000502",
+     "comprobante": "0003-00000501",
+     "asiento": 468
+    },
+    {
+     "id": "L135",
+     "fecha": "2026-02-16",
+     "cents": 49290703,
+     "descripcion": "Cobro FC A 0001-00000525 Hotel Cerro Azul SA",
+     "comprobante": "0001-00000525",
+     "asiento": 480
+    },
+    {
+     "id": "L136",
+     "fecha": "2026-02-16",
+     "cents": -92800000,
+     "descripcion": "Transferencia a Muebles Quebracho SAS OP 0001-00000560",
+     "comprobante": "OP 0001-00000560",
+     "asiento": 505
+    },
+    {
+     "id": "L137",
+     "fecha": "2026-02-16",
+     "cents": -180700000,
+     "descripcion": "Pago Librería El Faro SA OP 0001-00000563",
+     "comprobante": "OP 0001-00000563",
+     "asiento": 508
+    },
+    {
+     "id": "L138",
+     "fecha": "2026-02-16",
+     "cents": -218947000,
+     "descripcion": "Transferencia a Tecnología Austral SAS OP 0001-00000577",
+     "comprobante": "OP 0001-00000577",
+     "asiento": 522
+    },
+    {
+     "id": "L139",
+     "fecha": "2026-02-16",
+     "cents": -200552362,
+     "descripcion": "Pago Metalúrgica San Telmo SRL OP 0001-00000586",
+     "comprobante": "OP 0001-00000586",
+     "asiento": 531
+    },
+    {
+     "id": "L140",
+     "fecha": "2026-02-16",
+     "cents": -163600000,
+     "descripcion": "Transferencia a Librería El Faro SA OP 0001-00000590",
+     "comprobante": "OP 0001-00000590",
+     "asiento": 535
+    },
+    {
+     "id": "L141",
+     "fecha": "2026-02-16",
+     "cents": -42102575,
+     "descripcion": "Cheque N° 00030961 a Viñedos Altos de Cuyo SA",
+     "comprobante": "CH 00030961",
+     "asiento": 541
+    },
+    {
+     "id": "L142",
+     "fecha": "2026-02-16",
+     "cents": -131471000,
+     "descripcion": "Cheque N° 00030996 a Óptica Mirador SRL",
+     "comprobante": "CH 00030996",
+     "asiento": 548
+    },
+    {
+     "id": "L143",
+     "fecha": "2026-02-16",
+     "cents": -86032157,
+     "descripcion": "Cheque N° 00031001 a Textil Río Bermejo SA",
+     "comprobante": "CH 00031001",
+     "asiento": 549
+    },
+    {
+     "id": "L144",
+     "fecha": "2026-02-16",
+     "cents": 78987000,
+     "descripcion": "Cobranza Julieta Medina - efectivo a depositar",
+     "comprobante": "RC 0001-00000604",
+     "asiento": 563
+    },
+    {
+     "id": "L145",
+     "fecha": "2026-02-16",
+     "cents": 37222070,
+     "descripcion": "Cobranza Ignacio Vera - efectivo a depositar",
+     "comprobante": "RC 0001-00000611",
+     "asiento": 570
+    },
+    {
+     "id": "L146",
+     "fecha": "2026-02-16",
+     "cents": 75900000,
+     "descripcion": "Cobranza Sofía Ramírez - efectivo a depositar",
+     "comprobante": "RC 0001-00000620",
+     "asiento": 579
+    },
+    {
+     "id": "L147",
+     "fecha": "2026-02-17",
+     "cents": 223001000,
+     "descripcion": "Cobranza Estudio Gráfico Cobalto SAS Rec. 0001-00000380",
+     "comprobante": "0002-00000379",
+     "asiento": 407
+    },
+    {
+     "id": "L148",
+     "fecha": "2026-02-17",
+     "cents": 81808000,
+     "descripcion": "Cobranza Librería El Faro SA Rec. 0001-00000482",
+     "comprobante": "0002-00000481",
+     "asiento": 458
+    },
+    {
+     "id": "L149",
+     "fecha": "2026-02-17",
+     "cents": 447900000,
+     "descripcion": "Cobro FC A 0003-00000521 Hotel Cerro Azul SA",
+     "comprobante": "0003-00000521",
+     "asiento": 478
+    },
+    {
+     "id": "L150",
+     "fecha": "2026-02-17",
+     "cents": -93104000,
+     "descripcion": "Transferencia a Imprenta Tinta Fresca SRL OP 0001-00000553",
+     "comprobante": "OP 0001-00000553",
+     "asiento": 498
+    },
+    {
+     "id": "L151",
+     "fecha": "2026-02-17",
+     "cents": -164900000,
+     "descripcion": "Pago a proveedor Transporte Ruta 3 SRL",
+     "comprobante": "OP 0001-00000568",
+     "asiento": 513
+    },
+    {
+     "id": "L152",
+     "fecha": "2026-02-17",
+     "cents": -129800000,
+     "descripcion": "Pago Tecnología Austral SAS OP 0001-00000585",
+     "comprobante": "OP 0001-00000585",
+     "asiento": 530
+    },
+    {
+     "id": "L153",
+     "fecha": "2026-02-17",
+     "cents": 89938181,
+     "descripcion": "Cobranza Sofía Ramírez - efectivo a depositar",
+     "comprobante": "RC 0001-00000606",
+     "asiento": 565
+    },
+    {
+     "id": "L154",
+     "fecha": "2026-02-18",
+     "cents": 248526000,
+     "descripcion": "Cobranza cliente Textil Río Bermejo SA",
+     "comprobante": "0002-00000359",
+     "asiento": 397
+    },
+    {
+     "id": "L155",
+     "fecha": "2026-02-18",
+     "cents": 430618000,
+     "descripcion": "Cobro FC A 0003-00000401 Bodega Piedra Negra SA",
+     "comprobante": "0003-00000401",
+     "asiento": 418
+    },
+    {
+     "id": "L156",
+     "fecha": "2026-02-18",
+     "cents": 407490000,
+     "descripcion": "Cobro FC A 0003-00000407 Logística Andina SAS",
+     "comprobante": "0003-00000407",
+     "asiento": 421
+    },
+    {
+     "id": "L157",
+     "fecha": "2026-02-18",
+     "cents": 317012766,
+     "descripcion": "Cobro FC A 0003-00000495 Química Litoral SRL",
+     "comprobante": "0003-00000495",
+     "asiento": 465
+    },
+    {
+     "id": "L158",
+     "fecha": "2026-02-18",
+     "cents": -245918000,
+     "descripcion": "Cheque N° 00030995 a Imprenta Tinta Fresca SRL",
+     "comprobante": "CH 00030995",
+     "asiento": 547
+    },
+    {
+     "id": "L159",
+     "fecha": "2026-02-19",
+     "cents": 447278364,
+     "descripcion": "Cobranza cliente Transporte Ruta 3 SRL",
+     "comprobante": "0002-00000339",
+     "asiento": 387
+    },
+    {
+     "id": "L160",
+     "fecha": "2026-02-19",
+     "cents": 404929000,
+     "descripcion": "Cobranza cliente Metalúrgica San Telmo SRL",
+     "comprobante": "0001-00000367",
+     "asiento": 401
+    },
+    {
+     "id": "L161",
+     "fecha": "2026-02-19",
+     "cents": 23912202,
+     "descripcion": "Cobro FC A 0003-00000457 Logística Andina SAS",
+     "comprobante": "0003-00000457",
+     "asiento": 446
+    },
+    {
+     "id": "L162",
+     "fecha": "2026-02-19",
+     "cents": 177000000,
+     "descripcion": "Cobranza cliente Farmacia Del Parque SCS",
+     "comprobante": "0002-00000461",
+     "asiento": 448
+    },
+    {
+     "id": "L163",
+     "fecha": "2026-02-19",
+     "cents": 220600000,
+     "descripcion": "Cobranza Hotel Cerro Azul SA Rec. 0001-00000504",
+     "comprobante": "0003-00000503",
+     "asiento": 469
+    },
+    {
+     "id": "L164",
+     "fecha": "2026-02-19",
+     "cents": 298800000,
+     "descripcion": "Cobranza cliente Viñedos Altos de Cuyo SA",
+     "comprobante": "0002-00000507",
+     "asiento": 471
+    },
+    {
+     "id": "L165",
+     "fecha": "2026-02-19",
+     "cents": 338569000,
+     "descripcion": "Cobranza cliente Farmacia Del Parque SCS",
+     "comprobante": "0002-00000523",
+     "asiento": 479
+    },
+    {
+     "id": "L166",
+     "fecha": "2026-02-19",
+     "cents": -163200000,
+     "descripcion": "Pago Ferretería El Tornillo SRL OP 0001-00000548",
+     "comprobante": "OP 0001-00000548",
+     "asiento": 493
+    },
+    {
+     "id": "L167",
+     "fecha": "2026-02-19",
+     "cents": -166550016,
+     "descripcion": "Transferencia a Constructora Delta Norte SRL OP 0001-00000571",
+     "comprobante": "OP 0001-00000571",
+     "asiento": 516
+    },
+    {
+     "id": "L168",
+     "fecha": "2026-02-19",
+     "cents": -33500000,
+     "descripcion": "Pago Muebles Quebracho SAS OP 0001-00000584",
+     "comprobante": "OP 0001-00000584",
+     "asiento": 529
+    },
+    {
+     "id": "L169",
+     "fecha": "2026-02-20",
+     "cents": 264289000,
+     "descripcion": "Cobranza Agro Sur del Plata SA Rec. 0001-00000358",
+     "comprobante": "0002-00000357",
+     "asiento": 396
+    },
+    {
+     "id": "L170",
+     "fecha": "2026-02-20",
+     "cents": 52700000,
+     "descripcion": "Cobranza cliente Servicios Médicos Lomas SRL",
+     "comprobante": "0002-00000369",
+     "asiento": 402
+    },
+    {
+     "id": "L171",
+     "fecha": "2026-02-20",
+     "cents": 374200000,
+     "descripcion": "Cobranza Constructora Delta Norte SRL Rec. 0001-00000390",
+     "comprobante": "0002-00000389",
+     "asiento": 412
+    },
+    {
+     "id": "L172",
+     "fecha": "2026-02-20",
+     "cents": 191500000,
+     "descripcion": "Cobranza cliente Lácteos Valle Verde SA",
+     "comprobante": "0002-00000429",
+     "asiento": 432
+    },
+    {
+     "id": "L173",
+     "fecha": "2026-02-20",
+     "cents": 228000000,
+     "descripcion": "Cobro FC A 0003-00000437 Logística Andina SAS",
+     "comprobante": "0003-00000437",
+     "asiento": 436
+    },
+    {
+     "id": "L174",
+     "fecha": "2026-02-20",
+     "cents": 237400000,
+     "descripcion": "Cobranza Tecnología Austral SAS Rec. 0001-00000456",
+     "comprobante": "0003-00000455",
+     "asiento": 445
+    },
+    {
+     "id": "L175",
+     "fecha": "2026-02-20",
+     "cents": 447523000,
+     "descripcion": "Cobranza Servicios Médicos Lomas SRL Rec. 0001-00000474",
+     "comprobante": "0003-00000473",
+     "asiento": 454
+    },
+    {
+     "id": "L176",
+     "fecha": "2026-02-20",
+     "cents": 220300000,
+     "descripcion": "Cobranza Panificadora La Espiga SRL Rec. 0001-00000478",
+     "comprobante": "0003-00000477",
+     "asiento": 456
+    },
+    {
+     "id": "L177",
+     "fecha": "2026-02-20",
+     "cents": 202400000,
+     "descripcion": "Cobranza cliente Logística Andina SAS",
+     "comprobante": "0001-00000493",
+     "asiento": 464
+    },
+    {
+     "id": "L178",
+     "fecha": "2026-02-20",
+     "cents": -100012000,
+     "descripcion": "Pago Estudio Gráfico Cobalto SAS OP 0001-00000564",
+     "comprobante": "OP 0001-00000564",
+     "asiento": 509
+    },
+    {
+     "id": "L179",
+     "fecha": "2026-02-20",
+     "cents": -180600000,
+     "descripcion": "Cheque N° 00030973 a Transporte Ruta 3 SRL",
+     "comprobante": "CH 00030973",
+     "asiento": 543
+    },
+    {
+     "id": "L180",
+     "fecha": "2026-02-23",
+     "cents": 149075000,
+     "descripcion": "Cobranza Viñedos Altos de Cuyo SA Rec. 0001-00000348",
+     "comprobante": "0003-00000347",
+     "asiento": 391
+    },
+    {
+     "id": "L181",
+     "fecha": "2026-02-23",
+     "cents": 428896000,
+     "descripcion": "Cobranza cliente Servicios Médicos Lomas SRL",
+     "comprobante": "0001-00000373",
+     "asiento": 404
+    },
+    {
+     "id": "L182",
+     "fecha": "2026-02-23",
+     "cents": 236400000,
+     "descripcion": "Cobranza cliente Ferretería El Tornillo SRL",
+     "comprobante": "0002-00000385",
+     "asiento": 410
+    },
+    {
+     "id": "L183",
+     "fecha": "2026-02-23",
+     "cents": 21281000,
+     "descripcion": "Cobranza Agro Sur del Plata SA Rec. 0001-00000436",
+     "comprobante": "0003-00000435",
+     "asiento": 435
+    },
+    {
+     "id": "L184",
+     "fecha": "2026-02-23",
+     "cents": 438604133,
+     "descripcion": "Cobro FC A 0002-00000465 Farmacia Del Parque SCS",
+     "comprobante": "0002-00000465",
+     "asiento": 450
+    },
+    {
+     "id": "L185",
+     "fecha": "2026-02-23",
+     "cents": 38481985,
+     "descripcion": "Cobro FC A 0001-00000475 Química Litoral SRL",
+     "comprobante": "0001-00000475",
+     "asiento": 455
+    },
+    {
+     "id": "L186",
+     "fecha": "2026-02-23",
+     "cents": 351090163,
+     "descripcion": "Cobranza Muebles Quebracho SAS Rec. 0001-00000486",
+     "comprobante": "0001-00000485",
+     "asiento": 460
+    },
+    {
+     "id": "L187",
+     "fecha": "2026-02-23",
+     "cents": 397300000,
+     "descripcion": "Cobranza Química Litoral SRL Rec. 0001-00000520",
+     "comprobante": "0003-00000519",
+     "asiento": 477
+    },
+    {
+     "id": "L188",
+     "fecha": "2026-02-23",
+     "cents": 87800000,
+     "descripcion": "Cobro FC A 0001-00000535 Agro Sur del Plata SA",
+     "comprobante": "0001-00000535",
+     "asiento": 485
+    },
+    {
+     "id": "L189",
+     "fecha": "2026-02-23",
+     "cents": 381839188,
+     "descripcion": "Cobro FC A 0001-00000539 Distribuidora Los Álamos SRL",
+     "comprobante": "0001-00000539",
+     "asiento": 487
+    },
+    {
+     "id": "L190",
+     "fecha": "2026-02-23",
+     "cents": -118200000,
+     "descripcion": "Transferencia a Distribuidora Los Álamos SRL OP 0001-00000549",
+     "comprobante": "OP 0001-00000549",
+     "asiento": 494
+    },
+    {
+     "id": "L191",
+     "fecha": "2026-02-23",
+     "cents": -247400000,
+     "descripcion": "Pago Cooperativa Hornero Ltda OP 0001-00000561",
+     "comprobante": "OP 0001-00000561",
+     "asiento": 506
+    },
+    {
+     "id": "L192",
+     "fecha": "2026-02-23",
+     "cents": -266771670,
+     "descripcion": "Transferencia a Estudio Gráfico Cobalto SAS OP 0001-00000562",
+     "comprobante": "OP 0001-00000562",
+     "asiento": 507
+    },
+    {
+     "id": "L193",
+     "fecha": "2026-02-23",
+     "cents": -149200000,
+     "descripcion": "Pago Imprenta Tinta Fresca SRL OP 0001-00000565",
+     "comprobante": "OP 0001-00000565",
+     "asiento": 510
+    },
+    {
+     "id": "L194",
+     "fecha": "2026-02-23",
+     "cents": -246150000,
+     "descripcion": "Pago a proveedor Transporte Ruta 3 SRL",
+     "comprobante": "OP 0001-00000570",
+     "asiento": 515
+    },
+    {
+     "id": "L195",
+     "fecha": "2026-02-23",
+     "cents": -45435368,
+     "descripcion": "Pago Panificadora La Espiga SRL OP 0001-00000592",
+     "comprobante": "OP 0001-00000592",
+     "asiento": 537
+    },
+    {
+     "id": "L196",
+     "fecha": "2026-02-23",
+     "cents": -21600000,
+     "descripcion": "F.931 VEP 653181662",
+     "comprobante": "VEP 653181662",
+     "asiento": 594
+    },
+    {
+     "id": "L197",
+     "fecha": "2026-02-24",
+     "cents": 235900000,
+     "descripcion": "Cobro FC A 0002-00000419 Servicios Médicos Lomas SRL",
+     "comprobante": "0002-00000419",
+     "asiento": 427
+    },
+    {
+     "id": "L198",
+     "fecha": "2026-02-24",
+     "cents": -169200000,
+     "descripcion": "Pago a proveedor Tecnología Austral SAS",
+     "comprobante": "OP 0001-00000547",
+     "asiento": 492
+    },
+    {
+     "id": "L199",
+     "fecha": "2026-02-24",
+     "cents": -196240484,
+     "descripcion": "Pago Servicios Médicos Lomas SRL OP 0001-00000589",
+     "comprobante": "OP 0001-00000589",
+     "asiento": 534
+    },
+    {
+     "id": "L200",
+     "fecha": "2026-02-24",
+     "cents": -58300000,
+     "descripcion": "ECHEQ N° 00031007 a Bodega Piedra Negra SA",
+     "comprobante": "CH 00031007",
+     "asiento": 550
+    },
+    {
+     "id": "L201",
+     "fecha": "2026-02-24",
+     "cents": -12680000,
+     "descripcion": "Telefonía Federal - débito automático",
+     "comprobante": "",
+     "asiento": 586
+    },
+    {
+     "id": "L202",
+     "fecha": "2026-02-25",
+     "cents": 340968153,
+     "descripcion": "Cobranza cliente Bodega Piedra Negra SA",
+     "comprobante": "0001-00000397",
+     "asiento": 416
+    },
+    {
+     "id": "L203",
+     "fecha": "2026-02-25",
+     "cents": 234900000,
+     "descripcion": "Cobranza cliente Tecnología Austral SAS",
+     "comprobante": "0003-00000425",
+     "asiento": 430
+    },
+    {
+     "id": "L204",
+     "fecha": "2026-02-25",
+     "cents": 358400000,
+     "descripcion": "Cobro FC A 0002-00000431 Librería El Faro SA",
+     "comprobante": "0002-00000431",
+     "asiento": 433
+    },
+    {
+     "id": "L205",
+     "fecha": "2026-02-25",
+     "cents": 71274000,
+     "descripcion": "Cobro FC A 0002-00000511 Hotel Cerro Azul SA",
+     "comprobante": "0002-00000511",
+     "asiento": 473
+    },
+    {
+     "id": "L206",
+     "fecha": "2026-02-25",
+     "cents": 79534000,
+     "descripcion": "Cobranza cliente Servicios Médicos Lomas SRL",
+     "comprobante": "0001-00000513",
+     "asiento": 474
+    },
+    {
+     "id": "L207",
+     "fecha": "2026-02-25",
+     "cents": 253100000,
+     "descripcion": "Cobranza Distribuidora Los Álamos SRL Rec. 0001-00000534",
+     "comprobante": "0003-00000533",
+     "asiento": 484
+    },
+    {
+     "id": "L208",
+     "fecha": "2026-02-25",
+     "cents": -30600000,
+     "descripcion": "Pago Librería El Faro SA OP 0001-00000559",
+     "comprobante": "OP 0001-00000559",
+     "asiento": 504
+    },
+    {
+     "id": "L209",
+     "fecha": "2026-02-25",
+     "cents": -202752000,
+     "descripcion": "Pago Muebles Quebracho SAS OP 0001-00000587",
+     "comprobante": "OP 0001-00000587",
+     "asiento": 532
+    },
+    {
+     "id": "L210",
+     "fecha": "2026-02-26",
+     "cents": 159053757,
+     "descripcion": "Cobranza cliente Estudio Gráfico Cobalto SAS",
+     "comprobante": "0003-00000345",
+     "asiento": 390
+    },
+    {
+     "id": "L211",
+     "fecha": "2026-02-26",
+     "cents": 445543000,
+     "descripcion": "Cobro FC A 0002-00000399 Química Litoral SRL",
+     "comprobante": "0002-00000399",
+     "asiento": 417
+    },
+    {
+     "id": "L212",
+     "fecha": "2026-02-26",
+     "cents": 226600000,
+     "descripcion": "Cobranza cliente Servicios Médicos Lomas SRL",
+     "comprobante": "0002-00000413",
+     "asiento": 424
+    },
+    {
+     "id": "L213",
+     "fecha": "2026-02-26",
+     "cents": 139600000,
+     "descripcion": "Cobranza cliente Tecnología Austral SAS",
+     "comprobante": "0002-00000537",
+     "asiento": 486
+    },
+    {
+     "id": "L214",
+     "fecha": "2026-02-26",
+     "cents": -184600000,
+     "descripcion": "Pago a proveedor Distribuidora Los Álamos SRL",
+     "comprobante": "OP 0001-00000582",
+     "asiento": 527
+    },
+    {
+     "id": "L215",
+     "fecha": "2026-02-26",
+     "cents": -236200000,
+     "descripcion": "Cheque N° 00030980 a Logística Andina SAS",
+     "comprobante": "CH 00030980",
+     "asiento": 544
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B209"
+     ],
+     "libros": [
+      "L120"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B183"
+     ],
+     "libros": [
+      "L80"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B158"
+     ],
+     "libros": [
+      "L57"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B212"
+     ],
+     "libros": [
+      "L121"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B215"
+     ],
+     "libros": [
+      "L122"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B359"
+     ],
+     "libros": [
+      "L159"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B69"
+     ],
+     "libros": [
+      "L26"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B99"
+     ],
+     "libros": [
+      "L41"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B452"
+     ],
+     "libros": [
+      "L210"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B362"
+     ],
+     "libros": [
+      "L180"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B292"
+     ],
+     "libros": [
+      "L123"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B295"
+     ],
+     "libros": [
+      "L124"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B260"
+     ],
+     "libros": [
+      "L125"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B263"
+     ],
+     "libros": [
+      "L126"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B365"
+     ],
+     "libros": [
+      "L169"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B298"
+     ],
+     "libros": [
+      "L154"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B133"
+     ],
+     "libros": [
+      "L58"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B161"
+     ],
+     "libros": [
+      "L59"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B89"
+     ],
+     "libros": [
+      "L32"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B337"
+     ],
+     "libros": [
+      "L160"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B340"
+     ],
+     "libros": [
+      "L170"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B46"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B433"
+     ],
+     "libros": [
+      "L181"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B201"
+     ],
+     "libros": [
+      "L94"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B266"
+     ],
+     "libros": [
+      "L127"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B318"
+     ],
+     "libros": [
+      "L147"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B26"
+     ],
+     "libros": [
+      "L27"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B218"
+     ],
+     "libros": [
+      "L128"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B368"
+     ],
+     "libros": [
+      "L182"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B221"
+     ],
+     "libros": [
+      "L99"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B343"
+     ],
+     "libros": [
+      "L171"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B29"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B72"
+     ],
+     "libros": [
+      "L33"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B49"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B455"
+     ],
+     "libros": [
+      "L202"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B472"
+     ],
+     "libros": [
+      "L211"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B301"
+     ],
+     "libros": [
+      "L155"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B102"
+     ],
+     "libros": [
+      "L60"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B304"
+     ],
+     "libros": [
+      "L129"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B307"
+     ],
+     "libros": [
+      "L156"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B52"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B136"
+     ],
+     "libros": [
+      "L81"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B480"
+     ],
+     "libros": [
+      "L212"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B269"
+     ],
+     "libros": [
+      "L130"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B436"
+     ],
+     "libros": [
+      "L197"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B164"
+     ],
+     "libros": [
+      "L82"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B167"
+     ],
+     "libros": [
+      "L61"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B439"
+     ],
+     "libros": [
+      "L203"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B55"
+     ],
+     "libros": [
+      "L28"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B371"
+     ],
+     "libros": [
+      "L172"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B475"
+     ],
+     "libros": [
+      "L204"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B92"
+     ],
+     "libros": [
+      "L34"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B374"
+     ],
+     "libros": [
+      "L183"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B377"
+     ],
+     "libros": [
+      "L173"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B105"
+     ],
+     "libros": [
+      "L49"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B58"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B224"
+     ],
+     "libros": [
+      "L100"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B227"
+     ],
+     "libros": [
+      "L131"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B230"
+     ],
+     "libros": [
+      "L95"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B61"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B64"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B186"
+     ],
+     "libros": [
+      "L96"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B380"
+     ],
+     "libros": [
+      "L174"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B321"
+     ],
+     "libros": [
+      "L161"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B310"
+     ],
+     "libros": [
+      "L132"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B346"
+     ],
+     "libros": [
+      "L162"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B75"
+     ],
+     "libros": [
+      "L42"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B383"
+     ],
+     "libros": [
+      "L184"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B233"
+     ],
+     "libros": [
+      "L101"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B32"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B170"
+     ],
+     "libros": [
+      "L62"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B386"
+     ],
+     "libros": [
+      "L175"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B415"
+     ],
+     "libros": [
+      "L185"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B349"
+     ],
+     "libros": [
+      "L176"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B108"
+     ],
+     "libros": [
+      "L63"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B313"
+     ],
+     "libros": [
+      "L148"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B272"
+     ],
+     "libros": [
+      "L133"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B389"
+     ],
+     "libros": [
+      "L186"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B173"
+     ],
+     "libros": [
+      "L88"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B111"
+     ],
+     "libros": [
+      "L50"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B139"
+     ],
+     "libros": [
+      "L64"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B392"
+     ],
+     "libros": [
+      "L177"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B324"
+     ],
+     "libros": [
+      "L157"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B114"
+     ],
+     "libros": [
+      "L51"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B78"
+     ],
+     "libros": [
+      "L35"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B275"
+     ],
+     "libros": [
+      "L134"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B327"
+     ],
+     "libros": [
+      "L163"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B204"
+     ],
+     "libros": [
+      "L102"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B395"
+     ],
+     "libros": [
+      "L164"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B35"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B458"
+     ],
+     "libros": [
+      "L205"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B442"
+     ],
+     "libros": [
+      "L206"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B117"
+     ],
+     "libros": [
+      "L52"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B120"
+     ],
+     "libros": [
+      "L65"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B398"
+     ],
+     "libros": [
+      "L187"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B330"
+     ],
+     "libros": [
+      "L149"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B352"
+     ],
+     "libros": [
+      "L165"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B236"
+     ],
+     "libros": [
+      "L135"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B176"
+     ],
+     "libros": [
+      "L66"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B142"
+     ],
+     "libros": [
+      "L67"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B239"
+     ],
+     "libros": [
+      "L103"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B461"
+     ],
+     "libros": [
+      "L207"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B445"
+     ],
+     "libros": [
+      "L188"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B483"
+     ],
+     "libros": [
+      "L213"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B418"
+     ],
+     "libros": [
+      "L189"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B145"
+     ],
+     "libros": [
+      "L68"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B189"
+     ],
+     "libros": [
+      "L89"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B448"
+     ],
+     "libros": [
+      "L198"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B333"
+     ],
+     "libros": [
+      "L166"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B401"
+     ],
+     "libros": [
+      "L190"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B207"
+     ],
+     "libros": [
+      "L104"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B148"
+     ],
+     "libros": [
+      "L69"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B150"
+     ],
+     "libros": [
+      "L70"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B278"
+     ],
+     "libros": [
+      "L150"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B38"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B67"
+     ],
+     "libros": [
+      "L29"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B152"
+     ],
+     "libros": [
+      "L71"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B123"
+     ],
+     "libros": [
+      "L53"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B125"
+     ],
+     "libros": [
+      "L72"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B464"
+     ],
+     "libros": [
+      "L208"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B242"
+     ],
+     "libros": [
+      "L136"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B403"
+     ],
+     "libros": [
+      "L191"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B405"
+     ],
+     "libros": [
+      "L192"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B280"
+     ],
+     "libros": [
+      "L137"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B407"
+     ],
+     "libros": [
+      "L178"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B421"
+     ],
+     "libros": [
+      "L193"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B81"
+     ],
+     "libros": [
+      "L43"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B191"
+     ],
+     "libros": [
+      "L97"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B282"
+     ],
+     "libros": [
+      "L151"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B83"
+     ],
+     "libros": [
+      "L44"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B423"
+     ],
+     "libros": [
+      "L194"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B355"
+     ],
+     "libros": [
+      "L167"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B154"
+     ],
+     "libros": [
+      "L83"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B85"
+     ],
+     "libros": [
+      "L36"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B156"
+     ],
+     "libros": [
+      "L73"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B179"
+     ],
+     "libros": [
+      "L90"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B193"
+     ],
+     "libros": [
+      "L91"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B284"
+     ],
+     "libros": [
+      "L138"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B40"
+     ],
+     "libros": [
+      "L30"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B95"
+     ],
+     "libros": [
+      "L45"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B127"
+     ],
+     "libros": [
+      "L74"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B195"
+     ],
+     "libros": [
+      "L92"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B466"
+     ],
+     "libros": [
+      "L214"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B42"
+     ],
+     "libros": [
+      "L31"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B335"
+     ],
+     "libros": [
+      "L168"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B316"
+     ],
+     "libros": [
+      "L152"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B286"
+     ],
+     "libros": [
+      "L139"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B468"
+     ],
+     "libros": [
+      "L209"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B44"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B425"
+     ],
+     "libros": [
+      "L199"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B244"
+     ],
+     "libros": [
+      "L140"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B181"
+     ],
+     "libros": [
+      "L84"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B409"
+     ],
+     "libros": [
+      "L195"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B246"
+     ],
+     "libros": [
+      "L105"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B357"
+     ],
+     "libros": [
+      "L37"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B248"
+     ],
+     "libros": [
+      "L76"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B250"
+     ],
+     "libros": [
+      "L46"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B478"
+     ],
+     "libros": [
+      "L77"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B411"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B450"
+     ],
+     "libros": [
+      "L18"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B252"
+     ],
+     "libros": [
+      "L114",
+      "L106",
+      "L111",
+      "L115"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B87"
+     ],
+     "libros": [
+      "L38",
+      "L19",
+      "L47"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B254"
+     ],
+     "libros": [
+      "L107",
+      "L116"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B288"
+     ],
+     "libros": [
+      "L112",
+      "L144",
+      "L113",
+      "L153"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B97"
+     ],
+     "libros": [
+      "L54",
+      "L48",
+      "L39",
+      "L40"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B256"
+     ],
+     "libros": [
+      "L145",
+      "L108",
+      "L109"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B197"
+     ],
+     "libros": [
+      "L98",
+      "L85",
+      "L86"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B258"
+     ],
+     "libros": [
+      "L117",
+      "L110",
+      "L118",
+      "L146"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B199"
+     ],
+     "libros": [
+      "L93",
+      "L78",
+      "L87"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B129"
+     ],
+     "libros": [
+      "L56",
+      "L55"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B290"
+     ],
+     "libros": [
+      "L119"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B470"
+     ],
+     "libros": [
+      "L201"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L20"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L21"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L22"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L23"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L24"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L25"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B413"
+     ],
+     "libros": [
+      "L196"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B131"
+     ],
+     "libros": [
+      "L79"
+     ],
+     "tipo": "referencia"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L75",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L141",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L179",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L215",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L158",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L142",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L143",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L200",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "B427",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B428",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B429",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B210",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B211",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B184",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B185",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B159",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B160",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B213",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B214",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B216",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B217",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B360",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B361",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B70",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B71",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B100",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B101",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B453",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B454",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B363",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B364",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B293",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B294",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B296",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B297",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B261",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B262",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B264",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B265",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B366",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B367",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B299",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B300",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B134",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B135",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B162",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B163",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B90",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B91",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B338",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B339",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B341",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B342",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B47",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B48",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B434",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B435",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B202",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B203",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B267",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B268",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B319",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B320",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B27",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B219",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B220",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B369",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B370",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B222",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B223",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B344",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B345",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B31",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B73",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B74",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B50",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B51",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B456",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B457",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B473",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B474",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B302",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B303",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B103",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B104",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B305",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B306",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B308",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B309",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B53",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B54",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B137",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B138",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B481",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B482",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B3",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B270",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B271",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B437",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B438",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B165",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B166",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B168",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B169",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B440",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B441",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B56",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B57",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B372",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B373",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B476",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B477",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B93",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B94",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B375",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B376",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B378",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B379",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B106",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B107",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B59",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B60",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B225",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B226",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B228",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B229",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B231",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B232",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B62",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B63",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B65",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B66",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B187",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B188",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B381",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B382",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B322",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B323",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B311",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B312",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B347",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B348",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B76",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B77",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B384",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B385",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B234",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B235",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B33",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B34",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B171",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B172",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B387",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B388",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B416",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B417",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B350",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B351",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B109",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B110",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B314",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B315",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B273",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B274",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B390",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B391",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B174",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B175",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B112",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B113",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B140",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B141",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B393",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B394",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B325",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B326",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B115",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B116",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B79",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B80",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B276",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B277",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B328",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B329",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B205",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B206",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B396",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B397",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B36",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B37",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B459",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B460",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B443",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B444",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B118",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B119",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B121",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B122",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B399",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B400",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B331",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B332",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B353",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B354",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B237",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B238",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B177",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B178",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B143",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B144",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B240",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B241",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B462",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B463",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B446",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B447",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B484",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B485",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B419",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B420",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B5",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B146",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B147",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B190",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B449",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B334",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B402",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B208",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B149",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B151",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B279",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B39",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B68",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B153",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B124",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B126",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B465",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B243",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B404",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B406",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B281",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B408",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B422",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B82",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B192",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B283",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B84",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B424",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B356",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B155",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B86",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B157",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B180",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B194",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B285",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B41",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B96",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B128",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B196",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B467",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B43",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B336",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B317",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B287",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B469",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B45",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B426",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B245",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B182",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B410",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B247",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B358",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B249",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B251",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B479",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B412",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B451",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B253",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B88",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B255",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B289",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B98",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B257",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B198",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B259",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B200",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B130",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B291",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B471",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B414",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B132",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B430",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B431",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B432",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

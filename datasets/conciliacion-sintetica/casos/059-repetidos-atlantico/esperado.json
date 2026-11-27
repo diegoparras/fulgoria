@@ -1,0 +1,623 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "059-repetidos-atlantico",
+ "escenario": "repetidos",
+ "banco": "atlantico",
+ "sistema": "planilla_cliente",
+ "semilla": 5051,
+ "periodo": {
+  "desde": "2026-06-01",
+  "hasta": "2026-06-30"
+ },
+ "cliente": {
+  "nombre": "Metalúrgica San Telmo SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 2,
+ "notas": "Sueldos idénticos el mismo día, alquileres y cuotas iguales: la ambigüedad que nunca debe quedar en verde.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 3990222000,
+    "bancoCierre": 2491560250,
+    "librosApertura": 3990222000,
+    "librosCierre": 2508265652
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-06-03",
+     "cents": -140078000,
+     "descripcion": "PAGO DE HABERES JOAQUÍN PEREYRA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-06-03",
+     "cents": -840468,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-06-03",
+     "cents": -140078000,
+     "descripcion": "PAGO DE HABERES JULIETA MEDINA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-06-03",
+     "cents": -840468,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-06-03",
+     "cents": -140078000,
+     "descripcion": "PAGO DE HABERES CAROLINA NÚÑEZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-06-03",
+     "cents": -840468,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-06-03",
+     "cents": -140078000,
+     "descripcion": "PAGO DE HABERES TOMÁS ACOSTA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-06-03",
+     "cents": -840468,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-06-03",
+     "cents": -140078000,
+     "descripcion": "PAGO DE HABERES PAULA CASTRO",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-06-03",
+     "cents": -840468,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-06-08",
+     "cents": 23000000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-06-08",
+     "cents": -138000,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-06-08",
+     "cents": 23000000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS METALÚRGICA SAN TELMO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-06-08",
+     "cents": -138000,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-06-09",
+     "cents": -252474000,
+     "descripcion": "TRANSFERENCIA A TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-06-09",
+     "cents": -1514844,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-06-10",
+     "cents": -223050348,
+     "descripcion": "TRANSFERENCIA A TERCEROS MUEBLES QUEBRACHO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-06-10",
+     "cents": -1338302,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-06-17",
+     "cents": -84542000,
+     "descripcion": "TRANSFERENCIA A TERCEROS TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-06-17",
+     "cents": -507252,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-06-22",
+     "cents": 23000000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS QUÍMICA LITORAL SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-06-22",
+     "cents": -138000,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-06-23",
+     "cents": -121500000,
+     "descripcion": "TRANSFERENCIA A TERCEROS AGRO SUR DEL PLATA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-06-23",
+     "cents": -729000,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-06-24",
+     "cents": -5600000,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-06-24",
+     "cents": -1176000,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-06-24",
+     "cents": -168000,
+     "descripcion": "PERC. IVA",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-06-24",
+     "cents": -33600,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-06-24",
+     "cents": -7056,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-06-24",
+     "cents": -1008,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-06-29",
+     "cents": -84500000,
+     "descripcion": "TRANSFERENCIA A TERCEROS DISTRIBUIDORA LOS ÁLAMOS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-06-29",
+     "cents": -507000,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-06-29",
+     "cents": -84500000,
+     "descripcion": "TRANSFERENCIA A TERCEROS ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-06-29",
+     "cents": -507000,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-06-03",
+     "cents": -140078000,
+     "descripcion": "Sueldo mayo - Joaquín Pereyra",
+     "comprobante": "",
+     "asiento": 326
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-06-03",
+     "cents": -140078000,
+     "descripcion": "Sueldo mayo - Julieta Medina",
+     "comprobante": "",
+     "asiento": 327
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-06-03",
+     "cents": -140078000,
+     "descripcion": "Sueldo mayo - Carolina Núñez",
+     "comprobante": "",
+     "asiento": 328
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-06-03",
+     "cents": -140078000,
+     "descripcion": "Sueldo mayo - Tomás Acosta",
+     "comprobante": "",
+     "asiento": 329
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-06-03",
+     "cents": -140078000,
+     "descripcion": "Sueldo mayo - Paula Castro",
+     "comprobante": "",
+     "asiento": 330
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-06-05",
+     "cents": 23000000,
+     "descripcion": "Cobranza cliente Metalúrgica San Telmo SRL",
+     "comprobante": "0003-00000337",
+     "asiento": 335
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-06-08",
+     "cents": 23000000,
+     "descripcion": "Cobranza cliente Librería El Faro SA",
+     "comprobante": "0002-00000333",
+     "asiento": 333
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-06-08",
+     "cents": -252474000,
+     "descripcion": "Transferencia a Tecnología Austral SAS OP 0001-00000339",
+     "comprobante": "OP 0001-00000339",
+     "asiento": 336
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-06-10",
+     "cents": -223050348,
+     "descripcion": "Transferencia a Muebles Quebracho SAS OP 0001-00000340",
+     "comprobante": "OP 0001-00000340",
+     "asiento": 337
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-06-16",
+     "cents": -84542000,
+     "descripcion": "Pago Transporte Ruta 3 SRL OP 0001-00000342",
+     "comprobante": "OP 0001-00000342",
+     "asiento": 339
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-06-22",
+     "cents": 23000000,
+     "descripcion": "Cobranza Química Litoral SRL Rec. 0001-00000336",
+     "comprobante": "0002-00000335",
+     "asiento": 334
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-06-23",
+     "cents": -121500000,
+     "descripcion": "Pago a proveedor Agro Sur del Plata SA",
+     "comprobante": "OP 0001-00000341",
+     "asiento": 338
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-06-26",
+     "cents": -84500000,
+     "descripcion": "Transferencia a Óptica Mirador SRL OP 0001-00000332",
+     "comprobante": "OP 0001-00000332",
+     "asiento": 332
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-06-29",
+     "cents": -84500000,
+     "descripcion": "Pago a proveedor Distribuidora Los Álamos SRL",
+     "comprobante": "OP 0001-00000331",
+     "asiento": 331
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B31"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B33"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B27",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B32",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B34",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B29",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

@@ -1,0 +1,551 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "065-desfasaje-nativo",
+ "escenario": "desfasaje",
+ "banco": "nativo",
+ "sistema": "importe_signo_tab",
+ "semilla": 6021,
+ "periodo": {
+  "desde": "2026-08-01",
+  "hasta": "2026-08-31"
+ },
+ "cliente": {
+  "nombre": "Cooperativa Hornero Ltda",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El libro registra con días de diferencia respecto del banco, algunos más allá de la ventana por defecto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 1982674000,
+    "bancoCierre": 2945120132,
+    "librosApertura": 1982674000,
+    "librosCierre": 2979517793
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-08-03",
+     "cents": 192670798,
+     "descripcion": "TRANSFERENCIA DE TERCEROS QUÍMICA LITORAL SRL - 0002-00000258",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-08-03",
+     "cents": -2312050,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-08-05",
+     "cents": -23508987,
+     "descripcion": "DEB AUT SEGUROS LA PREVISORA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-08-06",
+     "cents": 319500000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS METALÚRGICA SAN TELMO SRL - 0001-00000268",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-08-06",
+     "cents": -3834000,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-08-06",
+     "cents": -28986341,
+     "descripcion": "DEB AUT GAS DEL LITORAL",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-08-10",
+     "cents": 308936000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS MUEBLES QUEBRACHO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-08-10",
+     "cents": -3707232,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-08-10",
+     "cents": -52371095,
+     "descripcion": "TRANSFERENCIA A TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-08-10",
+     "cents": -29000000,
+     "descripcion": "DEB AUT ENERGÍA METROPOLITANA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-08-13",
+     "cents": 202715000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS AGRO SUR DEL PLATA SA - 0001-00000256",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-08-13",
+     "cents": -2432580,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-08-13",
+     "cents": -245582211,
+     "descripcion": "TRANSFERENCIA A TERCEROS COOPERATIVA HORNERO LTDA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-08-13",
+     "cents": -186480139,
+     "descripcion": "TRANSFERENCIA A TERCEROS PANIFICADORA LA ESPIGA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-08-21",
+     "cents": 393912798,
+     "descripcion": "TRANSFERENCIA DE TERCEROS METALÚRGICA SAN TELMO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-08-21",
+     "cents": -4726954,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-08-25",
+     "cents": 421310000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS AGRO SUR DEL PLATA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-08-25",
+     "cents": -5055720,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-08-27",
+     "cents": -224595299,
+     "descripcion": "TRANSFERENCIA A TERCEROS LÁCTEOS VALLE VERDE SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-08-27",
+     "cents": -5683482,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-08-27",
+     "cents": -1193531,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-08-27",
+     "cents": -170504,
+     "descripcion": "PERC. IVA",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-08-31",
+     "cents": 440134000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS ESTUDIO GRÁFICO COBALTO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-08-31",
+     "cents": -5281608,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-08-31",
+     "cents": -218448814,
+     "descripcion": "TRANSFERENCIA A TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-08-31",
+     "cents": -273361917,
+     "descripcion": "TRANSFERENCIA A TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-08-01",
+     "cents": -28986341,
+     "descripcion": "Gas del Litoral - débito automático",
+     "comprobante": "",
+     "asiento": 197
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-08-01",
+     "cents": -23508987,
+     "descripcion": "Seguros La Previsora - débito automático",
+     "comprobante": "",
+     "asiento": 199
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-08-03",
+     "cents": 192670798,
+     "descripcion": "Cobro FC A 0002-00000258 Química Litoral SRL",
+     "comprobante": "0002-00000258",
+     "asiento": 185
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-08-03",
+     "cents": 319500000,
+     "descripcion": "Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000269",
+     "comprobante": "0001-00000268",
+     "asiento": 190
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-08-03",
+     "cents": -245582211,
+     "descripcion": "Pago a proveedor Cooperativa Hornero Ltda",
+     "comprobante": "OP 0001-00000271",
+     "asiento": 192
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-08-03",
+     "cents": -52371095,
+     "descripcion": "Pago a proveedor Tecnología Austral SAS",
+     "comprobante": "OP 0001-00000272",
+     "asiento": 193
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-08-04",
+     "cents": -29000000,
+     "descripcion": "Energía Metropolitana - débito automático",
+     "comprobante": "",
+     "asiento": 198
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-08-07",
+     "cents": 202715000,
+     "descripcion": "Cobro FC A 0001-00000256 Agro Sur del Plata SA",
+     "comprobante": "0001-00000256",
+     "asiento": 184
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-08-10",
+     "cents": 308936000,
+     "descripcion": "Cobro FC A 0001-00000262 Muebles Quebracho SAS",
+     "comprobante": "0001-00000262",
+     "asiento": 187
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-08-10",
+     "cents": -186480139,
+     "descripcion": "Pago a proveedor Panificadora La Espiga SRL",
+     "comprobante": "OP 0001-00000274",
+     "asiento": 195
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-08-11",
+     "cents": 393912798,
+     "descripcion": "Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000261",
+     "comprobante": "0003-00000260",
+     "asiento": 186
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-08-24",
+     "cents": -224595299,
+     "descripcion": "Pago Lácteos Valle Verde SA OP 0001-00000270",
+     "comprobante": "OP 0001-00000270",
+     "asiento": 191
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-08-25",
+     "cents": 421310000,
+     "descripcion": "Cobranza cliente Agro Sur del Plata SA",
+     "comprobante": "0001-00000264",
+     "asiento": 188
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-08-26",
+     "cents": 440134000,
+     "descripcion": "Cobranza cliente Estudio Gráfico Cobalto SAS",
+     "comprobante": "0002-00000266",
+     "asiento": 189
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-08-26",
+     "cents": -218448814,
+     "descripcion": "Pago Tecnología Austral SAS OP 0001-00000273",
+     "comprobante": "OP 0001-00000273",
+     "asiento": 194
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-08-31",
+     "cents": -273361917,
+     "descripcion": "Pago Tecnología Austral SAS OP 0001-00000275",
+     "comprobante": "OP 0001-00000275",
+     "asiento": 196
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B26"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B5",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

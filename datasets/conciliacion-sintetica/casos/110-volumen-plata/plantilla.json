@@ -1,0 +1,35 @@
+{
+  "banco": "Banco del Plata Austral",
+  "columnas": [
+    {
+      "from": 0,
+      "to": 0.16134453781512606,
+      "role": "fecha",
+      "label": "FECHA"
+    },
+    {
+      "from": 0.16134453781512606,
+      "to": 0.5378151260504201,
+      "role": "descripcion",
+      "label": "CONCEPTO"
+    },
+    {
+      "from": 0.5378151260504201,
+      "to": 0.680672268907563,
+      "role": "debito",
+      "label": "DEBITO"
+    },
+    {
+      "from": 0.680672268907563,
+      "to": 0.8117647058823529,
+      "role": "credito",
+      "label": "CREDITO"
+    },
+    {
+      "from": 0.8117647058823529,
+      "to": 1,
+      "role": "saldo",
+      "label": "SALDO"
+    }
+  ]
+}

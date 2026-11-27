@@ -1,0 +1,479 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "072-desfasaje-atlantico",
+ "escenario": "desfasaje",
+ "banco": "atlantico",
+ "sistema": "debe_haber_ar",
+ "semilla": 6052,
+ "periodo": {
+  "desde": "2026-10-01",
+  "hasta": "2026-10-31"
+ },
+ "cliente": {
+  "nombre": "Panificadora La Espiga SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El libro registra con días de diferencia respecto del banco, algunos más allá de la ventana por defecto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 3203800000,
+    "bancoCierre": 3611829369,
+    "librosApertura": 3203800000,
+    "librosCierre": 3656524515
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-10-05",
+     "cents": -25900000,
+     "descripcion": "DEB AUT TELEFONÍA FEDERAL",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-10-09",
+     "cents": -129974000,
+     "descripcion": "TRANSFERENCIA A TERCEROS IMPRENTA TINTA FRESCA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-10-12",
+     "cents": 234722041,
+     "descripcion": "TRANSFERENCIA DE TERCEROS PANIFICADORA LA ESPIGA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-10-12",
+     "cents": -7041661,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-10-15",
+     "cents": -238600000,
+     "descripcion": "TRANSFERENCIA A TERCEROS IMPRENTA TINTA FRESCA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-10-16",
+     "cents": -108242000,
+     "descripcion": "TRANSFERENCIA A TERCEROS COOPERATIVA HORNERO LTDA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-10-19",
+     "cents": 314305000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS HOTEL CERRO AZUL SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-10-19",
+     "cents": -9429150,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-10-20",
+     "cents": 147700000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS PANIFICADORA LA ESPIGA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-10-20",
+     "cents": -4431000,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-10-21",
+     "cents": 204852201,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-10-21",
+     "cents": -6145566,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-10-22",
+     "cents": 365500000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-10-22",
+     "cents": -10965000,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-10-26",
+     "cents": -128271000,
+     "descripcion": "TRANSFERENCIA A TERCEROS ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-10-26",
+     "cents": -34230859,
+     "descripcion": "TRANSFERENCIA A TERCEROS SERVICIOS MÉDICOS LOMAS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-10-28",
+     "cents": -3388239,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-10-28",
+     "cents": -711530,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-10-29",
+     "cents": -21236868,
+     "descripcion": "DEB AUT GAS DEL LITORAL",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-10-30",
+     "cents": 86100000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-10-30",
+     "cents": -2583000,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-10-31",
+     "cents": -214000000,
+     "descripcion": "TRANSFERENCIA A TERCEROS LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-10-01",
+     "cents": -129974000,
+     "descripcion": "Pago a proveedor Imprenta Tinta Fresca SRL",
+     "comprobante": "OP 0001-00000475",
+     "asiento": 210
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-10-01",
+     "cents": -25900000,
+     "descripcion": "Telefonía Federal - débito automático",
+     "comprobante": "",
+     "asiento": 212
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-10-07",
+     "cents": -108242000,
+     "descripcion": "Transferencia a Cooperativa Hornero Ltda OP 0001-00000471",
+     "comprobante": "OP 0001-00000471",
+     "asiento": 206
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-10-09",
+     "cents": 234722041,
+     "descripcion": "Cobranza Panificadora La Espiga SRL Rec. 0001-00000470",
+     "comprobante": "0001-00000469",
+     "asiento": 205
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-10-12",
+     "cents": 365500000,
+     "descripcion": "Cobro FC A 0001-00000459 Transporte Ruta 3 SRL",
+     "comprobante": "0001-00000459",
+     "asiento": 200
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-10-12",
+     "cents": 314305000,
+     "descripcion": "Cobro FC A 0001-00000461 Hotel Cerro Azul SA",
+     "comprobante": "0001-00000461",
+     "asiento": 201
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-10-14",
+     "cents": -238600000,
+     "descripcion": "Pago Imprenta Tinta Fresca SRL OP 0001-00000474",
+     "comprobante": "OP 0001-00000474",
+     "asiento": 209
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-10-16",
+     "cents": -34230859,
+     "descripcion": "Transferencia a Servicios Médicos Lomas SRL OP 0001-00000476",
+     "comprobante": "OP 0001-00000476",
+     "asiento": 211
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-10-19",
+     "cents": 204852201,
+     "descripcion": "Cobranza cliente Transporte Ruta 3 SRL",
+     "comprobante": "0003-00000465",
+     "asiento": 203
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-10-20",
+     "cents": 147700000,
+     "descripcion": "Cobranza Panificadora La Espiga SRL Rec. 0001-00000464",
+     "comprobante": "0002-00000463",
+     "asiento": 202
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-10-22",
+     "cents": 86100000,
+     "descripcion": "Cobranza cliente Constructora Delta Norte SRL",
+     "comprobante": "0003-00000467",
+     "asiento": 204
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-10-22",
+     "cents": -128271000,
+     "descripcion": "Pago Óptica Mirador SRL OP 0001-00000472",
+     "comprobante": "OP 0001-00000472",
+     "asiento": 207
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-10-26",
+     "cents": -214000000,
+     "descripcion": "Transferencia a Librería El Faro SA OP 0001-00000473",
+     "comprobante": "OP 0001-00000473",
+     "asiento": 208
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-10-28",
+     "cents": -21236868,
+     "descripcion": "Gas del Litoral - débito automático",
+     "comprobante": "",
+     "asiento": 213
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B20"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B22"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

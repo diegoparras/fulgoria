@@ -1,0 +1,785 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "096-tarjetas_brutas-atlantico",
+ "escenario": "tarjetas_brutas",
+ "banco": "atlantico",
+ "sistema": "importe_signo_tab",
+ "semilla": 8052,
+ "periodo": {
+  "desde": "2026-07-01",
+  "hasta": "2026-07-31"
+ },
+ "cliente": {
+  "nombre": "Óptica Mirador SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 2,
+ "notas": "El libro registra la venta con tarjeta en bruto y aparte el arancel y su IVA; el banco acredita el neto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 3902700000,
+    "bancoCierre": 5345958030,
+    "librosApertura": 3902700000,
+    "librosCierre": 5397932488
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-07-02",
+     "cents": -111791538,
+     "descripcion": "TRANSFERENCIA A TERCEROS FARMACIA DEL PARQUE SCS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-07-02",
+     "cents": -670749,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-07-06",
+     "cents": 70773090,
+     "descripcion": "TRANSFERENCIA DE TERCEROS LOGÍSTICA ANDINA SAS - 0002-00000706",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-07-06",
+     "cents": -424639,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-07-06",
+     "cents": -1415462,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-07-08",
+     "cents": 92504611,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 30831",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-07-08",
+     "cents": -555028,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-07-08",
+     "cents": -1850092,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-07-10",
+     "cents": 88733031,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 91481",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-07-10",
+     "cents": -532398,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-07-10",
+     "cents": -1774661,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-07-14",
+     "cents": 226478000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS FARMACIA DEL PARQUE SCS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-07-14",
+     "cents": -1358868,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-07-14",
+     "cents": -4529560,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-07-14",
+     "cents": 145144000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS MUEBLES QUEBRACHO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-07-14",
+     "cents": -870864,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-07-14",
+     "cents": -2902880,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-07-15",
+     "cents": 168166019,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 7112",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-07-15",
+     "cents": -1008996,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-07-15",
+     "cents": -3363320,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-07-20",
+     "cents": 275785357,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 18780",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-07-20",
+     "cents": -1654712,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-07-20",
+     "cents": -5515707,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-07-27",
+     "cents": 25318233,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 54235",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-07-27",
+     "cents": -151909,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-07-27",
+     "cents": -506365,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-07-27",
+     "cents": 219066525,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 72364",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-07-27",
+     "cents": -1314399,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-07-27",
+     "cents": -4381331,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-07-27",
+     "cents": 447065000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS FRIGORÍFICO PAMPA ALTA SA - 0003-00000708",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-07-27",
+     "cents": -2682390,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-07-27",
+     "cents": -8941300,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-07-28",
+     "cents": -168200000,
+     "descripcion": "TRANSFERENCIA A TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-07-28",
+     "cents": -1009200,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B35",
+     "fecha": "2026-07-29",
+     "cents": 16190160,
+     "descripcion": "LIQ. COMERCIO MASTERCARD 67597",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B36",
+     "fecha": "2026-07-29",
+     "cents": -97141,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B37",
+     "fecha": "2026-07-29",
+     "cents": -323803,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B38",
+     "fecha": "2026-07-29",
+     "cents": -3400000,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B39",
+     "fecha": "2026-07-29",
+     "cents": -714000,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B40",
+     "fecha": "2026-07-29",
+     "cents": -20400,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B41",
+     "fecha": "2026-07-29",
+     "cents": -4284,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-07-01",
+     "cents": -111791538,
+     "descripcion": "Transferencia a Farmacia Del Parque SCS OP 0001-00000712",
+     "comprobante": "OP 0001-00000712",
+     "asiento": 138
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-07-03",
+     "cents": 70773090,
+     "descripcion": "Cobranza cliente Logística Andina SAS",
+     "comprobante": "0002-00000706",
+     "asiento": 135
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-07-08",
+     "cents": 92504611,
+     "descripcion": "Liquidación tarjeta lote 30831",
+     "comprobante": "",
+     "asiento": 133
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-07-10",
+     "cents": 91500934,
+     "descripcion": "Ventas con tarjeta lote 91481",
+     "comprobante": "",
+     "asiento": 129
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-07-10",
+     "cents": -2287523,
+     "descripcion": "Arancel tarjeta lote 91481",
+     "comprobante": "",
+     "asiento": 130
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-07-10",
+     "cents": -480380,
+     "descripcion": "IVA arancel lote 91481",
+     "comprobante": "",
+     "asiento": 131
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-07-13",
+     "cents": 145144000,
+     "descripcion": "Cobranza Muebles Quebracho SAS Rec. 0001-00000711",
+     "comprobante": "0002-00000710",
+     "asiento": 137
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-07-14",
+     "cents": 226478000,
+     "descripcion": "Cobro FC A 0002-00000704 Farmacia Del Parque SCS",
+     "comprobante": "0002-00000704",
+     "asiento": 134
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-07-15",
+     "cents": 168166019,
+     "descripcion": "Liquidación tarjeta lote 7112",
+     "comprobante": "",
+     "asiento": 132
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-07-20",
+     "cents": 284388096,
+     "descripcion": "Ventas con tarjeta lote 18780",
+     "comprobante": "",
+     "asiento": 117
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-07-20",
+     "cents": -7109702,
+     "descripcion": "Arancel tarjeta lote 18780",
+     "comprobante": "",
+     "asiento": 118
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-07-20",
+     "cents": -1493037,
+     "descripcion": "IVA arancel lote 18780",
+     "comprobante": "",
+     "asiento": 119
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-07-27",
+     "cents": 26108000,
+     "descripcion": "Ventas con tarjeta lote 54235",
+     "comprobante": "",
+     "asiento": 120
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-07-27",
+     "cents": -652700,
+     "descripcion": "Arancel tarjeta lote 54235",
+     "comprobante": "",
+     "asiento": 121
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-07-27",
+     "cents": -137067,
+     "descripcion": "IVA arancel lote 54235",
+     "comprobante": "",
+     "asiento": 122
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-07-27",
+     "cents": 225900000,
+     "descripcion": "Ventas con tarjeta lote 72364",
+     "comprobante": "",
+     "asiento": 126
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-07-27",
+     "cents": -5647500,
+     "descripcion": "Arancel tarjeta lote 72364",
+     "comprobante": "",
+     "asiento": 127
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-07-27",
+     "cents": -1185975,
+     "descripcion": "IVA arancel lote 72364",
+     "comprobante": "",
+     "asiento": 128
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-07-27",
+     "cents": 447065000,
+     "descripcion": "Cobranza Frigorífico Pampa Alta SA Rec. 0001-00000709",
+     "comprobante": "0003-00000708",
+     "asiento": 136
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-07-27",
+     "cents": -168200000,
+     "descripcion": "Pago Tecnología Austral SAS OP 0001-00000713",
+     "comprobante": "OP 0001-00000713",
+     "asiento": 139
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-07-29",
+     "cents": 16800000,
+     "descripcion": "Ventas con tarjeta lote 67597",
+     "comprobante": "",
+     "asiento": 123
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-07-29",
+     "cents": -504000,
+     "descripcion": "Arancel tarjeta lote 67597",
+     "comprobante": "",
+     "asiento": 124
+    },
+    {
+     "id": "L23",
+     "fecha": "2026-07-29",
+     "cents": -105840,
+     "descripcion": "IVA arancel lote 67597",
+     "comprobante": "",
+     "asiento": 125
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L10",
+      "L11",
+      "L12"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B24"
+     ],
+     "libros": [
+      "L13",
+      "L14",
+      "L15"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B35"
+     ],
+     "libros": [
+      "L21",
+      "L22",
+      "L23"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L16",
+      "L17",
+      "L18"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L4",
+      "L5",
+      "L6"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B30"
+     ],
+     "libros": [
+      "L19"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B33"
+     ],
+     "libros": [
+      "L20"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B38",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B39",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B36",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B37",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B29",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B11",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B19",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B7",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B5",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B31",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B32",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B34",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B40",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B41",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

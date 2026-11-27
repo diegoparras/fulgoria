@@ -1,0 +1,250 @@
+Fecha;Comprob.;Descripción;Importe;Saldo
+;;Transporte;;$ 27.427.000,00
+01-09-26;0003-00000721;Cobro FC A 0003-00000721 Agro Sur del Plata SA;$ 462.166,31;$ 27.889.166,31
+01-09-26;0002-00000737;Cobranza Librería El Faro SA Rec. 0001-00000738;$ 2.342.000,00;$ 30.231.166,31
+01-09-26;0002-00000889;Cobranza cliente Metalúrgica San Telmo SRL;$ 466.000,00;$ 30.697.166,31
+01-09-26;OP 0001-00000962;Transferencia a Agro Sur del Plata SA OP 0001-00000962;($ 1.327.300,84);$ 29.369.865,47
+01-09-26;OP 0001-00000971;Pago Lácteos Valle Verde SA OP 0001-00000971;($ 2.205.650,00);$ 27.164.215,47
+02-09-26;0003-00000745;Cobranza Ferretería El Tornillo SRL Rec. 0001-00000746;$ 2.372.567,28;$ 29.536.782,75
+02-09-26;0001-00000757;Cobranza cliente Librería El Faro SA;$ 1.784.000,00;$ 31.320.782,75
+02-09-26;0001-00000837;Cobranza Logística Andina SAS Rec. 0001-00000838;$ 209.000,00;$ 31.529.782,75
+02-09-26;0003-00000857;Cobranza cliente Óptica Mirador SRL;$ 1.551.839,02;$ 33.081.621,77
+02-09-26;0002-00000899;Cobranza cliente Farmacia Del Parque SCS;$ 468.940,00;$ 33.550.561,77
+02-09-26;OP 0001-00000936;Pago Agro Sur del Plata SA OP 0001-00000936;($ 2.302.000,00);$ 31.248.561,77
+02-09-26;OP 0001-00000939;Pago Química Litoral SRL OP 0001-00000939;($ 314.000,00);$ 30.934.561,77
+02-09-26;OP 0001-00000944;Pago a proveedor Constructora Delta Norte SRL;($ 495.670,00);$ 30.438.891,77
+02-09-26;OP 0001-00000951;Pago a proveedor Librería El Faro SA;($ 989.000,00);$ 29.449.891,77
+02-09-26;OP 0001-00000960;Pago Farmacia Del Parque SCS OP 0001-00000960;($ 1.271.000,00);$ 28.178.891,77
+02-09-26;OP 0001-00000965;Pago Lácteos Valle Verde SA OP 0001-00000965;($ 593.880,00);$ 27.585.011,77
+02-09-26;VEP 704312558;Pago IVA VEP 704312558;($ 564.000,00);$ 27.021.011,77
+03-09-26;0001-00000703;Cobro FC A 0001-00000703 Cooperativa Hornero Ltda;$ 3.925.772,36;$ 30.946.784,13
+03-09-26;0003-00000707;Cobro FC A 0003-00000707 Cooperativa Hornero Ltda;$ 1.560.250,00;$ 32.507.034,13
+03-09-26;0003-00000797;Cobranza Cooperativa Hornero Ltda Rec. 0001-00000798;$ 276.713,00;$ 32.783.747,13
+03-09-26;0001-00000841;Cobro FC A 0001-00000841 Frigorífico Pampa Alta SA;$ 1.765.964,72;$ 34.549.711,85
+03-09-26;0001-00000903;Cobro FC A 0001-00000903 Lácteos Valle Verde SA;$ 551.130,00;$ 35.100.841,85
+03-09-26;0003-00000909;Cobranza cliente Bodega Piedra Negra SA;$ 794.040,00;$ 35.894.881,85
+03-09-26;OP 0001-00000931;Pago a proveedor Librería El Faro SA;($ 1.622.910,00);$ 34.271.971,85
+03-09-26;OP 0001-00000940;Pago Química Litoral SRL OP 0001-00000940;($ 1.669.650,00);$ 32.602.321,85
+;;Subtotal página;;$ 32.602.321,85
+03-09-26;OP 0001-00000945;Transferencia a Tecnología Austral SAS OP 0001-00000945;($ 347.270,00);$ 32.255.051,85
+03-09-26;OP 0001-00000949;Transferencia a Estudio Gráfico Cobalto SAS OP 0001-00000949;($ 862.000,00);$ 31.393.051,85
+03-09-26;OP 0001-00000958;Pago Viñedos Altos de Cuyo SA OP 0001-00000958;($ 1.350.878,38);$ 30.042.173,47
+03-09-26;OP 0001-00000967;Transferencia a Ferretería El Tornillo SRL OP 0001-00000967;($ 1.387.232,44);$ 28.654.941,03
+03-09-26;OP 0001-00000981;Pago Cooperativa Hornero Ltda OP 0001-00000981;($ 2.849.000,00);$ 25.805.941,03
+03-09-26;OP 0001-00000983;Transferencia a Imprenta Tinta Fresca SRL OP 0001-00000983;($ 2.058.309,97);$ 23.747.631,06
+04-09-26;0002-00000827;Cobro FC A 0002-00000827 Logística Andina SAS;$ 1.010.898,38;$ 24.758.529,44
+04-09-26;0003-00000879;Cobro FC A 0003-00000879 Constructora Delta Norte SRL;$ 4.454.000,00;$ 29.212.529,44
+04-09-26;0001-00000881;Cobranza cliente Tecnología Austral SAS;$ 1.356.000,00;$ 30.568.529,44
+04-09-26;0003-00000885;Cobro FC A 0003-00000885 Muebles Quebracho SAS;$ 2.496.450,00;$ 33.064.979,44
+04-09-26;0003-00000901;Cobro FC A 0003-00000901 Hotel Cerro Azul SA;$ 2.535.456,33;$ 35.600.435,77
+04-09-26;OP 0001-00000916;Pago a proveedor Constructora Delta Norte SRL;($ 640.514,22);$ 34.959.921,55
+04-09-26;OP 0001-00000918;Transferencia a Panificadora La Espiga SRL OP 0001-00000918;($ 1.137.861,29);$ 33.822.060,26
+04-09-26;OP 0001-00000977;Pago a proveedor Ferretería El Tornillo SRL;($ 202.000,00);$ 33.620.060,26
+04-09-26;;Aguas Urbanas - débito automático;($ 316.180,00);$ 33.303.880,26
+05-09-26;;Internet Fibra Sur - débito automático;($ 343.821,39);$ 32.960.058,87
+06-09-26;RC 0001-00000997;Cobranza Lucas Fernández - efectivo a depositar;$ 284.000,00;$ 33.244.058,87
+07-09-26;0003-00000727;Cobranza cliente Muebles Quebracho SAS;$ 3.427.000,00;$ 36.671.058,87
+07-09-26;0002-00000733;Cobranza Muebles Quebracho SAS Rec. 0001-00000734;$ 1.179.251,65;$ 37.850.310,52
+07-09-26;0001-00000735;Cobranza cliente Farmacia Del Parque SCS;$ 3.818.670,56;$ 41.668.981,08
+07-09-26;0003-00000747;Cobranza Óptica Mirador SRL Rec. 0001-00000748;$ 144.000,00;$ 41.812.981,08
+07-09-26;0001-00000761;Cobro FC A 0001-00000761 Lácteos Valle Verde SA;$ 4.474.403,93;$ 46.287.385,01
+07-09-26;0003-00000791;Cobro FC A 0003-00000791 Farmacia Del Parque SCS;$ 3.726.930,00;$ 50.014.315,01
+07-09-26;0003-00000803;Cobro FC A 0003-00000803 Hotel Cerro Azul SA;$ 2.553.446,47;$ 52.567.761,48
+07-09-26;0003-00000805;Cobro FC A 0003-00000805 Agro Sur del Plata SA;$ 3.251.610,00;$ 55.819.371,48
+;;Subtotal página;;$ 55.819.371,48
+07-09-26;0002-00000853;Cobro FC A 0002-00000853 Transporte Ruta 3 SRL;$ 3.413.898,12;$ 59.233.269,60
+07-09-26;0003-00000869;Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000870;$ 1.162.000,00;$ 60.395.269,60
+07-09-26;0001-00000871;Cobranza cliente Lácteos Valle Verde SA;$ 592.610,26;$ 60.987.879,86
+07-09-26;OP 0001-00000917;Pago a proveedor Lácteos Valle Verde SA;($ 1.656.000,00);$ 59.331.879,86
+07-09-26;OP 0001-00000920;Pago Tecnología Austral SAS OP 0001-00000920;($ 2.343.000,00);$ 56.988.879,86
+07-09-26;OP 0001-00000929;Pago a proveedor Panificadora La Espiga SRL;($ 176.000,00);$ 56.812.879,86
+07-09-26;OP 0001-00000933;Transferencia a Metalúrgica San Telmo SRL OP 0001-00000933;($ 1.332.000,00);$ 55.480.879,86
+07-09-26;OP 0001-00000935;Pago a proveedor Hotel Cerro Azul SA;($ 1.553.996,40);$ 53.926.883,46
+07-09-26;OP 0001-00000954;Pago a proveedor Metalúrgica San Telmo SRL;($ 167.000,00);$ 53.759.883,46
+07-09-26;OP 0001-00000986;Pago Ferretería El Tornillo SRL OP 0001-00000986;($ 752.689,80);$ 53.007.193,66
+07-09-26;OP 0001-00000987;Pago a proveedor Muebles Quebracho SAS;($ 2.821.693,25);$ 50.185.500,41
+07-09-26;CH 00017096;Cheque N° 00017096 a Constructora Delta Norte SRL;($ 2.335.000,00);$ 47.850.500,41
+07-09-26;CH 00017109;Cheque N° 00017109 a Farmacia Del Parque SCS;($ 2.096.660,00);$ 45.753.840,41
+07-09-26;RC 0001-00000995;Cobranza Lucía Ortiz - efectivo a depositar;$ 633.000,00;$ 46.386.840,41
+07-09-26;;Gas del Litoral - débito automático;($ 187.810,00);$ 46.199.030,41
+07-09-26;;Sueldo agosto - Sofía Ramírez;($ 2.000.000,00);$ 44.199.030,41
+07-09-26;;Sueldo agosto - Mateo Benítez;($ 1.165.190,00);$ 43.033.840,41
+07-09-26;;Sueldo agosto - Ignacio Vera;($ 1.818.810,00);$ 41.215.030,41
+07-09-26;;Sueldo agosto - Camila Herrera;($ 903.443,73);$ 40.311.586,68
+07-09-26;;Sueldo agosto - Paula Castro;($ 1.025.769,33);$ 39.285.817,35
+07-09-26;;Sueldo agosto - Ignacio Vera;($ 2.047.000,00);$ 37.238.817,35
+07-09-26;;Sueldo agosto - Mateo Benítez;($ 1.921.651,56);$ 35.317.165,79
+07-09-26;;Sueldo agosto - Lucía Ortiz;($ 1.789.000,00);$ 33.528.165,79
+07-09-26;;Sueldo agosto - Sofía Ramírez;($ 1.140.750,00);$ 32.387.415,79
+07-09-26;;Sueldo agosto - Agustín Molina;($ 2.033.356,67);$ 30.354.059,12
+;;Subtotal página;;$ 30.354.059,12
+07-09-26;;Sueldo agosto - Lucas Fernández;($ 1.932.120,00);$ 28.421.939,12
+07-09-26;;Sueldo agosto - Tomás Acosta;($ 1.491.105,24);$ 26.930.833,88
+08-09-26;0003-00000759;Cobranza cliente Viñedos Altos de Cuyo SA;$ 3.186.812,12;$ 30.117.646,00
+08-09-26;0003-00000779;Cobro FC A 0003-00000779 Lácteos Valle Verde SA;$ 1.565.000,00;$ 31.682.646,00
+08-09-26;0001-00000787;Cobranza cliente Librería El Faro SA;$ 1.707.000,00;$ 33.389.646,00
+08-09-26;0001-00000851;Cobranza cliente Imprenta Tinta Fresca SRL;$ 4.428.686,89;$ 37.818.332,89
+08-09-26;0002-00000873;Cobranza Agro Sur del Plata SA Rec. 0001-00000874;$ 3.654.000,00;$ 41.472.332,89
+08-09-26;OP 0001-00000922;Transferencia a Agro Sur del Plata SA OP 0001-00000922;($ 2.496.000,00);$ 38.976.332,89
+08-09-26;OP 0001-00000925;Pago a proveedor Hotel Cerro Azul SA;($ 578.398,56);$ 38.397.934,33
+08-09-26;OP 0001-00000966;Transferencia a Química Litoral SRL OP 0001-00000966;($ 523.752,83);$ 37.874.181,50
+08-09-26;OP 0001-00000979;Pago a proveedor Constructora Delta Norte SRL;($ 373.105,14);$ 37.501.076,36
+08-09-26;RC 0001-00000996;Cobranza Sofía Ramírez - efectivo a depositar;$ 482.880,00;$ 37.983.956,36
+09-09-26;0003-00000799;Cobro FC A 0003-00000799 Hotel Cerro Azul SA;$ 3.728.249,36;$ 41.712.205,72
+09-09-26;0003-00000813;Cobro FC A 0003-00000813 Lácteos Valle Verde SA;$ 1.266.504,80;$ 42.978.710,52
+09-09-26;0001-00000823;Cobranza Imprenta Tinta Fresca SRL Rec. 0001-00000824;$ 3.341.776,21;$ 46.320.486,73
+09-09-26;0003-00000833;Cobranza cliente Viñedos Altos de Cuyo SA;$ 2.475.000,00;$ 48.795.486,73
+09-09-26;OP 0001-00000919;Pago Servicios Médicos Lomas SRL OP 0001-00000919;($ 2.388.740,62);$ 46.406.746,11
+09-09-26;OP 0001-00000943;Transferencia a Estudio Gráfico Cobalto SAS OP 0001-00000943;($ 1.103.000,00);$ 45.303.746,11
+09-09-26;OP 0001-00000947;Pago a proveedor Estudio Gráfico Cobalto SAS;($ 2.436.000,00);$ 42.867.746,11
+09-09-26;OP 0001-00000956;Pago Servicios Médicos Lomas SRL OP 0001-00000956;($ 1.141.070,00);$ 41.726.676,11
+09-09-26;OP 0001-00000990;Pago a proveedor Agro Sur del Plata SA;($ 285.985,20);$ 41.440.690,91
+09-09-26;CH 00017115;ECHEQ N° 00017115 a Ferretería El Tornillo SRL;($ 1.758.428,54);$ 39.682.262,37
+10-09-26;0002-00000739;Cobro FC A 0002-00000739 Distribuidora Los Álamos SRL;$ 2.989.000,00;$ 42.671.262,37
+10-09-26;0001-00000769;Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000770;$ 4.371.931,89;$ 47.043.194,26
+10-09-26;0002-00000789;Cobranza Cooperativa Hornero Ltda Rec. 0001-00000790;$ 4.454.412,27;$ 51.497.606,53
+;;Subtotal página;;$ 51.497.606,53
+10-09-26;0001-00000907;Cobro FC A 0001-00000907 Farmacia Del Parque SCS;$ 1.615.151,00;$ 53.112.757,53
+10-09-26;OP 0001-00000924;Pago a proveedor Servicios Médicos Lomas SRL;($ 280.350,00);$ 52.832.407,53
+10-09-26;OP 0001-00000955;Pago Textil Río Bermejo SA OP 0001-00000955;($ 2.165.560,00);$ 50.666.847,53
+10-09-26;OP 0001-00000989;Pago a proveedor Cooperativa Hornero Ltda;($ 1.085.410,00);$ 49.581.437,53
+11-09-26;0001-00000715;Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000716;$ 408.330,00;$ 49.989.767,53
+11-09-26;0001-00000835;Cobro FC A 0001-00000835 Farmacia Del Parque SCS;$ 742.290,00;$ 50.732.057,53
+11-09-26;0003-00000911;Cobranza Hotel Cerro Azul SA Rec. 0001-00000912;$ 3.532.000,00;$ 54.264.057,53
+11-09-26;OP 0001-00000921;Transferencia a Óptica Mirador SRL OP 0001-00000921;($ 1.359.000,00);$ 52.905.057,53
+11-09-26;OP 0001-00000927;Pago a proveedor Ferretería El Tornillo SRL;($ 1.826.944,27);$ 51.078.113,26
+11-09-26;OP 0001-00000950;Pago a proveedor Cooperativa Hornero Ltda;($ 2.645.048,87);$ 48.433.064,39
+11-09-26;OP 0001-00000973;Pago a proveedor Metalúrgica San Telmo SRL;($ 286.000,00);$ 48.147.064,39
+11-09-26;CH 00017072;Cheque N° 00017072 a Lácteos Valle Verde SA;($ 1.021.080,00);$ 47.125.984,39
+11-09-26;CH 00017085;ECHEQ N° 00017085 a Logística Andina SAS;($ 138.000,00);$ 46.987.984,39
+11-09-26;CH 00017106;ECHEQ N° 00017106 a Agro Sur del Plata SA;($ 386.000,00);$ 46.601.984,39
+12-09-26;RC 0001-00000993;Cobranza Paula Castro - efectivo a depositar;$ 389.997,93;$ 46.991.982,32
+12-09-26;RC 0001-00000994;Cobranza Lucía Ortiz - efectivo a depositar;$ 587.408,47;$ 47.579.390,79
+12-09-26;RC 0001-00001013;Cobranza Lucía Ortiz - efectivo a depositar;$ 456.138,36;$ 48.035.529,15
+12-09-26;RC 0001-00001014;Cobranza Lucas Fernández - efectivo a depositar;$ 306.462,56;$ 48.341.991,71
+14-09-26;0003-00000709;Cobro FC A 0003-00000709 Química Litoral SRL;$ 1.358.890,00;$ 49.700.881,71
+14-09-26;0001-00000725;Cobranza cliente Hotel Cerro Azul SA;$ 411.000,00;$ 50.111.881,71
+14-09-26;0001-00000731;Cobranza cliente Transporte Ruta 3 SRL;$ 3.740.450,10;$ 53.852.331,81
+14-09-26;0003-00000783;Cobranza cliente Ferretería El Tornillo SRL;$ 3.771.000,00;$ 57.623.331,81
+14-09-26;0002-00000861;Cobranza Química Litoral SRL Rec. 0001-00000862;$ 3.717.000,00;$ 61.340.331,81
+14-09-26;0001-00000865;Cobranza cliente Viñedos Altos de Cuyo SA;$ 2.519.225,74;$ 63.859.557,55
+14-09-26;0001-00000875;Cobro FC A 0001-00000875 Constructora Delta Norte SRL;$ 533.895,64;$ 64.393.453,19
+;;Subtotal página;;$ 64.393.453,19
+14-09-26;0001-00000891;Cobranza Transporte Ruta 3 SRL Rec. 0001-00000892;$ 1.704.000,00;$ 66.097.453,19
+14-09-26;OP 0001-00000915;Transferencia a Cooperativa Hornero Ltda OP 0001-00000915;($ 2.849.406,38);$ 63.248.046,81
+14-09-26;OP 0001-00000934;Pago Bodega Piedra Negra SA OP 0001-00000934;($ 1.959.795,02);$ 61.288.251,79
+14-09-26;OP 0001-00000946;Transferencia a Agro Sur del Plata SA OP 0001-00000946;($ 1.371.176,00);$ 59.917.075,79
+14-09-26;OP 0001-00000964;Pago Ferretería El Tornillo SRL OP 0001-00000964;($ 1.517.000,00);$ 58.400.075,79
+14-09-26;OP 0001-00000974;Pago a proveedor Distribuidora Los Álamos SRL;($ 1.660.930,00);$ 56.739.145,79
+14-09-26;OP 0001-00000976;Pago a proveedor Tecnología Austral SAS;($ 2.228.000,00);$ 54.511.145,79
+14-09-26;RC 0001-00001015;Cobranza Tomás Acosta - efectivo a depositar;$ 407.610,00;$ 54.918.755,79
+15-09-26;0001-00000771;Cobranza Tecnología Austral SAS Rec. 0001-00000772;$ 4.426.830,00;$ 59.345.585,79
+15-09-26;0002-00000773;Cobro FC A 0002-00000773 Viñedos Altos de Cuyo SA;$ 3.726.938,65;$ 63.072.524,44
+15-09-26;0001-00000877;Cobranza cliente Servicios Médicos Lomas SRL;$ 3.566.865,11;$ 66.639.389,55
+15-09-26;0003-00000893;Cobro FC A 0003-00000893 Metalúrgica San Telmo SRL;$ 3.494.000,00;$ 70.133.389,55
+15-09-26;0002-00000913;Cobranza cliente Transporte Ruta 3 SRL;$ 2.090.136,98;$ 72.223.526,53
+15-09-26;OP 0001-00000923;Transferencia a Transporte Ruta 3 SRL OP 0001-00000923;($ 1.755.791,81);$ 70.467.734,72
+15-09-26;OP 0001-00000932;Transferencia a Librería El Faro SA OP 0001-00000932;($ 2.512.000,00);$ 67.955.734,72
+15-09-26;OP 0001-00000957;Pago a proveedor Textil Río Bermejo SA;($ 2.232.420,00);$ 65.723.314,72
+15-09-26;CH 00017098;ECHEQ N° 00017098 a Química Litoral SRL;($ 2.156.410,00);$ 63.566.904,72
+16-09-26;0001-00000765;Cobranza Transporte Ruta 3 SRL Rec. 0001-00000766;$ 2.431.000,00;$ 65.997.904,72
+16-09-26;0003-00000801;Cobranza cliente Farmacia Del Parque SCS;$ 630.000,00;$ 66.627.904,72
+16-09-26;0001-00000839;Cobro FC A 0001-00000839 Panificadora La Espiga SRL;$ 3.269.050,00;$ 69.896.954,72
+16-09-26;0002-00000845;Cobranza Agro Sur del Plata SA Rec. 0001-00000846;$ 3.624.409,33;$ 73.521.364,05
+16-09-26;0002-00000887;Cobro FC A 0002-00000887 Estudio Gráfico Cobalto SAS;$ 2.846.000,00;$ 76.367.364,05
+16-09-26;OP 0001-00000952;Pago a proveedor Óptica Mirador SRL;($ 2.631.830,00);$ 73.735.534,05
+16-09-26;OP 0001-00000992;Transferencia a Imprenta Tinta Fresca SRL OP 0001-00000992;($ 960.000,00);$ 72.775.534,05
+16-09-26;CH 00017092;ECHEQ N° 00017092 a Óptica Mirador SRL;($ 50.880,00);$ 72.724.654,05
+;;Subtotal página;;$ 72.724.654,05
+17-09-26;0002-00000719;Cobranza Distribuidora Los Álamos SRL Rec. 0001-00000720;$ 949.000,00;$ 73.673.654,05
+17-09-26;0002-00000775;Cobranza cliente Transporte Ruta 3 SRL;$ 2.232.272,95;$ 75.905.927,00
+17-09-26;0001-00000807;Cobranza cliente Agro Sur del Plata SA;$ 3.607.075,83;$ 79.513.002,83
+17-09-26;0003-00000819;Cobranza Muebles Quebracho SAS Rec. 0001-00000820;$ 1.400.030,00;$ 80.913.032,83
+17-09-26;0003-00000821;Cobro FC A 0003-00000821 Logística Andina SAS;$ 1.267.380,00;$ 82.180.412,83
+17-09-26;0002-00000831;Cobranza Química Litoral SRL Rec. 0001-00000832;$ 1.741.222,23;$ 83.921.635,06
+17-09-26;0001-00000905;Cobro FC A 0001-00000905 Óptica Mirador SRL;$ 436.000,00;$ 84.357.635,06
+17-09-26;OP 0001-00000928;Pago Textil Río Bermejo SA OP 0001-00000928;($ 101.190,00);$ 84.256.445,06
+17-09-26;OP 0001-00000975;Transferencia a Logística Andina SAS OP 0001-00000975;($ 1.148.831,02);$ 83.107.614,04
+17-09-26;OP 0001-00000980;Pago a proveedor Distribuidora Los Álamos SRL;($ 2.625.000,00);$ 80.482.614,04
+18-09-26;0002-00000697;Cobranza Textil Río Bermejo SA Rec. 0001-00000698;$ 3.160.070,00;$ 83.642.684,04
+18-09-26;0003-00000701;Cobranza cliente Metalúrgica San Telmo SRL;$ 1.489.052,53;$ 85.131.736,57
+18-09-26;0002-00000795;Cobranza cliente Frigorífico Pampa Alta SA;$ 1.274.598,19;$ 86.406.334,76
+18-09-26;RC 0001-00001004;Cobranza Lucas Fernández - efectivo a depositar;$ 150.936,76;$ 86.557.271,52
+19-09-26;RC 0001-00001007;Cobranza Martina Gómez - efectivo a depositar;$ 598.532,92;$ 87.155.804,44
+19-09-26;RC 0001-00001010;Cobranza Mateo Benítez - efectivo a depositar;$ 860.000,00;$ 88.015.804,44
+19-09-26;RC 0001-00001012;Cobranza Nicolás Romero - efectivo a depositar;$ 747.356,00;$ 88.763.160,44
+20-09-26;RC 0001-00001001;Cobranza Florencia Díaz - efectivo a depositar;$ 31.636,81;$ 88.794.797,25
+20-09-26;RC 0001-00001003;Cobranza Nicolás Romero - efectivo a depositar;$ 406.557,30;$ 89.201.354,55
+20-09-26;RC 0001-00001005;Cobranza Valentina Sosa - efectivo a depositar;$ 799.309,67;$ 90.000.664,22
+20-09-26;RC 0001-00001006;Cobranza Paula Castro - efectivo a depositar;$ 642.851,36;$ 90.643.515,58
+21-09-26;0002-00000723;Cobro FC A 0002-00000723 Librería El Faro SA;$ 4.224.634,14;$ 94.868.149,72
+21-09-26;0003-00000741;Cobro FC A 0003-00000741 Textil Río Bermejo SA;$ 1.088.606,83;$ 95.956.756,55
+21-09-26;0001-00000743;Cobro FC A 0001-00000743 Bodega Piedra Negra SA;$ 377.080,91;$ 96.333.837,46
+21-09-26;0001-00000793;Cobro FC A 0001-00000793 Logística Andina SAS;$ 3.038.883,07;$ 99.372.720,53
+;;Subtotal página;;$ 99.372.720,53
+21-09-26;0002-00000817;Cobranza Agro Sur del Plata SA Rec. 0001-00000818;$ 86.570,00;$ 99.459.290,53
+21-09-26;0001-00000829;Cobro FC A 0001-00000829 Librería El Faro SA;$ 2.310.196,42;$ 101.769.486,95
+21-09-26;0003-00000843;Cobranza cliente Óptica Mirador SRL;$ 2.887.200,00;$ 104.656.686,95
+21-09-26;0003-00000855;Cobranza Bodega Piedra Negra SA Rec. 0001-00000856;$ 897.000,00;$ 105.553.686,95
+21-09-26;0002-00000867;Cobranza Tecnología Austral SAS Rec. 0001-00000868;$ 2.634.000,00;$ 108.187.686,95
+21-09-26;OP 0001-00000937;Pago a proveedor Farmacia Del Parque SCS;($ 2.819.410,00);$ 105.368.276,95
+21-09-26;OP 0001-00000959;Pago a proveedor Cooperativa Hornero Ltda;($ 152.377,01);$ 105.215.899,94
+21-09-26;OP 0001-00000961;Transferencia a Panificadora La Espiga SRL OP 0001-00000961;($ 929.270,00);$ 104.286.629,94
+21-09-26;OP 0001-00000968;Pago a proveedor Óptica Mirador SRL;($ 250.000,00);$ 104.036.629,94
+21-09-26;OP 0001-00000991;Pago Constructora Delta Norte SRL OP 0001-00000991;($ 1.212.158,82);$ 102.824.471,12
+21-09-26;RC 0001-00001011;Cobranza Agustín Molina - efectivo a depositar;$ 818.430,00;$ 103.642.901,12
+22-09-26;0002-00000717;Cobro FC A 0002-00000717 Estudio Gráfico Cobalto SAS;$ 3.435.000,00;$ 107.077.901,12
+22-09-26;0002-00000859;Cobranza cliente Panificadora La Espiga SRL;$ 903.000,00;$ 107.980.901,12
+22-09-26;0002-00000895;Cobranza cliente Óptica Mirador SRL;$ 2.437.050,00;$ 110.417.951,12
+22-09-26;OP 0001-00000953;Transferencia a Estudio Gráfico Cobalto SAS OP 0001-00000953;($ 2.055.990,00);$ 108.361.961,12
+22-09-26;OP 0001-00000963;Transferencia a Panificadora La Espiga SRL OP 0001-00000963;($ 2.659.000,00);$ 105.702.961,12
+22-09-26;OP 0001-00000985;Pago Lácteos Valle Verde SA OP 0001-00000985;($ 1.132.000,00);$ 104.570.961,12
+22-09-26;RC 0001-00001002;Cobranza Carolina Núñez - efectivo a depositar;$ 726.000,00;$ 105.296.961,12
+22-09-26;VEP 498832676;Anticipo Ganancias VEP 498832676;($ 392.470,00);$ 104.904.491,12
+23-09-26;0002-00000751;Cobranza cliente Logística Andina SAS;$ 939.370,00;$ 105.843.861,12
+23-09-26;OP 0001-00000938;Pago Química Litoral SRL OP 0001-00000938;($ 868.246,20);$ 104.975.614,92
+23-09-26;OP 0001-00000941;Pago a proveedor Logística Andina SAS;($ 2.669.323,39);$ 102.306.291,53
+24-09-26;0001-00000749;Cobranza cliente Agro Sur del Plata SA;$ 3.286.965,99;$ 105.593.257,52
+24-09-26;0003-00000763;Cobro FC A 0003-00000763 Óptica Mirador SRL;$ 736.930,00;$ 106.330.187,52
+24-09-26;0002-00000785;Cobranza Hotel Cerro Azul SA Rec. 0001-00000786;$ 2.140.000,00;$ 108.470.187,52
+;;Subtotal página;;$ 108.470.187,52
+24-09-26;0003-00000809;Cobranza cliente Frigorífico Pampa Alta SA;$ 3.988.000,00;$ 112.458.187,52
+24-09-26;OP 0001-00000942;Pago Viñedos Altos de Cuyo SA OP 0001-00000942;($ 2.391.443,29);$ 110.066.744,23
+25-09-26;0001-00000711;Cobranza Transporte Ruta 3 SRL Rec. 0001-00000712;$ 1.026.000,00;$ 111.092.744,23
+25-09-26;0001-00000729;Cobranza cliente Óptica Mirador SRL;$ 2.105.510,00;$ 113.198.254,23
+25-09-26;0002-00000753;Cobro FC A 0002-00000753 Química Litoral SRL;$ 3.788.539,26;$ 116.986.793,49
+25-09-26;0003-00000767;Cobranza Servicios Médicos Lomas SRL Rec. 0001-00000768;$ 3.347.476,75;$ 120.334.270,24
+25-09-26;0001-00000815;Cobro FC A 0001-00000815 Distribuidora Los Álamos SRL;$ 719.894,58;$ 121.054.164,82
+25-09-26;0001-00000847;Cobranza cliente Cooperativa Hornero Ltda;$ 1.878.904,64;$ 122.933.069,46
+25-09-26;OP 0001-00000969;Pago a proveedor Ferretería El Tornillo SRL;($ 248.483,95);$ 122.684.585,51
+25-09-26;OP 0001-00000984;Pago Logística Andina SAS OP 0001-00000984;($ 2.993.000,00);$ 119.691.585,51
+25-09-26;OP 0001-00000988;Transferencia a Óptica Mirador SRL OP 0001-00000988;($ 525.802,37);$ 119.165.783,14
+25-09-26;CH 00017080;Cheque N° 00017080 a Textil Río Bermejo SA;($ 420.000,00);$ 118.745.783,14
+26-09-26;RC 0001-00001009;Cobranza Nicolás Romero - efectivo a depositar;$ 330.000,00;$ 119.075.783,14
+27-09-26;RC 0001-00001008;Cobranza Agustín Molina - efectivo a depositar;$ 798.950,00;$ 119.874.733,14
+28-09-26;0001-00000699;Cobranza Óptica Mirador SRL Rec. 0001-00000700;$ 2.759.000,00;$ 122.633.733,14
+28-09-26;0001-00000705;Cobranza cliente Imprenta Tinta Fresca SRL;$ 1.033.000,00;$ 123.666.733,14
+28-09-26;0002-00000713;Cobranza cliente Óptica Mirador SRL;$ 1.419.000,00;$ 125.085.733,14
+28-09-26;0001-00000755;Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000756;$ 403.000,00;$ 125.488.733,14
+28-09-26;0001-00000777;Cobro FC A 0001-00000777 Constructora Delta Norte SRL;$ 2.804.512,43;$ 128.293.245,57
+28-09-26;0001-00000781;Cobro FC A 0001-00000781 Tecnología Austral SAS;$ 2.676.000,00;$ 130.969.245,57
+28-09-26;0001-00000811;Cobro FC A 0001-00000811 Química Litoral SRL;$ 1.469.830,00;$ 132.439.075,57
+28-09-26;0002-00000825;Cobranza Hotel Cerro Azul SA Rec. 0001-00000826;$ 2.063.387,46;$ 134.502.463,03
+28-09-26;0001-00000849;Cobranza cliente Óptica Mirador SRL;$ 3.272.000,00;$ 137.774.463,03
+28-09-26;0001-00000863;Cobranza Muebles Quebracho SAS Rec. 0001-00000864;$ 1.646.000,00;$ 139.420.463,03
+28-09-26;0003-00000883;Cobranza cliente Estudio Gráfico Cobalto SAS;$ 4.403.911,10;$ 143.824.374,13
+;;Subtotal página;;$ 143.824.374,13
+28-09-26;0001-00000897;Cobro FC A 0001-00000897 Química Litoral SRL;$ 2.854.000,00;$ 146.678.374,13
+28-09-26;OP 0001-00000926;Pago a proveedor Imprenta Tinta Fresca SRL;($ 372.090,76);$ 146.306.283,37
+28-09-26;OP 0001-00000930;Pago Lácteos Valle Verde SA OP 0001-00000930;($ 929.000,00);$ 145.377.283,37
+28-09-26;OP 0001-00000948;Pago Viñedos Altos de Cuyo SA OP 0001-00000948;($ 2.938.000,00);$ 142.439.283,37
+28-09-26;OP 0001-00000970;Pago Bodega Piedra Negra SA OP 0001-00000970;($ 2.934.000,00);$ 139.505.283,37
+28-09-26;OP 0001-00000972;Transferencia a Tecnología Austral SAS OP 0001-00000972;($ 405.000,00);$ 139.100.283,37
+28-09-26;OP 0001-00000978;Pago a proveedor Distribuidora Los Álamos SRL;($ 1.543.029,32);$ 137.557.254,05
+28-09-26;OP 0001-00000982;Pago Viñedos Altos de Cuyo SA OP 0001-00000982;($ 239.000,00);$ 137.318.254,05
+28-09-26;CH 00017078;ECHEQ N° 00017078 a Textil Río Bermejo SA;($ 1.464.138,46);$ 135.854.115,59
+28-09-26;CH 00017104;Cheque N° 00017104 a Viñedos Altos de Cuyo SA;($ 1.993.000,00);$ 133.861.115,59
+28-09-26;RC 0001-00000998;Cobranza Agustín Molina - efectivo a depositar;$ 45.000,00;$ 133.906.115,59
+28-09-26;RC 0001-00000999;Cobranza Sofía Ramírez - efectivo a depositar;$ 551.000,00;$ 134.457.115,59
+28-09-26;RC 0001-00001000;Cobranza Julieta Medina - efectivo a depositar;$ 268.000,00;$ 134.725.115,59
+;;Total general;;$ 134.725.115,59

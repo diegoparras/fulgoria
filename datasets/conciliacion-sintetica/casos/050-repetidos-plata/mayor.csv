@@ -1,0 +1,18 @@
+Fecha;Asiento;Comprobante;Concepto;Debe;Haber;Saldo
+;;;Saldo anterior;;;6.673.000,00
+03/08/2026;375;;Sueldo julio - Joaquín Pereyra;;2.265.000,00;4.408.000,00
+03/08/2026;376;;Sueldo julio - Florencia Díaz;;2.265.000,00;2.143.000,00
+03/08/2026;377;;Sueldo julio - Carolina Núñez;;2.265.000,00;-122.000,00
+03/08/2026;378;;Sueldo julio - Camila Herrera;;2.265.000,00;-2.387.000,00
+03/08/2026;379;;Sueldo julio - Paula Castro;;2.265.000,00;-4.652.000,00
+03/08/2026;380;;Sueldo julio - Ignacio Vera;;2.265.000,00;-6.917.000,00
+03/08/2026;387;OP 0001-00000781;Pago a proveedor Logística Andina SAS;;1.372.000,00;-8.289.000,00
+10/08/2026;389;OP 0001-00000783;Transferencia a Panificadora La Espiga SRL OP 0001-00000783;;2.568.000,00;-10.857.000,00
+14/08/2026;382;OP 0001-00000773;Transferencia a Muebles Quebracho SAS OP 0001-00000773;;1.302.377,92;-12.159.377,92
+17/08/2026;384;0001-00000776;Cobro FC A 0001-00000776 Viñedos Altos de Cuyo SA;167.000,00;;-11.992.377,92
+17/08/2026;385;0002-00000778;Cobro FC A 0002-00000778 Transporte Ruta 3 SRL;167.000,00;;-11.825.377,92
+20/08/2026;381;OP 0001-00000772;Pago a proveedor Transporte Ruta 3 SRL;;1.302.377,92;-13.127.755,84
+24/08/2026;383;0003-00000774;Cobro FC A 0003-00000774 Logística Andina SAS;167.000,00;;-12.960.755,84
+24/08/2026;388;OP 0001-00000782;Pago Óptica Mirador SRL OP 0001-00000782;;160.230,00;-13.120.985,84
+27/08/2026;386;OP 0001-00000780;Pago a proveedor Imprenta Tinta Fresca SRL;;930.902,01;-14.051.887,85
+;;;Totales;;;-14.051.887,85

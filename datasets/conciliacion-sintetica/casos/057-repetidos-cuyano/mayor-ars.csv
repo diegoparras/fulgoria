@@ -1,0 +1,16 @@
+Fecha;Comprob.;Descripción;Importe;Saldo
+;;Transporte;;$ 8.047.645,87
+03-08-26;0001-00000591;Cobro FC A 0001-00000591 Bodega Piedra Negra SA;$ 248.496,88;$ 8.296.142,75
+03-08-26;0002-00000593;Cobranza cliente Frigorífico Pampa Alta SA;$ 248.496,88;$ 8.544.639,63
+03-08-26;OP 0001-00000596;Transferencia a Óptica Mirador SRL OP 0001-00000596;($ 272.671,44);$ 8.271.968,19
+04-08-26;;Sueldo julio - Martina Gómez;($ 1.167.800,00);$ 7.104.168,19
+04-08-26;;Sueldo julio - Mateo Benítez;($ 1.167.800,00);$ 5.936.368,19
+04-08-26;;Sueldo julio - Lucía Ortiz;($ 1.167.800,00);$ 4.768.568,19
+04-08-26;;Sueldo julio - Joaquín Pereyra;($ 1.167.800,00);$ 3.600.768,19
+14-08-26;OP 0001-00000595;Transferencia a Agro Sur del Plata SA OP 0001-00000595;($ 2.448.810,00);$ 1.151.958,19
+17-08-26;0003-00000587;Cobranza Panificadora La Espiga SRL Rec. 0001-00000588;$ 248.496,88;$ 1.400.455,07
+17-08-26;0003-00000589;Cobro FC A 0003-00000589 Imprenta Tinta Fresca SRL;$ 248.496,88;$ 1.648.951,95
+19-08-26;OP 0001-00000586;Pago Hotel Cerro Azul SA OP 0001-00000586;($ 1.103.428,40);$ 545.523,55
+27-08-26;OP 0001-00000597;Pago a proveedor Frigorífico Pampa Alta SA;($ 94.985,19);$ 450.538,36
+31-08-26;OP 0001-00000585;Pago Panificadora La Espiga SRL OP 0001-00000585;($ 1.103.428,40);($ 652.890,04)
+;;Total general;;($ 652.890,04)

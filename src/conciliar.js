@@ -7,13 +7,14 @@
 //
 // Todo corre en el navegador: el PDF y el mayor nunca salen de la máquina.
 import { loadPdf, renderToCanvas } from "./pdf.js";
-import { ocrCanvas, imageFileToCanvas } from "./ocr.js";
-import { extract, balanceCheck, autoDetect, matchScore } from "./extract.js";
+import { extract, balanceCheck, autoDetect, matchScore, docYear } from "./extract.js";
 import {
   fromExtract, parseLedgerCsv, resolveConfig, DEFAULTS, reconcile, arrastreSiguiente, pairKey,
   papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, fmtCents, fmtISO,
 } from "./core/index.js";
 
+// OCR (Tesseract, pesado) se carga solo si hace falta: un PDF digital no lo necesita.
+const ocr = () => import("./ocr.js");
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const svg = (s, body) => `<svg class="ico" width="${s}" height="${s}" viewBox="0 0 24 24">${body}</svg>`;
@@ -86,6 +87,7 @@ async function cargarExtracto(name, file) {
     let pdf;
     if ((file.type || "").startsWith("image/")) {
       progress("Leyendo la imagen con OCR…");
+      const { ocrCanvas, imageFileToCanvas } = await ocr();
       const canvas = await imageFileToCanvas(file);
       const items = await ocrCanvas(canvas, (p) => progress(`OCR — ${Math.round(p * 100)}%`));
       pdf = { numPages: 1, scanned: true, pages: [{ index: 1, page: null, W: canvas.width, H: canvas.height, items, ocrCanvas: canvas }] };
@@ -93,6 +95,7 @@ async function cargarExtracto(name, file) {
       pdf = await loadPdf(new Uint8Array(await file.arrayBuffer()));
       const tot = pdf.pages.reduce((a, p) => a + p.items.length, 0);
       if (pdf.pages.length && tot / pdf.pages.length < 5) { // escaneado
+        const { ocrCanvas } = await ocr();
         for (let i = 0; i < pdf.pages.length; i++) {
           const pg = pdf.pages[i];
           const canvas = await renderToCanvas(pg.page, 1600);
@@ -119,7 +122,7 @@ function elegirSegmento(i) {
   const s = x.ext.segments[i];
   if (!s) { x.error = "No encontré movimientos en el extracto. Abrilo en el Extractor para marcar las columnas."; return; }
   x.check = balanceCheck({ ...s, columns: x.columns });
-  const anio = Number((s.movements.find((m) => /\d{4}/.test(m.fecha))?.fecha.match(/\d{4}/) || [])[0]) || new Date().getFullYear();
+  const anio = docYear(x.pdf.pages, s.movements) || new Date().getFullYear();
   x.anio = anio;
   x.data = fromExtract({ ...s, columns: x.columns }, { doc: x.name, anio });
   x.error = null;
@@ -192,9 +195,9 @@ function run() {
     banco: x.data.movs, libros: m.led.movs, arrastre: state.arrastre,
     saldos: { bancoApertura: x.data.apertura, bancoCierre: x.data.cierre, librosApertura: m.led.apertura, librosCierre: m.led.cierre },
     periodo: { desde, hasta }, cfg: cfg(), decisiones: state.decisiones,
+    // Si la lectura de un documento no está verificada, el motor no confirma nada solo.
+    lectura: { banco: !!x.check.globalOk, libros: m.led.control.ok !== false },
   });
-  // Si la lectura del extracto no está verificada, nada puede quedar en verde.
-  if (!x.check.globalOk) state.rec.resumen.estado = "rojo";
   renderResult();
 }
 
@@ -285,6 +288,7 @@ const NOTAS = {
   debitos_no_identificados: "Salió plata del banco y no hay nada registrado que lo explique. Hay que preguntarle al cliente a qué corresponde y pedirle el comprobante.",
   ingresos_no_acreditados: "Está registrado como ingreso hace más de unos días y el banco no lo acreditó. Puede ser un error de registración o un depósito rechazado.",
   egresos_a_revisar: "Están registrados como salida y el banco no los debitó. Si son cheques viejos, conviene confirmar si siguen en circulación.",
+  lectura_no_verificada: "Los movimientos leídos no explican los saldos del documento: puede faltar una fila, una columna estar mal marcada o una página no haberse leído. Mientras tanto, nada se confirma solo. Abrí el extracto en el Extractor, ajustá las columnas y guardá la plantilla del banco.",
   emparejamientos_a_confirmar: "Son propuestas razonables pero no seguras. Confirmalas o marcá \"No es esto\" para que busque otra opción.",
   ajustes_bancarios: "El banco los debitó o acreditó y todavía no están en libros. Ya están clasificados y con su asiento propuesto: descargalos para importarlos en tu sistema.",
   pendientes_normales: "Partidas registradas cerca del cierre que el banco todavía no procesó. Es normal: se arrastran al mes siguiente.",
@@ -521,6 +525,18 @@ function exportar(kind) {
   }
 }
 function download(name, text, mime) {
+  // Dentro de un visor embebido (iframe) las descargas pueden estar bloqueadas: muestro el
+  // contenido para copiarlo. Fuera de un iframe (la app normal), descarga directa.
+  let embebido = false;
+  try { embebido = window.top !== window.self; } catch { embebido = true; }
+  if (embebido) {
+    abrirModal(esc(name), `<p>Copiá el contenido y pegalo en un archivo <b>${esc(name)}</b> (o directamente en Excel si es CSV).</p><textarea class="c-msg" id="expTxt" readonly>${esc(text.replace(/^\uFEFF/, ""))}</textarea>
+      <div class="modal-acciones"><button class="btn primary" id="copiarExp">Copiar</button></div>`);
+    $("copiarExp").addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText($("expTxt").value); toast("Copiado."); } catch { $("expTxt").select(); toast("Seleccionado: copialo con Ctrl+C."); }
+    });
+    return;
+  }
   const url = URL.createObjectURL(new Blob([text], { type: mime + ";charset=utf-8" }));
   const a = Object.assign(document.createElement("a"), { href: url, download: name });
   document.body.appendChild(a); a.click(); a.remove();

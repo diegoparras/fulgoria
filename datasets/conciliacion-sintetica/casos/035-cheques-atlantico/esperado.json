@@ -1,0 +1,509 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "035-cheques-atlantico",
+ "escenario": "cheques",
+ "banco": "atlantico",
+ "sistema": "importe_signo_tab",
+ "semilla": 3051,
+ "periodo": {
+  "desde": "2026-10-01",
+  "hasta": "2026-10-31"
+ },
+ "cliente": {
+  "nombre": "Metalúrgica San Telmo SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Muchos cheques emitidos que se debitan días después, varios pendientes al cierre y un cheque de tercero rechazado.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 3121369396,
+    "bancoCierre": 3145614924,
+    "librosApertura": 3121369396,
+    "librosCierre": 2786082664
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-10-06",
+     "cents": 56254914,
+     "descripcion": "DEPOSITO CHEQUES 48 HS",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-10-07",
+     "cents": -90400000,
+     "descripcion": "CHEQUE N 00039160",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-10-08",
+     "cents": -56254914,
+     "descripcion": "RECHAZO CHEQUE N 00039222",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-10-08",
+     "cents": -415785,
+     "descripcion": "COMISION RECHAZO CHEQUE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-10-09",
+     "cents": -181000000,
+     "descripcion": "ECHEQ N 00039179",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-10-09",
+     "cents": 104700000,
+     "descripcion": "DEPOSITO CHEQUES 48 HS",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-10-12",
+     "cents": -154700000,
+     "descripcion": "CHEQUE N 00039170",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-10-12",
+     "cents": 357450502,
+     "descripcion": "TRANSFERENCIA DE TERCEROS FRIGORÍFICO PAMPA ALTA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-10-15",
+     "cents": -155221123,
+     "descripcion": "CHEQUE N 00039194",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-10-19",
+     "cents": -82300000,
+     "descripcion": "ECHEQ N 00039188",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-10-20",
+     "cents": -203400000,
+     "descripcion": "CHEQUE N 00039165",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-10-26",
+     "cents": 260634583,
+     "descripcion": "TRANSFERENCIA DE TERCEROS FERRETERÍA EL TORNILLO SRL - 0003-00000878",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-10-26",
+     "cents": 208240000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS VIÑEDOS ALTOS DE CUYO SA - 0003-00000880",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-10-27",
+     "cents": -187116000,
+     "descripcion": "CHEQUE N 00039161",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-10-27",
+     "cents": -1899466,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-10-27",
+     "cents": -398888,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-10-29",
+     "cents": -98828295,
+     "descripcion": "CHEQUE N 00039172",
+     "tipo": "cheque"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-10-29",
+     "cents": 248900000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS ÓPTICA MIRADOR SRL - 0002-00000874",
+     "tipo": "transferencia"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-10-01",
+     "cents": -90400000,
+     "descripcion": "Cheque N° 00039160 a Bodega Piedra Negra SA",
+     "comprobante": "CH 00039160",
+     "asiento": 254
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-10-01",
+     "cents": -156148000,
+     "descripcion": "Cheque N° 00039218 a Servicios Médicos Lomas SRL",
+     "comprobante": "CH 00039218",
+     "asiento": 267
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-10-02",
+     "cents": -154700000,
+     "descripcion": "Cheque N° 00039170 a Estudio Gráfico Cobalto SAS",
+     "comprobante": "CH 00039170",
+     "asiento": 258
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-10-02",
+     "cents": -48600000,
+     "descripcion": "Cheque N° 00039213 a Tecnología Austral SAS",
+     "comprobante": "CH 00039213",
+     "asiento": 266
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-10-05",
+     "cents": -181000000,
+     "descripcion": "ECHEQ N° 00039179 a Ferretería El Tornillo SRL",
+     "comprobante": "CH 00039179",
+     "asiento": 260
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-10-05",
+     "cents": 56254914,
+     "descripcion": "Depósito cheque N° 00039222 cliente Química Litoral SRL",
+     "comprobante": "CH 00039222",
+     "asiento": 273
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-10-06",
+     "cents": -203400000,
+     "descripcion": "Cheque N° 00039165 a Farmacia Del Parque SCS",
+     "comprobante": "CH 00039165",
+     "asiento": 256
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-10-08",
+     "cents": -82300000,
+     "descripcion": "ECHEQ N° 00039188 a Textil Río Bermejo SA",
+     "comprobante": "CH 00039188",
+     "asiento": 262
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-10-08",
+     "cents": 104700000,
+     "descripcion": "Depósito cheque cliente",
+     "comprobante": "",
+     "asiento": 272
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-10-09",
+     "cents": -155221123,
+     "descripcion": "Cheque N° 00039194 a Librería El Faro SA",
+     "comprobante": "CH 00039194",
+     "asiento": 263
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-10-09",
+     "cents": 357450502,
+     "descripcion": "Cobranza cliente Frigorífico Pampa Alta SA",
+     "comprobante": "0001-00000876",
+     "asiento": 269
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-10-13",
+     "cents": -98828295,
+     "descripcion": "Cheque N° 00039172 a Transporte Ruta 3 SRL",
+     "comprobante": "CH 00039172",
+     "asiento": 259
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-10-19",
+     "cents": -187116000,
+     "descripcion": "Cheque N° 00039161 a Cooperativa Hornero Ltda",
+     "comprobante": "CH 00039161",
+     "asiento": 255
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-10-23",
+     "cents": -77200000,
+     "descripcion": "Cheque N° 00039167 a Frigorífico Pampa Alta SA",
+     "comprobante": "CH 00039167",
+     "asiento": 257
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-10-23",
+     "cents": 260634583,
+     "descripcion": "Cobro FC A 0003-00000878 Ferretería El Tornillo SRL",
+     "comprobante": "0003-00000878",
+     "asiento": 270
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-10-26",
+     "cents": -98690320,
+     "descripcion": "Cheque N° 00039182 a Distribuidora Los Álamos SRL",
+     "comprobante": "CH 00039182",
+     "asiento": 261
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-10-26",
+     "cents": -15618993,
+     "descripcion": "Cheque N° 00039201 a Logística Andina SAS",
+     "comprobante": "CH 00039201",
+     "asiento": 264
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-10-26",
+     "cents": -22244000,
+     "descripcion": "Cheque N° 00039207 a Ferretería El Tornillo SRL",
+     "comprobante": "CH 00039207",
+     "asiento": 265
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-10-26",
+     "cents": 208240000,
+     "descripcion": "Cobro FC A 0003-00000880 Viñedos Altos de Cuyo SA",
+     "comprobante": "0003-00000880",
+     "asiento": 271
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-10-27",
+     "cents": 248900000,
+     "descripcion": "Cobranza Óptica Mirador SRL Rec. 0001-00000875",
+     "comprobante": "0002-00000874",
+     "asiento": 268
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L20"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L19"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L14",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L16",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L17",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L18",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L4",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L2",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "B3",
+     "lado": "banco",
+     "tipo": "debito_no_identificado"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B15",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

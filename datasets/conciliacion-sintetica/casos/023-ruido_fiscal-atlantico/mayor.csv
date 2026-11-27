@@ -1,0 +1,25 @@
+Empresa: Logística Andina SAS
+Cuenta: 1.1.1.02 Banco Atlántico
+Período: 01/03/2026 al 31/03/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,8206070.00
+2026-03-03,Cobranza Muebles Quebracho SAS Rec. 0001-00000507,1380140.00,,9586210.00
+2026-03-03,Gas del Litoral - débito automático,,108440.00,9477770.00
+2026-03-09,Cobro FC A 0003-00000502 Estudio Gráfico Cobalto SAS,2076000.00,,11553770.00
+2026-03-09,Cobro FC A 0003-00000508 Cooperativa Hornero Ltda,3183000.00,,14736770.00
+2026-03-09,F.931 VEP 552756043,,1511414.36,13225355.64
+2026-03-10,Aguas Urbanas - débito automático,,25920.38,13199435.26
+2026-03-12,Transferencia a Panificadora La Espiga SRL OP 0001-00000510,,2954647.61,10244787.65
+2026-03-12,Transferencia a Logística Andina SAS OP 0001-00000513,,881000.00,9363787.65
+2026-03-13,Cobranza Ferretería El Tornillo SRL Rec. 0001-00000499,1772000.00,,11135787.65
+2026-03-16,Cobranza cliente Ferretería El Tornillo SRL,3723722.40,,14859510.05
+2026-03-16,Cobro FC A 0002-00000504 Metalúrgica San Telmo SRL,244997.82,,15104507.87
+2026-03-16,Pago a proveedor Servicios Médicos Lomas SRL,,386482.64,14718025.23
+2026-03-18,Pago a proveedor Panificadora La Espiga SRL,,1944739.01,12773286.22
+2026-03-19,Transferencia a Hotel Cerro Azul SA OP 0001-00000512,,2620000.00,10153286.22
+2026-03-23,Cobro FC A 0001-00000492 Panificadora La Espiga SRL,1807130.00,,11960416.22
+2026-03-23,Cobranza cliente Estudio Gráfico Cobalto SAS,3152000.00,,15112416.22
+2026-03-23,Pago Óptica Mirador SRL OP 0001-00000514,,1381040.00,13731376.22
+2026-03-24,Pago Farmacia Del Parque SCS OP 0001-00000515,,1579000.00,12152376.22
+2026-03-30,Cobranza cliente Óptica Mirador SRL,3929000.00,,16081376.22

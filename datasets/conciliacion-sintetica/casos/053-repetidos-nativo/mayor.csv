@@ -1,0 +1,22 @@
+Empresa: Logística Andina SAS
+Cuenta: 1.1.1.02 Banco Nativo Argentino
+Período: 01/10/2026 al 31/10/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,14891840.00
+2026-10-05,Sueldo septiembre - Sofía Ramírez,,1534265.40,13357574.60
+2026-10-05,Sueldo septiembre - Mateo Benítez,,1534265.40,11823309.20
+2026-10-05,Sueldo septiembre - Ignacio Vera,,1534265.40,10289043.80
+2026-10-05,Sueldo septiembre - Camila Herrera,,1534265.40,8754778.40
+2026-10-05,Sueldo septiembre - Florencia Díaz,,1534265.40,7220513.00
+2026-10-05,Sueldo septiembre - Sofía Ramírez,,1534265.40,5686247.60
+2026-10-05,Sueldo septiembre - Julieta Medina,,1534265.40,4151982.20
+2026-10-05,Pago a proveedor Lácteos Valle Verde SA,,1241000.00,2910982.20
+2026-10-05,Cobranza Química Litoral SRL Rec. 0001-00000677,166860.00,,3077842.20
+2026-10-05,Pago Ferretería El Tornillo SRL OP 0001-00000682,,1933591.05,1144251.15
+2026-10-08,Cobranza cliente Viñedos Altos de Cuyo SA,166860.00,,1311111.15
+2026-10-08,Transferencia a Hotel Cerro Azul SA OP 0001-00000685,,2521000.00,-1209888.85
+2026-10-09,Cobranza cliente Bodega Piedra Negra SA,166860.00,,-1043028.85
+2026-10-14,Transferencia a Muebles Quebracho SAS OP 0001-00000683,,2079000.00,-3122028.85
+2026-10-14,Pago Óptica Mirador SRL OP 0001-00000684,,1469000.00,-4591028.85
+2026-10-27,Pago Textil Río Bermejo SA OP 0001-00000674,,1241000.00,-5832028.85

@@ -1,0 +1,20 @@
+FECHA;DESCRIPCION;INGRESOS;EGRESOS;SALDO
+;SALDO INICIAL;;;26.458.880,00
+2/2/2026;Ventas con tarjeta lote ;355.910,00;;26.814.790,00
+;93190;;;
+2/2/2026;Arancel tarjeta lote 93190;;8.897,75;26.805.892,25
+2/2/2026;IVA arancel lote 93190;;1.868,53;26.804.023,72
+9/2/2026;Liquidación tarjeta lote 19409;341.352,00;;27.145.375,72
+16/2/2026;Ventas con tarjeta lote 46220;1.132.000,00;;28.277.375,72
+16/2/2026;Arancel tarjeta lote 46220;;20.376,00;28.256.999,72
+16/2/2026;IVA arancel lote 46220;;4.278,96;28.252.720,76
+17/2/2026;Liquidación tarjeta lote 68228;116.370,00;;28.369.090,76
+18/2/2026;Pago a proveedor Hotel Cerro Azul SA;;959.344,49;27.409.746,27
+23/2/2026;Ventas con tarjeta lote ;166.369,76;;27.576.116,03
+;50209;;;
+23/2/2026;Arancel tarjeta lote 502;;2.994,66;27.573.121,37
+;09;;;
+23/2/2026;IVA arancel lote 50209;;628,88;27.572.492,49
+23/2/2026;Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000681;3.303.890,30;;30.876.382,79
+23/2/2026;Pago Óptica Mirador SRL OP 0001-00000685;;1.049.000,00;29.827.382,79
+25/2/2026;Cobranza cliente Transporte Ruta 3 SRL;3.206.000,00;;33.033.382,79

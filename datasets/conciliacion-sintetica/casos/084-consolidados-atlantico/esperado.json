@@ -1,0 +1,534 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "084-consolidados-atlantico",
+ "escenario": "consolidados",
+ "banco": "atlantico",
+ "sistema": "debitos_creditos_us",
+ "semilla": 7052,
+ "periodo": {
+  "desde": "2026-04-01",
+  "hasta": "2026-04-30"
+ },
+ "cliente": {
+  "nombre": "Óptica Mirador SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El cliente registra los gastos e impuestos bancarios en un solo asiento mensual por concepto (1 libro = muchas líneas del banco).",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 937265000,
+    "bancoCierre": 913199885,
+    "librosApertura": 937265000,
+    "librosCierre": 913199885
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-04-01",
+     "cents": 18400000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS DISTRIBUIDORA LOS ÁLAMOS SRL - 0001-00000811",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-04-01",
+     "cents": -110400,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-04-01",
+     "cents": -276000,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-04-02",
+     "cents": -139800000,
+     "descripcion": "TRANSFERENCIA A TERCEROS VIÑEDOS ALTOS DE CUYO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-04-02",
+     "cents": -838800,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-04-03",
+     "cents": 444846978,
+     "descripcion": "TRANSFERENCIA DE TERCEROS ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-04-03",
+     "cents": -2669082,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-04-03",
+     "cents": -6672705,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-04-06",
+     "cents": 117100000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS AGRO SUR DEL PLATA SA - 0003-00000813",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-04-06",
+     "cents": -702600,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-04-06",
+     "cents": -1756500,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-04-08",
+     "cents": 132122000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS FERRETERÍA EL TORNILLO SRL - 0002-00000809",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-04-08",
+     "cents": -792732,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-04-08",
+     "cents": -1981830,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-04-09",
+     "cents": -77400000,
+     "descripcion": "TRANSFERENCIA A TERCEROS SERVICIOS MÉDICOS LOMAS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-04-09",
+     "cents": -464400,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-04-15",
+     "cents": -107800000,
+     "descripcion": "TRANSFERENCIA A TERCEROS LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-04-15",
+     "cents": -646800,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-04-17",
+     "cents": -244000000,
+     "descripcion": "TRANSFERENCIA A TERCEROS TEXTIL RÍO BERMEJO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-04-17",
+     "cents": -1464000,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-04-20",
+     "cents": 150700000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-04-20",
+     "cents": -904200,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-04-20",
+     "cents": -2260500,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-04-20",
+     "cents": -288600000,
+     "descripcion": "TRANSFERENCIA A TERCEROS CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-04-20",
+     "cents": -1731600,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-04-27",
+     "cents": -5100000,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-04-27",
+     "cents": -1071000,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-04-27",
+     "cents": -153000,
+     "descripcion": "PERC. IVA",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-04-27",
+     "cents": -30600,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-04-27",
+     "cents": -6426,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-04-27",
+     "cents": -918,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-04-01",
+     "cents": 18400000,
+     "descripcion": "Cobro FC A 0001-00000811 Distribuidora Los Álamos SRL",
+     "comprobante": "0001-00000811",
+     "asiento": 370
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-04-02",
+     "cents": -139800000,
+     "descripcion": "Pago a proveedor Viñedos Altos de Cuyo SA",
+     "comprobante": "OP 0001-00000820",
+     "asiento": 376
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-04-03",
+     "cents": 444846978,
+     "descripcion": "Cobro FC A 0002-00000807 Óptica Mirador SRL",
+     "comprobante": "0002-00000807",
+     "asiento": 368
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-04-06",
+     "cents": 132122000,
+     "descripcion": "Cobro FC A 0002-00000809 Ferretería El Tornillo SRL",
+     "comprobante": "0002-00000809",
+     "asiento": 369
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-04-06",
+     "cents": 117100000,
+     "descripcion": "Cobro FC A 0003-00000813 Agro Sur del Plata SA",
+     "comprobante": "0003-00000813",
+     "asiento": 371
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-04-08",
+     "cents": -77400000,
+     "descripcion": "Pago a proveedor Servicios Médicos Lomas SRL",
+     "comprobante": "OP 0001-00000821",
+     "asiento": 377
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-04-14",
+     "cents": -107800000,
+     "descripcion": "Pago a proveedor Logística Andina SAS",
+     "comprobante": "OP 0001-00000818",
+     "asiento": 374
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-04-17",
+     "cents": 150700000,
+     "descripcion": "Cobro FC A 0001-00000815 Óptica Mirador SRL",
+     "comprobante": "0001-00000815",
+     "asiento": 372
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-04-17",
+     "cents": -244000000,
+     "descripcion": "Transferencia a Textil Río Bermejo SA OP 0001-00000819",
+     "comprobante": "OP 0001-00000819",
+     "asiento": 375
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-04-20",
+     "cents": -288600000,
+     "descripcion": "Transferencia a Constructora Delta Norte SRL OP 0001-00000817",
+     "comprobante": "OP 0001-00000817",
+     "asiento": 373
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-04-30",
+     "cents": -10362558,
+     "descripcion": "Impuesto ley 25.413 del mes",
+     "comprobante": "",
+     "asiento": 378
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-04-30",
+     "cents": -12947535,
+     "descripcion": "Retenciones SIRCREB del mes",
+     "comprobante": "",
+     "asiento": 379
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-04-30",
+     "cents": -5100000,
+     "descripcion": "Comisiones bancarias del mes",
+     "comprobante": "",
+     "asiento": 380
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-04-30",
+     "cents": -1071000,
+     "descripcion": "IVA comisiones bancarias del mes",
+     "comprobante": "",
+     "asiento": 381
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-04-30",
+     "cents": -153000,
+     "descripcion": "Percepciones IVA bancarias del mes",
+     "comprobante": "",
+     "asiento": 382
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B24"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7",
+      "B13",
+      "B2",
+      "B10",
+      "B22",
+      "B25",
+      "B18",
+      "B20",
+      "B5",
+      "B16",
+      "B29",
+      "B30",
+      "B31"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B8",
+      "B14",
+      "B3",
+      "B11",
+      "B23"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B26"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B28"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "consolidado"
+    }
+   ],
+   "pendientes": [],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

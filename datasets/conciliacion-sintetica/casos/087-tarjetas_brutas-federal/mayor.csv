@@ -1,0 +1,26 @@
+Fecha;Comprob.;Descripción;Importe;Saldo
+;;Transporte;;$ 5.820.613,99
+09-01-26;0003-00000569;Cobranza cliente Hotel Cerro Azul SA;$ 2.101.114,47;$ 7.921.728,46
+09-01-26;OP 0001-00000573;Pago a proveedor Lácteos Valle Verde SA;($ 544.000,00);$ 7.377.728,46
+12-01-26;;Liquidación tarjeta lote 78540;$ 347.170,50;$ 7.724.898,96
+12-01-26;;Liquidación tarjeta lote 63452;$ 2.267.908,58;$ 9.992.807,54
+13-01-26;;Ventas con tarjeta lote 56340;$ 2.326.030,00;$ 12.318.837,54
+13-01-26;;Arancel tarjeta lote 56340;($ 41.868,54);$ 12.276.969,00
+13-01-26;;IVA arancel lote 56340;($ 8.792,39);$ 12.268.176,61
+16-01-26;;Ventas con tarjeta lote 92931;$ 1.085.000,00;$ 13.353.176,61
+16-01-26;;Arancel tarjeta lote 92931;($ 27.125,00);$ 13.326.051,61
+16-01-26;;IVA arancel lote 92931;($ 5.696,25);$ 13.320.355,36
+16-01-26;0003-00000567;Cobranza cliente Muebles Quebracho SAS;$ 4.444.000,00;$ 17.764.355,36
+19-01-26;;Ventas con tarjeta lote 30596;$ 739.007,04;$ 18.503.362,40
+19-01-26;;Arancel tarjeta lote 30596;($ 18.475,18);$ 18.484.887,22
+19-01-26;;IVA arancel lote 30596;($ 3.879,79);$ 18.481.007,43
+19-01-26;;Ventas con tarjeta lote 18092;$ 1.392.883,85;$ 19.873.891,28
+19-01-26;;Arancel tarjeta lote 18092;($ 34.822,10);$ 19.839.069,18
+19-01-26;;IVA arancel lote 18092;($ 7.312,64);$ 19.831.756,54
+20-01-26;0002-00000571;Cobro FC A 0002-00000571 Metalúrgica San Telmo SRL;$ 1.881.684,09;$ 21.713.440,63
+26-01-26;OP 0001-00000575;Transferencia a Servicios Médicos Lomas SRL OP 0001-00000575;($ 1.688.000,00);$ 20.025.440,63
+28-01-26;OP 0001-00000574;Pago a proveedor Textil Río Bermejo SA;($ 733.660,00);$ 19.291.780,63
+29-01-26;;Ventas con tarjeta lote 49971;$ 1.349.000,00;$ 20.640.780,63
+29-01-26;;Arancel tarjeta lote 49971;($ 33.725,00);$ 20.607.055,63
+29-01-26;;IVA arancel lote 49971;($ 7.082,25);$ 20.599.973,38
+;;Total general;;$ 20.599.973,38

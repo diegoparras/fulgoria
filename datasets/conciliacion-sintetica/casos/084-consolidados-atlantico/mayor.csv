@@ -1,0 +1,21 @@
+Empresa: Óptica Mirador SRL
+Cuenta: 1.1.1.02 Banco Atlántico
+Período: 01/04/2026 al 30/04/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,9372650.00
+2026-04-01,Cobro FC A 0001-00000811 Distribuidora Los Álamos SRL,184000.00,,9556650.00
+2026-04-02,Pago a proveedor Viñedos Altos de Cuyo SA,,1398000.00,8158650.00
+2026-04-03,Cobro FC A 0002-00000807 Óptica Mirador SRL,4448469.78,,12607119.78
+2026-04-06,Cobro FC A 0002-00000809 Ferretería El Tornillo SRL,1321220.00,,13928339.78
+2026-04-06,Cobro FC A 0003-00000813 Agro Sur del Plata SA,1171000.00,,15099339.78
+2026-04-08,Pago a proveedor Servicios Médicos Lomas SRL,,774000.00,14325339.78
+2026-04-14,Pago a proveedor Logística Andina SAS,,1078000.00,13247339.78
+2026-04-17,Cobro FC A 0001-00000815 Óptica Mirador SRL,1507000.00,,14754339.78
+2026-04-17,Transferencia a Textil Río Bermejo SA OP 0001-00000819,,2440000.00,12314339.78
+2026-04-20,Transferencia a Constructora Delta Norte SRL OP 0001-00000817,,2886000.00,9428339.78
+2026-04-30,Impuesto ley 25.413 del mes,,103625.58,9324714.20
+2026-04-30,Retenciones SIRCREB del mes,,129475.35,9195238.85
+2026-04-30,Comisiones bancarias del mes,,51000.00,9144238.85
+2026-04-30,IVA comisiones bancarias del mes,,10710.00,9133528.85
+2026-04-30,Percepciones IVA bancarias del mes,,1530.00,9131998.85

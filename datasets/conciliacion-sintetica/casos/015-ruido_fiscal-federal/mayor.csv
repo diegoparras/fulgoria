@@ -1,0 +1,22 @@
+Fecha;Comprob.;Descripción;Importe;Saldo
+;;Transporte;;$ 18.449.801,54
+02-04-26;OP 0001-00000602;Pago a proveedor Cooperativa Hornero Ltda;($ 344.000,00);$ 18.105.801,54
+06-04-26;OP 0001-00000604;Transferencia a Frigorífico Pampa Alta SA OP 0001-00000604;($ 420.000,00);$ 17.685.801,54
+07-04-26;OP 0001-00000606;Pago Frigorífico Pampa Alta SA OP 0001-00000606;($ 2.469.770,00);$ 15.216.031,54
+08-04-26;;Alquileres Centro SA - débito automático;($ 68.000,00);$ 15.148.031,54
+09-04-26;0002-00000593;Cobranza cliente Transporte Ruta 3 SRL;$ 2.278.948,18;$ 17.426.979,72
+09-04-26;0001-00000595;Cobranza cliente Transporte Ruta 3 SRL;$ 2.715.460,00;$ 20.142.439,72
+10-04-26;0001-00000597;Cobranza cliente Metalúrgica San Telmo SRL;$ 1.769.760,00;$ 21.912.199,72
+10-04-26;OP 0001-00000600;Pago a proveedor Constructora Delta Norte SRL;($ 2.796.658,23);$ 19.115.541,49
+13-04-26;OP 0001-00000603;Transferencia a Farmacia Del Parque SCS OP 0001-00000603;($ 2.846.000,00);$ 16.269.541,49
+14-04-26;0003-00000591;Cobranza Ferretería El Tornillo SRL Rec. 0001-00000592;$ 3.183.466,72;$ 19.453.008,21
+15-04-26;OP 0001-00000601;Pago a proveedor Tecnología Austral SAS;($ 1.438.008,04);$ 18.015.000,17
+17-04-26;0002-00000589;Cobranza cliente Frigorífico Pampa Alta SA;$ 1.988.000,00;$ 20.003.000,17
+20-04-26;OP 0001-00000605;Pago a proveedor Frigorífico Pampa Alta SA;($ 930.623,48);$ 19.072.376,69
+21-04-26;OP 0001-00000599;Transferencia a Agro Sur del Plata SA OP 0001-00000599;($ 2.795.720,39);$ 16.276.656,30
+21-04-26;OP 0001-00000607;Pago a proveedor Agro Sur del Plata SA;($ 1.543.000,00);$ 14.733.656,30
+21-04-26;;Alquileres Centro SA - débito automático;($ 293.645,69);$ 14.440.010,61
+21-04-26;;Alquileres Centro SA - débito automático;($ 307.000,00);$ 14.133.010,61
+22-04-26;VEP 409014066;F.931 VEP 409014066;($ 837.782,13);$ 13.295.228,48
+27-04-26;0002-00000587;Cobranza Distribuidora Los Álamos SRL Rec. 0001-00000588;$ 4.400.830,00;$ 17.696.058,48
+;;Total general;;$ 17.696.058,48

@@ -1,0 +1,51 @@
+Fecha;Comprob.;Descripción;Importe;Saldo
+;;Transporte;;$ 5.127.400,00
+01-06-26;RC 0001-00000462;Cobranza Joaquín Pereyra - efectivo a depositar;$ 765.000,00;$ 5.892.400,00
+02-06-26;RC 0001-00000463;Cobranza Agustín Molina - efectivo a depositar;$ 523.000,00;$ 6.415.400,00
+02-06-26;OP 0001-00000486;Transferencia a Servicios Médicos Lomas SRL OP 0001-00000486;($ 948.000,00);$ 5.467.400,00
+03-06-26;RC 0001-00000460;Cobranza Agustín Molina - efectivo a depositar;$ 422.000,00;$ 5.889.400,00
+04-06-26;RC 0001-00000461;Cobranza Mateo Benítez - efectivo a depositar;$ 125.000,00;$ 6.014.400,00
+04-06-26;;Venta MP #60328852;$ 232.993,29;$ 6.247.393,29
+07-06-26;RC 0001-00000468;Cobranza Sofía Ramírez - efectivo a depositar;$ 894.000,00;$ 7.141.393,29
+07-06-26;RC 0001-00000469;Cobranza Sofía Ramírez - efectivo a depositar;$ 727.550,42;$ 7.868.943,71
+07-06-26;;Venta MP #80644073;$ 196.359,17;$ 8.065.302,88
+07-06-26;;Venta MP #48205414;$ 218.669,65;$ 8.283.972,53
+07-06-26;;Venta MP #15158291;$ 175.000,00;$ 8.458.972,53
+08-06-26;RC 0001-00000454;Cobranza Lucía Ortiz - efectivo a depositar;$ 95.598,67;$ 8.554.571,20
+08-06-26;RC 0001-00000455;Cobranza Lucía Ortiz - efectivo a depositar;$ 155.000,00;$ 8.709.571,20
+08-06-26;;Venta MP #18028506;$ 98.685,81;$ 8.808.257,01
+09-06-26;;Venta MP #39742447;$ 256.000,00;$ 9.064.257,01
+09-06-26;;Venta MP #42859961;$ 185.902,59;$ 9.250.159,60
+09-06-26;;Liquidación tarjeta lote 91791;$ 1.089.539,92;$ 10.339.699,52
+10-06-26;0001-00000480;Cobro FC A 0001-00000480 Distribuidora Los Álamos SRL;$ 3.021.869,12;$ 13.361.568,64
+11-06-26;;Venta MP #60192417;$ 122.000,00;$ 13.483.568,64
+11-06-26;0002-00000474;Cobro FC A 0002-00000474 Farmacia Del Parque SCS;$ 3.630.600,00;$ 17.114.168,64
+11-06-26;OP 0001-00000485;Pago Servicios Médicos Lomas SRL OP 0001-00000485;($ 1.734.775,30);$ 15.379.393,34
+12-06-26;RC 0001-00000467;Cobranza Julieta Medina - efectivo a depositar;$ 858.300,00;$ 16.237.693,34
+13-06-26;RC 0001-00000470;Cobranza Lucas Fernández - efectivo a depositar;$ 745.093,33;$ 16.982.786,67
+13-06-26;RC 0001-00000471;Cobranza Nicolás Romero - efectivo a depositar;$ 107.840,00;$ 17.090.626,67
+13-06-26;RC 0001-00000473;Cobranza Sofía Ramírez - efectivo a depositar;$ 872.000,00;$ 17.962.626,67
+;;Subtotal página;;$ 17.962.626,67
+15-06-26;RC 0001-00000464;Cobranza Santiago Rojas - efectivo a depositar;$ 671.000,00;$ 18.633.626,67
+15-06-26;RC 0001-00000465;Cobranza Agustín Molina - efectivo a depositar;$ 884.000,00;$ 19.517.626,67
+15-06-26;RC 0001-00000466;Cobranza Agustín Molina - efectivo a depositar;$ 388.520,00;$ 19.906.146,67
+15-06-26;RC 0001-00000472;Cobranza Nicolás Romero - efectivo a depositar;$ 347.988,49;$ 20.254.135,16
+19-06-26;;Venta MP #42192527;$ 134.000,00;$ 20.388.135,16
+20-06-26;;Venta MP #12647926;$ 35.475,48;$ 20.423.610,64
+20-06-26;;Venta MP #57221914;$ 31.186,02;$ 20.454.796,66
+21-06-26;;Venta MP #26984256;$ 133.000,00;$ 20.587.796,66
+22-06-26;;Venta MP #55117766;$ 298.043,91;$ 20.885.840,57
+22-06-26;;Venta MP #55848808;$ 283.616,28;$ 21.169.456,85
+22-06-26;;Venta MP #41806824;$ 64.754,86;$ 21.234.211,71
+22-06-26;;Liquidación tarjeta lote 17602;$ 261.184,74;$ 21.495.396,45
+23-06-26;0001-00000482;Cobranza cliente Imprenta Tinta Fresca SRL;$ 3.634.000,00;$ 25.129.396,45
+24-06-26;;Liquidación tarjeta lote 29677;$ 497.718,00;$ 25.627.114,45
+24-06-26;0001-00000476;Cobro FC A 0001-00000476 Farmacia Del Parque SCS;$ 1.666.970,00;$ 27.294.084,45
+25-06-26;OP 0001-00000484;Pago Distribuidora Los Álamos SRL OP 0001-00000484;($ 2.871.000,00);$ 24.423.084,45
+26-06-26;;Liquidación tarjeta lote 96651;$ 1.204.625,00;$ 25.627.709,45
+26-06-26;0002-00000478;Cobro FC A 0002-00000478 Panificadora La Espiga SRL;$ 564.000,00;$ 26.191.709,45
+27-06-26;RC 0001-00000456;Cobranza Valentina Sosa - efectivo a depositar;$ 535.000,00;$ 26.726.709,45
+27-06-26;RC 0001-00000457;Cobranza Agustín Molina - efectivo a depositar;$ 764.089,88;$ 27.490.799,33
+27-06-26;RC 0001-00000458;Cobranza Florencia Díaz - efectivo a depositar;$ 333.940,00;$ 27.824.739,33
+28-06-26;RC 0001-00000459;Cobranza Agustín Molina - efectivo a depositar;$ 257.000,00;$ 28.081.739,33
+;;Total general;;$ 28.081.739,33

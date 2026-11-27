@@ -1,0 +1,542 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "083-consolidados-atlantico",
+ "escenario": "consolidados",
+ "banco": "atlantico",
+ "sistema": "debe_haber_ar",
+ "semilla": 7051,
+ "periodo": {
+  "desde": "2026-03-01",
+  "hasta": "2026-03-31"
+ },
+ "cliente": {
+  "nombre": "Logística Andina SAS",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El cliente registra los gastos e impuestos bancarios en un solo asiento mensual por concepto (1 libro = muchas líneas del banco).",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 76797000,
+    "bancoCierre": 511935297,
+    "librosApertura": 76797000,
+    "librosCierre": 511935297
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-03-10",
+     "cents": -216623000,
+     "descripcion": "TRANSFERENCIA A TERCEROS ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-03-10",
+     "cents": -1299738,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-03-11",
+     "cents": 378597655,
+     "descripcion": "TRANSFERENCIA DE TERCEROS LÁCTEOS VALLE VERDE SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-03-11",
+     "cents": -2271586,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-03-11",
+     "cents": -3028781,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-03-13",
+     "cents": -223216912,
+     "descripcion": "TRANSFERENCIA A TERCEROS LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-03-13",
+     "cents": -1339301,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-03-16",
+     "cents": 159722000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-03-16",
+     "cents": -958332,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-03-16",
+     "cents": -1277776,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-03-16",
+     "cents": -163000000,
+     "descripcion": "TRANSFERENCIA A TERCEROS FARMACIA DEL PARQUE SCS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-03-16",
+     "cents": -978000,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-03-16",
+     "cents": -281312972,
+     "descripcion": "TRANSFERENCIA A TERCEROS LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-03-16",
+     "cents": -1687878,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-03-23",
+     "cents": 103700000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-03-23",
+     "cents": -622200,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-03-23",
+     "cents": -829600,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-03-27",
+     "cents": 336706000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS DISTRIBUIDORA LOS ÁLAMOS SRL - 0003-00000379",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-03-27",
+     "cents": -2020236,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-03-27",
+     "cents": -2693648,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-03-30",
+     "cents": -4800000,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-03-30",
+     "cents": -1008000,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-03-30",
+     "cents": -144000,
+     "descripcion": "PERC. IVA",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-03-30",
+     "cents": -28800,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-03-30",
+     "cents": -6048,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-03-30",
+     "cents": -864,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-03-31",
+     "cents": 290716826,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-03-31",
+     "cents": -1744301,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-03-31",
+     "cents": -2325735,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-03-31",
+     "cents": 80034000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS SERVICIOS MÉDICOS LOMAS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-03-31",
+     "cents": -480204,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-03-31",
+     "cents": -640272,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-03-09",
+     "cents": -216623000,
+     "descripcion": "Transferencia a Óptica Mirador SRL OP 0001-00000384",
+     "comprobante": "OP 0001-00000384",
+     "asiento": 167
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-03-10",
+     "cents": 378597655,
+     "descripcion": "Cobro FC A 0001-00000381 Lácteos Valle Verde SA",
+     "comprobante": "0001-00000381",
+     "asiento": 165
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-03-12",
+     "cents": -223216912,
+     "descripcion": "Pago a proveedor Librería El Faro SA",
+     "comprobante": "OP 0001-00000383",
+     "asiento": 166
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-03-13",
+     "cents": -163000000,
+     "descripcion": "Pago a proveedor Farmacia Del Parque SCS",
+     "comprobante": "OP 0001-00000385",
+     "asiento": 168
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-03-16",
+     "cents": 159722000,
+     "descripcion": "Cobro FC A 0002-00000371 Librería El Faro SA",
+     "comprobante": "0002-00000371",
+     "asiento": 160
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-03-16",
+     "cents": -281312972,
+     "descripcion": "Pago Logística Andina SAS OP 0001-00000386",
+     "comprobante": "OP 0001-00000386",
+     "asiento": 169
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-03-19",
+     "cents": 103700000,
+     "descripcion": "Cobro FC A 0003-00000377 Tecnología Austral SAS",
+     "comprobante": "0003-00000377",
+     "asiento": 163
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-03-27",
+     "cents": 336706000,
+     "descripcion": "Cobro FC A 0003-00000379 Distribuidora Los Álamos SRL",
+     "comprobante": "0003-00000379",
+     "asiento": 164
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-03-30",
+     "cents": 290716826,
+     "descripcion": "Cobranza Transporte Ruta 3 SRL Rec. 0001-00000374",
+     "comprobante": "0002-00000373",
+     "asiento": 161
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-03-30",
+     "cents": 80034000,
+     "descripcion": "Cobranza cliente Servicios Médicos Lomas SRL",
+     "comprobante": "0001-00000375",
+     "asiento": 162
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-03-31",
+     "cents": -13437488,
+     "descripcion": "Impuesto ley 25.413 del mes",
+     "comprobante": "",
+     "asiento": 170
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-03-31",
+     "cents": -10795812,
+     "descripcion": "Retenciones SIRCREB del mes",
+     "comprobante": "",
+     "asiento": 171
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-03-31",
+     "cents": -4800000,
+     "descripcion": "Comisiones bancarias del mes",
+     "comprobante": "",
+     "asiento": 172
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-03-31",
+     "cents": -1008000,
+     "descripcion": "IVA comisiones bancarias del mes",
+     "comprobante": "",
+     "asiento": 173
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-03-31",
+     "cents": -144000,
+     "descripcion": "Percepciones IVA bancarias del mes",
+     "comprobante": "",
+     "asiento": 174
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B30"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9",
+      "B28",
+      "B31",
+      "B16",
+      "B19",
+      "B4",
+      "B7",
+      "B2",
+      "B12",
+      "B14",
+      "B24",
+      "B25",
+      "B26"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B10",
+      "B29",
+      "B32",
+      "B17",
+      "B20",
+      "B5"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B22"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "consolidado"
+    }
+   ],
+   "pendientes": [],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

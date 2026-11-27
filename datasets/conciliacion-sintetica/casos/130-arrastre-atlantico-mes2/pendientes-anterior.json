@@ -1,0 +1,44 @@
+{
+  "fulgoria_pendientes": 1,
+  "periodo": "2026-06",
+  "pendientes": [
+    {
+      "id": "A-L10",
+      "lado": "libros",
+      "fecha": "2026-06-26",
+      "cents": -227900000,
+      "descripcion": "ECHEQ N° 00015307 a Servicios Médicos Lomas SRL",
+      "referencia": "",
+      "saldo": null,
+      "entidades": {
+        "cheque": "15307"
+      },
+      "evidencia": {},
+      "periodo": "2026-06"
+    },
+    {
+      "id": "A-L12",
+      "lado": "libros",
+      "fecha": "2026-06-29",
+      "cents": 21176000,
+      "descripcion": "Depósito valores a depositar",
+      "referencia": "",
+      "saldo": null,
+      "entidades": {},
+      "evidencia": {},
+      "periodo": "2026-06"
+    },
+    {
+      "id": "A-B7",
+      "lado": "banco",
+      "fecha": "2026-06-08",
+      "cents": 15129950,
+      "descripcion": "TRANSFERENCIA DE TERCEROS CLIENTE SIN DATOS",
+      "referencia": "",
+      "saldo": null,
+      "entidades": {},
+      "evidencia": {},
+      "periodo": "2026-06"
+    }
+  ]
+}

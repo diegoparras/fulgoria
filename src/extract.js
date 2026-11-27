@@ -2,7 +2,9 @@
 // Columnas con ROLES (no 5 fijas). Fila-ancla por monto presente (robusto a fechas
 // corridas, descripciones multilínea, páginas de pie legal). Saldo adaptativo.
 
-export const ROLES = ["fecha", "descripcion", "importe", "debito", "credito", "saldo", "texto", "ignorar"];
+export const ROLES = ["fecha", "descripcion", "importe", "debito", "credito", "saldo", "signo", "texto", "ignorar"];
+// "signo": columna que indica si el importe es débito o crédito (D/H, DB/CR, -/+). Algunos bancos
+// imprimen el importe siempre positivo y el sentido en otra columna.
 const AMOUNT_ROLES = new Set(["importe", "debito", "credito", "saldo"]);
 const MOV_ROLES = new Set(["importe", "debito", "credito"]); // suman al saldo
 // Fecha: ISO año-primero (2003-10-14, separador / - .) O día-primero con barras (14/10/2003).
@@ -43,6 +45,17 @@ export function parseAmount(s) {
   const n = Number(clean);
   return neg ? -n : n;
 }
+
+// Columna de signo → -1 (débito), +1 (crédito/haber) o 0 (no se sabe).
+export function signOf(s) {
+  const t = String(s || "").trim().toUpperCase();
+  if (/^(D|DB|DEB|DEBE|DEBITO|DÉBITO|-)(?![A-ZÁÉÍÓÚ])/.test(t)) return -1;
+  if (/^(H|C|CR|CRED|CREDITO|CRÉDITO|HABER|\+)(?![A-ZÁÉÍÓÚ])/.test(t)) return 1;
+  return 0;
+}
+// Fecha sin año (DD/MM) al inicio de la celda de fecha: algunos bancos la imprimen así y el año
+// sale del período del resumen.
+const DATE_DM_RE = /^\s*(\d{1,2}\/\d{1,2})(?![\/\d])/;
 
 // Para CELDAS de columna (texto unido): toma el ÚLTIMO importe con decimales —el de la
 // derecha en columnas right-aligned— para que un nº de referencia pegado adelante no lo
@@ -134,11 +147,22 @@ export function extract(pages, columns, rules = []) {
   const saldoIdx = idxByRole("saldo");
   const fechaIdx = idxByRole("fecha");
   const descIdx = idxByRole("descripcion");
+  const signoIdx = idxByRole("signo");
   const movIdxs = columns.map((c, i) => (MOV_ROLES.has(c.role) ? i : -1)).filter((i) => i >= 0);
-
+  // Importe de una celda con su signo: débito siempre −, crédito siempre +, importe con signo tal
+  // cual, salvo que haya columna de signo (D/H), que manda sobre el importe.
+  const valOf = (text, i) => {
+    const v = parseAmountCell(text[i]);
+    if (v == null) return null;
+    const r = columns[i].role;
+    if (r === "debito") return -Math.abs(v);
+    if (r === "credito") return Math.abs(v);
+    if (r === "importe" && signoIdx >= 0) { const sg = signOf(text[signoIdx]); if (sg) return sg * Math.abs(v); }
+    return v;
+  };
   const netOf = (text) => {
     let s = 0, any = false;
-    for (const i of movIdxs) { const v = parseAmountCell(text[i]); if (v == null) continue; any = true; const r = columns[i].role; s += r === "debito" ? -Math.abs(v) : r === "credito" ? Math.abs(v) : v; }
+    for (const i of movIdxs) { const v = valOf(text, i); if (v == null) continue; any = true; s += v; }
     return { net: s, any };
   };
 
@@ -177,13 +201,16 @@ export function extract(pages, columns, rules = []) {
       const lineText = norm(text.join(" ")); // rótulos pueden caer en fecha/combte, no en descripción
       // Reglas de exclusión: filas que el usuario marcó como basura → se ignoran (no rompen continuidad).
       if (rules.length && rowExcluded(text, lineText, columns, rules)) { current = null; continue; }
-      const dateMatch = (fechaIdx >= 0 ? text[fechaIdx] : "").match(DATE_RE);
+      const fechaCell = fechaIdx >= 0 ? text[fechaIdx] : "";
+      const dateMatch = fechaCell.match(DATE_RE) || fechaCell.match(DATE_DM_RE);
       const isMain = saldoMode ? saldoVal != null : anyMov;
 
+      // Sin columna de saldo, el saldo inicial/final viene en un rótulo ("Saldo inicial al 01/06: $ 1.234,56").
+      const rotuloVal = saldoVal ?? (saldoIdx < 0 ? parseAmountCell(lineText) : null);
       // Apertura: arranca una cuenta nueva (descarta lo de arriba: resúmenes, totales).
-      if (OPENING_LABELS.some((l) => lineText.includes(l))) { if (saldoVal != null) startSegment(saldoVal, detectCurrency(lineText), true); else current = null; continue; }
+      if (OPENING_LABELS.some((l) => lineText.includes(l))) { if (rotuloVal != null) startSegment(rotuloVal, detectCurrency(lineText), true); else current = null; continue; }
       // Cierre: cierra la cuenta actual.
-      if (CLOSING_LABELS.some((l) => lineText.includes(l))) { if (seg && !seg.closed && saldoVal != null && seg.movements.length > 0) { seg.closing = saldoVal; seg.closed = true; } current = null; continue; }
+      if (CLOSING_LABELS.some((l) => lineText.includes(l))) { if (seg && !seg.closed && rotuloVal != null && seg.movements.length > 0) { seg.closing = rotuloVal; seg.closed = true; } current = null; continue; }
 
       if (!seg) { if (isMain) startSegment(null, null, false); else continue; } // sin rótulo: cuenta implícita al 1er movimiento
       if (seg.closed) { current = null; continue; } // cuenta cerrada: esperar próxima apertura
@@ -199,7 +226,7 @@ export function extract(pages, columns, rules = []) {
         }
         seg.breaks = 0; // la cadena reanudó
         const amounts = {}, cells = {};
-        columns.forEach((c, i) => { cells[c.label] = text[i]; if (AMOUNT_ROLES.has(c.role)) amounts[c.label] = parseAmountCell(text[i]); });
+        columns.forEach((c, i) => { cells[c.label] = text[i]; if (AMOUNT_ROLES.has(c.role)) amounts[c.label] = c.role === "importe" && signoIdx >= 0 ? valOf(text, i) : parseAmountCell(text[i]); });
         current = { fecha: dateMatch ? dateMatch[0] : "", descripcion: descIdx >= 0 ? text[descIdx] : "", saldo: saldoVal, amounts, cells, _page: pg.index, _y: Math.round(line.cy * 1e4) / 1e4 }; // _y: evidencia (dónde está la fila)
         seg.movements.push(current); lastY = gy;
         if (saldoVal != null) seg.last = saldoVal;
@@ -226,6 +253,16 @@ export function extract(pages, columns, rules = []) {
   const movements = [];
   segs.forEach((s, i) => s.movements.forEach((m) => { m._cuenta = i + 1; m._currency = s.currency; movements.push(m); }));
   return { segments: segs, movements, opening: segs[0] ? segs[0].opening : null, closing: segs.length ? segs[segs.length - 1].closing : null, columns };
+}
+
+// Año del documento: de las fechas de los movimientos si lo traen; si no (bancos que imprimen
+// DD/MM), del encabezado ("Período 01/03/2026 al 31/03/2026"). null si no aparece en ningún lado.
+export function docYear(pages, movements = []) {
+  const deMov = movements.map((m) => (String(m.fecha || "").match(/\b(20\d{2}|19\d{2})\b/) || [])[1]).find(Boolean);
+  if (deMov) return Number(deMov);
+  const lines = (pages[0]?.items || []).filter((it) => it.y < 0.35).map((it) => it.str).join(" ");
+  const per = lines.match(/per[ií]odo[^0-9]*\d{1,2}\/\d{1,2}\/(\d{4})/i) || lines.match(/\d{1,2}\/\d{1,2}\/(20\d{2})/) || lines.match(/\b(20\d{2})\b/);
+  return per ? Number(per[1]) : null;
 }
 
 // Detecta la moneda desde la línea de apertura ("$"/"U$S"/"USD"/"dólares").

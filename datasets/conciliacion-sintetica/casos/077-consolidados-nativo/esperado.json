@@ -1,0 +1,502 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "077-consolidados-nativo",
+ "escenario": "consolidados",
+ "banco": "nativo",
+ "sistema": "parentesis_transporte",
+ "semilla": 7021,
+ "periodo": {
+  "desde": "2026-05-01",
+  "hasta": "2026-05-31"
+ },
+ "cliente": {
+  "nombre": "Agro Sur del Plata SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El cliente registra los gastos e impuestos bancarios en un solo asiento mensual por concepto (1 libro = muchas líneas del banco).",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 3277130837,
+    "bancoCierre": 4168854576,
+    "librosApertura": 3277130837,
+    "librosCierre": 4168854576
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-05-07",
+     "cents": 117442416,
+     "descripcion": "TRANSFERENCIA DE TERCEROS FARMACIA DEL PARQUE SCS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-05-07",
+     "cents": -704654,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-05-07",
+     "cents": -1761636,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-05-11",
+     "cents": -280280818,
+     "descripcion": "TRANSFERENCIA A TERCEROS CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-05-11",
+     "cents": -1681685,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-05-13",
+     "cents": 330700000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS QUÍMICA LITORAL SRL - 0001-00000261",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-05-13",
+     "cents": -1984200,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-05-13",
+     "cents": -4960500,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-05-18",
+     "cents": 333400000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS FRIGORÍFICO PAMPA ALTA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-05-18",
+     "cents": -2000400,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-05-18",
+     "cents": -5001000,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-05-18",
+     "cents": 213358917,
+     "descripcion": "TRANSFERENCIA DE TERCEROS IMPRENTA TINTA FRESCA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-05-18",
+     "cents": -1280154,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-05-18",
+     "cents": -3200384,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-05-18",
+     "cents": -11300000,
+     "descripcion": "TRANSFERENCIA A TERCEROS PANIFICADORA LA ESPIGA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-05-18",
+     "cents": -67800,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-05-26",
+     "cents": 269587775,
+     "descripcion": "TRANSFERENCIA DE TERCEROS SERVICIOS MÉDICOS LOMAS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-05-26",
+     "cents": -1617527,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-05-26",
+     "cents": -4043817,
+     "descripcion": "RETENCION ING. BRUTOS",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-05-28",
+     "cents": -30113402,
+     "descripcion": "TRANSFERENCIA A TERCEROS BODEGA PIEDRA NEGRA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-05-28",
+     "cents": -180680,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-05-28",
+     "cents": -2300000,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-05-28",
+     "cents": -483000,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-05-28",
+     "cents": -69000,
+     "descripcion": "PERC. IVA",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-05-28",
+     "cents": -13800,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-05-28",
+     "cents": -2898,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-05-28",
+     "cents": -414,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-05-29",
+     "cents": -19600000,
+     "descripcion": "TRANSFERENCIA A TERCEROS METALÚRGICA SAN TELMO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-05-29",
+     "cents": -117600,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-05-07",
+     "cents": 117442416,
+     "descripcion": "Cobranza cliente Farmacia Del Parque SCS",
+     "comprobante": "0001-00000259",
+     "asiento": 144
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-05-11",
+     "cents": 330700000,
+     "descripcion": "Cobranza Química Litoral SRL Rec. 0001-00000262",
+     "comprobante": "0001-00000261",
+     "asiento": 145
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-05-11",
+     "cents": -280280818,
+     "descripcion": "Pago Constructora Delta Norte SRL OP 0001-00000269",
+     "comprobante": "OP 0001-00000269",
+     "asiento": 150
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-05-14",
+     "cents": 333400000,
+     "descripcion": "Cobranza cliente Frigorífico Pampa Alta SA",
+     "comprobante": "0002-00000257",
+     "asiento": 143
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-05-15",
+     "cents": -11300000,
+     "descripcion": "Pago a proveedor Panificadora La Espiga SRL",
+     "comprobante": "OP 0001-00000267",
+     "asiento": 148
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-05-18",
+     "cents": 213358917,
+     "descripcion": "Cobranza Imprenta Tinta Fresca SRL Rec. 0001-00000264",
+     "comprobante": "0003-00000263",
+     "asiento": 146
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-05-26",
+     "cents": 269587775,
+     "descripcion": "Cobranza cliente Servicios Médicos Lomas SRL",
+     "comprobante": "0002-00000265",
+     "asiento": 147
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-05-27",
+     "cents": -30113402,
+     "descripcion": "Transferencia a Bodega Piedra Negra SA OP 0001-00000268",
+     "comprobante": "OP 0001-00000268",
+     "asiento": 149
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-05-28",
+     "cents": -19600000,
+     "descripcion": "Pago Metalúrgica San Telmo SRL OP 0001-00000270",
+     "comprobante": "OP 0001-00000270",
+     "asiento": 151
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-05-31",
+     "cents": -9651812,
+     "descripcion": "Impuesto ley 25.413 del mes",
+     "comprobante": "",
+     "asiento": 152
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-05-31",
+     "cents": -18967337,
+     "descripcion": "Retenciones SIRCREB del mes",
+     "comprobante": "",
+     "asiento": 153
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-05-31",
+     "cents": -2300000,
+     "descripcion": "Comisiones bancarias del mes",
+     "comprobante": "",
+     "asiento": 154
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-05-31",
+     "cents": -483000,
+     "descripcion": "IVA comisiones bancarias del mes",
+     "comprobante": "",
+     "asiento": 155
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-05-31",
+     "cents": -69000,
+     "descripcion": "Percepciones IVA bancarias del mes",
+     "comprobante": "",
+     "asiento": 156
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B20"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B28"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10",
+      "B2",
+      "B7",
+      "B13",
+      "B18",
+      "B16",
+      "B21",
+      "B5",
+      "B29",
+      "B25",
+      "B26",
+      "B27"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B11",
+      "B3",
+      "B8",
+      "B14",
+      "B19"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B22"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B24"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "consolidado"
+    }
+   ],
+   "pendientes": [],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

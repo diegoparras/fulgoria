@@ -1,0 +1,653 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "087-tarjetas_brutas-federal",
+ "escenario": "tarjetas_brutas",
+ "banco": "federal",
+ "sistema": "parentesis_transporte",
+ "semilla": 8011,
+ "periodo": {
+  "desde": "2026-01-01",
+  "hasta": "2026-01-31"
+ },
+ "cliente": {
+  "nombre": "Muebles Quebracho SAS",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El libro registra la venta con tarjeta en bruto y aparte el arancel y su IVA; el banco acredita el neto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 582061399,
+    "bancoCierre": 2045390033,
+    "librosApertura": 582061399,
+    "librosCierre": 2059997338
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-01-09",
+     "cents": -54400000,
+     "descripcion": "TRF INMEDIATA ENV 30727710244",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-01-09",
+     "cents": -326400,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-01-12",
+     "cents": 34717050,
+     "descripcion": "ACRED PRISMA LIQ 78540",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-01-12",
+     "cents": -208302,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-01-12",
+     "cents": 226790858,
+     "descripcion": "ACRED PRISMA LIQ 63452",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-01-12",
+     "cents": -1360745,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-01-12",
+     "cents": 210111447,
+     "descripcion": "TRF INMEDIATA RECIB 33684991049",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-01-12",
+     "cents": -1260669,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-01-13",
+     "cents": 227536907,
+     "descripcion": "ACRED PRISMA LIQ 56340",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-01-13",
+     "cents": -1365221,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-01-16",
+     "cents": 105217875,
+     "descripcion": "ACRED PRISMA LIQ 92931",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-01-16",
+     "cents": -631307,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-01-19",
+     "cents": 71665207,
+     "descripcion": "ACRED PRISMA LIQ 30596",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-01-19",
+     "cents": -429991,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-01-19",
+     "cents": 135074911,
+     "descripcion": "ACRED PRISMA LIQ 18092",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-01-19",
+     "cents": -810449,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-01-19",
+     "cents": 444400000,
+     "descripcion": "TRF INMEDIATA RECIB 33593630698 0003-00000567",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-01-19",
+     "cents": -2666400,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-01-21",
+     "cents": 188168409,
+     "descripcion": "TRF INMEDIATA RECIB 33531924717 0002-00000571",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-01-21",
+     "cents": -1129010,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-01-26",
+     "cents": -1791646,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-01-26",
+     "cents": -376246,
+     "descripcion": "I.V.A. TASA GENERAL",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-01-26",
+     "cents": -10750,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-01-26",
+     "cents": -2257,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-01-27",
+     "cents": -168800000,
+     "descripcion": "TRF INMEDIATA ENV 30571523538",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-01-27",
+     "cents": -1012800,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-01-28",
+     "cents": -73366000,
+     "descripcion": "TRF INMEDIATA ENV 33508523268",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-01-28",
+     "cents": -440196,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-01-29",
+     "cents": 130819275,
+     "descripcion": "ACRED PRISMA LIQ 49971",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-01-29",
+     "cents": -784916,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-01-09",
+     "cents": 210111447,
+     "descripcion": "Cobranza cliente Hotel Cerro Azul SA",
+     "comprobante": "0003-00000569",
+     "asiento": 322
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-01-09",
+     "cents": -54400000,
+     "descripcion": "Pago a proveedor Lácteos Valle Verde SA",
+     "comprobante": "OP 0001-00000573",
+     "asiento": 324
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-01-12",
+     "cents": 34717050,
+     "descripcion": "Liquidación tarjeta lote 78540",
+     "comprobante": "",
+     "asiento": 319
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-01-12",
+     "cents": 226790858,
+     "descripcion": "Liquidación tarjeta lote 63452",
+     "comprobante": "",
+     "asiento": 320
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-01-13",
+     "cents": 232603000,
+     "descripcion": "Ventas con tarjeta lote 56340",
+     "comprobante": "",
+     "asiento": 304
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-01-13",
+     "cents": -4186854,
+     "descripcion": "Arancel tarjeta lote 56340",
+     "comprobante": "",
+     "asiento": 305
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-01-13",
+     "cents": -879239,
+     "descripcion": "IVA arancel lote 56340",
+     "comprobante": "",
+     "asiento": 306
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-01-16",
+     "cents": 108500000,
+     "descripcion": "Ventas con tarjeta lote 92931",
+     "comprobante": "",
+     "asiento": 316
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-01-16",
+     "cents": -2712500,
+     "descripcion": "Arancel tarjeta lote 92931",
+     "comprobante": "",
+     "asiento": 317
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-01-16",
+     "cents": -569625,
+     "descripcion": "IVA arancel lote 92931",
+     "comprobante": "",
+     "asiento": 318
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-01-16",
+     "cents": 444400000,
+     "descripcion": "Cobranza cliente Muebles Quebracho SAS",
+     "comprobante": "0003-00000567",
+     "asiento": 321
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-01-19",
+     "cents": 73900704,
+     "descripcion": "Ventas con tarjeta lote 30596",
+     "comprobante": "",
+     "asiento": 310
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-01-19",
+     "cents": -1847518,
+     "descripcion": "Arancel tarjeta lote 30596",
+     "comprobante": "",
+     "asiento": 311
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-01-19",
+     "cents": -387979,
+     "descripcion": "IVA arancel lote 30596",
+     "comprobante": "",
+     "asiento": 312
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-01-19",
+     "cents": 139288385,
+     "descripcion": "Ventas con tarjeta lote 18092",
+     "comprobante": "",
+     "asiento": 313
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-01-19",
+     "cents": -3482210,
+     "descripcion": "Arancel tarjeta lote 18092",
+     "comprobante": "",
+     "asiento": 314
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-01-19",
+     "cents": -731264,
+     "descripcion": "IVA arancel lote 18092",
+     "comprobante": "",
+     "asiento": 315
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-01-20",
+     "cents": 188168409,
+     "descripcion": "Cobro FC A 0002-00000571 Metalúrgica San Telmo SRL",
+     "comprobante": "0002-00000571",
+     "asiento": 323
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-01-26",
+     "cents": -168800000,
+     "descripcion": "Transferencia a Servicios Médicos Lomas SRL OP 0001-00000575",
+     "comprobante": "OP 0001-00000575",
+     "asiento": 326
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-01-28",
+     "cents": -73366000,
+     "descripcion": "Pago a proveedor Textil Río Bermejo SA",
+     "comprobante": "OP 0001-00000574",
+     "asiento": 325
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-01-29",
+     "cents": 134900000,
+     "descripcion": "Ventas con tarjeta lote 49971",
+     "comprobante": "",
+     "asiento": 307
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-01-29",
+     "cents": -3372500,
+     "descripcion": "Arancel tarjeta lote 49971",
+     "comprobante": "",
+     "asiento": 308
+    },
+    {
+     "id": "L23",
+     "fecha": "2026-01-29",
+     "cents": -708225,
+     "descripcion": "IVA arancel lote 49971",
+     "comprobante": "",
+     "asiento": 309
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L5",
+      "L6",
+      "L7"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B29"
+     ],
+     "libros": [
+      "L21",
+      "L22",
+      "L23"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L12",
+      "L13",
+      "L14"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L15",
+      "L16",
+      "L17"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L8",
+      "L9",
+      "L10"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L18"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L20"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L19"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

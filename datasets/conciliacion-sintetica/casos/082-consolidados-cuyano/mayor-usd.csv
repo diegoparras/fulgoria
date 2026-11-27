@@ -1,0 +1,6 @@
+Fecha;Asiento;Comprobante;Concepto;Debe;Haber;Saldo
+;;;Saldo anterior;;;64.221,05
+01/10/2026;6;;Cobro exportación (USD);8.262,19;;72.483,24
+29/10/2026;5;;Pago proveedor exterior (USD);;3.780,55;68.702,69
+29/10/2026;7;;Pago proveedor exterior (USD);;3.413,28;65.289,41
+;;;Totales;;;65.289,41

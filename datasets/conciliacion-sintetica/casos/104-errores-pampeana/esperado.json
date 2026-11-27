@@ -1,0 +1,565 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "104-errores-pampeana",
+ "escenario": "errores",
+ "banco": "pampeana",
+ "sistema": "debitos_creditos_us",
+ "semilla": 9032,
+ "periodo": {
+  "desde": "2026-08-01",
+  "hasta": "2026-08-31"
+ },
+ "cliente": {
+  "nombre": "Metalúrgica San Telmo SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Importe transpuesto, registro duplicado, créditos que el cliente no registró e ingresos registrados que nunca llegaron al banco.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2450710000,
+    "bancoCierre": 2934851824,
+    "librosApertura": 2450710000,
+    "librosCierre": 2723220504
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-08-05",
+     "cents": -150510589,
+     "descripcion": "TRANSFERENCIA ENVIADA A HOTEL CERRO AZUL SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-08-05",
+     "cents": -903064,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-08-07",
+     "cents": -251600000,
+     "descripcion": "TRANSFERENCIA ENVIADA A MUEBLES QUEBRACHO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-08-07",
+     "cents": -1509600,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-08-10",
+     "cents": 215926657,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 30-62004579-5 REF 0001-00000137",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-08-10",
+     "cents": -1295560,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-08-11",
+     "cents": 419399410,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE IMPRENTA TINTA FRESCA SRL CUIT 30-66641155-9",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-08-11",
+     "cents": -2516396,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-08-11",
+     "cents": 96800000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 33-50316589-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-08-11",
+     "cents": -580800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-08-12",
+     "cents": -232300000,
+     "descripcion": "TRANSFERENCIA ENVIADA A SERVICIOS MÉDICOS LOMAS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-08-12",
+     "cents": -1393800,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-08-14",
+     "cents": -9066230,
+     "descripcion": "DEB. AUTOM. ALQUILERES CENTRO SA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-08-14",
+     "cents": -54397,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-08-18",
+     "cents": -220020718,
+     "descripcion": "TRANSFERENCIA ENVIADA A LÁCTEOS VALLE VERDE SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-08-18",
+     "cents": -1320124,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-08-19",
+     "cents": 412976000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TRANSPORTE RUTA 3 SRL CUIT 33-67191359-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-08-19",
+     "cents": -2477856,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-08-21",
+     "cents": -86306268,
+     "descripcion": "TRANSFERENCIA ENVIADA A LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-08-21",
+     "cents": -517838,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-08-24",
+     "cents": 26239000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE MATEO BENÍTEZ CUIT 23-37343791-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-08-24",
+     "cents": -157434,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-08-26",
+     "cents": 349900000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FERRETERÍA EL TORNILLO SRL CUIT 30-53752402-9",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-08-26",
+     "cents": -2099400,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-08-31",
+     "cents": -69692000,
+     "descripcion": "TRANSFERENCIA ENVIADA A AGRO SUR DEL PLATA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-08-31",
+     "cents": -418152,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-08-31",
+     "cents": -1937973,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-08-31",
+     "cents": -406974,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-08-31",
+     "cents": -11628,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-08-31",
+     "cents": -2442,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-08-03",
+     "cents": 20244312,
+     "descripcion": "Cobranza Viñedos Altos de Cuyo SA (depósito)",
+     "comprobante": "",
+     "asiento": 343
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-08-04",
+     "cents": -150510589,
+     "descripcion": "Pago a proveedor Hotel Cerro Azul SA",
+     "comprobante": "OP 0001-00000147",
+     "asiento": 338
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-08-06",
+     "cents": -251600000,
+     "descripcion": "Pago a proveedor Muebles Quebracho SAS",
+     "comprobante": "OP 0001-00000146",
+     "asiento": 337
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-08-07",
+     "cents": 215926657,
+     "descripcion": "Cobro FC A 0001-00000137 Hotel Cerro Azul SA",
+     "comprobante": "0001-00000137",
+     "asiento": 332
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-08-10",
+     "cents": 96800000,
+     "descripcion": "Cobranza Hotel Cerro Azul SA Rec. 0001-00000142",
+     "comprobante": "0003-00000141",
+     "asiento": 334
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-08-11",
+     "cents": 419399410,
+     "descripcion": "Cobranza cliente Imprenta Tinta Fresca SRL",
+     "comprobante": "0001-00000139",
+     "asiento": 333
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-08-11",
+     "cents": -232300000,
+     "descripcion": "Pago Servicios Médicos Lomas SRL OP 0001-00000150",
+     "comprobante": "OP 0001-00000150",
+     "asiento": 341
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-08-11",
+     "cents": -232300000,
+     "descripcion": "Pago Servicios Médicos Lomas SRL OP 0001-00000150",
+     "comprobante": "OP 0001-00000150",
+     "asiento": 342
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-08-17",
+     "cents": 412976000,
+     "descripcion": "Cobro FC A 0003-00000135 Transporte Ruta 3 SRL",
+     "comprobante": "0003-00000135",
+     "asiento": 331
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-08-17",
+     "cents": -220027018,
+     "descripcion": "Pago Lácteos Valle Verde SA OP 0001-00000149",
+     "comprobante": "OP 0001-00000149",
+     "asiento": 340
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-08-20",
+     "cents": -86306268,
+     "descripcion": "Pago Librería El Faro SA OP 0001-00000148",
+     "comprobante": "OP 0001-00000148",
+     "asiento": 339
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-08-24",
+     "cents": 349900000,
+     "descripcion": "Cobro FC A 0003-00000143 Ferretería El Tornillo SRL",
+     "comprobante": "0003-00000143",
+     "asiento": 335
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-08-31",
+     "cents": -69692000,
+     "descripcion": "Pago a proveedor Agro Sur del Plata SA",
+     "comprobante": "OP 0001-00000145",
+     "asiento": 336
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L8",
+     "lado": "libros",
+     "tipo": "egreso_pendiente"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "debito_no_identificado"
+    },
+    {
+     "id": "L1",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "B27",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B29",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

@@ -40,8 +40,11 @@ export const TIPOS_PENDIENTE = {
  * @param {ReturnType<import("./config.js").resolveConfig>} p.cfg
  * @param {Array} [p.reglas]   reglas de clasificación del cliente (modo deportivo)
  * @param {Parameters<typeof matchAll>[3]} [p.decisiones]  emparejamientos manuales, rechazados y confirmados
+ * @param {{ banco?: boolean, libros?: boolean }} [p.lectura]  ¿la lectura de cada documento está verificada
+ *   (regla del saldo)? Si alguna no lo está, NADA se confirma solo: los verdes pasan a amarillo. Sin
+ *   este dato, el extracto se da por no verificado cuando no se leyeron sus saldos.
  */
-export function reconcile({ banco, libros, arrastre = [], saldos, periodo, cfg, reglas = [], decisiones = {} }) {
+export function reconcile({ banco, libros, arrastre = [], saldos, periodo, cfg, reglas = [], decisiones = {}, lectura = {} }) {
   const arr = arrastre.map((m) => ({ ...m, arrastre: true }));
   const poolB = [...arr.filter((m) => m.lado === "banco"), ...banco];
   const poolL = [...arr.filter((m) => m.lado === "libros"), ...libros];
@@ -49,7 +52,19 @@ export function reconcile({ banco, libros, arrastre = [], saldos, periodo, cfg, 
   if (byId.size !== poolB.length + poolL.length) throw new Error("Hay ids repetidos entre banco, libros y arrastre");
 
   const clasif = classifyAll(poolB, reglas);
-  const { matches, libresBanco, libresLibros } = matchAll(poolB, poolL, cfg, decisiones);
+  const { matches, libresBanco, libresLibros } = matchAll(poolB, poolL, cfg, decisiones, { clasif });
+
+  // Lectura no verificada → ningún emparejamiento automático queda confirmado. Un verde sobre datos
+  // mal leídos es exactamente el error que el producto no puede cometer.
+  const bancoOk = lectura.banco ?? (saldos.bancoApertura != null && saldos.bancoCierre != null);
+  const librosOk = lectura.libros ?? true;
+  const lecturaOk = bancoOk && librosOk;
+  if (!lecturaOk) for (const m of matches) {
+    if (m.certeza === "verde" && m.estrategia !== "manual" && !m.confirmado) {
+      m.certeza = "amarillo";
+      m.motivos = [...m.motivos, `pendiente de revisión: la lectura del ${!bancoOk ? "extracto" : "mayor"} no está verificada`];
+    }
+  }
 
   // --- Pendientes ---
   const pc = cfg.pendientes;
@@ -101,12 +116,13 @@ export function reconcile({ banco, libros, arrastre = [], saldos, periodo, cfg, 
   }
 
   const ajustes = proponerAjustes(pendientes.filter((p) => p.tipo === "ajuste_bancario"), byId, cfg);
-  const bandeja = armarBandeja({ matches, pendientes, byId, diferenciaNoExplicada, apertura });
+  const bandeja = armarBandeja({ matches, pendientes, byId, diferenciaNoExplicada, apertura, lectura: { banco: bancoOk, libros: librosOk } });
   const rojos = bandeja.filter((t) => t.certeza === "rojo").length;
   const amarillos = bandeja.filter((t) => t.certeza === "amarillo").length;
 
   return {
     periodo,
+    lectura: { banco: bancoOk, libros: librosOk },
     saldos: { ...saldos, librosCalculado },
     diferenciaNoExplicada,
     apertura,
@@ -123,7 +139,7 @@ export function reconcile({ banco, libros, arrastre = [], saldos, periodo, cfg, 
       emparejadosAmarillo: matches.filter((m) => m.certeza === "amarillo").reduce((s, m) => s + m.banco.length, 0),
       pendientes: pendientes.length,
       // Estado global del semáforo de la cuenta-mes.
-      estado: diferenciaNoExplicada !== 0 || rojos ? "rojo" : amarillos ? "amarillo" : "verde",
+      estado: diferenciaNoExplicada !== 0 || rojos || !lecturaOk ? "rojo" : amarillos ? "amarillo" : "verde",
     },
   };
 }
@@ -165,7 +181,7 @@ function proponerAjustes(items, byId, cfg) {
 }
 
 // --- Bandeja de excepciones: lo que necesita al contador, de lo más urgente a lo más tranquilo ---
-function armarBandeja({ matches, pendientes, byId, diferenciaNoExplicada, apertura }) {
+function armarBandeja({ matches, pendientes, byId, diferenciaNoExplicada, apertura, lectura }) {
   const cards = [];
   const tot = (ids) => ids.reduce((s, id) => s + byId.get(id).cents, 0);
   const add = (clave, certeza, titulo, ids, accion, extra = {}) => {
@@ -175,6 +191,10 @@ function armarBandeja({ matches, pendientes, byId, diferenciaNoExplicada, apertu
   const de = (tipo, f = () => true) => pendientes.filter((p) => p.tipo === tipo && f(p)).map((p) => p.id);
   const n = (k) => (k === 1 ? "" : "s");
 
+  if (!lectura.banco || !lectura.libros) {
+    const doc = !lectura.banco ? "del extracto" : "del mayor";
+    cards.push({ clave: "lectura_no_verificada", certeza: "rojo", titulo: `La lectura ${doc} no está verificada: los saldos no cierran con los movimientos leídos`, cantidad: 0, totalCents: 0, ids: [], accion: "revisar_lectura" });
+  }
   if (diferenciaNoExplicada !== 0) {
     cards.push({ clave: "diferencia_no_explicada", certeza: "rojo", titulo: `Diferencia no explicada de ${fmtCents(diferenciaNoExplicada)}: falta un movimiento o hay un saldo mal cargado`, cantidad: 0, totalCents: diferenciaNoExplicada, ids: [], accion: "revisar_saldos" });
   }
@@ -203,7 +223,7 @@ function armarBandeja({ matches, pendientes, byId, diferenciaNoExplicada, apertu
   // Orden: primero lo que invalida la conciliación entera (saldos), después rojo → amarillo →
   // verde y, dentro de cada color, lo de mayor importe.
   const ord = { rojo: 0, amarillo: 1, verde: 2 };
-  const bloqueante = (t) => (t.clave === "diferencia_no_explicada" || t.clave === "apertura_no_cuadra" ? 0 : 1);
+  const bloqueante = (t) => (t.clave === "lectura_no_verificada" ? -1 : t.clave === "diferencia_no_explicada" || t.clave === "apertura_no_cuadra" ? 0 : 1);
   return cards.sort((a, b) => bloqueante(a) - bloqueante(b) || ord[a.certeza] - ord[b.certeza] || Math.abs(b.totalCents) - Math.abs(a.totalCents));
 }
 

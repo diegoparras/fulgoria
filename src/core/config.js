@@ -5,7 +5,7 @@
 export const DEFAULTS = Object.freeze({
   match: {
     // Estrategias, en orden de aplicación. Cada una se puede apagar.
-    estrategias: { referencia: true, exacto: true, agrupado: true, tolerancia: true },
+    estrategias: { referencia: true, exacto: true, agrupado: true, consolidado: true, neto: true, ampliado: true, tolerancia: true },
     // Ventana de fechas: cuántos días ANTES / DESPUÉS de la fecha del libro puede aparecer
     // el movimiento en el banco. El banco suele registrar después (clearing, cheques).
     ventanaDias: { antes: 3, despues: 7 },
@@ -15,11 +15,15 @@ export const DEFAULTS = Object.freeze({
     // Cheques emitidos y partidas arrastradas del período anterior: pueden debitarse
     // varias semanas después de registradas.
     ventanaChequesDias: 45,
+    // Segunda pasada: importe exacto con fecha más lejana que la ventana. Siempre en amarillo.
+    ventanaAmpliadaDias: 20,
     // Tolerancia de importe para la estrategia "tolerancia" (centavos). 0 = solo exactos.
     // Todo lo que empareja con diferencia queda AMARILLO y la diferencia se explicita.
     toleranciaCents: 0,
     // Agrupados N:1 y 1:N (un depósito que junta varias cobranzas, una liquidación neta).
-    agrupado: { maxItems: 4, ventanaDias: 5, maxCandidatos: 14 },
+    agrupado: { maxItems: 8, ventanaDias: 5, maxCandidatos: 16 },
+    // Neto: venta bruta − descuentos (arancel, IVA, retenciones) = acreditación del banco.
+    neto: { maxDescuentoPct: 10, maxItems: 3, ventanaDias: 3 },
     // Importes idénticos e intercambiables (dos cobros de $5.000 en días parecidos): el
     // par elegido no cambia los saldos, pero sí la explicación. Por defecto: amarillo.
     intercambiablesVerde: false,

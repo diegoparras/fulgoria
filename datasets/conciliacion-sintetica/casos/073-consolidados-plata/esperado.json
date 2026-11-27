@@ -1,0 +1,614 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "073-consolidados-plata",
+ "escenario": "consolidados",
+ "banco": "plata",
+ "sistema": "debitos_creditos_us",
+ "semilla": 7001,
+ "periodo": {
+  "desde": "2026-10-01",
+  "hasta": "2026-10-31"
+ },
+ "cliente": {
+  "nombre": "Agro Sur del Plata SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 2,
+ "notas": "El cliente registra los gastos e impuestos bancarios en un solo asiento mensual por concepto (1 libro = muchas líneas del banco).",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 743929000,
+    "bancoCierre": 806908908,
+    "librosApertura": 743929000,
+    "librosCierre": 806908908
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-10-06",
+     "cents": 183563988,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE METALÚRGICA SAN TELMO SRL CUIT 30-52989816-5",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-10-06",
+     "cents": -1101384,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-10-06",
+     "cents": -1468512,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-10-07",
+     "cents": 17100000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE BODEGA PIEDRA NEGRA SA CUIT 33-66263134-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-10-07",
+     "cents": -102600,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-10-07",
+     "cents": -136800,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-10-07",
+     "cents": -156100000,
+     "descripcion": "TRANSFERENCIA ENVIADA A PANIFICADORA LA ESPIGA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-10-07",
+     "cents": -936600,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-10-12",
+     "cents": -49500000,
+     "descripcion": "TRANSFERENCIA ENVIADA A MUEBLES QUEBRACHO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-10-12",
+     "cents": -297000,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-10-12",
+     "cents": -227323723,
+     "descripcion": "TRANSFERENCIA ENVIADA A BODEGA PIEDRA NEGRA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-10-12",
+     "cents": -1363942,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-10-13",
+     "cents": -225700000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-10-13",
+     "cents": -1354200,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-10-21",
+     "cents": 286800000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE IMPRENTA TINTA FRESCA SRL CUIT 30-61479579-0 REF 0003-00000664",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-10-21",
+     "cents": -1720800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-10-21",
+     "cents": -2294400,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-10-21",
+     "cents": 383233000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LÁCTEOS VALLE VERDE SA CUIT 30-63380952-2",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-10-21",
+     "cents": -2299398,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-10-21",
+     "cents": -3065864,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-10-23",
+     "cents": 200238855,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE COOPERATIVA HORNERO LTDA CUIT 33-68262154-6 REF 0001-00000670",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-10-23",
+     "cents": -1201433,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-10-23",
+     "cents": -1601911,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-10-26",
+     "cents": 20500000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 30-65240378-2 REF 0002-00000674",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-10-26",
+     "cents": -123000,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-10-26",
+     "cents": -164000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-10-26",
+     "cents": 10200000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE AGRO SUR DEL PLATA SA CUIT 33-53760886-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-10-26",
+     "cents": -61200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-10-26",
+     "cents": -81600,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-10-26",
+     "cents": -1558268,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-10-26",
+     "cents": -327236,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-10-26",
+     "cents": -9350,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-10-26",
+     "cents": -1963,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-10-27",
+     "cents": -193217150,
+     "descripcion": "TRANSFERENCIA ENVIADA A TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B35",
+     "fecha": "2026-10-27",
+     "cents": -1159303,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B36",
+     "fecha": "2026-10-29",
+     "cents": -163403875,
+     "descripcion": "TRANSFERENCIA ENVIADA A HOTEL CERRO AZUL SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B37",
+     "fecha": "2026-10-29",
+     "cents": -980423,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-10-05",
+     "cents": 183563988,
+     "descripcion": "Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000667",
+     "comprobante": "0003-00000666",
+     "asiento": 165
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-10-05",
+     "cents": 17100000,
+     "descripcion": "Cobranza cliente Bodega Piedra Negra SA",
+     "comprobante": "0002-00000672",
+     "asiento": 168
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-10-07",
+     "cents": -156100000,
+     "descripcion": "Pago Panificadora La Espiga SRL OP 0001-00000678",
+     "comprobante": "OP 0001-00000678",
+     "asiento": 171
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-10-12",
+     "cents": -49500000,
+     "descripcion": "Pago Muebles Quebracho SAS OP 0001-00000680",
+     "comprobante": "OP 0001-00000680",
+     "asiento": 173
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-10-12",
+     "cents": -227323723,
+     "descripcion": "Transferencia a Bodega Piedra Negra SA OP 0001-00000681",
+     "comprobante": "OP 0001-00000681",
+     "asiento": 174
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-10-13",
+     "cents": -225700000,
+     "descripcion": "Pago a proveedor Tecnología Austral SAS",
+     "comprobante": "OP 0001-00000682",
+     "asiento": 175
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-10-21",
+     "cents": 286800000,
+     "descripcion": "Cobro FC A 0003-00000664 Imprenta Tinta Fresca SRL",
+     "comprobante": "0003-00000664",
+     "asiento": 164
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-10-21",
+     "cents": 383233000,
+     "descripcion": "Cobranza cliente Lácteos Valle Verde SA",
+     "comprobante": "0001-00000668",
+     "asiento": 166
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-10-21",
+     "cents": 200238855,
+     "descripcion": "Cobranza cliente Cooperativa Hornero Ltda",
+     "comprobante": "0001-00000670",
+     "asiento": 167
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-10-23",
+     "cents": 20500000,
+     "descripcion": "Cobro FC A 0002-00000674 Hotel Cerro Azul SA",
+     "comprobante": "0002-00000674",
+     "asiento": 169
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-10-26",
+     "cents": 10200000,
+     "descripcion": "Cobranza cliente Agro Sur del Plata SA",
+     "comprobante": "0003-00000676",
+     "asiento": 170
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-10-26",
+     "cents": -193217150,
+     "descripcion": "Pago a proveedor Transporte Ruta 3 SRL",
+     "comprobante": "OP 0001-00000683",
+     "asiento": 176
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-10-29",
+     "cents": -163403875,
+     "descripcion": "Transferencia a Hotel Cerro Azul SA OP 0001-00000679",
+     "comprobante": "OP 0001-00000679",
+     "asiento": 172
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-10-31",
+     "cents": -12712596,
+     "descripcion": "Impuesto ley 25.413 del mes",
+     "comprobante": "",
+     "asiento": 177
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-10-31",
+     "cents": -8813087,
+     "descripcion": "Retenciones SIRCREB del mes",
+     "comprobante": "",
+     "asiento": 178
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-10-31",
+     "cents": -1558268,
+     "descripcion": "Comisiones bancarias del mes",
+     "comprobante": "",
+     "asiento": 179
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-10-31",
+     "cents": -327236,
+     "descripcion": "IVA comisiones bancarias del mes",
+     "comprobante": "",
+     "asiento": 180
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B24"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B36"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B34"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B16",
+      "B2",
+      "B19",
+      "B22",
+      "B5",
+      "B25",
+      "B28",
+      "B8",
+      "B37",
+      "B10",
+      "B12",
+      "B14",
+      "B35",
+      "B32",
+      "B33"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B17",
+      "B3",
+      "B20",
+      "B23",
+      "B6",
+      "B26",
+      "B29"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B30"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B31"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "consolidado"
+    }
+   ],
+   "pendientes": [],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

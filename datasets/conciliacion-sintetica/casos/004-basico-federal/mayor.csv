@@ -1,0 +1,19 @@
+Fecha;Comprob.;Descripción;Importe;Saldo
+;;Transporte;;$ 1.137.662,35
+04-03-26;0001-00000399;Cobranza cliente Distribuidora Los Álamos SRL;$ 3.585.000,00;$ 4.722.662,35
+04-03-26;0001-00000409;Cobranza Tecnología Austral SAS Rec. 0001-00000410;$ 2.648.119,86;$ 7.370.782,21
+08-03-26;;Seguros La Previsora - débito automático;($ 240.000,00);$ 7.130.782,21
+09-03-26;0003-00000397;Cobranza cliente Constructora Delta Norte SRL;$ 1.837.185,57;$ 8.967.967,78
+09-03-26;0002-00000405;Cobranza cliente Viñedos Altos de Cuyo SA;$ 1.744.000,00;$ 10.711.967,78
+13-03-26;OP 0001-00000414;Transferencia a Transporte Ruta 3 SRL OP 0001-00000414;($ 650.000,00);$ 10.061.967,78
+17-03-26;0001-00000403;Cobranza cliente Imprenta Tinta Fresca SRL;$ 1.628.000,00;$ 11.689.967,78
+23-03-26;0001-00000411;Cobranza Ferretería El Tornillo SRL Rec. 0001-00000412;$ 1.359.028,69;$ 13.048.996,47
+23-03-26;OP 0001-00000413;Pago Distribuidora Los Álamos SRL OP 0001-00000413;($ 2.611.180,92);$ 10.437.815,55
+23-03-26;OP 0001-00000415;Pago a proveedor Panificadora La Espiga SRL;($ 967.430,42);$ 9.470.385,13
+24-03-26;0002-00000401;Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000402;$ 3.102.960,00;$ 12.573.345,13
+27-03-26;;Telefonía Federal - débito automático;($ 258.145,61);$ 12.315.199,52
+29-03-26;CH 00026731;Cheque N° 00026731 a Óptica Mirador SRL;($ 940.240,00);$ 11.374.959,52
+30-03-26;0003-00000407;Cobranza cliente Ferretería El Tornillo SRL;$ 4.194.330,80;$ 15.569.290,32
+30-03-26;OP 0001-00000416;Transferencia a Distribuidora Los Álamos SRL OP 0001-00000416;($ 273.500,00);$ 15.295.790,32
+31-03-26;;Depósito valores a depositar;$ 281.000,00;$ 15.576.790,32
+;;Total general;;$ 15.576.790,32

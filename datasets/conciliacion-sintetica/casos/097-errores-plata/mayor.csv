@@ -1,0 +1,19 @@
+Fecha;Comprob.;Descripción;Importe;Saldo
+;;Transporte;;$ 10.555.965,18
+02-09-26;;Cobranza Muebles Quebracho SAS (depósito);$ 199.000,00;$ 10.754.965,18
+03-09-26;OP 0001-00000431;Transferencia a Constructora Delta Norte SRL OP 0001-00000431;($ 2.822.000,00);$ 7.932.965,18
+08-09-26;OP 0001-00000433;Pago a proveedor Óptica Mirador SRL;($ 1.030.284,55);$ 6.902.680,63
+08-09-26;OP 0001-00000433;Pago a proveedor Óptica Mirador SRL;($ 1.030.284,55);$ 5.872.396,08
+09-09-26;0002-00000413;Cobranza Logística Andina SAS Rec. 0001-00000414;$ 3.359.000,00;$ 9.231.396,08
+09-09-26;0002-00000423;Cobro FC A 0002-00000423 Hotel Cerro Azul SA;$ 3.151.866,61;$ 12.383.262,69
+09-09-26;OP 0001-00000427;Pago Lácteos Valle Verde SA OP 0001-00000427;($ 1.751.000,00);$ 10.632.262,69
+10-09-26;0001-00000415;Cobranza cliente Muebles Quebracho SAS;$ 2.650.414,56;$ 13.282.677,25
+14-09-26;0003-00000419;Cobro FC A 0003-00000419 Metalúrgica San Telmo SRL;$ 2.447.660,00;$ 15.730.337,25
+15-09-26;0002-00000417;Cobro FC A 0002-00000417 Librería El Faro SA;$ 3.107.000,00;$ 18.837.337,25
+17-09-26;OP 0001-00000430;Transferencia a Química Litoral SRL OP 0001-00000430;($ 2.471.000,00);$ 16.366.337,25
+17-09-26;OP 0001-00000432;Pago a proveedor Cooperativa Hornero Ltda;($ 1.263.839,22);$ 15.102.498,03
+21-09-26;OP 0001-00000429;Pago a proveedor Metalúrgica San Telmo SRL;($ 2.067.505,77);$ 13.034.992,26
+25-09-26;0003-00000421;Cobranza Muebles Quebracho SAS Rec. 0001-00000422;$ 1.835.000,00;$ 14.869.992,26
+25-09-26;0001-00000425;Cobro FC A 0001-00000425 Cooperativa Hornero Ltda;$ 3.383.800,00;$ 18.253.792,26
+28-09-26;OP 0001-00000428;Transferencia a Tecnología Austral SAS OP 0001-00000428;($ 543.789,77);$ 17.710.002,49
+;;Total general;;$ 17.710.002,49

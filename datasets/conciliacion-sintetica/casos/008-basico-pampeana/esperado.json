@@ -1,0 +1,409 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "008-basico-pampeana",
+ "escenario": "basico",
+ "banco": "pampeana",
+ "sistema": "comillas_coma",
+ "semilla": 1032,
+ "periodo": {
+  "desde": "2026-08-01",
+  "hasta": "2026-08-31"
+ },
+ "cliente": {
+  "nombre": "Óptica Mirador SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Pocos movimientos, la mayoría 1 a 1, gastos bancarios sin registrar, un cheque pendiente y un depósito en tránsito.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2011500000,
+    "bancoCierre": 2791006615,
+    "librosApertura": 2011500000,
+    "librosCierre": 2837651576
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-08-03",
+     "cents": -60800000,
+     "descripcion": "TRANSFERENCIA ENVIADA A IMPRENTA TINTA FRESCA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-08-03",
+     "cents": -364800,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-08-11",
+     "cents": 428143821,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE QUÍMICA LITORAL SRL CUIT 33-66823871-3 REF 0003-00000184",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-08-11",
+     "cents": -2568863,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-08-11",
+     "cents": -23400000,
+     "descripcion": "DEB. AUTOM. GAS DEL LITORAL",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-08-11",
+     "cents": -140400,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-08-18",
+     "cents": 219885000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TRANSPORTE RUTA 3 SRL CUIT 33-50297106-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-08-18",
+     "cents": -1319310,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-08-19",
+     "cents": -103834000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LÁCTEOS VALLE VERDE SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-08-19",
+     "cents": -623004,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-08-19",
+     "cents": -250262000,
+     "descripcion": "TRANSFERENCIA ENVIADA A HOTEL CERRO AZUL SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-08-19",
+     "cents": -1501572,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-08-21",
+     "cents": 273560786,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE AGRO SUR DEL PLATA SA CUIT 30-62184380-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-08-21",
+     "cents": -1641365,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-08-24",
+     "cents": 312700000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE COOPERATIVA HORNERO LTDA CUIT 33-61339010-9",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-08-24",
+     "cents": -1876200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-08-28",
+     "cents": -5300000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-08-28",
+     "cents": -1113000,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-08-28",
+     "cents": -31800,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-08-28",
+     "cents": -6678,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-08-03",
+     "cents": -60800000,
+     "descripcion": "Pago Imprenta Tinta Fresca SRL OP 0001-00000193",
+     "comprobante": "OP 0001-00000193",
+     "asiento": 339
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-08-09",
+     "cents": -23400000,
+     "descripcion": "Gas del Litoral - débito automático",
+     "comprobante": "",
+     "asiento": 341
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-08-11",
+     "cents": 428143821,
+     "descripcion": "Cobro FC A 0003-00000184 Química Litoral SRL",
+     "comprobante": "0003-00000184",
+     "asiento": 334
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-08-17",
+     "cents": 219885000,
+     "descripcion": "Cobro FC A 0002-00000188 Transporte Ruta 3 SRL",
+     "comprobante": "0002-00000188",
+     "asiento": 336
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-08-19",
+     "cents": 273560786,
+     "descripcion": "Cobro FC A 0002-00000190 Agro Sur del Plata SA",
+     "comprobante": "0002-00000190",
+     "asiento": 337
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-08-19",
+     "cents": -103834000,
+     "descripcion": "Pago Lácteos Valle Verde SA OP 0001-00000192",
+     "comprobante": "OP 0001-00000192",
+     "asiento": 338
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-08-19",
+     "cents": -250262000,
+     "descripcion": "Pago Hotel Cerro Azul SA OP 0001-00000194",
+     "comprobante": "OP 0001-00000194",
+     "asiento": 340
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-08-21",
+     "cents": 312700000,
+     "descripcion": "Cobro FC A 0002-00000186 Cooperativa Hornero Ltda",
+     "comprobante": "0002-00000186",
+     "asiento": 335
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-08-28",
+     "cents": -13800000,
+     "descripcion": "ECHEQ N° 00004239 a Bodega Piedra Negra SA",
+     "comprobante": "CH 00004239",
+     "asiento": 342
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-08-31",
+     "cents": 43957969,
+     "descripcion": "Depósito cheque cliente",
+     "comprobante": "",
+     "asiento": 343
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L9",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L10",
+     "lado": "libros",
+     "tipo": "deposito_transito"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B19",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

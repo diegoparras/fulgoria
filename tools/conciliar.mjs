@@ -12,7 +12,7 @@
 import { getDocument, Util } from "pdfjs-dist/legacy/build/pdf.mjs";
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { basename, join, resolve } from "node:path";
-import { autoDetect, extract, balanceCheck } from "../src/extract.js";
+import { autoDetect, extract, balanceCheck, docYear } from "../src/extract.js";
 import {
   fromExtract, parseLedgerCsv, resolveConfig, reconcile, papelSaldoASaldo, papelToMarkdown,
   papelToCsv, asientosToCsv, bandejaToText, fmtCents,
@@ -56,7 +56,7 @@ const ext = extract(pages, columns);
 const chk = balanceCheck(ext);
 if (ext.segments.length !== 1) console.warn(`⚠ El PDF tiene ${ext.segments.length} cuentas; concilio la primera.`);
 const seg = { ...ext.segments[0], columns };
-const anio = Number((ext.movements.find((m) => /\d{4}/.test(m.fecha))?.fecha.match(/\d{4}/) || [])[0]) || new Date().getFullYear();
+const anio = docYear(pages, ext.movements) || new Date().getFullYear();
 const bank = fromExtract(seg, { doc: basename(pdfPath), anio });
 console.log(`Extracto: ${bank.movs.length} movimientos · apertura ${fmtCents(bank.apertura)} · cierre ${fmtCents(bank.cierre)} · regla del saldo ${chk.globalOk ? "✅ cierra" : "❌ NO cierra"}${chk.rowOk === false ? ` (filas con error: ${chk.rowMismatches.join(", ")})` : ""}`);
 if (!chk.globalOk) console.warn("⚠ La lectura del extracto no está verificada: la conciliación no puede quedar en verde.");
@@ -75,8 +75,8 @@ const rec = reconcile({
   saldos: { bancoApertura: bank.apertura, bancoCierre: bank.cierre, librosApertura: led.apertura, librosCierre: led.cierre },
   periodo: { desde, hasta: hasta.slice(0, 8) + String(new Date(Date.UTC(+hasta.slice(0, 4), +hasta.slice(5, 7), 0)).getUTCDate()).padStart(2, "0") },
   cfg,
+  lectura: { banco: !!chk.globalOk, libros: led.control.ok !== false },
 });
-if (!chk.globalOk) rec.resumen.estado = "rojo";
 
 console.log(`\nEstado: ${{ rojo: "🔴", amarillo: "🟡", verde: "🟢" }[rec.resumen.estado]} ${rec.resumen.estado.toUpperCase()} · diferencia no explicada ${fmtCents(rec.diferenciaNoExplicada)}\n`);
 console.log("BANDEJA\n" + bandejaToText(rec.bandeja) + "\n");

@@ -1,0 +1,481 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "006-basico-nativo",
+ "escenario": "basico",
+ "banco": "nativo",
+ "sistema": "planilla_cliente",
+ "semilla": 1022,
+ "periodo": {
+  "desde": "2026-10-01",
+  "hasta": "2026-10-31"
+ },
+ "cliente": {
+  "nombre": "Viñedos Altos de Cuyo SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Pocos movimientos, la mayoría 1 a 1, gastos bancarios sin registrar, un cheque pendiente y un depósito en tránsito.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 3314381512,
+    "bancoCierre": 4352459295,
+    "librosApertura": 3314381512,
+    "librosCierre": 4258174806
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-10-02",
+     "cents": 124120223,
+     "descripcion": "TRANSFERENCIA DE TERCEROS QUÍMICA LITORAL SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-10-02",
+     "cents": -194300000,
+     "descripcion": "TRANSFERENCIA A TERCEROS LÁCTEOS VALLE VERDE SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-10-05",
+     "cents": -27585000,
+     "descripcion": "DEB AUT ENERGÍA METROPOLITANA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-10-09",
+     "cents": -230200000,
+     "descripcion": "TRANSFERENCIA A TERCEROS FARMACIA DEL PARQUE SCS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-10-12",
+     "cents": 36729024,
+     "descripcion": "TRANSFERENCIA DE TERCEROS LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-10-12",
+     "cents": -144900000,
+     "descripcion": "TRANSFERENCIA A TERCEROS LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-10-13",
+     "cents": 249275294,
+     "descripcion": "TRANSFERENCIA DE TERCEROS SERVICIOS MÉDICOS LOMAS SRL - 0002-00000609",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-10-13",
+     "cents": -61527000,
+     "descripcion": "TRANSFERENCIA A TERCEROS QUÍMICA LITORAL SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-10-15",
+     "cents": -25000000,
+     "descripcion": "TRANSFERENCIA A TERCEROS FARMACIA DEL PARQUE SCS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-10-19",
+     "cents": -27192020,
+     "descripcion": "DEB AUT ALQUILERES CENTRO SA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-10-20",
+     "cents": 366600000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-10-21",
+     "cents": 247798000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-10-22",
+     "cents": 392400000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TEXTIL RÍO BERMEJO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-10-28",
+     "cents": 255700000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS PANIFICADORA LA ESPIGA SRL - 0002-00000613",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-10-29",
+     "cents": 192998072,
+     "descripcion": "TRANSFERENCIA DE TERCEROS PANIFICADORA LA ESPIGA SRL - 0003-00000601",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-10-29",
+     "cents": -109868000,
+     "descripcion": "TRANSFERENCIA A TERCEROS FARMACIA DEL PARQUE SCS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-10-29",
+     "cents": -5761000,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-10-29",
+     "cents": -1209810,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-10-01",
+     "cents": 124120223,
+     "descripcion": "Cobranza cliente Química Litoral SRL",
+     "comprobante": "0002-00000599",
+     "asiento": 307
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-10-01",
+     "cents": -194300000,
+     "descripcion": "Transferencia a Lácteos Valle Verde SA OP 0001-00000618",
+     "comprobante": "OP 0001-00000618",
+     "asiento": 318
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-10-02",
+     "cents": -27585000,
+     "descripcion": "Energía Metropolitana - débito automático",
+     "comprobante": "",
+     "asiento": 321
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-10-08",
+     "cents": 36729024,
+     "descripcion": "Cobranza cliente Logística Andina SAS",
+     "comprobante": "0002-00000607",
+     "asiento": 311
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-10-08",
+     "cents": -230200000,
+     "descripcion": "Pago Farmacia Del Parque SCS OP 0001-00000617",
+     "comprobante": "OP 0001-00000617",
+     "asiento": 317
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-10-12",
+     "cents": 249275294,
+     "descripcion": "Cobro FC A 0002-00000609 Servicios Médicos Lomas SRL",
+     "comprobante": "0002-00000609",
+     "asiento": 312
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-10-12",
+     "cents": -144900000,
+     "descripcion": "Transferencia a Librería El Faro SA OP 0001-00000615",
+     "comprobante": "OP 0001-00000615",
+     "asiento": 315
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-10-13",
+     "cents": -61527000,
+     "descripcion": "Pago Química Litoral SRL OP 0001-00000616",
+     "comprobante": "OP 0001-00000616",
+     "asiento": 316
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-10-14",
+     "cents": -25000000,
+     "descripcion": "Pago Farmacia Del Parque SCS OP 0001-00000619",
+     "comprobante": "OP 0001-00000619",
+     "asiento": 319
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-10-18",
+     "cents": -27192020,
+     "descripcion": "Alquileres Centro SA - débito automático",
+     "comprobante": "",
+     "asiento": 322
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-10-19",
+     "cents": 366600000,
+     "descripcion": "Cobranza cliente Tecnología Austral SAS",
+     "comprobante": "0003-00000605",
+     "asiento": 310
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-10-20",
+     "cents": 247798000,
+     "descripcion": "Cobranza Tecnología Austral SAS Rec. 0001-00000612",
+     "comprobante": "0002-00000611",
+     "asiento": 313
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-10-21",
+     "cents": 392400000,
+     "descripcion": "Cobranza Textil Río Bermejo SA Rec. 0001-00000604",
+     "comprobante": "0001-00000603",
+     "asiento": 309
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-10-26",
+     "cents": 255700000,
+     "descripcion": "Cobranza Panificadora La Espiga SRL Rec. 0001-00000614",
+     "comprobante": "0002-00000613",
+     "asiento": 314
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-10-27",
+     "cents": 192998072,
+     "descripcion": "Cobro FC A 0003-00000601 Panificadora La Espiga SRL",
+     "comprobante": "0003-00000601",
+     "asiento": 308
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-10-28",
+     "cents": -224600000,
+     "descripcion": "Cheque N° 00060593 a Bodega Piedra Negra SA",
+     "comprobante": "CH 00060593",
+     "asiento": 323
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-10-29",
+     "cents": -109868000,
+     "descripcion": "Pago a proveedor Farmacia Del Parque SCS",
+     "comprobante": "OP 0001-00000620",
+     "asiento": 320
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-10-29",
+     "cents": 123344701,
+     "descripcion": "Depósito cheques de terceros",
+     "comprobante": "",
+     "asiento": 324
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B16"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L16",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L18",
+     "lado": "libros",
+     "tipo": "deposito_transito"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

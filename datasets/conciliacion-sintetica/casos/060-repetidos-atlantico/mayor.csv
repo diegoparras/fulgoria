@@ -1,0 +1,14 @@
+Fecha,Concepto,Comprobante,Debe,Haber
+,Saldo anterior,,"38.117.260,00",
+01/10/2026,"Sueldo septiembre, Martina Gómez",,,"2.026.000,00"
+01/10/2026,"Sueldo septiembre, Mateo Benítez",,,"2.026.000,00"
+01/10/2026,"Sueldo septiembre, Ignacio Vera",,,"2.026.000,00"
+01/10/2026,"Sueldo septiembre, Joaquín Pereyra",,,"2.026.000,00"
+05/10/2026,Pago a proveedor Panificadora La Espiga SRL,OP 0001-00000708,,"405.500,00"
+05/10/2026,Transferencia a Librería El Faro SA OP 0001-00000717,OP 0001-00000717,,"2.588.410,00"
+12/10/2026,Cobro FC A 0003-00000713 Transporte Ruta 3 SRL,0003-00000713,"128.000,00",
+13/10/2026,Cobro FC A 0003-00000711 Ferretería El Tornillo SRL,0003-00000711,"128.000,00",
+16/10/2026,Pago Panificadora La Espiga SRL OP 0001-00000707,OP 0001-00000707,,"405.500,00"
+19/10/2026,Pago Metalúrgica San Telmo SRL OP 0001-00000716,OP 0001-00000716,,"1.620.150,00"
+21/10/2026,Cobro FC A 0002-00000709 Lácteos Valle Verde SA,0002-00000709,"128.000,00",
+22/10/2026,Pago Tecnología Austral SAS OP 0001-00000715,OP 0001-00000715,,"2.206.000,00"

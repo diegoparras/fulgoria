@@ -1,0 +1,659 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "050-repetidos-plata",
+ "escenario": "repetidos",
+ "banco": "plata",
+ "sistema": "debe_haber_ar",
+ "semilla": 5002,
+ "periodo": {
+  "desde": "2026-08-01",
+  "hasta": "2026-08-31"
+ },
+ "cliente": {
+  "nombre": "Metalúrgica San Telmo SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 2,
+ "notas": "Sueldos idénticos el mismo día, alquileres y cuotas iguales: la ambigüedad que nunca debe quedar en verde.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 667300000,
+    "bancoCierre": -1423312862,
+    "librosApertura": 667300000,
+    "librosCierre": -1405188785
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-08-03",
+     "cents": -226500000,
+     "descripcion": "TRANSF. SUELDO JOAQUÍN PEREYRA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-08-03",
+     "cents": -1359000,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-08-03",
+     "cents": -226500000,
+     "descripcion": "TRANSF. SUELDO FLORENCIA DÍAZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-08-03",
+     "cents": -1359000,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-08-03",
+     "cents": -226500000,
+     "descripcion": "TRANSF. SUELDO CAROLINA NÚÑEZ",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-08-03",
+     "cents": -1359000,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-08-03",
+     "cents": -226500000,
+     "descripcion": "TRANSF. SUELDO CAMILA HERRERA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-08-03",
+     "cents": -1359000,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-08-03",
+     "cents": -226500000,
+     "descripcion": "TRANSF. SUELDO PAULA CASTRO",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-08-03",
+     "cents": -1359000,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-08-03",
+     "cents": -226500000,
+     "descripcion": "TRANSF. SUELDO IGNACIO VERA",
+     "tipo": "sueldos"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-08-03",
+     "cents": -1359000,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-08-04",
+     "cents": -137200000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-08-04",
+     "cents": -823200,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-08-10",
+     "cents": -256800000,
+     "descripcion": "TRANSFERENCIA ENVIADA A PANIFICADORA LA ESPIGA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-08-10",
+     "cents": -1540800,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-08-14",
+     "cents": -130237792,
+     "descripcion": "TRANSFERENCIA ENVIADA A MUEBLES QUEBRACHO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-08-14",
+     "cents": -781427,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-08-17",
+     "cents": 16700000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TRANSPORTE RUTA 3 SRL CUIT 33-67963177-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-08-17",
+     "cents": -100200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-08-18",
+     "cents": 16700000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE VIÑEDOS ALTOS DE CUYO SA CUIT 33-65643251-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-08-18",
+     "cents": -100200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-08-21",
+     "cents": -130237792,
+     "descripcion": "TRANSFERENCIA ENVIADA A TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-08-21",
+     "cents": -781427,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-08-24",
+     "cents": 16700000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LOGÍSTICA ANDINA SAS CUIT 33-55286029-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-08-24",
+     "cents": -100200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-08-24",
+     "cents": -16023000,
+     "descripcion": "TRANSFERENCIA ENVIADA A ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-08-24",
+     "cents": -96138,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-08-27",
+     "cents": -93090201,
+     "descripcion": "TRANSFERENCIA ENVIADA A IMPRENTA TINTA FRESCA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-08-27",
+     "cents": -558541,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-08-27",
+     "cents": -4078709,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-08-27",
+     "cents": -856529,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-08-27",
+     "cents": -122361,
+     "descripcion": "PERCEP. IVA RG 2408",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-08-27",
+     "cents": -24472,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B35",
+     "fecha": "2026-08-27",
+     "cents": -5139,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B36",
+     "fecha": "2026-08-27",
+     "cents": -734,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-08-03",
+     "cents": -226500000,
+     "descripcion": "Sueldo julio - Joaquín Pereyra",
+     "comprobante": "",
+     "asiento": 375
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-08-03",
+     "cents": -226500000,
+     "descripcion": "Sueldo julio - Florencia Díaz",
+     "comprobante": "",
+     "asiento": 376
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-08-03",
+     "cents": -226500000,
+     "descripcion": "Sueldo julio - Carolina Núñez",
+     "comprobante": "",
+     "asiento": 377
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-08-03",
+     "cents": -226500000,
+     "descripcion": "Sueldo julio - Camila Herrera",
+     "comprobante": "",
+     "asiento": 378
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-08-03",
+     "cents": -226500000,
+     "descripcion": "Sueldo julio - Paula Castro",
+     "comprobante": "",
+     "asiento": 379
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-08-03",
+     "cents": -226500000,
+     "descripcion": "Sueldo julio - Ignacio Vera",
+     "comprobante": "",
+     "asiento": 380
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-08-03",
+     "cents": -137200000,
+     "descripcion": "Pago a proveedor Logística Andina SAS",
+     "comprobante": "OP 0001-00000781",
+     "asiento": 387
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-08-10",
+     "cents": -256800000,
+     "descripcion": "Transferencia a Panificadora La Espiga SRL OP 0001-00000783",
+     "comprobante": "OP 0001-00000783",
+     "asiento": 389
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-08-14",
+     "cents": -130237792,
+     "descripcion": "Transferencia a Muebles Quebracho SAS OP 0001-00000773",
+     "comprobante": "OP 0001-00000773",
+     "asiento": 382
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-08-17",
+     "cents": 16700000,
+     "descripcion": "Cobro FC A 0001-00000776 Viñedos Altos de Cuyo SA",
+     "comprobante": "0001-00000776",
+     "asiento": 384
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-08-17",
+     "cents": 16700000,
+     "descripcion": "Cobro FC A 0002-00000778 Transporte Ruta 3 SRL",
+     "comprobante": "0002-00000778",
+     "asiento": 385
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-08-20",
+     "cents": -130237792,
+     "descripcion": "Pago a proveedor Transporte Ruta 3 SRL",
+     "comprobante": "OP 0001-00000772",
+     "asiento": 381
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-08-24",
+     "cents": 16700000,
+     "descripcion": "Cobro FC A 0003-00000774 Logística Andina SAS",
+     "comprobante": "0003-00000774",
+     "asiento": 383
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-08-24",
+     "cents": -16023000,
+     "descripcion": "Pago Óptica Mirador SRL OP 0001-00000782",
+     "comprobante": "OP 0001-00000782",
+     "asiento": 388
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-08-27",
+     "cents": -93090201,
+     "descripcion": "Pago a proveedor Imprenta Tinta Fresca SRL",
+     "comprobante": "OP 0001-00000780",
+     "asiento": 386
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B29"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B31",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B32",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B33",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B34",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B35",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B36",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

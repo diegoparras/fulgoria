@@ -148,11 +148,38 @@ test("matchAll — importes repetidos NUNCA quedan en verde", () => {
   assert.ok(r2.matches.every((m) => m.certeza === "verde"));
 });
 
-test("matchAll — fuera de la ventana de fechas no empareja", () => {
+test("matchAll — fecha lejana: amarillo en la ventana ampliada; más allá, no empareja", () => {
+  // 19 días: fuera de la ventana habitual (7) pero dentro de la ampliada (20) → propuesta en amarillo.
   const r = matchAll([B("B1", "2026-06-20", 100000)], [L("L1", "2026-06-01", 100000)], resolveConfig());
-  assert.equal(r.matches.length, 0);
+  assert.equal(r.matches.length, 1);
+  assert.equal(r.matches[0].estrategia, "ampliado");
+  assert.equal(r.matches[0].certeza, "amarillo");
+  // 29 días: no empareja.
+  assert.equal(matchAll([B("B1", "2026-06-30", 100000)], [L("L1", "2026-06-01", 100000)], resolveConfig()).matches.length, 0);
+  // Con la ventana habitual más grande (modo deportivo), el mismo par es exacto y único: verde.
   const r2 = matchAll([B("B1", "2026-06-20", 100000)], [L("L1", "2026-06-01", 100000)], resolveConfig({ match: { ventanaDias: { despues: 30 } } }));
-  assert.equal(r2.matches.length, 1);
+  assert.equal(r2.matches[0].certeza, "verde");
+});
+
+test("matchAll — estrategias nuevas: consolidado, neto y desempate por nombre", () => {
+  const cfg = resolveConfig();
+  // Consolidado: el libro tiene el total del mes del impuesto; el banco, tres líneas.
+  const bs = [B("B1", "2026-06-03", -600, "IMP.DEB.LEY 25413"), B("B2", "2026-06-10", -1200, "IMP.DEB.LEY 25413"), B("B3", "2026-06-20", -300, "IMP.DEB.LEY 25413")];
+  const clasif = new Map(bs.map((b) => [b.id, { tipo: "impuesto_25413", grupo: "fiscal" }]));
+  let r = matchAll(bs, [L("L1", "2026-06-30", -2100, "Impuesto ley 25.413 del mes")], cfg, {}, { clasif });
+  assert.equal(r.matches[0].estrategia, "consolidado");
+  assert.equal(r.matches[0].banco.length, 3);
+  // Neto: venta 100.000 − arancel 2.500 − IVA 525 = 96.975 acreditados.
+  r = matchAll([B("B1", "2026-06-05", 9697500, "LIQUIDACION TARJETA")],
+    [L("L1", "2026-06-05", 10000000, "Ventas tarjeta"), L("L2", "2026-06-05", -250000, "Arancel"), L("L3", "2026-06-05", -52500, "IVA arancel")], cfg);
+  assert.equal(r.matches[0].estrategia, "neto");
+  assert.equal(r.matches[0].libros.length, 3);
+  assert.equal(r.matches[0].certeza, "amarillo");
+  // Sueldos iguales: el nombre desempata y queda verde; sin nombre, amarillo.
+  r = matchAll([B("B1", "2026-06-05", -150000, "TRANSF. SUELDO MARTINA GOMEZ"), B("B2", "2026-06-05", -150000, "TRANSF. SUELDO LUCAS FERNANDEZ")],
+    [L("L1", "2026-06-05", -150000, "Sueldo mayo - Lucas Fernández"), L("L2", "2026-06-05", -150000, "Sueldo mayo - Martina Gómez")], cfg);
+  assert.deepEqual(r.matches.map((m) => pairKey(m)).sort(), ["B1|L2", "B2|L1"]);
+  assert.ok(r.matches.every((m) => m.certeza === "verde"));
 });
 
 test("matchAll — referencia de cheque con fecha lejana: verde", () => {
@@ -231,10 +258,22 @@ test("reconcile — caso de ejemplo completo: cierra al centavo y explica cada p
 test("reconcile — si el extractor pierde una fila, la diferencia no explicada lo delata", () => {
   const m = mayor();
   const incompleto = banco().filter((x) => x.id !== "B3"); // se "perdió" el débito automático
-  const rec = reconcile({ banco: incompleto, libros: m.movs, saldos: { bancoCierre: cierreBanco(), librosCierre: m.cierre }, periodo: JUNIO, cfg: resolveConfig() });
+  const rec = reconcile({ banco: incompleto, libros: m.movs, saldos: { bancoCierre: cierreBanco(), librosCierre: m.cierre }, periodo: JUNIO, cfg: resolveConfig(), lectura: { banco: true } });
   assert.notEqual(rec.diferenciaNoExplicada, 0);
   assert.equal(rec.resumen.estado, "rojo");
   assert.equal(rec.bandeja[0].clave, "diferencia_no_explicada");
+});
+
+test("reconcile — lectura no verificada: nada se confirma solo", () => {
+  const m = mayor();
+  const base = { banco: banco(), libros: m.movs, saldos: { bancoApertura: APERTURA, bancoCierre: cierreBanco(), librosApertura: m.apertura, librosCierre: m.cierre }, periodo: JUNIO, cfg: resolveConfig() };
+  const ok = reconcile(base);
+  assert.ok(ok.matches.some((x) => x.certeza === "verde"));
+  const mal = reconcile({ ...base, lectura: { banco: false } });
+  assert.equal(mal.matches.filter((x) => x.certeza === "verde").length, 0);
+  assert.equal(mal.resumen.estado, "rojo");
+  assert.equal(mal.bandeja[0].clave, "lectura_no_verificada");
+  assert.match(mal.matches[0].motivos.join(" "), /no está verificada/);
 });
 
 test("reconcile — arrastre: el cheque pendiente de junio se debita en julio", () => {

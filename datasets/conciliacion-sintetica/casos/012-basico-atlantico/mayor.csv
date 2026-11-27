@@ -1,0 +1,19 @@
+Empresa: Frigorífico Pampa Alta SA
+Cuenta: 1.1.1.02 Banco Atlántico
+Período: 01/07/2026 al 31/07/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,27168845.32
+2026-07-06,Cobranza Agro Sur del Plata SA Rec. 0001-00000456,2490000.00,,29658845.32
+2026-07-09,Cobro FC A 0001-00000457 Textil Río Bermejo SA,3889106.71,,33547952.03
+2026-07-09,Pago a proveedor Hotel Cerro Azul SA,,2793677.54,30754274.49
+2026-07-13,Cobranza cliente Imprenta Tinta Fresca SRL,3482000.00,,34236274.49
+2026-07-13,Cobranza Constructora Delta Norte SRL Rec. 0001-00000466,3998715.02,,38234989.51
+2026-07-15,Cobranza cliente Librería El Faro SA,2236000.00,,40470989.51
+2026-07-20,Transferencia a Hotel Cerro Azul SA OP 0001-00000469,,666450.00,39804539.51
+2026-07-20,Seguros La Previsora - débito automático,,75169.77,39729369.74
+2026-07-22,Internet Fibra Sur - débito automático,,173532.29,39555837.45
+2026-07-26,Cheque N° 00088022 a Lácteos Valle Verde SA,,465000.00,39090837.45
+2026-07-27,Cobranza cliente Textil Río Bermejo SA,297805.66,,39388643.11
+2026-07-27,Transferencia a Farmacia Del Parque SCS OP 0001-00000467,,653680.00,38734963.11
+2026-07-30,Depósito cheques de terceros,951466.77,,39686429.88

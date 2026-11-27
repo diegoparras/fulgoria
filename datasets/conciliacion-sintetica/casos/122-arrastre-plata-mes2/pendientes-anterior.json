@@ -1,0 +1,44 @@
+{
+  "fulgoria_pendientes": 1,
+  "periodo": "2026-01",
+  "pendientes": [
+    {
+      "id": "A-L12",
+      "lado": "libros",
+      "fecha": "2026-01-25",
+      "cents": -206752000,
+      "descripcion": "ECHEQ N° 00058190 a Panificadora La Espiga SRL",
+      "referencia": "",
+      "saldo": null,
+      "entidades": {
+        "cheque": "58190"
+      },
+      "evidencia": {},
+      "periodo": "2026-01"
+    },
+    {
+      "id": "A-L15",
+      "lado": "libros",
+      "fecha": "2026-01-31",
+      "cents": 29422265,
+      "descripcion": "Depósito valores a depositar",
+      "referencia": "",
+      "saldo": null,
+      "entidades": {},
+      "evidencia": {},
+      "periodo": "2026-01"
+    },
+    {
+      "id": "A-B12",
+      "lado": "banco",
+      "fecha": "2026-01-12",
+      "cents": 8940000,
+      "descripcion": "TRANSFERENCIA RECIBIDA DE CLIENTE SIN DATOS CUIT 30-00000000-0",
+      "referencia": "",
+      "saldo": null,
+      "entidades": {},
+      "evidencia": {},
+      "periodo": "2026-01"
+    }
+  ]
+}

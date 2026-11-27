@@ -1,0 +1,160 @@
+{
+  "fulgoria_template": "0.1",
+  "meta": {
+    "template_id": "banco-del-plata-austral-v1",
+    "country": "AR",
+    "bank": "Banco del Plata Austral",
+    "document_type": "extracto_bancario",
+    "format_version": 1,
+    "fingerprint": "extfp1:b960a255",
+    "source": "digital",
+    "contributor": "dataset-sintetico",
+    "created_at": "2026-11-27",
+    "multipage": true
+  },
+  "match": {
+    "page_size": {
+      "w_pt": 595,
+      "h_pt": 842,
+      "tol": 0.02
+    },
+    "anchors": [
+      {
+        "text": "FECHA",
+        "box": {
+          "x": 0.0672,
+          "y": 0.1276
+        },
+        "match": "equals_ci"
+      },
+      {
+        "text": "CONCEPTO",
+        "box": {
+          "x": 0.1681,
+          "y": 0.1276
+        },
+        "match": "equals_ci"
+      },
+      {
+        "text": "DEBITO",
+        "box": {
+          "x": 0.6182,
+          "y": 0.1276
+        },
+        "match": "equals_ci"
+      },
+      {
+        "text": "CREDITO",
+        "box": {
+          "x": 0.7389,
+          "y": 0.1276
+        },
+        "match": "equals_ci"
+      },
+      {
+        "text": "SALDO",
+        "box": {
+          "x": 0.8839,
+          "y": 0.1276
+        },
+        "match": "equals_ci"
+      }
+    ],
+    "min_anchors": 3
+  },
+  "geometry": {
+    "coords": "normalized",
+    "row_detection": {
+      "strategy": "amount_anchor",
+      "date_regex": "\\d{2}/\\d{2}/\\d{2,4}",
+      "continuation": "append_description",
+      "table_bound": "saldo_continuity"
+    },
+    "columns": [
+      {
+        "field": "FECHA",
+        "role": "fecha",
+        "x_band": {
+          "from": 0,
+          "to": 0.1613
+        }
+      },
+      {
+        "field": "CONCEPTO",
+        "role": "descripcion",
+        "x_band": {
+          "from": 0.1613,
+          "to": 0.5378
+        }
+      },
+      {
+        "field": "DEBITO",
+        "role": "debito",
+        "x_band": {
+          "from": 0.5378,
+          "to": 0.6807
+        }
+      },
+      {
+        "field": "CREDITO",
+        "role": "credito",
+        "x_band": {
+          "from": 0.6807,
+          "to": 0.8118
+        }
+      },
+      {
+        "field": "SALDO",
+        "role": "saldo",
+        "x_band": {
+          "from": 0.8118,
+          "to": 1
+        }
+      }
+    ]
+  },
+  "fields": {
+    "FECHA": {
+      "type": "date",
+      "format": "DD/MM/YYYY"
+    },
+    "CONCEPTO": {
+      "type": "text"
+    },
+    "DEBITO": {
+      "type": "amount",
+      "locale": "es-AR",
+      "sign": "negative",
+      "empty_as": null
+    },
+    "CREDITO": {
+      "type": "amount",
+      "locale": "es-AR",
+      "sign": "positive",
+      "empty_as": null
+    },
+    "SALDO": {
+      "type": "amount",
+      "locale": "es-AR",
+      "sign": "as_is",
+      "empty_as": null
+    }
+  },
+  "annotations": [],
+  "rules": [],
+  "validation": {
+    "balance_rule": {
+      "enabled": true,
+      "formula": "opening + sum(credito) - sum(debito) == closing",
+      "tolerance": 0.01,
+      "per_row_check": true
+    },
+    "row_invariants": []
+  },
+  "community": {
+    "votes_up": 0,
+    "votes_down": 0,
+    "verified_count": 0,
+    "verified_rate": null
+  }
+}

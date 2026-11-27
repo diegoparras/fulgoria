@@ -23,7 +23,7 @@ const ICON = {
 
 const ROLE_LABELS = {
   fecha: "Fecha", descripcion: "Descripción", importe: "Importe (con signo)",
-  debito: "Débito", credito: "Crédito", saldo: "Saldo", texto: "Texto / dato", ignorar: "Ignorar",
+  debito: "Débito", credito: "Crédito", saldo: "Saldo", signo: "Signo (D/H)", texto: "Texto / dato", ignorar: "Ignorar",
 };
 
 const state = {

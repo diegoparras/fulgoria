@@ -1,0 +1,44 @@
+{
+  "fulgoria_pendientes": 1,
+  "periodo": "2026-08",
+  "pendientes": [
+    {
+      "id": "A-L15",
+      "lado": "libros",
+      "fecha": "2026-08-28",
+      "cents": -46141690,
+      "descripcion": "Cheque N° 00008988 a Tecnología Austral SAS",
+      "referencia": "",
+      "saldo": null,
+      "entidades": {
+        "cheque": "8988"
+      },
+      "evidencia": {},
+      "periodo": "2026-08"
+    },
+    {
+      "id": "A-L16",
+      "lado": "libros",
+      "fecha": "2026-08-29",
+      "cents": 65455000,
+      "descripcion": "Depósito cheque cliente",
+      "referencia": "",
+      "saldo": null,
+      "entidades": {},
+      "evidencia": {},
+      "periodo": "2026-08"
+    },
+    {
+      "id": "A-B21",
+      "lado": "banco",
+      "fecha": "2026-08-25",
+      "cents": 42067030,
+      "descripcion": "TRANSFERENCIA RECIBIDA DE CLIENTE SIN DATOS CUIT 30-00000000-0",
+      "referencia": "",
+      "saldo": null,
+      "entidades": {},
+      "evidencia": {},
+      "periodo": "2026-08"
+    }
+  ]
+}

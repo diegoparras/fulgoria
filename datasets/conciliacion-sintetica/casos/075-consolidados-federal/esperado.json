@@ -1,0 +1,566 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "075-consolidados-federal",
+ "escenario": "consolidados",
+ "banco": "federal",
+ "sistema": "importe_signo_tab",
+ "semilla": 7011,
+ "periodo": {
+  "desde": "2026-09-01",
+  "hasta": "2026-09-30"
+ },
+ "cliente": {
+  "nombre": "Tecnología Austral SAS",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El cliente registra los gastos e impuestos bancarios en un solo asiento mensual por concepto (1 libro = muchas líneas del banco).",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 488900000,
+    "bancoCierre": -348598092,
+    "librosApertura": 488900000,
+    "librosCierre": -348598092
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-09-07",
+     "cents": -257300000,
+     "descripcion": "TRF INMEDIATA ENV 33523251487",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-09-07",
+     "cents": -1543800,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-09-10",
+     "cents": 180452554,
+     "descripcion": "TRF INMEDIATA RECIB 30588572273",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-09-10",
+     "cents": -1082715,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-09-10",
+     "cents": -1443620,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-09-10",
+     "cents": -216740158,
+     "descripcion": "TRF INMEDIATA ENV 30689916690",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-09-10",
+     "cents": -1300441,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-09-14",
+     "cents": -71603044,
+     "descripcion": "TRF INMEDIATA ENV 30564650710",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-09-14",
+     "cents": -429618,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-09-14",
+     "cents": -299781000,
+     "descripcion": "TRF INMEDIATA ENV 30702594835",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-09-14",
+     "cents": -1798686,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-09-17",
+     "cents": 356793430,
+     "descripcion": "TRF INMEDIATA RECIB 30619446484",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-09-17",
+     "cents": -2140761,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-09-17",
+     "cents": -2854347,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-09-18",
+     "cents": -256431000,
+     "descripcion": "TRF INMEDIATA ENV 30701423670",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-09-18",
+     "cents": -1538586,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-09-21",
+     "cents": -292418036,
+     "descripcion": "TRF INMEDIATA ENV 33698340466",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-09-21",
+     "cents": -1754508,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-09-25",
+     "cents": 72600000,
+     "descripcion": "TRF INMEDIATA RECIB 30525459566",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-09-25",
+     "cents": -435600,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-09-25",
+     "cents": -580800,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-09-25",
+     "cents": 42259634,
+     "descripcion": "TRF INMEDIATA RECIB 33720464565",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-09-25",
+     "cents": -253558,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-09-25",
+     "cents": -338077,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-09-25",
+     "cents": -164342818,
+     "descripcion": "TRF INMEDIATA ENV 30547064212",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-09-25",
+     "cents": -986057,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-09-25",
+     "cents": -1800000,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-09-25",
+     "cents": -378000,
+     "descripcion": "I.V.A. TASA GENERAL",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-09-25",
+     "cents": -10800,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-09-25",
+     "cents": -2268,
+     "descripcion": "IMPUESTO DEBITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-09-28",
+     "cents": 90958000,
+     "descripcion": "TRF INMEDIATA RECIB 33660345804",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-09-28",
+     "cents": -545748,
+     "descripcion": "IMPUESTO CREDITOS LEY 25.413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-09-28",
+     "cents": -727664,
+     "descripcion": "SIRCREB RETENCION IIBB",
+     "tipo": "retencion_iibb"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-09-07",
+     "cents": -257300000,
+     "descripcion": "Pago a proveedor Química Litoral SRL",
+     "comprobante": "OP 0001-00000761",
+     "asiento": 386
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-09-08",
+     "cents": 180452554,
+     "descripcion": "Cobranza cliente Tecnología Austral SAS",
+     "comprobante": "0002-00000755",
+     "asiento": 383
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-09-09",
+     "cents": -216740158,
+     "descripcion": "Pago Ferretería El Tornillo SRL OP 0001-00000767",
+     "comprobante": "OP 0001-00000767",
+     "asiento": 392
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-09-11",
+     "cents": -71603044,
+     "descripcion": "Transferencia a Frigorífico Pampa Alta SA OP 0001-00000764",
+     "comprobante": "OP 0001-00000764",
+     "asiento": 389
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-09-14",
+     "cents": -299781000,
+     "descripcion": "Pago a proveedor Química Litoral SRL",
+     "comprobante": "OP 0001-00000765",
+     "asiento": 390
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-09-17",
+     "cents": 356793430,
+     "descripcion": "Cobro FC A 0001-00000757 Imprenta Tinta Fresca SRL",
+     "comprobante": "0001-00000757",
+     "asiento": 384
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-09-18",
+     "cents": -256431000,
+     "descripcion": "Pago a proveedor Estudio Gráfico Cobalto SAS",
+     "comprobante": "OP 0001-00000762",
+     "asiento": 387
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-09-21",
+     "cents": -292418036,
+     "descripcion": "Pago Transporte Ruta 3 SRL OP 0001-00000763",
+     "comprobante": "OP 0001-00000763",
+     "asiento": 388
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-09-23",
+     "cents": 72600000,
+     "descripcion": "Cobranza cliente Frigorífico Pampa Alta SA",
+     "comprobante": "0001-00000751",
+     "asiento": 381
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-09-23",
+     "cents": 42259634,
+     "descripcion": "Cobranza Tecnología Austral SAS Rec. 0001-00000760",
+     "comprobante": "0003-00000759",
+     "asiento": 385
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-09-24",
+     "cents": -164342818,
+     "descripcion": "Transferencia a Frigorífico Pampa Alta SA OP 0001-00000766",
+     "comprobante": "OP 0001-00000766",
+     "asiento": 391
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-09-25",
+     "cents": 90958000,
+     "descripcion": "Cobranza Tecnología Austral SAS Rec. 0001-00000754",
+     "comprobante": "0001-00000753",
+     "asiento": 382
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-09-30",
+     "cents": -13823146,
+     "descripcion": "Impuesto ley 25.413 del mes",
+     "comprobante": "",
+     "asiento": 393
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-09-30",
+     "cents": -5944508,
+     "descripcion": "Retenciones SIRCREB del mes",
+     "comprobante": "",
+     "asiento": 394
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-09-30",
+     "cents": -1800000,
+     "descripcion": "Comisiones bancarias del mes",
+     "comprobante": "",
+     "asiento": 395
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-09-30",
+     "cents": -378000,
+     "descripcion": "IVA comisiones bancarias del mes",
+     "comprobante": "",
+     "asiento": 396
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B31"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B22"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B20",
+      "B32",
+      "B4",
+      "B13",
+      "B23",
+      "B2",
+      "B16",
+      "B18",
+      "B9",
+      "B11",
+      "B26",
+      "B7",
+      "B29",
+      "B30"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B21",
+      "B33",
+      "B5",
+      "B14",
+      "B24"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "consolidado"
+    },
+    {
+     "banco": [
+      "B28"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "consolidado"
+    }
+   ],
+   "pendientes": [],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

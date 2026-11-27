@@ -90,6 +90,28 @@ node tools/conciliar.mjs extracto.pdf mayor.csv --config mandos.json --out salid
 partidas conocidas: un depósito que agrupa dos cobranzas, un cheque pendiente, un depósito en
 tránsito, cuatro gastos/impuestos sin registrar y un crédito que el cliente no registró.
 
+## Dataset sintético y benchmark
+
+`datasets/conciliacion-sintetica/` tiene 130 casos con la respuesta correcta (ver su README) y
+`node tools/dataset/bench.mjs` mide el lector y el motor contra ellos (`RESULTADOS.md`). Lo que el
+dataset encontró y se corrigió:
+
+| | Antes | Después |
+|---|---:|---:|
+| Extractos leídos exactos (con plantilla) | 56% | 100% |
+| Pares encontrados | 65,3% | 99,7% |
+| Pares confirmados solos | 60,4% | 90,4% |
+| Verdes incorrectos (con plantilla / sin plantilla) | 0 / 1 | 0 / 0 |
+| Falsos ajustes (operaciones tomadas por gastos del banco) | 21 | 0 |
+
+- Lector: rol **Signo (D/H)**; saldo inicial/final tomado de los rótulos cuando no hay saldo
+  corrido; fechas sin año (DD/MM) con el año del encabezado (`docYear`).
+- Motor: estrategias **consolidado** (asiento mensual = N líneas del banco), **neto** (venta bruta −
+  arancel − IVA = acreditación), **ampliado** (importe exacto con fecha lejana, en amarillo),
+  agrupados de hasta 8 partidas y desempate por nombre en importes repetidos.
+- Regla nueva: si la lectura de un documento no está verificada, **nada se confirma solo**.
+- Clasificador: el débito automático de un seguro ya no se toma por comisión del banco.
+
 ## Pendiente
 
 - Persistencia por cliente / cuenta / período (hoy el arrastre se lleva con el JSON de pendientes).

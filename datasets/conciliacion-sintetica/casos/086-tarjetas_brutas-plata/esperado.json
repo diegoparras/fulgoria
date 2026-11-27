@@ -1,0 +1,743 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "086-tarjetas_brutas-plata",
+ "escenario": "tarjetas_brutas",
+ "banco": "plata",
+ "sistema": "parentesis_transporte",
+ "semilla": 8002,
+ "periodo": {
+  "desde": "2026-09-01",
+  "hasta": "2026-09-30"
+ },
+ "cliente": {
+  "nombre": "Textil Río Bermejo SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 2,
+ "notas": "El libro registra la venta con tarjeta en bruto y aparte el arancel y su IVA; el banco acredita el neto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2761900000,
+    "bancoCierre": 3870385886,
+    "librosApertura": 2761900000,
+    "librosCierre": 3910374661
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-09-01",
+     "cents": 196598743,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 58859",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-09-01",
+     "cents": -1179592,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-09-01",
+     "cents": -2359185,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-09-03",
+     "cents": 116306000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE DISTRIBUIDORA LOS ÁLAMOS SRL CUIT 30-65754219-5",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-09-03",
+     "cents": -697836,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-09-03",
+     "cents": -1395672,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-09-07",
+     "cents": 97105000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TECNOLOGÍA AUSTRAL SAS CUIT 30-59890772-9",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-09-07",
+     "cents": -582630,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-09-07",
+     "cents": -1165260,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-09-08",
+     "cents": -59483972,
+     "descripcion": "TRANSFERENCIA ENVIADA A LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-09-08",
+     "cents": -356904,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-09-09",
+     "cents": 240004000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE SERVICIOS MÉDICOS LOMAS SRL CUIT 30-55987008-7 REF 0002-00000287",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-09-09",
+     "cents": -1440024,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-09-09",
+     "cents": -2880048,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-09-11",
+     "cents": 123054207,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 70824",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-09-11",
+     "cents": -738325,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-09-11",
+     "cents": -1476650,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-09-14",
+     "cents": 193531045,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 89353",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-09-14",
+     "cents": -1161186,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-09-14",
+     "cents": -2322373,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-09-14",
+     "cents": -172813036,
+     "descripcion": "TRANSFERENCIA ENVIADA A ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-09-14",
+     "cents": -1036878,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-09-16",
+     "cents": 195052880,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 46947",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-09-16",
+     "cents": -1170317,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-09-16",
+     "cents": -2340635,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-09-16",
+     "cents": -97876331,
+     "descripcion": "TRANSFERENCIA ENVIADA A ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-09-16",
+     "cents": -587258,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-09-21",
+     "cents": -217600000,
+     "descripcion": "TRANSFERENCIA ENVIADA A BODEGA PIEDRA NEGRA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-09-21",
+     "cents": -1305600,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-09-23",
+     "cents": 301028075,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE MUEBLES QUEBRACHO SAS CUIT 30-72346614-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-09-23",
+     "cents": -1806168,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-09-23",
+     "cents": -3612337,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-09-24",
+     "cents": -5068492,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-09-24",
+     "cents": -1064383,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B35",
+     "fecha": "2026-09-24",
+     "cents": -30411,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B36",
+     "fecha": "2026-09-24",
+     "cents": -6386,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B37",
+     "fecha": "2026-09-28",
+     "cents": 233568050,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 56779",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B38",
+     "fecha": "2026-09-28",
+     "cents": -1401408,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B39",
+     "fecha": "2026-09-28",
+     "cents": -2802817,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-09-01",
+     "cents": 200976000,
+     "descripcion": "Ventas con tarjeta lote 58859",
+     "comprobante": "",
+     "asiento": 90
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-09-01",
+     "cents": -3617568,
+     "descripcion": "Arancel tarjeta lote 58859",
+     "comprobante": "",
+     "asiento": 91
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-09-01",
+     "cents": -759689,
+     "descripcion": "IVA arancel lote 58859",
+     "comprobante": "",
+     "asiento": 92
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-09-02",
+     "cents": 116306000,
+     "descripcion": "Cobro FC A 0003-00000285 Distribuidora Los Álamos SRL",
+     "comprobante": "0003-00000285",
+     "asiento": 96
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-09-04",
+     "cents": 97105000,
+     "descripcion": "Cobro FC A 0003-00000281 Tecnología Austral SAS",
+     "comprobante": "0003-00000281",
+     "asiento": 94
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-09-08",
+     "cents": 240004000,
+     "descripcion": "Cobranza cliente Servicios Médicos Lomas SRL",
+     "comprobante": "0002-00000287",
+     "asiento": 97
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-09-08",
+     "cents": -59483972,
+     "descripcion": "Pago a proveedor Logística Andina SAS",
+     "comprobante": "OP 0001-00000290",
+     "asiento": 99
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-09-11",
+     "cents": 125794000,
+     "descripcion": "Ventas con tarjeta lote 70824",
+     "comprobante": "",
+     "asiento": 81
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-09-11",
+     "cents": -2264292,
+     "descripcion": "Arancel tarjeta lote 70824",
+     "comprobante": "",
+     "asiento": 82
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-09-11",
+     "cents": -475501,
+     "descripcion": "IVA arancel lote 70824",
+     "comprobante": "",
+     "asiento": 83
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-09-11",
+     "cents": -172813036,
+     "descripcion": "Pago Óptica Mirador SRL OP 0001-00000289",
+     "comprobante": "OP 0001-00000289",
+     "asiento": 98
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-09-14",
+     "cents": 193531045,
+     "descripcion": "Liquidación tarjeta lote 89353",
+     "comprobante": "",
+     "asiento": 93
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-09-16",
+     "cents": 202400000,
+     "descripcion": "Ventas con tarjeta lote 46947",
+     "comprobante": "",
+     "asiento": 87
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-09-16",
+     "cents": -6072000,
+     "descripcion": "Arancel tarjeta lote 46947",
+     "comprobante": "",
+     "asiento": 88
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-09-16",
+     "cents": -1275120,
+     "descripcion": "IVA arancel lote 46947",
+     "comprobante": "",
+     "asiento": 89
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-09-16",
+     "cents": -97876331,
+     "descripcion": "Transferencia a Óptica Mirador SRL OP 0001-00000291",
+     "comprobante": "OP 0001-00000291",
+     "asiento": 100
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-09-21",
+     "cents": 301028075,
+     "descripcion": "Cobro FC A 0002-00000283 Muebles Quebracho SAS",
+     "comprobante": "0002-00000283",
+     "asiento": 95
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-09-21",
+     "cents": -217600000,
+     "descripcion": "Pago a proveedor Bodega Piedra Negra SA",
+     "comprobante": "OP 0001-00000292",
+     "asiento": 101
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-09-28",
+     "cents": 238768427,
+     "descripcion": "Ventas con tarjeta lote 56779",
+     "comprobante": "",
+     "asiento": 84
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-09-28",
+     "cents": -4297832,
+     "descripcion": "Arancel tarjeta lote 56779",
+     "comprobante": "",
+     "asiento": 85
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-09-28",
+     "cents": -902545,
+     "descripcion": "IVA arancel lote 56779",
+     "comprobante": "",
+     "asiento": 86
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L8",
+      "L9",
+      "L10"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B37"
+     ],
+     "libros": [
+      "L19",
+      "L20",
+      "L21"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L13",
+      "L14",
+      "L15"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1",
+      "L2",
+      "L3"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B18"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B30"
+     ],
+     "libros": [
+      "L17"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B12"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B26"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B28"
+     ],
+     "libros": [
+      "L18"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B33",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B34",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B38",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B39",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B3",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B19",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B9",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B31",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B32",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B5",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B11",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B27",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B29",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B35",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B36",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

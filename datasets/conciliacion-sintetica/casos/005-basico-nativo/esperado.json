@@ -1,0 +1,661 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "005-basico-nativo",
+ "escenario": "basico",
+ "banco": "nativo",
+ "sistema": "parentesis_transporte",
+ "semilla": 1021,
+ "periodo": {
+  "desde": "2026-10-01",
+  "hasta": "2026-10-31"
+ },
+ "cliente": {
+  "nombre": "Bodega Piedra Negra SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 2,
+ "notas": "Pocos movimientos, la mayoría 1 a 1, gastos bancarios sin registrar, un cheque pendiente y un depósito en tránsito.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 1498548046,
+    "bancoCierre": 2451420856,
+    "librosApertura": 1498548046,
+    "librosCierre": 2290166210
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-10-05",
+     "cents": 197100000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS LOGÍSTICA ANDINA SAS - 0003-00000647",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-10-05",
+     "cents": -1182600,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-10-08",
+     "cents": 52034000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS AGRO SUR DEL PLATA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-10-08",
+     "cents": -312204,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-10-09",
+     "cents": 23265477,
+     "descripcion": "TRANSFERENCIA DE TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-10-09",
+     "cents": -139593,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-10-12",
+     "cents": 372897079,
+     "descripcion": "TRANSFERENCIA DE TERCEROS SERVICIOS MÉDICOS LOMAS SRL - 0001-00000637",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-10-12",
+     "cents": -2237382,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-10-12",
+     "cents": 39020735,
+     "descripcion": "TRANSFERENCIA DE TERCEROS HOTEL CERRO AZUL SA - 0003-00000645",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-10-12",
+     "cents": -234124,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-10-12",
+     "cents": 285500000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS LÁCTEOS VALLE VERDE SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-10-12",
+     "cents": -1713000,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-10-12",
+     "cents": -13212000,
+     "descripcion": "TRANSFERENCIA A TERCEROS QUÍMICA LITORAL SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-10-12",
+     "cents": -79272,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-10-13",
+     "cents": -16333416,
+     "descripcion": "DEB AUT ALQUILERES CENTRO SA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-10-13",
+     "cents": -98000,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-10-16",
+     "cents": -92900000,
+     "descripcion": "TRANSFERENCIA A TERCEROS LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-10-16",
+     "cents": -557400,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-10-16",
+     "cents": -271065469,
+     "descripcion": "TRANSFERENCIA A TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-10-16",
+     "cents": -1626393,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-10-16",
+     "cents": -184173000,
+     "descripcion": "TRANSFERENCIA A TERCEROS LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-10-16",
+     "cents": -1105038,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-10-20",
+     "cents": 390500000,
+     "descripcion": "TRANSFERENCIA DE TERCEROS VIÑEDOS ALTOS DE CUYO SA - 0001-00000639",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-10-20",
+     "cents": -2343000,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-10-21",
+     "cents": 404221441,
+     "descripcion": "TRANSFERENCIA DE TERCEROS VIÑEDOS ALTOS DE CUYO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-10-21",
+     "cents": -2425329,
+     "descripcion": "IMP. S/CRED. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-10-26",
+     "cents": -4900000,
+     "descripcion": "DEB AUT GAS DEL LITORAL",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-10-26",
+     "cents": -29400,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-10-28",
+     "cents": -207425000,
+     "descripcion": "TRANSFERENCIA A TERCEROS TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-10-28",
+     "cents": -1244550,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-10-28",
+     "cents": -5200000,
+     "descripcion": "COMISION SERVICIO DE CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-10-28",
+     "cents": -1092000,
+     "descripcion": "IVA BASE",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-10-28",
+     "cents": -31200,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-10-28",
+     "cents": -6552,
+     "descripcion": "IMP. S/DEB. BANCARIOS",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-10-02",
+     "cents": 197100000,
+     "descripcion": "Cobro FC A 0003-00000647 Logística Andina SAS",
+     "comprobante": "0003-00000647",
+     "asiento": 204
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-10-06",
+     "cents": 52034000,
+     "descripcion": "Cobro FC A 0003-00000649 Agro Sur del Plata SA",
+     "comprobante": "0003-00000649",
+     "asiento": 205
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-10-08",
+     "cents": 23265477,
+     "descripcion": "Cobro FC A 0001-00000643 Tecnología Austral SAS",
+     "comprobante": "0001-00000643",
+     "asiento": 202
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-10-08",
+     "cents": 285500000,
+     "descripcion": "Cobranza cliente Lácteos Valle Verde SA",
+     "comprobante": "0001-00000651",
+     "asiento": 206
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-10-09",
+     "cents": 39020735,
+     "descripcion": "Cobranza Hotel Cerro Azul SA Rec. 0001-00000646",
+     "comprobante": "0003-00000645",
+     "asiento": 203
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-10-10",
+     "cents": -16333416,
+     "descripcion": "Alquileres Centro SA - débito automático",
+     "comprobante": "",
+     "asiento": 213
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-10-12",
+     "cents": 372897079,
+     "descripcion": "Cobro FC A 0001-00000637 Servicios Médicos Lomas SRL",
+     "comprobante": "0001-00000637",
+     "asiento": 199
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-10-12",
+     "cents": -13212000,
+     "descripcion": "Pago a proveedor Química Litoral SRL",
+     "comprobante": "OP 0001-00000653",
+     "asiento": 207
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-10-15",
+     "cents": -92900000,
+     "descripcion": "Pago a proveedor Librería El Faro SA",
+     "comprobante": "OP 0001-00000655",
+     "asiento": 209
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-10-15",
+     "cents": -271065469,
+     "descripcion": "Pago Tecnología Austral SAS OP 0001-00000656",
+     "comprobante": "OP 0001-00000656",
+     "asiento": 210
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-10-15",
+     "cents": -184173000,
+     "descripcion": "Transferencia a Logística Andina SAS OP 0001-00000657",
+     "comprobante": "OP 0001-00000657",
+     "asiento": 211
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-10-19",
+     "cents": 390500000,
+     "descripcion": "Cobranza cliente Viñedos Altos de Cuyo SA",
+     "comprobante": "0001-00000639",
+     "asiento": 200
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-10-19",
+     "cents": 404221441,
+     "descripcion": "Cobranza cliente Viñedos Altos de Cuyo SA",
+     "comprobante": "0003-00000641",
+     "asiento": 201
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-10-23",
+     "cents": -4900000,
+     "descripcion": "Gas del Litoral - débito automático",
+     "comprobante": "",
+     "asiento": 212
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-10-26",
+     "cents": -227311683,
+     "descripcion": "Cheque N° 00063211 a Ferretería El Tornillo SRL",
+     "comprobante": "CH 00063211",
+     "asiento": 214
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-10-27",
+     "cents": -207425000,
+     "descripcion": "Transferencia a Tecnología Austral SAS OP 0001-00000654",
+     "comprobante": "OP 0001-00000654",
+     "asiento": 208
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-10-30",
+     "cents": 44400000,
+     "descripcion": "Depósito cheques de terceros",
+     "comprobante": "",
+     "asiento": 215
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B29"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L15",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L17",
+     "lado": "libros",
+     "tipo": "deposito_transito"
+    },
+    {
+     "id": "B31",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B32",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B33",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B34",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

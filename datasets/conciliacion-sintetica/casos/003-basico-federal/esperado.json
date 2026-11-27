@@ -1,0 +1,301 @@
+{
+ "dataset": "conciliacion-sintetica",
+ "version": "1.0.0",
+ "id": "003-basico-federal",
+ "escenario": "basico",
+ "banco": "federal",
+ "sistema": "importe_signo_tab",
+ "semilla": 1011,
+ "periodo": {
+  "desde": "2026-10-01",
+  "hasta": "2026-10-31"
+ },
+ "cliente": {
+  "nombre": "Frigorífico Pampa Alta SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Pocos movimientos, la mayoría 1 a 1, gastos bancarios sin registrar, un cheque pendiente y un depósito en tránsito.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 1637177393,
+    "bancoCierre": 2260333963,
+    "librosApertura": 1637177393,
+    "librosCierre": 2365158843
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-10-07",
+     "cents": -84852000,
+     "descripcion": "TRF INMEDIATA ENV 33648529800",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-10-09",
+     "cents": -289284000,
+     "descripcion": "TRF INMEDIATA ENV 30725002226",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-10-12",
+     "cents": -4546944,
+     "descripcion": "DEBITO AUTOMATICO GAS DEL LITORAL",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-10-14",
+     "cents": 347072000,
+     "descripcion": "TRF INMEDIATA RECIB 33654727304 0003-00000444",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-10-14",
+     "cents": 437881772,
+     "descripcion": "TRF INMEDIATA RECIB 30682762442",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-10-20",
+     "cents": -192421130,
+     "descripcion": "TRF INMEDIATA ENV 33622511768",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-10-26",
+     "cents": -5262000,
+     "descripcion": "CARGO MANTENIMIENTO PAQUETE",
+     "tipo": "comision"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-10-26",
+     "cents": -1105020,
+     "descripcion": "I.V.A. TASA GENERAL",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-10-26",
+     "cents": -157860,
+     "descripcion": "PERCEPCION IVA",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-10-27",
+     "cents": 263431752,
+     "descripcion": "TRF INMEDIATA RECIB 30728383328",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-10-28",
+     "cents": 152400000,
+     "descripcion": "TRF INMEDIATA RECIB 30698817387 0003-00000442",
+     "tipo": "transferencia"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-10-06",
+     "cents": -84852000,
+     "descripcion": "Transferencia a Servicios Médicos Lomas SRL OP 0001-00000448",
+     "comprobante": "OP 0001-00000448",
+     "asiento": 11
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-10-09",
+     "cents": -289284000,
+     "descripcion": "Pago a proveedor Logística Andina SAS",
+     "comprobante": "OP 0001-00000449",
+     "asiento": 12
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-10-10",
+     "cents": -4546944,
+     "descripcion": "Gas del Litoral - débito automático",
+     "comprobante": "",
+     "asiento": 14
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-10-12",
+     "cents": 347072000,
+     "descripcion": "Cobranza Cooperativa Hornero Ltda Rec. 0001-00000445",
+     "comprobante": "0003-00000444",
+     "asiento": 9
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-10-12",
+     "cents": 437881772,
+     "descripcion": "Cobranza cliente Química Litoral SRL",
+     "comprobante": "0001-00000446",
+     "asiento": 10
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-10-19",
+     "cents": -192421130,
+     "descripcion": "Pago a proveedor Transporte Ruta 3 SRL",
+     "comprobante": "OP 0001-00000450",
+     "asiento": 13
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-10-26",
+     "cents": 263431752,
+     "descripcion": "Cobranza Frigorífico Pampa Alta SA Rec. 0001-00000441",
+     "comprobante": "0003-00000440",
+     "asiento": 7
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-10-27",
+     "cents": 152400000,
+     "descripcion": "Cobranza Viñedos Altos de Cuyo SA Rec. 0001-00000443",
+     "comprobante": "0003-00000442",
+     "asiento": 8
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-10-27",
+     "cents": -9200000,
+     "descripcion": "ECHEQ N° 00022704 a Textil Río Bermejo SA",
+     "comprobante": "CH 00022704",
+     "asiento": 15
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-10-31",
+     "cents": 107500000,
+     "descripcion": "Depósito cheque cliente",
+     "comprobante": "",
+     "asiento": 16
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B2"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L9",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L10",
+     "lado": "libros",
+     "tipo": "deposito_transito"
+    },
+    {
+     "id": "B7",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B9",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}
