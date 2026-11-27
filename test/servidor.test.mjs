@@ -212,3 +212,15 @@ test("IA desde la pantalla: sin IA / local / externa, solo admin, clave cifrada 
   // Volver al .env (en el test no hay IA en el .env).
   assert.equal((await api("DELETE", "/ia/config")).body.origen, "ninguno");
 });
+
+test("el código de la app se revalida siempre (después de un deploy nadie queda con el JS viejo)", async () => {
+  const r = await fetch(BASE.replace("/api/v1", "") + "/src/conciliar.js");
+  assert.equal(r.status, 200);
+  assert.equal(r.headers.get("cache-control"), "no-cache");
+  const etag = r.headers.get("etag");
+  assert.ok(etag);
+  // (con http y no con fetch: fetch agrega "cache-control: no-cache" a los pedidos condicionales)
+  const { get } = await import("node:http");
+  const status = await new Promise((ok) => get(BASE.replace("/api/v1", "") + "/src/conciliar.js", { headers: { "if-none-match": etag } }, (res) => { res.resume(); ok(res.statusCode); }));
+  assert.equal(status, 304);
+});

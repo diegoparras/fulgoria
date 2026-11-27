@@ -715,6 +715,7 @@ async function iniciarEstudio() {
   $("selMes").value = new Date().toISOString().slice(0, 7);
   est.periodo = $("selMes").value;
   setGuardado(`Guardando en el ${r.body.almacenamiento === "s3" ? "bucket" : "servidor"} del estudio${r.body.cifrado ? " (cifrado)" : ""}`);
+  $("dondeQueda").textContent = `Los documentos se guardan en el ${r.body.almacenamiento === "s3" ? "almacenamiento" : "servidor"} del estudio${r.body.cifrado ? ", cifrados" : ""}.`;
   await sincronizarPlantillas();
   await cargarClientes();
 }
