@@ -15,7 +15,7 @@
 .c-drop.compacta .c-drop-card h2, .c-drop.compacta .c-drop-card p, .c-drop.compacta .dz-mark { display: none; }
 .c-drop.compacta .c-drop-btns { margin-top: 0; }
 .c-docs { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
-.c-doc { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); }
+.c-doc { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); box-shadow: var(--shadow-card); }
 .c-doc .k { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
 .c-doc .n { font-weight: 600; word-break: break-all; }
 .c-doc .s { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
@@ -34,7 +34,7 @@
 .c-main { display: grid; gap: 14px; min-width: 0; }
 
 /* Estado general */
-.c-estado { display: grid; grid-template-columns: auto 1fr auto; gap: 14px 18px; align-items: center; padding: 18px 20px; border-radius: var(--radius-lg); border: 1px solid var(--line-soft); background: var(--panel); position: relative; overflow: hidden; }
+.c-estado { display: grid; grid-template-columns: auto 1fr auto; gap: 14px 18px; align-items: center; padding: 18px 20px; border-radius: var(--r); border: 1px solid var(--line-soft); background: var(--panel); box-shadow: var(--shadow-card); position: relative; overflow: hidden; }
 .c-estado::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--muted); }
 .c-estado.rojo::before { background: var(--fail); } .c-estado.amarillo::before { background: var(--warn); } .c-estado.verde::before { background: var(--ok); }
 .c-estado h2 { margin: 0; font-size: 20px; letter-spacing: -.02em; }
@@ -48,7 +48,7 @@
 
 /* Bandeja */
 .c-bandeja { display: grid; gap: 10px; }
-.c-card { border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); }
+.c-card { border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); box-shadow: var(--shadow-card); }
 .c-card > summary { list-style: none; display: flex; align-items: center; gap: 12px; padding: 13px 16px; cursor: pointer; user-select: none; }
 .c-card > summary::-webkit-details-marker { display: none; }
 .c-card > summary .t { flex: 1; font-weight: 600; }
@@ -78,7 +78,7 @@
 .c-match .acts { display: flex; gap: 6px; }
 
 /* Mesa (deportivo) */
-.c-mesa { border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); padding: 14px 16px; }
+.c-mesa { border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); box-shadow: var(--shadow-card); padding: 14px 16px; }
 .c-mesa h3 { margin: 0 0 4px; font-size: 15px; }
 .c-mesa-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px; }
 @media (max-width: 720px) { .c-mesa-cols { grid-template-columns: 1fr; } }
@@ -92,7 +92,7 @@
 .c-mesa-bar .sp { flex: 1; }
 
 /* Papel de trabajo */
-.c-papel { border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); }
+.c-papel { border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); box-shadow: var(--shadow-card); }
 .c-papel > summary { padding: 13px 16px; font-weight: 600; cursor: pointer; }
 .c-papel #papel { padding: 0 16px 6px; overflow-x: auto; }
 .c-papel table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -108,7 +108,7 @@
 .c-exports { display: flex; gap: 8px; flex-wrap: wrap; padding: 12px 16px 14px; border-top: 1px solid var(--line-soft); }
 
 /* Mandos (deportivo) */
-.c-mandos { border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); padding: 14px 16px; align-self: start; position: sticky; top: calc(var(--topbar-h) + 16px); max-height: calc(100vh - var(--topbar-h) - 36px); overflow: auto; }
+.c-mandos { border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); box-shadow: var(--shadow-card); padding: 14px 16px; align-self: start; position: sticky; top: calc(var(--topbar-h) + 16px); max-height: calc(100vh - var(--topbar-h) - 36px); overflow: auto; }
 .c-mandos h3 { margin: 0 0 2px; font-size: 15px; }
 .c-mandos .grp { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line-soft); }
 .c-mandos .grp-t { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
@@ -161,13 +161,13 @@
 .c-modal-card { max-height: calc(100vh - 48px); overflow: auto; }
 
 /* Modo estudio: selector de cliente / cuenta / mes, estado del mes, tablero */
-.c-cartera { display: flex; flex-wrap: wrap; gap: 10px 12px; align-items: flex-end; padding: 12px 14px; margin-bottom: 14px; border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); }
+.c-cartera { display: flex; flex-wrap: wrap; gap: 10px 12px; align-items: flex-end; padding: 12px 14px; margin-bottom: 14px; border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); box-shadow: var(--shadow-card); }
 .c-sel { display: grid; gap: 3px; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; min-width: 0; }
 .c-sel select, .c-sel input { min-width: 180px; max-width: 100%; padding: 6px 28px 6px 9px; font-size: 13px; text-transform: none; letter-spacing: normal; font-weight: 500; }
 .c-sel input { padding-right: 9px; min-width: 150px; }
 .c-guardado { margin-left: auto; font-size: 12.5px; color: var(--muted); align-self: center; }
 .c-guardado.bad { color: var(--fail); }
-.c-flujo { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding: 10px 14px; border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); font-size: 13px; }
+.c-flujo { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding: 10px 14px; border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel); box-shadow: var(--shadow-card); font-size: 13px; }
 .c-flujo .paso { color: var(--muted); }
 .c-flujo .paso b { color: var(--ink); }
 .c-flujo .sp { flex: 1; }
