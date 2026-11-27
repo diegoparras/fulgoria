@@ -1,0 +1,139 @@
+// Tests de la persistencia del estudio a través de la API real (server.js con PERSISTENCIA=on).
+import test from "node:test";
+import assert from "node:assert/strict";
+import { createRequire } from "node:module";
+import { mkdtempSync, readFileSync, readdirSync, statSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+
+const DATA = mkdtempSync(join(tmpdir(), "fulgoria-test-"));
+Object.assign(process.env, {
+  AUTH_ENABLED: "false", PERSISTENCIA: "on", DATA_DIR: DATA, ALMACENAMIENTO: "disco",
+  DOCS_CLAVE: "a".repeat(64), BACKUP_HORAS: "0",
+});
+const require = createRequire(import.meta.url);
+const origLog = console.log; console.log = () => {}; // el cartel de arranque no aporta en los tests
+const { app, persistencia } = require("../server.js");
+console.log = origLog;
+const srv = app.listen(0);
+const BASE = `http://127.0.0.1:${srv.address().port}/api/v1`;
+test.after(() => { srv.close(); persistencia.cerrar(); });
+
+const api = async (metodo, ruta, body, headers = {}) => {
+  const r = await fetch(BASE + ruta, {
+    method: metodo,
+    headers: body && !Buffer.isBuffer(body) ? { "content-type": "application/json", ...headers } : headers,
+    body: body == null ? undefined : Buffer.isBuffer(body) ? body : JSON.stringify(body),
+  });
+  const t = r.headers.get("content-type") || "";
+  return { status: r.status, body: t.includes("json") ? await r.json() : Buffer.from(await r.arrayBuffer()) };
+};
+const PDF = readFileSync(new URL("../samples/banco-rio-cc.pdf", import.meta.url));
+const CSV = readFileSync(new URL("../samples/mayor-banco-rio-cc.csv", import.meta.url));
+
+test("estado de la persistencia", async () => {
+  const r = await api("GET", "/estado");
+  assert.equal(r.body.persistencia, true);
+  assert.equal(r.body.almacenamiento, "disco");
+  assert.equal(r.body.cifrado, true);
+  assert.equal(r.body.usuario, "local");
+});
+
+test("circuito completo: cliente, cuenta, documentos, mes, estados, arrastre y tablero", async () => {
+  // Cliente y cuenta
+  assert.equal((await api("POST", "/clientes", {})).status, 400);
+  const cli = (await api("POST", "/clientes", { nombre: "Ferretería El Tornillo SRL", cuit: "30-71234567-1" })).body;
+  const cta = (await api("POST", `/clientes/${cli.id}/cuentas`, { nombre: "Cuenta corriente en pesos", banco: "Banco del Río" })).body;
+  assert.equal(cta.moneda, "ARS");
+  assert.equal((await api("GET", `/clientes/${cli.id}/cuentas`)).body.length, 1);
+
+  // Documentos: se guardan cifrados en disco y se devuelven tal cual; el mismo archivo no se duplica.
+  const ext = (await api("POST", "/documentos", PDF, { "x-tipo": "extracto", "x-nombre": encodeURIComponent("Extracto junio.pdf"), "content-type": "application/pdf" })).body;
+  const may = (await api("POST", "/documentos", CSV, { "x-tipo": "mayor", "x-nombre": "mayor.csv", "content-type": "text/csv" })).body;
+  assert.equal(ext.nombre, "Extracto junio.pdf");
+  assert.equal((await api("POST", "/documentos", PDF, { "x-tipo": "extracto", "x-nombre": "otro.pdf" })).body.id, ext.id);
+  const bajado = await api("GET", `/documentos/${ext.id}`);
+  assert.ok(bajado.body.equals(PDF));
+  const enDisco = readdirSync(join(DATA, "documentos", ext.creado.slice(0, 7))).map((f) => readFileSync(join(DATA, "documentos", ext.creado.slice(0, 7), f)));
+  assert.ok(enDisco.every((b) => b.subarray(0, 4).toString() === "FGC1" && !b.includes(PDF.subarray(0, 64))));
+
+  // Mes nuevo
+  const P = `/cuentas/${cta.id}/periodos/2026-06`;
+  assert.equal((await api("GET", P)).body.periodo, null);
+  const resumen = { estado: "rojo", diferenciaNoExplicada: 0, atencion: 1, saldos: { bancoCierre: 2159315, librosCierre: 1700425 } };
+  const pendientes = [{ id: "L12", lado: "libros", fecha: "2026-06-26", cents: -300000, descripcion: "Cheque N° 4521" }];
+  let per = (await api("PUT", P, { extractoDoc: ext.id, mayorDoc: may.id, decisiones: { confirmados: [] }, resumen, pendientes })).body;
+  assert.equal(per.version, 1);
+  assert.equal(per.estado, "borrador");
+
+  // Concurrencia: guardar con una versión vieja → 409 con lo actual.
+  const viejo = await api("PUT", P, { version: 0, decisiones: {} });
+  assert.equal(viejo.status, 409);
+  assert.equal(viejo.body.actual.version, 1);
+
+  // Preparó → revisó → cerrar.
+  per = (await api("PUT", P, { version: per.version, accion: "preparar" })).body;
+  assert.equal(per.estado, "preparado");
+  assert.equal(per.preparo, "local");
+  assert.equal((await api("PUT", P, { version: per.version, accion: "cerrar" })).status, 422); // falta revisar
+  // Cambiar las decisiones invalida la preparación.
+  per = (await api("PUT", P, { version: per.version, decisiones: { confirmados: [{ banco: ["B4"], libros: ["L4", "L5"] }] } })).body;
+  assert.equal(per.estado, "borrador");
+  assert.equal(per.preparo, null);
+  per = (await api("PUT", P, { version: per.version, accion: "preparar" })).body;
+  per = (await api("PUT", P, { version: per.version, accion: "revisar" })).body;
+  assert.equal(per.estado, "revisado");
+  // Con diferencia no explicada no se cierra.
+  const conDif = await api("PUT", P, { version: per.version, resumen: { ...resumen, diferenciaNoExplicada: 100 }, accion: "cerrar" });
+  assert.equal(conDif.status, 422);
+  per = (await api("PUT", P, { version: per.version, accion: "cerrar" })).body;
+  assert.equal(per.estado, "cerrado");
+  // Cerrado: no se modifica; se puede reabrir.
+  assert.equal((await api("PUT", P, { version: per.version, decisiones: {} })).status, 423);
+  per = (await api("PUT", P, { version: per.version, accion: "reabrir" })).body;
+  assert.equal(per.estado, "borrador");
+  per = (await api("PUT", P, { version: per.version, accion: "preparar" })).body;
+  per = (await api("PUT", P, { version: per.version, accion: "revisar" })).body;
+  per = (await api("PUT", P, { version: per.version, accion: "cerrar" })).body;
+
+  // Arrastre: julio recibe los pendientes de junio.
+  const jul = (await api("GET", `/cuentas/${cta.id}/periodos/2026-07`)).body;
+  assert.equal(jul.periodo, null);
+  assert.equal(jul.anterior.periodo, "2026-06");
+  assert.equal(jul.anterior.estado, "cerrado");
+  assert.deepEqual(jul.anterior.pendientes, pendientes);
+
+  // Tablero de cartera
+  const cart = (await api("GET", "/cartera?hasta=2026-07&meses=3")).body;
+  assert.deepEqual(cart.meses, ["2026-05", "2026-06", "2026-07"]);
+  const fila = cart.clientes.find((c) => c.id === cli.id).cuentas[0];
+  assert.equal(fila.periodos["2026-06"].estado, "cerrado");
+  assert.equal(fila.periodos["2026-06"].diferencia, 0);
+
+  // Auditoría
+  const ev = (await api("GET", `/eventos?entidad=periodo&id=${per.id}`)).body;
+  assert.ok(["crear", "preparar", "invalidar_revision", "revisar", "cerrar", "reabrir"].every((a) => ev.some((e) => e.accion === a)));
+
+  // Copia de seguridad de la base (cifrada, en el mismo almacenamiento).
+  const bk = await persistencia.backup();
+  assert.ok(statSync(join(DATA, ...bk.clave.split("/"))).size > 0);
+});
+
+test("plantillas compartidas del estudio: solo forma, nunca datos", async () => {
+  const tplMayor = { fulgoria_plantilla_mayor: 1, sistema: "Sistema XYZ", mapeo: { fecha: "Fec.", debe: "Cargo", haber: "Abono" } };
+  assert.equal((await api("PUT", "/plantillas", { tipo: "mayor", nombre: "Sistema XYZ", plantilla: { cualquier: "cosa" } })).status, 400);
+  const g = (await api("PUT", "/plantillas", { tipo: "mayor", nombre: "Sistema XYZ", plantilla: tplMayor })).body;
+  await api("PUT", "/plantillas", { tipo: "mayor", nombre: "Sistema XYZ", plantilla: { ...tplMayor, ignorar: ["Total hoja"] } }); // actualiza
+  const lista = (await api("GET", "/plantillas?tipo=mayor")).body;
+  assert.equal(lista.length, 1);
+  assert.deepEqual(lista[0].plantilla.ignorar, ["Total hoja"]);
+  assert.equal((await api("DELETE", `/plantillas/${g.id}`)).status, 204);
+  assert.equal((await api("GET", "/plantillas")).body.length, 0);
+});
+
+test("validaciones de entrada", async () => {
+  assert.equal((await api("GET", "/cuentas/no-es-un-id/periodos")).status, 400);
+  assert.equal((await api("GET", "/cuentas/00000000-0000-0000-0000-000000000000/periodos/2026-13")).status, 400);
+  assert.equal((await api("POST", "/documentos", Buffer.from("x"), { "x-tipo": "otro" })).status, 400);
+  assert.equal((await api("PUT", "/cuentas/00000000-0000-0000-0000-000000000000/periodos/2026-06", { extractoDoc: "00000000-0000-0000-0000-000000000000" })).status, 400);
+});

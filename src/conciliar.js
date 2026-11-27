@@ -56,11 +56,12 @@ document.addEventListener("drop", (e) => { if (e.dataTransfer?.files?.length) ha
 $("btnEjemplo").addEventListener("click", cargarEjemplo);
 
 async function handleFiles(files) {
+  if (soloLectura()) return toast("El mes está cerrado. Reabrilo para cambiar los documentos.");
   for (const f of files) {
     const n = f.name.toLowerCase();
     try {
-      if (n.endsWith(".pdf") || (f.type || "").startsWith("image/")) await cargarExtracto(f.name, f);
-      else if (n.endsWith(".csv") || n.endsWith(".txt")) await cargarMayor(f.name, await f.text());
+      if (n.endsWith(".pdf") || (f.type || "").startsWith("image/")) { await cargarExtracto(f.name, f); await estudioSubir("extracto", f); }
+      else if (n.endsWith(".csv") || n.endsWith(".txt")) { await cargarMayor(f.name, await f.text()); await estudioSubir("mayor", f); }
       else if (n.endsWith(".json")) {
         const txt = await f.text(), j = JSON.parse(txt);
         if (j.fulgoria_plantilla_mayor) importarPlantillaMayor(j);
@@ -156,10 +157,11 @@ function leerMayor(lectura, plantilla = null) {
   } catch (e) { m.led = null; m.error = e.message; }
 }
 function plantillasMayor() { return safeJson(lsGet(LS_TPL_MAYOR)) || []; }
-function guardarPlantillaMayor(tpl) {
+function guardarPlantillaMayor(tpl, compartir = true) {
   const todas = plantillasMayor().filter((t) => t.sistema !== tpl.sistema);
   todas.push(tpl);
   lsSet(LS_TPL_MAYOR, JSON.stringify(todas));
+  if (compartir && est.activo) srv("PUT", "/plantillas", { tipo: "mayor", nombre: tpl.sistema, plantilla: tpl }); // la ve todo el estudio
 }
 function importarPlantillaMayor(tpl) {
   guardarPlantillaMayor(tpl);
@@ -282,7 +284,7 @@ function run() {
   const listo = x && !x.error && m && m.led;
   $("result").hidden = !listo;
   drop.classList.toggle("compacta", !!(x || m));
-  if (!listo) { state.rec = null; return; }
+  if (!listo) { state.rec = null; renderFlujo(); return; }
   const fechas = x.data.movs.map((v) => v.fecha).filter(Boolean).sort();
   const ult = fechas[fechas.length - 1] || m.led.movs.at(-1)?.fecha;
   const hasta = state.cierre || finDeMes(ult);
@@ -295,6 +297,8 @@ function run() {
     lectura: { banco: !!x.check.globalOk, libros: m.led.control.ok !== false },
   });
   renderResult();
+  renderFlujo();
+  programarGuardado();
 }
 
 function finDeMes(iso) {
@@ -503,11 +507,11 @@ $("mandos").addEventListener("change", (e) => {
   const t = el.dataset.t;
   const v = t === "bool" ? el.checked : t === "int" ? Math.max(0, parseInt(el.value || "0", 10)) : t === "money" ? Math.round(parseFloat(el.value || "0") * 100) : el.value;
   setPath(state.mandos, el.dataset.m, v);
-  lsSet(LS_MANDOS, JSON.stringify(state.mandos));
+  if (est.cuenta) guardarMandosCuenta(); else lsSet(LS_MANDOS, JSON.stringify(state.mandos));
   run();
 });
 $("mandos").addEventListener("click", (e) => {
-  if (e.target.id === "mandosReset") { state.mandos = {}; state.cierre = null; lsSet(LS_MANDOS, "{}"); run(); toast("Mandos en sus valores por defecto."); }
+  if (e.target.id === "mandosReset") { state.mandos = {}; state.cierre = null; if (est.cuenta) guardarMandosCuenta(); else lsSet(LS_MANDOS, "{}"); run(); toast("Mandos en sus valores por defecto."); }
 });
 
 // ---------------------------------------------------------------- acciones (delegación)
@@ -517,6 +521,7 @@ document.addEventListener("click", (e) => {
   if (b.closest("summary") && b.tagName === "BUTTON") e.preventDefault(); // un botón en el encabezado no abre/cierra la tarjeta
   const d = b.dataset;
   if (d.ev) return verEvidencia(d.ev);
+  if (soloLectura() && (d.conf || d.rech || d.confall || d.mapear || b.id === "emparejar" || b.id === "limpiarDec")) return toast("El mes está cerrado. Reabrilo para hacer cambios.");
   if (d.mapear) return abrirMapeo();
   if (d.conf) { const m = state.rec.matches.find((x) => x.id === d.conf); state.decisiones.confirmados.push({ banco: m.banco, libros: m.libros }); return run(); }
   if (d.rech) {
@@ -641,7 +646,7 @@ function download(name, text, mime) {
 }
 
 // ---------------------------------------------------------------- utilidades de UI
-function abrirModal(tit, html) { $("modalTit").innerHTML = tit; $("modalBody").innerHTML = html; $("modal").hidden = false; }
+function abrirModal(tit, html, { ancho = false } = {}) { $("modalTit").innerHTML = tit; $("modalBody").innerHTML = html; $("modal").querySelector(".modal-card").classList.toggle("ancho", ancho); $("modal").hidden = false; }
 function cerrarModal() { $("modal").hidden = true; }
 function toast(msg, ms = 3200) { const t = $("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove("show"), ms); }
 function progress(msg) { const el = $("progress"); if (msg) { el.textContent = msg; el.style.display = "block"; } else el.style.display = "none"; }
@@ -662,3 +667,275 @@ $("themeBtn").addEventListener("click", () => {
 });
 paintTheme();
 setModo(state.modo);
+
+
+// =====================================================================================================
+// Modo estudio (persistencia en el servidor del estudio o en su bucket S3/R2)
+// Se activa solo si /api/v1/estado lo indica. El procesamiento sigue en el navegador; el servidor
+// guarda los documentos, las decisiones, el resultado, los pendientes para el mes siguiente y el
+// estado del mes (borrador → preparado → revisado → cerrado).
+// =====================================================================================================
+// `abierto` = el mes cuyos datos están en pantalla ({ cuentaId, periodo }). Todo guardado va a ESE mes,
+// nunca al que esté eligiendo el usuario en ese momento; `gen` descarta aperturas que quedaron viejas.
+const est = { activo: false, usuario: null, clientes: [], cuentas: [], cliente: null, cuenta: null, periodo: null, per: null, anterior: null, docs: { extracto: null, mayor: null }, ultimo: "", timer: 0, abierto: null, gen: 0 };
+const soloLectura = () => est.activo && est.per?.estado === "cerrado";
+
+async function srv(metodo, ruta, body, headers = {}) {
+  try {
+    const bin = body instanceof Blob;
+    const r = await fetch("/api/v1" + ruta, {
+      method: metodo, credentials: "same-origin",
+      headers: body && !bin ? { "content-type": "application/json", ...headers } : headers,
+      body: body == null ? undefined : bin ? body : JSON.stringify(body),
+    });
+    if (r.status === 401) { location.href = "/login"; return { ok: false, status: 401, body: {} }; }
+    const ct = r.headers.get("content-type") || "";
+    return { ok: r.ok, status: r.status, body: ct.includes("json") ? await r.json() : await r.blob(), headers: r.headers };
+  } catch (e) { return { ok: false, status: 0, body: { mensaje: "Sin conexión con el servidor." } }; }
+}
+function setGuardado(txt, mal = false) { const g = $("guardado"); g.textContent = txt; g.classList.toggle("bad", mal); }
+
+async function iniciarEstudio() {
+  const r = await srv("GET", "/estado");
+  if (!r.ok || !r.body.persistencia) return; // modo local: todo como siempre
+  est.activo = true; est.usuario = r.body.usuario;
+  $("cartera").hidden = false;
+  $("selMes").value = new Date().toISOString().slice(0, 7);
+  est.periodo = $("selMes").value;
+  setGuardado(`Guardando en el ${r.body.almacenamiento === "s3" ? "bucket" : "servidor"} del estudio${r.body.cifrado ? " (cifrado)" : ""}`);
+  await sincronizarPlantillas();
+  await cargarClientes();
+}
+
+// Las plantillas (de banco y de mayor) son del estudio: se bajan al empezar y quedan disponibles.
+async function sincronizarPlantillas() {
+  const r = await srv("GET", "/plantillas");
+  if (!r.ok) return;
+  const bancos = safeJson(lsGet(LS_TPL)) || [];
+  for (const p of r.body.filter((x) => x.tipo === "banco")) {
+    const id = p.plantilla.meta?.template_id || p.nombre;
+    const i = bancos.findIndex((t) => t.id === id);
+    const entrada = { id, bank: p.plantilla.meta?.bank || p.nombre, tpl: p.plantilla };
+    if (i >= 0) bancos[i] = entrada; else bancos.push(entrada);
+  }
+  lsSet(LS_TPL, JSON.stringify(bancos));
+  for (const p of r.body.filter((x) => x.tipo === "mayor")) guardarPlantillaMayor(p.plantilla, false);
+}
+
+async function cargarClientes(seleccionar) {
+  const r = await srv("GET", "/clientes");
+  est.clientes = r.ok ? r.body : [];
+  $("selCliente").innerHTML = `<option value="">— Elegí un cliente —</option>` + est.clientes.map((c) => `<option value="${c.id}">${esc(c.nombre)}</option>`).join("");
+  if (seleccionar) $("selCliente").value = seleccionar;
+  await elegirCliente($("selCliente").value);
+}
+async function elegirCliente(id, cuentaId) {
+  est.cliente = est.clientes.find((c) => c.id === id) || null;
+  const r = est.cliente ? await srv("GET", `/clientes/${id}/cuentas`) : { ok: true, body: [] };
+  est.cuentas = r.ok ? r.body : [];
+  $("selCuenta").innerHTML = (est.cliente ? `<option value="">— Elegí una cuenta —</option>` : `<option value="">—</option>`) +
+    est.cuentas.map((c) => `<option value="${c.id}">${esc(c.nombre)}${c.banco ? " · " + esc(c.banco) : ""}</option>`).join("");
+  $("selCuenta").disabled = !est.cliente;
+  $("nuevaCuenta").disabled = !est.cliente;
+  if (cuentaId) $("selCuenta").value = cuentaId;
+  else if (est.cuentas.length === 1) $("selCuenta").value = est.cuentas[0].id;
+  await elegirCuenta($("selCuenta").value);
+}
+async function elegirCuenta(id) {
+  est.cuenta = est.cuentas.find((c) => c.id === id) || null;
+  if (est.cuenta) await abrirPeriodo();
+  else { est.gen++; est.abierto = null; est.per = null; est.docs = { extracto: null, mayor: null }; renderFlujo(); }
+}
+
+/** Abre un mes: baja sus documentos, sus decisiones y los pendientes del mes anterior, y concilia. */
+async function abrirPeriodo() {
+  if (!est.cuenta || !est.periodo) return;
+  clearTimeout(est.timer);
+  const gen = ++est.gen, destino = { cuentaId: est.cuenta.id, periodo: est.periodo };
+  est.abierto = null; // mientras se abre, no se guarda nada
+  setGuardado("Abriendo…");
+  const r = await srv("GET", `/cuentas/${destino.cuentaId}/periodos/${destino.periodo}`);
+  if (gen !== est.gen) return; // el usuario ya eligió otro mes
+  if (!r.ok) { setGuardado(r.body.mensaje || "No se pudo abrir el mes", true); return; }
+  const per = r.body.periodo;
+  est.per = per; est.anterior = r.body.anterior;
+  est.docs = { extracto: per?.extractoDoc || null, mayor: per?.mayorDoc || null };
+  state.extracto = null; state.mayor = null; state.cierre = null; resetDecisiones();
+  state.mandos = structuredClone(est.cuenta.mandos || {});
+  // Arrastre automático: lo que quedó pendiente el mes anterior.
+  state.arrastre = (r.body.anterior?.pendientes || []).map((m) => ({ ...m }));
+  try {
+    if (per?.extractoDoc) { const d = await bajarDocumento(per.extractoDoc); await cargarExtracto(d.nombre, d.blob); if (per.segmento) elegirSegmento(per.segmento); }
+    if (per?.mayorDoc) { const d = await bajarDocumento(per.mayorDoc); await cargarMayor(d.nombre, await d.blob.text()); }
+  } catch (e) { toast("No pude abrir los documentos guardados: " + e.message); }
+  if (gen !== est.gen) return;
+  if (per?.decisiones) state.decisiones = { manuales: [], rechazados: [], confirmados: [], ...per.decisiones };
+  document.body.classList.toggle("solo-lectura", soloLectura());
+  est.abierto = destino;
+  run();
+  est.ultimo = firmaGuardado(); // recién abierto: no hay nada nuevo que guardar
+  setGuardado(per ? `Abierto · guardado ${new Date(per.actualizado).toLocaleString("es-AR")} por ${per.actualizadoPor}` : (est.anterior ? `Mes nuevo · ${state.arrastre.length} pendientes de ${est.anterior.periodo}` : "Mes nuevo"));
+}
+async function bajarDocumento(id) {
+  const r = await srv("GET", `/documentos/${id}`);
+  if (!r.ok) throw new Error(r.body?.mensaje || `documento ${r.status}`);
+  const cd = r.headers.get("content-disposition") || "";
+  const m = cd.match(/filename\*=UTF-8''([^;]+)/);
+  return { blob: r.body, nombre: m ? decodeURIComponent(m[1]) : "documento" };
+}
+
+/** Sube un documento recién soltado al estudio (si hay una cuenta y un mes abiertos). */
+async function estudioSubir(tipo, file) {
+  if (!est.activo || !est.abierto) return;
+  setGuardado("Subiendo " + file.name + "…");
+  const r = await srv("POST", "/documentos", file, { "x-tipo": tipo, "x-nombre": encodeURIComponent(file.name), "content-type": file.type || (tipo === "mayor" ? "text/csv" : "application/octet-stream") });
+  if (!r.ok) { setGuardado(r.body.mensaje || "No se pudo subir el documento", true); return; }
+  est.docs[tipo] = r.body.id;
+}
+
+// ---------------- guardado automático
+function cuerpoGuardado() {
+  const rec = state.rec;
+  if (!rec || !est.abierto || !est.docs.extracto || !est.docs.mayor) return null;
+  const aceptados = rec.pendientes.filter((p) => p.tipo === "ajuste_bancario").map((p) => p.id);
+  // Ids de los pendientes con el mes de origen, para que no choquen al arrastrarse varios meses.
+  const pendientes = arrastreSiguiente(rec, aceptados).map((m) => ({ ...m, id: String(m.id).includes(":") ? m.id : `${est.abierto.periodo}:${m.id}` }));
+  return {
+    extractoDoc: est.docs.extracto, mayorDoc: est.docs.mayor, segmento: state.extracto?.seg || 0, decisiones: state.decisiones,
+    resumen: {
+      estado: rec.resumen.estado, diferenciaNoExplicada: rec.diferenciaNoExplicada, atencion: rec.bandeja.filter((t) => t.certeza !== "verde").length,
+      saldos: rec.saldos, movimientosBanco: rec.resumen.movimientosBanco, emparejadosVerde: rec.resumen.emparejadosVerde, pendientes: rec.resumen.pendientes,
+    },
+    pendientes,
+    resultado: { papel: state.papel, ajustes: rec.ajustes },
+  };
+}
+const firmaGuardado = () => JSON.stringify(cuerpoGuardado());
+function programarGuardado() {
+  if (!est.activo || !est.abierto || soloLectura()) return;
+  clearTimeout(est.timer);
+  est.timer = setTimeout(() => guardarPeriodo(), 800);
+}
+async function guardarPeriodo(accion) {
+  clearTimeout(est.timer);
+  const destino = est.abierto;
+  if (!destino) return false;
+  const body = cuerpoGuardado();
+  if (!body) { if (accion) toast("Faltan el extracto o el mayor."); return false; }
+  const firma = JSON.stringify(body);
+  if (!accion && firma === est.ultimo) return true;
+  setGuardado(accion ? "Actualizando el estado…" : "Guardando…");
+  const r = await srv("PUT", `/cuentas/${destino.cuentaId}/periodos/${destino.periodo}`, { ...body, version: est.per?.version, accion });
+  if (est.abierto !== destino) return r.ok; // mientras guardaba se abrió otro mes: no pisar su estado
+  if (r.ok) {
+    est.per = r.body; est.ultimo = firma;
+    setGuardado(`Guardado · ${new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit" })}`);
+    document.body.classList.toggle("solo-lectura", soloLectura());
+    renderFlujo();
+    return true;
+  }
+  if (r.status === 409) { toast("Otra persona guardó cambios en este mes: lo vuelvo a abrir con lo último."); await abrirPeriodo(); return false; }
+  setGuardado(r.body.mensaje || "No se pudo guardar", true);
+  if (accion) toast(r.body.mensaje || "No se pudo guardar");
+  return false;
+}
+
+// ---------------- estado del mes (preparó / revisó / cerrado)
+const ESTADO_TXT = { borrador: "Borrador", preparado: "Preparado", revisado: "Revisado", cerrado: "Cerrado" };
+function renderFlujo() {
+  const f = $("flujo");
+  const visible = est.activo && est.cuenta && state.rec;
+  f.hidden = !visible;
+  if (!visible) return;
+  const p = est.per || { estado: "borrador" };
+  const quien = (u, t) => (u ? `<b>${esc(u)}</b> · ${new Date(t).toLocaleDateString("es-AR")}` : "—");
+  const dif = state.rec.diferenciaNoExplicada;
+  const boton = {
+    borrador: `<button class="btn sm primary" data-flujo="preparar">Marcar preparado</button>`,
+    preparado: `<button class="btn sm primary" data-flujo="revisar">Marcar revisado</button>`,
+    revisado: `<button class="btn sm primary" data-flujo="cerrar"${dif !== 0 ? ` disabled title="Con diferencia no explicada no se cierra"` : ""}>Cerrar el mes</button>`,
+    cerrado: `<button class="btn sm ghost" data-flujo="reabrir">Reabrir</button>`,
+  }[p.estado];
+  const ant = est.anterior ? `<span class="paso">Mes anterior: ${ESTADO_TXT[est.anterior.estado] || est.anterior.estado}${state.arrastre.length ? ` · ${state.arrastre.length} pendientes arrastrados` : ""}</span>` : "";
+  f.innerHTML = `<span class="c-chip ${p.estado}">${ESTADO_TXT[p.estado]}</span>
+    <span class="paso">Preparó: ${quien(p.preparo, p.preparoEn)}</span><span class="paso">Revisó: ${quien(p.reviso, p.revisoEn)}</span>
+    ${p.estado === "cerrado" ? `<span class="paso">Cerró: ${quien(p.cerro, p.cerroEn)}</span>` : ""}${ant}<span class="sp"></span>${boton}`;
+}
+
+// ---------------- mandos por cuenta
+function guardarMandosCuenta() {
+  est.cuenta.mandos = structuredClone(state.mandos);
+  clearTimeout(guardarMandosCuenta._t);
+  guardarMandosCuenta._t = setTimeout(() => srv("PATCH", `/cuentas/${est.cuenta.id}`, { mandos: state.mandos }), 600);
+}
+
+// ---------------- altas
+function formModal(titulo, campos, alGuardar) {
+  abrirModal(titulo, `<form class="c-form" id="altaForm">${campos.map((c) => c.opciones
+    ? `<label>${c.t}<select name="${c.k}">${c.opciones.map((o) => `<option value="${o}">${o}</option>`).join("")}</select></label>`
+    : `<label>${c.t}<input name="${c.k}" ${c.req ? "required" : ""} placeholder="${esc(c.ph || "")}" /></label>`).join("")}
+    <div class="modal-acciones"><button class="btn primary" type="submit">Guardar</button></div></form>`);
+  $("altaForm").querySelector("input")?.focus();
+  $("altaForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const datos = Object.fromEntries(new FormData(e.target));
+    if (await alGuardar(datos)) cerrarModal();
+  });
+}
+$("nuevoCliente").addEventListener("click", () => formModal("Nuevo cliente", [{ k: "nombre", t: "Razón social o nombre", req: true, ph: "Ferretería El Tornillo SRL" }, { k: "cuit", t: "CUIT (opcional)", ph: "30-12345678-9" }], async (d) => {
+  const r = await srv("POST", "/clientes", d);
+  if (!r.ok) { toast(r.body.mensaje); return false; }
+  await cargarClientes(r.body.id); toast("Cliente creado."); return true;
+}));
+$("nuevaCuenta").addEventListener("click", () => est.cliente && formModal(`Nueva cuenta de ${esc(est.cliente.nombre)}`, [
+  { k: "nombre", t: "Cuenta", req: true, ph: "Cuenta corriente en pesos" }, { k: "banco", t: "Banco", ph: "Banco del Río" }, { k: "moneda", t: "Moneda", opciones: ["ARS", "USD"] }, { k: "cbu", t: "CBU (opcional)" },
+], async (d) => {
+  const r = await srv("POST", `/clientes/${est.cliente.id}/cuentas`, d);
+  if (!r.ok) { toast(r.body.mensaje); return false; }
+  await elegirCliente(est.cliente.id, r.body.id); toast("Cuenta creada."); return true;
+}));
+$("selCliente").addEventListener("change", (e) => elegirCliente(e.target.value));
+$("selCuenta").addEventListener("change", (e) => elegirCuenta(e.target.value));
+$("selMes").addEventListener("change", async (e) => {
+  const mes = e.target.value;
+  if (!/^\d{4}-\d{2}$/.test(mes) || mes === est.periodo) return;
+  await guardarPeriodo(); // lo pendiente del mes que se deja
+  est.periodo = mes; await abrirPeriodo();
+});
+
+// ---------------- tablero de cartera
+$("verTablero").addEventListener("click", async () => {
+  const r = await srv("GET", `/cartera?hasta=${est.periodo}&meses=6`);
+  if (!r.ok) return toast(r.body.mensaje || "No pude abrir el tablero.");
+  const { meses, clientes } = r.body;
+  const mesTxt = (m) => new Date(m + "-15T12:00:00Z").toLocaleDateString("es-AR", { month: "short", year: "2-digit", timeZone: "UTC" });
+  const filas = clientes.flatMap((c) => (c.cuentas.length ? c.cuentas : [null]).map((cu) => {
+    if (!cu) return `<tr><td><b>${esc(c.nombre)}</b><div class="vacio">sin cuentas</div></td>${meses.map(() => "<td></td>").join("")}</tr>`;
+    const celdas = meses.map((m) => {
+      const p = cu.periodos[m];
+      if (!p) return `<td class="cel"><button data-abrir="${c.id}|${cu.id}|${m}" class="vacio" title="Sin empezar">—</button></td>`;
+      const color = p.estado === "cerrado" ? "verde" : p.semaforo || "amarillo";
+      return `<td class="cel"><button data-abrir="${c.id}|${cu.id}|${m}" title="${p.diferencia ? "Diferencia " + fmtCents(p.diferencia) : ""}">${dot(color)} ${ESTADO_TXT[p.estado]}</button></td>`;
+    }).join("");
+    return `<tr><td><b>${esc(c.nombre)}</b><div class="muted">${esc(cu.nombre)}${cu.banco ? " · " + esc(cu.banco) : ""}</div></td>${celdas}</tr>`;
+  })).join("");
+  abrirModal("Tablero de cartera", `<p>Estado de cada cuenta por mes. Tocá una celda para abrirla.</p><div class="c-tablero"><table><thead><tr><th>Cliente y cuenta</th>${meses.map((m) => `<th class="cel">${mesTxt(m)}</th>`).join("")}</tr></thead><tbody>${filas || `<tr><td colspan="${meses.length + 1}" class="vacio">Todavía no hay clientes. Creá el primero con “+ Cliente”.</td></tr>`}</tbody></table></div>`, { ancho: true });
+});
+document.addEventListener("click", async (e) => {
+  const b = e.target.closest("[data-abrir], [data-flujo]");
+  if (!b) return;
+  if (b.dataset.flujo) {
+    const ok = await guardarPeriodo(b.dataset.flujo);
+    if (ok) toast({ preparar: "Marcado como preparado.", revisar: "Marcado como revisado.", cerrar: "Mes cerrado: queda en solo lectura.", reabrir: "Mes reabierto." }[b.dataset.flujo]);
+    if (ok && b.dataset.flujo === "reabrir") run();
+    return;
+  }
+  const [cli, cta, mes] = b.dataset.abrir.split("|");
+  cerrarModal();
+  await guardarPeriodo();
+  est.periodo = mes; $("selMes").value = mes;
+  $("selCliente").value = cli;
+  await elegirCliente(cli, cta);
+});
+
+iniciarEstudio();

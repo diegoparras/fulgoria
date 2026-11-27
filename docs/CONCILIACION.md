@@ -93,6 +93,18 @@ node tools/conciliar.mjs extracto.pdf mayor.csv --config mandos.json --out salid
 partidas conocidas: un depósito que agrupa dos cobranzas, un cheque pendiente, un depósito en
 tránsito, cuatro gastos/impuestos sin registrar y un crédito que el cliente no registró.
 
+## Modo estudio (persistencia)
+
+Con `PERSISTENCIA=on` (ver `docs/DEPLOY.md`, sección 4) la pantalla Conciliar trabaja por **cliente →
+cuenta → mes**: los documentos se suben al servidor del estudio o a su bucket R2/S3 (cifrados si hay
+`DOCS_CLAVE`), todo se autoguarda, cada mes trae solo los pendientes del anterior y pasa por
+**borrador → preparado → revisado → cerrado** (cerrar exige diferencia no explicada = 0 y deja el mes en
+solo lectura; cambiar documentos o decisiones de un mes preparado lo vuelve a borrador). Hay
+**tablero de cartera**, plantillas de banco y de mayor **compartidas por el estudio**, mandos por cuenta,
+control de concurrencia (si dos personas editan el mismo mes, la segunda recibe lo último) y un
+registro de auditoría. Código: `server/persistencia.js` (SQLite con `node:sqlite`), `server/blobs.js`
+(disco / S3 con firma SigV4 vía `aws4fetch`, cifrado AES-256-GCM), `server/api.js` (`/api/v1`).
+
 ## Dataset sintético y benchmark
 
 `datasets/conciliacion-sintetica/` tiene 148 casos con la respuesta correcta (ver su README), entre
@@ -128,7 +140,7 @@ contra ellos (`RESULTADOS.md`). Lo que el dataset encontró y se corrigió:
 
 ## Pendiente
 
-- Persistencia por cliente / cuenta / período (hoy el arrastre se lleva con el JSON de pendientes).
+- Modo estudio: usuarios con roles (preparador / revisor) desde Lockatus; hoy cualquiera con login puede todo.
 - Traducciones de la pantalla de conciliación (hoy solo en español).
 - Editor de reglas de clasificación propias en la interfaz (el motor ya las acepta).
 - Lectura de XLSX (las plantillas de mayor ya existen; falta leer el archivo Excel).

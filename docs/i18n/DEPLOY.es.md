@@ -102,7 +102,8 @@ EasyPanel puede **tirar la imagen ya construida** o **compilar desde el repo**. 
    SESSION_SECRET=<hex aleatorio>
    COOKIE_SECURE=true
    ```
-5. Deploy. No hay nada más — sin Redis, sin worker, sin volúmenes. Es stateless.
+5. Deploy. No hay nada más — sin Redis, sin worker. Sin modo estudio es stateless; con
+   `PERSISTENCIA=on`, montá un volumen en `/data` (ver [Modo estudio](#4-modo-estudio-guardar-el-trabajo)).
 
 ### Opción B — compilar desde el código
 
@@ -110,6 +111,45 @@ EasyPanel puede **tirar la imagen ya construida** o **compilar desde el repo**. 
 2. Tipo de build: **Dockerfile** (el repo trae uno). Mismo puerto / variables que arriba.
 
 > EasyPanel está detrás de HTTPS, así que dejá `COOKIE_SECURE=true`.
+
+---
+
+## 4. Modo estudio (guardar el trabajo)
+
+Por defecto Fulgoria no guarda nada en el servidor. Con `PERSISTENCIA=on`, la pantalla **Conciliar**
+trabaja por cliente → cuenta bancaria → mes y guarda los documentos (extractos y mayores), las
+decisiones, los papeles de trabajo, lo que pasa al mes siguiente y el estado del mes (borrador →
+preparado → revisado → cerrado), además de las plantillas del estudio y un registro de auditoría. El
+procesamiento sigue en el navegador; el servidor guarda.
+
+- **Metadatos** (clientes, cuentas, meses, auditoría): SQLite en `DATA_DIR/fulgoria.sqlite`.
+- **Documentos**: en disco (`ALMACENAMIENTO=disco`, dentro de `DATA_DIR`) o en un bucket compatible
+  con S3 (`ALMACENAMIENTO=s3`: Cloudflare R2, AWS S3, MinIO).
+- **Cifrado**: con `DOCS_CLAVE` (32 bytes, `openssl rand -hex 32`) cada documento se cifra con
+  AES‑256‑GCM *antes* de salir del proceso: ni el disco ni el proveedor del bucket ven el contenido.
+  **Guardá bien la clave: sin ella los documentos guardados no se pueden leer.**
+- **Copias**: cada `BACKUP_HORAS` la base se copia (`VACUUM INTO`) a `backups/` en el mismo
+  almacenamiento (cifrada si hay clave). A demanda: `node server.js --backup`. Con bucket, agregá una
+  regla de ciclo de vida que borre las copias viejas de `backups/`.
+
+**EasyPanel**: *Mounts → Volume →* ruta `/data` (la imagen ya usa `DATA_DIR=/data`). Sin el volumen,
+todo lo guardado se pierde en el próximo deploy — incluso con R2/S3, porque la base vive en `/data`.
+
+**Cloudflare R2**: creá un bucket y un *R2 API token* con *Object Read & Write* sobre ese bucket, y:
+
+```ini
+PERSISTENCIA=on
+ALMACENAMIENTO=s3
+S3_ENDPOINT=https://<account-id>.r2.cloudflarestorage.com
+S3_REGION=auto
+S3_BUCKET=<bucket>
+S3_ACCESS_KEY_ID=<access key del token>
+S3_SECRET_ACCESS_KEY=<secret del token>
+DOCS_CLAVE=<openssl rand -hex 32>
+```
+
+**AWS S3**: igual, con `S3_ENDPOINT=https://s3.<región>.amazonaws.com` y `S3_REGION=<región>`; un usuario
+IAM limitado a `s3:GetObject`, `s3:PutObject` y `s3:DeleteObject` sobre `arn:aws:s3:::<bucket>/*`.
 
 ---
 
@@ -125,6 +165,13 @@ EasyPanel puede **tirar la imagen ya construida** o **compilar desde el repo**. 
 | `SESSION_TTL_HOURS` | `12` | Cuánto dura una sesión iniciada. |
 | `COOKIE_SECURE` | `true` | Envía la cookie solo por HTTPS. Poné `false` para `http://` local. |
 | `ESCRIBA_URL` | — | Destino del botón **"Enviar a Escriba"**. Vacío → `/`. Poné la URL de tu Escriba (o un path interno si están en el mismo dominio). |
+| `PERSISTENCIA` | `off` | `on` activa el modo estudio (guarda clientes, cuentas, meses y documentos). |
+| `DATA_DIR` | `./data` (`/data` en la imagen) | Base y, con `disco`, documentos. Montá un volumen acá. |
+| `ALMACENAMIENTO` | `disco` | `disco` o `s3` (R2 / S3 / MinIO) para los documentos. |
+| `S3_ENDPOINT`, `S3_REGION`, `S3_BUCKET`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`, `S3_PREFIJO` | — | Datos del bucket con `ALMACENAMIENTO=s3`. |
+| `DOCS_CLAVE` | — | Clave de 32 bytes (hex/base64) para cifrar los documentos con AES‑256‑GCM. Recomendada. |
+| `BACKUP_HORAS` | `24` | Cada cuántas horas se copia la base. `0` lo desactiva. |
+| `DOC_MAX_MB` | `25` | Tamaño máximo de un documento subido. |
 
 Lista completa con comentarios: [`.env.example`](../../.env.example).
 
@@ -139,5 +186,7 @@ Antes de exponer Fulgoria a alguien que no seas vos:
 - [ ] `COOKIE_SECURE=true` detrás de HTTPS (EasyPanel / tu reverse proxy termina el TLS).
 - [ ] Mantené el `.env` fuera de git y de la imagen (ya lo está — `.gitignore` + `.dockerignore`).
 - [ ] Guardá los secretos en un gestor de secretos / el panel de EasyPanel, no en un archivo commiteado.
-- [ ] Recordá: el documento se procesa en el navegador, así que no hay datos del documento que proteger
-      en el server — pero el login igual controla *quién* puede usar la app.
+- [ ] Sin modo estudio, el documento se procesa en el navegador y no se guarda, así que no hay datos
+      del documento que proteger en el server — pero el login igual controla *quién* puede usar la app.
+- [ ] Con `PERSISTENCIA=on`: volumen en `/data`, `DOCS_CLAVE` configurada y guardada en un lugar seguro
+      (gestor de contraseñas), copias verificadas y un token del bucket limitado a ese bucket.

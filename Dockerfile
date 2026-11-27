@@ -15,6 +15,11 @@ COPY --from=deps /app/node_modules ./node_modules
 # samples/banco-rio-cc.pdf, favicon, server.js, package.json, CHANGELOG.md…). NUNCA .env ni
 # samples/private. El CHANGELOG.md es la fuente de las novedades del log de arranque y de la UI.
 COPY . .
+# Modo estudio (PERSISTENCIA=on): base y documentos en /data. Montá un volumen ahí (EasyPanel:
+# Mounts → Volume → /data) o se pierden al redeployar. Con ALMACENAMIENTO=s3 los documentos van al
+# bucket, pero la base sigue en /data.
+ENV DATA_DIR=/data
+RUN mkdir -p /data && chown node:node /data
 EXPOSE 3000
 USER node
 CMD ["node", "server.js"]

@@ -1,0 +1,283 @@
+// Persistencia del estudio: metadatos en SQLite (node:sqlite, sin dependencias nativas) y
+// documentos en disco o en un bucket S3/R2 (ver blobs.js). Una instalación = un estudio.
+//
+// Lo que se guarda: clientes, cuentas bancarias, períodos (mes) de cada cuenta con sus documentos,
+// decisiones del usuario, resultado de la conciliación, pendientes para el mes siguiente y estado
+// (borrador → preparado → revisado → cerrado), plantillas compartidas y un registro de auditoría.
+// El procesamiento (lectura del PDF, conciliación) sigue en el navegador: el servidor guarda.
+"use strict";
+const fs = require("fs");
+const path = require("path");
+const crypto = require("crypto");
+
+// node:sqlite emite un aviso de "experimental" en Node 22; no aporta nada en los registros.
+const _emit = process.emitWarning;
+process.emitWarning = function (w, ...a) { if (String(w && w.message || w).includes("SQLite")) return; return _emit.call(process, w, ...a); };
+const { DatabaseSync } = require("node:sqlite");
+process.emitWarning = _emit;
+
+const { crearBlobs } = require("./blobs.js");
+
+const ESQUEMA = `
+PRAGMA journal_mode = WAL;
+PRAGMA foreign_keys = ON;
+CREATE TABLE IF NOT EXISTS clientes (
+  id TEXT PRIMARY KEY, nombre TEXT NOT NULL, cuit TEXT, notas TEXT, archivado INTEGER NOT NULL DEFAULT 0,
+  creado TEXT, actualizado TEXT);
+CREATE TABLE IF NOT EXISTS cuentas (
+  id TEXT PRIMARY KEY, cliente_id TEXT NOT NULL REFERENCES clientes(id) ON DELETE CASCADE,
+  nombre TEXT NOT NULL, banco TEXT, moneda TEXT NOT NULL DEFAULT 'ARS', cbu TEXT, mandos TEXT,
+  creado TEXT, actualizado TEXT);
+CREATE TABLE IF NOT EXISTS documentos (
+  id TEXT PRIMARY KEY, tipo TEXT, nombre TEXT, mime TEXT, bytes INTEGER, sha256 TEXT, clave TEXT,
+  subido_por TEXT, creado TEXT);
+CREATE TABLE IF NOT EXISTS periodos (
+  id TEXT PRIMARY KEY, cuenta_id TEXT NOT NULL REFERENCES cuentas(id) ON DELETE CASCADE,
+  periodo TEXT NOT NULL, estado TEXT NOT NULL DEFAULT 'borrador', version INTEGER NOT NULL DEFAULT 1,
+  extracto_doc TEXT, mayor_doc TEXT, segmento INTEGER NOT NULL DEFAULT 0,
+  decisiones TEXT, resumen TEXT, pendientes TEXT, resultado TEXT,
+  preparo TEXT, preparo_en TEXT, reviso TEXT, reviso_en TEXT, cerro TEXT, cerro_en TEXT,
+  actualizado TEXT, actualizado_por TEXT, UNIQUE (cuenta_id, periodo));
+CREATE TABLE IF NOT EXISTS plantillas (
+  id TEXT PRIMARY KEY, tipo TEXT NOT NULL, nombre TEXT NOT NULL, json TEXT NOT NULL,
+  actualizado TEXT, actualizado_por TEXT, UNIQUE (tipo, nombre));
+CREATE TABLE IF NOT EXISTS eventos (
+  id INTEGER PRIMARY KEY AUTOINCREMENT, fecha TEXT, usuario TEXT, accion TEXT, entidad TEXT,
+  entidad_id TEXT, detalle TEXT);
+CREATE INDEX IF NOT EXISTS ix_cuentas_cliente ON cuentas(cliente_id);
+CREATE INDEX IF NOT EXISTS ix_periodos_cuenta ON periodos(cuenta_id, periodo);
+CREATE INDEX IF NOT EXISTS ix_eventos_entidad ON eventos(entidad, entidad_id);
+`;
+
+const ahora = () => new Date().toISOString();
+const uid = () => crypto.randomUUID();
+const J = (s) => (s == null ? null : JSON.parse(s));
+
+/** Mes anterior de "AAAA-MM". */
+function mesAnterior(p) { const [y, m] = p.split("-").map(Number); return m === 1 ? `${y - 1}-12` : `${y}-${String(m - 1).padStart(2, "0")}`; }
+function meses(hasta, n) { const out = [hasta]; while (out.length < n) out.unshift(mesAnterior(out[0])); return out; }
+
+function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, backupHoras = 24 } = {}) {
+  fs.mkdirSync(dataDir, { recursive: true });
+  const db = new DatabaseSync(path.join(dataDir, "fulgoria.sqlite"));
+  db.exec(ESQUEMA);
+  const blobs = crearBlobs({ almacenamiento, dataDir, s3, clave });
+  const q = (sql) => db.prepare(sql);
+
+  const evento = (usuario, accion, entidad, entidadId, detalle) =>
+    q("INSERT INTO eventos (fecha, usuario, accion, entidad, entidad_id, detalle) VALUES (?, ?, ?, ?, ?, ?)")
+      .run(ahora(), usuario, accion, entidad, entidadId, detalle == null ? null : JSON.stringify(detalle));
+
+  const filaPeriodo = (r) => r && ({
+    id: r.id, cuentaId: r.cuenta_id, periodo: r.periodo, estado: r.estado, version: r.version,
+    extractoDoc: r.extracto_doc, mayorDoc: r.mayor_doc, segmento: r.segmento,
+    decisiones: J(r.decisiones), resumen: J(r.resumen), pendientes: J(r.pendientes), resultado: J(r.resultado),
+    preparo: r.preparo, preparoEn: r.preparo_en, reviso: r.reviso, revisoEn: r.reviso_en, cerro: r.cerro, cerroEn: r.cerro_en,
+    actualizado: r.actualizado, actualizadoPor: r.actualizado_por,
+  });
+
+  const api = {
+    almacenamiento: blobs.tipo, cifrado: blobs.cifrado, evento,
+
+    // ---------------- clientes y cuentas
+    clientes({ archivados = false } = {}) {
+      return q(`SELECT * FROM clientes ${archivados ? "" : "WHERE archivado = 0"} ORDER BY nombre COLLATE NOCASE`).all()
+        .map((c) => ({ id: c.id, nombre: c.nombre, cuit: c.cuit, notas: c.notas, archivado: !!c.archivado }));
+    },
+    crearCliente(u, { nombre, cuit = null, notas = null }) {
+      const id = uid(), t = ahora();
+      q("INSERT INTO clientes (id, nombre, cuit, notas, creado, actualizado) VALUES (?, ?, ?, ?, ?, ?)").run(id, nombre, cuit, notas, t, t);
+      evento(u, "crear", "cliente", id, { nombre });
+      return { id, nombre, cuit, notas, archivado: false };
+    },
+    editarCliente(u, id, campos) {
+      const c = q("SELECT * FROM clientes WHERE id = ?").get(id);
+      if (!c) return null;
+      const n = { nombre: campos.nombre ?? c.nombre, cuit: campos.cuit ?? c.cuit, notas: campos.notas ?? c.notas, archivado: campos.archivado == null ? c.archivado : campos.archivado ? 1 : 0 };
+      q("UPDATE clientes SET nombre = ?, cuit = ?, notas = ?, archivado = ?, actualizado = ? WHERE id = ?").run(n.nombre, n.cuit, n.notas, n.archivado, ahora(), id);
+      evento(u, "editar", "cliente", id, campos);
+      return { id, ...n, archivado: !!n.archivado };
+    },
+    cuentas(clienteId) {
+      return q("SELECT * FROM cuentas WHERE cliente_id = ? ORDER BY nombre COLLATE NOCASE").all(clienteId).map(filaCuenta);
+    },
+    cuenta(id) { return filaCuenta(q("SELECT * FROM cuentas WHERE id = ?").get(id)); },
+    crearCuenta(u, clienteId, { nombre, banco = null, moneda = "ARS", cbu = null, mandos = null }) {
+      if (!q("SELECT 1 FROM clientes WHERE id = ?").get(clienteId)) return null;
+      const id = uid(), t = ahora();
+      q("INSERT INTO cuentas (id, cliente_id, nombre, banco, moneda, cbu, mandos, creado, actualizado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
+        .run(id, clienteId, nombre, banco, moneda, cbu, mandos ? JSON.stringify(mandos) : null, t, t);
+      evento(u, "crear", "cuenta", id, { clienteId, nombre, banco, moneda });
+      return api.cuenta(id);
+    },
+    editarCuenta(u, id, campos) {
+      const c = q("SELECT * FROM cuentas WHERE id = ?").get(id);
+      if (!c) return null;
+      q("UPDATE cuentas SET nombre = ?, banco = ?, moneda = ?, cbu = ?, mandos = ?, actualizado = ? WHERE id = ?").run(
+        campos.nombre ?? c.nombre, campos.banco ?? c.banco, campos.moneda ?? c.moneda, campos.cbu ?? c.cbu,
+        campos.mandos !== undefined ? JSON.stringify(campos.mandos) : c.mandos, ahora(), id);
+      evento(u, "editar", "cuenta", id, Object.keys(campos));
+      return api.cuenta(id);
+    },
+
+    // ---------------- documentos
+    async guardarDocumento(u, { tipo, nombre, mime, datos }) {
+      const sha = crypto.createHash("sha256").update(datos).digest("hex");
+      const igual = q("SELECT * FROM documentos WHERE sha256 = ? AND tipo = ?").get(sha, tipo);
+      if (igual) return filaDoc(igual); // el mismo archivo ya está guardado: no se duplica
+      const id = uid(), t = ahora();
+      const clave = `documentos/${t.slice(0, 7)}/${id}`;
+      await blobs.guardar(clave, datos);
+      q("INSERT INTO documentos (id, tipo, nombre, mime, bytes, sha256, clave, subido_por, creado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
+        .run(id, tipo, nombre, mime, datos.length, sha, clave, u, t);
+      evento(u, "subir", "documento", id, { tipo, nombre, bytes: datos.length });
+      return filaDoc(q("SELECT * FROM documentos WHERE id = ?").get(id));
+    },
+    documento(id) { return filaDoc(q("SELECT * FROM documentos WHERE id = ?").get(id)); },
+    async leerDocumento(id) {
+      const d = q("SELECT * FROM documentos WHERE id = ?").get(id);
+      if (!d) return null;
+      return { meta: filaDoc(d), datos: await blobs.leer(d.clave) };
+    },
+
+    // ---------------- períodos
+    periodos(cuentaId) {
+      return q("SELECT * FROM periodos WHERE cuenta_id = ? ORDER BY periodo DESC").all(cuentaId).map((r) => {
+        const p = filaPeriodo(r);
+        return { periodo: p.periodo, estado: p.estado, resumen: p.resumen, preparo: p.preparo, reviso: p.reviso, actualizado: p.actualizado };
+      });
+    },
+    /** Período con lo necesario para abrirlo, incluidos los pendientes del mes anterior (arrastre). */
+    periodo(cuentaId, periodo) {
+      const p = filaPeriodo(q("SELECT * FROM periodos WHERE cuenta_id = ? AND periodo = ?").get(cuentaId, periodo));
+      const ant = filaPeriodo(q("SELECT * FROM periodos WHERE cuenta_id = ? AND periodo = ?").get(cuentaId, mesAnterior(periodo)));
+      return {
+        periodo: p || null, // null si todavía no se empezó
+        anterior: ant ? { periodo: ant.periodo, estado: ant.estado, pendientes: ant.pendientes || [], saldos: ant.resumen?.saldos || null } : null,
+      };
+    },
+    /**
+     * Guarda un período. Control de concurrencia optimista (version). Transiciones de estado:
+     * preparar → revisar → cerrar (solo con diferencia no explicada = 0) y reabrir. Un período
+     * cerrado no se modifica. Si cambian los documentos o las decisiones de un período preparado o
+     * revisado, vuelve a borrador (lo que se revisó ya no es lo que hay).
+     */
+    guardarPeriodo(u, cuentaId, periodo, body) {
+      if (!q("SELECT 1 FROM cuentas WHERE id = ?").get(cuentaId)) return { error: 404, msg: "No existe la cuenta." };
+      const fila = q("SELECT * FROM periodos WHERE cuenta_id = ? AND periodo = ?").get(cuentaId, periodo);
+      const p = filaPeriodo(fila);
+      if (p && body.version !== p.version) return { error: 409, msg: "Otra persona guardó cambios en este mes. Volvé a abrirlo.", actual: p };
+      const accion = body.accion || null;
+      if (p && p.estado === "cerrado" && accion !== "reabrir") return { error: 423, msg: "El mes está cerrado. Reabrilo para modificarlo." };
+
+      const n = p ? { ...p } : { id: uid(), cuentaId, periodo, estado: "borrador", version: 0, segmento: 0 };
+      const cambiaContenido = (k) => body[k] !== undefined && JSON.stringify(body[k]) !== JSON.stringify(n[k]);
+      const contenidoCambio = ["extractoDoc", "mayorDoc", "segmento", "decisiones"].some(cambiaContenido);
+      for (const k of ["extractoDoc", "mayorDoc", "segmento", "decisiones", "resumen", "pendientes", "resultado"]) if (body[k] !== undefined) n[k] = body[k];
+      const t = ahora();
+      if (contenidoCambio && (n.estado === "preparado" || n.estado === "revisado")) {
+        n.estado = "borrador"; n.preparo = n.preparoEn = n.reviso = n.revisoEn = null;
+        evento(u, "invalidar_revision", "periodo", n.id, { periodo });
+      }
+      const dif = n.resumen?.diferenciaNoExplicada;
+      if (accion === "preparar") {
+        if (!n.extractoDoc || !n.mayorDoc) return { error: 422, msg: "Faltan el extracto o el mayor." };
+        n.estado = "preparado"; n.preparo = u; n.preparoEn = t;
+      } else if (accion === "revisar") {
+        if (n.estado !== "preparado") return { error: 422, msg: "Primero hay que marcarlo como preparado." };
+        n.estado = "revisado"; n.reviso = u; n.revisoEn = t;
+      } else if (accion === "cerrar") {
+        if (n.estado !== "revisado") return { error: 422, msg: "Solo se cierra un mes revisado." };
+        if (dif !== 0) return { error: 422, msg: "No se puede cerrar con diferencia no explicada." };
+        n.estado = "cerrado"; n.cerro = u; n.cerroEn = t;
+      } else if (accion === "reabrir") {
+        if (n.estado !== "cerrado") return { error: 422, msg: "El mes no está cerrado." };
+        n.estado = "borrador"; n.preparo = n.preparoEn = n.reviso = n.revisoEn = n.cerro = n.cerroEn = null;
+      } else if (accion) return { error: 400, msg: "Acción desconocida." };
+      n.version = (n.version || 0) + 1;
+      const s = (v) => (v == null ? null : JSON.stringify(v));
+      q(`INSERT INTO periodos (id, cuenta_id, periodo, estado, version, extracto_doc, mayor_doc, segmento, decisiones, resumen, pendientes, resultado,
+           preparo, preparo_en, reviso, reviso_en, cerro, cerro_en, actualizado, actualizado_por)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         ON CONFLICT (cuenta_id, periodo) DO UPDATE SET estado = excluded.estado, version = excluded.version,
+           extracto_doc = excluded.extracto_doc, mayor_doc = excluded.mayor_doc, segmento = excluded.segmento,
+           decisiones = excluded.decisiones, resumen = excluded.resumen, pendientes = excluded.pendientes, resultado = excluded.resultado,
+           preparo = excluded.preparo, preparo_en = excluded.preparo_en, reviso = excluded.reviso, reviso_en = excluded.reviso_en,
+           cerro = excluded.cerro, cerro_en = excluded.cerro_en, actualizado = excluded.actualizado, actualizado_por = excluded.actualizado_por`)
+        .run(n.id, cuentaId, periodo, n.estado, n.version, n.extractoDoc ?? null, n.mayorDoc ?? null, n.segmento ?? 0,
+          s(n.decisiones), s(n.resumen), s(n.pendientes), s(n.resultado),
+          n.preparo ?? null, n.preparoEn ?? null, n.reviso ?? null, n.revisoEn ?? null, n.cerro ?? null, n.cerroEn ?? null, t, u);
+      if (accion || !p || contenidoCambio) evento(u, accion || (p ? "editar" : "crear"), "periodo", n.id, { cuentaId, periodo, estado: n.estado });
+      return { periodo: filaPeriodo(q("SELECT * FROM periodos WHERE id = ?").get(n.id)) };
+    },
+
+    // ---------------- tablero de cartera
+    cartera({ hasta, n = 6 } = {}) {
+      const ms = meses(hasta || ahora().slice(0, 7), n);
+      const per = q("SELECT cuenta_id, periodo, estado, resumen FROM periodos WHERE periodo >= ? AND periodo <= ?").all(ms[0], ms[ms.length - 1]);
+      const porCuenta = new Map();
+      for (const r of per) {
+        const res = J(r.resumen) || {};
+        if (!porCuenta.has(r.cuenta_id)) porCuenta.set(r.cuenta_id, {});
+        porCuenta.get(r.cuenta_id)[r.periodo] = { estado: r.estado, semaforo: res.estado || null, diferencia: res.diferenciaNoExplicada ?? null, atencion: res.atencion ?? null };
+      }
+      return {
+        meses: ms,
+        clientes: api.clientes().map((c) => ({ ...c, cuentas: api.cuentas(c.id).map((cu) => ({ ...cu, periodos: porCuenta.get(cu.id) || {} })) })),
+      };
+    },
+
+    // ---------------- plantillas compartidas (banco = Extractor, mayor = Conciliar)
+    plantillas(tipo) {
+      return q(`SELECT * FROM plantillas ${tipo ? "WHERE tipo = ?" : ""} ORDER BY nombre COLLATE NOCASE`).all(...(tipo ? [tipo] : []))
+        .map((p) => ({ id: p.id, tipo: p.tipo, nombre: p.nombre, plantilla: J(p.json), actualizado: p.actualizado, actualizadoPor: p.actualizado_por }));
+    },
+    guardarPlantilla(u, { tipo, nombre, plantilla }) {
+      const t = ahora(), ex = q("SELECT id FROM plantillas WHERE tipo = ? AND nombre = ?").get(tipo, nombre);
+      const id = ex ? ex.id : uid();
+      q(`INSERT INTO plantillas (id, tipo, nombre, json, actualizado, actualizado_por) VALUES (?, ?, ?, ?, ?, ?)
+         ON CONFLICT (tipo, nombre) DO UPDATE SET json = excluded.json, actualizado = excluded.actualizado, actualizado_por = excluded.actualizado_por`)
+        .run(id, tipo, nombre, JSON.stringify(plantilla), t, u);
+      evento(u, ex ? "editar" : "crear", "plantilla", id, { tipo, nombre });
+      return { id, tipo, nombre };
+    },
+    borrarPlantilla(u, id) {
+      const r = q("DELETE FROM plantillas WHERE id = ?").run(id);
+      if (r.changes) evento(u, "borrar", "plantilla", id, null);
+      return r.changes > 0;
+    },
+
+    eventos({ entidad, entidadId, limite = 100 } = {}) {
+      const where = entidad ? (entidadId ? "WHERE entidad = ? AND entidad_id = ?" : "WHERE entidad = ?") : "";
+      const args = entidad ? (entidadId ? [entidad, entidadId] : [entidad]) : [];
+      return q(`SELECT * FROM eventos ${where} ORDER BY id DESC LIMIT ?`).all(...args, Math.min(limite, 1000))
+        .map((e) => ({ fecha: e.fecha, usuario: e.usuario, accion: e.accion, entidad: e.entidad, entidadId: e.entidad_id, detalle: J(e.detalle) }));
+    },
+
+    // ---------------- copias de seguridad de la base (al mismo almacenamiento de los documentos)
+    async backup() {
+      const tmp = path.join(dataDir, `.backup-${Date.now()}.sqlite`);
+      db.exec(`VACUUM INTO '${tmp.replace(/'/g, "''")}'`);
+      const datos = fs.readFileSync(tmp);
+      fs.unlinkSync(tmp);
+      const clave = `backups/fulgoria-${ahora().replace(/[:.]/g, "-")}.sqlite`;
+      await blobs.guardar(clave, datos);
+      return { clave, bytes: datos.length };
+    },
+    cerrar() { clearInterval(api._timer); db.close(); },
+  };
+  if (backupHoras > 0) {
+    api._timer = setInterval(() => api.backup().then((b) => console.log(`[fulgoria] copia de la base: ${b.clave}`)).catch((e) => console.error("[fulgoria] copia de la base falló:", e.message)), backupHoras * 3600 * 1000);
+    api._timer.unref();
+  }
+  return api;
+}
+
+function filaCuenta(c) {
+  return c && { id: c.id, clienteId: c.cliente_id, nombre: c.nombre, banco: c.banco, moneda: c.moneda, cbu: c.cbu, mandos: J(c.mandos) };
+}
+function filaDoc(d) {
+  return d && { id: d.id, tipo: d.tipo, nombre: d.nombre, mime: d.mime, bytes: d.bytes, sha256: d.sha256, subidoPor: d.subido_por, creado: d.creado };
+}
+
+module.exports = { crearPersistencia, mesAnterior, meses };

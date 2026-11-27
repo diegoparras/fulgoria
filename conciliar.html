@@ -32,6 +32,17 @@
   </header>
 
   <main>
+    <!-- Modo estudio (solo si el servidor tiene persistencia): cliente, cuenta y mes -->
+    <section id="cartera" class="c-cartera" hidden>
+      <label class="c-sel">Cliente<select id="selCliente"></select></label>
+      <button class="btn sm ghost" id="nuevoCliente" title="Agregar un cliente">+ Cliente</button>
+      <label class="c-sel">Cuenta<select id="selCuenta"></select></label>
+      <button class="btn sm ghost" id="nuevaCuenta" title="Agregar una cuenta bancaria al cliente">+ Cuenta</button>
+      <label class="c-sel">Mes<input type="month" id="selMes" /></label>
+      <button class="btn sm" id="verTablero">Tablero</button>
+      <span id="guardado" class="c-guardado"></span>
+    </section>
+
     <!-- Carga: un solo lugar para soltar todo -->
     <section id="drop" class="c-drop">
       <div class="c-drop-card">
@@ -54,6 +65,7 @@
     <!-- Resultado -->
     <section id="result" class="c-result" hidden>
       <div class="c-main">
+        <div id="flujo" class="c-flujo" hidden></div>
         <div id="estado" class="c-estado"></div>
         <div id="bandeja" class="c-bandeja"></div>
         <div id="mesa" class="c-mesa" hidden></div>

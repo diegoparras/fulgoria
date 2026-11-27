@@ -1,5 +1,7 @@
-// Fulgoria — servidor FINO. Solo sirve la app estática + un login opcional desde el .env.
-// El documento se procesa 100% en el navegador y NUNCA llega acá: el server solo es la puerta.
+// Fulgoria — servidor. Sirve la app estática + un login opcional desde el .env.
+// El documento se PROCESA 100% en el navegador. Con PERSISTENCIA=on, además guarda el trabajo del
+// estudio (clientes, cuentas, meses, documentos) en su propio servidor o en su bucket S3/R2
+// (ver server/persistencia.js); con PERSISTENCIA=off (default) no guarda nada, como siempre.
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
@@ -37,6 +39,10 @@ const COOKIE_SECURE = String(process.env.COOKIE_SECURE ?? "true").toLowerCase() 
 const TTL_MS = Number(process.env.SESSION_TTL_HOURS || 12) * 3600 * 1000;
 const COOKIE = "fulgoria_auth";
 const ESCRIBA_URL = process.env.ESCRIBA_URL || ""; // destino de "Enviar a Escriba" (vacío → "/")
+
+// --- Persistencia del estudio (opcional) ---
+const PERSISTENCIA = String(process.env.PERSISTENCIA || "off").toLowerCase() === "on";
+const DATA_DIR = path.resolve(process.env.DATA_DIR || path.join(__dirname, "data"));
 
 // --- Federación opcional con Lockatus (el hub de identidad de la suite). Flag: local | federado.
 //     Default `local` → todo sigue exactamente como hoy (login propio del .env). ---
@@ -241,6 +247,26 @@ app.get("/api/novedades", (req, res) => {
   res.json({ ok: true, version: APP_VERSION, versiones });
 });
 
+// --- API del estudio (/api/v1): solo con PERSISTENCIA=on. Sin ella, /api/v1/estado avisa que el
+//     modo es local (la app funciona igual, sin guardar nada en el servidor). ---
+const usuarioDe = (req) => { const p = verify(req.cookies[COOKIE]); return (p && p.u) || (AUTH_ENABLED ? "?" : "local"); };
+let persistencia = null;
+if (PERSISTENCIA) {
+  const { crearPersistencia } = require("./server/persistencia.js");
+  const { crearApi } = require("./server/api.js");
+  persistencia = crearPersistencia({
+    dataDir: DATA_DIR,
+    almacenamiento: String(process.env.ALMACENAMIENTO || "disco").toLowerCase(),
+    s3: { endpoint: process.env.S3_ENDPOINT, region: process.env.S3_REGION || "auto", bucket: process.env.S3_BUCKET, accessKeyId: process.env.S3_ACCESS_KEY_ID, secretAccessKey: process.env.S3_SECRET_ACCESS_KEY, prefijo: process.env.S3_PREFIJO || "" },
+    clave: process.env.DOCS_CLAVE || "",
+    backupHoras: Number(process.env.BACKUP_HORAS ?? 24),
+  });
+  app.use("/api/v1", crearApi(persistencia, { maxDocMB: Number(process.env.DOC_MAX_MB || 25), usuario: usuarioDe }));
+  console.log(`[fulgoria] persistencia ON · base ${path.join(DATA_DIR, "fulgoria.sqlite")} · documentos en ${persistencia.almacenamiento}${persistencia.cifrado ? " (cifrados)" : ""}`);
+} else {
+  app.get("/api/v1/estado", (req, res) => res.json({ persistencia: false }));
+}
+
 // --- Estáticos: WHITELIST explícita. Nunca se sirven .env, server.js, node_modules ni
 //     samples/private (PII). Solo el ejemplo sintético es público. ---
 const staticOpts = { index: false, redirect: false };
@@ -255,4 +281,13 @@ app.get(["/conciliar", "/conciliar.html"], (req, res) => res.sendFile(path.join(
 app.get("/samples/mayor-banco-rio-cc.csv", (req, res) => res.type("text/csv").sendFile(path.join(__dirname, "samples", "mayor-banco-rio-cc.csv")));
 app.use((req, res) => res.status(404).send("No encontrado"));
 
-app.listen(PORT, () => console.log(`Fulgoria escuchando en http://localhost:${PORT}  ·  login: ${AUTH_ENABLED ? "ON" : "OFF"}`));
+if (require.main === module) {
+  // CLI: copia de seguridad de la base a demanda →  node server.js --backup
+  if (process.argv[2] === "--backup") {
+    if (!persistencia) { console.error("PERSISTENCIA=off: no hay base que copiar."); process.exit(1); }
+    persistencia.backup().then((b) => { console.log(`Copia guardada: ${b.clave} (${b.bytes} bytes)`); process.exit(0); }).catch((e) => { console.error(e.message); process.exit(1); });
+  } else {
+    app.listen(PORT, () => console.log(`Fulgoria escuchando en http://localhost:${PORT}  ·  login: ${AUTH_ENABLED ? "ON" : "OFF"}  ·  persistencia: ${PERSISTENCIA ? "ON" : "OFF"}`));
+  }
+}
+module.exports = { app, persistencia };
