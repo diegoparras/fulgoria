@@ -8,7 +8,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import {
   parseMoneyCents, fmtCents, toISO, daysBetween, extractEntities, classify, classifyAll,
-  makeMov, resolveConfig, parseLedgerCsv, matchAll, subsetSums, reconcile, arrastreSiguiente,
+  makeMov, resolveConfig, parseLedgerCsv, matchAll, subsetSums, pairKey, reconcile, arrastreSiguiente,
   continuidad, papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, fromExtract,
 } from "../src/core/index.js";
 
@@ -285,4 +285,25 @@ test("fromExtract — convierte el resultado del extractor (débito/crédito →
   assert.deepEqual(r.movs[1].evidencia, { doc: "x.pdf", page: 2, y: 0.1 });
   assert.equal(r.apertura, 100000);
   assert.equal(r.cierre, 145050);
+});
+
+test("decisiones — confirmar, rechazar y emparejar a mano", () => {
+  const cfg = resolveConfig();
+  const bs = [B("B1", "2026-06-08", 1200000, "DEPOSITO")];
+  const ls = [L("L1", "2026-06-07", 700000, "Cobranza A"), L("L2", "2026-06-08", 500000, "Cobranza B"), L("L3", "2026-06-08", 1200000, "Cobranza total")];
+  // Sin decisiones: el exacto (L3) gana al agrupado.
+  let r = matchAll(bs, ls, cfg);
+  assert.equal(pairKey(r.matches[0]), "B1|L3");
+  // Rechazo el exacto → el motor ofrece el agrupado (L1 + L2), y no vuelve a ofrecer B1|L3.
+  r = matchAll(bs, ls, cfg, { rechazados: [{ banco: ["B1"], libros: ["L3"] }] });
+  assert.equal(pairKey(r.matches[0]), "B1|L1,L2");
+  assert.equal(r.matches[0].certeza, "amarillo");
+  // Lo confirmo → verde, con la constancia.
+  r = matchAll(bs, ls, cfg, { rechazados: [{ banco: ["B1"], libros: ["L3"] }], confirmados: [{ banco: ["B1"], libros: ["L2", "L1"] }] });
+  assert.equal(r.matches[0].certeza, "verde");
+  assert.match(r.matches[0].motivos.join(" "), /confirmado por el usuario/);
+  // A mano manda sobre todo (aunque haya diferencia de importe, que queda explícita).
+  r = matchAll(bs, ls, cfg, { manuales: [{ banco: ["B1"], libros: ["L1"] }] });
+  assert.equal(r.matches[0].estrategia, "manual");
+  assert.equal(r.matches[0].diferenciaCents, -500000);
 });

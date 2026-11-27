@@ -39,8 +39,9 @@ export const TIPOS_PENDIENTE = {
  * @param {{ desde?: string, hasta: string }} p.periodo  fechas ISO
  * @param {ReturnType<import("./config.js").resolveConfig>} p.cfg
  * @param {Array} [p.reglas]   reglas de clasificación del cliente (modo deportivo)
+ * @param {Parameters<typeof matchAll>[3]} [p.decisiones]  emparejamientos manuales, rechazados y confirmados
  */
-export function reconcile({ banco, libros, arrastre = [], saldos, periodo, cfg, reglas = [] }) {
+export function reconcile({ banco, libros, arrastre = [], saldos, periodo, cfg, reglas = [], decisiones = {} }) {
   const arr = arrastre.map((m) => ({ ...m, arrastre: true }));
   const poolB = [...arr.filter((m) => m.lado === "banco"), ...banco];
   const poolL = [...arr.filter((m) => m.lado === "libros"), ...libros];
@@ -48,7 +49,7 @@ export function reconcile({ banco, libros, arrastre = [], saldos, periodo, cfg, 
   if (byId.size !== poolB.length + poolL.length) throw new Error("Hay ids repetidos entre banco, libros y arrastre");
 
   const clasif = classifyAll(poolB, reglas);
-  const { matches, libresBanco, libresLibros } = matchAll(poolB, poolL, cfg);
+  const { matches, libresBanco, libresLibros } = matchAll(poolB, poolL, cfg, decisiones);
 
   // --- Pendientes ---
   const pc = cfg.pendientes;

@@ -250,6 +250,9 @@ app.use("/vendor", express.static(path.join(__dirname, "vendor"), { ...staticOpt
 app.get("/favicon.svg", (req, res) => res.sendFile(path.join(__dirname, "favicon.svg")));
 app.get("/samples/banco-rio-cc.pdf", (req, res) => res.sendFile(path.join(__dirname, "samples", "banco-rio-cc.pdf")));
 app.get("/", (req, res) => res.type("html").send(INDEX_HTML));
+// Conciliación (extracto ↔ mayor). Igual que el extractor: todo se procesa en el navegador.
+app.get(["/conciliar", "/conciliar.html"], (req, res) => res.sendFile(path.join(__dirname, "conciliar.html")));
+app.get("/samples/mayor-banco-rio-cc.csv", (req, res) => res.type("text/csv").sendFile(path.join(__dirname, "samples", "mayor-banco-rio-cc.csv")));
 app.use((req, res) => res.status(404).send("No encontrado"));
 
 app.listen(PORT, () => console.log(`Fulgoria escuchando en http://localhost:${PORT}  ·  login: ${AUTH_ENABLED ? "ON" : "OFF"}`));

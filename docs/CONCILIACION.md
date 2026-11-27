@@ -61,6 +61,22 @@ const cfg = resolveConfig(
 Reglas de clasificación propias del cliente: `reconcile({ ..., reglas: [{ tipo, grupo, re }] })`
 (se evalúan antes que las de fábrica).
 
+## Interfaz (`conciliar.html` + `src/conciliar.js`)
+
+En la app: menú ⋮ → **Conciliar con el mayor** (o `/conciliar`). Todo corre en el navegador.
+
+- **Automático**: soltás el extracto (PDF/imagen) y el mayor (CSV). Reusa las plantillas que
+  guardó el Extractor; si no hay, auto-detecta. Muestra el estado general (semáforo, saldos,
+  diferencia no explicada) y la **bandeja**: lo rojo y amarillo abierto, lo verde plegado.
+  Acciones: *Pedir al cliente* (arma el mensaje con las partidas sin identificar), *Confirmar* /
+  *No es esto* en las propuestas, *Descargar asientos*, *Ver en el extracto* (recorte del PDF
+  con la fila marcada).
+- **Deportivo**: lo mismo + panel de **mandos** en vivo (ventanas, tolerancia, agrupados,
+  % pago a cuenta 25.413, plan de cuentas, fecha de cierre; se guardan en el navegador) +
+  **mesa de conciliación** para emparejar a mano.
+- **Papel de trabajo** con exportes: Markdown, CSV, asientos CSV, JSON y *Pendientes para el mes
+  siguiente* (un JSON que se suelta junto con los archivos del mes siguiente para el arrastre).
+
 ## Probar
 
 ```bash
@@ -76,8 +92,9 @@ tránsito, cuatro gastos/impuestos sin registrar y un crédito que el cliente no
 
 ## Pendiente
 
-- Interfaz: bandeja de excepciones ("caja automática") y mesa de conciliación ("deportivo").
-- Persistencia por cliente / cuenta / período y arrastre automático.
+- Persistencia por cliente / cuenta / período (hoy el arrastre se lleva con el JSON de pendientes).
+- Traducciones de la pantalla de conciliación (hoy solo en español).
+- Editor de reglas de clasificación propias en la interfaz (el motor ya las acepta).
 - Lectura de XLSX y plantillas de mayores por sistema (Holistor, Tango, Bejerman, Xubio, Colppy, SOS).
 - CSV "Dinero liberado" de Mercado Pago; liquidaciones de tarjetas (N:1 con aranceles).
 - Exportación de asientos en el formato de importación de cada sistema.

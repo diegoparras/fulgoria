@@ -28,24 +28,45 @@ import { fmtCents } from "./money.js";
 
 const isChequeLike = (m) => !!m.entidades?.cheque || /CHEQ|\bCH\b|\bCHQ\b/i.test(m.descripcion || "");
 
+/** Clave estable de un emparejamiento (para recordar decisiones del usuario). */
+export function pairKey({ banco, libros }) {
+  return [...banco].sort().join(",") + "|" + [...libros].sort().join(",");
+}
+
 /**
  * @param {import("./model.js").Mov[]} banco
  * @param {import("./model.js").Mov[]} libros
  * @param {ReturnType<import("./config.js").resolveConfig>} cfg
+ * @param {{ manuales?: Array<{banco:string[], libros:string[]}>, rechazados?: Array<{banco:string[], libros:string[]}>,
+ *           confirmados?: Array<{banco:string[], libros:string[]}> }} [decisiones]
+ *   Decisiones del usuario: emparejamientos hechos a mano (van primero, en verde), propuestas
+ *   rechazadas (el motor no las vuelve a ofrecer y busca otra) y propuestas confirmadas (pasan a verde).
  * @returns {{ matches: Match[], libresBanco: import("./model.js").Mov[], libresLibros: import("./model.js").Mov[] }}
  */
-export function matchAll(banco, libros, cfg) {
+export function matchAll(banco, libros, cfg, decisiones = {}) {
   const mc = cfg.match;
   const freeB = new Map(banco.map((m) => [m.id, m]));
   const freeL = new Map(libros.map((m) => [m.id, m]));
   const matches = [];
+  const rechazados = new Set((decisiones.rechazados || []).map(pairKey));
+  const confirmados = new Set((decisiones.confirmados || []).map(pairKey));
   let seq = 0;
+  // Devuelve false (y no empareja) si el usuario ya rechazó exactamente ese emparejamiento.
   const take = (bs, ls, props) => {
+    if (props.estrategia !== "manual" && rechazados.has(pairKey({ banco: bs.map((m) => m.id), libros: ls.map((m) => m.id) }))) return false;
     bs.forEach((b) => freeB.delete(b.id));
     ls.forEach((l) => freeL.delete(l.id));
     const sb = bs.reduce((s, m) => s + m.cents, 0), sl = ls.reduce((s, m) => s + m.cents, 0);
     matches.push({ id: "M" + ++seq, banco: bs.map((m) => m.id), libros: ls.map((m) => m.id), diferenciaCents: sl - sb, ...props });
+    return true;
   };
+
+  // --- 0. Emparejamientos hechos a mano (modo deportivo): mandan sobre todo lo demás ---
+  for (const d of decisiones.manuales || []) {
+    const bs = d.banco.map((id) => freeB.get(id)), ls = d.libros.map((id) => freeL.get(id));
+    if (!bs.length || !ls.length || bs.some((x) => !x) || ls.some((x) => !x)) continue; // ya no existen o ya usados
+    take(bs, ls, { estrategia: "manual", certeza: "verde", puntaje: 1, motivos: ["emparejado a mano"] });
+  }
 
   // Ventana de fechas del par. Más amplia hacia adelante para cheques y partidas del libro
   // arrastradas (el banco las debita semanas después), y hacia atrás para partidas del banco
@@ -125,29 +146,29 @@ export function matchAll(banco, libros, cfg) {
         })
         .sort((a, b) => Math.abs(daysBetween(a.fecha, uno.fecha)) - Math.abs(daysBetween(b.fecha, uno.fecha)))
         .slice(0, ag.maxCandidatos);
-      return subsetSums(cands, uno.cents, ag.maxItems, 2);
+      return subsetSums(cands, uno.cents, ag.maxItems, 3);
     };
     for (const b of [...freeB.values()].sort((x, y) => Math.abs(y.cents) - Math.abs(x.cents))) {
       if (!freeB.has(b.id)) continue;
       const sols = grupo(b, [...freeL.values()], "banco");
-      if (!sols.length) continue;
-      const ls = sols[0];
-      take([b], ls, {
-        estrategia: "agrupado", certeza: "amarillo", puntaje: sols.length === 1 ? 0.75 : 0.6,
-        motivos: [`el movimiento del banco (${fmtCents(b.cents)}) es la suma exacta de ${ls.length} registros del libro`,
-          ...(sols.length > 1 ? ["hay otra combinación posible con el mismo total"] : [])],
-      });
+      for (const ls of sols) {
+        if (take([b], ls, {
+          estrategia: "agrupado", certeza: "amarillo", puntaje: sols.length === 1 ? 0.75 : 0.6,
+          motivos: [`el movimiento del banco (${fmtCents(b.cents)}) es la suma exacta de ${ls.length} registros del libro`,
+            ...(sols.length > 1 ? ["hay otra combinación posible con el mismo total"] : [])],
+        })) break;
+      }
     }
     for (const l of [...freeL.values()].sort((x, y) => Math.abs(y.cents) - Math.abs(x.cents))) {
       if (!freeL.has(l.id)) continue;
       const sols = grupo(l, [...freeB.values()], "libros");
-      if (!sols.length) continue;
-      const bs = sols[0];
-      take(bs, [l], {
-        estrategia: "agrupado", certeza: "amarillo", puntaje: sols.length === 1 ? 0.75 : 0.6,
-        motivos: [`el registro del libro (${fmtCents(l.cents)}) es la suma exacta de ${bs.length} movimientos del banco`,
-          ...(sols.length > 1 ? ["hay otra combinación posible con el mismo total"] : [])],
-      });
+      for (const bs of sols) {
+        if (take(bs, [l], {
+          estrategia: "agrupado", certeza: "amarillo", puntaje: sols.length === 1 ? 0.75 : 0.6,
+          motivos: [`el registro del libro (${fmtCents(l.cents)}) es la suma exacta de ${bs.length} movimientos del banco`,
+            ...(sols.length > 1 ? ["hay otra combinación posible con el mismo total"] : [])],
+        })) break;
+      }
     }
   }
 
@@ -168,6 +189,10 @@ export function matchAll(banco, libros, cfg) {
     }
   }
 
+  // Propuestas que el usuario ya confirmó: pasan a verde.
+  for (const m of matches) {
+    if (m.certeza === "amarillo" && confirmados.has(pairKey(m))) { m.certeza = "verde"; m.confirmado = true; m.motivos = [...m.motivos, "confirmado por el usuario"]; }
+  }
   return { matches, libresBanco: [...freeB.values()], libresLibros: [...freeL.values()] };
 }
 

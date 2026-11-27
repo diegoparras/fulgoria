@@ -9,6 +9,6 @@ export { DEFAULTS, resolveConfig } from "./config.js";
 export { RULES, GRUPOS_AJUSTABLES, classify, classifyAll } from "./classify.js";
 export { parseCsv, detectSeparator } from "./csv.js";
 export { detectLedgerColumns, parseLedgerCsv, parseLedgerRows } from "./ledger.js";
-export { matchAll, subsetSums } from "./match.js";
+export { matchAll, subsetSums, pairKey } from "./match.js";
 export { reconcile, arrastreSiguiente, continuidad, TIPOS_PENDIENTE } from "./reconcile.js";
 export { papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, bandejaToText } from "./workpaper.js";
