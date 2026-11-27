@@ -3,25 +3,35 @@
 //   cd tools && npm install
 //   node dataset/gen.mjs                 # genera datasets/conciliacion-sintetica/
 //   node dataset/gen.mjs --semillas 3    # más variantes por combinación
+//   node dataset/gen.mjs --plantilla banco.ext.json [--salida dir] [--semillas 3]
+//                                         # casos con el DISEÑO de un banco real: se parte de la
+//                                         # plantilla marcada en el Extractor (forma, sin datos)
 //
 // Determinista: la misma versión del generador y las mismas semillas producen exactamente los
 // mismos archivos. Cada caso trae el extracto (PDF), el mayor (CSV), la plantilla de columnas y
 // esperado.json con la respuesta correcta.
 import { mkdirSync, writeFileSync, readFileSync, rmSync, existsSync } from "node:fs";
-import { join } from "node:path";
+import { join, resolve, basename } from "node:path";
 import { rng, EMPRESAS, iso, addDays, habil } from "./lib.mjs";
 import { Caso, ESCENARIOS, generarEscenario } from "./escenarios.mjs";
-import { BANCOS, plantillaColumnas, renderExtracto } from "./bancos.mjs";
+import { BANCOS, plantillaColumnas, renderExtracto, bancoDesdePlantilla } from "./bancos.mjs";
 import { SISTEMAS } from "./sistemas.mjs";
 import { loadPdfNode } from "./pdfnode.mjs";
 import { extractAnchors } from "../../src/extract.js";
 import { buildTemplate } from "../../src/template.js";
 import { makeMov } from "../../src/core/model.js";
+import { parseCsv, detectLedgerColumns, crearPlantillaMayor } from "../../src/core/index.js";
 
 const VERSION = "1.0.0";
 const args = process.argv.slice(2);
 const SEMILLAS = Number(args[args.indexOf("--semillas") + 1]) || 2;
-const ROOT = new URL("../../datasets/conciliacion-sintetica/", import.meta.url).pathname;
+const PLANTILLA = args.includes("--plantilla") ? resolve(args[args.indexOf("--plantilla") + 1]) : null;
+const slugDe = (s) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const TPL = PLANTILLA ? JSON.parse(readFileSync(PLANTILLA, "utf8")) : null;
+const SLUG = TPL ? slugDe(TPL.meta?.bank || basename(PLANTILLA, ".json")) || "banco" : null;
+const ROOT = PLANTILLA
+  ? resolve(args.includes("--salida") ? args[args.indexOf("--salida") + 1] : new URL(`../../datasets/desde-plantillas/${SLUG}/`, import.meta.url).pathname) + "/"
+  : new URL("../../datasets/conciliacion-sintetica/", import.meta.url).pathname;
 const CASOS = join(ROOT, "casos");
 
 if (existsSync(CASOS)) rmSync(CASOS, { recursive: true });
@@ -72,7 +82,7 @@ async function escribirCaso({ id, esc, banco, sistema, semilla, cuentas, periodo
   writeFileSync(join(dir, "plantilla.json"), JSON.stringify({ banco: B.nombre, columnas: plantillaColumnas(B) }, null, 2) + "\n");
   if (pendientesAnterior) writeFileSync(join(dir, "pendientes-anterior.json"), JSON.stringify({ fulgoria_pendientes: 1, periodo: pendientesAnterior.periodo, pendientes: pendientesAnterior.movs }, null, 2) + "\n");
   const esperado = {
-    dataset: "conciliacion-sintetica", version: VERSION, id, escenario: esc, banco, sistema, semilla, periodo,
+    dataset: TPL ? "desde-plantilla" : "conciliacion-sintetica", version: VERSION, id, escenario: esc, banco, sistema, semilla, periodo,
     cliente: { nombre: cliente.nombre, pagoACuenta25413: 33, responsableInscripto: true },
     archivos: { extracto: "extracto.pdf", plantilla: "plantilla.json", pendientesAnterior: pendientesAnterior ? "pendientes-anterior.json" : null },
     paginas, notas: notas || ESCENARIOS[esc]?.desc || "",
@@ -106,6 +116,20 @@ function cuentaUSD(semilla, base) {
 
 // ---------------------------------------------------------------- generación
 const t0 = Date.now();
+if (TPL) {
+  // Modo plantilla: todos los escenarios con el diseño del banco de la plantilla.
+  BANCOS[SLUG] = bancoDesdePlantilla(TPL, rng(7));
+  writeFileSync(join(ROOT, "plantillas", `${SLUG}.ext.json`), JSON.stringify(TPL, null, 2) + "\n");
+  for (const esc of escenarios) for (let s = 1; s <= SEMILLAS; s++) {
+    const sistema = sistemas[(s + escenarios.indexOf(esc)) % sistemas.length];
+    const semilla = 70000 + 1000 * escenarios.indexOf(esc) + s;
+    const { r, mes, cliente } = nuevoCaso(semilla, esc);
+    const c = new Caso({ r, anio: 2026, mes, voc: BANCOS[SLUG].voc, cliente });
+    generarEscenario(c, esc);
+    const cuentas = [cuenta(c, "ARS", "mayor.csv", r.cents(500000, 40000000))];
+    await escribirCaso({ id: `${String(++n).padStart(3, "0")}-${esc}-${SLUG}`, esc, banco: SLUG, sistema, semilla, cuentas, periodo: { desde: c.desde, hasta: c.hasta }, cliente });
+  }
+} else {
 for (const esc of escenarios) {
   for (let bi = 0; bi < bancos.length; bi++) {
     for (let s = 1; s <= SEMILLAS; s++) {
@@ -179,6 +203,17 @@ for (const banco of bancos) {
   writeFileSync(join(ROOT, "plantillas", `${banco}.ext.json`), JSON.stringify(tpl, null, 2) + "\n");
 }
 
-writeFileSync(join(ROOT, "casos.json"), JSON.stringify({ dataset: "conciliacion-sintetica", version: VERSION, casos: indice }, null, 1) + "\n");
+// Plantillas de mayor de ejemplo, una por formato: lo que un usuario guardaría al mapear las columnas.
+mkdirSync(join(ROOT, "plantillas-mayor"), { recursive: true });
+for (const sis of sistemas) {
+  const caso = indice.find((x) => x.sistema === sis && x.cuentas === 1);
+  const rows = parseCsv(readFileSync(join(CASOS, caso.id, "mayor.csv"), "utf8"));
+  const det = detectLedgerColumns(rows);
+  const tpl = crearPlantillaMayor({ sistema: SISTEMAS[sis].nombre, rows, headerRow: det.headerRow, map: det.map, amountMode: /us|tab/.test(sis) ? "us" : "es-AR" });
+  writeFileSync(join(ROOT, "plantillas-mayor", `${sis}.json`), JSON.stringify(tpl, null, 2) + "\n");
+}
+} // fin del modo normal
+
+writeFileSync(join(ROOT, "casos.json"), JSON.stringify({ dataset: TPL ? "desde-plantilla" : "conciliacion-sintetica", version: VERSION, ...(TPL ? { plantilla: basename(PLANTILLA), banco: TPL.meta?.bank || SLUG } : {}), casos: indice }, null, 1) + "\n");
 const totB = indice.reduce((s, x) => s + x.movBanco, 0), totL = indice.reduce((s, x) => s + x.movLibros, 0);
 console.log(`${indice.length} casos · ${totB} líneas de extracto · ${totL} registros de mayor · ${((Date.now() - t0) / 1000).toFixed(1)} s → ${ROOT}`);

@@ -20,3 +20,6 @@ samples/private
 Dockerfile
 .dockerignore
 docker-compose.yml
+
+# Dataset sintético y benchmark: herramientas de desarrollo, no van al contenedor.
+datasets

@@ -5,22 +5,26 @@
 //   node dataset/bench.mjs --auto              # además mide la auto-detección de columnas
 //   node dataset/bench.mjs --solo cheques      # filtra por texto en el id del caso
 //   node dataset/bench.mjs --detalle 017       # muestra lo que falló en un caso
+//   node dataset/bench.mjs --dir datasets/desde-plantillas/banco-del-rio   # otro dataset
 //
 // Lee cada caso EXACTAMENTE como la app (extractor + motor), compara contra esperado.json y
 // escribe datasets/conciliacion-sintetica/RESULTADOS.md. La métrica que no se negocia:
 // "verdes incorrectos" (un emparejamiento que el sistema confirmó solo y estaba mal) = 0.
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 import { loadPdfNode } from "./pdfnode.mjs";
 import { extract, balanceCheck, autoDetect } from "../../src/extract.js";
-import { fromExtract, parseLedgerCsv, resolveConfig, reconcile, classify, GRUPOS_AJUSTABLES } from "../../src/core/index.js";
+import { fromExtract, parseLedgerCsv, parseLedgerConPlantilla, reconocerPlantillaMayor, parseCsv, resolveConfig, reconcile, classify, GRUPOS_AJUSTABLES } from "../../src/core/index.js";
 
 const args = process.argv.slice(2);
 const opt = (k) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : null; };
 const AUTO = args.includes("--auto"), SOLO = opt("--solo"), DETALLE = opt("--detalle");
-const ROOT = new URL("../../datasets/conciliacion-sintetica/", import.meta.url).pathname;
+const ROOT = opt("--dir") ? resolve(opt("--dir")) + "/" : new URL("../../datasets/conciliacion-sintetica/", import.meta.url).pathname;
 const ids = readdirSync(join(ROOT, "casos")).filter((d) => !SOLO || d.includes(SOLO)).sort();
 const cfg = resolveConfig();
+// Como la app: si hay plantillas de mayor guardadas, se usan primero; si no, detección automática.
+const DIR_TPL_MAYOR = join(ROOT, "plantillas-mayor");
+const PLANTILLAS_MAYOR = existsSync(DIR_TPL_MAYOR) ? readdirSync(DIR_TPL_MAYOR).filter((f) => f.endsWith(".json")).map((f) => JSON.parse(readFileSync(join(DIR_TPL_MAYOR, f), "utf8"))) : [];
 
 const sig = (m) => `${m.fecha}|${m.cents}`;
 const keyOf = (bs, ls) => [...bs].sort().join(",") + "|" + [...ls].sort().join(",");
@@ -58,7 +62,11 @@ async function evaluarCaso(id, modo) {
     if (!r.lecturaBanco) r.fallas.push(`extracto: leídos ${bank.movs.length}/${cu.banco.length} (faltan ${aB.faltan}, sobran ${aB.sobran}); apertura ${bank.apertura} vs ${cu.saldos.bancoApertura}; cierre ${bank.cierre} vs ${cu.saldos.bancoCierre}`);
     // --- lectura del mayor ---
     let led = null;
-    try { led = parseLedgerCsv(readFileSync(join(dir, cu.mayor), "utf8"), { doc: cu.mayor, anio: +esp.periodo.desde.slice(0, 4) }); }
+    try {
+      const txt = readFileSync(join(dir, cu.mayor), "utf8"), o = { doc: cu.mayor, anio: +esp.periodo.desde.slice(0, 4) };
+      const rp = reconocerPlantillaMayor(parseCsv(txt), PLANTILLAS_MAYOR);
+      led = rp ? parseLedgerConPlantilla(txt, rp.plantilla, o) : parseLedgerCsv(txt, o);
+    }
     catch (e) { r.fallas.push("mayor: " + e.message); }
     const aL = led ? alinear(led.movs, cu.libros) : { map: new Map(), exacta: false, faltan: cu.libros.length, sobran: 0 };
     r.lecturaMayor = !!led && aL.exacta && led.apertura === cu.saldos.librosApertura && led.cierre === cu.saldos.librosCierre;

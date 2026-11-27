@@ -1,0 +1,589 @@
+{
+ "dataset": "desde-plantilla",
+ "version": "1.0.0",
+ "id": "001-basico-banco-del-rio",
+ "escenario": "basico",
+ "banco": "banco-del-rio",
+ "sistema": "debitos_creditos_us",
+ "semilla": 70001,
+ "periodo": {
+  "desde": "2026-05-01",
+  "hasta": "2026-05-31"
+ },
+ "cliente": {
+  "nombre": "Viñedos Altos de Cuyo SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Pocos movimientos, la mayoría 1 a 1, gastos bancarios sin registrar, un cheque pendiente y un depósito en tránsito.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 1535111187,
+    "bancoCierre": 2431669742,
+    "librosApertura": 1535111187,
+    "librosCierre": 2413743470
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-05-01",
+     "cents": -7900000,
+     "descripcion": "DEB. AUTOM. ALQUILERES CENTRO SA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-05-01",
+     "cents": -47400,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-05-04",
+     "cents": 73700000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TEXTIL RÍO BERMEJO SA CUIT 30-70369709-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-05-04",
+     "cents": -442200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-05-12",
+     "cents": -272593000,
+     "descripcion": "TRANSFERENCIA ENVIADA A FERRETERÍA EL TORNILLO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-05-12",
+     "cents": -1635558,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-05-13",
+     "cents": 146281926,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FERRETERÍA EL TORNILLO SRL CUIT 30-53487269-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-05-13",
+     "cents": -877692,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-05-18",
+     "cents": 12805918,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE METALÚRGICA SAN TELMO SRL CUIT 33-58867205-6 REF 0001-00000608",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-05-18",
+     "cents": -76836,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-05-18",
+     "cents": 407300000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE COOPERATIVA HORNERO LTDA CUIT 33-65924336-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-05-18",
+     "cents": -2443800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-05-19",
+     "cents": -259438962,
+     "descripcion": "TRANSFERENCIA ENVIADA A LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-05-19",
+     "cents": -1556634,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-05-20",
+     "cents": 374700000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ÓPTICA MIRADOR SRL CUIT 30-65752434-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-05-20",
+     "cents": -2248200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-05-22",
+     "cents": 113927000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE COOPERATIVA HORNERO LTDA CUIT 33-70168107-5 REF 0002-00000620",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-05-22",
+     "cents": -683562,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-05-25",
+     "cents": 360500000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE SERVICIOS MÉDICOS LOMAS SRL CUIT 30-70544637-3 REF 0002-00000612",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-05-25",
+     "cents": -2163000,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-05-25",
+     "cents": -110087137,
+     "descripcion": "TRANSFERENCIA ENVIADA A DISTRIBUIDORA LOS ÁLAMOS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-05-25",
+     "cents": -660523,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-05-27",
+     "cents": 100600000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE ÓPTICA MIRADOR SRL CUIT 30-56756473-4 REF 0001-00000618",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-05-27",
+     "cents": -603600,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-05-29",
+     "cents": -23328462,
+     "descripcion": "DEB. AUTOM. ALQUILERES CENTRO SA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-05-29",
+     "cents": -139971,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-05-29",
+     "cents": -5200000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-05-29",
+     "cents": -1092000,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-05-29",
+     "cents": -31200,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-05-29",
+     "cents": -6552,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-05-01",
+     "cents": -7900000,
+     "descripcion": "Alquileres Centro SA - débito automático",
+     "comprobante": "",
+     "asiento": 232
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-05-04",
+     "cents": 73700000,
+     "descripcion": "Cobro FC A 0002-00000616 Textil Río Bermejo SA",
+     "comprobante": "0002-00000616",
+     "asiento": 226
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-05-11",
+     "cents": 146281926,
+     "descripcion": "Cobranza cliente Ferretería El Tornillo SRL",
+     "comprobante": "0001-00000610",
+     "asiento": 223
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-05-11",
+     "cents": -272593000,
+     "descripcion": "Pago Ferretería El Tornillo SRL OP 0001-00000623",
+     "comprobante": "OP 0001-00000623",
+     "asiento": 230
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-05-18",
+     "cents": 374700000,
+     "descripcion": "Cobranza Óptica Mirador SRL Rec. 0001-00000607",
+     "comprobante": "0003-00000606",
+     "asiento": 221
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-05-18",
+     "cents": 12805918,
+     "descripcion": "Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000609",
+     "comprobante": "0001-00000608",
+     "asiento": 222
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-05-18",
+     "cents": 407300000,
+     "descripcion": "Cobranza Cooperativa Hornero Ltda Rec. 0001-00000615",
+     "comprobante": "0002-00000614",
+     "asiento": 225
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-05-18",
+     "cents": -259438962,
+     "descripcion": "Pago Logística Andina SAS OP 0001-00000622",
+     "comprobante": "OP 0001-00000622",
+     "asiento": 229
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-05-21",
+     "cents": 113927000,
+     "descripcion": "Cobranza cliente Cooperativa Hornero Ltda",
+     "comprobante": "0002-00000620",
+     "asiento": 228
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-05-22",
+     "cents": 360500000,
+     "descripcion": "Cobro FC A 0002-00000612 Servicios Médicos Lomas SRL",
+     "comprobante": "0002-00000612",
+     "asiento": 224
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-05-25",
+     "cents": 100600000,
+     "descripcion": "Cobro FC A 0001-00000618 Óptica Mirador SRL",
+     "comprobante": "0001-00000618",
+     "asiento": 227
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-05-25",
+     "cents": -110087137,
+     "descripcion": "Pago a proveedor Distribuidora Los Álamos SRL",
+     "comprobante": "OP 0001-00000624",
+     "asiento": 231
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-05-27",
+     "cents": -181435000,
+     "descripcion": "Cheque N° 00074518 a Constructora Delta Norte SRL",
+     "comprobante": "CH 00074518",
+     "asiento": 234
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-05-29",
+     "cents": -23328462,
+     "descripcion": "Alquileres Centro SA - débito automático",
+     "comprobante": "",
+     "asiento": 233
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-05-30",
+     "cents": 143600000,
+     "descripcion": "Depósito valores a depositar",
+     "comprobante": "",
+     "asiento": 235
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L13",
+     "lado": "libros",
+     "tipo": "cheque_pendiente"
+    },
+    {
+     "id": "L15",
+     "lado": "libros",
+     "tipo": "deposito_transito"
+    },
+    {
+     "id": "B27",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B29",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

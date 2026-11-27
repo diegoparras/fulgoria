@@ -1,0 +1,385 @@
+{
+ "dataset": "desde-plantilla",
+ "version": "1.0.0",
+ "id": "017-errores-banco-del-rio",
+ "escenario": "errores",
+ "banco": "banco-del-rio",
+ "sistema": "parentesis_transporte",
+ "semilla": 78001,
+ "periodo": {
+  "desde": "2026-07-01",
+  "hasta": "2026-07-31"
+ },
+ "cliente": {
+  "nombre": "Frigorífico Pampa Alta SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Importe transpuesto, registro duplicado, créditos que el cliente no registró e ingresos registrados que nunca llegaron al banco.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 1945907666,
+    "bancoCierre": 2212221119,
+    "librosApertura": 1945907666,
+    "librosCierre": 1963646419
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-07-10",
+     "cents": -199761488,
+     "descripcion": "TRANSFERENCIA ENVIADA A ÓPTICA MIRADOR SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-07-13",
+     "cents": -16200000,
+     "descripcion": "DEB. AUTOM. ALQUILERES CENTRO SA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-07-15",
+     "cents": -270100000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LÁCTEOS VALLE VERDE SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-07-16",
+     "cents": 436551000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LIBRERÍA EL FARO SA CUIT 33-55277949-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-07-16",
+     "cents": -293498000,
+     "descripcion": "TRANSFERENCIA ENVIADA A BODEGA PIEDRA NEGRA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-07-22",
+     "cents": 310534000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 33-61744042-9",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-07-24",
+     "cents": 226229000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LIBRERÍA EL FARO SA CUIT 33-61797292-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-07-24",
+     "cents": 55739000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE SERVICIOS MÉDICOS LOMAS SRL CUIT 30-68243863-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-07-27",
+     "cents": 172665518,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE MUEBLES QUEBRACHO SAS CUIT 33-61358233-4 REF 0002-00000144",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-07-27",
+     "cents": -74500000,
+     "descripcion": "TRANSFERENCIA ENVIADA A FRIGORÍFICO PAMPA ALTA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-07-27",
+     "cents": -1800000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-07-27",
+     "cents": -378000,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-07-28",
+     "cents": 14152000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE CAMILA HERRERA CUIT 27-40126813-3",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-07-29",
+     "cents": 204200000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE DISTRIBUIDORA LOS ÁLAMOS SRL CUIT 33-69539642-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-07-29",
+     "cents": -297519577,
+     "descripcion": "TRANSFERENCIA ENVIADA A SERVICIOS MÉDICOS LOMAS SRL",
+     "tipo": "transferencia"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-07-06",
+     "cents": 40700000,
+     "descripcion": "Cobranza Metalúrgica San Telmo SRL (depósito)",
+     "comprobante": "",
+     "asiento": 373
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-07-09",
+     "cents": -199764188,
+     "descripcion": "Pago a proveedor Óptica Mirador SRL",
+     "comprobante": "OP 0001-00000153",
+     "asiento": 370
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-07-15",
+     "cents": -270100000,
+     "descripcion": "Transferencia a Lácteos Valle Verde SA OP 0001-00000150",
+     "comprobante": "OP 0001-00000150",
+     "asiento": 367
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-07-16",
+     "cents": 436551000,
+     "descripcion": "Cobro FC A 0003-00000142 Librería El Faro SA",
+     "comprobante": "0003-00000142",
+     "asiento": 363
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-07-16",
+     "cents": -293498000,
+     "descripcion": "Transferencia a Bodega Piedra Negra SA OP 0001-00000154",
+     "comprobante": "OP 0001-00000154",
+     "asiento": 371
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-07-16",
+     "cents": -293498000,
+     "descripcion": "Transferencia a Bodega Piedra Negra SA OP 0001-00000154",
+     "comprobante": "OP 0001-00000154",
+     "asiento": 372
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-07-20",
+     "cents": 310534000,
+     "descripcion": "Cobranza Hotel Cerro Azul SA Rec. 0001-00000139",
+     "comprobante": "0003-00000138",
+     "asiento": 361
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-07-22",
+     "cents": 55739000,
+     "descripcion": "Cobranza cliente Servicios Médicos Lomas SRL",
+     "comprobante": "0003-00000148",
+     "asiento": 366
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-07-23",
+     "cents": 226229000,
+     "descripcion": "Cobro FC A 0003-00000146 Librería El Faro SA",
+     "comprobante": "0003-00000146",
+     "asiento": 365
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-07-27",
+     "cents": 204200000,
+     "descripcion": "Cobranza Distribuidora Los Álamos SRL Rec. 0001-00000141",
+     "comprobante": "0001-00000140",
+     "asiento": 362
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-07-27",
+     "cents": 172665518,
+     "descripcion": "Cobro FC A 0002-00000144 Muebles Quebracho SAS",
+     "comprobante": "0002-00000144",
+     "asiento": 364
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-07-27",
+     "cents": -74500000,
+     "descripcion": "Transferencia a Frigorífico Pampa Alta SA OP 0001-00000151",
+     "comprobante": "OP 0001-00000151",
+     "asiento": 368
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-07-28",
+     "cents": -297519577,
+     "descripcion": "Transferencia a Servicios Médicos Lomas SRL OP 0001-00000152",
+     "comprobante": "OP 0001-00000152",
+     "asiento": 369
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L6",
+     "lado": "libros",
+     "tipo": "egreso_pendiente"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "debito_no_identificado"
+    },
+    {
+     "id": "L1",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "B11",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

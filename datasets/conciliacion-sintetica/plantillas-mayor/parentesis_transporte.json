@@ -1,0 +1,23 @@
+{
+  "fulgoria_plantilla_mayor": 1,
+  "sistema": "Importe con paréntesis y transporte",
+  "encabezados": [
+    "Fecha",
+    "Comprob.",
+    "Descripción",
+    "Importe",
+    "Saldo"
+  ],
+  "mapeo": {
+    "fecha": "Fecha",
+    "comprobante": "Comprob.",
+    "descripcion": "Descripción",
+    "importe": "Importe",
+    "saldo": "Saldo"
+  },
+  "formato": {
+    "numeros": "es-AR"
+  },
+  "unirContinuacion": true,
+  "ignorar": []
+}

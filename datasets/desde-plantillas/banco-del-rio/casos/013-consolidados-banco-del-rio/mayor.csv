@@ -1,0 +1,19 @@
+Empresa: Librería El Faro SA
+Cuenta: 1.1.1.02 Banco del Río
+Período: 01/09/2026 al 30/09/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,15851129.50
+2026-09-07,Transferencia a Cooperativa Hornero Ltda OP 0001-00000739,,299750.00,15551379.50
+2026-09-15,Cobro FC A 0003-00000734 Viñedos Altos de Cuyo SA,1230000.00,,16781379.50
+2026-09-15,Pago a proveedor Metalúrgica San Telmo SRL,,2404000.00,14377379.50
+2026-09-15,Transferencia a Cooperativa Hornero Ltda OP 0001-00000738,,1161000.00,13216379.50
+2026-09-21,Cobranza cliente Farmacia Del Parque SCS,2326110.00,,15542489.50
+2026-09-21,Cobranza cliente Frigorífico Pampa Alta SA,101047.73,,15643537.23
+2026-09-21,Cobranza Distribuidora Los Álamos SRL Rec. 0001-00000731,2395544.90,,18039082.13
+2026-09-21,Pago a proveedor Cooperativa Hornero Ltda,,599000.00,17440082.13
+2026-09-28,Cobro FC A 0001-00000732 Transporte Ruta 3 SRL,4145000.00,,21585082.13
+2026-09-30,Impuesto ley 25.413 del mes,,88084.88,21496997.25
+2026-09-30,Retenciones SIRCREB del mes,,203954.05,21293043.20
+2026-09-30,Comisiones bancarias del mes,,16000.00,21277043.20
+2026-09-30,IVA comisiones bancarias del mes,,3360.00,21273683.20

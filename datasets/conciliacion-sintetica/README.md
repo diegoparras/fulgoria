@@ -23,6 +23,7 @@ datasets/conciliacion-sintetica/
   RESULTADOS.md        resultados actuales de Fulgoria contra el dataset (se regenera)
   resultados.json      lo mismo, en datos
   plantillas/          plantillas de Fulgoria por banco (se cargan en el Extractor)
+  plantillas-mayor/    plantillas de mayor por formato (se cargan en Conciliar soltando el .json)
   casos/<id>/
     extracto.pdf       el resumen del banco (PDF digital, una o varias páginas)
     mayor.csv          el mayor de la cuenta Banco (mayor-ars.csv + mayor-usd.csv si hay dos cuentas)
@@ -130,6 +131,49 @@ contra `esperado.json`. El criterio que usa `bench.mjs`:
 - un **verde incorrecto** es un par que la herramienta confirmó sin intervención humana y no está
   en `pares`. Es el error que más importa: tiene que ser 0;
 - los pendientes se comparan como multiconjunto de (lado, tipo, importe).
+
+## Casos con el diseño de un banco real (desde una plantilla)
+
+El generador puede tomar el **diseño** de un banco de verdad sin tocar sus datos:
+
+1. Abrí un extracto real en el Extractor de Fulgoria y marcá las columnas (todo queda en tu
+   computadora). Descargá la plantilla (`.ext.json`): guarda el tamaño de hoja, la posición de
+   cada columna, su rol, los rótulos del encabezado y los formatos de fecha e importe. **Nunca
+   guarda movimientos, nombres ni números de cuenta.**
+2. Generá casos con ese diseño:
+
+```bash
+node tools/dataset/gen.mjs --plantilla mi-banco.ext.json --semillas 3
+node tools/dataset/bench.mjs --dir datasets/desde-plantillas/mi-banco
+```
+
+Sale un dataset completo (todos los escenarios, con su `esperado.json`) en
+`datasets/desde-plantillas/<banco>/`, con extractos que tienen las columnas, posiciones y rótulos del
+banco real y movimientos ficticios. Así el dataset deja de reflejar solo los diseños inventados acá:
+cada plantilla que alguien comparta suma un banco real, sin que nadie comparta un solo dato.
+
+Ejemplo incluido: `samples/plantillas/banco-del-rio.ext.json` (marcada sobre `samples/banco-rio-cc.pdf`)
+→ `datasets/desde-plantillas/banco-del-rio/` (20 casos).
+
+## Plantillas de mayor
+
+Cuando la pantalla Conciliar no reconoce las columnas de un mayor, se indican a mano una vez
+(**columnas** en la tarjeta del mayor) y se guardan como plantilla del sistema contable: la próxima
+vez se reconoce sola. La plantilla guarda los **nombres** de los encabezados, el formato de los
+números, las filas a ignorar y si hay descripciones partidas en dos filas; se puede descargar como
+JSON y compartir. `plantillas-mayor/` tiene una por cada formato del dataset, y `bench.mjs` las usa
+antes de la detección automática, como la app.
+
+```jsonc
+{
+  "fulgoria_plantilla_mayor": 1,
+  "sistema": "Importe con paréntesis y transporte",
+  "mapeo": { "fecha": "Fecha", "comprobante": "Comprob.", "descripcion": "Descripción", "importe": "Importe", "saldo": "Saldo" },
+  "formato": { "numeros": "es-AR" },
+  "unirContinuacion": true,
+  "ignorar": []
+}
+```
 
 ## Lo que este dataset todavía no cubre
 

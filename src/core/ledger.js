@@ -7,6 +7,7 @@ import { parseMoneyCents } from "./money.js";
 import { toISO } from "./dates.js";
 import { normText } from "./text.js";
 import { makeMov } from "./model.js";
+import { extractEntities } from "./entities.js";
 
 // Sinónimos de encabezados por rol. En el mayor de una cuenta Banco, "Débitos/Créditos"
 // significan Debe/Haber (perspectiva contable), no la del extracto.
@@ -22,6 +23,8 @@ const HEADERS = {
 };
 const OPENING_RE = /SALDO\s+(ANTERIOR|INICIAL|DE\s+APERTURA|AL\s+INICIO|TRANSPORTE|ARRASTRE)|^TRANSPORTE$/;
 const TOTAL_RE = /^(TOTAL(ES)?|SUMAS|SALDO\s+FINAL|SALDO\s+AL\s+CIERRE)\b/;
+// Subtotales intermedios (por página/hoja): se saltean sin aviso y no son el cierre.
+const SUBTOTAL_RE = /^(SUB\s*-?\s*TOTAL|TOTAL\s+(DE\s+)?(PAGINA|HOJA|FOLIO)|A\s+TRANSPORTAR)\b/;
 
 const normH = (s) => normText(s).replace(/[^A-Z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
 
@@ -80,6 +83,8 @@ export function parseLedgerRows(rows, opts = {}) {
     const row = rows[r];
     const desc = txt(row, "descripcion");
     const lineText = normText(row.join(" "));
+    // Filas que la plantilla del mayor manda ignorar, y subtotales intermedios.
+    if ((opts.ignorar || []).some((t) => t && lineText.includes(normText(t))) || SUBTOTAL_RE.test(normText(desc)) || (!txt(row, "fecha") && SUBTOTAL_RE.test(lineText))) continue;
     // Apertura: "Saldo anterior" / "Saldo inicial" / "Transporte".
     if (OPENING_RE.test(normText(desc)) || (!txt(row, "fecha") && OPENING_RE.test(lineText))) {
       const s = money(row, "saldo") ?? signed(money(row, "debe"), money(row, "haber"), money(row, "importe"));
@@ -93,6 +98,13 @@ export function parseLedgerRows(rows, opts = {}) {
     }
     const fecha = toISO(txt(row, "fecha"), { anio: opts.anio });
     const cents = signed(money(row, "debe"), money(row, "haber"), money(row, "importe"));
+    // Descripción partida en dos filas (planillas): fila sin fecha ni importe → se une a la anterior.
+    if (!fecha && cents == null && desc && movs.length && opts.unirContinuacion !== false) {
+      const prev = movs[movs.length - 1];
+      prev.descripcion = `${prev.descripcion} ${desc}`.trim();
+      prev.entidades = extractEntities(`${prev.descripcion} ${prev.referencia}`);
+      continue;
+    }
     if (!fecha || cents == null || cents === 0) {
       if (row.some((c) => c) && cents !== 0) avisos.push(`Fila ${r + 1} ignorada (sin fecha o sin importe): ${row.join(" | ").slice(0, 80)}`);
       continue;
@@ -139,4 +151,77 @@ function signed(debe, haber, importe) {
     return d - h;
   }
   return importe;
+}
+
+// ---------------------------------------------------------------- plantillas de mayor
+// Una plantilla de mayor recuerda cómo leer la exportación de un sistema contable (o la planilla
+// de un cliente): qué encabezado es cada dato, cómo vienen los números y qué filas ignorar. Se
+// arma una vez —a mano, cuando la detección automática no alcanza— y se reconoce sola la próxima.
+// Guarda NOMBRES de encabezados, nunca datos: se puede compartir entre estudios.
+
+export const ROLES_MAYOR = ["fecha", "descripcion", "debe", "haber", "importe", "saldo", "comprobante", "asiento"];
+
+/** Fila de encabezados más probable (para proponerla al mapear a mano). */
+export function adivinarFilaEncabezado(rows) {
+  const det = detectLedgerColumns(rows);
+  if (det) return det.headerRow;
+  for (let r = 0; r < Math.min(rows.length, 30); r++) {
+    const llenas = rows[r].filter((c) => c && c.trim());
+    if (llenas.length >= 3 && llenas.filter((c) => /[A-Za-zÁÉÍÓÚáéíóúÑñ]/.test(c) && !/\d{2}[\/-]\d{2}/.test(c)).length >= llenas.length * 0.7) return r;
+  }
+  return 0;
+}
+
+/**
+ * Arma una plantilla de mayor desde un mapeo hecho sobre las filas.
+ * @param {{ sistema: string, rows: string[][], headerRow: number, map: Record<string, number>,
+ *           amountMode?: "auto"|"es-AR"|"us", unirContinuacion?: boolean, ignorar?: string[] }} p
+ */
+export function crearPlantillaMayor({ sistema, rows, headerRow, map, amountMode = "auto", unirContinuacion = true, ignorar = [] }) {
+  const enc = rows[headerRow] || [];
+  const mapeo = {};
+  for (const [rol, i] of Object.entries(map)) if (i != null && i >= 0 && ROLES_MAYOR.includes(rol)) mapeo[rol] = enc[i] ?? "";
+  if (mapeo.fecha == null || !(mapeo.importe != null || (mapeo.debe != null || mapeo.haber != null))) throw new Error("La plantilla necesita al menos Fecha y un importe (Debe/Haber o Importe).");
+  return {
+    fulgoria_plantilla_mayor: 1,
+    sistema: String(sistema || "Mayor").slice(0, 60),
+    encabezados: enc.map((c) => String(c ?? "")),
+    mapeo,
+    formato: { numeros: amountMode },
+    unirContinuacion,
+    ignorar: ignorar.filter(Boolean).map(String),
+  };
+}
+
+/** ¿En qué fila de `rows` aparecen los encabezados de la plantilla? → { headerRow, map } o null. */
+export function ubicarPlantillaMayor(rows, tpl) {
+  const want = Object.entries(tpl.mapeo || {});
+  if (!want.length) return null;
+  for (let r = 0; r < Math.min(rows.length, 40); r++) {
+    const cells = rows[r].map((c) => normH(c));
+    const map = {};
+    let ok = true;
+    for (const [rol, nombre] of want) {
+      const i = cells.indexOf(normH(nombre));
+      if (i < 0) { ok = false; break; }
+      map[rol] = i;
+    }
+    if (ok) return { headerRow: r, map };
+  }
+  return null;
+}
+
+/** De una lista de plantillas, la primera cuyos encabezados están en el archivo (prioriza las de más columnas). */
+export function reconocerPlantillaMayor(rows, plantillas = []) {
+  const orden = [...plantillas].filter((t) => t && t.fulgoria_plantilla_mayor).sort((a, b) => Object.keys(b.mapeo).length - Object.keys(a.mapeo).length);
+  for (const tpl of orden) { const u = ubicarPlantillaMayor(rows, tpl); if (u) return { plantilla: tpl, ...u }; }
+  return null;
+}
+
+/** Lee un mayor con una plantilla (si sus encabezados no aparecen, error claro). */
+export function parseLedgerConPlantilla(text, tpl, opts = {}) {
+  const rows = parseCsv(text);
+  const u = ubicarPlantillaMayor(rows, tpl);
+  if (!u) throw new Error(`Este archivo no tiene los encabezados de la plantilla "${tpl.sistema}".`);
+  return { ...parseLedgerRows(rows, { ...opts, ...u, amountMode: tpl.formato?.numeros || "auto", unirContinuacion: tpl.unirContinuacion !== false, ignorar: tpl.ignorar || [] }), plantilla: tpl.sistema };
 }

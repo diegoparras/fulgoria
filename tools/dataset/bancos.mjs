@@ -4,6 +4,7 @@
 // PDF, fechas sin año, comprobante numérico, descripciones en varias líneas y varias páginas.
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import { fAR, fDate } from "./lib.mjs";
+import { formatAmountPattern } from "../../src/template.js";
 
 // ---------------------------------------------------------------- vocabularios
 // Cómo nombra cada banco cada operación. Ninguna leyenda copia la de un banco real en particular.
@@ -155,7 +156,8 @@ export const BANCOS = {
 
 /** Columnas de plantilla de Fulgoria (normalizadas 0..1) para un formato de banco. */
 export function plantillaColumnas(banco) {
-  return banco.cols.map((c) => ({ from: c.banda[0] / 595, to: c.banda[1] / 595, role: c.role, label: c.h }));
+  const W = banco.pagina ? banco.pagina[0] : 595;
+  return banco.cols.map((c) => ({ from: c.banda[0] / W, to: c.banda[1] / W, role: c.role, label: c.h }));
 }
 
 // ---------------------------------------------------------------- render del PDF
@@ -179,19 +181,27 @@ export async function renderExtracto(banco, cuentas, meta, r) {
   let page, y;
   const T = (s, x, yy, o = {}) => page.drawText(String(s), { x, y: yy, size: o.size || SZ, font: o.f || font, color: o.c || ink });
   const TR = (s, xr, yy, o = {}) => { const f = o.f || font; T(s, xr - f.widthOfTextAtSize(String(s), o.size || SZ), yy, o); };
-  const money = (c) => fAR(c, { moneda: !!banco.moneda });
+  const money = banco.importe || ((c) => fAR(c, { moneda: !!banco.moneda }));
+  const [W, H] = banco.pagina || [595, 842];
+  // Texto que no puede salirse de su columna (formatos armados desde una plantilla): se recorta.
+  const fit = (s, c, f = font, size = SZ) => {
+    if (!c.ancho) return s;
+    let t = String(s);
+    while (t.length > 1 && f.widthOfTextAtSize(t, size) > c.ancho) t = t.slice(0, -1);
+    return t;
+  };
 
   const encabezado = (cuenta) => {
-    page = doc.addPage([595, 842]); pages.push(page);
-    T(banco.nombre, 40, 800, { f: bold, size: 15 });
-    T(`Resumen de cuenta · Período ${fDate(meta.desde, "DD/MM/AAAA")} al ${fDate(meta.hasta, "DD/MM/AAAA")}`, 40, 783, { c: grey, size: 9 });
-    T(`Titular: ${meta.titular}`, 40, 770, { c: grey, size: 9 });
-    T(`${cuenta.titulo} Nº ${meta.nroCuenta} · CBU ${meta.cbu}`, 40, 757, { c: grey, size: 9 });
-    y = 726;
+    page = doc.addPage([W, H]); pages.push(page);
+    T(banco.nombre, 40, H - 42, { f: bold, size: 15 });
+    T(`Resumen de cuenta · Período ${fDate(meta.desde, "DD/MM/AAAA")} al ${fDate(meta.hasta, "DD/MM/AAAA")}`, 40, H - 59, { c: grey, size: 9 });
+    T(`Titular: ${meta.titular}`, 40, H - 72, { c: grey, size: 9 });
+    T(`${cuenta.titulo} Nº ${meta.nroCuenta} · CBU ${meta.cbu}`, 40, H - 85, { c: grey, size: 9 });
+    y = banco.yCabecera ?? H - 116;
   };
   const cabecera = () => {
-    for (const c of banco.cols) (c.der ? TR : T)(c.h, c.x, y, { f: bold });
-    page.drawLine({ start: { x: 34, y: y - 4 }, end: { x: 561, y: y - 4 }, thickness: 0.6, color: grey });
+    for (const c of banco.cols) (c.der ? TR : T)(fit(c.h, c, bold), c.x, y, { f: bold });
+    page.drawLine({ start: { x: 34, y: y - 4 }, end: { x: W - 34, y: y - 4 }, thickness: 0.6, color: grey });
     y -= 18;
   };
   const salto = (cuenta, alto) => { if (y - alto < 70) { encabezado(cuenta); cabecera(); } };
@@ -221,13 +231,14 @@ export async function renderExtracto(banco, cuentas, meta, r) {
         imp: fAR(m.cents), impAbs: fAR(Math.abs(m.cents)), dh: m.cents < 0 ? "D" : "H",
         saldo: money(saldo),
       };
-      for (const c of banco.cols) if (cell[c.k]) (c.der ? TR : T)(cell[c.k], c.x, y);
+      for (const c of banco.cols) if (cell[c.k]) (c.der ? TR : T)(fit(cell[c.k], c), c.x, y);
       y -= 13;
-      for (const extra of lines.slice(1)) { T(extra, banco.cols.find((c) => c.k === "desc").x, y, { c: grey, size: SZ - 0.8 }); y -= 11; }
+      const cd = banco.cols.find((c) => c.k === "desc");
+      for (const extra of lines.slice(1)) { T(fit(extra, cd, font, SZ - 0.8), cd.x, y, { c: grey, size: SZ - 0.8 }); y -= 11; }
       y -= 2;
     }
     y -= 4;
-    page.drawLine({ start: { x: 34, y: y + 10 }, end: { x: 561, y: y + 10 }, thickness: 0.6, color: grey });
+    page.drawLine({ start: { x: 34, y: y + 10 }, end: { x: W - 34, y: y + 10 }, thickness: 0.6, color: grey });
     if (banco.sinSaldo) T(`${banco.cierre} al ${fDate(meta.hasta, "DD/MM/AAAA")}: ${mon} ${fAR(saldo)}`, 40, y - 4, { f: bold });
     else {
       const lbl = banco.cierre === "SALDO AL" ? `SALDO AL ${fDate(meta.hasta, "DD/MM/AAAA")}` : banco.cierre;
@@ -239,7 +250,50 @@ export async function renderExtracto(banco, cuentas, meta, r) {
   }
   pages.forEach((p, i) => {
     p.drawText("Documento sintético de prueba — banco, titular y datos ficticios — dataset de Fulgoria", { x: 40, y: 40, size: 7, font, color: grey });
-    p.drawText(`Página ${i + 1} de ${pages.length}`, { x: 500, y: 40, size: 7, font, color: grey });
+    p.drawText(`Página ${i + 1} de ${pages.length}`, { x: W - 95, y: 40, size: 7, font, color: grey });
   });
   return { bytes: await doc.save({ useObjectStreams: false }), paginas: pages.length };
+}
+
+// ---------------------------------------------------------------- formato desde una plantilla
+// Convierte una plantilla de Fulgoria (la que se marca en el Extractor sobre un extracto real y que
+// guarda la FORMA, nunca los datos) en un formato de banco para el generador: mismo tamaño de hoja,
+// mismas columnas en las mismas posiciones, mismos rótulos de encabezado y mismos formatos de fecha
+// e importe. Así se generan extractos sintéticos con el diseño de un banco real.
+const KEY_DE_ROL = { fecha: "fecha", descripcion: "desc", debito: "deb", credito: "cre", saldo: "saldo", signo: "dh", texto: "comp" };
+const FECHAS = { "DD/MM/AAAA": "DD/MM/AAAA", "DD/MM/YYYY": "DD/MM/AAAA", "DD/MM/AA": "DD/MM/AA", "DD/MM/YY": "DD/MM/AA", "DD/MM": "DD/MM", "AAAA-MM-DD": "AAAA-MM-DD", "YYYY-MM-DD": "AAAA-MM-DD", "D/M/AAAA": "D/M/AAAA", "D/M/YYYY": "D/M/AAAA", "DD-MM-AA": "DD-MM-AA", "DD-MM-YY": "DD-MM-AA" };
+
+export function bancoDesdePlantilla(tpl, r) {
+  if (!tpl?.geometry?.columns?.length) throw new Error("No es una plantilla de Fulgoria (falta geometry.columns).");
+  const W = tpl.match?.page_size?.w_pt || 595, H = tpl.match?.page_size?.h_pt || 842;
+  const anchors = (tpl.match?.anchors || []).map((a) => ({ text: a.text, x: (a.box?.x ?? a.x) * W, y: a.box?.y ?? a.y }));
+  const cols0 = tpl.geometry.columns.filter((c) => c.role && c.role !== "ignorar");
+  const haySigno = cols0.some((c) => c.role === "signo");
+  const fechaCol = cols0.find((c) => c.role === "fecha");
+  const fechaFmt = FECHAS[(fechaCol?.fmt?.dateFmt || tpl.fields?.[fechaCol?.field]?.format || "DD/MM/AAAA").toUpperCase()] || "DD/MM/AAAA";
+  const montoCol = cols0.find((c) => ["debito", "credito", "importe", "saldo"].includes(c.role) && c.fmt?.pattern);
+  const cols = cols0.map((c) => {
+    const a = c.x_band.from * W, b = c.x_band.to * W;
+    const der = ["debito", "credito", "importe", "saldo"].includes(c.role);
+    const rot = anchors.find((x) => x.x >= a - 2 && x.x < b);
+    return {
+      k: c.role === "importe" ? (haySigno ? "impAbs" : "imp") : KEY_DE_ROL[c.role] || "comp",
+      h: rot ? rot.text : c.field, role: c.role, der,
+      x: der ? Math.min(b - 4, W - 30) : Math.max(a + 3, 30),
+      ancho: Math.max(12, (der ? b - Math.max(a, 0) : Math.min(b, W - 30) - Math.max(a + 3, 30)) - 6),
+      banda: [a, b],
+    };
+  });
+  // Altura del encabezado de la tabla: la de los rótulos guardados como anclas (si hay).
+  const yAncla = anchors.length ? anchors.reduce((s, x) => s + x.y, 0) / anchors.length : null;
+  const yCabecera = yAncla != null ? Math.round(H - yAncla * H - 8.6) : undefined;
+  const vocs = [VOC_A, VOC_B, VOC_C];
+  return {
+    nombre: tpl.meta?.bank || "Banco", rasgo: "Diseño tomado de una plantilla de Fulgoria",
+    voc: vocs[r.int(0, 2)], fecha: fechaFmt, pagina: [W, H], yCabecera: yCabecera && yCabecera < H - 100 ? yCabecera : undefined,
+    sinSaldo: !cols.some((c) => c.k === "saldo"), cols,
+    importe: montoCol ? (c) => formatAmountPattern(c / 100, montoCol.fmt.pattern) : null,
+    apertura: cols.some((c) => c.k === "saldo") ? "SALDO ANTERIOR" : "Saldo inicial",
+    cierre: cols.some((c) => c.k === "saldo") ? "SALDO FINAL" : "Saldo final",
+  };
 }

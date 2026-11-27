@@ -1,0 +1,671 @@
+{
+ "dataset": "desde-plantilla",
+ "version": "1.0.0",
+ "id": "016-tarjetas_brutas-banco-del-rio",
+ "escenario": "tarjetas_brutas",
+ "banco": "banco-del-rio",
+ "sistema": "parentesis_transporte",
+ "semilla": 77002,
+ "periodo": {
+  "desde": "2026-01-01",
+  "hasta": "2026-01-31"
+ },
+ "cliente": {
+  "nombre": "Librería El Faro SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El libro registra la venta con tarjeta en bruto y aparte el arancel y su IVA; el banco acredita el neto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2622216952,
+    "bancoCierre": 4170584490,
+    "librosApertura": 2622216952,
+    "librosCierre": 4187280469
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-01-02",
+     "cents": 110648475,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 51517",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-01-02",
+     "cents": -663891,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-01-05",
+     "cents": 210007840,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 92695",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-01-05",
+     "cents": -1260047,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-01-06",
+     "cents": 335422962,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE CONSTRUCTORA DELTA NORTE SRL CUIT 30-65871289-2 REF 0001-00000173",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-01-06",
+     "cents": -2012538,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-01-07",
+     "cents": -40270000,
+     "descripcion": "TRANSFERENCIA ENVIADA A SERVICIOS MÉDICOS LOMAS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-01-07",
+     "cents": -241620,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-01-12",
+     "cents": 51899154,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 67719",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-01-12",
+     "cents": -311395,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-01-13",
+     "cents": 139298528,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 72274",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-01-13",
+     "cents": -835791,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-01-14",
+     "cents": 78452890,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 9928",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-01-14",
+     "cents": -470717,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-01-19",
+     "cents": 10349706,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 65031",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-01-19",
+     "cents": -62098,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-01-22",
+     "cents": 211268581,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 18506",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-01-22",
+     "cents": -1267611,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-01-23",
+     "cents": -29201237,
+     "descripcion": "TRANSFERENCIA ENVIADA A VIÑEDOS ALTOS DE CUYO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-01-23",
+     "cents": -175207,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-01-27",
+     "cents": 411014946,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE SERVICIOS MÉDICOS LOMAS SRL CUIT 30-63177645-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-01-27",
+     "cents": -2466090,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-01-27",
+     "cents": -4400000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-01-27",
+     "cents": -924000,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-01-27",
+     "cents": -26400,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-01-27",
+     "cents": -5544,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-01-29",
+     "cents": 169171672,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 1899",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-01-29",
+     "cents": -1015030,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-01-30",
+     "cents": -93000000,
+     "descripcion": "TRANSFERENCIA ENVIADA A DISTRIBUIDORA LOS ÁLAMOS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-01-30",
+     "cents": -558000,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-01-02",
+     "cents": 114100000,
+     "descripcion": "Ventas con tarjeta lote 51517",
+     "comprobante": "",
+     "asiento": 60
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-01-02",
+     "cents": -2852500,
+     "descripcion": "Arancel tarjeta lote 51517",
+     "comprobante": "",
+     "asiento": 61
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-01-02",
+     "cents": -599025,
+     "descripcion": "IVA arancel lote 51517",
+     "comprobante": "",
+     "asiento": 62
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-01-05",
+     "cents": 216558742,
+     "descripcion": "Ventas con tarjeta lote 92695",
+     "comprobante": "",
+     "asiento": 66
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-01-05",
+     "cents": -5413969,
+     "descripcion": "Arancel tarjeta lote 92695",
+     "comprobante": "",
+     "asiento": 67
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-01-05",
+     "cents": -1136933,
+     "descripcion": "IVA arancel lote 92695",
+     "comprobante": "",
+     "asiento": 68
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-01-05",
+     "cents": 335422962,
+     "descripcion": "Cobranza Constructora Delta Norte SRL Rec. 0001-00000174",
+     "comprobante": "0001-00000173",
+     "asiento": 78
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-01-07",
+     "cents": -40270000,
+     "descripcion": "Pago Servicios Médicos Lomas SRL OP 0001-00000176",
+     "comprobante": "OP 0001-00000176",
+     "asiento": 80
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-01-12",
+     "cents": 51899154,
+     "descripcion": "Liquidación tarjeta lote 67719",
+     "comprobante": "",
+     "asiento": 76
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-01-13",
+     "cents": 142400000,
+     "descripcion": "Ventas con tarjeta lote 72274",
+     "comprobante": "",
+     "asiento": 63
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-01-13",
+     "cents": -2563200,
+     "descripcion": "Arancel tarjeta lote 72274",
+     "comprobante": "",
+     "asiento": 64
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-01-13",
+     "cents": -538272,
+     "descripcion": "IVA arancel lote 72274",
+     "comprobante": "",
+     "asiento": 65
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-01-14",
+     "cents": 81408000,
+     "descripcion": "Ventas con tarjeta lote 9928",
+     "comprobante": "",
+     "asiento": 69
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-01-14",
+     "cents": -2442240,
+     "descripcion": "Arancel tarjeta lote 9928",
+     "comprobante": "",
+     "asiento": 70
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-01-14",
+     "cents": -512870,
+     "descripcion": "IVA arancel lote 9928",
+     "comprobante": "",
+     "asiento": 71
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-01-19",
+     "cents": 10349706,
+     "descripcion": "Liquidación tarjeta lote 65031",
+     "comprobante": "",
+     "asiento": 75
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-01-22",
+     "cents": 217858810,
+     "descripcion": "Ventas con tarjeta lote 18506",
+     "comprobante": "",
+     "asiento": 72
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-01-22",
+     "cents": -5446470,
+     "descripcion": "Arancel tarjeta lote 18506",
+     "comprobante": "",
+     "asiento": 73
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-01-22",
+     "cents": -1143759,
+     "descripcion": "IVA arancel lote 18506",
+     "comprobante": "",
+     "asiento": 74
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-01-23",
+     "cents": -29201237,
+     "descripcion": "Pago Viñedos Altos de Cuyo SA OP 0001-00000175",
+     "comprobante": "OP 0001-00000175",
+     "asiento": 79
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-01-26",
+     "cents": 411014946,
+     "descripcion": "Cobro FC A 0002-00000171 Servicios Médicos Lomas SRL",
+     "comprobante": "0002-00000171",
+     "asiento": 77
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-01-29",
+     "cents": 174448747,
+     "descripcion": "Ventas con tarjeta lote 1899",
+     "comprobante": "",
+     "asiento": 57
+    },
+    {
+     "id": "L23",
+     "fecha": "2026-01-29",
+     "cents": -4361219,
+     "descripcion": "Arancel tarjeta lote 1899",
+     "comprobante": "",
+     "asiento": 58
+    },
+    {
+     "id": "L24",
+     "fecha": "2026-01-29",
+     "cents": -915856,
+     "descripcion": "IVA arancel lote 1899",
+     "comprobante": "",
+     "asiento": 59
+    },
+    {
+     "id": "L25",
+     "fecha": "2026-01-29",
+     "cents": -93000000,
+     "descripcion": "Pago Distribuidora Los Álamos SRL OP 0001-00000177",
+     "comprobante": "OP 0001-00000177",
+     "asiento": 81
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L22",
+      "L23",
+      "L24"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1",
+      "L2",
+      "L3"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L10",
+      "L11",
+      "L12"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L4",
+      "L5",
+      "L6"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L13",
+      "L14",
+      "L15"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L17",
+      "L18",
+      "L19"
+     ],
+     "tipo": "bruto_neto"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L16"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L21"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L20"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B29"
+     ],
+     "libros": [
+      "L25"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B6",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

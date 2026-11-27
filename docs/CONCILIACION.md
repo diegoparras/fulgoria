@@ -74,6 +74,9 @@ En la app: menú ⋮ → **Conciliar con el mayor** (o `/conciliar`). Todo corre
 - **Deportivo**: lo mismo + panel de **mandos** en vivo (ventanas, tolerancia, agrupados,
   % pago a cuenta 25.413, plan de cuentas, fecha de cierre; se guardan en el navegador) +
   **mesa de conciliación** para emparejar a mano.
+- **Columnas del mayor**: si no se reconocen (o para corregirlas), se indican a mano con vista
+  previa en vivo ("los saldos cierran") y se guardan como **plantilla de mayor** del sistema
+  contable; la próxima vez se reconoce sola. Se descarga/importa como JSON (soltándolo en la página).
 - **Papel de trabajo** con exportes: Markdown, CSV, asientos CSV, JSON y *Pendientes para el mes
   siguiente* (un JSON que se suelta junto con los archivos del mes siguiente para el arrastre).
 
@@ -117,7 +120,7 @@ dataset encontró y se corrigió:
 - Persistencia por cliente / cuenta / período (hoy el arrastre se lleva con el JSON de pendientes).
 - Traducciones de la pantalla de conciliación (hoy solo en español).
 - Editor de reglas de clasificación propias en la interfaz (el motor ya las acepta).
-- Lectura de XLSX y plantillas de mayores por sistema (Holistor, Tango, Bejerman, Xubio, Colppy, SOS).
+- Lectura de XLSX (las plantillas de mayor ya existen; falta leer el archivo Excel).
 - CSV "Dinero liberado" de Mercado Pago; liquidaciones de tarjetas (N:1 con aranceles).
 - Exportación de asientos en el formato de importación de cada sistema.
 - IA opcional para casos ambiguos, sobre filas ya anonimizadas, solo como sugerencia.

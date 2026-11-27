@@ -1,0 +1,23 @@
+Empresa: Óptica Mirador SRL
+Cuenta: 1.1.1.02 Banco del Río
+Período: 01/05/2026 al 31/05/2026
+
+Fecha,Detalle,Débitos,Créditos,Saldo
+,Saldo inicial,,,8040370.00
+2026-05-01,Cobranza cliente Química Litoral SRL,3194000.00,,11234370.00
+2026-05-01,Gas del Litoral - débito automático,,86473.17,11147896.83
+2026-05-01,Aguas Urbanas - débito automático,,207500.00,10940396.83
+2026-05-04,Transferencia a Frigorífico Pampa Alta SA OP 0001-00000895,,1958000.00,8982396.83
+2026-05-04,Pago a proveedor Constructora Delta Norte SRL,,2700910.00,6281486.83
+2026-05-04,Seguros La Previsora - débito automático,,298700.00,5982786.83
+2026-05-08,Pago Química Litoral SRL OP 0001-00000897,,1787000.00,4195786.83
+2026-05-11,Cobranza Frigorífico Pampa Alta SA Rec. 0001-00000883,765000.00,,4960786.83
+2026-05-11,Cobranza Estudio Gráfico Cobalto SAS Rec. 0001-00000887,887781.47,,5848568.30
+2026-05-11,Pago a proveedor Textil Río Bermejo SA,,1638988.24,4209580.06
+2026-05-14,Transferencia a Agro Sur del Plata SA OP 0001-00000894,,1680000.00,2529580.06
+2026-05-18,Pago a proveedor Óptica Mirador SRL,,2167896.50,361683.56
+2026-05-21,Pago a proveedor Tecnología Austral SAS,,1420390.00,-1058706.44
+2026-05-26,Cobranza Metalúrgica San Telmo SRL Rec. 0001-00000893,3292560.00,,2233853.56
+2026-05-26,Pago a proveedor Metalúrgica San Telmo SRL,,583000.00,1650853.56
+2026-05-29,Cobranza Agro Sur del Plata SA Rec. 0001-00000885,3159415.20,,4810268.76
+2026-05-29,Cobranza Textil Río Bermejo SA Rec. 0001-00000889,3561303.87,,8371572.63

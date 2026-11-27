@@ -1,0 +1,160 @@
+{
+  "fulgoria_template": "0.1",
+  "meta": {
+    "template_id": "banco-del-rio-v1",
+    "country": "AR",
+    "bank": "Banco del Río",
+    "document_type": "extracto_bancario",
+    "format_version": 1,
+    "fingerprint": "extfp1:62103fff",
+    "source": "digital",
+    "contributor": "ejemplo",
+    "created_at": "2026-11-27",
+    "multipage": true
+  },
+  "match": {
+    "page_size": {
+      "w_pt": 595,
+      "h_pt": 842,
+      "tol": 0.02
+    },
+    "anchors": [
+      {
+        "text": "FECHA",
+        "box": {
+          "x": 0.0672,
+          "y": 0.1437
+        },
+        "match": "equals_ci"
+      },
+      {
+        "text": "DETALLE",
+        "box": {
+          "x": 0.1765,
+          "y": 0.1437
+        },
+        "match": "equals_ci"
+      },
+      {
+        "text": "DEBITO",
+        "box": {
+          "x": 0.6157,
+          "y": 0.1437
+        },
+        "match": "equals_ci"
+      },
+      {
+        "text": "CREDITO",
+        "box": {
+          "x": 0.7393,
+          "y": 0.1437
+        },
+        "match": "equals_ci"
+      },
+      {
+        "text": "SALDO",
+        "box": {
+          "x": 0.8798,
+          "y": 0.1437
+        },
+        "match": "equals_ci"
+      }
+    ],
+    "min_anchors": 3
+  },
+  "geometry": {
+    "coords": "normalized",
+    "row_detection": {
+      "strategy": "amount_anchor",
+      "date_regex": "\\d{2}/\\d{2}/\\d{2,4}",
+      "continuation": "append_description",
+      "table_bound": "saldo_continuity"
+    },
+    "columns": [
+      {
+        "field": "Fecha",
+        "role": "fecha",
+        "x_band": {
+          "from": 0,
+          "to": 0.1529
+        }
+      },
+      {
+        "field": "Descripción",
+        "role": "descripcion",
+        "x_band": {
+          "from": 0.1529,
+          "to": 0.6
+        }
+      },
+      {
+        "field": "Débito",
+        "role": "debito",
+        "x_band": {
+          "from": 0.6,
+          "to": 0.7059
+        }
+      },
+      {
+        "field": "Crédito",
+        "role": "credito",
+        "x_band": {
+          "from": 0.7059,
+          "to": 0.8361
+        }
+      },
+      {
+        "field": "Saldo",
+        "role": "saldo",
+        "x_band": {
+          "from": 0.8361,
+          "to": 1
+        }
+      }
+    ]
+  },
+  "fields": {
+    "Fecha": {
+      "type": "date",
+      "format": "DD/MM/YYYY"
+    },
+    "Descripción": {
+      "type": "text"
+    },
+    "Débito": {
+      "type": "amount",
+      "locale": "es-AR",
+      "sign": "negative",
+      "empty_as": null
+    },
+    "Crédito": {
+      "type": "amount",
+      "locale": "es-AR",
+      "sign": "positive",
+      "empty_as": null
+    },
+    "Saldo": {
+      "type": "amount",
+      "locale": "es-AR",
+      "sign": "as_is",
+      "empty_as": null
+    }
+  },
+  "annotations": [],
+  "rules": [],
+  "validation": {
+    "balance_rule": {
+      "enabled": true,
+      "formula": "opening + sum(credito) - sum(debito) == closing",
+      "tolerance": 0.01,
+      "per_row_check": true
+    },
+    "row_invariants": []
+  },
+  "community": {
+    "votes_up": 0,
+    "votes_down": 0,
+    "verified_count": 0,
+    "verified_rate": null
+  }
+}

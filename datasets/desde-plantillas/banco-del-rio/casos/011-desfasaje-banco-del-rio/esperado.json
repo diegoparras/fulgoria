@@ -1,0 +1,539 @@
+{
+ "dataset": "desde-plantilla",
+ "version": "1.0.0",
+ "id": "011-desfasaje-banco-del-rio",
+ "escenario": "desfasaje",
+ "banco": "banco-del-rio",
+ "sistema": "debe_haber_ar",
+ "semilla": 75001,
+ "periodo": {
+  "desde": "2026-07-01",
+  "hasta": "2026-07-31"
+ },
+ "cliente": {
+  "nombre": "Hotel Cerro Azul SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "El libro registra con días de diferencia respecto del banco, algunos más allá de la ventana por defecto.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 2503965271,
+    "bancoCierre": 3607787962,
+    "librosApertura": 2503965271,
+    "librosCierre": 3620510002
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-07-09",
+     "cents": 16711000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE CONSTRUCTORA DELTA NORTE SRL CUIT 33-50745326-6 REF 0001-00000631",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-07-09",
+     "cents": -100266,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-07-10",
+     "cents": -24170000,
+     "descripcion": "DEB. AUTOM. TELEFONÍA FEDERAL",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-07-14",
+     "cents": -17010012,
+     "descripcion": "TRANSFERENCIA ENVIADA A LOGÍSTICA ANDINA SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-07-14",
+     "cents": -2106000,
+     "descripcion": "DEB. AUTOM. INTERNET FIBRA SUR",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-07-17",
+     "cents": -232270355,
+     "descripcion": "TRANSFERENCIA ENVIADA A PANIFICADORA LA ESPIGA SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-07-22",
+     "cents": 343741000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE HOTEL CERRO AZUL SA CUIT 30-64553442-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-07-22",
+     "cents": -2062446,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-07-24",
+     "cents": -169737651,
+     "descripcion": "TRANSFERENCIA ENVIADA A BODEGA PIEDRA NEGRA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-07-24",
+     "cents": -27400000,
+     "descripcion": "DEB. AUTOM. ENERGÍA METROPOLITANA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-07-28",
+     "cents": -1900000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-07-28",
+     "cents": -399000,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-07-28",
+     "cents": -57000,
+     "descripcion": "PERCEP. IVA RG 2408",
+     "tipo": "percepcion_iva"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-07-30",
+     "cents": -138434635,
+     "descripcion": "TRANSFERENCIA ENVIADA A ESTUDIO GRÁFICO COBALTO SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-07-31",
+     "cents": 324300000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TRANSPORTE RUTA 3 SRL CUIT 33-68301711-1",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-07-31",
+     "cents": -1945800,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-07-31",
+     "cents": 304600000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE IMPRENTA TINTA FRESCA SRL CUIT 33-54998378-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-07-31",
+     "cents": -1827600,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-07-31",
+     "cents": 190609206,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE CONSTRUCTORA DELTA NORTE SRL CUIT 30-64228573-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-07-31",
+     "cents": -1143655,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-07-31",
+     "cents": 114817178,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TRANSPORTE RUTA 3 SRL CUIT 33-69392273-4 REF 0001-00000627",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-07-31",
+     "cents": -688903,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-07-31",
+     "cents": 59195000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE CONSTRUCTORA DELTA NORTE SRL CUIT 33-52610453-1 REF 0002-00000633",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-07-31",
+     "cents": -355170,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-07-31",
+     "cents": 373700000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE DISTRIBUIDORA LOS ÁLAMOS SRL CUIT 30-60723736-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-07-31",
+     "cents": -2242200,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-07-03",
+     "cents": -2106000,
+     "descripcion": "Internet Fibra Sur - débito automático",
+     "comprobante": "",
+     "asiento": 406
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-07-06",
+     "cents": 16711000,
+     "descripcion": "Cobro FC A 0001-00000631 Constructora Delta Norte SRL",
+     "comprobante": "0001-00000631",
+     "asiento": 398
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-07-06",
+     "cents": -17010012,
+     "descripcion": "Pago a proveedor Logística Andina SAS",
+     "comprobante": "OP 0001-00000638",
+     "asiento": 402
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-07-09",
+     "cents": -24170000,
+     "descripcion": "Telefonía Federal - débito automático",
+     "comprobante": "",
+     "asiento": 407
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-07-17",
+     "cents": -232270355,
+     "descripcion": "Transferencia a Panificadora La Espiga SRL OP 0001-00000640",
+     "comprobante": "OP 0001-00000640",
+     "asiento": 404
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-07-20",
+     "cents": 373700000,
+     "descripcion": "Cobranza cliente Distribuidora Los Álamos SRL",
+     "comprobante": "0002-00000635",
+     "asiento": 400
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-07-20",
+     "cents": -138434635,
+     "descripcion": "Pago a proveedor Estudio Gráfico Cobalto SAS",
+     "comprobante": "OP 0001-00000637",
+     "asiento": 401
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-07-21",
+     "cents": 343741000,
+     "descripcion": "Cobranza cliente Hotel Cerro Azul SA",
+     "comprobante": "0003-00000629",
+     "asiento": 397
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-07-22",
+     "cents": -169737651,
+     "descripcion": "Pago Bodega Piedra Negra SA OP 0001-00000639",
+     "comprobante": "OP 0001-00000639",
+     "asiento": 403
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-07-23",
+     "cents": -27400000,
+     "descripcion": "Energía Metropolitana - débito automático",
+     "comprobante": "",
+     "asiento": 405
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-07-27",
+     "cents": 59195000,
+     "descripcion": "Cobro FC A 0002-00000633 Constructora Delta Norte SRL",
+     "comprobante": "0002-00000633",
+     "asiento": 399
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-07-28",
+     "cents": 324300000,
+     "descripcion": "Cobranza Transporte Ruta 3 SRL Rec. 0001-00000622",
+     "comprobante": "0002-00000621",
+     "asiento": 393
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-07-28",
+     "cents": 304600000,
+     "descripcion": "Cobranza Imprenta Tinta Fresca SRL Rec. 0001-00000624",
+     "comprobante": "0003-00000623",
+     "asiento": 394
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-07-28",
+     "cents": 190609206,
+     "descripcion": "Cobranza cliente Constructora Delta Norte SRL",
+     "comprobante": "0001-00000625",
+     "asiento": 395
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-07-29",
+     "cents": 114817178,
+     "descripcion": "Cobranza Transporte Ruta 3 SRL Rec. 0001-00000628",
+     "comprobante": "0001-00000627",
+     "asiento": 396
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L8"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B23"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B25"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B14"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L3"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B10"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B11",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B13",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B26",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

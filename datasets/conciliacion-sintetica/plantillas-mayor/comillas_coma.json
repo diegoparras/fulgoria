@@ -1,0 +1,23 @@
+{
+  "fulgoria_plantilla_mayor": 1,
+  "sistema": "Coma con comillas y Debe/Haber",
+  "encabezados": [
+    "Fecha",
+    "Concepto",
+    "Comprobante",
+    "Debe",
+    "Haber"
+  ],
+  "mapeo": {
+    "fecha": "Fecha",
+    "descripcion": "Concepto",
+    "comprobante": "Comprobante",
+    "debe": "Debe",
+    "haber": "Haber"
+  },
+  "formato": {
+    "numeros": "es-AR"
+  },
+  "unirContinuacion": true,
+  "ignorar": []
+}

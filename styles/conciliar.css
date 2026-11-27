@@ -157,3 +157,19 @@
   .c-mesa-list label { grid-template-columns: auto minmax(0, 1fr) auto; }
   .c-mesa-list label .muted { display: none; }
 }
+
+/* Mapeo de columnas del mayor */
+.c-map { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; margin: 12px 0; }
+.c-map-roles { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px 14px; padding: 10px 0; border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+.c-map-f { display: grid; gap: 4px; font-size: 12.5px; color: var(--muted-2); }
+.c-map-f.wide, .c-map .chk { grid-column: 1 / -1; }
+.c-map .chk { display: flex; gap: 8px; align-items: center; font-size: 12.5px; color: var(--muted-2); }
+.c-map .chk input { width: auto; margin: 0; }
+.c-map-f input, .c-map-f select { padding: 6px 9px; font-size: 13px; }
+.c-map-vista table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 6px; }
+.c-map-vista td { padding: 4px 6px; border-bottom: 1px solid var(--line-soft); }
+.c-map-vista td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.c-map-res { display: flex; gap: 8px; align-items: center; font-size: 13px; padding: 8px 10px; border-radius: 8px; background: var(--panel-2); }
+.c-map-res.bad { color: var(--fail); }
+@media (max-width: 640px) { .c-map { grid-template-columns: 1fr; } }
+.c-modal-card { max-height: calc(100vh - 48px); overflow: auto; }

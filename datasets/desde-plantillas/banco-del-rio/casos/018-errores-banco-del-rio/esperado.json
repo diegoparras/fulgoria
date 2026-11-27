@@ -1,0 +1,733 @@
+{
+ "dataset": "desde-plantilla",
+ "version": "1.0.0",
+ "id": "018-errores-banco-del-rio",
+ "escenario": "errores",
+ "banco": "banco-del-rio",
+ "sistema": "planilla_cliente",
+ "semilla": 78002,
+ "periodo": {
+  "desde": "2026-02-01",
+  "hasta": "2026-02-28"
+ },
+ "cliente": {
+  "nombre": "Hotel Cerro Azul SA",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 2,
+ "notas": "Importe transpuesto, registro duplicado, créditos que el cliente no registró e ingresos registrados que nunca llegaron al banco.",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 573200000,
+    "bancoCierre": 1635001203,
+    "librosApertura": 573200000,
+    "librosCierre": 1561927867
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-02-04",
+     "cents": 267700000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE COOPERATIVA HORNERO LTDA CUIT 33-71540753-7 REF 0001-00000330",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-02-04",
+     "cents": -1606200,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-02-04",
+     "cents": -3212400,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-02-04",
+     "cents": -196900000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TRANSPORTE RUTA 3 SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-02-04",
+     "cents": -1181400,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-02-06",
+     "cents": 352136646,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LOGÍSTICA ANDINA SAS CUIT 33-61230632-5 REF 0003-00000324",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-02-06",
+     "cents": -2112820,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-02-06",
+     "cents": -4225640,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-02-06",
+     "cents": -244483000,
+     "descripcion": "TRANSFERENCIA ENVIADA A LIBRERÍA EL FARO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-02-06",
+     "cents": -1466898,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-02-06",
+     "cents": -154851000,
+     "descripcion": "TRANSFERENCIA ENVIADA A TECNOLOGÍA AUSTRAL SAS",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-02-06",
+     "cents": -929106,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-02-09",
+     "cents": 388800000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LIBRERÍA EL FARO SA CUIT 30-59510198-7",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-02-09",
+     "cents": -2332800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-02-09",
+     "cents": -4665600,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-02-09",
+     "cents": 12800000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LUCAS FERNÁNDEZ CUIT 23-29386142-0",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-02-09",
+     "cents": -76800,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-02-09",
+     "cents": -153600,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-02-13",
+     "cents": -252119000,
+     "descripcion": "TRANSFERENCIA ENVIADA A CONSTRUCTORA DELTA NORTE SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-02-13",
+     "cents": -1512714,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-02-16",
+     "cents": 400294000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE TEXTIL RÍO BERMEJO SA CUIT 30-66168841-2 REF 0001-00000322",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-02-16",
+     "cents": -2401764,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-02-16",
+     "cents": -4803528,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-02-16",
+     "cents": -39074346,
+     "descripcion": "DEB. AUTOM. ENERGÍA METROPOLITANA",
+     "tipo": "debito_automatico"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-02-16",
+     "cents": -234446,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-02-18",
+     "cents": 388120128,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FRIGORÍFICO PAMPA ALTA SA CUIT 33-50483857-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-02-18",
+     "cents": -2328721,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-02-18",
+     "cents": -4657442,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-02-19",
+     "cents": 185355806,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE LOGÍSTICA ANDINA SAS CUIT 33-56083571-5 REF 0003-00000326",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-02-19",
+     "cents": -1112135,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-02-19",
+     "cents": -2224270,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B32",
+     "fecha": "2026-02-23",
+     "cents": -219576278,
+     "descripcion": "TRANSFERENCIA ENVIADA A TEXTIL RÍO BERMEJO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B33",
+     "fecha": "2026-02-23",
+     "cents": -1317458,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B34",
+     "fecha": "2026-02-23",
+     "cents": -5574000,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B35",
+     "fecha": "2026-02-23",
+     "cents": -1170540,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B36",
+     "fecha": "2026-02-23",
+     "cents": -33444,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B37",
+     "fecha": "2026-02-23",
+     "cents": -7023,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B38",
+     "fecha": "2026-02-24",
+     "cents": 442500000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE CONSTRUCTORA DELTA NORTE SRL CUIT 30-61129915-6",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B39",
+     "fecha": "2026-02-24",
+     "cents": -2655000,
+     "descripcion": "IMP.CRED.LEY 25413",
+     "tipo": "impuesto_25413"
+    },
+    {
+     "id": "B40",
+     "fecha": "2026-02-24",
+     "cents": -5310000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B41",
+     "fecha": "2026-02-24",
+     "cents": -210334000,
+     "descripcion": "TRANSFERENCIA ENVIADA A DISTRIBUIDORA LOS ÁLAMOS SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B42",
+     "fecha": "2026-02-24",
+     "cents": -1262004,
+     "descripcion": "IMP.DEB.LEY 25413",
+     "tipo": "impuesto_25413"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-02-02",
+     "cents": 267700000,
+     "descripcion": "Cobro FC A 0001-00000330 Cooperativa Hornero Ltda",
+     "comprobante": "0001-00000330",
+     "asiento": 400
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-02-03",
+     "cents": -196900000,
+     "descripcion": "Transferencia a Transporte Ruta 3 SRL OP 0001-00000339",
+     "comprobante": "OP 0001-00000339",
+     "asiento": 407
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-02-03",
+     "cents": -196900000,
+     "descripcion": "Transferencia a Transporte Ruta 3 SRL OP 0001-00000339",
+     "comprobante": "OP 0001-00000339",
+     "asiento": 408
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-02-05",
+     "cents": 352136646,
+     "descripcion": "Cobranza Logística Andina SAS Rec. 0001-00000325",
+     "comprobante": "0003-00000324",
+     "asiento": 397
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-02-05",
+     "cents": -154851000,
+     "descripcion": "Pago a proveedor Tecnología Austral SAS",
+     "comprobante": "OP 0001-00000336",
+     "asiento": 404
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-02-06",
+     "cents": -244483000,
+     "descripcion": "Pago a proveedor Librería El Faro SA",
+     "comprobante": "OP 0001-00000335",
+     "asiento": 403
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-02-09",
+     "cents": 388800000,
+     "descripcion": "Cobranza Librería El Faro SA Rec. 0001-00000321",
+     "comprobante": "0002-00000320",
+     "asiento": 395
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-02-09",
+     "cents": 38976465,
+     "descripcion": "Cobranza Transporte Ruta 3 SRL (depósito)",
+     "comprobante": "",
+     "asiento": 409
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-02-12",
+     "cents": -252110900,
+     "descripcion": "Pago a proveedor Constructora Delta Norte SRL",
+     "comprobante": "OP 0001-00000338",
+     "asiento": 406
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-02-16",
+     "cents": 400294000,
+     "descripcion": "Cobranza cliente Textil Río Bermejo SA",
+     "comprobante": "0001-00000322",
+     "asiento": 396
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-02-17",
+     "cents": 388120128,
+     "descripcion": "Cobro FC A 0003-00000328 Frigorífico Pampa Alta SA",
+     "comprobante": "0003-00000328",
+     "asiento": 399
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-02-18",
+     "cents": 185355806,
+     "descripcion": "Cobranza cliente Logística Andina SAS",
+     "comprobante": "0003-00000326",
+     "asiento": 398
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-02-20",
+     "cents": -219576278,
+     "descripcion": "Pago Textil Río Bermejo SA OP 0001-00000334",
+     "comprobante": "OP 0001-00000334",
+     "asiento": 402
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-02-23",
+     "cents": 442500000,
+     "descripcion": "Cobranza cliente Constructora Delta Norte SRL",
+     "comprobante": "0002-00000332",
+     "asiento": 401
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-02-23",
+     "cents": -210334000,
+     "descripcion": "Transferencia a Distribuidora Los Álamos SRL OP 0001-00000337",
+     "comprobante": "OP 0001-00000337",
+     "asiento": 405
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L7"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B21"
+     ],
+     "libros": [
+      "L10"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L4"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B29"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B26"
+     ],
+     "libros": [
+      "L11"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L1"
+     ],
+     "tipo": "referencia"
+    },
+    {
+     "banco": [
+      "B38"
+     ],
+     "libros": [
+      "L14"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B32"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L6"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L5"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B41"
+     ],
+     "libros": [
+      "L15"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L9"
+     ],
+     "tipo": "error_importe"
+    },
+    {
+     "banco": [
+      "B4"
+     ],
+     "libros": [
+      "L2"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "L3",
+     "lado": "libros",
+     "tipo": "egreso_pendiente"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "credito_no_identificado"
+    },
+    {
+     "id": "B24",
+     "lado": "banco",
+     "tipo": "debito_no_identificado"
+    },
+    {
+     "id": "L8",
+     "lado": "libros",
+     "tipo": "ingreso_no_acreditado"
+    },
+    {
+     "id": "B34",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B35",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B15",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B22",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B7",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B8",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B31",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B27",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B3",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B39",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B40",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B33",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B42",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B20",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B5",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B17",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B36",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B37",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}

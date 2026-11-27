@@ -9,8 +9,9 @@
 import { loadPdf, renderToCanvas } from "./pdf.js";
 import { extract, balanceCheck, autoDetect, matchScore, docYear } from "./extract.js";
 import {
-  fromExtract, parseLedgerCsv, resolveConfig, DEFAULTS, reconcile, arrastreSiguiente, pairKey,
+  fromExtract, resolveConfig, DEFAULTS, reconcile, arrastreSiguiente, pairKey,
   papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, fmtCents, fmtISO,
+  parseCsv, parseLedgerRows, detectLedgerColumns, adivinarFilaEncabezado, crearPlantillaMayor, reconocerPlantillaMayor, ROLES_MAYOR,
 } from "./core/index.js";
 
 // OCR (Tesseract, pesado) se carga solo si hace falta: un PDF digital no lo necesita.
@@ -31,6 +32,7 @@ const dot = (c, lg) => `<span class="dot ${c}${lg ? " lg" : ""}"></span>`;
 const LS_MANDOS = "fulgoria.conciliar.mandos";
 const LS_MODO = "fulgoria.conciliar.modo";
 const LS_TPL = "fulgoria.templates"; // las mismas plantillas que guarda el extractor
+const LS_TPL_MAYOR = "fulgoria.plantillasMayor"; // plantillas de mayor por sistema contable
 
 const state = {
   extracto: null,   // { name, pdf, columns, ext, check, seg, banco, error }
@@ -59,7 +61,11 @@ async function handleFiles(files) {
     try {
       if (n.endsWith(".pdf") || (f.type || "").startsWith("image/")) await cargarExtracto(f.name, f);
       else if (n.endsWith(".csv") || n.endsWith(".txt")) await cargarMayor(f.name, await f.text());
-      else if (n.endsWith(".json")) await cargarArrastre(f.name, await f.text());
+      else if (n.endsWith(".json")) {
+        const txt = await f.text(), j = JSON.parse(txt);
+        if (j.fulgoria_plantilla_mayor) importarPlantillaMayor(j);
+        else await cargarArrastre(f.name, txt);
+      }
       else if (/\.xlsx?$/.test(n)) toast("Por ahora el mayor va en CSV: en Excel, Archivo → Guardar como → CSV.");
       else toast(`No sé qué hacer con ${f.name}`);
     } catch (e) {
@@ -128,14 +134,104 @@ function elegirSegmento(i) {
   x.error = null;
 }
 
+// El mayor se lee: 1) con una plantilla guardada si reconoce sus encabezados; 2) si no, con la
+// detección automática; 3) si tampoco, queda pidiendo que se indiquen las columnas a mano.
 async function cargarMayor(name, text) {
-  try {
-    const led = parseLedgerCsv(text, { doc: name, anio: state.extracto?.anio });
-    state.mayor = { name, led, error: null };
-  } catch (e) {
-    state.mayor = { name, led: null, error: e.message };
+  const rows = parseCsv(text);
+  state.mayor = { name, rows, led: null, error: null, plantilla: null, lectura: null };
+  const rec = reconocerPlantillaMayor(rows, plantillasMayor());
+  if (rec) leerMayor({ headerRow: rec.headerRow, map: rec.map, amountMode: rec.plantilla.formato?.numeros, unirContinuacion: rec.plantilla.unirContinuacion !== false, ignorar: rec.plantilla.ignorar || [] }, rec.plantilla.sistema);
+  else {
+    const det = detectLedgerColumns(rows);
+    if (det) leerMayor({ headerRow: det.headerRow, map: det.map });
+    else state.mayor.error = "No reconocí las columnas de este mayor. Indicá cuál es cada una (una sola vez: queda guardado para este sistema).";
   }
   resetDecisiones();
+}
+function leerMayor(lectura, plantilla = null) {
+  const m = state.mayor;
+  try {
+    m.led = parseLedgerRows(m.rows, { ...lectura, doc: m.name, anio: state.extracto?.anio });
+    m.lectura = lectura; m.plantilla = plantilla; m.error = null;
+  } catch (e) { m.led = null; m.error = e.message; }
+}
+function plantillasMayor() { return safeJson(lsGet(LS_TPL_MAYOR)) || []; }
+function guardarPlantillaMayor(tpl) {
+  const todas = plantillasMayor().filter((t) => t.sistema !== tpl.sistema);
+  todas.push(tpl);
+  lsSet(LS_TPL_MAYOR, JSON.stringify(todas));
+}
+function importarPlantillaMayor(tpl) {
+  guardarPlantillaMayor(tpl);
+  toast(`Plantilla de mayor "${tpl.sistema}" guardada.`);
+  if (state.mayor?.rows) cargarMayor(state.mayor.name, state.mayor.rows.map((r) => r.map((c) => (/[;"\n]/.test(c) ? `"${c.replace(/"/g, '""')}"` : c)).join(";")).join("\n"));
+}
+
+// ---------------------------------------------------------------- mapear columnas del mayor
+const ROL_MAYOR_TXT = {
+  fecha: "Fecha", descripcion: "Descripción / concepto", debe: "Debe (entra plata)", haber: "Haber (sale plata)",
+  importe: "Importe con signo (si no hay Debe/Haber)", saldo: "Saldo", comprobante: "Comprobante / nº de cheque", asiento: "Nº de asiento",
+};
+function abrirMapeo() {
+  const m = state.mayor;
+  if (!m?.rows) return;
+  const lec = m.lectura || {};
+  let hr = lec.headerRow ?? adivinarFilaEncabezado(m.rows);
+  let map = { ...(lec.map || detectLedgerColumns(m.rows)?.map || {}) };
+  const opciones = () => (m.rows[hr] || []).map((c, i) => `<option value="${i}">${esc(c || "Columna " + (i + 1))}</option>`).join("");
+  const sel = (rol) => `<label class="c-map-f">${ROL_MAYOR_TXT[rol]}<select data-rol="${rol}"><option value="">—</option>${opciones()}</select></label>`;
+  abrirModal("Columnas del mayor", `
+    <p>Indicá qué es cada columna. Si lo guardás como plantilla, la próxima vez que llegue un mayor de este sistema se lee solo.</p>
+    <div class="c-map">
+      <label class="c-map-f">Fila de los encabezados<input type="number" min="1" max="${m.rows.length}" id="mapFila" value="${hr + 1}" /></label>
+      <label class="c-map-f">Números<select id="mapNum"><option value="auto">Detectar solo</option><option value="es-AR">1.234,56</option><option value="us">1,234.56</option></select></label>
+      <div id="mapRoles" class="c-map-roles"></div>
+      <label class="c-map-f wide">Ignorar filas que contengan (separado por comas)<input id="mapIgnorar" value="${esc((lec.ignorar || []).join(", "))}" placeholder="p. ej. Total hoja, Firma" /></label>
+      <label class="chk"><input type="checkbox" id="mapUnir" checked /> Unir a la anterior las filas que solo tienen texto (descripciones partidas)</label>
+      <label class="c-map-f wide">Nombre del sistema o planilla<input id="mapSistema" value="${esc(m.plantilla || "")}" placeholder="p. ej. Sistema del estudio, Planilla de Juan" /></label>
+    </div>
+    <div id="mapVista" class="c-map-vista"></div>
+    <div class="modal-acciones">
+      <button class="btn ghost" id="mapBajar" title="Para compartirla con otro estudio o colega: no tiene datos, solo los nombres de las columnas">Descargar plantilla</button>
+      <button class="btn" id="mapAplicar">Aplicar a este archivo</button>
+      <button class="btn primary" id="mapGuardar">Guardar plantilla y aplicar</button>
+    </div>
+    ${plantillasMayor().length ? `<p class="muted" style="font-size:12.5px;margin-top:12px">Plantillas guardadas: ${plantillasMayor().map((t) => `${esc(t.sistema)} <button class="lnk" data-borrar-tpl="${esc(t.sistema)}">borrar</button>`).join(" · ")}</p>` : ""}`);
+  const pintarRoles = () => {
+    $("mapRoles").innerHTML = ROLES_MAYOR.map(sel).join("");
+    for (const s of $("mapRoles").querySelectorAll("select")) s.value = map[s.dataset.rol] ?? "";
+  };
+  const lectura = () => ({ headerRow: hr, map, amountMode: $("mapNum").value, unirContinuacion: $("mapUnir").checked, ignorar: $("mapIgnorar").value.split(",").map((x) => x.trim()).filter(Boolean) });
+  const vista = () => {
+    try {
+      const led = parseLedgerRows(m.rows, { ...lectura(), doc: m.name, anio: state.extracto?.anio });
+      const c = led.control;
+      const ej = led.movs.slice(0, 4).map((x) => `<tr><td>${fmtISO(x.fecha)}</td><td>${esc(x.descripcion)}</td><td class="num">${fmtCents(x.cents)}</td></tr>`).join("");
+      $("mapVista").innerHTML = `<div class="c-map-res ${c.ok === false ? "bad" : "ok"}">${dot(c.ok === true ? "verde" : c.ok === false ? "rojo" : "amarillo")} ${led.movs.length} registros · saldo ${fmtCents(led.apertura)} → ${fmtCents(led.cierre)} · ${c.ok === true ? "los saldos cierran" : c.ok === false ? "los saldos NO cierran: revisá Debe/Haber o el formato de números" : "sin saldo para verificar"}</div><table><tbody>${ej}</tbody></table>`;
+      return led;
+    } catch (e) { $("mapVista").innerHTML = `<div class="c-map-res bad">${dot("rojo")} ${esc(e.message)}</div>`; return null; }
+  };
+  $("mapNum").value = lec.amountMode || "auto";
+  pintarRoles(); vista();
+  $("mapFila").addEventListener("change", (e) => { hr = Math.max(0, Math.min(m.rows.length - 1, (+e.target.value || 1) - 1)); map = {}; pintarRoles(); vista(); });
+  $("mapRoles").addEventListener("change", (e) => { const v = e.target.value; if (v === "") delete map[e.target.dataset.rol]; else map[e.target.dataset.rol] = +v; vista(); });
+  for (const id of ["mapNum", "mapUnir", "mapIgnorar"]) $(id).addEventListener("change", vista);
+  const armar = () => crearPlantillaMayor({ sistema: $("mapSistema").value.trim() || "Mayor", rows: m.rows, headerRow: hr, map, amountMode: $("mapNum").value, unirContinuacion: $("mapUnir").checked, ignorar: lectura().ignorar });
+  $("mapAplicar").addEventListener("click", () => { if (!vista()) return; leerMayor(lectura(), null); resetDecisiones(); cerrarModal(); run(); });
+  $("mapGuardar").addEventListener("click", () => {
+    let tpl; try { tpl = armar(); } catch (e) { return toast(e.message); }
+    if (!vista()) return;
+    guardarPlantillaMayor(tpl); leerMayor(lectura(), tpl.sistema); resetDecisiones(); cerrarModal(); run();
+    toast(`Plantilla "${tpl.sistema}" guardada: la próxima vez se lee sola.`);
+  });
+  $("mapBajar").addEventListener("click", () => {
+    let tpl; try { tpl = armar(); } catch (e) { return toast(e.message); }
+    download(`plantilla-mayor-${tpl.sistema.toLowerCase().replace(/[^a-z0-9]+/g, "-")}.json`, JSON.stringify(tpl, null, 2), "application/json");
+  });
+  $("modalBody").querySelectorAll("[data-borrar-tpl]").forEach((b) => b.addEventListener("click", () => {
+    lsSet(LS_TPL_MAYOR, JSON.stringify(plantillasMayor().filter((t) => t.sistema !== b.dataset.borrarTpl)));
+    toast("Plantilla borrada."); abrirMapeo();
+  }));
 }
 
 async function cargarArrastre(name, text) {
@@ -220,13 +316,13 @@ function renderDocs() {
       <div class="s">${x.data.movs.length} movimientos · saldo ${fmtCents(x.data.apertura)} → ${fmtCents(x.data.cierre)} · ${ok ? "lectura verificada con la regla del saldo" : `<b>la lectura no cierra</b> (diferencia ${fmtCents(Math.round(((x.check.closing ?? 0) - (x.check.computed ?? 0)) * 100))}): abrilo en el <a class="link" href="./">Extractor</a> para ajustar las columnas`}${x.plantilla ? " · plantilla reconocida" : ""}${x.pdf.scanned ? " · OCR" : ""}</div>${sel}</div></div>`;
   })() : `<div class="c-doc falta">${ICON.doc}<div><div class="k">Extracto</div><div class="s">Falta el PDF o la imagen del extracto bancario.</div></div></div>`;
   const docM = m ? (m.error
-    ? `<div class="c-doc">${dot("rojo")}<div><div class="k">Mayor</div><div class="n">${esc(m.name)}</div><div class="s">${esc(m.error)}</div></div></div>`
+    ? `<div class="c-doc">${dot("rojo")}<div><div class="k">Mayor</div><div class="n">${esc(m.name)}</div><div class="s">${esc(m.error)}</div>${m.rows ? `<button class="btn sm primary" data-mapear="1" style="margin-top:8px">Indicar columnas</button>` : ""}</div></div>`
     : (() => {
       const c = m.led.control;
       const est = c.ok === true ? "verde" : c.ok === false ? "rojo" : "amarillo";
       const txt = c.ok === true ? "saldos verificados" : c.ok === false ? `<b>el saldo no cierra</b>${c.filasConError.length ? ` en las filas ${c.filasConError.slice(0, 5).join(", ")}` : ""}` : "sin saldo para verificar";
       return `<div class="c-doc">${dot(est)}<div><div class="k">Mayor de la cuenta Banco</div><div class="n">${esc(m.name)}</div>
-        <div class="s">${m.led.movs.length} registros · saldo ${fmtCents(m.led.apertura)} → ${fmtCents(m.led.cierre)} · ${txt}${m.led.avisos.length ? ` · ${m.led.avisos.length} aviso${m.led.avisos.length > 1 ? "s" : ""}` : ""}</div></div></div>`;
+        <div class="s">${m.led.movs.length} registros · saldo ${fmtCents(m.led.apertura)} → ${fmtCents(m.led.cierre)} · ${txt}${m.led.avisos.length ? ` · ${m.led.avisos.length} aviso${m.led.avisos.length > 1 ? "s" : ""}` : ""}${m.plantilla ? ` · plantilla ${esc(m.plantilla)}` : ""} · <button class="lnk" data-mapear="1">columnas</button></div></div></div>`;
     })())
     : `<div class="c-doc falta">${ICON.sheet}<div><div class="k">Mayor</div><div class="s">Falta el mayor de la cuenta Banco (CSV exportado de tu sistema contable o un Excel guardado como CSV).</div></div></div>`;
   const docA = state.arrastre.length ? `<div class="c-doc">${dot("verde")}<div><div class="k">Pendientes del mes anterior</div><div class="s">${state.arrastre.length} partidas arrastradas · <button class="lnk" id="quitarArrastre">quitar</button></div></div></div>` : "";
@@ -421,6 +517,7 @@ document.addEventListener("click", (e) => {
   if (b.closest("summary") && b.tagName === "BUTTON") e.preventDefault(); // un botón en el encabezado no abre/cierra la tarjeta
   const d = b.dataset;
   if (d.ev) return verEvidencia(d.ev);
+  if (d.mapear) return abrirMapeo();
   if (d.conf) { const m = state.rec.matches.find((x) => x.id === d.conf); state.decisiones.confirmados.push({ banco: m.banco, libros: m.libros }); return run(); }
   if (d.rech) {
     const m = state.rec.matches.find((x) => x.id === d.rech);

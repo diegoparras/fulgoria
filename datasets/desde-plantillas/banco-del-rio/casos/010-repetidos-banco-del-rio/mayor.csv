@@ -1,0 +1,18 @@
+Fecha;Asiento;Comprobante;Concepto;Debe;Haber;Saldo
+;;;Saldo anterior;;;33.269.982,57
+04/05/2026;59;;Sueldo abril - Lucas Fernández;;1.191.342,12;32.078.640,45
+04/05/2026;60;;Sueldo abril - Florencia Díaz;;1.191.342,12;30.887.298,33
+04/05/2026;61;;Sueldo abril - Lucía Ortiz;;1.191.342,12;29.695.956,21
+04/05/2026;62;;Sueldo abril - Valentina Sosa;;1.191.342,12;28.504.614,09
+04/05/2026;63;;Sueldo abril - Florencia Díaz;;1.191.342,12;27.313.271,97
+04/05/2026;64;;Sueldo abril - Sofía Ramírez;;1.191.342,12;26.121.929,85
+04/05/2026;72;OP 0001-00000650;Transferencia a Transporte Ruta 3 SRL OP 0001-00000650;;1.376.000,00;24.745.929,85
+07/05/2026;65;OP 0001-00000639;Pago Cooperativa Hornero Ltda OP 0001-00000639;;496.000,00;24.249.929,85
+07/05/2026;66;OP 0001-00000640;Pago a proveedor Librería El Faro SA;;496.000,00;23.753.929,85
+07/05/2026;71;OP 0001-00000649;Transferencia a Farmacia Del Parque SCS OP 0001-00000649;;821.900,35;22.932.029,50
+07/05/2026;73;OP 0001-00000651;Pago a proveedor Transporte Ruta 3 SRL;;2.514.000,00;20.418.029,50
+08/05/2026;70;0001-00000647;Cobro FC A 0001-00000647 Servicios Médicos Lomas SRL;169.000,00;;20.587.029,50
+11/05/2026;68;0001-00000643;Cobranza Agro Sur del Plata SA Rec. 0001-00000644;169.000,00;;20.756.029,50
+14/05/2026;69;0002-00000645;Cobranza cliente Bodega Piedra Negra SA;169.000,00;;20.925.029,50
+18/05/2026;67;0003-00000641;Cobranza Textil Río Bermejo SA Rec. 0001-00000642;169.000,00;;21.094.029,50
+;;;Totales;;;21.094.029,50

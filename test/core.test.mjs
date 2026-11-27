@@ -10,6 +10,7 @@ import {
   parseMoneyCents, fmtCents, toISO, daysBetween, extractEntities, classify, classifyAll,
   makeMov, resolveConfig, parseLedgerCsv, matchAll, subsetSums, pairKey, reconcile, arrastreSiguiente,
   continuidad, papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, fromExtract,
+  parseCsv, adivinarFilaEncabezado, crearPlantillaMayor, reconocerPlantillaMayor, parseLedgerConPlantilla,
 } from "../src/core/index.js";
 
 // --- Fixture: movimientos del extracto de ejemplo (tools/gen-sample.mjs) ---
@@ -345,4 +346,40 @@ test("decisiones — confirmar, rechazar y emparejar a mano", () => {
   r = matchAll(bs, ls, cfg, { manuales: [{ banco: ["B1"], libros: ["L1"] }] });
   assert.equal(r.matches[0].estrategia, "manual");
   assert.equal(r.matches[0].diferenciaCents, -500000);
+});
+
+test("plantilla de mayor — se arma una vez a mano y se reconoce sola la próxima", () => {
+  // Encabezados que la detección automática no conoce, subtotales por hoja y una descripción partida.
+  const csv = [
+    "Estudio Pérez & Asoc. - Mayor analítico",
+    "Fec. Contab.;Nro;Glosa del asiento;Cargo;Abono;Saldo Acum.",
+    ";;Saldo de apertura;;;1.000,00",
+    "02/06/2026;10;Cobranza cliente;500,00;;1.500,00",
+    "03/06/2026;11;Pago proveedor según;;200,00;1.300,00",
+    ";;factura 0001-00001234;;;",
+    ";;Total hoja 1;;;1.300,00",
+    "05/06/2026;12;Cheque N° 4521;;100,00;1.200,00",
+  ].join("\n");
+  assert.throws(() => parseLedgerCsv(csv), /No encontré los encabezados/);
+  const rows = parseCsv(csv);
+  const headerRow = adivinarFilaEncabezado(rows);
+  assert.equal(headerRow, 1);
+  const tpl = crearPlantillaMayor({ sistema: "Sistema del estudio", rows, headerRow, map: { fecha: 0, asiento: 1, descripcion: 2, debe: 3, haber: 4, saldo: 5 }, amountMode: "es-AR" });
+  assert.deepEqual(tpl.mapeo, { fecha: "Fec. Contab.", asiento: "Nro", descripcion: "Glosa del asiento", debe: "Cargo", haber: "Abono", saldo: "Saldo Acum." });
+  // La plantilla viaja como JSON (sin datos) y se reconoce en otro archivo con los mismos encabezados,
+  // aunque cambie la cantidad de líneas de título.
+  const compartida = JSON.parse(JSON.stringify(tpl));
+  const otro = csv.replace("Estudio Pérez & Asoc. - Mayor analítico\n", "Mayor\nCuenta 1.1.02\n");
+  const rec = reconocerPlantillaMayor(parseCsv(otro), [compartida]);
+  assert.equal(rec.plantilla.sistema, "Sistema del estudio");
+  const led = parseLedgerConPlantilla(otro, compartida);
+  assert.equal(led.movs.length, 3);
+  assert.equal(led.apertura, 100000);
+  assert.equal(led.cierre, 120000);
+  assert.equal(led.control.ok, true);
+  assert.equal(led.movs[1].descripcion, "Pago proveedor según factura 0001-00001234"); // fila partida unida
+  assert.equal(led.movs[1].entidades.comprobante, "00001-00001234");
+  assert.equal(led.movs[2].entidades.cheque, "4521");
+  assert.equal(led.avisos.length, 0); // el subtotal se saltea sin aviso
+  assert.throws(() => crearPlantillaMayor({ sistema: "x", rows, headerRow, map: { descripcion: 2 } }), /al menos Fecha/);
 });

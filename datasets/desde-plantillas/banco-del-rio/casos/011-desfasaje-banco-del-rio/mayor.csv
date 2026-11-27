@@ -1,0 +1,18 @@
+Fecha;Asiento;Comprobante;Concepto;Debe;Haber;Saldo
+;;;Saldo anterior;;;25.039.652,71
+03/07/2026;406;;Internet Fibra Sur - débito automático;;21.060,00;25.018.592,71
+06/07/2026;398;0001-00000631;Cobro FC A 0001-00000631 Constructora Delta Norte SRL;167.110,00;;25.185.702,71
+06/07/2026;402;OP 0001-00000638;Pago a proveedor Logística Andina SAS;;170.100,12;25.015.602,59
+09/07/2026;407;;Telefonía Federal - débito automático;;241.700,00;24.773.902,59
+17/07/2026;404;OP 0001-00000640;Transferencia a Panificadora La Espiga SRL OP 0001-00000640;;2.322.703,55;22.451.199,04
+20/07/2026;400;0002-00000635;Cobranza cliente Distribuidora Los Álamos SRL;3.737.000,00;;26.188.199,04
+20/07/2026;401;OP 0001-00000637;Pago a proveedor Estudio Gráfico Cobalto SAS;;1.384.346,35;24.803.852,69
+21/07/2026;397;0003-00000629;Cobranza cliente Hotel Cerro Azul SA;3.437.410,00;;28.241.262,69
+22/07/2026;403;OP 0001-00000639;Pago Bodega Piedra Negra SA OP 0001-00000639;;1.697.376,51;26.543.886,18
+23/07/2026;405;;Energía Metropolitana - débito automático;;274.000,00;26.269.886,18
+27/07/2026;399;0002-00000633;Cobro FC A 0002-00000633 Constructora Delta Norte SRL;591.950,00;;26.861.836,18
+28/07/2026;393;0002-00000621;Cobranza Transporte Ruta 3 SRL Rec. 0001-00000622;3.243.000,00;;30.104.836,18
+28/07/2026;394;0003-00000623;Cobranza Imprenta Tinta Fresca SRL Rec. 0001-00000624;3.046.000,00;;33.150.836,18
+28/07/2026;395;0001-00000625;Cobranza cliente Constructora Delta Norte SRL;1.906.092,06;;35.056.928,24
+29/07/2026;396;0001-00000627;Cobranza Transporte Ruta 3 SRL Rec. 0001-00000628;1.148.171,78;;36.205.100,02
+;;;Totales;;;36.205.100,02

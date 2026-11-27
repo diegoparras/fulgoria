@@ -1,0 +1,860 @@
+{
+ "dataset": "desde-plantilla",
+ "version": "1.0.0",
+ "id": "008-agrupados-banco-del-rio",
+ "escenario": "agrupados",
+ "banco": "banco-del-rio",
+ "sistema": "comillas_coma",
+ "semilla": 73002,
+ "periodo": {
+  "desde": "2026-06-01",
+  "hasta": "2026-06-30"
+ },
+ "cliente": {
+  "nombre": "Ferretería El Tornillo SRL",
+  "pagoACuenta25413": 33,
+  "responsableInscripto": true
+ },
+ "archivos": {
+  "extracto": "extracto.pdf",
+  "plantilla": "plantilla.json",
+  "pendientesAnterior": null
+ },
+ "paginas": 1,
+ "notas": "Depósitos que juntan varias cobranzas y retiros de Mercado Pago que juntan muchas ventas (algunos con más de 4 partidas).",
+ "cuentas": [
+  {
+   "segmento": 0,
+   "moneda": "ARS",
+   "mayor": "mayor.csv",
+   "saldos": {
+    "bancoApertura": 795358967,
+    "bancoCierre": 2069158466,
+    "librosApertura": 795358967,
+    "librosCierre": 2108743553
+   },
+   "banco": [
+    {
+     "id": "B1",
+     "fecha": "2026-06-02",
+     "cents": 108052542,
+     "descripcion": "TRANSF DE MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B2",
+     "fecha": "2026-06-02",
+     "cents": -2161051,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B3",
+     "fecha": "2026-06-05",
+     "cents": 78585532,
+     "descripcion": "TRANSF DE MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B4",
+     "fecha": "2026-06-05",
+     "cents": -1571711,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B5",
+     "fecha": "2026-06-05",
+     "cents": -283148000,
+     "descripcion": "TRANSFERENCIA ENVIADA A VIÑEDOS ALTOS DE CUYO SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B6",
+     "fecha": "2026-06-08",
+     "cents": 170827513,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B7",
+     "fecha": "2026-06-08",
+     "cents": 149980000,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B8",
+     "fecha": "2026-06-08",
+     "cents": 150672324,
+     "descripcion": "DEPOSITO EN EFECTIVO",
+     "tipo": "deposito"
+    },
+    {
+     "id": "B9",
+     "fecha": "2026-06-08",
+     "cents": 83165155,
+     "descripcion": "TRANSF DE MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B10",
+     "fecha": "2026-06-08",
+     "cents": -1663303,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B11",
+     "fecha": "2026-06-08",
+     "cents": 23758875,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 3844",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B12",
+     "fecha": "2026-06-08",
+     "cents": -475178,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B13",
+     "fecha": "2026-06-08",
+     "cents": 50024796,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 73936",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B14",
+     "fecha": "2026-06-08",
+     "cents": -1000496,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B15",
+     "fecha": "2026-06-08",
+     "cents": 339200000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE AGRO SUR DEL PLATA SA CUIT 30-54424732-4",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B16",
+     "fecha": "2026-06-08",
+     "cents": -6784000,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B17",
+     "fecha": "2026-06-12",
+     "cents": 369868000,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE METALÚRGICA SAN TELMO SRL CUIT 33-62991012-9",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B18",
+     "fecha": "2026-06-12",
+     "cents": -7397360,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B19",
+     "fecha": "2026-06-17",
+     "cents": -195989497,
+     "descripcion": "TRANSFERENCIA ENVIADA A BODEGA PIEDRA NEGRA SA",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B20",
+     "fecha": "2026-06-22",
+     "cents": 284423363,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE SERVICIOS MÉDICOS LOMAS SRL CUIT 33-63737355-8",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B21",
+     "fecha": "2026-06-22",
+     "cents": -5688467,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B22",
+     "fecha": "2026-06-23",
+     "cents": 58185000,
+     "descripcion": "LIQUIDACION TARJETA VISA LOTE 28323",
+     "tipo": "tarjeta_liquidacion"
+    },
+    {
+     "id": "B23",
+     "fecha": "2026-06-23",
+     "cents": -1163700,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B24",
+     "fecha": "2026-06-24",
+     "cents": 300876956,
+     "descripcion": "TRANSFERENCIA RECIBIDA DE FERRETERÍA EL TORNILLO SRL CUIT 33-56084889-2",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B25",
+     "fecha": "2026-06-24",
+     "cents": -6017539,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B26",
+     "fecha": "2026-06-24",
+     "cents": -249464000,
+     "descripcion": "TRANSFERENCIA ENVIADA A FERRETERÍA EL TORNILLO SRL",
+     "tipo": "transferencia"
+    },
+    {
+     "id": "B27",
+     "fecha": "2026-06-29",
+     "cents": 92425027,
+     "descripcion": "TRANSF DE MERCADOPAGO",
+     "tipo": "mercadopago"
+    },
+    {
+     "id": "B28",
+     "fecha": "2026-06-29",
+     "cents": -1848501,
+     "descripcion": "RET. IIBB SIRCREB",
+     "tipo": "retencion_iibb"
+    },
+    {
+     "id": "B29",
+     "fecha": "2026-06-29",
+     "cents": -3151885,
+     "descripcion": "COMISION MANT. CUENTA",
+     "tipo": "comision"
+    },
+    {
+     "id": "B30",
+     "fecha": "2026-06-29",
+     "cents": -661896,
+     "descripcion": "IVA 21% S/COMIS.",
+     "tipo": "iva_comision"
+    },
+    {
+     "id": "B31",
+     "fecha": "2026-06-30",
+     "cents": -218059000,
+     "descripcion": "TRANSFERENCIA ENVIADA A AGRO SUR DEL PLATA SA",
+     "tipo": "transferencia"
+    }
+   ],
+   "libros": [
+    {
+     "id": "L1",
+     "fecha": "2026-06-01",
+     "cents": 19700000,
+     "descripcion": "Venta MP #26824489",
+     "comprobante": "",
+     "asiento": 117
+    },
+    {
+     "id": "L2",
+     "fecha": "2026-06-01",
+     "cents": 24969000,
+     "descripcion": "Venta MP #91094971",
+     "comprobante": "",
+     "asiento": 132
+    },
+    {
+     "id": "L3",
+     "fecha": "2026-06-01",
+     "cents": 29406022,
+     "descripcion": "Venta MP #69007469",
+     "comprobante": "",
+     "asiento": 133
+    },
+    {
+     "id": "L4",
+     "fecha": "2026-06-01",
+     "cents": 12484851,
+     "descripcion": "Venta MP #94626008",
+     "comprobante": "",
+     "asiento": 134
+    },
+    {
+     "id": "L5",
+     "fecha": "2026-06-01",
+     "cents": 1337770,
+     "descripcion": "Venta MP #35973530",
+     "comprobante": "",
+     "asiento": 136
+    },
+    {
+     "id": "L6",
+     "fecha": "2026-06-01",
+     "cents": 24516470,
+     "descripcion": "Venta MP #23439431",
+     "comprobante": "",
+     "asiento": 137
+    },
+    {
+     "id": "L7",
+     "fecha": "2026-06-02",
+     "cents": 13085532,
+     "descripcion": "Venta MP #98789015",
+     "comprobante": "",
+     "asiento": 120
+    },
+    {
+     "id": "L8",
+     "fecha": "2026-06-02",
+     "cents": 15338429,
+     "descripcion": "Venta MP #19841521",
+     "comprobante": "",
+     "asiento": 135
+    },
+    {
+     "id": "L9",
+     "fecha": "2026-06-03",
+     "cents": 18000000,
+     "descripcion": "Venta MP #64714553",
+     "comprobante": "",
+     "asiento": 118
+    },
+    {
+     "id": "L10",
+     "fecha": "2026-06-04",
+     "cents": 14400000,
+     "descripcion": "Venta MP #36763773",
+     "comprobante": "",
+     "asiento": 122
+    },
+    {
+     "id": "L11",
+     "fecha": "2026-06-04",
+     "cents": 24800000,
+     "descripcion": "Venta MP #30178630",
+     "comprobante": "",
+     "asiento": 124
+    },
+    {
+     "id": "L12",
+     "fecha": "2026-06-04",
+     "cents": 339200000,
+     "descripcion": "Cobranza cliente Agro Sur del Plata SA",
+     "comprobante": "0001-00000697",
+     "asiento": 144
+    },
+    {
+     "id": "L13",
+     "fecha": "2026-06-04",
+     "cents": -283148000,
+     "descripcion": "Transferencia a Viñedos Altos de Cuyo SA OP 0001-00000702",
+     "comprobante": "OP 0001-00000702",
+     "asiento": 148
+    },
+    {
+     "id": "L14",
+     "fecha": "2026-06-05",
+     "cents": 69027513,
+     "descripcion": "Cobranza Nicolás Romero - efectivo a depositar",
+     "comprobante": "RC 0001-00000680",
+     "asiento": 106
+    },
+    {
+     "id": "L15",
+     "fecha": "2026-06-05",
+     "cents": 19662274,
+     "descripcion": "Cobranza Lucía Ortiz - efectivo a depositar",
+     "comprobante": "RC 0001-00000690",
+     "asiento": 116
+    },
+    {
+     "id": "L16",
+     "fecha": "2026-06-05",
+     "cents": 27800000,
+     "descripcion": "Venta MP #19114411",
+     "comprobante": "",
+     "asiento": 119
+    },
+    {
+     "id": "L17",
+     "fecha": "2026-06-05",
+     "cents": 1800000,
+     "descripcion": "Venta MP #44581282",
+     "comprobante": "",
+     "asiento": 125
+    },
+    {
+     "id": "L18",
+     "fecha": "2026-06-06",
+     "cents": 18600000,
+     "descripcion": "Cobranza Valentina Sosa - efectivo a depositar",
+     "comprobante": "RC 0001-00000681",
+     "asiento": 107
+    },
+    {
+     "id": "L19",
+     "fecha": "2026-06-06",
+     "cents": 39037000,
+     "descripcion": "Cobranza Camila Herrera - efectivo a depositar",
+     "comprobante": "RC 0001-00000684",
+     "asiento": 110
+    },
+    {
+     "id": "L20",
+     "fecha": "2026-06-06",
+     "cents": 72900000,
+     "descripcion": "Cobranza Mateo Benítez - efectivo a depositar",
+     "comprobante": "RC 0001-00000688",
+     "asiento": 114
+    },
+    {
+     "id": "L21",
+     "fecha": "2026-06-07",
+     "cents": 8100000,
+     "descripcion": "Cobranza Franco Silva - efectivo a depositar",
+     "comprobante": "RC 0001-00000682",
+     "asiento": 108
+    },
+    {
+     "id": "L22",
+     "fecha": "2026-06-07",
+     "cents": 65800000,
+     "descripcion": "Cobranza Lucas Fernández - efectivo a depositar",
+     "comprobante": "RC 0001-00000685",
+     "asiento": 111
+    },
+    {
+     "id": "L23",
+     "fecha": "2026-06-07",
+     "cents": 20206155,
+     "descripcion": "Venta MP #71286580",
+     "comprobante": "",
+     "asiento": 121
+    },
+    {
+     "id": "L24",
+     "fecha": "2026-06-07",
+     "cents": 21959000,
+     "descripcion": "Venta MP #51501277",
+     "comprobante": "",
+     "asiento": 123
+    },
+    {
+     "id": "L25",
+     "fecha": "2026-06-08",
+     "cents": 75100000,
+     "descripcion": "Cobranza Paula Castro - efectivo a depositar",
+     "comprobante": "RC 0001-00000683",
+     "asiento": 109
+    },
+    {
+     "id": "L26",
+     "fecha": "2026-06-08",
+     "cents": 9643000,
+     "descripcion": "Cobranza Florencia Díaz - efectivo a depositar",
+     "comprobante": "RC 0001-00000686",
+     "asiento": 112
+    },
+    {
+     "id": "L27",
+     "fecha": "2026-06-08",
+     "cents": 35500000,
+     "descripcion": "Cobranza Sofía Ramírez - efectivo a depositar",
+     "comprobante": "RC 0001-00000687",
+     "asiento": 113
+    },
+    {
+     "id": "L28",
+     "fecha": "2026-06-08",
+     "cents": 58110050,
+     "descripcion": "Cobranza Lucía Ortiz - efectivo a depositar",
+     "comprobante": "RC 0001-00000689",
+     "asiento": 115
+    },
+    {
+     "id": "L29",
+     "fecha": "2026-06-08",
+     "cents": 23758875,
+     "descripcion": "Liquidación tarjeta lote 3844",
+     "comprobante": "",
+     "asiento": 138
+    },
+    {
+     "id": "L30",
+     "fecha": "2026-06-08",
+     "cents": 50024796,
+     "descripcion": "Liquidación tarjeta lote 73936",
+     "comprobante": "",
+     "asiento": 140
+    },
+    {
+     "id": "L31",
+     "fecha": "2026-06-11",
+     "cents": 369868000,
+     "descripcion": "Cobranza cliente Metalúrgica San Telmo SRL",
+     "comprobante": "0001-00000691",
+     "asiento": 141
+    },
+    {
+     "id": "L32",
+     "fecha": "2026-06-16",
+     "cents": -195989497,
+     "descripcion": "Transferencia a Bodega Piedra Negra SA OP 0001-00000699",
+     "comprobante": "OP 0001-00000699",
+     "asiento": 145
+    },
+    {
+     "id": "L33",
+     "fecha": "2026-06-22",
+     "cents": 284423363,
+     "descripcion": "Cobranza Servicios Médicos Lomas SRL Rec. 0001-00000696",
+     "comprobante": "0002-00000695",
+     "asiento": 143
+    },
+    {
+     "id": "L34",
+     "fecha": "2026-06-23",
+     "cents": 58185000,
+     "descripcion": "Liquidación tarjeta lote 28323",
+     "comprobante": "",
+     "asiento": 139
+    },
+    {
+     "id": "L35",
+     "fecha": "2026-06-24",
+     "cents": 300876956,
+     "descripcion": "Cobranza Ferretería El Tornillo SRL Rec. 0001-00000694",
+     "comprobante": "0003-00000693",
+     "asiento": 142
+    },
+    {
+     "id": "L36",
+     "fecha": "2026-06-24",
+     "cents": -249464000,
+     "descripcion": "Pago Ferretería El Tornillo SRL OP 0001-00000700",
+     "comprobante": "OP 0001-00000700",
+     "asiento": 146
+    },
+    {
+     "id": "L37",
+     "fecha": "2026-06-25",
+     "cents": 14400000,
+     "descripcion": "Venta MP #31407893",
+     "comprobante": "",
+     "asiento": 130
+    },
+    {
+     "id": "L38",
+     "fecha": "2026-06-26",
+     "cents": 20800000,
+     "descripcion": "Venta MP #68164452",
+     "comprobante": "",
+     "asiento": 126
+    },
+    {
+     "id": "L39",
+     "fecha": "2026-06-26",
+     "cents": 4659695,
+     "descripcion": "Venta MP #99551134",
+     "comprobante": "",
+     "asiento": 128
+    },
+    {
+     "id": "L40",
+     "fecha": "2026-06-29",
+     "cents": 16493511,
+     "descripcion": "Venta MP #15337745",
+     "comprobante": "",
+     "asiento": 127
+    },
+    {
+     "id": "L41",
+     "fecha": "2026-06-29",
+     "cents": 6371821,
+     "descripcion": "Venta MP #51028487",
+     "comprobante": "",
+     "asiento": 129
+    },
+    {
+     "id": "L42",
+     "fecha": "2026-06-29",
+     "cents": 29700000,
+     "descripcion": "Venta MP #25493483",
+     "comprobante": "",
+     "asiento": 131
+    },
+    {
+     "id": "L43",
+     "fecha": "2026-06-29",
+     "cents": -218059000,
+     "descripcion": "Pago a proveedor Agro Sur del Plata SA",
+     "comprobante": "OP 0001-00000701",
+     "asiento": 147
+    }
+   ],
+   "pares": [
+    {
+     "banco": [
+      "B6"
+     ],
+     "libros": [
+      "L14",
+      "L18",
+      "L21",
+      "L25"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B7"
+     ],
+     "libros": [
+      "L19",
+      "L22",
+      "L26",
+      "L27"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B8"
+     ],
+     "libros": [
+      "L20",
+      "L28",
+      "L15"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B3"
+     ],
+     "libros": [
+      "L1",
+      "L9",
+      "L16",
+      "L7"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B9"
+     ],
+     "libros": [
+      "L23",
+      "L10",
+      "L24",
+      "L11",
+      "L17"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B27"
+     ],
+     "libros": [
+      "L38",
+      "L40",
+      "L39",
+      "L41",
+      "L37",
+      "L42"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B1"
+     ],
+     "libros": [
+      "L2",
+      "L3",
+      "L4",
+      "L8",
+      "L5",
+      "L6"
+     ],
+     "tipo": "agrupado"
+    },
+    {
+     "banco": [
+      "B11"
+     ],
+     "libros": [
+      "L29"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B22"
+     ],
+     "libros": [
+      "L34"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B13"
+     ],
+     "libros": [
+      "L30"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B17"
+     ],
+     "libros": [
+      "L31"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B24"
+     ],
+     "libros": [
+      "L35"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B20"
+     ],
+     "libros": [
+      "L33"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B15"
+     ],
+     "libros": [
+      "L12"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B19"
+     ],
+     "libros": [
+      "L32"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B26"
+     ],
+     "libros": [
+      "L36"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B31"
+     ],
+     "libros": [
+      "L43"
+     ],
+     "tipo": "uno_a_uno"
+    },
+    {
+     "banco": [
+      "B5"
+     ],
+     "libros": [
+      "L13"
+     ],
+     "tipo": "uno_a_uno"
+    }
+   ],
+   "pendientes": [
+    {
+     "id": "B29",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B30",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B4",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B10",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B28",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B2",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B12",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B23",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B14",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B18",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B25",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B21",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    },
+    {
+     "id": "B16",
+     "lado": "banco",
+     "tipo": "ajuste_bancario"
+    }
+   ],
+   "diferenciaNoExplicada": 0
+  }
+ ]
+}
