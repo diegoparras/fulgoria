@@ -157,3 +157,12 @@ test("Anthropic: temperatura rechazada → reintento sin ella", async () => {
   assert.equal(r.propuestas.length, 1);
   assert.equal(f.pedidos.filter((p) => p.url.startsWith("/v1/messages")).at(-1).body.temperature, undefined);
 });
+
+test("ajuste guardado con la forma vieja (un solo proveedor) se lee como local o externa", async () => {
+  const { normalizarAjuste } = require("../server/ia.js");
+  assert.equal(normalizarAjuste({ proveedor: "local", modelo: "m", maxPorHora: 5 }).modo, "local");
+  const e = normalizarAjuste({ proveedor: "openai", modelo: "m", claveCifrada: "x" });
+  assert.equal(e.modo, "externa"); assert.equal(e.externa.claveCifrada, "x");
+  assert.equal(normalizarAjuste({ modo: "ninguna" }).modo, "ninguna");
+  assert.equal(normalizarAjuste(null), null);
+});

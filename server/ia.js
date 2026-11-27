@@ -209,6 +209,19 @@ function validarConfig(c = {}) {
   return { proveedor, modelo, url, temperatura, maxPorHora };
 }
 
+const EXTERNOS = ["anthropic", "openai", "gemini", "openrouter"];
+/**
+ * Ajuste guardado por el admin → { modo: "ninguna" | "local" | "externa", local, externa, maxPorHora }.
+ * Acepta también la forma vieja (un solo proveedor) para no perder lo que ya estaba guardado.
+ */
+function normalizarAjuste(g) {
+  if (!g) return null;
+  if (g.modo) return { modo: g.modo, local: g.local || null, externa: g.externa || null, maxPorHora: g.maxPorHora ?? 30 };
+  if (!g.proveedor) return null;
+  const { maxPorHora = 30, ...resto } = g;
+  return g.proveedor === "local" ? { modo: "local", local: resto, externa: null, maxPorHora } : { modo: "externa", local: null, externa: resto, maxPorHora };
+}
+
 function crearIA({ proveedor, modelo, apiKey, url, temperatura = null, maxPorHora = 30 } = {}) {
   const p = String(proveedor || "").toLowerCase();
   if (!p) return { disponible: false };
@@ -241,4 +254,4 @@ function crearIA({ proveedor, modelo, apiKey, url, temperatura = null, maxPorHor
   };
 }
 
-module.exports = { crearIA, sanear, validarConfig, PROVEEDORES, ESQUEMA, SISTEMA };
+module.exports = { crearIA, sanear, validarConfig, normalizarAjuste, PROVEEDORES, EXTERNOS, ESQUEMA, SISTEMA };

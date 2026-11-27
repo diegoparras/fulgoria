@@ -112,7 +112,7 @@ if (PERSISTENCIA) {
 //     tipos de celda, nunca datos) y propone columnas; la regla del saldo decide en el navegador.
 //     La configura un admin desde Conciliar → IA (queda en la base, con la clave cifrada) o, si no,
 //     el .env (IA_PROVEEDOR…). Ver server/ia.js. ---
-const { crearIA } = require("./server/ia.js");
+const { crearIA, normalizarAjuste } = require("./server/ia.js");
 const IA_ENV = {
   proveedor: process.env.IA_PROVEEDOR, modelo: process.env.IA_MODELO,
   apiKey: process.env.IA_API_KEY || (String(process.env.IA_PROVEEDOR || "").toLowerCase() === "anthropic" ? process.env.ANTHROPIC_API_KEY : ""),
@@ -124,16 +124,21 @@ function iaSegura(cfg, origen) {
 }
 const gestorIA = {
   actual: { disponible: false, origen: "ninguno" },
-  env: IA_ENV.proveedor ? { proveedor: String(IA_ENV.proveedor).toLowerCase(), modelo: IA_ENV.modelo || null } : null,
+  env: IA_ENV.proveedor ? { proveedor: String(IA_ENV.proveedor).toLowerCase(), modelo: IA_ENV.modelo || null, url: IA_ENV.url || "", conClave: !!IA_ENV.apiKey } : null,
   crear: (cfg) => crearIA(cfg),
+  /** La clave del .env sirve si el proveedor elegido es el mismo del .env. */
+  claveEnv: (prov) => (String(IA_ENV.proveedor || "").toLowerCase() === prov ? IA_ENV.apiKey || "" : ""),
   recargar() {
-    const g = persistencia && persistencia.ajuste("ia");
-    if (g && g.proveedor) {
+    const g = normalizarAjuste(persistencia && persistencia.ajuste("ia"));
+    if (g && g.modo === "ninguna") this.actual = { disponible: false, origen: "panel", apagada: true };
+    else if (g && g.modo === "local" && g.local) this.actual = iaSegura({ ...g.local, proveedor: "local", maxPorHora: g.maxPorHora }, "panel");
+    else if (g && g.modo === "externa" && g.externa) {
       let apiKey = "";
-      try { apiKey = persistencia.descifrarSecreto(g.claveCifrada); } catch { console.error("[fulgoria] no pude descifrar la clave de la IA (¿cambió DOCS_CLAVE?)"); }
-      this.actual = iaSegura({ ...g, apiKey }, "panel");
+      try { apiKey = g.externa.claveCifrada ? persistencia.descifrarSecreto(g.externa.claveCifrada) : this.claveEnv(g.externa.proveedor); } catch { console.error("[fulgoria] no pude descifrar la clave de la IA (¿cambió DOCS_CLAVE?)"); }
+      this.actual = iaSegura({ ...g.externa, apiKey, maxPorHora: g.maxPorHora }, "panel");
     } else this.actual = IA_ENV.proveedor ? iaSegura(IA_ENV, "env") : { disponible: false, origen: "ninguno" };
     if (this.actual.disponible) console.log(`[fulgoria] IA para bancos nuevos: ${this.actual.proveedor} · ${this.actual.modelo} (${this.actual.origen === "panel" ? "configurada desde la pantalla" : ".env"})`);
+    else if (this.actual.apagada) console.log("[fulgoria] IA para bancos nuevos: apagada desde la pantalla");
     return this.actual;
   },
 };

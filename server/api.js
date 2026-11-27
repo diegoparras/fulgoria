@@ -3,7 +3,7 @@
 "use strict";
 const express = require("express");
 const { ROLES, permisosDe, puede } = require("./roles.js");
-const { validarConfig, PROVEEDORES } = require("./ia.js");
+const { validarConfig, normalizarAjuste, PROVEEDORES, EXTERNOS } = require("./ia.js");
 
 const PERIODO_RE = /^\d{4}-(0[1-9]|1[0-2])$/;
 const ID_RE = /^[0-9a-f-]{36}$/i;
@@ -140,46 +140,75 @@ function crearApi(p, { maxDocMB = 25, usuario = () => ({ u: "local", rol: "admin
   r.delete("/plantillas/:id", idOk, exige("revisar"), (req, res) => (p.borrarPlantilla(u(req), req.params.id) ? res.status(204).end() : mal(res, 404, "No existe la plantilla.")));
   r.get("/eventos", (req, res) => res.json(p.eventos({ entidad: txt(req.query.entidad, 20), entidadId: txt(req.query.id, 40), limite: Number(req.query.limite) || 100 })));
 
-  // ---------------- IA (solo admin). La clave de API se guarda cifrada con DOCS_CLAVE y nunca vuelve
-  // al navegador: solo sus últimos 4 caracteres, para reconocerla.
+  // ---------------- IA (solo admin): sin IA, IA local o IA externa. Se guardan las dos configuraciones
+  // (local y externa) y se elige cuál está activa. La clave de API va cifrada con DOCS_CLAVE y nunca
+  // vuelve al navegador: solo sus últimos 4 caracteres, para reconocerla.
   if (ia) {
+    const MODOS = ["ninguna", "local", "externa"];
+    const guardado = () => normalizarAjuste(p.ajuste("ia"));
     const vistaIA = () => {
-      const g = p.ajuste("ia"), a = ia.actual;
+      const g = guardado(), a = ia.actual, env = ia.env;
+      const envLocal = env?.proveedor === "local" ? env : null, envExt = env && env.proveedor !== "local" ? env : null;
+      const L = g?.local || (envLocal ? { modelo: envLocal.modelo, url: envLocal.url, temperatura: null, desdeEnv: true } : null);
+      const E = g?.externa || (envExt ? { proveedor: envExt.proveedor, modelo: envExt.modelo, url: envExt.url, temperatura: null, desdeEnv: true } : null);
       return {
+        modo: g ? g.modo : a.disponible ? (a.proveedor === "local" ? "local" : "externa") : "ninguna",
+        origen: g ? "panel" : env ? "env" : "ninguno",
         enUso: a.disponible ? { proveedor: a.proveedor, modelo: a.modelo, origen: a.origen } : null,
         error: a.error || null,
-        config: g ? { proveedor: g.proveedor, modelo: g.modelo, url: g.url || "", temperatura: g.temperatura, maxPorHora: g.maxPorHora, clave: g.claveFin ? `…${g.claveFin}` : null } : null,
-        env: ia.env,
-        proveedores: Object.fromEntries(Object.entries(PROVEEDORES).map(([k, v]) => [k, { nombre: v.nombre, url: v.url || "", modelo: v.modelo || "", clave: v.clave }])),
+        local: L && { modelo: L.modelo || "", url: L.url || "", temperatura: L.temperatura ?? null, desdeEnv: !!L.desdeEnv },
+        externa: E && { proveedor: E.proveedor, modelo: E.modelo || "", url: E.url || "", temperatura: E.temperatura ?? null, desdeEnv: !!E.desdeEnv,
+          clave: E.claveFin ? `…${E.claveFin}` : (E.desdeEnv || !E.claveCifrada) && ia.claveEnv(E.proveedor) ? "la del .env" : null },
+        maxPorHora: g?.maxPorHora ?? 30,
+        env,
+        proveedores: Object.fromEntries(EXTERNOS.map((k) => [k, { nombre: PROVEEDORES[k].nombre, url: PROVEEDORES[k].url || "", modelo: PROVEEDORES[k].modelo || "" }])),
+        urlLocal: PROVEEDORES.local.url,
         puedeGuardarClave: p.puedeGuardarSecretos,
       };
     };
-    // Config pedida + clave (la nueva, o la guardada si es del mismo proveedor).
-    const armarIA = (b) => {
-      const cfg = validarConfig(b || {});
-      const g = p.ajuste("ia");
-      const nueva = typeof b?.apiKey === "string" ? b.apiKey.trim().slice(0, 500) : "";
-      const mismaClave = !nueva && g && g.proveedor === cfg.proveedor && g.claveCifrada;
-      const apiKey = nueva || (mismaClave ? p.descifrarSecreto(g.claveCifrada) : "");
-      if (PROVEEDORES[cfg.proveedor].clave && !apiKey) throw new Error(`Falta la clave de API de ${PROVEEDORES[cfg.proveedor].nombre}.`);
-      return { cfg, apiKey, nueva, guardada: mismaClave ? g : null };
+    const err400 = (m) => Object.assign(new Error(m), { status: 400 });
+    // Lo pedido (modo + su sección) → config validada + clave (la nueva, la guardada o la del .env).
+    const armarIA = (b = {}) => {
+      const modo = String(b.modo || "");
+      if (!MODOS.includes(modo)) throw err400("Elegí: sin IA, IA local o IA externa.");
+      const maxPorHora = b.maxPorHora;
+      if (modo === "ninguna") return { modo, maxPorHora: 30 };
+      const g = guardado();
+      if (modo === "local") {
+        const cfg = validarConfig({ ...(b.local || {}), proveedor: "local", maxPorHora });
+        return { modo, cfg, apiKey: "" };
+      }
+      const prov = String(b.externa?.proveedor || "").toLowerCase();
+      if (!EXTERNOS.includes(prov)) throw err400("Elegí el proveedor de la IA externa.");
+      const cfg = validarConfig({ ...(b.externa || {}), proveedor: prov, maxPorHora });
+      const nueva = typeof b.externa?.apiKey === "string" ? b.externa.apiKey.trim().slice(0, 500) : "";
+      const previa = g?.externa?.proveedor === prov && g.externa.claveCifrada ? g.externa : null;
+      const apiKey = nueva || (previa ? p.descifrarSecreto(previa.claveCifrada) : ia.claveEnv(prov));
+      if (!apiKey) throw err400(`Falta la clave de API de ${PROVEEDORES[prov].nombre}.`);
+      return { modo, cfg, apiKey, nueva, previa };
     };
     const conIA = (fn) => async (req, res) => {
       let x;
-      try { x = armarIA(req.body); } catch (e) { return mal(res, 400, e.message); }
+      try { x = armarIA(req.body); } catch (e) { return mal(res, e.status || 400, e.message); }
       try { res.json(await fn(x, req)); } catch (e) { mal(res, e.status && e.status < 500 ? e.status : 502, e.message); }
     };
+    const sinSecciones = ({ proveedor, maxPorHora, ...resto }) => resto; // lo propio de cada sección
     r.get("/ia/config", exige("administrar"), (req, res) => res.json(vistaIA()));
-    r.put("/ia/config", exige("administrar"), express.json({ limit: "16kb" }), conIA(async ({ cfg, apiKey, nueva, guardada }, req) => {
-      ia.crear({ ...cfg, apiKey }); // valida que arme (proveedor, modelo, clave)
-      let claveCifrada = guardada?.claveCifrada || null, claveFin = guardada?.claveFin || null;
-      if (nueva) {
-        if (!p.puedeGuardarSecretos) { const e = new Error("Para guardar una clave de API hace falta DOCS_CLAVE en el servidor."); e.status = 409; throw e; }
-        claveCifrada = p.cifrarSecreto(nueva); claveFin = nueva.slice(-4);
+    r.put("/ia/config", exige("administrar"), express.json({ limit: "16kb" }), conIA(async ({ modo, cfg, apiKey, nueva, previa }, req) => {
+      const g = guardado() || { local: null, externa: null };
+      const out = { modo, local: g.local, externa: g.externa, maxPorHora: cfg?.maxPorHora ?? g.maxPorHora ?? 30 };
+      if (modo === "local") { ia.crear({ ...cfg, apiKey }); out.local = sinSecciones(cfg); }
+      if (modo === "externa") {
+        ia.crear({ ...cfg, apiKey });
+        let claveCifrada = previa?.claveCifrada || null, claveFin = previa?.claveFin || null;
+        if (nueva) {
+          if (!p.puedeGuardarSecretos) { const e = new Error("Para guardar una clave de API hace falta DOCS_CLAVE en el servidor."); e.status = 409; throw e; }
+          claveCifrada = p.cifrarSecreto(nueva); claveFin = nueva.slice(-4);
+        }
+        out.externa = { ...sinSecciones(cfg), proveedor: cfg.proveedor, claveCifrada, claveFin }; // sin clave guardada: usa la del .env
       }
-      if (!PROVEEDORES[cfg.proveedor].clave && !nueva) claveCifrada = claveFin = null;
-      p.guardarAjuste(u(req), "ia", { ...cfg, claveCifrada, claveFin });
-      p.evento(u(req), "configurar", "ia", null, { proveedor: cfg.proveedor, modelo: cfg.modelo, claveNueva: !!nueva });
+      p.guardarAjuste(u(req), "ia", out);
+      p.evento(u(req), "configurar", "ia", null, { modo, proveedor: cfg?.proveedor || null, modelo: cfg?.modelo || null, claveNueva: !!nueva });
       ia.recargar();
       return vistaIA();
     }));
@@ -190,9 +219,18 @@ function crearApi(p, { maxDocMB = 25, usuario = () => ({ u: "local", rol: "admin
       res.json(vistaIA());
     });
     // Probar y listar modelos con lo que está en el formulario, antes de guardar.
-    r.post("/ia/probar", exige("administrar"), express.json({ limit: "16kb" }), conIA(({ cfg, apiKey }) => ia.crear({ ...cfg, apiKey }).probar()));
-    r.post("/ia/modelos", exige("administrar"), express.json({ limit: "16kb" }), (req, res, next) => { req.body = { ...(req.body || {}), modelo: req.body?.modelo || "-" }; next(); }, conIA(async ({ cfg, apiKey }) => {
-      const m = await ia.crear({ ...cfg, apiKey }).listarModelos();
+    const conModelo = (req, res, next) => {
+      const b = req.body || {}, k = b.modo === "local" ? "local" : "externa";
+      req.body = { ...b, [k]: { ...(b[k] || {}), modelo: b[k]?.modelo || "-" } };
+      next();
+    };
+    const instancia = ({ modo, cfg, apiKey }) => {
+      if (modo === "ninguna") throw err400("Con \"sin IA\" no hay nada que probar.");
+      return ia.crear({ ...cfg, apiKey });
+    };
+    r.post("/ia/probar", exige("administrar"), express.json({ limit: "16kb" }), conIA((x) => instancia(x).probar()));
+    r.post("/ia/modelos", exige("administrar"), express.json({ limit: "16kb" }), conModelo, conIA(async (x) => {
+      const m = await instancia(x).listarModelos();
       return { modelos: [...new Set(m)].sort().slice(0, 1000) };
     }));
   }

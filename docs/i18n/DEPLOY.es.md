@@ -167,11 +167,14 @@ importes y fechas reducidos a su formato; ni nombres, ni montos, ni cuentas), qu
 sanear. La regla del saldo decide: una propuesta se usa solo si los saldos cierran, y entonces queda
 como plantilla del banco (la IA se usa una vez por banco, no por extracto).
 
-**Desde la pantalla (recomendado).** En modo estudio, un admin abre **Conciliar → IA** y elige el
-proveedor (Claude, OpenAI, Gemini, OpenRouter o un modelo local), el modelo (**Ver modelos** lista los
+**Desde la pantalla (recomendado).** En modo estudio, un admin abre **Conciliar → IA** y elige
+**Sin IA**, **IA local** (Ollama, LM Studio, vLLM: nada sale del estudio) o **IA externa** (Claude,
+OpenAI, Gemini u OpenRouter). Se guardan las dos configuraciones, así que cambiar no pierde la otra, y
+lo que esté en el `.env` aparece precargado. Después el modelo (**Ver modelos** lista los
 que habilita la clave), la clave de API, una URL opcional y una temperatura opcional; después
 **Probar** y **Guardar**. La clave se guarda cifrada con `DOCS_CLAVE` y nunca vuelve al navegador
-(solo sus últimos 4 caracteres). Lo que se guarda ahí manda sobre el `.env`; **Volver al .env** lo borra.
+(solo sus últimos 4 caracteres). Lo elegido manda sobre el `.env` (**Sin IA** la apaga aunque el `.env`
+tenga una); **Volver al .env** lo borra.
 
 **Temperatura:** dejala vacía (recomendado). Hay modelos que no la aceptan (los de razonamiento de
 OpenAI, como GPT‑6 Luna, y los Claude actuales): si el proveedor la rechaza, Fulgoria reintenta sin

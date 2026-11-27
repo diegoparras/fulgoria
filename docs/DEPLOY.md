@@ -173,11 +173,14 @@ and type, amounts and dates reduced to their format — no names, amounts or acc
 again on the server. The balance rule decides: a proposal is used only if the balances close, and it
 is then saved as the bank's template (the AI is used once per bank, not once per statement).
 
-**From the screen (recommended).** In studio mode an admin opens **Reconcile → AI** and picks the
-provider (Claude, OpenAI, Gemini, OpenRouter or a local model), the model (**See models** lists the
+**From the screen (recommended).** In studio mode an admin opens **Reconcile → AI** and chooses
+**No AI**, **Local AI** (Ollama, LM Studio, vLLM — nothing leaves the firm) or **External AI** (Claude,
+OpenAI, Gemini or OpenRouter). Both configurations are kept, so switching doesn't lose the other one,
+and whatever is in the `.env` shows up pre‑filled. Then the model (**See models** lists the
 ones the key can use), the API key, an optional URL and an optional temperature, then **Test** and
 **Save**. The key is stored encrypted with `DOCS_CLAVE` and never sent back to the browser (only its
-last 4 characters). What is saved there overrides the `.env`; **Back to .env** removes it.
+last 4 characters). The choice overrides the `.env` (**No AI** turns it off even if the `.env` has one);
+**Back to .env** removes it.
 
 **Temperature:** leave it empty (recommended). Some models reject it (OpenAI reasoning models such as
 GPT‑6 Luna, current Claude models): if the provider rejects it, Fulgoria retries without it and
