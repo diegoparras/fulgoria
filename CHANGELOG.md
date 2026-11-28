@@ -5,6 +5,18 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 [Versionado Semantico](https://semver.org/lang/es/). Cada deploy sube la version y agrega su
 seccion aca: sin ella el CI no publica la imagen.
 
+## [1.6.0] - 2026-11-28
+
+### Nuevo
+- **Papel de trabajo en PDF y en Excel**: el PDF esta listo para archivar o mandar (cliente, cuenta,
+  banco, periodo y estado; del saldo del banco al de libros; detalle de cada partida con su origen,
+  antiguedad y nota; asientos propuestos; firmas de quien preparo, reviso y cerro, con fecha). El
+  Excel trae lo mismo con numeros y fechas reales. Sin servicios externos: el PDF lo genera Fulgoria.
+- **Reglas del estudio ("ensenar")**: en una partida que Fulgoria no reconoce, o reconoce mal, el
+  contador le ensena que es esa leyenda (un gasto, un impuesto, una percepcion, una cuenta de su
+  plan, o "hay que identificarlo") y ve antes cuantos movimientos toca. Queda para todo el estudio;
+  se ven y se borran desde el modo Deportivo.
+
 ## [1.5.0] - 2026-11-28
 
 ### Nuevo

@@ -225,7 +225,8 @@ function proponerAjustes(items, byId, cfg) {
     const entra = m.cents > 0;
     /** @type {Array<{cuenta:string, cents:number}>} contrapartidas (del lado opuesto al banco) */
     let contra;
-    switch (p.clasificacion.tipo) {
+    if (p.clasificacion.cuenta) contra = [{ cuenta: p.clasificacion.cuenta, cents: abs }]; // regla del estudio a una cuenta propia
+    else switch (p.clasificacion.tipo) {
       case "impuesto_25413": {
         const pac = Math.round(abs * cli.pagoACuenta25413 / 100);
         contra = [{ cuenta: K.impuesto25413PagoACuenta, cents: pac }, { cuenta: K.impuesto25413Gasto, cents: abs - pac }].filter((x) => x.cents);

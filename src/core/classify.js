@@ -37,8 +37,38 @@ export const RULES = [
   { tipo: "transferencia", grupo: "operativo", re: /TRANSF|\bTRF\b|\bTEF\b|\bCVU\b|\bCBU\b|DEBIN/ },
 ];
 
-/** Grupos que generan asiento de ajuste sin necesitar identificación. */
-export const GRUPOS_AJUSTABLES = new Set(["fiscal", "gasto_bancario", "financiero"]);
+/** Grupos que generan asiento de ajuste sin necesitar identificación ("propia": regla del estudio a una cuenta). */
+export const GRUPOS_AJUSTABLES = new Set(["fiscal", "gasto_bancario", "financiero", "propia"]);
+
+// ---------------------------------------------------------------- reglas del estudio
+// El contador "enseña" una leyenda que el clasificador no conocía (o clasificaba mal): cuando la
+// descripción contenga ese texto, es tal cosa. Se guardan como texto (no como expresión regular) y
+// se evalúan ANTES que las de fábrica.
+export const TIPOS_REGLA = {
+  comision: { grupo: "gasto_bancario", texto: "Gasto o comisión del banco" },
+  iva_comision: { grupo: "gasto_bancario", texto: "IVA de comisiones" },
+  impuesto_25413: { grupo: "fiscal", texto: "Impuesto ley 25.413 (débitos y créditos)" },
+  retencion_iibb: { grupo: "fiscal", texto: "Retención de IIBB (SIRCREB)" },
+  percepcion_iibb: { grupo: "fiscal", texto: "Percepción de IIBB" },
+  percepcion_iva: { grupo: "fiscal", texto: "Percepción de IVA" },
+  percepcion_ganancias: { grupo: "fiscal", texto: "Percepción de Ganancias" },
+  interes_ganado: { grupo: "financiero", texto: "Interés ganado" },
+  interes_pagado: { grupo: "financiero", texto: "Interés o gasto financiero pagado" },
+  cuenta_propia: { grupo: "propia", texto: "Va a una cuenta de mi plan…" },
+  identificar: { grupo: "operativo", texto: "No es del banco: hay que identificarlo (pago o cobro de un tercero)" },
+};
+const escRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+/** Regla guardada ({ texto, tipo, signo, cuenta }) → regla del clasificador. */
+export function reglaDesdeTexto(r) {
+  const t = normText(r.texto || "").trim();
+  if (!t || !TIPOS_REGLA[r.tipo]) return null;
+  const re = t.split(/\s+/).map(escRe).join("\\s*");
+  return { id: `estudio:${r.texto}`, tipo: r.tipo, grupo: TIPOS_REGLA[r.tipo].grupo, re, signo: r.signo || undefined, cuenta: r.tipo === "cuenta_propia" ? String(r.cuenta || "").trim() : undefined, texto: r.texto };
+}
+/** Leyenda sugerida para una regla: la descripción sin números, CUIT ni códigos (las primeras palabras). */
+export function textoSugerido(descripcion) {
+  return normText(descripcion).replace(/[^A-Z ]+/g, " ").split(/\s+/).filter((w) => w.length > 1).slice(0, 4).join(" ");
+}
 
 /**
  * Clasifica un movimiento por su descripción.
@@ -52,7 +82,7 @@ export function classify(mov, extraRules = []) {
   for (const r of [...extraRules, ...RULES]) {
     const re = typeof r.re === "string" ? new RegExp(r.re, "i") : r.re;
     if (r.signo && Math.sign(mov.cents) !== r.signo) continue;
-    if (re.test(s)) return { tipo: r.tipo, grupo: r.grupo, regla: String(r.id || r.tipo) };
+    if (re.test(s)) return { tipo: r.tipo, grupo: r.grupo, regla: String(r.id || r.tipo), ...(r.cuenta ? { cuenta: r.cuenta } : {}), ...(r.texto ? { texto: r.texto } : {}) };
   }
   return { tipo: "desconocido", grupo: "desconocido", regla: null };
 }
@@ -69,7 +99,7 @@ export function classifyAll(movs, extraRules = []) {
   for (const m of movs) {
     const c = classify(m, extraRules);
     let confianza = c.grupo === "desconocido" ? "baja" : "media";
-    let motivo = c.regla ? `la descripción coincide con la regla "${c.regla}"` : "ninguna regla reconoce la descripción";
+    let motivo = c.texto ? `regla del estudio: «${c.texto}»${c.cuenta ? ` → ${c.cuenta}` : ""}` : c.regla ? `la descripción coincide con la regla "${c.regla}"` : "ninguna regla reconoce la descripción";
     if (c.tipo === "impuesto_25413") {
       const base = plausible25413(m, movs);
       if (base) { confianza = "alta"; motivo += `; el importe es el ${base.alicuota}% del movimiento ${base.id}`; }

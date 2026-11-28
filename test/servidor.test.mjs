@@ -353,3 +353,13 @@ test("comprobantes del cliente: solo PDF o fotos reales, límites, el estudio lo
   await api("DELETE", `/pedidos/${pid}`);
   assert.equal((await subir(pdf)).status, 404);
 });
+
+test("reglas del estudio compartidas: solo se aceptan con forma de regla", async () => {
+  assert.equal((await api("PUT", "/plantillas", { tipo: "regla", nombre: "x", plantilla: { texto: "x" } })).status, 400);
+  assert.equal((await api("PUT", "/plantillas", { tipo: "regla", nombre: "x", plantilla: { fulgoria_regla: 1, texto: "y".repeat(81), tipo: "comision" } })).status, 400);
+  const r = { fulgoria_regla: 1, texto: "DB AUT SEGURO", tipo: "cuenta_propia", signo: -1, cuenta: "5.2.10 Seguros" };
+  assert.equal((await api("PUT", "/plantillas", { tipo: "regla", nombre: "DB AUT SEGURO (débitos)", plantilla: r })).status, 200);
+  const lista = (await api("GET", "/plantillas?tipo=regla")).body;
+  assert.deepEqual(lista.map((x) => x.plantilla.cuenta), ["5.2.10 Seguros"]);
+  assert.equal((await api("DELETE", `/plantillas/${lista[0].id}`)).status, 204);
+});

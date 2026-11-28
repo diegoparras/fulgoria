@@ -155,6 +155,24 @@ contra ellos (`RESULTADOS.md`). Lo que el dataset encontró y se corrigió:
 - Entidades: número de cheque con palabras en el medio ("CHEQUE CAMARA NRO …"); todos los
   comprobantes que cita una operación, no solo el primero.
 
+## Papel de trabajo en PDF y Excel
+
+"Papel (PDF)" arma el papel de trabajo para archivar (`src/core/papel-pdf.js`, con un generador de
+PDF propio, sin dependencias: `src/core/pdf.js`): encabezado con cliente, cuenta, banco, período y
+estado; del saldo del banco al de libros; el detalle de cada sección con fecha, origen (página o
+fila), antigüedad y nota; los asientos propuestos con Debe y Haber; y las firmas de quién preparó,
+revisó y cerró (con fecha), con número de página. "Papel (Excel)" trae lo mismo en dos hojas
+(Conciliación y Asientos) con números y fechas reales.
+
+## Reglas del estudio ("enseñar")
+
+Cuando una leyenda no se reconoce (o se reconoce mal), "enseñar" en la partida propone el texto
+("DB AUT SEGURO…") y el contador elige qué es: gasto o comisión del banco, impuesto ley 25.413,
+retención o percepción, interés, una **cuenta de su plan**, o "no es del banco: hay que
+identificarlo". Antes de guardar se ve a cuántos movimientos del mes toca. Las reglas se aplican
+antes que las de fábrica, se guardan como texto (no como expresión regular) y en modo estudio son
+de todo el estudio (crearlas: preparador; borrarlas: revisor).
+
 ## Liquidaciones de tarjetas
 
 El banco acredita un **neto** por liquidación (o varias juntas); la liquidación de la procesadora
@@ -217,6 +235,5 @@ movimientos por separado).
 
 - IA también en el Extractor (hoy se ofrece en Conciliar) y para clasificar leyendas nuevas.
 - Traducciones de la pantalla de conciliación (hoy solo en español).
-- Editor de reglas de clasificación propias en la interfaz (el motor ya las acepta).
 - Aprender formatos de asientos en XML o en dos archivos (cabeceras + movimientos).
 - IA opcional para casos ambiguos, sobre filas ya anonimizadas, solo como sugerencia.
