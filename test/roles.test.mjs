@@ -53,6 +53,7 @@ test("roles standalone: alta de usuarios, permisos por rol, revisión independie
   assert.equal((await carla("GET", "/clientes")).status, 200);
   assert.equal((await carla("POST", "/clientes", { nombre: "X" })).status, 403);
   assert.equal((await ana("GET", "/usuarios")).status, 403);
+  assert.equal((await carla("POST", `/cuentas/${"0".repeat(8)}-0000-0000-0000-000000000000/periodos/2026-06/pedidos`, { items: [] })).status, 403); // un lector no crea links
   for (const quien of [ana, carla]) { assert.equal((await quien("GET", "/ia/config")).status, 403); assert.equal((await quien("PUT", "/ia/config", { modo: "ninguna" })).status, 403); }
 
   // Preparador: carga y prepara; no revisa.

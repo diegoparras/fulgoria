@@ -97,6 +97,29 @@ function crearApi(p, { maxDocMB = 25, usuario = () => ({ u: "local", rol: "admin
     res.json(out.periodo);
   });
 
+  // ---------------- pedidos al cliente (link para que conteste qué es cada movimiento)
+  const FECHA_RE = /^\d{4}-\d{2}-\d{2}$/;
+  const itemsValidos = (items) => Array.isArray(items) && items.length >= 1 && items.length <= 200 && items.every((x) =>
+    esObjeto(x) && typeof x.clave === "string" && x.clave.length <= 200 && FECHA_RE.test(String(x.fecha)) &&
+    typeof x.descripcion === "string" && x.descripcion.length <= 300 && Number.isInteger(x.cents));
+  r.get("/cuentas/:id/periodos/:periodo/pedidos", idOk, (req, res) => {
+    if (!PERIODO_RE.test(req.params.periodo)) return mal(res, 400, "Período inválido (AAAA-MM).");
+    res.json(p.pedidos(req.params.id, req.params.periodo));
+  });
+  r.post("/cuentas/:id/periodos/:periodo/pedidos", idOk, exige("editar"), express.json({ limit: "128kb" }), (req, res) => {
+    if (!PERIODO_RE.test(req.params.periodo)) return mal(res, 400, "Período inválido (AAAA-MM).");
+    const b = req.body || {};
+    if (!itemsValidos(b.items)) return mal(res, 400, "Partidas inválidas.");
+    const dias = Math.min(Math.max(Number(b.dias) || 30, 1), 90);
+    const items = b.items.map((x) => ({ clave: x.clave, fecha: x.fecha, descripcion: x.descripcion, cents: x.cents }));
+    const out = p.crearPedido(u(req), { cuentaId: req.params.id, periodo: req.params.periodo, items, dias });
+    out ? res.status(201).json({ id: out.id, url: `/r/${out.token}`, vence: out.vence }) : mal(res, 404, "No existe la cuenta.");
+  });
+  r.delete("/pedidos/:id", idOk, exige("editar"), (req, res) => {
+    const out = p.anularPedido(u(req), req.params.id);
+    out ? res.json(out) : mal(res, 404, "No existe el pedido.");
+  });
+
   // ---------------- documentos (el archivo va como cuerpo crudo)
   r.post("/documentos", exige("editar"), express.raw({ type: () => true, limit: `${maxDocMB}mb` }), async (req, res, next) => {
     try {

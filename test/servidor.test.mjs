@@ -251,3 +251,57 @@ test("CSRF: un pedido que cambia algo desde otro sitio se rechaza; desde la mism
   assert.equal((await post({ origin: `http://${host}`, "sec-fetch-site": "same-origin" })).status, 201);
   assert.equal((await fetch(BASE + "/clientes", { headers: { origin: "https://otro-sitio.example" } })).status, 200); // leer no cambia nada
 });
+
+test("pedido al cliente: link sin login, solo sus partidas, respuestas que vuelven, anular y vencer", async () => {
+  const RAIZ = BASE.replace("/api/v1", "");
+  const cli = (await api("POST", "/clientes", { nombre: "Cliente con pedido" })).body;
+  const cta = (await api("POST", `/clientes/${cli.id}/cuentas`, { nombre: "Cuenta corriente", banco: "Banco del Río" })).body;
+  const items = [
+    { clave: "2026-06-02|150000|TRANSF RECIBIDA", fecha: "2026-06-02", descripcion: "TRANSF RECIBIDA <b>X</b>", cents: 150000 },
+    { clave: "2026-06-09|-4500|DEBITO AUTOMATICO", fecha: "2026-06-09", descripcion: "DEBITO AUTOMATICO", cents: -4500 },
+  ];
+  assert.equal((await api("POST", `/cuentas/${cta.id}/periodos/2026-06/pedidos`, { items: [{ clave: "x" }] })).status, 400);
+  const nuevo = await api("POST", `/cuentas/${cta.id}/periodos/2026-06/pedidos`, { items });
+  assert.equal(nuevo.status, 201);
+  const token = nuevo.body.url.split("/").pop();
+  assert.match(token, /^[A-Za-z0-9_-]{43}$/);
+  // En la base no queda el token, solo su hash.
+  assert.ok(!JSON.stringify(persistencia.pedidos(cta.id, "2026-06")).includes(token));
+
+  // El cliente: la página y los datos, sin sesión; solo nombre, cuenta, mes y sus partidas.
+  const pagina = await fetch(`${RAIZ}/r/${token}`);
+  assert.equal(pagina.status, 200);
+  assert.match(pagina.headers.get("x-robots-tag"), /noindex/);
+  const ver = await (await fetch(`${RAIZ}/api/publico/pedidos/${token}`)).json();
+  assert.equal(ver.cliente, "Cliente con pedido");
+  assert.equal(ver.items.length, 2);
+  assert.deepEqual(Object.keys(ver).sort(), ["banco", "cliente", "cuenta", "id", "items", "periodo", "respuestas", "vence"]);
+  assert.equal((await fetch(`${RAIZ}/api/publico/pedidos/${"a".repeat(43)}`)).status, 404);
+  assert.equal((await fetch(`${RAIZ}/api/publico/pedidos/corto`)).status, 404);
+
+  // Responde (las claves que no son del pedido se ignoran), corrige y borra.
+  const responder = (respuestas, headers = {}) => fetch(`${RAIZ}/api/publico/pedidos/${token}`, { method: "POST", headers: { "content-type": "application/json", ...headers }, body: JSON.stringify({ respuestas }) });
+  let r = await (await responder({ [items[0].clave]: "Cobranza factura 0001-77 de Juan Pérez", inventada: "x" })).json();
+  assert.deepEqual(Object.keys(r.respuestas), [items[0].clave]);
+  r = await (await responder({ [items[0].clave]: "Cobranza factura 0001-78", [items[1].clave]: "Seguro del auto" })).json();
+  assert.equal(r.respuestas[items[0].clave].texto, "Cobranza factura 0001-78");
+  assert.equal((await responder({ [items[1].clave]: "" }).then((x) => x.json())).respuestas[items[1].clave], undefined);
+  assert.equal((await responder({}, { origin: "https://otro-sitio.example" })).status, 403); // CSRF también acá
+  // El estudio ve las respuestas.
+  const delEstudio = (await api("GET", `/cuentas/${cta.id}/periodos/2026-06/pedidos`)).body;
+  assert.equal(delEstudio[0].respuestas[items[0].clave].texto, "Cobranza factura 0001-78");
+
+  // Anulado: el link deja de funcionar.
+  assert.equal((await api("DELETE", `/pedidos/${nuevo.body.id}`)).status, 200);
+  assert.equal((await fetch(`${RAIZ}/api/publico/pedidos/${token}`)).status, 404);
+  assert.equal((await responder({ [items[0].clave]: "tarde" })).status, 404);
+  // Vencido: igual.
+  const otro = (await api("POST", `/cuentas/${cta.id}/periodos/2026-06/pedidos`, { items, dias: 1 })).body;
+  const t2 = otro.url.split("/").pop();
+  assert.equal((await fetch(`${RAIZ}/api/publico/pedidos/${t2}`)).status, 200);
+  const { DatabaseSync } = await import("node:sqlite");
+  const db = new DatabaseSync(join(DATA, "fulgoria.sqlite"));
+  db.prepare("UPDATE pedidos SET vence = ? WHERE id = ?").run("2000-01-01T00:00:00.000Z", otro.id);
+  db.close();
+  assert.equal((await fetch(`${RAIZ}/api/publico/pedidos/${t2}`)).status, 404);
+});

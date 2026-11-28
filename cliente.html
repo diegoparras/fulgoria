@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Pedido de tu estudio contable</title>
+  <style>
+    :root { --bg: #f6f7f9; --panel: #fff; --ink: #16181d; --muted: #5f6b7a; --line: rgba(15, 23, 42, .12); --accent: #3b76d9; --on-accent: #fff; --ok: #1f8a5b; --bad: #c0392b; }
+    @media (prefers-color-scheme: dark) { :root { --bg: #0b0f15; --panel: #121822; --ink: #eaeef4; --muted: #8a95a4; --line: rgba(255, 255, 255, .12); --accent: #5aa2ff; --on-accent: #08111f; --ok: #3ccf8e; --bad: #ff7a6b; } }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    main { max-width: 720px; margin: 0 auto; padding: 24px 16px 48px; }
+    .marca { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+    .marca svg { width: 22px; height: 22px; }
+    h1 { font-size: clamp(22px, 5vw, 28px); line-height: 1.2; margin: 0 0 8px; letter-spacing: -.01em; }
+    .sub { color: var(--muted); margin: 0 0 20px; }
+    .item { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
+    .item-top { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .item-desc { font-weight: 600; overflow-wrap: anywhere; }
+    .item-meta { color: var(--muted); font-size: 13px; }
+    .importe { font-variant-numeric: tabular-nums; font-weight: 700; white-space: nowrap; }
+    .entra { color: var(--ok); } .sale { color: var(--bad); }
+    label { display: block; margin-top: 10px; font-size: 13px; color: var(--muted); }
+    textarea { width: 100%; min-height: 64px; margin-top: 4px; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); font: inherit; resize: vertical; }
+    textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .acciones { position: sticky; bottom: 0; background: linear-gradient(transparent, var(--bg) 30%); padding: 16px 0 4px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    button { background: var(--accent); color: var(--on-accent); border: 0; border-radius: 10px; padding: 12px 20px; font: 600 15px system-ui, sans-serif; cursor: pointer; }
+    button:disabled { opacity: .6; cursor: default; }
+    .estado { color: var(--muted); font-size: 14px; }
+    .estado.ok { color: var(--ok); } .estado.bad { color: var(--bad); }
+    .aviso { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+    .pie { color: var(--muted); font-size: 12.5px; margin-top: 18px; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="marca"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#3b76d9"/><path d="M13 2 L3 14 h9 l-1 8 L21 10 h-9 l1 -8 z" transform="translate(2,2) scale(2.5)" fill="#fff"/></svg>Pedido de tu estudio contable</div>
+    <div id="app"><p class="estado">Cargando…</p></div>
+  </main>
+  <script type="module" src="/publico/cliente.js"></script>
+</body>
+</html>

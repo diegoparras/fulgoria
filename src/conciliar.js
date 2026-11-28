@@ -19,6 +19,7 @@ import {
 // OCR (Tesseract, pesado) se carga solo si hace falta: un PDF digital no lo necesita.
 const ocr = () => import("./ocr.js");
 const $ = (id) => document.getElementById(id);
+const plural = (n, palabra) => `${n} ${palabra}${n === 1 ? "" : "s"}`;
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const svg = (s, body) => `<svg class="ico" width="${s}" height="${s}" viewBox="0 0 24 24">${body}</svg>`;
 const ICON = {
@@ -267,7 +268,7 @@ function abrirMapeo() {
       const led = parseLedgerRows(m.rows, { ...lectura(), doc: m.name, anio: state.extracto?.anio });
       const c = led.control;
       const ej = led.movs.slice(0, 4).map((x) => `<tr><td>${fmtISO(x.fecha)}</td><td>${esc(x.descripcion)}</td><td class="num">${fmtCents(x.cents)}</td></tr>`).join("");
-      $("mapVista").innerHTML = `<div class="c-map-res ${c.ok === false ? "bad" : "ok"}">${dot(c.ok === true ? "verde" : c.ok === false ? "rojo" : "amarillo")} ${led.movs.length} registros · saldo ${fmtCents(led.apertura)} → ${fmtCents(led.cierre)} · ${c.ok === true ? "los saldos cierran" : c.ok === false ? "los saldos NO cierran: revisá Debe/Haber o el formato de números" : "sin saldo para verificar"}</div><table><tbody>${ej}</tbody></table>`;
+      $("mapVista").innerHTML = `<div class="c-map-res ${c.ok === false ? "bad" : "ok"}">${dot(c.ok === true ? "verde" : c.ok === false ? "rojo" : "amarillo")} ${plural(led.movs.length, "registro")} · saldo ${fmtCents(led.apertura)} → ${fmtCents(led.cierre)} · ${c.ok === true ? "los saldos cierran" : c.ok === false ? "los saldos NO cierran: revisá Debe/Haber o el formato de números" : "sin saldo para verificar"}</div><table><tbody>${ej}</tbody></table>`;
       return led;
     } catch (e) { $("mapVista").innerHTML = `<div class="c-map-res bad">${dot("rojo")} ${esc(e.message)}</div>`; return null; }
   };
@@ -376,14 +377,14 @@ function renderDocs() {
       const ok = x.check.globalOk;
       const lectura = ok ? "saldos verificados" : x.check.sinControl ? "sin saldo ni total para verificar: nada se confirma solo" : "<b>los saldos no cierran</b>: nada se confirma solo";
       return `<div class="c-doc">${dot(ok ? "verde" : x.check.sinControl ? "amarillo" : "rojo")}<div><div class="k">${x.tabla === "mercadopago" ? "Mercado Pago" : `Extracto en planilla${x.banco ? " · " + esc(x.banco) : ""}`}</div><div class="n">${esc(x.name)}${x.hoja ? ` · hoja ${esc(x.hoja)}` : ""}</div>
-        <div class="s">${x.data.movs.length} movimientos · saldo ${fmtCents(x.data.apertura)} → ${fmtCents(x.data.cierre)} · ${lectura}${x.avisos.length ? ` · ${x.avisos.length} aviso${x.avisos.length > 1 ? "s" : ""}` : ""}${cambiar}</div></div></div>`;
+        <div class="s">${plural(x.data.movs.length, "movimiento")} · saldo ${fmtCents(x.data.apertura)} → ${fmtCents(x.data.cierre)} · ${lectura}${x.avisos.length ? ` · ${x.avisos.length} aviso${x.avisos.length > 1 ? "s" : ""}` : ""}${cambiar}</div></div></div>`;
     }
     const segs = x.ext.segments;
     const sel = segs.length > 1 ? `<select id="segSel">${segs.map((s, i) => `<option value="${i}"${i === x.seg ? " selected" : ""}>Cuenta ${i + 1}${s.currency ? " · " + s.currency : ""} (${s.movements.length} mov.)</option>`).join("")}</select>` : "";
     if (x.error) return `<div class="c-doc">${dot("rojo")}<div><div class="k">Extracto</div><div class="n">${esc(x.name)}</div><div class="s">${esc(x.error)}</div></div></div>`;
     const ok = x.check.globalOk;
     return `<div class="c-doc">${dot(ok ? "verde" : "rojo")}<div><div class="k">Extracto${x.banco ? " · " + esc(x.banco) : ""}</div><div class="n">${esc(x.name)}</div>
-      <div class="s">${x.data.movs.length} movimientos · saldo ${fmtCents(x.data.apertura)} → ${fmtCents(x.data.cierre)} · ${ok ? "lectura verificada con la regla del saldo" : `<b>la lectura no cierra</b> (diferencia ${fmtCents(Math.round(((x.check.closing ?? 0) - (x.check.computed ?? 0)) * 100))}): ${iaEstado.disponible && !soloLectura() ? "pedile a la IA que lea las columnas, o ajustalas" : "ajustá las columnas"} en el <a class="link" href="./">Extractor</a>`}${x.plantilla === "ia" ? " · columnas leídas por la IA" : x.plantilla ? " · plantilla reconocida" : ""}${x.pdf.scanned ? " · OCR" : ""}</div>${!ok && iaEstado.disponible && !soloLectura() ? `<button class="btn sm primary" data-ia="1" style="margin-top:8px">Pedirle a la IA que lea las columnas</button>` : ""}${sel}</div></div>`;
+      <div class="s">${plural(x.data.movs.length, "movimiento")} · saldo ${fmtCents(x.data.apertura)} → ${fmtCents(x.data.cierre)} · ${ok ? "lectura verificada con la regla del saldo" : `<b>la lectura no cierra</b> (diferencia ${fmtCents(Math.round(((x.check.closing ?? 0) - (x.check.computed ?? 0)) * 100))}): ${iaEstado.disponible && !soloLectura() ? "pedile a la IA que lea las columnas, o ajustalas" : "ajustá las columnas"} en el <a class="link" href="./">Extractor</a>`}${x.plantilla === "ia" ? " · columnas leídas por la IA" : x.plantilla ? " · plantilla reconocida" : ""}${x.pdf.scanned ? " · OCR" : ""}</div>${!ok && iaEstado.disponible && !soloLectura() ? `<button class="btn sm primary" data-ia="1" style="margin-top:8px">Pedirle a la IA que lea las columnas</button>` : ""}${sel}</div></div>`;
   })() : `<div class="c-doc falta">${ICON.doc}<div><div class="k">Extracto</div><div class="s">Falta el extracto: PDF, imagen, Excel o CSV del banco, o el reporte de Mercado Pago.</div></div></div>`;
   const docM = m ? (m.error
     ? `<div class="c-doc">${dot("rojo")}<div><div class="k">Mayor</div><div class="n">${esc(m.name)}</div><div class="s">${esc(m.error)}${m.dudoso && m.archivo && !soloLectura() ? ` · <button class="lnk" data-cambiar="extracto">es el extracto</button>` : ""}</div>${m.rows ? `<button class="btn sm primary" data-mapear="1" style="margin-top:8px">Indicar columnas</button>` : ""}</div></div>`
@@ -392,7 +393,7 @@ function renderDocs() {
       const est = c.ok === true ? "verde" : c.ok === false ? "rojo" : "amarillo";
       const txt = c.ok === true ? "saldos verificados" : c.ok === false ? `<b>el saldo no cierra</b>${c.filasConError.length ? ` en las filas ${c.filasConError.slice(0, 5).join(", ")}` : ""}` : "sin saldo para verificar";
       return `<div class="c-doc">${dot(est)}<div><div class="k">Mayor de la cuenta Banco</div><div class="n">${esc(m.name)}</div>
-        <div class="s">${m.led.movs.length} registros · saldo ${fmtCents(m.led.apertura)} → ${fmtCents(m.led.cierre)} · ${txt}${m.led.avisos.length ? ` · ${m.led.avisos.length} aviso${m.led.avisos.length > 1 ? "s" : ""}` : ""}${m.plantilla ? ` · plantilla ${esc(m.plantilla)}` : ""} · <button class="lnk" data-mapear="1">columnas</button>${m.dudoso && m.archivo && !soloLectura() ? ` · <button class="lnk" data-cambiar="extracto">es el extracto</button>` : ""}</div></div></div>`;
+        <div class="s">${plural(m.led.movs.length, "registro")} · saldo ${fmtCents(m.led.apertura)} → ${fmtCents(m.led.cierre)} · ${txt}${m.led.avisos.length ? ` · ${m.led.avisos.length} aviso${m.led.avisos.length > 1 ? "s" : ""}` : ""}${m.plantilla ? ` · plantilla ${esc(m.plantilla)}` : ""} · <button class="lnk" data-mapear="1">columnas</button>${m.dudoso && m.archivo && !soloLectura() ? ` · <button class="lnk" data-cambiar="extracto">es el extracto</button>` : ""}</div></div></div>`;
     })())
     : `<div class="c-doc falta">${ICON.sheet}<div><div class="k">Mayor</div><div class="s">Falta el mayor de la cuenta Banco (Excel o CSV exportado de tu sistema contable).</div></div></div>`;
   const docA = state.arrastre.length ? `<div class="c-doc">${dot("verde")}<div><div class="k">Pendientes del mes anterior</div><div class="s">${state.arrastre.length} partidas arrastradas · <button class="lnk" id="quitarArrastre">quitar</button></div></div></div>` : "";
@@ -433,6 +434,8 @@ function renderEstado(rec) {
 const mov = (id) => state.rec.movimientos[id];
 function itemRow(id, extra = "") {
   const m = mov(id);
+  const resp = respuestaCliente(m);
+  if (resp) extra += `<div class="c-resp"><b>El cliente respondió:</b> ${esc(resp.texto)} <span class="muted">· ${esc(new Date(resp.fecha).toLocaleString("es-AR"))}</span></div>`;
   const p = state.rec.pendientes.find((x) => x.id === id);
   const why = p?.motivo ? `<span class="why">${esc(p.motivo)}${p.antiguedadDias != null ? ` · ${p.antiguedadDias} día${p.antiguedadDias === 1 ? "" : "s"}` : ""}</span>` : "";
   const ev = m.evidencia?.page != null ? `<button class="lnk" data-ev="${esc(id)}">Ver en el extracto</button>` : m.evidencia?.row != null ? `<span class="muted" style="font-size:12px">${esc(m.evidencia.doc || "mayor")} · fila ${esc(m.evidencia.row)}</span>` : "";
@@ -644,12 +647,54 @@ function pedirAlCliente(clave) {
   const txt = `Hola, ¿cómo estás?\n\nEstamos cerrando la conciliación bancaria${banco} de ${mes} y necesitamos que nos ayudes con estos movimientos que no encontramos registrados:\n\n` +
     items.map((m) => `• ${fmtISO(m.fecha)} — ${m.descripcion} — $ ${fmtCents(Math.abs(m.cents))} (${m.cents > 0 ? "entró a la cuenta" : "salió de la cuenta"})`).join("\n") +
     `\n\n¿Nos contás a qué corresponde cada uno y, si lo tenés, nos mandás el comprobante (factura, recibo, contrato)?\n\n¡Gracias!`;
+  const conLink = est.activo && est.abierto && puedo("editar");
+  const activos = est.pedidos.filter((x) => !x.anulado && !x.vencido);
   abrirModal("Pedido al cliente", `<p>Copialo y mandalo por mail o WhatsApp. Podés editarlo antes.</p><textarea class="c-msg" id="msg">${esc(txt)}</textarea>
-    <div class="modal-acciones"><button class="btn primary" id="copiarMsg">Copiar</button></div>`);
+    ${conLink ? `<p class="muted" style="font-size:12.5px">Mejor todavía: un <b>link</b> para que el cliente conteste cada movimiento en una página (sin cuenta ni contraseña). Las respuestas aparecen acá, en la bandeja. Ve solo estas partidas y el link vence en 30 días.</p>` : ""}
+    ${activos.length ? `<div class="c-nota">Links activos de este mes: ${activos.map((x) => `${x.items.length} partida${x.items.length > 1 ? "s" : ""}, ${Object.keys(x.respuestas).length} respondida${Object.keys(x.respuestas).length === 1 ? "" : "s"}, vence ${esc(new Date(x.vence).toLocaleDateString("es-AR"))} <button class="lnk" data-anular-pedido="${esc(x.id)}">anular</button>`).join(" · ")}</div>` : ""}
+    <div class="modal-acciones">${conLink ? `<button class="btn" id="crearLink">Crear link para que responda</button>` : ""}<button class="btn primary" id="copiarMsg">Copiar</button></div>`);
   $("copiarMsg").addEventListener("click", async () => {
     try { await navigator.clipboard.writeText($("msg").value); toast("Copiado."); } catch { $("msg").select(); toast("Seleccionado: copialo con Ctrl+C."); }
   });
+  $("crearLink")?.addEventListener("click", async () => {
+    $("crearLink").disabled = true;
+    const r = await srv("POST", `/cuentas/${est.abierto.cuentaId}/periodos/${est.abierto.periodo}/pedidos`, { items: items.map((m) => ({ clave: claveItem(m), fecha: m.fecha, descripcion: m.descripcion, cents: m.cents })) });
+    if (!r.ok) { $("crearLink").disabled = false; return toast(r.body.mensaje || "No pude crear el link."); }
+    const url = location.origin + r.body.url;
+    $("msg").value = `Hola, ¿cómo estás?\n\nEstamos cerrando la conciliación bancaria${banco} de ${mes} y hay ${items.length === 1 ? "un movimiento que no encontramos registrado" : `${items.length} movimientos que no encontramos registrados`}. ¿Nos contás a qué corresponde${items.length === 1 ? "" : " cada uno"} en este link?\n\n${url}\n\nEs solo para vos y vence el ${new Date(r.body.vence).toLocaleDateString("es-AR")}. Si tenés los comprobantes, mandalos por acá.\n\n¡Gracias!`;
+    $("crearLink").textContent = "Link creado";
+    toast("Link creado: copiá el mensaje y mandáselo.");
+    cargarPedidos();
+  });
+  $("modalBody").querySelectorAll("[data-anular-pedido]").forEach((b) => b.addEventListener("click", async () => {
+    const r = await srv("DELETE", `/pedidos/${b.dataset.anularPedido}`);
+    if (!r.ok) return toast(r.body.mensaje || "No pude anular el link.");
+    b.replaceWith("anulado");
+    toast("Link anulado: ya no se puede abrir."); cargarPedidos();
+  }));
 }
+
+// Respuestas del cliente: se buscan por fecha, importe y descripción (los ids de las partidas pueden
+// cambiar si se vuelve a leer el documento).
+function claveItem(m) { return `${m.fecha}|${m.cents}|${String(m.descripcion || "").toUpperCase().replace(/\s+/g, " ").trim().slice(0, 80)}`; }
+function respuestaCliente(m) {
+  if (!m || !est.pedidos.length) return null;
+  const k = claveItem(m);
+  let mejor = null;
+  for (const x of est.pedidos) { const r = !x.anulado && x.respuestas[k]; if (r && (!mejor || r.fecha > mejor.fecha)) mejor = r; }
+  return mejor;
+}
+async function cargarPedidos() {
+  if (!est.activo || !est.abierto) { est.pedidos = []; return; }
+  const { cuentaId, periodo } = est.abierto;
+  const r = await srv("GET", `/cuentas/${cuentaId}/periodos/${periodo}/pedidos`);
+  if (!r.ok || est.abierto?.cuentaId !== cuentaId || est.abierto?.periodo !== periodo) return;
+  const antes = JSON.stringify(est.pedidos.map((x) => x.respuestas));
+  est.pedidos = r.body;
+  if (state.rec && JSON.stringify(est.pedidos.map((x) => x.respuestas)) !== antes) renderResult();
+}
+// Al volver a la pestaña, se traen las respuestas nuevas del cliente.
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") cargarPedidos(); });
 
 // ---------------------------------------------------------------- evidencia: el recorte del PDF
 async function verEvidencia(id) {
@@ -736,7 +781,7 @@ setModo(state.modo);
 // =====================================================================================================
 // `abierto` = el mes cuyos datos están en pantalla ({ cuentaId, periodo }). Todo guardado va a ESE mes,
 // nunca al que esté eligiendo el usuario en ese momento; `gen` descarta aperturas que quedaron viejas.
-const est = { activo: false, usuario: null, clientes: [], cuentas: [], cliente: null, cuenta: null, periodo: null, per: null, anterior: null, docs: { extracto: null, mayor: null }, ultimo: "", timer: 0, abierto: null, gen: 0 };
+const est = { activo: false, usuario: null, clientes: [], cuentas: [], cliente: null, cuenta: null, periodo: null, per: null, anterior: null, docs: { extracto: null, mayor: null }, ultimo: "", timer: 0, abierto: null, gen: 0, pedidos: [] };
 const puedo = (permiso) => !est.activo || (est.permisos || []).includes(permiso);
 // Solo lectura: mes cerrado, o un rol que no puede modificar (lector).
 const soloLectura = () => est.activo && (est.per?.estado === "cerrado" || !puedo("editar"));
@@ -843,7 +888,9 @@ async function abrirPeriodo() {
   if (per?.decisiones) state.decisiones = { manuales: [], rechazados: [], confirmados: [], ...per.decisiones };
   document.body.classList.toggle("solo-lectura", soloLectura());
   est.abierto = destino;
+  est.pedidos = [];
   run();
+  cargarPedidos();
   est.ultimo = firmaGuardado(); // recién abierto: no hay nada nuevo que guardar
   setGuardado(per ? `Abierto · guardado ${new Date(per.actualizado).toLocaleString("es-AR")} por ${per.actualizadoPor}` : (est.anterior ? `Mes nuevo · ${state.arrastre.length} pendientes de ${est.anterior.periodo}` : "Mes nuevo"));
 }

@@ -315,6 +315,33 @@ app.use("/api", (req, res, next) => {
   res.status(403).json({ error: 403, mensaje: "Pedido de otro sitio rechazado." });
 });
 
+// --- Pedido al cliente (modo estudio): el cliente entra SIN login con un link de un solo uso por
+//     pedido (token de 256 bits; en la base queda solo su hash), ve solo las partidas que le
+//     preguntaron y contesta. Vence y se puede anular. Antes de la puerta de auth. ---
+if (persistencia) {
+  const TOKEN_RE = /^[A-Za-z0-9_-]{43}$/;
+  const envios = new Map(); // IP → marcas de tiempo (límite de respuestas por hora)
+  const sinIndexar = (res) => { res.setHeader("X-Robots-Tag", "noindex, nofollow"); res.setHeader("Cache-Control", "no-store"); };
+  const noExiste = (res) => res.status(404).json({ error: 404, mensaje: "Este link no existe, venció o el estudio lo anuló. Pedile uno nuevo a tu contador." });
+  app.get("/r/:token", (req, res) => { sinIndexar(res); res.sendFile(path.join(__dirname, "cliente.html")); });
+  app.get("/publico/cliente.js", (req, res) => { res.setHeader("Cache-Control", "no-cache"); res.sendFile(path.join(__dirname, "src", "cliente.js")); });
+  app.get("/api/publico/pedidos/:token", (req, res) => {
+    sinIndexar(res);
+    const pd = TOKEN_RE.test(req.params.token) && persistencia.pedidoPublico(req.params.token);
+    pd ? res.json(pd) : noExiste(res);
+  });
+  app.post("/api/publico/pedidos/:token", express.json({ limit: "64kb" }), (req, res) => {
+    sinIndexar(res);
+    const ip = req.ip || "?", ahora = Date.now(), l = (envios.get(ip) || []).filter((t) => ahora - t < 3600e3);
+    if (l.length >= 60) return res.status(429).json({ error: 429, mensaje: "Demasiados envíos seguidos: probá en un rato." });
+    l.push(ahora); envios.set(ip, l);
+    const r = req.body?.respuestas;
+    if (!r || typeof r !== "object" || Array.isArray(r)) return res.status(400).json({ error: 400, mensaje: "Respuestas inválidas." });
+    const pd = TOKEN_RE.test(req.params.token) && persistencia.responderPedido(req.params.token, r);
+    pd ? res.json(pd) : noExiste(res);
+  });
+}
+
 // --- Puerta: todo lo de abajo requiere sesión (si AUTH_ENABLED) ---
 app.use((req, res, next) => {
   if (authed(req)) return next();

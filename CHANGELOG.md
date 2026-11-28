@@ -39,6 +39,29 @@ seccion aca: sin ella el CI no publica la imagen.
 - Los titulos de las ventanas de Conciliar salian chicos y en azul.
 - En tema oscuro, el boton del login usaba otro azul y se leia mal.
 
+## [1.3.0] - 2026-11-28
+
+### Nuevo
+- **Excel (.xlsx)** en Conciliar, para el mayor y para el extracto, sin pasar por CSV. Fulgoria
+  decide sola si una planilla es el mayor, un extracto bancario exportado o el reporte de Mercado
+  Pago; si es ambigua (solo "Debito / Credito", que significan cosas opuestas en un extracto y en un
+  mayor) la lee de las dos maneras y se queda con la que hace cerrar los saldos. Si aun asi no puede
+  saberlo, un boton la cambia de lugar.
+- **Mercado Pago**: reportes de liberaciones y de dinero en cuenta (CSV o Excel). Saldo inicial,
+  neto por operacion con bruto, comision y retenciones a la vista, y percepciones, retenciones,
+  retiros e intereses traducidos para que el clasificador los proponga como asientos.
+- **Link de respuesta del cliente**: desde "Pedir al cliente" se crea un link para que el cliente
+  conteste que es cada movimiento, sin cuenta ni contrasena, desde el celular. Las respuestas
+  aparecen en la bandeja junto a cada partida. Ve solo esas partidas, vence a los 30 dias y se puede
+  anular.
+- **Restaurar copias de la base**: `node server.js --copias` y `node server.js --restaurar <copia>`.
+- Planillas de ejemplo en `datasets/planillas` (banco en Excel, Mercado Pago, planilla ambigua).
+
+### Seguridad
+- Los pedidos que cambian algo en la API tienen que venir de la misma pagina (control de `Origin`):
+  se rechazan los que vienen de otro sitio.
+- Los tests corren en GitHub en cada pull request.
+
 ## [1.2.1] - 2026-11-27
 
 ### Corregido

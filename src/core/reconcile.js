@@ -218,7 +218,7 @@ function armarBandeja({ matches, pendientes, byId, diferenciaNoExplicada, apertu
   const normales = pendientes.filter((p) => p.lado === "libros" && p.certeza === "verde").map((p) => p.id);
   add("pendientes_normales", "verde", `${normales.length} partida${n(normales.length)} en tránsito (normales al cierre)`, normales, "ninguna");
   const vm = matches.filter((m) => m.certeza === "verde");
-  add("conciliados", "verde", `${vm.reduce((s, m) => s + m.banco.length, 0)} movimientos conciliados solos`, vm.flatMap((m) => m.banco), "ninguna", { matches: vm.map((m) => m.id), totalCents: 0 });
+  add("conciliados", "verde", (() => { const n = vm.reduce((s, m) => s + m.banco.length, 0); return n === 1 ? "1 movimiento conciliado solo" : `${n} movimientos conciliados solos`; })(), vm.flatMap((m) => m.banco), "ninguna", { matches: vm.map((m) => m.id), totalCents: 0 });
 
   // Orden: primero lo que invalida la conciliación entera (saldos), después rojo → amarillo →
   // verde y, dentro de cada color, lo de mayor importe.
