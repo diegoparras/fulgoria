@@ -14,7 +14,8 @@ import { leerEjemplo, aprenderFormato, describirFormato, generarArchivo, filasAs
 import {
   fromExtract, resolveConfig, DEFAULTS, reconcile, arrastreSiguiente, pairKey,
   papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, fmtCents, fmtISO as fmtISOcrudo,
-  parseCsv, parseLedgerRows, detectLedgerColumns, leerXlsx, clasificarPlanilla, leerExtractoPlanilla, leerMercadoPago, adivinarFilaEncabezado, crearPlantillaMayor, reconocerPlantillaMayor, ROLES_MAYOR,
+  parseCsv, parseLedgerRows, detectLedgerColumns, leerXlsx, clasificarPlanilla, leerExtractoPlanilla, leerMercadoPago,
+  leerLiquidaciones, crearPlantillaLiquidacion, reconocerPlantillaLiquidacion, ROLES_LIQUIDACION, DESCUENTOS, adivinarFilaEncabezado, crearPlantillaMayor, reconocerPlantillaMayor, ROLES_MAYOR,
 } from "./core/index.js";
 
 // OCR (Tesseract, pesado) se carga solo si hace falta: un PDF digital no lo necesita.
@@ -39,10 +40,12 @@ const LS_MODO = "fulgoria.conciliar.modo";
 const LS_TPL = "fulgoria.templates"; // las mismas plantillas que guarda el extractor
 const LS_TPL_MAYOR = "fulgoria.plantillasMayor"; // plantillas de mayor por sistema contable
 const LS_FORMATOS = "fulgoria.formatosAsientos"; // formatos de asientos aprendidos de un ejemplo
+const LS_TPL_LIQ = "fulgoria.plantillasLiquidacion"; // columnas de liquidaciones por procesadora
 
 const state = {
   extracto: null,   // { name, pdf, columns, ext, check, seg, banco, error }
   mayor: null,      // { name, led, error }
+  liquidaciones: [], // planillas de liquidaciones de tarjetas: { name, rows, data, error, archivo, docId }
   arrastre: [],     // pendientes del mes anterior (cargados desde JSON)
   decisiones: { manuales: [], rechazados: [], confirmados: [] },
   modo: lsGet(LS_MODO) || "auto",
@@ -193,6 +196,11 @@ async function cargarPlanilla(file, { tipo = null, subir = true } = {}) {
   let t = c.tipo || "mayor";
   if (!c.seguro && t === "mayor" && state.mayor && !state.extracto) t = "extracto"; // el mayor ya está: será el extracto
   const dudoso = !c.seguro;
+  if (t === "liquidacion") {
+    const x = cargarLiquidacionPlanilla(file.name, p, { archivo: file });
+    if (subir) x.docId = await estudioSubir("liquidacion", file);
+    return;
+  }
   if (t === "mercadopago" || t === "extracto") {
     cargarExtractoPlanilla(file.name, p, t, { archivo: file, dudoso });
     if (subir) await estudioSubir("extracto", file);
@@ -219,6 +227,69 @@ function cargarExtractoPlanilla(name, p, tipo, { archivo = null, dudoso = false 
   }
   resetDecisiones();
 }
+// ---------------------------------------------------------------- liquidaciones de tarjetas
+function plantillasLiquidacion() { return safeJson(lsGet(LS_TPL_LIQ)) || []; }
+function guardarPlantillaLiquidacion(tpl, compartir = true) {
+  const todas = plantillasLiquidacion().filter((t) => t.nombre !== tpl.nombre);
+  todas.push(tpl);
+  lsSet(LS_TPL_LIQ, JSON.stringify(todas));
+  if (compartir && est.activo && puedo("editar")) srv("PUT", "/plantillas", { tipo: "liquidacion", nombre: tpl.nombre, plantilla: tpl });
+}
+function cargarLiquidacionPlanilla(name, p, { archivo = null, docId = null, lectura = null } = {}) {
+  const x = { name, rows: p.rows, archivo, docId, data: null, error: null, plantilla: null };
+  try {
+    const rec = lectura || reconocerPlantillaLiquidacion(p.rows, plantillasLiquidacion());
+    x.data = leerLiquidaciones(p.rows, rec ? { headerRow: rec.headerRow, map: rec.map, doc: name } : { doc: name });
+    x.plantilla = rec?.plantilla?.nombre || null;
+    if (!x.data.liquidaciones.length) x.error = "No encontré liquidaciones con fecha de pago y neto en la planilla.";
+  } catch (e) { x.error = e.message; }
+  const i = state.liquidaciones.findIndex((y) => y.name === name);
+  if (i >= 0) state.liquidaciones[i] = x; else state.liquidaciones.push(x);
+  resetDecisiones();
+  return x;
+}
+/** Todas las liquidaciones cargadas, con ids únicos entre archivos. */
+function liquidacionesCargadas() {
+  return state.liquidaciones.flatMap((x, k) => (x.data ? x.data.liquidaciones.map((l) => ({ ...l, id: `L${k + 1}${l.id}` })) : []));
+}
+function quitarLiquidacion(i) {
+  state.liquidaciones.splice(i, 1);
+  if (est.activo) est.docs.liquidaciones = state.liquidaciones.map((x) => x.docId).filter(Boolean);
+  resetDecisiones(); run();
+}
+/** Indicar a mano las columnas de una planilla de liquidaciones (queda como plantilla). */
+function mapearLiquidacion(i) {
+  const x = state.liquidaciones[i];
+  if (!x?.rows) return;
+  let hr = Math.max(0, x.rows.findIndex((r) => r.filter((c) => c && !/\d{2}/.test(c)).length >= 3));
+  const roles = Object.entries(ROLES_LIQUIDACION);
+  const pinta = () => {
+    const enc = x.rows[hr] || [];
+    const actual = x.data?.mapeo || {};
+    const rolDe = (c) => Object.keys(actual).find((r) => actual[r] === c) || "ignorar";
+    return `<label class="c-map-f">Fila de los encabezados<input type="number" min="1" max="${x.rows.length}" id="liqFila" value="${hr + 1}" /></label>
+      <label class="c-map-f wide">Nombre (procesadora)<input id="liqNombre" value="${esc(x.plantilla || "")}" placeholder="p. ej. Payway, Fiserv" /></label>
+      <div class="c-tablero"><table><thead><tr><th>Columna</th><th>Ejemplo</th><th>Es…</th></tr></thead><tbody>${enc.map((h, c) => `<tr><td>${esc(h || `Columna ${c + 1}`)}</td><td class="muted">${esc(String(x.rows[hr + 1]?.[c] ?? "").slice(0, 24))}</td><td><select data-liqrol="${c}">${roles.map(([k, t]) => `<option value="${k}"${k === rolDe(c) ? " selected" : ""}>${esc(t)}</option>`).join("")}</select></td></tr>`).join("")}</tbody></table></div>
+      <div class="modal-acciones"><button class="btn primary" id="liqGuardar">Guardar y leer</button></div>`;
+  };
+  abrirModal("Columnas de la liquidación", pinta(), { ancho: true });
+  const enlazar = () => {
+    $("liqFila").addEventListener("change", () => { hr = Math.max(0, Math.min(x.rows.length - 1, Number($("liqFila").value) - 1)); $("modalBody").innerHTML = pinta(); enlazar(); });
+    $("liqGuardar").addEventListener("click", () => {
+      const map = {};
+      $("modalBody").querySelectorAll("[data-liqrol]").forEach((s) => { if (s.value !== "ignorar" && map[s.value] == null) map[s.value] = +s.dataset.liqrol; });
+      try {
+        const tpl = crearPlantillaLiquidacion({ nombre: $("liqNombre").value.trim() || "Liquidaciones", rows: x.rows, headerRow: hr, map });
+        guardarPlantillaLiquidacion(tpl);
+        cargarLiquidacionPlanilla(x.name, { rows: x.rows }, { archivo: x.archivo, docId: x.docId, lectura: { headerRow: hr, map, plantilla: tpl } });
+        cerrarModal(); run();
+        toast(`Columnas guardadas como "${tpl.nombre}": la próxima vez se reconoce sola.`);
+      } catch (e) { toast(e.message); }
+    });
+  };
+  enlazar();
+}
+
 /** Cambia una planilla de lugar (extracto ⇄ mayor) cuando Fulgoria no pudo saber cuál era. */
 async function cambiarPlanilla(destino) {
   const desde = destino === "mayor" ? state.extracto : state.mayor;
@@ -226,6 +297,7 @@ async function cambiarPlanilla(destino) {
   if (destino === "mayor") state.extracto = null; else state.mayor = null;
   if (est.activo) est.docs[destino === "mayor" ? "extracto" : "mayor"] = null;
   await cargarPlanilla(desde.archivo, { tipo: destino });
+  if (destino === "liquidacion") { const i = state.liquidaciones.length - 1; if (state.liquidaciones[i]?.error) mapearLiquidacion(i); }
   run();
   toast(destino === "mayor" ? "Listo: esa planilla ahora es el mayor." : "Listo: esa planilla ahora es el extracto.");
 }
@@ -356,6 +428,7 @@ function run() {
     periodo: { desde, hasta }, cfg: cfg(), decisiones: state.decisiones,
     // Si la lectura de un documento no está verificada, el motor no confirma nada solo.
     lectura: { banco: !!x.check.globalOk, libros: m.led.control.ok !== false },
+    liquidaciones: liquidacionesCargadas(),
   });
   renderResult();
   renderFlujo();
@@ -389,7 +462,7 @@ function renderDocs() {
       <div class="s">${plural(x.data.movs.length, "movimiento")} · saldo ${fmtCents(x.data.apertura)} → ${fmtCents(x.data.cierre)} · ${ok ? "lectura verificada con la regla del saldo" : `<b>la lectura no cierra</b> (diferencia ${fmtCents(Math.round(((x.check.closing ?? 0) - (x.check.computed ?? 0)) * 100))}): ${iaEstado.disponible && !soloLectura() ? "pedile a la IA que lea las columnas, o ajustalas" : "ajustá las columnas"} en el <a class="link" href="./">Extractor</a>`}${x.plantilla === "ia" ? " · columnas leídas por la IA" : x.plantilla ? " · plantilla reconocida" : ""}${x.pdf.scanned ? " · OCR" : ""}</div>${!ok && iaEstado.disponible && !soloLectura() ? `<button class="btn sm primary" data-ia="1" style="margin-top:8px">Pedirle a la IA que lea las columnas</button>` : ""}${sel}</div></div>`;
   })() : `<div class="c-doc falta">${ICON.doc}<div><div class="k">Extracto</div><div class="s">Falta el extracto: PDF, imagen, Excel o CSV del banco, o el reporte de Mercado Pago.</div></div></div>`;
   const docM = m ? (m.error
-    ? `<div class="c-doc">${dot("rojo")}<div><div class="k">Mayor</div><div class="n">${esc(m.name)}</div><div class="s">${esc(m.error)}${m.dudoso && m.archivo && !soloLectura() ? ` · <button class="lnk" data-cambiar="extracto">es el extracto</button>` : ""}</div>${m.rows ? `<button class="btn sm primary" data-mapear="1" style="margin-top:8px">Indicar columnas</button>` : ""}</div></div>`
+    ? `<div class="c-doc">${dot("rojo")}<div><div class="k">Mayor</div><div class="n">${esc(m.name)}</div><div class="s">${esc(m.error)}${m.dudoso && m.archivo && !soloLectura() ? ` · <button class="lnk" data-cambiar="extracto">es el extracto</button>` : ""}${m.archivo && !soloLectura() ? ` · <button class="lnk" data-cambiar="liquidacion">es una liquidación de tarjetas</button>` : ""}</div>${m.rows ? `<button class="btn sm primary" data-mapear="1" style="margin-top:8px">Indicar columnas</button>` : ""}</div></div>`
     : (() => {
       const c = m.led.control;
       const est = c.ok === true ? "verde" : c.ok === false ? "rojo" : "amarillo";
@@ -399,7 +472,16 @@ function renderDocs() {
     })())
     : `<div class="c-doc falta">${ICON.sheet}<div><div class="k">Mayor</div><div class="s">Falta el mayor de la cuenta Banco (Excel o CSV exportado de tu sistema contable).</div></div></div>`;
   const docA = state.arrastre.length ? `<div class="c-doc">${dot("verde")}<div><div class="k">Pendientes del mes anterior</div><div class="s">${state.arrastre.length} partidas arrastradas · <button class="lnk" id="quitarArrastre">quitar</button></div></div></div>` : "";
-  $("docs").innerHTML = docX + docM + docA;
+  const docL = state.liquidaciones.map((l, i) => {
+    const acc = soloLectura() ? "" : ` · <button class="lnk" data-mapliq="${i}">columnas</button> · <button class="lnk" data-quitarliq="${i}">quitar</button>`;
+    if (l.error) return `<div class="c-doc">${dot("rojo")}<div><div class="k">Liquidaciones de tarjetas</div><div class="n">${esc(l.name)}</div><div class="s">${esc(l.error)}${acc}</div>${l.rows && !soloLectura() ? `<button class="btn sm primary" data-mapliq="${i}" style="margin-top:8px">Indicar columnas</button>` : ""}</div></div>`;
+    const ls = l.data.liquidaciones, suma = (f) => ls.reduce((s, x) => s + f(x), 0);
+    const desc = suma((x) => Object.values(x.descuentos).reduce((a, c) => a + c, 0));
+    const ok = l.data.control.ok, marcas = [...new Set(ls.map((x) => x.marca).filter(Boolean))].join(", ");
+    return `<div class="c-doc">${dot(ok ? "verde" : "rojo")}<div><div class="k">Liquidaciones de tarjetas${marcas ? " · " + esc(marcas) : ""}</div><div class="n">${esc(l.name)}</div>
+      <div class="s">${ls.length} ${ls.length === 1 ? "liquidación" : "liquidaciones"} · ventas ${fmtCents(suma((x) => x.bruto))} − descuentos ${fmtCents(desc)} = neto ${fmtCents(suma((x) => x.neto))} · ${ok ? "cada una verificada" : `<b>${l.data.control.filasConError.length ? `no cierran las filas ${l.data.control.filasConError.slice(0, 5).join(", ")}` : "sin bruto y neto para verificar"}</b>`}${l.plantilla ? ` · plantilla ${esc(l.plantilla)}` : ""}${acc}</div></div></div>`;
+  }).join("");
+  $("docs").innerHTML = docX + docM + docL + docA;
   $("segSel")?.addEventListener("change", (e) => { elegirSegmento(+e.target.value); resetDecisiones(); run(); });
   $("quitarArrastre")?.addEventListener("click", () => { state.arrastre = []; run(); });
 }
@@ -464,6 +546,7 @@ const NOTAS = {
   egresos_a_revisar: "Están registrados como salida y el banco no los debitó. Si son cheques viejos, conviene confirmar si siguen en circulación.",
   lectura_no_verificada: "Los movimientos leídos no explican los saldos del documento: puede faltar una fila, una columna estar mal marcada o una página no haberse leído. Mientras tanto, nada se confirma solo. Abrí el extracto en el Extractor, ajustá las columnas y guardá la plantilla del banco.",
   emparejamientos_a_confirmar: "Son propuestas razonables pero no seguras. Confirmalas o marcá \"No es esto\" para que busque otra opción.",
+  liquidaciones_tarjeta: "El banco acreditó el neto de liquidaciones de tarjetas. La liquidación explica la diferencia con las ventas (arancel, IVA, costo financiero, retenciones) y cada asiento ya la abre en sus cuentas: descargalos para importarlos en tu sistema.",
   ajustes_bancarios: "El banco los debitó o acreditó y todavía no están en libros. Ya están clasificados y con su asiento propuesto: descargalos para importarlos en tu sistema.",
   pendientes_normales: "Partidas registradas cerca del cierre que el banco todavía no procesó. Es normal: se arrastran al mes siguiente.",
   conciliados: "Emparejados sin ambigüedad (mismo importe, referencia o fecha). Se confirmaron solos.",
@@ -480,7 +563,7 @@ function renderBandeja(rec) {
       body = ms.map((m) => pairHtml(m)).join("");
       if (t.certeza === "amarillo" && ms.length > 1) acts = `<button class="btn sm" data-confall="1">Confirmar todos</button>`;
     } else if (t.ids.length) {
-      const ajuste = t.clave === "ajustes_bancarios";
+      const ajuste = t.clave === "ajustes_bancarios" || t.clave === "liquidaciones_tarjeta";
       body = t.ids.map((id) => {
         const a = ajuste ? rec.ajustes.find((x) => x.origen.includes(id)) : null;
         const lin = a ? `<span class="muted" style="font-size:12px">${a.lineas.map((l) => `${l.debe ? "D" : "H"} ${esc(l.cuenta)} ${fmtCents(l.debe || l.haber)}`).join(" · ")}</span>` : "";
@@ -599,6 +682,8 @@ document.addEventListener("click", (e) => {
   if (soloLectura() && (d.conf || d.rech || d.confall || d.mapear || d.cambiar || b.id === "emparejar" || b.id === "limpiarDec")) return toast(puedo("editar") ? "El mes está cerrado. Reabrilo para hacer cambios." : "Tu rol solo permite ver.");
   if (d.mapear) return abrirMapeo();
   if (d.cambiar) return cambiarPlanilla(d.cambiar);
+  if (d.mapliq != null && !soloLectura()) return mapearLiquidacion(+d.mapliq);
+  if (d.quitarliq != null && !soloLectura()) return quitarLiquidacion(+d.quitarliq);
   if (d.ia) return pedirColumnasIA();
   if (d.conf) { const m = state.rec.matches.find((x) => x.id === d.conf); state.decisiones.confirmados.push({ banco: m.banco, libros: m.libros }); return run(); }
   if (d.rech) {
@@ -761,7 +846,7 @@ function exportar(kind) {
   if (kind === "json") return download(base + ".json", JSON.stringify({ ...rec, decisiones: state.decisiones, mandos: state.mandos }, null, 2), "application/json");
   if (kind === "arrastre") {
     // Los ajustes bancarios se dan por asentados (se descargaron como asientos): no pasan.
-    const aceptados = rec.pendientes.filter((x) => x.tipo === "ajuste_bancario").map((x) => x.id);
+    const aceptados = rec.pendientes.filter((x) => x.tipo === "ajuste_bancario" || x.tipo === "liquidacion_tarjeta").map((x) => x.id);
     const pendientes = arrastreSiguiente(rec, aceptados);
     return download(base + "-pendientes.json", JSON.stringify({ fulgoria_pendientes: 1, periodo: rec.periodo.hasta.slice(0, 7), pendientes }, null, 2), "application/json");
   }
@@ -916,7 +1001,7 @@ setModo(state.modo);
 // =====================================================================================================
 // `abierto` = el mes cuyos datos están en pantalla ({ cuentaId, periodo }). Todo guardado va a ESE mes,
 // nunca al que esté eligiendo el usuario en ese momento; `gen` descarta aperturas que quedaron viejas.
-const est = { activo: false, usuario: null, clientes: [], cuentas: [], cliente: null, cuenta: null, periodo: null, per: null, anterior: null, docs: { extracto: null, mayor: null }, ultimo: "", timer: 0, abierto: null, gen: 0, pedidos: [] };
+const est = { activo: false, usuario: null, clientes: [], cuentas: [], cliente: null, cuenta: null, periodo: null, per: null, anterior: null, docs: { extracto: null, mayor: null, liquidaciones: [] }, ultimo: "", timer: 0, abierto: null, gen: 0, pedidos: [] };
 const puedo = (permiso) => !est.activo || (est.permisos || []).includes(permiso);
 // Solo lectura: mes cerrado, o un rol que no puede modificar (lector).
 const soloLectura = () => est.activo && (est.per?.estado === "cerrado" || !puedo("editar"));
@@ -967,6 +1052,7 @@ async function sincronizarPlantillas() {
   lsSet(LS_TPL, JSON.stringify(bancos));
   for (const p of r.body.filter((x) => x.tipo === "mayor")) guardarPlantillaMayor(p.plantilla, false);
   for (const p of r.body.filter((x) => x.tipo === "asientos")) guardarFormatoAsientos(p.plantilla, false);
+  for (const p of r.body.filter((x) => x.tipo === "liquidacion")) guardarPlantillaLiquidacion(p.plantilla, false);
 }
 
 async function cargarClientes(seleccionar) {
@@ -991,7 +1077,7 @@ async function elegirCliente(id, cuentaId) {
 async function elegirCuenta(id) {
   est.cuenta = est.cuentas.find((c) => c.id === id) || null;
   if (est.cuenta) await abrirPeriodo();
-  else { est.gen++; est.abierto = null; est.per = null; est.docs = { extracto: null, mayor: null }; renderFlujo(); }
+  else { est.gen++; est.abierto = null; est.per = null; est.docs = { extracto: null, mayor: null, liquidaciones: [] }; renderFlujo(); }
 }
 
 /** Abre un mes: baja sus documentos, sus decisiones y los pendientes del mes anterior, y concilia. */
@@ -1006,8 +1092,8 @@ async function abrirPeriodo() {
   if (!r.ok) { setGuardado(r.body.mensaje || "No se pudo abrir el mes", true); return; }
   const per = r.body.periodo;
   est.per = per; est.anterior = r.body.anterior;
-  est.docs = { extracto: per?.extractoDoc || null, mayor: per?.mayorDoc || null };
-  state.extracto = null; state.mayor = null; state.cierre = null; resetDecisiones();
+  est.docs = { extracto: per?.extractoDoc || null, mayor: per?.mayorDoc || null, liquidaciones: [...(per?.liquidacionesDocs || [])] };
+  state.extracto = null; state.mayor = null; state.liquidaciones = []; state.cierre = null; resetDecisiones();
   state.mandos = structuredClone(est.cuenta.mandos || {});
   // Arrastre automático: lo que quedó pendiente el mes anterior.
   state.arrastre = (r.body.anterior?.pendientes || []).map((m) => ({ ...m }));
@@ -1019,6 +1105,7 @@ async function abrirPeriodo() {
       else { await cargarExtracto(d.nombre, d.blob); if (per.segmento) elegirSegmento(per.segmento); }
     }
     if (per?.mayorDoc) { const d = await bajarDocumento(per.mayorDoc); const p = await filasDePlanilla(d.nombre, d.blob); cargarMayorFilas(d.nombre, p.rows, { xlsx: p.xlsx }); }
+    for (const id of per?.liquidacionesDocs || []) { const d = await bajarDocumento(id); cargarLiquidacionPlanilla(d.nombre, await filasDePlanilla(d.nombre, d.blob), { docId: id }); }
   } catch (e) { toast("No pude abrir los documentos guardados: " + e.message); }
   if (gen !== est.gen) return;
   if (per?.decisiones) state.decisiones = { manuales: [], rechazados: [], confirmados: [], ...per.decisiones };
@@ -1044,18 +1131,20 @@ async function estudioSubir(tipo, file) {
   setGuardado("Subiendo " + file.name + "…");
   const r = await srv("POST", "/documentos", file, { "x-tipo": tipo, "x-nombre": encodeURIComponent(file.name), "content-type": file.type || (/\.xlsx$/i.test(file.name) ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : /\.(csv|txt)$/i.test(file.name) ? "text/csv" : "application/octet-stream") });
   if (!r.ok) { setGuardado(r.body.mensaje || "No se pudo subir el documento", true); return; }
+  if (tipo === "liquidacion") { est.docs.liquidaciones = [...new Set([...(est.docs.liquidaciones || []), r.body.id])]; return r.body.id; }
   est.docs[tipo] = r.body.id;
+  return r.body.id;
 }
 
 // ---------------- guardado automático
 function cuerpoGuardado() {
   const rec = state.rec;
   if (!rec || !est.abierto || !est.docs.extracto || !est.docs.mayor) return null;
-  const aceptados = rec.pendientes.filter((p) => p.tipo === "ajuste_bancario").map((p) => p.id);
+  const aceptados = rec.pendientes.filter((p) => p.tipo === "ajuste_bancario" || p.tipo === "liquidacion_tarjeta").map((p) => p.id);
   // Ids de los pendientes con el mes de origen, para que no choquen al arrastrarse varios meses.
   const pendientes = arrastreSiguiente(rec, aceptados).map((m) => ({ ...m, id: String(m.id).includes(":") ? m.id : `${est.abierto.periodo}:${m.id}` }));
   return {
-    extractoDoc: est.docs.extracto, mayorDoc: est.docs.mayor, segmento: state.extracto?.seg || 0, decisiones: state.decisiones,
+    extractoDoc: est.docs.extracto, mayorDoc: est.docs.mayor, liquidacionesDocs: est.docs.liquidaciones || [], segmento: state.extracto?.seg || 0, decisiones: state.decisiones,
     resumen: {
       estado: rec.resumen.estado, diferenciaNoExplicada: rec.diferenciaNoExplicada, atencion: rec.bandeja.filter((t) => t.certeza !== "verde").length,
       saldos: rec.saldos, movimientosBanco: rec.resumen.movimientosBanco, emparejadosVerde: rec.resumen.emparejadosVerde, pendientes: rec.resumen.pendientes,

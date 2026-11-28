@@ -72,6 +72,8 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
   fs.mkdirSync(dataDir, { recursive: true });
   const db = new DatabaseSync(path.join(dataDir, "fulgoria.sqlite"));
   db.exec(ESQUEMA);
+  // Migraciones de bases ya creadas (columnas agregadas después).
+  for (const sql of ["ALTER TABLE periodos ADD COLUMN liquidaciones_docs TEXT"]) { try { db.exec(sql); } catch { /* ya existe */ } }
   const blobs = crearBlobs({ almacenamiento, dataDir, s3, clave });
   const claveSecretos = claveDesde(clave); // la misma DOCS_CLAVE cifra las claves de API guardadas
   const q = (sql) => db.prepare(sql);
@@ -82,7 +84,7 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
 
   const filaPeriodo = (r) => r && ({
     id: r.id, cuentaId: r.cuenta_id, periodo: r.periodo, estado: r.estado, version: r.version,
-    extractoDoc: r.extracto_doc, mayorDoc: r.mayor_doc, segmento: r.segmento,
+    extractoDoc: r.extracto_doc, mayorDoc: r.mayor_doc, liquidacionesDocs: J(r.liquidaciones_docs) || [], segmento: r.segmento,
     decisiones: J(r.decisiones), resumen: J(r.resumen), pendientes: J(r.pendientes), resultado: J(r.resultado),
     preparo: r.preparo, preparoEn: r.preparo_en, reviso: r.reviso, revisoEn: r.reviso_en, cerro: r.cerro, cerroEn: r.cerro_en,
     actualizado: r.actualizado, actualizadoPor: r.actualizado_por,
@@ -282,8 +284,8 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
 
       const n = p ? { ...p } : { id: uid(), cuentaId, periodo, estado: "borrador", version: 0, segmento: 0 };
       const cambiaContenido = (k) => body[k] !== undefined && JSON.stringify(body[k]) !== JSON.stringify(n[k]);
-      const contenidoCambio = ["extractoDoc", "mayorDoc", "segmento", "decisiones"].some(cambiaContenido);
-      for (const k of ["extractoDoc", "mayorDoc", "segmento", "decisiones", "resumen", "pendientes", "resultado"]) if (body[k] !== undefined) n[k] = body[k];
+      const contenidoCambio = ["extractoDoc", "mayorDoc", "liquidacionesDocs", "segmento", "decisiones"].some(cambiaContenido);
+      for (const k of ["extractoDoc", "mayorDoc", "liquidacionesDocs", "segmento", "decisiones", "resumen", "pendientes", "resultado"]) if (body[k] !== undefined) n[k] = body[k];
       const t = ahora();
       if (contenidoCambio && (n.estado === "preparado" || n.estado === "revisado")) {
         n.estado = "borrador"; n.preparo = n.preparoEn = n.reviso = n.revisoEn = null;
@@ -307,15 +309,15 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
       } else if (accion) return { error: 400, msg: "Acción desconocida." };
       n.version = (n.version || 0) + 1;
       const s = (v) => (v == null ? null : JSON.stringify(v));
-      q(`INSERT INTO periodos (id, cuenta_id, periodo, estado, version, extracto_doc, mayor_doc, segmento, decisiones, resumen, pendientes, resultado,
+      q(`INSERT INTO periodos (id, cuenta_id, periodo, estado, version, extracto_doc, mayor_doc, liquidaciones_docs, segmento, decisiones, resumen, pendientes, resultado,
            preparo, preparo_en, reviso, reviso_en, cerro, cerro_en, actualizado, actualizado_por)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
          ON CONFLICT (cuenta_id, periodo) DO UPDATE SET estado = excluded.estado, version = excluded.version,
-           extracto_doc = excluded.extracto_doc, mayor_doc = excluded.mayor_doc, segmento = excluded.segmento,
+           extracto_doc = excluded.extracto_doc, mayor_doc = excluded.mayor_doc, liquidaciones_docs = excluded.liquidaciones_docs, segmento = excluded.segmento,
            decisiones = excluded.decisiones, resumen = excluded.resumen, pendientes = excluded.pendientes, resultado = excluded.resultado,
            preparo = excluded.preparo, preparo_en = excluded.preparo_en, reviso = excluded.reviso, reviso_en = excluded.reviso_en,
            cerro = excluded.cerro, cerro_en = excluded.cerro_en, actualizado = excluded.actualizado, actualizado_por = excluded.actualizado_por`)
-        .run(n.id, cuentaId, periodo, n.estado, n.version, n.extractoDoc ?? null, n.mayorDoc ?? null, n.segmento ?? 0,
+        .run(n.id, cuentaId, periodo, n.estado, n.version, n.extractoDoc ?? null, n.mayorDoc ?? null, n.liquidacionesDocs?.length ? JSON.stringify(n.liquidacionesDocs) : null, n.segmento ?? 0,
           s(n.decisiones), s(n.resumen), s(n.pendientes), s(n.resultado),
           n.preparo ?? null, n.preparoEn ?? null, n.reviso ?? null, n.revisoEn ?? null, n.cerro ?? null, n.cerroEn ?? null, t, u);
       if (accion || !p || contenidoCambio) evento(u, accion || (p ? "editar" : "crear"), "periodo", n.id, { cuentaId, periodo, estado: n.estado });

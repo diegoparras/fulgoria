@@ -14,7 +14,7 @@ function pintar(pd) {
   const cuenta = [pd.cuenta, pd.banco].filter(Boolean).join(" · ");
   $("app").innerHTML = `
     <h1>${pd.cliente ? esc(pd.cliente) + ": " : ""}¿a qué corresponden estos movimientos?</h1>
-    <p class="sub">Estamos cerrando la conciliación bancaria${cuenta ? ` de <b>${esc(cuenta)}</b>` : ""} de <b>${esc(mes(pd.periodo))}</b> y no encontramos registrados estos movimientos. Contanos qué es cada uno (una cobranza de quién, un pago de qué, un préstamo…). Si tenés el comprobante, mandalo por el canal de siempre.</p>
+    <p class="sub">Estamos cerrando la conciliación bancaria${cuenta ? ` de <b>${esc(cuenta)}</b>` : ""} de <b>${esc(mes(pd.periodo))}</b> y no encontramos registrados estos movimientos. Contanos qué es cada uno (una cobranza de quién, un pago de qué, un préstamo…) y, si tenés el comprobante (factura, recibo), adjuntalo: una foto alcanza.</p>
     <form id="f">${pd.items.map((it, i) => {
       const r = pd.respuestas[it.clave];
       return `<div class="item">

@@ -7,8 +7,8 @@ const { validarConfig, normalizarAjuste, PROVEEDORES, EXTERNOS } = require("./ia
 
 const PERIODO_RE = /^\d{4}-(0[1-9]|1[0-2])$/;
 const ID_RE = /^[0-9a-f-]{36}$/i;
-const TIPOS_DOC = new Set(["extracto", "mayor"]);
-const TIPOS_PLANTILLA = new Set(["banco", "mayor", "asientos"]);
+const TIPOS_DOC = new Set(["extracto", "mayor", "liquidacion"]);
+const TIPOS_PLANTILLA = new Set(["banco", "mayor", "asientos", "liquidacion"]);
 // Tipos de documento que se aceptan y se devuelven; cualquier otro se guarda como binario. Nunca se
 // devuelve el Content-Type que mandó quien subió el archivo (podría ser text/javascript o text/html).
 const MIMES_DOC = new Set(["application/pdf", "text/csv", "text/plain", "application/vnd.ms-excel",
@@ -90,6 +90,7 @@ function crearApi(p, { maxDocMB = 25, usuario = () => ({ u: "local", rol: "admin
     const permiso = b.accion === "preparar" ? "preparar" : ["revisar", "cerrar", "reabrir"].includes(b.accion) ? "revisar" : "editar";
     if (!puede(quien(req).rol, permiso)) return mal(res, 403, `Tu rol (${quien(req).rol}) no permite ${TXT_PERMISO[permiso]}.`);
     for (const k of ["extractoDoc", "mayorDoc"]) if (b[k] != null && (!ID_RE.test(b[k]) || !p.documento(b[k]))) return mal(res, 400, "Documento inexistente.");
+    if (b.liquidacionesDocs != null && (!Array.isArray(b.liquidacionesDocs) || b.liquidacionesDocs.length > 20 || b.liquidacionesDocs.some((id) => !ID_RE.test(String(id)) || !p.documento(id)))) return mal(res, 400, "Liquidaciones inválidas.");
     if (b.resumen != null && !esObjeto(b.resumen)) return mal(res, 400, "Resumen inválido.");
     if (b.pendientes != null && !Array.isArray(b.pendientes)) return mal(res, 400, "Pendientes inválidos.");
     const out = p.guardarPeriodo(u(req), req.params.id, req.params.periodo, b);
@@ -124,7 +125,7 @@ function crearApi(p, { maxDocMB = 25, usuario = () => ({ u: "local", rol: "admin
   r.post("/documentos", exige("editar"), express.raw({ type: () => true, limit: `${maxDocMB}mb` }), async (req, res, next) => {
     try {
       const tipo = String(req.get("x-tipo") || "");
-      if (!TIPOS_DOC.has(tipo)) return mal(res, 400, "x-tipo debe ser extracto o mayor.");
+      if (!TIPOS_DOC.has(tipo)) return mal(res, 400, "x-tipo debe ser extracto, mayor o liquidacion.");
       if (!Buffer.isBuffer(req.body) || !req.body.length) return mal(res, 400, "Archivo vacío.");
       let nombre = "documento";
       try { nombre = decodeURIComponent(String(req.get("x-nombre") || "documento")).slice(0, 200); } catch {}
@@ -152,12 +153,13 @@ function crearApi(p, { maxDocMB = 25, usuario = () => ({ u: "local", rol: "admin
   r.get("/plantillas", (req, res) => res.json(p.plantillas(TIPOS_PLANTILLA.has(req.query.tipo) ? req.query.tipo : null)));
   r.put("/plantillas", exige("editar"), express.json({ limit: "1mb" }), (req, res) => {
     const b = req.body || {};
-    if (!TIPOS_PLANTILLA.has(b.tipo)) return mal(res, 400, "tipo debe ser banco, mayor o asientos.");
+    if (!TIPOS_PLANTILLA.has(b.tipo)) return mal(res, 400, "tipo debe ser banco, mayor, asientos o liquidacion.");
     const nombre = txt(b.nombre, 120);
     if (!nombre || !b.plantilla || typeof b.plantilla !== "object") return mal(res, 400, "Faltan el nombre o la plantilla.");
     // Una plantilla describe FORMA, no datos: se rechaza algo que no lo sea.
     if (b.tipo === "mayor" && !b.plantilla.fulgoria_plantilla_mayor) return mal(res, 400, "No es una plantilla de mayor.");
     if (b.tipo === "banco" && !b.plantilla.geometry) return mal(res, 400, "No es una plantilla de banco.");
+    if (b.tipo === "liquidacion" && (!b.plantilla.fulgoria_plantilla_liquidacion || typeof b.plantilla.mapeo !== "object")) return mal(res, 400, "No es una plantilla de liquidaciones.");
     if (b.tipo === "asientos" && (!b.plantilla.fulgoria_formato_asientos || !Array.isArray(b.plantilla.columnas) || b.plantilla.columnas.length > 100)) return mal(res, 400, "No es un formato de asientos.");
     res.json(p.guardarPlantilla(u(req), { tipo: b.tipo, nombre, plantilla: b.plantilla }));
   });

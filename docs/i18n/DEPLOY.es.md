@@ -138,7 +138,8 @@ procesamiento sigue en el navegador; el servidor guarda.
 - **Link de respuesta del cliente**: desde "Pedir al cliente", un preparador crea un link (`/r/<token>`)
   donde el cliente contesta qué es cada movimiento, sin cuenta ni contraseña. Ve solo esas partidas; el
   link vence a los 30 días y se puede anular; en la base queda solo un hash del token. Las respuestas
-  aparecen en la bandeja.
+  aparecen en la bandeja. El cliente también puede adjuntar la factura o el recibo (PDF o foto, hasta
+  10 MB, reconocidos por su contenido), que se guardan cifrados como cualquier documento.
 
 **EasyPanel**: *Mounts → Volume →* ruta `/data` (la imagen ya usa `DATA_DIR=/data`). Sin el volumen,
 todo lo guardado se pierde en el próximo deploy — incluso con R2/S3, porque la base vive en `/data`.

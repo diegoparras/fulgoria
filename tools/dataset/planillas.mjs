@@ -56,7 +56,35 @@ const mayorMP = [
 // 3) Planilla ambigua (solo Débito/Crédito, sin título): CSV de un extracto.
 const ambiguaCsv = ["Fecha;Detalle;Débitos;Créditos;Saldo", "01/06/2026;SALDO ANTERIOR;;;1.000,00", "02/06/2026;TRANSFERENCIA RECIBIDA;;500,00;1.500,00", "03/06/2026;COMISION;50,00;;1.450,00"].join("\n");
 
+// 4) Ventas con tarjeta: el banco acredita netos; el mayor del banco no tiene esas ventas (están en
+//    "Tarjetas a cobrar"); la liquidación de la procesadora explica cada acreditación.
+const bancoTarjetas = [
+  ["Banco del Río S.A. — Resumen de cuenta corriente en pesos"], [],
+  ["Fecha", "Concepto", "Débito", "Crédito", "Saldo"],
+  [f("2026-06-01"), "SALDO ANTERIOR", null, null, 500000],
+  [f("2026-06-04"), "ACRED LIQ VISA 100234", null, 96322, 596322],
+  [f("2026-06-11"), "ACREDITACION MASTERCARD LIQ", null, 65425.4, 661747.4],
+  [f("2026-06-15"), "TRANSFERENCIA A PROVEEDOR CUIT 30711112223", 30000, null, 631747.4],
+];
+const mayorTarjetas = [
+  ["Mayor de cuenta 1.1.02 Banco del Río"],
+  ["Fecha", "Asiento", "Concepto", "Debe", "Haber", "Saldo"],
+  ["", "", "Saldo anterior", null, null, 500000],
+  [f("2026-06-15"), 301, "Pago proveedor Distribuidora Norte", null, 30000, 470000],
+];
+const liquidaciones = [
+  ["Payway — Liquidaciones de junio 2026"], [],
+  ["Fecha de pago", "Nro. liquidación", "Tarjeta", "Ventas brutas", "Arancel", "IVA arancel", "Costo financiero", "Retención IIBB", "Neto a cobrar"],
+  [f("2026-06-03"), "100234", "VISA", 100000, 1800, 378, null, 1500, 96322],
+  [f("2026-06-10"), "100301", "MASTERCARD", 50000, 900, 189, 2000, 750, 46161],
+  [f("2026-06-10"), "100302", "MASTERCARD", 20000, 360, 75.6, null, 300, 19264.4],
+  [f("2026-07-01"), "100377", "VISA", 30000, 540, 113.4, null, 450, 28896.6],
+];
+
 mkdirSync(OUT, { recursive: true });
+writeFileSync(join(OUT, "tarjetas-extracto.xlsx"), escribirXlsx([{ nombre: "Movimientos", filas: bancoTarjetas }]));
+writeFileSync(join(OUT, "tarjetas-mayor.xlsx"), escribirXlsx([{ nombre: "Mayor", filas: mayorTarjetas }]));
+writeFileSync(join(OUT, "tarjetas-liquidaciones.xlsx"), escribirXlsx([{ nombre: "Liquidaciones", filas: liquidaciones }]));
 writeFileSync(join(OUT, "extracto-banco-del-rio.xlsx"), escribirXlsx([{ nombre: "Movimientos", filas: banco }]));
 writeFileSync(join(OUT, "mayor-banco-del-rio.xlsx"), escribirXlsx([{ nombre: "Mayor", filas: mayorBanco }]));
 writeFileSync(join(OUT, "mercadopago-liberaciones.xlsx"), escribirXlsx([{ nombre: "release_report", filas: mp }]));
@@ -72,6 +100,7 @@ Casos sintéticos (ningún dato es real) para probar Conciliar con planillas:
 | \`mayor-banco-del-rio.xlsx\` | Mayor de la cuenta Banco en Excel (Debe/Haber, asiento). Quedan pendientes el depósito del 15/06 (en tránsito), el cheque 12346 (no cobrado), impuestos y comisiones. |
 | \`mercadopago-liberaciones.xlsx\` | Reporte de liberaciones de Mercado Pago (columnas RECORD_TYPE, NET_CREDIT_AMOUNT…). |
 | \`mayor-mercadopago.xlsx\` | Mayor de la cuenta Mercado Pago. Faltan asentar la percepción de IIBB y los rendimientos. |
+| \`tarjetas-extracto.xlsx\`, \`tarjetas-mayor.xlsx\`, \`tarjetas-liquidaciones.xlsx\` | Ventas con tarjeta: el banco acredita netos (Visa sola; dos liquidaciones de Mastercard juntas) que el mayor del banco no tiene; la planilla de liquidaciones de la procesadora los explica y Fulgoria propone los asientos. |
 | \`extracto-ambiguo.csv\` | Planilla con solo "Débitos / Créditos" (podría ser extracto o mayor): Fulgoria la lee de las dos maneras y se queda con la que hace cerrar los saldos. |
 
 Se regeneran con \`node tools/dataset/planillas.mjs\`.
