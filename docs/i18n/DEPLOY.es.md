@@ -131,6 +131,14 @@ procesamiento sigue en el navegador; el servidor guarda.
 - **Copias**: cada `BACKUP_HORAS` la base se copia (`VACUUM INTO`) a `backups/` en el mismo
   almacenamiento (cifrada si hay clave). A demanda: `node server.js --backup`. Con bucket, agregá una
   regla de ciclo de vida que borre las copias viejas de `backups/`.
+- **Restaurar una copia**: `node server.js --copias` las lista y `node server.js --restaurar backups/<archivo>.sqlite`
+  restaura una (en EasyPanel: la Consola del servicio). Verifica que sea una base de Fulgoria que se pueda
+  descifrar con la `DOCS_CLAVE` actual, guarda la base actual como `fulgoria.sqlite.antes-<fecha>` y la
+  reemplaza. Después **reiniciá** el servicio.
+- **Link de respuesta del cliente**: desde "Pedir al cliente", un preparador crea un link (`/r/<token>`)
+  donde el cliente contesta qué es cada movimiento, sin cuenta ni contraseña. Ve solo esas partidas; el
+  link vence a los 30 días y se puede anular; en la base queda solo un hash del token. Las respuestas
+  aparecen en la bandeja.
 
 **EasyPanel**: *Mounts → Volume →* ruta `/data` (la imagen ya usa `DATA_DIR=/data`). Sin el volumen,
 todo lo guardado se pierde en el próximo deploy — incluso con R2/S3, porque la base vive en `/data`.

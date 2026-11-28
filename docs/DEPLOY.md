@@ -136,6 +136,13 @@ the server stores.
 - **Backups**: every `BACKUP_HORAS` the database is copied (`VACUUM INTO`) to `backups/` in the same
   storage (encrypted too if there's a key). On demand: `node server.js --backup`. With a bucket, add a
   lifecycle rule to expire old `backups/` objects.
+- **Restoring a backup**: `node server.js --copias` lists them and `node server.js --restaurar backups/<file>.sqlite`
+  restores one (in EasyPanel: the service's Console). It checks the file is a Fulgoria database that can
+  be decrypted with the current `DOCS_CLAVE`, keeps the current one as `fulgoria.sqlite.antes-<date>` and
+  replaces it. Then **restart** the service.
+- **Client response links**: from "Ask the client", a preparer creates a link (`/r/<token>`) where the
+  client answers what each movement is, with no account. Only those movements are shown; the link
+  expires in 30 days and can be revoked; only a hash of the token is stored. Answers show up in the inbox.
 
 **EasyPanel**: *Mounts → Volume →* mount path `/data` (the image sets `DATA_DIR=/data`). Without the
 volume, everything saved is lost on the next deploy — even with R2/S3, because the database lives in

@@ -10,15 +10,17 @@ import { loadPdf, renderToCanvas } from "./pdf.js";
 import { extract, balanceCheck, autoDetect, matchScore, docYear, extractAnchors } from "./extract.js";
 import { buildTemplate } from "./template.js";
 import { esqueletoDePdf, elegirPropuesta } from "./ia.js";
+import { leerEjemplo, aprenderFormato, describirFormato, generarArchivo, filasAsientos, ROLES_ASIENTO } from "./core/formato-asientos.js";
 import {
   fromExtract, resolveConfig, DEFAULTS, reconcile, arrastreSiguiente, pairKey,
   papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, fmtCents, fmtISO as fmtISOcrudo,
-  parseCsv, parseLedgerRows, detectLedgerColumns, adivinarFilaEncabezado, crearPlantillaMayor, reconocerPlantillaMayor, ROLES_MAYOR,
+  parseCsv, parseLedgerRows, detectLedgerColumns, leerXlsx, clasificarPlanilla, leerExtractoPlanilla, leerMercadoPago, adivinarFilaEncabezado, crearPlantillaMayor, reconocerPlantillaMayor, ROLES_MAYOR,
 } from "./core/index.js";
 
 // OCR (Tesseract, pesado) se carga solo si hace falta: un PDF digital no lo necesita.
 const ocr = () => import("./ocr.js");
 const $ = (id) => document.getElementById(id);
+const plural = (n, palabra) => `${n} ${palabra}${n === 1 ? "" : "s"}`;
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const svg = (s, body) => `<svg class="ico" width="${s}" height="${s}" viewBox="0 0 24 24">${body}</svg>`;
 const ICON = {
@@ -36,6 +38,7 @@ const LS_MANDOS = "fulgoria.conciliar.mandos";
 const LS_MODO = "fulgoria.conciliar.modo";
 const LS_TPL = "fulgoria.templates"; // las mismas plantillas que guarda el extractor
 const LS_TPL_MAYOR = "fulgoria.plantillasMayor"; // plantillas de mayor por sistema contable
+const LS_FORMATOS = "fulgoria.formatosAsientos"; // formatos de asientos aprendidos de un ejemplo
 
 const state = {
   extracto: null,   // { name, pdf, columns, ext, check, seg, banco, error }
@@ -64,13 +67,13 @@ async function handleFiles(files) {
     const n = f.name.toLowerCase();
     try {
       if (n.endsWith(".pdf") || (f.type || "").startsWith("image/")) { await cargarExtracto(f.name, f); await estudioSubir("extracto", f); }
-      else if (n.endsWith(".csv") || n.endsWith(".txt")) { await cargarMayor(f.name, await f.text()); await estudioSubir("mayor", f); }
+      else if (/\.(csv|txt|xlsx)$/.test(n)) await cargarPlanilla(f);
       else if (n.endsWith(".json")) {
         const txt = await f.text(), j = JSON.parse(txt);
         if (j.fulgoria_plantilla_mayor) importarPlantillaMayor(j);
         else await cargarArrastre(f.name, txt);
       }
-      else if (/\.xlsx?$/.test(n)) toast("Por ahora el mayor va en CSV: en Excel, Archivo → Guardar como → CSV.");
+      else if (n.endsWith(".xls")) toast("Ese es el formato viejo de Excel (.xls): abrilo y guardalo como .xlsx o CSV.");
       else toast(`No sé qué hacer con ${f.name}`);
     } catch (e) {
       console.error(e);
@@ -140,9 +143,9 @@ function elegirSegmento(i) {
 
 // El mayor se lee: 1) con una plantilla guardada si reconoce sus encabezados; 2) si no, con la
 // detección automática; 3) si tampoco, queda pidiendo que se indiquen las columnas a mano.
-async function cargarMayor(name, text) {
-  const rows = parseCsv(text);
-  state.mayor = { name, rows, led: null, error: null, plantilla: null, lectura: null };
+async function cargarMayor(name, text) { cargarMayorFilas(name, parseCsv(text)); }
+function cargarMayorFilas(name, rows, { xlsx = false, archivo = null, dudoso = false } = {}) {
+  state.mayor = { name, rows, led: null, error: null, plantilla: null, lectura: null, xlsx, archivo, dudoso };
   const rec = reconocerPlantillaMayor(rows, plantillasMayor());
   if (rec) leerMayor({ headerRow: rec.headerRow, map: rec.map, amountMode: rec.plantilla.formato?.numeros, unirContinuacion: rec.plantilla.unirContinuacion !== false, ignorar: rec.plantilla.ignorar || [] }, rec.plantilla.sistema);
   else {
@@ -155,7 +158,7 @@ async function cargarMayor(name, text) {
 function leerMayor(lectura, plantilla = null) {
   const m = state.mayor;
   try {
-    m.led = parseLedgerRows(m.rows, { ...lectura, doc: m.name, anio: state.extracto?.anio });
+    m.led = parseLedgerRows(m.rows, { ...lectura, ...(m.xlsx ? { amountMode: "auto" } : {}), doc: m.name, anio: state.extracto?.anio });
     m.lectura = lectura; m.plantilla = plantilla; m.error = null;
   } catch (e) { m.led = null; m.error = e.message; }
 }
@@ -169,7 +172,62 @@ function guardarPlantillaMayor(tpl, compartir = true) {
 function importarPlantillaMayor(tpl) {
   guardarPlantillaMayor(tpl);
   toast(`Plantilla de mayor "${tpl.sistema}" guardada.`);
-  if (state.mayor?.rows) cargarMayor(state.mayor.name, state.mayor.rows.map((r) => r.map((c) => (/[;"\n]/.test(c) ? `"${c.replace(/"/g, '""')}"` : c)).join(";")).join("\n"));
+  if (state.mayor?.rows) cargarMayorFilas(state.mayor.name, state.mayor.rows, { xlsx: state.mayor.xlsx, archivo: state.mayor.archivo });
+}
+
+// ---------------------------------------------------------------- planillas (Excel o CSV)
+// Una planilla puede ser el mayor, un extracto bancario exportado o el reporte de Mercado Pago.
+// Se decide por los encabezados y el título; si no se puede saber (solo "Débito / Crédito"), se
+// toma como mayor —o como extracto si el mayor ya está— y se ofrece cambiarlo con un toque.
+async function filasDePlanilla(nombre, blob) {
+  if (/\.xlsx$/i.test(nombre)) {
+    const { hojas } = await leerXlsx(await blob.arrayBuffer());
+    const h = hojas.find((x) => clasificarPlanilla(x.rows).tipo) || hojas.find((x) => x.rows.length) || hojas[0];
+    return { rows: h.rows, hoja: hojas.length > 1 ? h.nombre : null, xlsx: true };
+  }
+  return { rows: parseCsv(await blob.text()), hoja: null, xlsx: false };
+}
+async function cargarPlanilla(file, { tipo = null, subir = true } = {}) {
+  const p = await filasDePlanilla(file.name, file);
+  const c = tipo ? { tipo, seguro: true } : clasificarPlanilla(p.rows);
+  let t = c.tipo || "mayor";
+  if (!c.seguro && t === "mayor" && state.mayor && !state.extracto) t = "extracto"; // el mayor ya está: será el extracto
+  const dudoso = !c.seguro;
+  if (t === "mercadopago" || t === "extracto") {
+    cargarExtractoPlanilla(file.name, p, t, { archivo: file, dudoso });
+    if (subir) await estudioSubir("extracto", file);
+  } else {
+    cargarMayorFilas(file.name, p.rows, { xlsx: p.xlsx, archivo: file, dudoso });
+    if (subir) await estudioSubir("mayor", file);
+  }
+}
+function bancoDePlanilla(rows) {
+  for (const r of rows.slice(0, 5)) for (const c of r) if (/banco|coop|galicia|santander|macro|naci[oó]n|provincia|supervielle|credicoop|icbc|bbva|patagonia|hsbc|brubank|ciudad/i.test(c)) return String(c).split(/\s[—–-]\s|,/)[0].trim().slice(0, 40);
+  return "";
+}
+function cargarExtractoPlanilla(name, p, tipo, { archivo = null, dudoso = false } = {}) {
+  const base = { name, tabla: tipo, rows: p.rows, hoja: p.hoja, xlsx: p.xlsx, seg: 0, plantilla: false, archivo, dudoso, ext: { segments: [] } };
+  try {
+    const r = tipo === "mercadopago" ? leerMercadoPago(p.rows, { doc: name }) : leerExtractoPlanilla(p.rows, { doc: name, amountMode: "auto" });
+    if (!r.movs.length) throw new Error("No encontré movimientos en la planilla.");
+    const anio = Number(r.movs[0].fecha.slice(0, 4));
+    state.extracto = { ...base, banco: r.banco || bancoDePlanilla(p.rows), anio, avisos: r.avisos || [],
+      data: { movs: r.movs, apertura: r.apertura, cierre: r.cierre },
+      check: { globalOk: r.control.ok === true, sinControl: r.control.ok == null }, error: null };
+  } catch (e) {
+    state.extracto = { ...base, banco: "", error: tipo === "mercadopago" ? e.message : `${e.message} Si es el mayor, tocá "es el mayor".`, dudoso: true };
+  }
+  resetDecisiones();
+}
+/** Cambia una planilla de lugar (extracto ⇄ mayor) cuando Fulgoria no pudo saber cuál era. */
+async function cambiarPlanilla(destino) {
+  const desde = destino === "mayor" ? state.extracto : state.mayor;
+  if (!desde?.archivo) return;
+  if (destino === "mayor") state.extracto = null; else state.mayor = null;
+  if (est.activo) est.docs[destino === "mayor" ? "extracto" : "mayor"] = null;
+  await cargarPlanilla(desde.archivo, { tipo: destino });
+  run();
+  toast(destino === "mayor" ? "Listo: esa planilla ahora es el mayor." : "Listo: esa planilla ahora es el extracto.");
 }
 
 // ---------------------------------------------------------------- mapear columnas del mayor
@@ -212,7 +270,7 @@ function abrirMapeo() {
       const led = parseLedgerRows(m.rows, { ...lectura(), doc: m.name, anio: state.extracto?.anio });
       const c = led.control;
       const ej = led.movs.slice(0, 4).map((x) => `<tr><td>${fmtISO(x.fecha)}</td><td>${esc(x.descripcion)}</td><td class="num">${fmtCents(x.cents)}</td></tr>`).join("");
-      $("mapVista").innerHTML = `<div class="c-map-res ${c.ok === false ? "bad" : "ok"}">${dot(c.ok === true ? "verde" : c.ok === false ? "rojo" : "amarillo")} ${led.movs.length} registros · saldo ${fmtCents(led.apertura)} → ${fmtCents(led.cierre)} · ${c.ok === true ? "los saldos cierran" : c.ok === false ? "los saldos NO cierran: revisá Debe/Haber o el formato de números" : "sin saldo para verificar"}</div><table><tbody>${ej}</tbody></table>`;
+      $("mapVista").innerHTML = `<div class="c-map-res ${c.ok === false ? "bad" : "ok"}">${dot(c.ok === true ? "verde" : c.ok === false ? "rojo" : "amarillo")} ${plural(led.movs.length, "registro")} · saldo ${fmtCents(led.apertura)} → ${fmtCents(led.cierre)} · ${c.ok === true ? "los saldos cierran" : c.ok === false ? "los saldos NO cierran: revisá Debe/Haber o el formato de números" : "sin saldo para verificar"}</div><table><tbody>${ej}</tbody></table>`;
       return led;
     } catch (e) { $("mapVista").innerHTML = `<div class="c-map-res bad">${dot("rojo")} ${esc(e.message)}</div>`; return null; }
   };
@@ -315,23 +373,31 @@ function finDeMes(iso) {
 function renderDocs() {
   const x = state.extracto, m = state.mayor;
   const docX = x ? (() => {
+    if (x.tabla) {
+      const cambiar = x.dudoso && !soloLectura() ? ` · <button class="lnk" data-cambiar="mayor">es el mayor</button>` : "";
+      if (x.error) return `<div class="c-doc">${dot("rojo")}<div><div class="k">${x.tabla === "mercadopago" ? "Mercado Pago" : "Extracto en planilla"}</div><div class="n">${esc(x.name)}</div><div class="s">${esc(x.error)}${cambiar}</div></div></div>`;
+      const ok = x.check.globalOk;
+      const lectura = ok ? "saldos verificados" : x.check.sinControl ? "sin saldo ni total para verificar: nada se confirma solo" : "<b>los saldos no cierran</b>: nada se confirma solo";
+      return `<div class="c-doc">${dot(ok ? "verde" : x.check.sinControl ? "amarillo" : "rojo")}<div><div class="k">${x.tabla === "mercadopago" ? "Mercado Pago" : `Extracto en planilla${x.banco ? " · " + esc(x.banco) : ""}`}</div><div class="n">${esc(x.name)}${x.hoja ? ` · hoja ${esc(x.hoja)}` : ""}</div>
+        <div class="s">${plural(x.data.movs.length, "movimiento")} · saldo ${fmtCents(x.data.apertura)} → ${fmtCents(x.data.cierre)} · ${lectura}${x.avisos.length ? ` · ${x.avisos.length} aviso${x.avisos.length > 1 ? "s" : ""}` : ""}${cambiar}</div></div></div>`;
+    }
     const segs = x.ext.segments;
     const sel = segs.length > 1 ? `<select id="segSel">${segs.map((s, i) => `<option value="${i}"${i === x.seg ? " selected" : ""}>Cuenta ${i + 1}${s.currency ? " · " + s.currency : ""} (${s.movements.length} mov.)</option>`).join("")}</select>` : "";
     if (x.error) return `<div class="c-doc">${dot("rojo")}<div><div class="k">Extracto</div><div class="n">${esc(x.name)}</div><div class="s">${esc(x.error)}</div></div></div>`;
     const ok = x.check.globalOk;
     return `<div class="c-doc">${dot(ok ? "verde" : "rojo")}<div><div class="k">Extracto${x.banco ? " · " + esc(x.banco) : ""}</div><div class="n">${esc(x.name)}</div>
-      <div class="s">${x.data.movs.length} movimientos · saldo ${fmtCents(x.data.apertura)} → ${fmtCents(x.data.cierre)} · ${ok ? "lectura verificada con la regla del saldo" : `<b>la lectura no cierra</b> (diferencia ${fmtCents(Math.round(((x.check.closing ?? 0) - (x.check.computed ?? 0)) * 100))}): ${iaEstado.disponible && !soloLectura() ? "pedile a la IA que lea las columnas, o ajustalas" : "ajustá las columnas"} en el <a class="link" href="./">Extractor</a>`}${x.plantilla === "ia" ? " · columnas leídas por la IA" : x.plantilla ? " · plantilla reconocida" : ""}${x.pdf.scanned ? " · OCR" : ""}</div>${!ok && iaEstado.disponible && !soloLectura() ? `<button class="btn sm primary" data-ia="1" style="margin-top:8px">Pedirle a la IA que lea las columnas</button>` : ""}${sel}</div></div>`;
-  })() : `<div class="c-doc falta">${ICON.doc}<div><div class="k">Extracto</div><div class="s">Falta el PDF o la imagen del extracto bancario.</div></div></div>`;
+      <div class="s">${plural(x.data.movs.length, "movimiento")} · saldo ${fmtCents(x.data.apertura)} → ${fmtCents(x.data.cierre)} · ${ok ? "lectura verificada con la regla del saldo" : `<b>la lectura no cierra</b> (diferencia ${fmtCents(Math.round(((x.check.closing ?? 0) - (x.check.computed ?? 0)) * 100))}): ${iaEstado.disponible && !soloLectura() ? "pedile a la IA que lea las columnas, o ajustalas" : "ajustá las columnas"} en el <a class="link" href="./">Extractor</a>`}${x.plantilla === "ia" ? " · columnas leídas por la IA" : x.plantilla ? " · plantilla reconocida" : ""}${x.pdf.scanned ? " · OCR" : ""}</div>${!ok && iaEstado.disponible && !soloLectura() ? `<button class="btn sm primary" data-ia="1" style="margin-top:8px">Pedirle a la IA que lea las columnas</button>` : ""}${sel}</div></div>`;
+  })() : `<div class="c-doc falta">${ICON.doc}<div><div class="k">Extracto</div><div class="s">Falta el extracto: PDF, imagen, Excel o CSV del banco, o el reporte de Mercado Pago.</div></div></div>`;
   const docM = m ? (m.error
-    ? `<div class="c-doc">${dot("rojo")}<div><div class="k">Mayor</div><div class="n">${esc(m.name)}</div><div class="s">${esc(m.error)}</div>${m.rows ? `<button class="btn sm primary" data-mapear="1" style="margin-top:8px">Indicar columnas</button>` : ""}</div></div>`
+    ? `<div class="c-doc">${dot("rojo")}<div><div class="k">Mayor</div><div class="n">${esc(m.name)}</div><div class="s">${esc(m.error)}${m.dudoso && m.archivo && !soloLectura() ? ` · <button class="lnk" data-cambiar="extracto">es el extracto</button>` : ""}</div>${m.rows ? `<button class="btn sm primary" data-mapear="1" style="margin-top:8px">Indicar columnas</button>` : ""}</div></div>`
     : (() => {
       const c = m.led.control;
       const est = c.ok === true ? "verde" : c.ok === false ? "rojo" : "amarillo";
       const txt = c.ok === true ? "saldos verificados" : c.ok === false ? `<b>el saldo no cierra</b>${c.filasConError.length ? ` en las filas ${c.filasConError.slice(0, 5).join(", ")}` : ""}` : "sin saldo para verificar";
       return `<div class="c-doc">${dot(est)}<div><div class="k">Mayor de la cuenta Banco</div><div class="n">${esc(m.name)}</div>
-        <div class="s">${m.led.movs.length} registros · saldo ${fmtCents(m.led.apertura)} → ${fmtCents(m.led.cierre)} · ${txt}${m.led.avisos.length ? ` · ${m.led.avisos.length} aviso${m.led.avisos.length > 1 ? "s" : ""}` : ""}${m.plantilla ? ` · plantilla ${esc(m.plantilla)}` : ""} · <button class="lnk" data-mapear="1">columnas</button></div></div></div>`;
+        <div class="s">${plural(m.led.movs.length, "registro")} · saldo ${fmtCents(m.led.apertura)} → ${fmtCents(m.led.cierre)} · ${txt}${m.led.avisos.length ? ` · ${m.led.avisos.length} aviso${m.led.avisos.length > 1 ? "s" : ""}` : ""}${m.plantilla ? ` · plantilla ${esc(m.plantilla)}` : ""} · <button class="lnk" data-mapear="1">columnas</button>${m.dudoso && m.archivo && !soloLectura() ? ` · <button class="lnk" data-cambiar="extracto">es el extracto</button>` : ""}</div></div></div>`;
     })())
-    : `<div class="c-doc falta">${ICON.sheet}<div><div class="k">Mayor</div><div class="s">Falta el mayor de la cuenta Banco (CSV exportado de tu sistema contable o un Excel guardado como CSV).</div></div></div>`;
+    : `<div class="c-doc falta">${ICON.sheet}<div><div class="k">Mayor</div><div class="s">Falta el mayor de la cuenta Banco (Excel o CSV exportado de tu sistema contable).</div></div></div>`;
   const docA = state.arrastre.length ? `<div class="c-doc">${dot("verde")}<div><div class="k">Pendientes del mes anterior</div><div class="s">${state.arrastre.length} partidas arrastradas · <button class="lnk" id="quitarArrastre">quitar</button></div></div></div>` : "";
   $("docs").innerHTML = docX + docM + docA;
   $("segSel")?.addEventListener("change", (e) => { elegirSegmento(+e.target.value); resetDecisiones(); run(); });
@@ -370,6 +436,8 @@ function renderEstado(rec) {
 const mov = (id) => state.rec.movimientos[id];
 function itemRow(id, extra = "") {
   const m = mov(id);
+  const resp = respuestaCliente(m);
+  if (resp) extra += `<div class="c-resp"><b>El cliente respondió:</b> ${esc(resp.texto)} <span class="muted">· ${esc(new Date(resp.fecha).toLocaleString("es-AR"))}</span></div>`;
   const p = state.rec.pendientes.find((x) => x.id === id);
   const why = p?.motivo ? `<span class="why">${esc(p.motivo)}${p.antiguedadDias != null ? ` · ${p.antiguedadDias} día${p.antiguedadDias === 1 ? "" : "s"}` : ""}</span>` : "";
   const ev = m.evidencia?.page != null ? `<button class="lnk" data-ev="${esc(id)}">Ver en el extracto</button>` : m.evidencia?.row != null ? `<span class="muted" style="font-size:12px">${esc(m.evidencia.doc || "mayor")} · fila ${esc(m.evidencia.row)}</span>` : "";
@@ -480,7 +548,7 @@ const MANDOS = [
   { grp: "Cliente" },
   { k: "cliente.pagoACuenta25413", t: "Ley 25.413: % pago a cuenta", tipo: "int" },
   { k: "cliente.responsableInscripto", t: "Responsable inscripto en IVA", tipo: "bool" },
-  { grp: "Plan de cuentas" },
+  { grp: "Plan de cuentas (\"código nombre\", p. ej. \"1.1.2.01 Banco Río\")" },
   ...Object.keys(DEFAULTS.cuentas).map((c) => ({ k: "cuentas." + c, t: DEFAULTS.cuentas[c], tipo: "text" })),
 ];
 function getPath(o, k) { return k.split(".").reduce((a, p) => (a == null ? a : a[p]), o); }
@@ -524,8 +592,9 @@ document.addEventListener("click", (e) => {
   if (b.closest("summary") && b.tagName === "BUTTON") e.preventDefault(); // un botón en el encabezado no abre/cierra la tarjeta
   const d = b.dataset;
   if (d.ev) return verEvidencia(d.ev);
-  if (soloLectura() && (d.conf || d.rech || d.confall || d.mapear || b.id === "emparejar" || b.id === "limpiarDec")) return toast(puedo("editar") ? "El mes está cerrado. Reabrilo para hacer cambios." : "Tu rol solo permite ver.");
+  if (soloLectura() && (d.conf || d.rech || d.confall || d.mapear || d.cambiar || b.id === "emparejar" || b.id === "limpiarDec")) return toast(puedo("editar") ? "El mes está cerrado. Reabrilo para hacer cambios." : "Tu rol solo permite ver.");
   if (d.mapear) return abrirMapeo();
+  if (d.cambiar) return cambiarPlanilla(d.cambiar);
   if (d.ia) return pedirColumnasIA();
   if (d.conf) { const m = state.rec.matches.find((x) => x.id === d.conf); state.decisiones.confirmados.push({ banco: m.banco, libros: m.libros }); return run(); }
   if (d.rech) {
@@ -580,12 +649,54 @@ function pedirAlCliente(clave) {
   const txt = `Hola, ¿cómo estás?\n\nEstamos cerrando la conciliación bancaria${banco} de ${mes} y necesitamos que nos ayudes con estos movimientos que no encontramos registrados:\n\n` +
     items.map((m) => `• ${fmtISO(m.fecha)} — ${m.descripcion} — $ ${fmtCents(Math.abs(m.cents))} (${m.cents > 0 ? "entró a la cuenta" : "salió de la cuenta"})`).join("\n") +
     `\n\n¿Nos contás a qué corresponde cada uno y, si lo tenés, nos mandás el comprobante (factura, recibo, contrato)?\n\n¡Gracias!`;
+  const conLink = est.activo && est.abierto && puedo("editar");
+  const activos = est.pedidos.filter((x) => !x.anulado && !x.vencido);
   abrirModal("Pedido al cliente", `<p>Copialo y mandalo por mail o WhatsApp. Podés editarlo antes.</p><textarea class="c-msg" id="msg">${esc(txt)}</textarea>
-    <div class="modal-acciones"><button class="btn primary" id="copiarMsg">Copiar</button></div>`);
+    ${conLink ? `<p class="muted" style="font-size:12.5px">Mejor todavía: un <b>link</b> para que el cliente conteste cada movimiento en una página (sin cuenta ni contraseña). Las respuestas aparecen acá, en la bandeja. Ve solo estas partidas y el link vence en 30 días.</p>` : ""}
+    ${activos.length ? `<div class="c-nota">Links activos de este mes: ${activos.map((x) => `${x.items.length} partida${x.items.length > 1 ? "s" : ""}, ${Object.keys(x.respuestas).length} respondida${Object.keys(x.respuestas).length === 1 ? "" : "s"}, vence ${esc(new Date(x.vence).toLocaleDateString("es-AR"))} <button class="lnk" data-anular-pedido="${esc(x.id)}">anular</button>`).join(" · ")}</div>` : ""}
+    <div class="modal-acciones">${conLink ? `<button class="btn" id="crearLink">Crear link para que responda</button>` : ""}<button class="btn primary" id="copiarMsg">Copiar</button></div>`);
   $("copiarMsg").addEventListener("click", async () => {
     try { await navigator.clipboard.writeText($("msg").value); toast("Copiado."); } catch { $("msg").select(); toast("Seleccionado: copialo con Ctrl+C."); }
   });
+  $("crearLink")?.addEventListener("click", async () => {
+    $("crearLink").disabled = true;
+    const r = await srv("POST", `/cuentas/${est.abierto.cuentaId}/periodos/${est.abierto.periodo}/pedidos`, { items: items.map((m) => ({ clave: claveItem(m), fecha: m.fecha, descripcion: m.descripcion, cents: m.cents })) });
+    if (!r.ok) { $("crearLink").disabled = false; return toast(r.body.mensaje || "No pude crear el link."); }
+    const url = location.origin + r.body.url;
+    $("msg").value = `Hola, ¿cómo estás?\n\nEstamos cerrando la conciliación bancaria${banco} de ${mes} y hay ${items.length === 1 ? "un movimiento que no encontramos registrado" : `${items.length} movimientos que no encontramos registrados`}. ¿Nos contás a qué corresponde${items.length === 1 ? "" : " cada uno"} en este link?\n\n${url}\n\nEs solo para vos y vence el ${new Date(r.body.vence).toLocaleDateString("es-AR")}. Si tenés los comprobantes, mandalos por acá.\n\n¡Gracias!`;
+    $("crearLink").textContent = "Link creado";
+    toast("Link creado: copiá el mensaje y mandáselo.");
+    cargarPedidos();
+  });
+  $("modalBody").querySelectorAll("[data-anular-pedido]").forEach((b) => b.addEventListener("click", async () => {
+    const r = await srv("DELETE", `/pedidos/${b.dataset.anularPedido}`);
+    if (!r.ok) return toast(r.body.mensaje || "No pude anular el link.");
+    b.replaceWith("anulado");
+    toast("Link anulado: ya no se puede abrir."); cargarPedidos();
+  }));
 }
+
+// Respuestas del cliente: se buscan por fecha, importe y descripción (los ids de las partidas pueden
+// cambiar si se vuelve a leer el documento).
+function claveItem(m) { return `${m.fecha}|${m.cents}|${String(m.descripcion || "").toUpperCase().replace(/\s+/g, " ").trim().slice(0, 80)}`; }
+function respuestaCliente(m) {
+  if (!m || !est.pedidos.length) return null;
+  const k = claveItem(m);
+  let mejor = null;
+  for (const x of est.pedidos) { const r = !x.anulado && x.respuestas[k]; if (r && (!mejor || r.fecha > mejor.fecha)) mejor = r; }
+  return mejor;
+}
+async function cargarPedidos() {
+  if (!est.activo || !est.abierto) { est.pedidos = []; return; }
+  const { cuentaId, periodo } = est.abierto;
+  const r = await srv("GET", `/cuentas/${cuentaId}/periodos/${periodo}/pedidos`);
+  if (!r.ok || est.abierto?.cuentaId !== cuentaId || est.abierto?.periodo !== periodo) return;
+  const antes = JSON.stringify(est.pedidos.map((x) => x.respuestas));
+  est.pedidos = r.body;
+  if (state.rec && JSON.stringify(est.pedidos.map((x) => x.respuestas)) !== antes) renderResult();
+}
+// Al volver a la pestaña, se traen las respuestas nuevas del cliente.
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") cargarPedidos(); });
 
 // ---------------------------------------------------------------- evidencia: el recorte del PDF
 async function verEvidencia(id) {
@@ -620,10 +731,19 @@ async function verEvidencia(id) {
 // ---------------------------------------------------------------- exportar
 function exportar(kind) {
   const rec = state.rec, p = state.papel;
-  const base = `conciliacion-${(state.extracto.banco || "banco").toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${rec.periodo.hasta.slice(0, 7)}`;
+  const base = `conciliacion-${(state.extracto.banco || "banco").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}-${rec.periodo.hasta.slice(0, 7)}`;
   if (kind === "md") return download(base + ".md", papelToMarkdown(p), "text/markdown");
   if (kind === "csv") return download(base + ".csv", papelToCsv(p), "text/csv");
-  if (kind === "asientos") return download(base + "-asientos.csv", asientosToCsv(rec.ajustes), "text/csv");
+  if (kind === "asientos") return elegirFormatoAsientos();
+  if (kind.startsWith("asientos-f:")) {
+    const fmt = formatosAsientos().find((x) => x.nombre === kind.slice(11));
+    if (!fmt) return toast("No encontré ese formato.");
+    recordarFormato(kind.slice(9));
+    const out = generarArchivo(fmt, rec.ajustes);
+    if (out.faltanCodigos.length) toast(`Ojo: ${out.faltanCodigos.length} cuenta(s) sin código en el plan de cuentas (modo Deportivo).`, 5000);
+    return descargarBytes(`${base}-asientos-${fmt.nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.${out.ext}`, out.bytes, out.mime);
+  }
+  if (kind === "asientos-csv") { recordarFormato("csv"); return download(base + "-asientos.csv", asientosToCsv(rec.ajustes), "text/csv"); }
   if (kind === "json") return download(base + ".json", JSON.stringify({ ...rec, decisiones: state.decisiones, mandos: state.mandos }, null, 2), "application/json");
   if (kind === "arrastre") {
     // Los ajustes bancarios se dan por asentados (se descargaron como asientos): no pasan.
@@ -631,6 +751,116 @@ function exportar(kind) {
     const pendientes = arrastreSiguiente(rec, aceptados);
     return download(base + "-pendientes.json", JSON.stringify({ fulgoria_pendientes: 1, periodo: rec.periodo.hasta.slice(0, 7), pendientes }, null, 2), "application/json");
   }
+}
+// Asientos: el formato de importación de cada sistema contable (de su documentación oficial).
+const LS_FMT_ASIENTOS = "fulgoria.asientos.formato";
+function recordarFormato(f) { lsSet(LS_FMT_ASIENTOS, f); cerrarModal(); }
+function elegirFormatoAsientos() {
+  const rec = state.rec, guardado = lsGet(LS_FMT_ASIENTOS) || "csv";
+  const ult = guardado === "csv" || formatosAsientos().some((f) => "f:" + f.nombre === guardado) ? guardado : "csv";
+  if (!rec.ajustes.length) return toast("No hay asientos para descargar.");
+  const op = (k, t, d) => `<button class="c-formato${k === ult ? " ult" : ""}" data-exp="asientos-${esc(k)}"><b>${esc(t)}</b><span>${d}</span></button>`;
+  const propios = formatosAsientos();
+  abrirModal("Descargar asientos", `<p>${rec.ajustes.length} asiento${rec.ajustes.length === 1 ? "" : "s"} propuesto${rec.ajustes.length === 1 ? "" : "s"}. Elegí el formato de tu sistema contable:</p>
+    <div class="c-formatos">
+      ${propios.map((f) => op("f:" + f.nombre, f.nombre, `Formato aprendido de un ejemplo · ${esc(describirFormato(f)[0].replace(/^Archivo: /, ""))}`)).join("")}
+      <button class="c-formato nuevo" id="agregarFormato"><b>+ Agregar el formato de mi sistema</b><span>Subí un archivo de importación de asientos que tu sistema acepte y Fulgoria aprende el formato.</span></button>
+      ${op("csv", "Planilla (CSV)", "Asiento, fecha, cuenta, debe, haber y concepto, para revisar o para un sistema que lea planillas.")}
+    </div>
+    <p class="muted" style="font-size:12px">Fulgoria no trae formatos de sistemas armados de antemano: los aprende de un ejemplo de tu sistema, así siguen andando aunque el sistema cambie (si cambia, se sube un ejemplo nuevo).</p>`);
+  $("agregarFormato").addEventListener("click", agregarFormatoAsientos);
+}
+
+// ---------------- formatos de asientos aprendidos de un ejemplo
+function formatosAsientos() { return safeJson(lsGet(LS_FORMATOS)) || []; }
+function guardarFormatoAsientos(fmt, compartir = true) {
+  const todos = formatosAsientos().filter((x) => x.nombre !== fmt.nombre);
+  todos.push(fmt);
+  lsSet(LS_FORMATOS, JSON.stringify(todos));
+  if (compartir && est.activo && puedo("editar")) srv("PUT", "/plantillas", { tipo: "asientos", nombre: fmt.nombre, plantilla: fmt });
+}
+// Asientos de muestra para la vista previa cuando el mes todavía no tiene ajustes.
+const AJUSTES_MUESTRA = [{ id: "A1", fecha: new Date().toISOString().slice(0, 10), concepto: "Comisión de mantenimiento", origen: ["B1"], lineas: [{ cuenta: "5.2.02 Gastos bancarios", debe: 450000, haber: 0 }, { cuenta: "1.1.2.01 Banco cuenta corriente", debe: 0, haber: 450000 }] }];
+
+function agregarFormatoAsientos() {
+  abrirModal("Formato de mi sistema contable", `<p>Exportá desde tu sistema contable —o armá— un <b>archivo de importación de asientos</b> que el sistema acepte, con uno o dos asientos, y subilo acá. Puede ser Excel, CSV o TXT (con separadores o de ancho fijo).</p>
+    <p class="muted" style="font-size:12.5px">Fulgoria aprende la forma: columnas, orden, fechas, importes y numeración. De los datos del ejemplo no se guarda nada, salvo los valores que se repiten en todas las filas (como una sucursal o un circuito).</p>
+    <div class="modal-acciones"><label class="btn primary">Elegir el archivo de ejemplo<input type="file" id="ejemploAsientos" accept=".xlsx,.csv,.txt,.prn,.dat,.imp,.asc,.tsv" hidden /></label></div>`);
+  $("ejemploAsientos").addEventListener("change", async (e) => {
+    const f = e.target.files[0];
+    if (!f) return;
+    try {
+      const ej = await leerEjemplo(f.name, new Uint8Array(await f.arrayBuffer()));
+      editarFormatoAsientos(aprenderFormato(ej, { nombre: f.name.replace(/\.[^.]+$/, "") }), ej);
+    } catch (err) { toast("No pude leer el ejemplo: " + err.message, 6000); }
+  });
+}
+
+function editarFormatoAsientos(fmt, ej) {
+  const ajustes = state.rec?.ajustes?.length ? state.rec.ajustes : AJUSTES_MUESTRA;
+  const muestraDe = (i) => { for (const r of ej.rows.slice(fmt.titulos ? 1 : 0)) if (String(r[i] ?? "").trim()) return String(r[i]).trim(); return ""; };
+  const opciones = (sel) => Object.entries(ROLES_ASIENTO).map(([k, t]) => `<option value="${k}"${k === sel ? " selected" : ""}>${esc(t)}</option>`).join("");
+  const filasCol = fmt.columnas.map((c, i) => `<tr><td>${esc(c.titulo || `Columna ${i + 1}`)}</td><td class="muted">${esc(muestraDe(i).slice(0, 30))}</td>
+    <td><select data-rol="${i}">${opciones(c.rol)}</select> <input data-fijo="${i}" value="${esc(c.valor ?? "")}" placeholder="valor" style="width:90px${c.rol === "fijo" ? "" : ";display:none"}" /></td></tr>`).join("");
+  abrirModal("Formato de mi sistema contable", `
+    <label class="c-map-f wide">Nombre del sistema<input id="fmtNombre" value="${esc(fmt.nombre)}" placeholder="p. ej. el sistema del estudio" /></label>
+    <ul class="c-entendido">${describirFormato(fmt).map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+    <p class="muted" style="font-size:12.5px">Esto entendió Fulgoria de cada columna (el valor de ejemplo se muestra solo acá, no se guarda). Corregí lo que haga falta:</p>
+    <div class="c-tablero"><table><thead><tr><th>Columna</th><th>Ejemplo</th><th>Es…</th></tr></thead><tbody>${filasCol}</tbody></table></div>
+    <div class="c-fmt-ajustes">
+      <label>Fecha<input id="fmtFecha" value="${esc(fmt.fecha.patron === "excel" ? "excel" : fmt.fecha.patron)}" title="DD, MM, AAAA, AA (o excel)" /></label>
+      ${fmt.importe.excel ? "" : `<label>Decimales<select id="fmtDec"><option value=","${fmt.importe.decimal === "," ? " selected" : ""}>coma (1980,50)</option><option value="."${fmt.importe.decimal === "." ? " selected" : ""}>punto (1980.50)</option></select></label>
+      <label>Miles<select id="fmtMiles"><option value=""${!fmt.importe.miles ? " selected" : ""}>sin separador</option><option value="."${fmt.importe.miles === "." ? " selected" : ""}>punto</option><option value=","${fmt.importe.miles === "," ? " selected" : ""}>coma</option></select></label>`}
+      <label>Cuentas<select id="fmtCuenta"><option value="codigo"${fmt.cuenta.modo === "codigo" ? " selected" : ""}>por código</option><option value="nombre"${fmt.cuenta.modo === "nombre" ? " selected" : ""}>por nombre</option><option value="completo"${fmt.cuenta.modo === "completo" ? " selected" : ""}>código y nombre</option></select></label>
+      <label>Numeración<select id="fmtReinicio"><option value="nunca"${fmt.asiento.reinicio === "nunca" ? " selected" : ""}>correlativa</option><option value="fecha"${fmt.asiento.reinicio === "fecha" ? " selected" : ""}>vuelve a 1 cada fecha</option></select></label>
+      <label>Primer número<input id="fmtDesde" type="number" min="1" value="${fmt.asiento.desde || 1}" /></label>
+    </div>
+    <p class="muted" style="font-size:12.5px">Vista previa${state.rec?.ajustes?.length ? " con los asientos de este mes" : " con un asiento de muestra"}:</p>
+    <pre class="c-vista" id="fmtVista"></pre>
+    <p class="c-aviso" id="fmtAviso" hidden></p>
+    <div class="modal-acciones"><button class="btn primary" id="fmtGuardar">Guardar y descargar</button></div>`, { ancho: true });
+  const leer = () => {
+    fmt.nombre = $("fmtNombre").value.trim().slice(0, 60) || "Mi sistema";
+    $("modalBody").querySelectorAll("[data-rol]").forEach((s) => {
+      const i = +s.dataset.rol, c = fmt.columnas[i], fijo = $("modalBody").querySelector(`[data-fijo="${i}"]`);
+      c.rol = s.value; fijo.style.display = c.rol === "fijo" ? "" : "none";
+      if (c.rol === "fijo") c.valor = fijo.value; else delete c.valor;
+      if (fmt.estructura === "cabecera" && !c.en) c.en = "linea";
+    });
+    fmt.fecha.patron = $("fmtFecha").value.trim() || "DD/MM/AAAA";
+    if ($("fmtDec")) { fmt.importe.decimal = $("fmtDec").value; fmt.importe.miles = $("fmtMiles").value === fmt.importe.decimal ? "" : $("fmtMiles").value; delete fmt.importe.dudoso; }
+    fmt.cuenta.modo = $("fmtCuenta").value;
+    fmt.asiento.reinicio = $("fmtReinicio").value;
+    fmt.asiento.desde = Math.max(1, Number($("fmtDesde").value) || 1);
+  };
+  const vista = () => {
+    leer();
+    try {
+      const { filas } = filasAsientos(fmt, ajustes);
+      const out = generarArchivo(fmt, ajustes);
+      $("fmtAviso").hidden = !out.faltanCodigos.length;
+      $("fmtAviso").textContent = out.faltanCodigos.length ? `Este sistema usa códigos de cuenta y estas no tienen: ${out.faltanCodigos.join(", ")}. En el modo Deportivo → Plan de cuentas escribilas como "código nombre" (p. ej. "1.1.2.01 Banco Río").` : "";
+      $("fmtVista").textContent = out.ext === "xlsx"
+        ? filas.slice(0, 10).map((r) => r.map((v) => (v == null ? "" : typeof v === "object" ? v.fecha.split("-").reverse().join("/") : String(v))).join(" │ ")).join("\n")
+        : new TextDecoder(fmt.archivo.codificacion === "utf-8" ? "utf-8" : "windows-1252").decode(out.bytes).split(/\r?\n/).slice(0, 10).join("\n").replace(/\t/g, " → ");
+    } catch (e) { $("fmtVista").textContent = "No pude armar la vista previa: " + e.message; }
+  };
+  $("modalBody").addEventListener("input", vista);
+  $("modalBody").addEventListener("change", vista);
+  vista();
+  $("fmtGuardar").addEventListener("click", () => {
+    leer();
+    if (!fmt.columnas.some((c) => c.rol === "cuenta") || !fmt.columnas.some((c) => ["debe", "haber", "importe", "importeConSigno", "importeDH"].includes(c.rol))) return toast("Falta indicar la columna de la cuenta y la del importe (o Debe/Haber).");
+    guardarFormatoAsientos(fmt);
+    toast(`Formato "${fmt.nombre}" guardado${est.activo ? " para todo el estudio" : ""}.`);
+    if (state.rec?.ajustes?.length) exportar("asientos-f:" + fmt.nombre); else cerrarModal();
+  });
+}
+function descargarBytes(name, bytes, mime) {
+  const url = URL.createObjectURL(new Blob([bytes], { type: mime }));
+  const a = Object.assign(document.createElement("a"), { href: url, download: name });
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 function download(name, text, mime) {
   // Dentro de un visor embebido (iframe) las descargas pueden estar bloqueadas: muestro el
@@ -672,7 +902,7 @@ setModo(state.modo);
 // =====================================================================================================
 // `abierto` = el mes cuyos datos están en pantalla ({ cuentaId, periodo }). Todo guardado va a ESE mes,
 // nunca al que esté eligiendo el usuario en ese momento; `gen` descarta aperturas que quedaron viejas.
-const est = { activo: false, usuario: null, clientes: [], cuentas: [], cliente: null, cuenta: null, periodo: null, per: null, anterior: null, docs: { extracto: null, mayor: null }, ultimo: "", timer: 0, abierto: null, gen: 0 };
+const est = { activo: false, usuario: null, clientes: [], cuentas: [], cliente: null, cuenta: null, periodo: null, per: null, anterior: null, docs: { extracto: null, mayor: null }, ultimo: "", timer: 0, abierto: null, gen: 0, pedidos: [] };
 const puedo = (permiso) => !est.activo || (est.permisos || []).includes(permiso);
 // Solo lectura: mes cerrado, o un rol que no puede modificar (lector).
 const soloLectura = () => est.activo && (est.per?.estado === "cerrado" || !puedo("editar"));
@@ -722,6 +952,7 @@ async function sincronizarPlantillas() {
   }
   lsSet(LS_TPL, JSON.stringify(bancos));
   for (const p of r.body.filter((x) => x.tipo === "mayor")) guardarPlantillaMayor(p.plantilla, false);
+  for (const p of r.body.filter((x) => x.tipo === "asientos")) guardarFormatoAsientos(p.plantilla, false);
 }
 
 async function cargarClientes(seleccionar) {
@@ -767,14 +998,21 @@ async function abrirPeriodo() {
   // Arrastre automático: lo que quedó pendiente el mes anterior.
   state.arrastre = (r.body.anterior?.pendientes || []).map((m) => ({ ...m }));
   try {
-    if (per?.extractoDoc) { const d = await bajarDocumento(per.extractoDoc); await cargarExtracto(d.nombre, d.blob); if (per.segmento) elegirSegmento(per.segmento); }
-    if (per?.mayorDoc) { const d = await bajarDocumento(per.mayorDoc); await cargarMayor(d.nombre, await d.blob.text()); }
+    const esPlanilla = (n) => /\.(xlsx|csv|txt)$/i.test(n);
+    if (per?.extractoDoc) {
+      const d = await bajarDocumento(per.extractoDoc);
+      if (esPlanilla(d.nombre)) { const p = await filasDePlanilla(d.nombre, d.blob); const c = clasificarPlanilla(p.rows); cargarExtractoPlanilla(d.nombre, p, c.tipo === "mercadopago" ? "mercadopago" : "extracto"); }
+      else { await cargarExtracto(d.nombre, d.blob); if (per.segmento) elegirSegmento(per.segmento); }
+    }
+    if (per?.mayorDoc) { const d = await bajarDocumento(per.mayorDoc); const p = await filasDePlanilla(d.nombre, d.blob); cargarMayorFilas(d.nombre, p.rows, { xlsx: p.xlsx }); }
   } catch (e) { toast("No pude abrir los documentos guardados: " + e.message); }
   if (gen !== est.gen) return;
   if (per?.decisiones) state.decisiones = { manuales: [], rechazados: [], confirmados: [], ...per.decisiones };
   document.body.classList.toggle("solo-lectura", soloLectura());
   est.abierto = destino;
+  est.pedidos = [];
   run();
+  cargarPedidos();
   est.ultimo = firmaGuardado(); // recién abierto: no hay nada nuevo que guardar
   setGuardado(per ? `Abierto · guardado ${new Date(per.actualizado).toLocaleString("es-AR")} por ${per.actualizadoPor}` : (est.anterior ? `Mes nuevo · ${state.arrastre.length} pendientes de ${est.anterior.periodo}` : "Mes nuevo"));
 }
@@ -790,7 +1028,7 @@ async function bajarDocumento(id) {
 async function estudioSubir(tipo, file) {
   if (!est.activo || !est.abierto) return;
   setGuardado("Subiendo " + file.name + "…");
-  const r = await srv("POST", "/documentos", file, { "x-tipo": tipo, "x-nombre": encodeURIComponent(file.name), "content-type": file.type || (tipo === "mayor" ? "text/csv" : "application/octet-stream") });
+  const r = await srv("POST", "/documentos", file, { "x-tipo": tipo, "x-nombre": encodeURIComponent(file.name), "content-type": file.type || (/\.xlsx$/i.test(file.name) ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : /\.(csv|txt)$/i.test(file.name) ? "text/csv" : "application/octet-stream") });
   if (!r.ok) { setGuardado(r.body.mensaje || "No se pudo subir el documento", true); return; }
   est.docs[tipo] = r.body.id;
 }

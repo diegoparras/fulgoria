@@ -155,12 +155,48 @@ contra ellos (`RESULTADOS.md`). Lo que el dataset encontró y se corrigió:
 - Entidades: número de cheque con palabras en el medio ("CHEQUE CAMARA NRO …"); todos los
   comprobantes que cita una operación, no solo el primero.
 
+## Asientos para cada sistema contable
+
+### El formato de tu sistema, aprendido de un ejemplo
+
+En "Descargar asientos" → **Agregar el formato de mi sistema**, el contador sube un archivo de
+importación de asientos que su sistema contable acepta (Excel, CSV, TXT con separadores o de ancho
+fijo; uno o dos asientos alcanzan). Fulgoria (`src/core/formato-asientos.js`) deduce:
+
+- el tipo de archivo, separador, codificación (UTF‑8 o Windows/Latin‑1), BOM y saltos de línea;
+- si tiene títulos, y qué es cada columna: fecha, número de asiento, cuenta, Debe, Haber, importe
+  con D/H aparte o pegado ("1980.00D"), importe con signo, concepto, detalle, valores fijos (los que
+  se repiten en todas las filas de su tipo, como un circuito o una sucursal) y columnas opcionales;
+- el formato de fecha (DD/MM/AAAA, AAAAMMDD, D/M/AA…), de importes (decimales, miles, cero vacío o
+  "0,00", negativos), de cuenta (código con o sin puntos, nombre, o ambos) y la numeración
+  (correlativa o por fecha, con ceros a la izquierda);
+- si cada asiento lleva una fila de cabecera (fecha y concepto) seguida de las cuentas, o repite
+  los datos en cada línea, y si hay una línea en blanco entre asientos.
+
+El contador ve lo que se entendió, corrige cualquier columna, mira una **vista previa con los
+asientos del mes** y le pone el nombre que quiera. El formato se guarda (y en modo estudio se
+comparte con el estudio, como las plantillas) **sin ningún dato del ejemplo**: solo la forma, los
+títulos y los valores fijos.
+
+### Por qué no hay formatos de sistemas armados de antemano
+
+Fulgoria no trae el formato de ningún sistema contable escrito a mano: si el sistema lo cambia, el
+formato armado deja de servir sin que nadie se entere. Cada estudio lo aprende de un ejemplo de su
+propio sistema (y si el sistema cambia, sube un ejemplo nuevo). Además está el CSV genérico
+(asiento, fecha, cuenta, debe, haber, concepto, origen) para revisar o para sistemas que leen
+planillas.
+
+En el plan de cuentas (modo Deportivo) cada cuenta se puede escribir como **"código nombre"**
+(`1.1.2.01 Banco Río`): cada formato toma el código o el nombre según lo que use el sistema.
+
+Limitaciones: todavía no se aprenden formatos en XML ni los que van en dos archivos (cabeceras y
+movimientos por separado).
+
 ## Pendiente
 
 - IA también en el Extractor (hoy se ofrece en Conciliar) y para clasificar leyendas nuevas.
 - Traducciones de la pantalla de conciliación (hoy solo en español).
 - Editor de reglas de clasificación propias en la interfaz (el motor ya las acepta).
-- Lectura de XLSX (las plantillas de mayor ya existen; falta leer el archivo Excel).
-- CSV "Dinero liberado" de Mercado Pago; liquidaciones de tarjetas (N:1 con aranceles).
-- Exportación de asientos en el formato de importación de cada sistema.
+- Liquidaciones de tarjetas (N:1 con aranceles).
+- Aprender formatos de asientos en XML o en dos archivos (cabeceras + movimientos).
 - IA opcional para casos ambiguos, sobre filas ya anonimizadas, solo como sugerencia.

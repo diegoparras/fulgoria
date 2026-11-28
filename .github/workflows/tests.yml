@@ -1,0 +1,23 @@
+name: Tests
+
+# Corre la suite (motor, API, roles, IA contra proveedores falsos, seguridad) en cada pull request
+# y en cada push a main. Si falla, el PR lo muestra antes del merge.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test

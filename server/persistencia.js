@@ -49,6 +49,10 @@ CREATE TABLE IF NOT EXISTS eventos (
 CREATE TABLE IF NOT EXISTS usuarios (
   usuario TEXT PRIMARY KEY, nombre TEXT, hash TEXT NOT NULL, rol TEXT NOT NULL, activo INTEGER NOT NULL DEFAULT 1,
   creado TEXT, actualizado TEXT);
+CREATE TABLE IF NOT EXISTS pedidos (
+  id TEXT PRIMARY KEY, token_hash TEXT UNIQUE NOT NULL, cuenta_id TEXT NOT NULL, periodo TEXT NOT NULL,
+  items TEXT NOT NULL, respuestas TEXT, creado TEXT, creado_por TEXT, vence TEXT, anulado INTEGER NOT NULL DEFAULT 0,
+  respondido TEXT);
 CREATE TABLE IF NOT EXISTS ajustes (
   clave TEXT PRIMARY KEY, valor TEXT, actualizado TEXT, por TEXT);
 CREATE INDEX IF NOT EXISTS ix_cuentas_cliente ON cuentas(cliente_id);
@@ -99,6 +103,49 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
       return cifrar(claveSecretos, Buffer.from(String(txt), "utf8")).toString("base64");
     },
     descifrarSecreto(b64) { return b64 && claveSecretos ? descifrar(claveSecretos, Buffer.from(b64, "base64")).toString("utf8") : ""; },
+
+    // ---------------- pedidos al cliente: un link (token) para que el cliente conteste qué es cada
+    // movimiento. En la base queda solo el hash del token: el link no se puede reconstruir desde acá.
+    crearPedido(u, { cuentaId, periodo, items, dias = 30 }) {
+      if (!api.cuenta(cuentaId)) return null;
+      const id = uid(), token = crypto.randomBytes(32).toString("base64url"), t = ahora();
+      const vence = new Date(Date.now() + dias * 86400e3).toISOString();
+      q("INSERT INTO pedidos (id, token_hash, cuenta_id, periodo, items, respuestas, creado, creado_por, vence) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
+        .run(id, hashToken(token), cuentaId, periodo, JSON.stringify(items), "{}", t, u, vence);
+      evento(u, "crear", "pedido", id, { cuentaId, periodo, items: items.length });
+      return { id, token, vence };
+    },
+    pedidos(cuentaId, periodo) {
+      return q("SELECT * FROM pedidos WHERE cuenta_id = ? AND periodo = ? ORDER BY creado DESC").all(cuentaId, periodo).map(filaPedido);
+    },
+    /** Para el cliente (sin login): solo si el link existe, no venció y no se anuló. */
+    pedidoPublico(token) {
+      const r = q("SELECT * FROM pedidos WHERE token_hash = ?").get(hashToken(token));
+      if (!r || r.anulado || r.vence < ahora()) return null;
+      const cu = q("SELECT c.nombre AS cuenta, c.banco, k.nombre AS cliente FROM cuentas c JOIN clientes k ON k.id = c.cliente_id WHERE c.id = ?").get(r.cuenta_id) || {};
+      const p = filaPedido(r);
+      return { id: p.id, cliente: cu.cliente || "", cuenta: cu.cuenta || "", banco: cu.banco || "", periodo: p.periodo, items: p.items, respuestas: p.respuestas, vence: p.vence };
+    },
+    responderPedido(token, respuestas) {
+      const r = q("SELECT * FROM pedidos WHERE token_hash = ?").get(hashToken(token));
+      if (!r || r.anulado || r.vence < ahora()) return null;
+      const claves = new Set(J(r.items).map((i) => i.clave)), actuales = J(r.respuestas) || {}, t = ahora();
+      for (const [k, v] of Object.entries(respuestas || {})) {
+        if (!claves.has(k)) continue;
+        const texto = String(v ?? "").trim().slice(0, 2000);
+        if (texto) actuales[k] = { texto, fecha: t }; else delete actuales[k];
+      }
+      q("UPDATE pedidos SET respuestas = ?, respondido = ? WHERE id = ?").run(JSON.stringify(actuales), t, r.id);
+      evento("cliente", "responder", "pedido", r.id, { respuestas: Object.keys(actuales).length });
+      return api.pedidoPublico(token);
+    },
+    anularPedido(u, id) {
+      const r = q("SELECT * FROM pedidos WHERE id = ?").get(id);
+      if (!r) return null;
+      q("UPDATE pedidos SET anulado = 1 WHERE id = ?").run(id);
+      evento(u, "anular", "pedido", id, null);
+      return filaPedido({ ...r, anulado: 1 });
+    },
 
     // ---------------- clientes y cuentas
     clientes({ archivados = false } = {}) {
@@ -323,7 +370,33 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
       await blobs.guardar(clave, datos);
       return { clave, bytes: datos.length };
     },
-    cerrar() { clearInterval(api._timer); db.close(); },
+    async copias() { return (await blobs.listar("backups/")).filter((k) => k.endsWith(".sqlite")); },
+    /**
+     * Restaura una copia (clave "backups/…" del almacenamiento, o la ruta de un archivo .sqlite).
+     * Verifica que sea una base de Fulgoria, guarda la actual como fulgoria.sqlite.antes-<fecha> y la
+     * reemplaza. Deja esta instancia cerrada: hay que reiniciar el servidor.
+     */
+    async restaurar(origen) {
+      const datos = String(origen).startsWith("backups/") ? await blobs.leer(origen) : fs.existsSync(origen) ? fs.readFileSync(origen) : null;
+      if (!datos) throw new Error(`No encontré la copia ${origen}.`);
+      if (datos.subarray(0, 16).toString("latin1") !== "SQLite format 3\u0000") throw new Error("Eso no es una base SQLite (¿DOCS_CLAVE distinta de la que la cifró?).");
+      const tmp = path.join(dataDir, `.restaurar-${Date.now()}.sqlite`);
+      fs.writeFileSync(tmp, datos);
+      try {
+        const prueba = new DatabaseSync(tmp, { readOnly: true });
+        const tablas = prueba.prepare("SELECT name FROM sqlite_master WHERE type = 'table'").all().map((t) => t.name);
+        const cuantos = tablas.includes("periodos") ? prueba.prepare("SELECT COUNT(*) AS n FROM periodos").get().n : null;
+        prueba.close();
+        if (!["clientes", "cuentas", "periodos"].every((t) => tablas.includes(t))) throw new Error("La copia no tiene las tablas de Fulgoria.");
+        clearInterval(api._timer); db.close();
+        const actual = path.join(dataDir, "fulgoria.sqlite"), antes = `${actual}.antes-${ahora().replace(/[:.]/g, "-")}`;
+        for (const ext of ["-wal", "-shm"]) if (fs.existsSync(actual + ext)) fs.unlinkSync(actual + ext);
+        fs.renameSync(actual, antes);
+        fs.renameSync(tmp, actual);
+        return { restaurada: origen, anterior: antes, meses: cuantos };
+      } finally { if (fs.existsSync(tmp)) fs.unlinkSync(tmp); }
+    },
+    cerrar() { clearInterval(api._timer); try { db.close(); } catch {} },
   };
   if (backupHoras > 0) {
     api._timer = setInterval(() => api.backup().then((b) => console.log(`[fulgoria] copia de la base: ${b.clave}`)).catch((e) => console.error("[fulgoria] copia de la base falló:", e.message)), backupHoras * 3600 * 1000);
@@ -332,6 +405,12 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
   return api;
 }
 
+const hashToken = (t) => crypto.createHash("sha256").update(String(t)).digest("hex");
+function filaPedido(r) {
+  const items = JSON.parse(r.items), respuestas = JSON.parse(r.respuestas || "{}");
+  return { id: r.id, cuentaId: r.cuenta_id, periodo: r.periodo, items, respuestas, creado: r.creado, creadoPor: r.creado_por,
+    vence: r.vence, anulado: !!r.anulado, respondido: r.respondido, vencido: !r.anulado && r.vence < new Date().toISOString() };
+}
 function filaCuenta(c) {
   return c && { id: c.id, clienteId: c.cliente_id, nombre: c.nombre, banco: c.banco, moneda: c.moneda, cbu: c.cbu, mandos: J(c.mandos) };
 }

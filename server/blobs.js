@@ -50,6 +50,10 @@ function driverDisco(dir) {
     async put(k, buf) { const p = ruta(k); fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p + ".tmp", buf); fs.renameSync(p + ".tmp", p); },
     async get(k) { try { return fs.readFileSync(ruta(k)); } catch (e) { if (e.code === "ENOENT") return null; throw e; } },
     async del(k) { try { fs.unlinkSync(ruta(k)); } catch (e) { if (e.code !== "ENOENT") throw e; } },
+    async listar(pref) {
+      const d = path.join(dir, ...String(pref).split("/").filter(Boolean));
+      try { return fs.readdirSync(d).filter((f) => !f.endsWith(".tmp")).map((f) => `${pref.replace(/\/?$/, "/")}${f}`); } catch (e) { if (e.code === "ENOENT") return []; throw e; }
+    },
   };
 }
 
@@ -72,6 +76,12 @@ function driverS3({ endpoint, region, bucket, accessKeyId, secretAccessKey, pref
     async put(k, buf) { const r = await pedir("PUT", k, buf); if (!r.ok) throw new Error(`S3 PUT ${r.status}: ${(await r.text()).slice(0, 200)}`); },
     async get(k) { const r = await pedir("GET", k); if (r.status === 404) return null; if (!r.ok) throw new Error(`S3 GET ${r.status}`); return Buffer.from(await r.arrayBuffer()); },
     async del(k) { const r = await pedir("DELETE", k); if (!r.ok && r.status !== 404) throw new Error(`S3 DELETE ${r.status}`); },
+    async listar(pref) {
+      const p0 = (prefijo ? prefijo.replace(/\/?$/, "/") : "");
+      const r = await aws.fetch(`${base}?list-type=2&prefix=${encodeURIComponent(p0 + pref)}`);
+      if (!r.ok) throw new Error(`S3 LIST ${r.status}`);
+      return [...(await r.text()).matchAll(/<Key>([^<]+)<\/Key>/g)].map((m) => m[1].replace(/&amp;/g, "&").slice(p0.length));
+    },
   };
 }
 
@@ -86,6 +96,7 @@ function crearBlobs({ almacenamiento = "disco", dataDir, s3 = {}, clave } = {}) 
     async guardar(key, datos) { await d.put(key, k ? cifrar(k, datos) : datos); },
     async leer(key) { const b = await d.get(key); return b == null ? null : descifrar(k, b); },
     async borrar(key) { await d.del(key); },
+    async listar(pref) { return (await d.listar(pref)).sort(); },
   };
 }
 

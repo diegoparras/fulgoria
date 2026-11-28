@@ -5,6 +5,38 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 [Versionado Semantico](https://semver.org/lang/es/). Cada deploy sube la version y agrega su
 seccion aca: sin ella el CI no publica la imagen.
 
+## [1.4.0] - 2026-11-28
+
+### Nuevo
+- **Excel (.xlsx)** en Conciliar, para el mayor y para el extracto, sin pasar por CSV. Fulgoria
+  decide sola si una planilla es el mayor, un extracto bancario exportado o el reporte de Mercado
+  Pago; si es ambigua (solo "Debito / Credito", que significan cosas opuestas en un extracto y en un
+  mayor) la lee de las dos maneras y se queda con la que hace cerrar los saldos. Si aun asi no puede
+  saberlo, un boton la cambia de lugar.
+- **Mercado Pago**: reportes de liberaciones y de dinero en cuenta (CSV o Excel). Saldo inicial,
+  neto por operacion con bruto, comision y retenciones a la vista, y percepciones, retenciones,
+  retiros e intereses traducidos para que el clasificador los proponga como asientos.
+- **Link de respuesta del cliente**: desde "Pedir al cliente" se crea un link para que el cliente
+  conteste que es cada movimiento, sin cuenta ni contrasena, desde el celular. Las respuestas
+  aparecen en la bandeja junto a cada partida. Ve solo esas partidas, vence a los 30 dias y se puede
+  anular.
+- **Asientos en el formato de tu sistema contable, aprendido de un ejemplo**: en "Descargar
+  asientos" se sube un archivo de importacion que el sistema acepta (Excel, CSV o TXT, con
+  separadores o de ancho fijo) y Fulgoria aprende la forma: columnas, fechas, importes, cuentas,
+  numeracion y si cada asiento lleva cabecera. Se revisa y corrige con una vista previa de los
+  asientos del mes, se guarda con el nombre que uno quiera y se comparte con el estudio. No guarda
+  ningun dato del ejemplo.
+- En el plan de cuentas se puede escribir "codigo nombre": cada formato aprendido toma el codigo o
+  el nombre segun lo que use el sistema. No hay formatos de sistemas armados de antemano: si un
+  sistema cambia su formato, se sube un ejemplo nuevo.
+- **Restaurar copias de la base**: `node server.js --copias` y `node server.js --restaurar <copia>`.
+- Planillas de ejemplo en `datasets/planillas` (banco en Excel, Mercado Pago, planilla ambigua).
+
+### Seguridad
+- Los pedidos que cambian algo en la API tienen que venir de la misma pagina (control de `Origin`):
+  se rechazan los que vienen de otro sitio.
+- Los tests corren en GitHub en cada pull request.
+
 ## [1.3.1] - 2026-11-27
 
 ### Cambiado
