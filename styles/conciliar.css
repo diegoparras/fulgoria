@@ -219,3 +219,11 @@ body.solo-lectura .c-drop-card { display: none; }
 .c-formato.ult { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
 .c-formato span { color: var(--muted-2); font-size: 12.5px; }
 .c-aviso { background: color-mix(in srgb, var(--warn, #c98a00) 12%, var(--panel)); border-radius: 8px; padding: 8px 10px; font-size: 12.5px; }
+
+/* Formato de asientos aprendido */
+.c-formato.nuevo { border-style: dashed; }
+.c-entendido { margin: 8px 0; padding-left: 18px; font-size: 13px; line-height: 1.6; }
+.c-fmt-ajustes { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; }
+.c-fmt-ajustes label { display: grid; gap: 3px; font-size: 12px; color: var(--muted-2); }
+.c-fmt-ajustes input, .c-fmt-ajustes select { padding: 6px 8px; font-size: 13px; max-width: 160px; }
+.c-vista { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px; font-size: 12px; overflow-x: auto; white-space: pre; max-height: 220px; }

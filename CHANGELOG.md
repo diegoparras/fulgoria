@@ -20,9 +20,14 @@ seccion aca: sin ella el CI no publica la imagen.
   conteste que es cada movimiento, sin cuenta ni contrasena, desde el celular. Las respuestas
   aparecen en la bandeja junto a cada partida. Ve solo esas partidas, vence a los 30 dias y se puede
   anular.
-- **Asientos para Xubio y Holistor**: "Descargar asientos" ofrece el Excel de importacion de Xubio
-  y el TXT de Holistor, con los formatos de su documentacion oficial (y el CSV de siempre). En el
-  plan de cuentas se puede escribir "codigo nombre": Holistor usa el codigo y Xubio el nombre.
+- **Asientos en el formato de tu sistema contable, aprendido de un ejemplo**: en "Descargar
+  asientos" se sube un archivo de importacion que el sistema acepta (Excel, CSV o TXT, con
+  separadores o de ancho fijo) y Fulgoria aprende la forma: columnas, fechas, importes, cuentas,
+  numeracion y si cada asiento lleva cabecera. Se revisa y corrige con una vista previa de los
+  asientos del mes, se guarda con el nombre que uno quiera y se comparte con el estudio. No guarda
+  ningun dato del ejemplo.
+- **Formatos ya armados para Xubio y Holistor**, tomados de su documentacion oficial. En el plan de
+  cuentas se puede escribir "codigo nombre": cada formato toma el codigo o el nombre segun pida.
 - **Restaurar copias de la base**: `node server.js --copias` y `node server.js --restaurar <copia>`.
 - Planillas de ejemplo en `datasets/planillas` (banco en Excel, Mercado Pago, planilla ambigua).
 

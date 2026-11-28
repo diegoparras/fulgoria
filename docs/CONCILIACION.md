@@ -157,8 +157,30 @@ contra ellos (`RESULTADOS.md`). Lo que el dataset encontró y se corrigió:
 
 ## Asientos para cada sistema contable
 
-"Descargar asientos" ofrece el formato de importación de cada sistema. Solo se generan formatos
-tomados de la **documentación oficial** del sistema; no se inventa ninguno.
+### El formato de tu sistema, aprendido de un ejemplo
+
+En "Descargar asientos" → **Agregar el formato de mi sistema**, el contador sube un archivo de
+importación de asientos que su sistema contable acepta (Excel, CSV, TXT con separadores o de ancho
+fijo; uno o dos asientos alcanzan). Fulgoria (`src/core/formato-asientos.js`) deduce:
+
+- el tipo de archivo, separador, codificación (UTF‑8 o Windows/Latin‑1), BOM y saltos de línea;
+- si tiene títulos, y qué es cada columna: fecha, número de asiento, cuenta, Debe, Haber, importe
+  con D/H aparte o pegado ("1980.00D"), importe con signo, concepto, detalle, valores fijos (los que
+  se repiten en todas las filas de su tipo, como un circuito o una sucursal) y columnas opcionales;
+- el formato de fecha (DD/MM/AAAA, AAAAMMDD, D/M/AA…), de importes (decimales, miles, cero vacío o
+  "0,00", negativos), de cuenta (código con o sin puntos, nombre, o ambos) y la numeración
+  (correlativa o por fecha, con ceros a la izquierda);
+- si cada asiento lleva una fila de cabecera (fecha y concepto) seguida de las cuentas, o repite
+  los datos en cada línea, y si hay una línea en blanco entre asientos.
+
+El contador ve lo que se entendió, corrige cualquier columna, mira una **vista previa con los
+asientos del mes** y le pone el nombre que quiera. El formato se guarda (y en modo estudio se
+comparte con el estudio, como las plantillas) **sin ningún dato del ejemplo**: solo la forma, los
+títulos y los valores fijos.
+
+### Formatos ya armados
+
+Además, dos formatos tomados de la **documentación oficial** del sistema:
 
 | Sistema | Archivo | Dónde se importa | Fuente |
 |---|---|---|---|
@@ -169,14 +191,9 @@ tomados de la **documentación oficial** del sistema; no se inventa ninguno.
 En el plan de cuentas (modo Deportivo) cada cuenta se puede escribir como **"código nombre"**
 (`1.1.2.01 Banco Río`): Holistor toma el código y Xubio el nombre.
 
-Todavía no, por falta de documentación pública del formato:
-- **Tango**: el manual describe la importación (XML "formato Tango" o Excel desde la consulta de
-  asientos, versión 24), pero la estructura está solo en la ayuda web de Axoft.
-- **Colppy**: el archivo modelo se descarga desde dentro del sistema; sus columnas no están publicadas.
-- **Bejerman**: archivos de texto `USUARIO1.IMP` / `USUARIO2.IMP`, sin el diseño de campos publicado.
-- **Contabilium, SOS Contador** y otros: sin documentación encontrada.
-
-Con un archivo de importación de ejemplo de cualquiera de ellos se agrega en el día.
+Para cualquier otro sistema (Tango, Colppy, Bejerman, Contabilium…) se usa el formato aprendido de
+un ejemplo. Limitaciones: archivos con dos partes separadas (cabeceras y movimientos en archivos
+distintos) y XML todavía no se aprenden.
 
 ## Pendiente
 
@@ -184,5 +201,5 @@ Con un archivo de importación de ejemplo de cualquiera de ellos se agrega en el
 - Traducciones de la pantalla de conciliación (hoy solo en español).
 - Editor de reglas de clasificación propias en la interfaz (el motor ya las acepta).
 - Liquidaciones de tarjetas (N:1 con aranceles).
-- Asientos para Tango, Colppy y Bejerman (falta un archivo de importación de ejemplo).
+- Aprender formatos de asientos en XML o en dos archivos (cabeceras + movimientos).
 - IA opcional para casos ambiguos, sobre filas ya anonimizadas, solo como sugerencia.

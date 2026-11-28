@@ -67,7 +67,8 @@ const numeroCanonico = (n) => (Number.isInteger(n) ? String(n) : String(Math.rou
 
 /**
  * @param {ArrayBuffer|Uint8Array} buf
- * @returns {Promise<{ hojas: Array<{ nombre: string, rows: string[][] }> }>}
+ * @returns {Promise<{ hojas: Array<{ nombre: string, rows: string[][], tipos: string[][] }> }>}
+ *   tipos: por celda "texto" | "numero" | "fecha" | "" (vacía), para respetarlos al escribir.
  */
 export async function leerXlsx(buf) {
   const zip = leerZip(buf);
@@ -96,35 +97,39 @@ export async function leerXlsx(buf) {
     const ruta = destino.startsWith("/") ? destino.slice(1) : "xl/" + destino.replace(/^\.\//, "");
     const xml = await leer(ruta);
     if (!xml) continue;
-    const rows = [];
+    const rows = [], tiposF = [];
     for (const f of xml.matchAll(/<row\b([^>]*?)(?:\/>|>([\s\S]*?)<\/row>)/g)) {
       const nFila = Number(attrs(f[1]).r || rows.length + 1) - 1;
-      const fila = [];
+      const fila = [], tipoFila = [];
       let col = 0;
       for (const c of (f[2] || "").matchAll(/<c\b([^>]*?)(?:\/>|>([\s\S]*?)<\/c>)/g)) {
         const ca = attrs(c[1]);
         if (ca.r) col = colIndice(ca.r);
         const cuerpo = c[2] || "";
         const v = (cuerpo.match(/<v>([\s\S]*?)<\/v>/) || [, null])[1];
-        let val = "";
+        let val = "", tipo = "texto";
         if (ca.t === "s") val = compartidos[Number(v)] ?? "";
         else if (ca.t === "inlineStr") val = textoDe(cuerpo);
         else if (ca.t === "str" || ca.t === "e") val = v == null ? "" : desescapar(v);
         else if (ca.t === "b") val = v === "1" ? "VERDADERO" : "FALSO";
         else if (v != null && v !== "") {
           const n = Number(v);
-          val = !Number.isFinite(n) ? desescapar(v) : esFecha[Number(ca.s || 0)] ? fechaDeSerie(n, base1904) : numeroCanonico(n);
+          if (!Number.isFinite(n)) val = desescapar(v);
+          else if (esFecha[Number(ca.s || 0)]) { val = fechaDeSerie(n, base1904); tipo = "fecha"; }
+          else { val = numeroCanonico(n); tipo = "numero"; }
         }
-        while (fila.length < col) fila.push("");
+        while (fila.length < col) { fila.push(""); tipoFila.push(""); }
         fila[col] = String(val).trim();
+        tipoFila[col] = fila[col] ? tipo : "";
         col++;
       }
-      while (rows.length < nFila) rows.push([]);
-      rows[nFila] = fila;
+      while (rows.length < nFila) { rows.push([]); tiposF.push([]); }
+      rows[nFila] = fila; tiposF[nFila] = tipoFila;
     }
-    while (rows.length && !rows[rows.length - 1].some((c) => c)) rows.pop();
+    while (rows.length && !rows[rows.length - 1].some((c) => c)) { rows.pop(); tiposF.pop(); }
     const ancho = Math.max(0, ...rows.map((r) => r.length));
-    hojas.push({ nombre: a.name || `Hoja ${hojas.length + 1}`, rows: rows.map((r) => { const x = [...r]; while (x.length < ancho) x.push(""); return x; }) });
+    const rellenar = (r) => { const x = [...r]; while (x.length < ancho) x.push(""); return x; };
+    hojas.push({ nombre: a.name || `Hoja ${hojas.length + 1}`, rows: rows.map(rellenar), tipos: tiposF.map(rellenar) });
   }
   if (!hojas.length) throw new Error("El .xlsx no tiene hojas con datos.");
   return { hojas };

@@ -10,6 +10,7 @@ import { loadPdf, renderToCanvas } from "./pdf.js";
 import { extract, balanceCheck, autoDetect, matchScore, docYear, extractAnchors } from "./extract.js";
 import { buildTemplate } from "./template.js";
 import { esqueletoDePdf, elegirPropuesta } from "./ia.js";
+import { leerEjemplo, aprenderFormato, describirFormato, generarArchivo, filasAsientos, ROLES_ASIENTO } from "./core/formato-asientos.js";
 import {
   fromExtract, resolveConfig, DEFAULTS, reconcile, arrastreSiguiente, pairKey,
   papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, asientosXubio, asientosHolistor, aLatin1, escribirXlsx, partirCuenta, fmtCents, fmtISO as fmtISOcrudo,
@@ -37,6 +38,7 @@ const LS_MANDOS = "fulgoria.conciliar.mandos";
 const LS_MODO = "fulgoria.conciliar.modo";
 const LS_TPL = "fulgoria.templates"; // las mismas plantillas que guarda el extractor
 const LS_TPL_MAYOR = "fulgoria.plantillasMayor"; // plantillas de mayor por sistema contable
+const LS_FORMATOS = "fulgoria.formatosAsientos"; // formatos de asientos aprendidos de un ejemplo
 
 const state = {
   extracto: null,   // { name, pdf, columns, ext, check, seg, banco, error }
@@ -733,6 +735,14 @@ function exportar(kind) {
   if (kind === "md") return download(base + ".md", papelToMarkdown(p), "text/markdown");
   if (kind === "csv") return download(base + ".csv", papelToCsv(p), "text/csv");
   if (kind === "asientos") return elegirFormatoAsientos();
+  if (kind.startsWith("asientos-f:")) {
+    const fmt = formatosAsientos().find((x) => x.nombre === kind.slice(11));
+    if (!fmt) return toast("No encontré ese formato.");
+    recordarFormato(kind.slice(9));
+    const out = generarArchivo(fmt, rec.ajustes);
+    if (out.faltanCodigos.length) toast(`Ojo: ${out.faltanCodigos.length} cuenta(s) sin código en el plan de cuentas (modo Deportivo).`, 5000);
+    return descargarBytes(`${base}-asientos-${fmt.nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.${out.ext}`, out.bytes, out.mime);
+  }
   if (kind === "asientos-csv") { recordarFormato("csv"); return download(base + "-asientos.csv", asientosToCsv(rec.ajustes), "text/csv"); }
   if (kind === "asientos-xubio") { recordarFormato("xubio"); return descargarBytes(base + "-asientos-xubio.xlsx", escribirXlsx([{ nombre: "Hoja1", filas: asientosXubio(rec.ajustes) }]), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"); }
   if (kind === "asientos-holistor") { recordarFormato("holistor"); return descargarBytes(base + "-asientos-holistor.txt", aLatin1(asientosHolistor(rec.ajustes).texto), "text/plain"); }
@@ -752,16 +762,106 @@ function elegirFormatoAsientos() {
   if (!rec.ajustes.length) return toast("No hay asientos para descargar.");
   const sinCodigo = asientosHolistor(rec.ajustes).sinCodigo;
   const sinNombre = rec.ajustes.flatMap((a) => a.lineas).some((l) => partirCuenta(l.cuenta).codigo && partirCuenta(l.cuenta).nombre === partirCuenta(l.cuenta).codigo);
-  const op = (k, t, d) => `<button class="c-formato${k === ult ? " ult" : ""}" data-exp="asientos-${k}"><b>${t}</b><span>${d}</span></button>`;
+  const op = (k, t, d) => `<button class="c-formato${k === ult ? " ult" : ""}" data-exp="asientos-${esc(k)}"><b>${esc(t)}</b><span>${d}</span></button>`;
+  const propios = formatosAsientos();
   abrirModal("Descargar asientos", `<p>${rec.ajustes.length} asiento${rec.ajustes.length === 1 ? "" : "s"} propuesto${rec.ajustes.length === 1 ? "" : "s"}. Elegí el formato de tu sistema contable:</p>
     <div class="c-formatos">
+      ${propios.map((f) => op("f:" + f.nombre, f.nombre, `Formato aprendido de un ejemplo · ${esc(describirFormato(f)[0].replace(/^Archivo: /, ""))}`)).join("")}
+      <button class="c-formato nuevo" id="agregarFormato"><b>+ Agregar el formato de mi sistema</b><span>Subí un archivo de importación de asientos que tu sistema acepte y Fulgoria aprende el formato.</span></button>
       ${op("xubio", "Xubio", "Excel para Contabilidad → Asientos Manuales → Acciones → Importar. Las cuentas van por nombre.")}
       ${op("holistor", "Holistor", "TXT para Útiles → Exportar/Importar → Importar, \"archivo único de movimientos\" con Debe y Haber separados. Las cuentas van por código.")}
       ${op("csv", "Planilla (CSV)", "Asiento, fecha, cuenta, debe, haber y concepto, para cualquier otro sistema o para revisar.")}
     </div>
     ${sinCodigo.length ? `<p class="c-aviso">Para Holistor hacen falta los <b>códigos</b> de cuenta y estas no tienen: ${sinCodigo.map(esc).join(", ")}. En el modo Deportivo → Plan de cuentas escribilas como "código nombre" (p. ej. "1.1.2.01 Banco Río"): Holistor toma el código y Xubio el nombre.</p>` : ""}
     ${sinNombre ? `<p class="c-aviso">Algunas cuentas tienen solo código: Xubio las busca por nombre. Escribilas como "código nombre".</p>` : ""}
-    <p class="muted" style="font-size:12px">La primera vez en Holistor hay que definir el diseño del archivo: campos separados por tabulación, en este orden: fecha (DD/MM/AAAA), número de asiento, cuenta, debe, haber, concepto y leyenda. ¿Usás Tango, Colppy, Bejerman u otro? Pasanos un archivo de importación de ejemplo y lo sumamos.</p>`);
+    <p class="muted" style="font-size:12px">La primera vez en Holistor hay que definir el diseño del archivo: campos separados por tabulación, en este orden: fecha (DD/MM/AAAA), número de asiento, cuenta, debe, haber, concepto y leyenda.</p>`);
+  $("agregarFormato").addEventListener("click", agregarFormatoAsientos);
+}
+
+// ---------------- formatos de asientos aprendidos de un ejemplo
+function formatosAsientos() { return safeJson(lsGet(LS_FORMATOS)) || []; }
+function guardarFormatoAsientos(fmt, compartir = true) {
+  const todos = formatosAsientos().filter((x) => x.nombre !== fmt.nombre);
+  todos.push(fmt);
+  lsSet(LS_FORMATOS, JSON.stringify(todos));
+  if (compartir && est.activo && puedo("editar")) srv("PUT", "/plantillas", { tipo: "asientos", nombre: fmt.nombre, plantilla: fmt });
+}
+// Asientos de muestra para la vista previa cuando el mes todavía no tiene ajustes.
+const AJUSTES_MUESTRA = [{ id: "A1", fecha: new Date().toISOString().slice(0, 10), concepto: "Comisión de mantenimiento", origen: ["B1"], lineas: [{ cuenta: "5.2.02 Gastos bancarios", debe: 450000, haber: 0 }, { cuenta: "1.1.2.01 Banco cuenta corriente", debe: 0, haber: 450000 }] }];
+
+function agregarFormatoAsientos() {
+  abrirModal("Formato de mi sistema contable", `<p>Exportá desde tu sistema contable —o armá— un <b>archivo de importación de asientos</b> que el sistema acepte, con uno o dos asientos, y subilo acá. Puede ser Excel, CSV o TXT (con separadores o de ancho fijo).</p>
+    <p class="muted" style="font-size:12.5px">Fulgoria aprende la forma: columnas, orden, fechas, importes y numeración. De los datos del ejemplo no se guarda nada, salvo los valores que se repiten en todas las filas (como una sucursal o un circuito).</p>
+    <div class="modal-acciones"><label class="btn primary">Elegir el archivo de ejemplo<input type="file" id="ejemploAsientos" accept=".xlsx,.csv,.txt,.prn,.dat,.imp,.asc,.tsv" hidden /></label></div>`);
+  $("ejemploAsientos").addEventListener("change", async (e) => {
+    const f = e.target.files[0];
+    if (!f) return;
+    try {
+      const ej = await leerEjemplo(f.name, new Uint8Array(await f.arrayBuffer()));
+      editarFormatoAsientos(aprenderFormato(ej, { nombre: f.name.replace(/\.[^.]+$/, "") }), ej);
+    } catch (err) { toast("No pude leer el ejemplo: " + err.message, 6000); }
+  });
+}
+
+function editarFormatoAsientos(fmt, ej) {
+  const ajustes = state.rec?.ajustes?.length ? state.rec.ajustes : AJUSTES_MUESTRA;
+  const muestraDe = (i) => { for (const r of ej.rows.slice(fmt.titulos ? 1 : 0)) if (String(r[i] ?? "").trim()) return String(r[i]).trim(); return ""; };
+  const opciones = (sel) => Object.entries(ROLES_ASIENTO).map(([k, t]) => `<option value="${k}"${k === sel ? " selected" : ""}>${esc(t)}</option>`).join("");
+  const filasCol = fmt.columnas.map((c, i) => `<tr><td>${esc(c.titulo || `Columna ${i + 1}`)}</td><td class="muted">${esc(muestraDe(i).slice(0, 30))}</td>
+    <td><select data-rol="${i}">${opciones(c.rol)}</select> <input data-fijo="${i}" value="${esc(c.valor ?? "")}" placeholder="valor" style="width:90px${c.rol === "fijo" ? "" : ";display:none"}" /></td></tr>`).join("");
+  abrirModal("Formato de mi sistema contable", `
+    <label class="c-map-f wide">Nombre del sistema<input id="fmtNombre" value="${esc(fmt.nombre)}" placeholder="p. ej. el sistema del estudio" /></label>
+    <ul class="c-entendido">${describirFormato(fmt).map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+    <p class="muted" style="font-size:12.5px">Esto entendió Fulgoria de cada columna (el valor de ejemplo se muestra solo acá, no se guarda). Corregí lo que haga falta:</p>
+    <div class="c-tablero"><table><thead><tr><th>Columna</th><th>Ejemplo</th><th>Es…</th></tr></thead><tbody>${filasCol}</tbody></table></div>
+    <div class="c-fmt-ajustes">
+      <label>Fecha<input id="fmtFecha" value="${esc(fmt.fecha.patron === "excel" ? "excel" : fmt.fecha.patron)}" title="DD, MM, AAAA, AA (o excel)" /></label>
+      ${fmt.importe.excel ? "" : `<label>Decimales<select id="fmtDec"><option value=","${fmt.importe.decimal === "," ? " selected" : ""}>coma (1980,50)</option><option value="."${fmt.importe.decimal === "." ? " selected" : ""}>punto (1980.50)</option></select></label>
+      <label>Miles<select id="fmtMiles"><option value=""${!fmt.importe.miles ? " selected" : ""}>sin separador</option><option value="."${fmt.importe.miles === "." ? " selected" : ""}>punto</option><option value=","${fmt.importe.miles === "," ? " selected" : ""}>coma</option></select></label>`}
+      <label>Cuentas<select id="fmtCuenta"><option value="codigo"${fmt.cuenta.modo === "codigo" ? " selected" : ""}>por código</option><option value="nombre"${fmt.cuenta.modo === "nombre" ? " selected" : ""}>por nombre</option><option value="completo"${fmt.cuenta.modo === "completo" ? " selected" : ""}>código y nombre</option></select></label>
+      <label>Numeración<select id="fmtReinicio"><option value="nunca"${fmt.asiento.reinicio === "nunca" ? " selected" : ""}>correlativa</option><option value="fecha"${fmt.asiento.reinicio === "fecha" ? " selected" : ""}>vuelve a 1 cada fecha</option></select></label>
+      <label>Primer número<input id="fmtDesde" type="number" min="1" value="${fmt.asiento.desde || 1}" /></label>
+    </div>
+    <p class="muted" style="font-size:12.5px">Vista previa${state.rec?.ajustes?.length ? " con los asientos de este mes" : " con un asiento de muestra"}:</p>
+    <pre class="c-vista" id="fmtVista"></pre>
+    <p class="c-aviso" id="fmtAviso" hidden></p>
+    <div class="modal-acciones"><button class="btn primary" id="fmtGuardar">Guardar y descargar</button></div>`, { ancho: true });
+  const leer = () => {
+    fmt.nombre = $("fmtNombre").value.trim().slice(0, 60) || "Mi sistema";
+    $("modalBody").querySelectorAll("[data-rol]").forEach((s) => {
+      const i = +s.dataset.rol, c = fmt.columnas[i], fijo = $("modalBody").querySelector(`[data-fijo="${i}"]`);
+      c.rol = s.value; fijo.style.display = c.rol === "fijo" ? "" : "none";
+      if (c.rol === "fijo") c.valor = fijo.value; else delete c.valor;
+      if (fmt.estructura === "cabecera" && !c.en) c.en = "linea";
+    });
+    fmt.fecha.patron = $("fmtFecha").value.trim() || "DD/MM/AAAA";
+    if ($("fmtDec")) { fmt.importe.decimal = $("fmtDec").value; fmt.importe.miles = $("fmtMiles").value === fmt.importe.decimal ? "" : $("fmtMiles").value; delete fmt.importe.dudoso; }
+    fmt.cuenta.modo = $("fmtCuenta").value;
+    fmt.asiento.reinicio = $("fmtReinicio").value;
+    fmt.asiento.desde = Math.max(1, Number($("fmtDesde").value) || 1);
+  };
+  const vista = () => {
+    leer();
+    try {
+      const { filas } = filasAsientos(fmt, ajustes);
+      const out = generarArchivo(fmt, ajustes);
+      $("fmtAviso").hidden = !out.faltanCodigos.length;
+      $("fmtAviso").textContent = out.faltanCodigos.length ? `Este sistema usa códigos de cuenta y estas no tienen: ${out.faltanCodigos.join(", ")}. En el modo Deportivo → Plan de cuentas escribilas como "código nombre" (p. ej. "1.1.2.01 Banco Río").` : "";
+      $("fmtVista").textContent = out.ext === "xlsx"
+        ? filas.slice(0, 10).map((r) => r.map((v) => (v == null ? "" : typeof v === "object" ? v.fecha.split("-").reverse().join("/") : String(v))).join(" │ ")).join("\n")
+        : new TextDecoder(fmt.archivo.codificacion === "utf-8" ? "utf-8" : "windows-1252").decode(out.bytes).split(/\r?\n/).slice(0, 10).join("\n").replace(/\t/g, " → ");
+    } catch (e) { $("fmtVista").textContent = "No pude armar la vista previa: " + e.message; }
+  };
+  $("modalBody").addEventListener("input", vista);
+  $("modalBody").addEventListener("change", vista);
+  vista();
+  $("fmtGuardar").addEventListener("click", () => {
+    leer();
+    if (!fmt.columnas.some((c) => c.rol === "cuenta") || !fmt.columnas.some((c) => ["debe", "haber", "importe", "importeConSigno", "importeDH"].includes(c.rol))) return toast("Falta indicar la columna de la cuenta y la del importe (o Debe/Haber).");
+    guardarFormatoAsientos(fmt);
+    toast(`Formato "${fmt.nombre}" guardado${est.activo ? " para todo el estudio" : ""}.`);
+    if (state.rec?.ajustes?.length) exportar("asientos-f:" + fmt.nombre); else cerrarModal();
+  });
 }
 function descargarBytes(name, bytes, mime) {
   const url = URL.createObjectURL(new Blob([bytes], { type: mime }));
@@ -859,6 +959,7 @@ async function sincronizarPlantillas() {
   }
   lsSet(LS_TPL, JSON.stringify(bancos));
   for (const p of r.body.filter((x) => x.tipo === "mayor")) guardarPlantillaMayor(p.plantilla, false);
+  for (const p of r.body.filter((x) => x.tipo === "asientos")) guardarFormatoAsientos(p.plantilla, false);
 }
 
 async function cargarClientes(seleccionar) {

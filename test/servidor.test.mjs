@@ -305,3 +305,10 @@ test("pedido al cliente: link sin login, solo sus partidas, respuestas que vuelv
   db.close();
   assert.equal((await fetch(`${RAIZ}/api/publico/pedidos/${t2}`)).status, 404);
 });
+
+test("formatos de asientos compartidos: solo se acepta algo con forma de formato", async () => {
+  assert.equal((await api("PUT", "/plantillas", { tipo: "asientos", nombre: "X", plantilla: { cualquier: "cosa" } })).status, 400);
+  const fmt = { fulgoria_formato_asientos: 1, nombre: "Sistema del estudio", archivo: { tipo: "delimitado", delimitador: ";", ext: "csv" }, titulos: null, columnas: [{ rol: "fecha" }, { rol: "cuenta" }, { rol: "importeConSigno" }], estructura: "linea", fecha: { patron: "DD/MM/AAAA" }, importe: { decimal: ",", miles: "", decimales: 2 }, signo: { debe: "D", haber: "H" }, asiento: { reinicio: "nunca", desde: 1 }, cuenta: { modo: "codigo" } };
+  assert.equal((await api("PUT", "/plantillas", { tipo: "asientos", nombre: fmt.nombre, plantilla: fmt })).status, 200);
+  assert.ok((await api("GET", "/plantillas?tipo=asientos")).body.some((p) => p.nombre === "Sistema del estudio"));
+});
