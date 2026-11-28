@@ -178,22 +178,19 @@ asientos del mes** y le pone el nombre que quiera. El formato se guarda (y en mo
 comparte con el estudio, como las plantillas) **sin ningún dato del ejemplo**: solo la forma, los
 títulos y los valores fijos.
 
-### Formatos ya armados
+### Por qué no hay formatos de sistemas armados de antemano
 
-Además, dos formatos tomados de la **documentación oficial** del sistema:
-
-| Sistema | Archivo | Dónde se importa | Fuente |
-|---|---|---|---|
-| Xubio | Excel: `FECHA, CONCEPTO, CIRCUITOCONTABLE, CUENTA, DEBE, HABER, ORGANIZACION, CENTRODECOSTO, DESCRIPCION`. Primera fila de cada asiento: fecha, concepto y circuito (`default`); siguientes: una cuenta (por **nombre**) con su debe o haber. | Contabilidad → Asientos Manuales → Acciones → Importar | [Ayuda de Xubio](https://ayuda.xubio.com/es-ar/como-importo-asientos-contables-manuales/) y su planilla modelo |
-| Holistor | TXT, "archivo único de movimientos" con Debe y Haber separados: fecha (DD/MM/AAAA), número de asiento (orden dentro de la fecha), cuenta (**código**), debe, haber (coma decimal), concepto y leyenda; separados por tabulación, en Latin‑1. La primera vez se define ese diseño de registro en Holistor. | Útiles → Exportar/Importar → Importar | [Holistor: Importación de datos de Otros Sistemas – Requisitos](https://cms.holistor.com.ar/wp-content/uploads/2019/02/Importaci%C3%B3n-de-datos-de-Otros-Sistemas-%E2%80%93-Requisitos.pdf) |
-| Cualquier otro | CSV: asiento, fecha, cuenta, debe, haber, concepto, origen. | — | — |
+Fulgoria no trae el formato de ningún sistema contable escrito a mano: si el sistema lo cambia, el
+formato armado deja de servir sin que nadie se entere. Cada estudio lo aprende de un ejemplo de su
+propio sistema (y si el sistema cambia, sube un ejemplo nuevo). Además está el CSV genérico
+(asiento, fecha, cuenta, debe, haber, concepto, origen) para revisar o para sistemas que leen
+planillas.
 
 En el plan de cuentas (modo Deportivo) cada cuenta se puede escribir como **"código nombre"**
-(`1.1.2.01 Banco Río`): Holistor toma el código y Xubio el nombre.
+(`1.1.2.01 Banco Río`): cada formato toma el código o el nombre según lo que use el sistema.
 
-Para cualquier otro sistema (Tango, Colppy, Bejerman, Contabilium…) se usa el formato aprendido de
-un ejemplo. Limitaciones: archivos con dos partes separadas (cabeceras y movimientos en archivos
-distintos) y XML todavía no se aprenden.
+Limitaciones: todavía no se aprenden formatos en XML ni los que van en dos archivos (cabeceras y
+movimientos por separado).
 
 ## Pendiente
 

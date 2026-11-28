@@ -26,8 +26,9 @@ seccion aca: sin ella el CI no publica la imagen.
   numeracion y si cada asiento lleva cabecera. Se revisa y corrige con una vista previa de los
   asientos del mes, se guarda con el nombre que uno quiera y se comparte con el estudio. No guarda
   ningun dato del ejemplo.
-- **Formatos ya armados para Xubio y Holistor**, tomados de su documentacion oficial. En el plan de
-  cuentas se puede escribir "codigo nombre": cada formato toma el codigo o el nombre segun pida.
+- En el plan de cuentas se puede escribir "codigo nombre": cada formato aprendido toma el codigo o
+  el nombre segun lo que use el sistema. No hay formatos de sistemas armados de antemano: si un
+  sistema cambia su formato, se sube un ejemplo nuevo.
 - **Restaurar copias de la base**: `node server.js --copias` y `node server.js --restaurar <copia>`.
 - Planillas de ejemplo en `datasets/planillas` (banco en Excel, Mercado Pago, planilla ambigua).
 

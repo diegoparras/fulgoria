@@ -14,5 +14,4 @@ export { reconcile, arrastreSiguiente, continuidad, TIPOS_PENDIENTE } from "./re
 export { papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, bandejaToText } from "./workpaper.js";
 export { clasificarPlanilla, detectarColumnasExtracto, leerExtractoPlanilla, leerMercadoPago } from "./tabla.js";
 export { leerXlsx } from "./xlsx.js";
-export { asientosXubio, asientosHolistor, partirCuenta, aLatin1 } from "./workpaper.js";
 export { escribirXlsx } from "./xlsx-escribir.js";

@@ -13,7 +13,7 @@ import { esqueletoDePdf, elegirPropuesta } from "./ia.js";
 import { leerEjemplo, aprenderFormato, describirFormato, generarArchivo, filasAsientos, ROLES_ASIENTO } from "./core/formato-asientos.js";
 import {
   fromExtract, resolveConfig, DEFAULTS, reconcile, arrastreSiguiente, pairKey,
-  papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, asientosXubio, asientosHolistor, aLatin1, escribirXlsx, partirCuenta, fmtCents, fmtISO as fmtISOcrudo,
+  papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, fmtCents, fmtISO as fmtISOcrudo,
   parseCsv, parseLedgerRows, detectLedgerColumns, leerXlsx, clasificarPlanilla, leerExtractoPlanilla, leerMercadoPago, adivinarFilaEncabezado, crearPlantillaMayor, reconocerPlantillaMayor, ROLES_MAYOR,
 } from "./core/index.js";
 
@@ -744,8 +744,6 @@ function exportar(kind) {
     return descargarBytes(`${base}-asientos-${fmt.nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.${out.ext}`, out.bytes, out.mime);
   }
   if (kind === "asientos-csv") { recordarFormato("csv"); return download(base + "-asientos.csv", asientosToCsv(rec.ajustes), "text/csv"); }
-  if (kind === "asientos-xubio") { recordarFormato("xubio"); return descargarBytes(base + "-asientos-xubio.xlsx", escribirXlsx([{ nombre: "Hoja1", filas: asientosXubio(rec.ajustes) }]), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"); }
-  if (kind === "asientos-holistor") { recordarFormato("holistor"); return descargarBytes(base + "-asientos-holistor.txt", aLatin1(asientosHolistor(rec.ajustes).texto), "text/plain"); }
   if (kind === "json") return download(base + ".json", JSON.stringify({ ...rec, decisiones: state.decisiones, mandos: state.mandos }, null, 2), "application/json");
   if (kind === "arrastre") {
     // Los ajustes bancarios se dan por asentados (se descargaron como asientos): no pasan.
@@ -758,23 +756,18 @@ function exportar(kind) {
 const LS_FMT_ASIENTOS = "fulgoria.asientos.formato";
 function recordarFormato(f) { lsSet(LS_FMT_ASIENTOS, f); cerrarModal(); }
 function elegirFormatoAsientos() {
-  const rec = state.rec, ult = lsGet(LS_FMT_ASIENTOS) || "csv";
+  const rec = state.rec, guardado = lsGet(LS_FMT_ASIENTOS) || "csv";
+  const ult = guardado === "csv" || formatosAsientos().some((f) => "f:" + f.nombre === guardado) ? guardado : "csv";
   if (!rec.ajustes.length) return toast("No hay asientos para descargar.");
-  const sinCodigo = asientosHolistor(rec.ajustes).sinCodigo;
-  const sinNombre = rec.ajustes.flatMap((a) => a.lineas).some((l) => partirCuenta(l.cuenta).codigo && partirCuenta(l.cuenta).nombre === partirCuenta(l.cuenta).codigo);
   const op = (k, t, d) => `<button class="c-formato${k === ult ? " ult" : ""}" data-exp="asientos-${esc(k)}"><b>${esc(t)}</b><span>${d}</span></button>`;
   const propios = formatosAsientos();
   abrirModal("Descargar asientos", `<p>${rec.ajustes.length} asiento${rec.ajustes.length === 1 ? "" : "s"} propuesto${rec.ajustes.length === 1 ? "" : "s"}. Elegí el formato de tu sistema contable:</p>
     <div class="c-formatos">
       ${propios.map((f) => op("f:" + f.nombre, f.nombre, `Formato aprendido de un ejemplo · ${esc(describirFormato(f)[0].replace(/^Archivo: /, ""))}`)).join("")}
       <button class="c-formato nuevo" id="agregarFormato"><b>+ Agregar el formato de mi sistema</b><span>Subí un archivo de importación de asientos que tu sistema acepte y Fulgoria aprende el formato.</span></button>
-      ${op("xubio", "Xubio", "Excel para Contabilidad → Asientos Manuales → Acciones → Importar. Las cuentas van por nombre.")}
-      ${op("holistor", "Holistor", "TXT para Útiles → Exportar/Importar → Importar, \"archivo único de movimientos\" con Debe y Haber separados. Las cuentas van por código.")}
-      ${op("csv", "Planilla (CSV)", "Asiento, fecha, cuenta, debe, haber y concepto, para cualquier otro sistema o para revisar.")}
+      ${op("csv", "Planilla (CSV)", "Asiento, fecha, cuenta, debe, haber y concepto, para revisar o para un sistema que lea planillas.")}
     </div>
-    ${sinCodigo.length ? `<p class="c-aviso">Para Holistor hacen falta los <b>códigos</b> de cuenta y estas no tienen: ${sinCodigo.map(esc).join(", ")}. En el modo Deportivo → Plan de cuentas escribilas como "código nombre" (p. ej. "1.1.2.01 Banco Río"): Holistor toma el código y Xubio el nombre.</p>` : ""}
-    ${sinNombre ? `<p class="c-aviso">Algunas cuentas tienen solo código: Xubio las busca por nombre. Escribilas como "código nombre".</p>` : ""}
-    <p class="muted" style="font-size:12px">La primera vez en Holistor hay que definir el diseño del archivo: campos separados por tabulación, en este orden: fecha (DD/MM/AAAA), número de asiento, cuenta, debe, haber, concepto y leyenda.</p>`);
+    <p class="muted" style="font-size:12px">Fulgoria no trae formatos de sistemas armados de antemano: los aprende de un ejemplo de tu sistema, así siguen andando aunque el sistema cambie (si cambia, se sube un ejemplo nuevo).</p>`);
   $("agregarFormato").addEventListener("click", agregarFormatoAsientos);
 }
 
