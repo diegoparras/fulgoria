@@ -12,8 +12,8 @@ import { buildTemplate } from "./template.js";
 import { esqueletoDePdf, elegirPropuesta } from "./ia.js";
 import { leerEjemplo, aprenderFormato, describirFormato, generarArchivo, filasAsientos, ROLES_ASIENTO } from "./core/formato-asientos.js";
 import {
-  fromExtract, resolveConfig, DEFAULTS, reconcile, arrastreSiguiente, pairKey,
-  papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, fmtCents, fmtISO as fmtISOcrudo,
+  fromExtract, resolveConfig, DEFAULTS, reconcile, arrastreSiguiente, pairKey, TIPOS_REGLA, reglaDesdeTexto, textoSugerido, classify,
+  papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, papelToPdf, papelToHojas, escribirXlsx, fmtCents, fmtISO as fmtISOcrudo,
   parseCsv, parseLedgerRows, detectLedgerColumns, leerXlsx, clasificarPlanilla, leerExtractoPlanilla, leerMercadoPago,
   leerLiquidaciones, crearPlantillaLiquidacion, reconocerPlantillaLiquidacion, ROLES_LIQUIDACION, DESCUENTOS, adivinarFilaEncabezado, crearPlantillaMayor, reconocerPlantillaMayor, ROLES_MAYOR,
 } from "./core/index.js";
@@ -41,6 +41,7 @@ const LS_TPL = "fulgoria.templates"; // las mismas plantillas que guarda el extr
 const LS_TPL_MAYOR = "fulgoria.plantillasMayor"; // plantillas de mayor por sistema contable
 const LS_FORMATOS = "fulgoria.formatosAsientos"; // formatos de asientos aprendidos de un ejemplo
 const LS_TPL_LIQ = "fulgoria.plantillasLiquidacion"; // columnas de liquidaciones por procesadora
+const LS_REGLAS = "fulgoria.reglasClasificacion"; // reglas del estudio ("enseñar")
 
 const state = {
   extracto: null,   // { name, pdf, columns, ext, check, seg, banco, error }
@@ -227,6 +228,72 @@ function cargarExtractoPlanilla(name, p, tipo, { archivo = null, dudoso = false 
   }
   resetDecisiones();
 }
+// ---------------------------------------------------------------- reglas del estudio ("enseñar")
+function reglasClasificacion() { return safeJson(lsGet(LS_REGLAS)) || []; }
+function guardarRegla(r, compartir = true) {
+  const todas = reglasClasificacion().filter((x) => x.texto !== r.texto || (x.signo || 0) !== (r.signo || 0));
+  todas.unshift(r);
+  lsSet(LS_REGLAS, JSON.stringify(todas));
+  if (compartir && est.activo && puedo("editar")) srv("PUT", "/plantillas", { tipo: "regla", nombre: nombreRegla(r), plantilla: r });
+}
+const nombreRegla = (r) => `${r.texto}${r.signo === -1 ? " (débitos)" : r.signo === 1 ? " (créditos)" : ""}`;
+const textoTipo = (r) => (r.tipo === "cuenta_propia" ? r.cuenta : TIPOS_REGLA[r.tipo]?.texto || r.tipo);
+
+/** Enseñarle a Fulgoria qué es una leyenda (desde una partida de la bandeja). */
+function ensenarRegla(id) {
+  const m = state.rec.movimientos[id];
+  if (!m) return;
+  const actual = state.rec.clasificacion[id];
+  const cuentas = [...new Set(Object.values(cfg().cuentas))];
+  abrirModal("Enseñar una leyenda", `<p class="muted" style="font-size:12.5px">${esc(fmtISO(m.fecha))} · ${esc(m.descripcion)} · <b class="num">${fmtCents(m.cents)}</b>${actual?.tipo && actual.tipo !== "desconocido" ? ` · hoy: ${esc(actual.tipo.replace(/_/g, " "))}` : ""}</p>
+    <form class="c-form" id="reglaForm">
+      <label>Cuando la leyenda contenga<input name="texto" value="${esc(textoSugerido(m.descripcion))}" required maxlength="80" /></label>
+      <label>En<select name="signo"><option value="${Math.sign(m.cents)}" selected>${m.cents < 0 ? "débitos (sale plata)" : "créditos (entra plata)"}</option><option value="0">débitos y créditos</option></select></label>
+      <label>Es<select name="tipo">${Object.entries(TIPOS_REGLA).map(([k, v]) => `<option value="${k}"${k === "comision" ? " selected" : ""}>${esc(v.texto)}</option>`).join("")}</select></label>
+      <label id="reglaCuentaL" hidden>Cuenta<input name="cuenta" list="reglaCuentas" maxlength="120" placeholder="p. ej. 5.2.10 Seguros" /><datalist id="reglaCuentas">${cuentas.map((c) => `<option value="${esc(c)}"></option>`).join("")}</datalist></label>
+      <div id="reglaVista" class="c-nota"></div>
+      <div class="modal-acciones"><button type="button" class="btn ghost" id="verReglas">Ver reglas</button><button class="btn primary" type="submit">Guardar regla</button></div>
+    </form>`);
+  const f = $("reglaForm");
+  const leer = () => ({ fulgoria_regla: 1, texto: f.texto.value.trim().replace(/\s+/g, " ").slice(0, 80), signo: Number(f.signo.value) || 0, tipo: f.tipo.value, cuenta: f.tipo.value === "cuenta_propia" ? f.cuenta.value.trim().slice(0, 120) : undefined, creada: new Date().toISOString(), por: est.usuario || undefined });
+  const vista = () => {
+    $("reglaCuentaL").hidden = f.tipo.value !== "cuenta_propia";
+    const r = reglaDesdeTexto(leer());
+    if (!r) { $("reglaVista").textContent = "Escribí el texto de la leyenda."; return; }
+    const banco = Object.values(state.rec.movimientos).filter((x) => x.lado === "banco");
+    const tocados = banco.filter((x) => classify(x, [r]).regla === r.id);
+    $("reglaVista").innerHTML = tocados.length
+      ? `Este mes la regla toca <b>${tocados.length}</b> movimiento${tocados.length === 1 ? "" : "s"}: ${tocados.slice(0, 4).map((x) => `${esc(x.descripcion)} (${fmtCents(x.cents)})`).join(" · ")}${tocados.length > 4 ? " …" : ""}`
+      : `<span class="bad">No toca ningún movimiento de este mes: revisá el texto.</span>`;
+  };
+  f.addEventListener("input", vista); f.addEventListener("change", vista); vista();
+  f.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const r = leer();
+    if (!reglaDesdeTexto(r)) return toast("Falta el texto de la leyenda.");
+    if (r.tipo === "cuenta_propia" && !r.cuenta) return toast("Indicá la cuenta.");
+    guardarRegla(r);
+    cerrarModal(); resetDecisiones(); run();
+    toast(`Aprendido: «${r.texto}» → ${textoTipo(r)}${est.activo ? ". Queda para todo el estudio." : "."}`, 5000);
+  });
+}
+async function verReglas() {
+  const reglas = reglasClasificacion();
+  const filas = reglas.map((r, i) => `<tr><td><b>${esc(r.texto)}</b><div class="muted">${r.signo === -1 ? "débitos" : r.signo === 1 ? "créditos" : "débitos y créditos"}</div></td><td>${esc(textoTipo(r))}</td><td class="muted">${esc(r.por || "")}</td><td>${soloLectura() ? "" : `<button class="lnk" data-borrarregla="${i}">borrar</button>`}</td></tr>`).join("");
+  abrirModal("Reglas del estudio", `<p class="muted" style="font-size:12.5px">Leyendas que el estudio le enseñó a Fulgoria. Se aplican antes que las de fábrica.</p>
+    <div class="c-tablero"><table><thead><tr><th>Cuando diga</th><th>Es</th><th>Enseñó</th><th></th></tr></thead><tbody>${filas || `<tr><td colspan="4" class="vacio">Todavía no hay reglas. Usá "enseñar" en una partida de la bandeja.</td></tr>`}</tbody></table></div>`, { ancho: true });
+  $("modalBody").querySelectorAll("[data-borrarregla]").forEach((b) => b.addEventListener("click", async () => {
+    const r = reglas[+b.dataset.borrarregla];
+    if (est.activo) {
+      const lista = await srv("GET", "/plantillas?tipo=regla");
+      const p = lista.ok ? lista.body.find((x) => x.nombre === nombreRegla(r)) : null;
+      if (p) { const x = await srv("DELETE", `/plantillas/${p.id}`); if (!x.ok && x.status !== 204) return toast(x.body?.mensaje || "No pude borrar la regla (hace falta rol revisor)."); }
+    }
+    lsSet(LS_REGLAS, JSON.stringify(reglasClasificacion().filter((x) => nombreRegla(x) !== nombreRegla(r))));
+    toast("Regla borrada."); verReglas(); if (state.extracto && state.mayor) { resetDecisiones(); run(); }
+  }));
+}
+
 // ---------------------------------------------------------------- liquidaciones de tarjetas
 function plantillasLiquidacion() { return safeJson(lsGet(LS_TPL_LIQ)) || []; }
 function guardarPlantillaLiquidacion(tpl, compartir = true) {
@@ -429,6 +496,7 @@ function run() {
     // Si la lectura de un documento no está verificada, el motor no confirma nada solo.
     lectura: { banco: !!x.check.globalOk, libros: m.led.control.ok !== false },
     liquidaciones: liquidacionesCargadas(),
+    reglas: reglasClasificacion().map(reglaDesdeTexto).filter(Boolean),
   });
   renderResult();
   renderFlujo();
@@ -564,10 +632,11 @@ function renderBandeja(rec) {
       if (t.certeza === "amarillo" && ms.length > 1) acts = `<button class="btn sm" data-confall="1">Confirmar todos</button>`;
     } else if (t.ids.length) {
       const ajuste = t.clave === "ajustes_bancarios" || t.clave === "liquidaciones_tarjeta";
+      const ensenable = !soloLectura() && ["ajustes_bancarios", "creditos_no_identificados", "debitos_no_identificados"].includes(t.clave);
       body = t.ids.map((id) => {
         const a = ajuste ? rec.ajustes.find((x) => x.origen.includes(id)) : null;
         const lin = a ? `<span class="muted" style="font-size:12px">${a.lineas.map((l) => `${l.debe ? "D" : "H"} ${esc(l.cuenta)} ${fmtCents(l.debe || l.haber)}`).join(" · ")}</span>` : "";
-        return itemRow(id, lin);
+        return itemRow(id, lin + (ensenable ? ` <button class="lnk" data-ensenar="${esc(id)}" title="Que Fulgoria aprenda qué es esta leyenda">enseñar</button>` : ""));
       }).join("");
     }
     if (t.accion === "pedir_al_cliente") acts = `<button class="btn sm primary" data-pedir="${t.clave}">Pedir al cliente</button>`;
@@ -653,6 +722,7 @@ function renderMandos() {
     else html.push(`<label class="f">${esc(m.t)}<input type="number" min="0" step="${m.tipo === "money" ? "0.01" : "1"}" data-m="${m.k}" data-t="${m.tipo}" value="${esc(m.tipo === "money" ? v / 100 : v)}" /></label>`);
   }
   if (open) html.push("</div>");
+  html.push(`<div class="grp"><div class="grp-t">Reglas del estudio</div><button class="btn sm ghost" id="verReglas">Ver las ${reglasClasificacion().length} regla${reglasClasificacion().length === 1 ? "" : "s"} enseñadas</button></div>`);
   html.push(`<div class="grp"><button class="btn sm ghost" id="mandosReset">Volver a los valores por defecto</button></div>`);
   $("mandos").innerHTML = html.join("");
 }
@@ -682,6 +752,8 @@ document.addEventListener("click", (e) => {
   if (soloLectura() && (d.conf || d.rech || d.confall || d.mapear || d.cambiar || b.id === "emparejar" || b.id === "limpiarDec")) return toast(puedo("editar") ? "El mes está cerrado. Reabrilo para hacer cambios." : "Tu rol solo permite ver.");
   if (d.mapear) return abrirMapeo();
   if (d.cambiar) return cambiarPlanilla(d.cambiar);
+  if (d.ensenar && !soloLectura()) return ensenarRegla(d.ensenar);
+  if (b.id === "verReglas") return verReglas();
   if (d.mapliq != null && !soloLectura()) return mapearLiquidacion(+d.mapliq);
   if (d.quitarliq != null && !soloLectura()) return quitarLiquidacion(+d.quitarliq);
   if (d.ia) return pedirColumnasIA();
@@ -832,6 +904,8 @@ function exportar(kind) {
   const rec = state.rec, p = state.papel;
   const base = `conciliacion-${(state.extracto.banco || "banco").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}-${rec.periodo.hasta.slice(0, 7)}`;
   if (kind === "md") return download(base + ".md", papelToMarkdown(p), "text/markdown");
+  if (kind === "pdf") return descargarBytes(base + ".pdf", papelToPdf(p, metaPapel()), "application/pdf");
+  if (kind === "xlsx") return descargarBytes(base + ".xlsx", escribirXlsx(papelToHojas(p, metaPapel())), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
   if (kind === "csv") return download(base + ".csv", papelToCsv(p), "text/csv");
   if (kind === "asientos") return elegirFormatoAsientos();
   if (kind.startsWith("asientos-f:")) {
@@ -850,6 +924,16 @@ function exportar(kind) {
     const pendientes = arrastreSiguiente(rec, aceptados);
     return download(base + "-pendientes.json", JSON.stringify({ fulgoria_pendientes: 1, periodo: rec.periodo.hasta.slice(0, 7), pendientes }, null, 2), "application/json");
   }
+}
+/** Datos del encabezado y las firmas del papel de trabajo (modo estudio: cliente, cuenta y estado del mes). */
+function metaPapel() {
+  const per = est.activo ? est.per : null;
+  const x = (u, en) => (u ? { u, en } : null);
+  return {
+    cliente: est.activo ? est.cliente?.nombre || "" : "", cuenta: est.activo ? est.cuenta?.nombre || "" : "",
+    estado: per ? ESTADO_TXT[per.estado] || per.estado : "", ajustes: state.rec.ajustes,
+    preparo: per && x(per.preparo, per.preparoEn), reviso: per && x(per.reviso, per.revisoEn), cerro: per && x(per.cerro, per.cerroEn),
+  };
 }
 // Asientos: el formato de importación de cada sistema contable (de su documentación oficial).
 const LS_FMT_ASIENTOS = "fulgoria.asientos.formato";
@@ -1053,6 +1137,8 @@ async function sincronizarPlantillas() {
   for (const p of r.body.filter((x) => x.tipo === "mayor")) guardarPlantillaMayor(p.plantilla, false);
   for (const p of r.body.filter((x) => x.tipo === "asientos")) guardarFormatoAsientos(p.plantilla, false);
   for (const p of r.body.filter((x) => x.tipo === "liquidacion")) guardarPlantillaLiquidacion(p.plantilla, false);
+  // Las reglas del estudio son las del servidor (si alguien borró una, se borra acá también).
+  lsSet(LS_REGLAS, JSON.stringify(r.body.filter((x) => x.tipo === "regla").map((x) => x.plantilla)));
 }
 
 async function cargarClientes(seleccionar) {

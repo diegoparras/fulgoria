@@ -6,7 +6,7 @@ export { normText, tokens, similarity } from "./text.js";
 export { extractEntities, sharedEntities } from "./entities.js";
 export { makeMov, fromExtract } from "./model.js";
 export { DEFAULTS, resolveConfig } from "./config.js";
-export { RULES, GRUPOS_AJUSTABLES, classify, classifyAll } from "./classify.js";
+export { RULES, GRUPOS_AJUSTABLES, classify, classifyAll, TIPOS_REGLA, reglaDesdeTexto, textoSugerido } from "./classify.js";
 export { parseCsv, detectSeparator } from "./csv.js";
 export { detectLedgerColumns, parseLedgerCsv, parseLedgerRows, ROLES_MAYOR, adivinarFilaEncabezado, crearPlantillaMayor, ubicarPlantillaMayor, reconocerPlantillaMayor, parseLedgerConPlantilla } from "./ledger.js";
 export { matchAll, subsetSums, pairKey, conflictoIdentidad } from "./match.js";
@@ -16,3 +16,5 @@ export { clasificarPlanilla, detectarColumnasExtracto, leerExtractoPlanilla, lee
 export { leerXlsx } from "./xlsx.js";
 export { escribirXlsx } from "./xlsx-escribir.js";
 export { leerLiquidaciones, detectarColumnasLiquidacion, crearPlantillaLiquidacion, reconocerPlantillaLiquidacion, asientoLiquidacion, marcaDe, DESCUENTOS, ROLES_LIQUIDACION } from "./tarjetas.js";
+export { papelToPdf, papelToHojas } from "./papel-pdf.js";
+export { crearPdf, anchoTexto, renglones } from "./pdf.js";
