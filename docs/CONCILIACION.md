@@ -155,12 +155,34 @@ contra ellos (`RESULTADOS.md`). Lo que el dataset encontró y se corrigió:
 - Entidades: número de cheque con palabras en el medio ("CHEQUE CAMARA NRO …"); todos los
   comprobantes que cita una operación, no solo el primero.
 
+## Asientos para cada sistema contable
+
+"Descargar asientos" ofrece el formato de importación de cada sistema. Solo se generan formatos
+tomados de la **documentación oficial** del sistema; no se inventa ninguno.
+
+| Sistema | Archivo | Dónde se importa | Fuente |
+|---|---|---|---|
+| Xubio | Excel: `FECHA, CONCEPTO, CIRCUITOCONTABLE, CUENTA, DEBE, HABER, ORGANIZACION, CENTRODECOSTO, DESCRIPCION`. Primera fila de cada asiento: fecha, concepto y circuito (`default`); siguientes: una cuenta (por **nombre**) con su debe o haber. | Contabilidad → Asientos Manuales → Acciones → Importar | [Ayuda de Xubio](https://ayuda.xubio.com/es-ar/como-importo-asientos-contables-manuales/) y su planilla modelo |
+| Holistor | TXT, "archivo único de movimientos" con Debe y Haber separados: fecha (DD/MM/AAAA), número de asiento (orden dentro de la fecha), cuenta (**código**), debe, haber (coma decimal), concepto y leyenda; separados por tabulación, en Latin‑1. La primera vez se define ese diseño de registro en Holistor. | Útiles → Exportar/Importar → Importar | [Holistor: Importación de datos de Otros Sistemas – Requisitos](https://cms.holistor.com.ar/wp-content/uploads/2019/02/Importaci%C3%B3n-de-datos-de-Otros-Sistemas-%E2%80%93-Requisitos.pdf) |
+| Cualquier otro | CSV: asiento, fecha, cuenta, debe, haber, concepto, origen. | — | — |
+
+En el plan de cuentas (modo Deportivo) cada cuenta se puede escribir como **"código nombre"**
+(`1.1.2.01 Banco Río`): Holistor toma el código y Xubio el nombre.
+
+Todavía no, por falta de documentación pública del formato:
+- **Tango**: el manual describe la importación (XML "formato Tango" o Excel desde la consulta de
+  asientos, versión 24), pero la estructura está solo en la ayuda web de Axoft.
+- **Colppy**: el archivo modelo se descarga desde dentro del sistema; sus columnas no están publicadas.
+- **Bejerman**: archivos de texto `USUARIO1.IMP` / `USUARIO2.IMP`, sin el diseño de campos publicado.
+- **Contabilium, SOS Contador** y otros: sin documentación encontrada.
+
+Con un archivo de importación de ejemplo de cualquiera de ellos se agrega en el día.
+
 ## Pendiente
 
 - IA también en el Extractor (hoy se ofrece en Conciliar) y para clasificar leyendas nuevas.
 - Traducciones de la pantalla de conciliación (hoy solo en español).
 - Editor de reglas de clasificación propias en la interfaz (el motor ya las acepta).
-- Lectura de XLSX (las plantillas de mayor ya existen; falta leer el archivo Excel).
-- CSV "Dinero liberado" de Mercado Pago; liquidaciones de tarjetas (N:1 con aranceles).
-- Exportación de asientos en el formato de importación de cada sistema.
+- Liquidaciones de tarjetas (N:1 con aranceles).
+- Asientos para Tango, Colppy y Bejerman (falta un archivo de importación de ejemplo).
 - IA opcional para casos ambiguos, sobre filas ya anonimizadas, solo como sugerencia.

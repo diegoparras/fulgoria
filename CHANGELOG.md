@@ -20,6 +20,9 @@ seccion aca: sin ella el CI no publica la imagen.
   conteste que es cada movimiento, sin cuenta ni contrasena, desde el celular. Las respuestas
   aparecen en la bandeja junto a cada partida. Ve solo esas partidas, vence a los 30 dias y se puede
   anular.
+- **Asientos para Xubio y Holistor**: "Descargar asientos" ofrece el Excel de importacion de Xubio
+  y el TXT de Holistor, con los formatos de su documentacion oficial (y el CSV de siempre). En el
+  plan de cuentas se puede escribir "codigo nombre": Holistor usa el codigo y Xubio el nombre.
 - **Restaurar copias de la base**: `node server.js --copias` y `node server.js --restaurar <copia>`.
 - Planillas de ejemplo en `datasets/planillas` (banco en Excel, Mercado Pago, planilla ambigua).
 

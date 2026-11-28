@@ -12,7 +12,7 @@ import { buildTemplate } from "./template.js";
 import { esqueletoDePdf, elegirPropuesta } from "./ia.js";
 import {
   fromExtract, resolveConfig, DEFAULTS, reconcile, arrastreSiguiente, pairKey,
-  papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, fmtCents, fmtISO as fmtISOcrudo,
+  papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, asientosXubio, asientosHolistor, aLatin1, escribirXlsx, partirCuenta, fmtCents, fmtISO as fmtISOcrudo,
   parseCsv, parseLedgerRows, detectLedgerColumns, leerXlsx, clasificarPlanilla, leerExtractoPlanilla, leerMercadoPago, adivinarFilaEncabezado, crearPlantillaMayor, reconocerPlantillaMayor, ROLES_MAYOR,
 } from "./core/index.js";
 
@@ -546,7 +546,7 @@ const MANDOS = [
   { grp: "Cliente" },
   { k: "cliente.pagoACuenta25413", t: "Ley 25.413: % pago a cuenta", tipo: "int" },
   { k: "cliente.responsableInscripto", t: "Responsable inscripto en IVA", tipo: "bool" },
-  { grp: "Plan de cuentas" },
+  { grp: "Plan de cuentas (\"código nombre\", p. ej. \"1.1.2.01 Banco Río\")" },
   ...Object.keys(DEFAULTS.cuentas).map((c) => ({ k: "cuentas." + c, t: DEFAULTS.cuentas[c], tipo: "text" })),
 ];
 function getPath(o, k) { return k.split(".").reduce((a, p) => (a == null ? a : a[p]), o); }
@@ -729,10 +729,13 @@ async function verEvidencia(id) {
 // ---------------------------------------------------------------- exportar
 function exportar(kind) {
   const rec = state.rec, p = state.papel;
-  const base = `conciliacion-${(state.extracto.banco || "banco").toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${rec.periodo.hasta.slice(0, 7)}`;
+  const base = `conciliacion-${(state.extracto.banco || "banco").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}-${rec.periodo.hasta.slice(0, 7)}`;
   if (kind === "md") return download(base + ".md", papelToMarkdown(p), "text/markdown");
   if (kind === "csv") return download(base + ".csv", papelToCsv(p), "text/csv");
-  if (kind === "asientos") return download(base + "-asientos.csv", asientosToCsv(rec.ajustes), "text/csv");
+  if (kind === "asientos") return elegirFormatoAsientos();
+  if (kind === "asientos-csv") { recordarFormato("csv"); return download(base + "-asientos.csv", asientosToCsv(rec.ajustes), "text/csv"); }
+  if (kind === "asientos-xubio") { recordarFormato("xubio"); return descargarBytes(base + "-asientos-xubio.xlsx", escribirXlsx([{ nombre: "Hoja1", filas: asientosXubio(rec.ajustes) }]), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"); }
+  if (kind === "asientos-holistor") { recordarFormato("holistor"); return descargarBytes(base + "-asientos-holistor.txt", aLatin1(asientosHolistor(rec.ajustes).texto), "text/plain"); }
   if (kind === "json") return download(base + ".json", JSON.stringify({ ...rec, decisiones: state.decisiones, mandos: state.mandos }, null, 2), "application/json");
   if (kind === "arrastre") {
     // Los ajustes bancarios se dan por asentados (se descargaron como asientos): no pasan.
@@ -740,6 +743,31 @@ function exportar(kind) {
     const pendientes = arrastreSiguiente(rec, aceptados);
     return download(base + "-pendientes.json", JSON.stringify({ fulgoria_pendientes: 1, periodo: rec.periodo.hasta.slice(0, 7), pendientes }, null, 2), "application/json");
   }
+}
+// Asientos: el formato de importación de cada sistema contable (de su documentación oficial).
+const LS_FMT_ASIENTOS = "fulgoria.asientos.formato";
+function recordarFormato(f) { lsSet(LS_FMT_ASIENTOS, f); cerrarModal(); }
+function elegirFormatoAsientos() {
+  const rec = state.rec, ult = lsGet(LS_FMT_ASIENTOS) || "csv";
+  if (!rec.ajustes.length) return toast("No hay asientos para descargar.");
+  const sinCodigo = asientosHolistor(rec.ajustes).sinCodigo;
+  const sinNombre = rec.ajustes.flatMap((a) => a.lineas).some((l) => partirCuenta(l.cuenta).codigo && partirCuenta(l.cuenta).nombre === partirCuenta(l.cuenta).codigo);
+  const op = (k, t, d) => `<button class="c-formato${k === ult ? " ult" : ""}" data-exp="asientos-${k}"><b>${t}</b><span>${d}</span></button>`;
+  abrirModal("Descargar asientos", `<p>${rec.ajustes.length} asiento${rec.ajustes.length === 1 ? "" : "s"} propuesto${rec.ajustes.length === 1 ? "" : "s"}. Elegí el formato de tu sistema contable:</p>
+    <div class="c-formatos">
+      ${op("xubio", "Xubio", "Excel para Contabilidad → Asientos Manuales → Acciones → Importar. Las cuentas van por nombre.")}
+      ${op("holistor", "Holistor", "TXT para Útiles → Exportar/Importar → Importar, \"archivo único de movimientos\" con Debe y Haber separados. Las cuentas van por código.")}
+      ${op("csv", "Planilla (CSV)", "Asiento, fecha, cuenta, debe, haber y concepto, para cualquier otro sistema o para revisar.")}
+    </div>
+    ${sinCodigo.length ? `<p class="c-aviso">Para Holistor hacen falta los <b>códigos</b> de cuenta y estas no tienen: ${sinCodigo.map(esc).join(", ")}. En el modo Deportivo → Plan de cuentas escribilas como "código nombre" (p. ej. "1.1.2.01 Banco Río"): Holistor toma el código y Xubio el nombre.</p>` : ""}
+    ${sinNombre ? `<p class="c-aviso">Algunas cuentas tienen solo código: Xubio las busca por nombre. Escribilas como "código nombre".</p>` : ""}
+    <p class="muted" style="font-size:12px">La primera vez en Holistor hay que definir el diseño del archivo: campos separados por tabulación, en este orden: fecha (DD/MM/AAAA), número de asiento, cuenta, debe, haber, concepto y leyenda. ¿Usás Tango, Colppy, Bejerman u otro? Pasanos un archivo de importación de ejemplo y lo sumamos.</p>`);
+}
+function descargarBytes(name, bytes, mime) {
+  const url = URL.createObjectURL(new Blob([bytes], { type: mime }));
+  const a = Object.assign(document.createElement("a"), { href: url, download: name });
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 function download(name, text, mime) {
   // Dentro de un visor embebido (iframe) las descargas pueden estar bloqueadas: muestro el

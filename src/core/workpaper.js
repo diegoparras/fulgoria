@@ -106,6 +106,63 @@ export function asientosToCsv(ajustes) {
   return toCsv(rows);
 }
 
+// ---------------------------------------------------------------- asientos para cada sistema contable
+// Formatos tomados de la documentación oficial de cada sistema (ver docs/CONCILIACION.md). En el
+// plan de cuentas se puede escribir "código nombre" ("1.1.2.01 Banco Río"): Holistor usa el código
+// y Xubio el nombre.
+const CODIGO_RE = /^(\d[\d.\-]*\d|\d)(?:\s+[-–]?\s*(.*))?$/;
+/** "1.1.2.01 Banco Río" → { codigo: "1.1.2.01", nombre: "Banco Río" }; "Banco Río" → { codigo: null, nombre }. */
+export function partirCuenta(cuenta) {
+  const s = String(cuenta || "").trim(), m = s.match(CODIGO_RE);
+  return m ? { codigo: m[1], nombre: (m[2] || "").trim() || m[1] } : { codigo: null, nombre: s };
+}
+const pesos = (c) => Math.round(c) / 100;
+
+/**
+ * Xubio (Contabilidad > Asientos Manuales > Acciones > Importar): planilla con FECHA, CONCEPTO,
+ * CIRCUITOCONTABLE, CUENTA, DEBE, HABER, ORGANIZACION, CENTRODECOSTO, DESCRIPCION. La primera fila
+ * de cada asiento lleva fecha, concepto y circuito; las siguientes, las cuentas (por NOMBRE).
+ * @returns {Array<Array<string|number|{fecha:string}|null>>} filas para escribirXlsx
+ */
+export function asientosXubio(ajustes, { circuito = "default" } = {}) {
+  const filas = [["FECHA", "CONCEPTO", "CIRCUITOCONTABLE", "CUENTA", "DEBE", "HABER", "ORGANIZACION", "CENTRODECOSTO", "DESCRIPCION"]];
+  for (const a of ajustes) {
+    filas.push([{ fecha: a.fecha }, String(a.concepto || "").slice(0, 250), circuito, null, null, null, null, null, null]);
+    for (const l of a.lineas) filas.push([null, null, null, partirCuenta(l.cuenta).nombre, l.debe ? pesos(l.debe) : null, l.haber ? pesos(l.haber) : null, null, null, String(a.concepto || "").slice(0, 250)]);
+  }
+  return filas;
+}
+
+/**
+ * Holistor Contabilidad (Útiles > Exportar/Importar > Importar, "archivo único de movimientos" con
+ * Debe y Haber en columnas separadas): una línea por movimiento, campos separados por TAB en este
+ * orden: Fecha (DD/MM/AAAA) · Número de asiento (orden dentro de la fecha, 0001…) · Número de
+ * cuenta (código) · Debe · Haber (coma decimal) · Concepto · Leyenda. Texto en Windows-1252/Latin-1.
+ * @returns {{ texto: string, sinCodigo: string[] }} sinCodigo: cuentas del plan que no tienen código
+ */
+export function asientosHolistor(ajustes) {
+  const porFecha = new Map(), lineas = [], sinCodigo = new Set();
+  const limpio = (s, n) => String(s || "").replace(/[\t\r\n]+/g, " ").trim().slice(0, n);
+  const importe = (c) => (c ? (Math.abs(c) / 100).toFixed(2).replace(".", ",") : "0,00");
+  for (const a of ajustes) {
+    const nro = (porFecha.get(a.fecha) || 0) + 1;
+    porFecha.set(a.fecha, nro);
+    for (const l of a.lineas) {
+      const { codigo } = partirCuenta(l.cuenta);
+      if (!codigo) sinCodigo.add(String(l.cuenta));
+      lineas.push([fmtISO(a.fecha), String(nro).padStart(4, "0"), codigo || limpio(l.cuenta, 40), importe(l.debe), importe(l.haber), limpio(a.concepto, 60), limpio((a.origen || []).join(" "), 60)].join("\t"));
+    }
+  }
+  return { texto: lineas.join("\r\n") + "\r\n", sinCodigo: [...sinCodigo] };
+}
+
+/** Texto → bytes Latin-1 (los TXT de importación de los sistemas de escritorio no esperan UTF-8). */
+export function aLatin1(texto) {
+  const out = new Uint8Array(texto.length);
+  for (let i = 0; i < texto.length; i++) { const c = texto.charCodeAt(i); out[i] = c < 256 ? c : 63; }
+  return out;
+}
+
 /** Texto corto de la bandeja (para consola / notificaciones). */
 export function bandejaToText(bandeja) {
   const icon = { rojo: "🔴", amarillo: "🟡", verde: "🟢" };
