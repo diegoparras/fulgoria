@@ -12,3 +12,5 @@ export { detectLedgerColumns, parseLedgerCsv, parseLedgerRows, ROLES_MAYOR, adiv
 export { matchAll, subsetSums, pairKey, conflictoIdentidad } from "./match.js";
 export { reconcile, arrastreSiguiente, continuidad, TIPOS_PENDIENTE } from "./reconcile.js";
 export { papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, bandejaToText } from "./workpaper.js";
+export { clasificarPlanilla, detectarColumnasExtracto, leerExtractoPlanilla, leerMercadoPago } from "./tabla.js";
+export { leerXlsx } from "./xlsx.js";

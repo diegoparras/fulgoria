@@ -13,7 +13,7 @@ import { esqueletoDePdf, elegirPropuesta } from "./ia.js";
 import {
   fromExtract, resolveConfig, DEFAULTS, reconcile, arrastreSiguiente, pairKey,
   papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, fmtCents, fmtISO as fmtISOcrudo,
-  parseCsv, parseLedgerRows, detectLedgerColumns, adivinarFilaEncabezado, crearPlantillaMayor, reconocerPlantillaMayor, ROLES_MAYOR,
+  parseCsv, parseLedgerRows, detectLedgerColumns, leerXlsx, clasificarPlanilla, leerExtractoPlanilla, leerMercadoPago, adivinarFilaEncabezado, crearPlantillaMayor, reconocerPlantillaMayor, ROLES_MAYOR,
 } from "./core/index.js";
 
 // OCR (Tesseract, pesado) se carga solo si hace falta: un PDF digital no lo necesita.
@@ -64,13 +64,13 @@ async function handleFiles(files) {
     const n = f.name.toLowerCase();
     try {
       if (n.endsWith(".pdf") || (f.type || "").startsWith("image/")) { await cargarExtracto(f.name, f); await estudioSubir("extracto", f); }
-      else if (n.endsWith(".csv") || n.endsWith(".txt")) { await cargarMayor(f.name, await f.text()); await estudioSubir("mayor", f); }
+      else if (/\.(csv|txt|xlsx)$/.test(n)) await cargarPlanilla(f);
       else if (n.endsWith(".json")) {
         const txt = await f.text(), j = JSON.parse(txt);
         if (j.fulgoria_plantilla_mayor) importarPlantillaMayor(j);
         else await cargarArrastre(f.name, txt);
       }
-      else if (/\.xlsx?$/.test(n)) toast("Por ahora el mayor va en CSV: en Excel, Archivo → Guardar como → CSV.");
+      else if (n.endsWith(".xls")) toast("Ese es el formato viejo de Excel (.xls): abrilo y guardalo como .xlsx o CSV.");
       else toast(`No sé qué hacer con ${f.name}`);
     } catch (e) {
       console.error(e);
@@ -140,9 +140,9 @@ function elegirSegmento(i) {
 
 // El mayor se lee: 1) con una plantilla guardada si reconoce sus encabezados; 2) si no, con la
 // detección automática; 3) si tampoco, queda pidiendo que se indiquen las columnas a mano.
-async function cargarMayor(name, text) {
-  const rows = parseCsv(text);
-  state.mayor = { name, rows, led: null, error: null, plantilla: null, lectura: null };
+async function cargarMayor(name, text) { cargarMayorFilas(name, parseCsv(text)); }
+function cargarMayorFilas(name, rows, { xlsx = false, archivo = null, dudoso = false } = {}) {
+  state.mayor = { name, rows, led: null, error: null, plantilla: null, lectura: null, xlsx, archivo, dudoso };
   const rec = reconocerPlantillaMayor(rows, plantillasMayor());
   if (rec) leerMayor({ headerRow: rec.headerRow, map: rec.map, amountMode: rec.plantilla.formato?.numeros, unirContinuacion: rec.plantilla.unirContinuacion !== false, ignorar: rec.plantilla.ignorar || [] }, rec.plantilla.sistema);
   else {
@@ -155,7 +155,7 @@ async function cargarMayor(name, text) {
 function leerMayor(lectura, plantilla = null) {
   const m = state.mayor;
   try {
-    m.led = parseLedgerRows(m.rows, { ...lectura, doc: m.name, anio: state.extracto?.anio });
+    m.led = parseLedgerRows(m.rows, { ...lectura, ...(m.xlsx ? { amountMode: "auto" } : {}), doc: m.name, anio: state.extracto?.anio });
     m.lectura = lectura; m.plantilla = plantilla; m.error = null;
   } catch (e) { m.led = null; m.error = e.message; }
 }
@@ -169,7 +169,62 @@ function guardarPlantillaMayor(tpl, compartir = true) {
 function importarPlantillaMayor(tpl) {
   guardarPlantillaMayor(tpl);
   toast(`Plantilla de mayor "${tpl.sistema}" guardada.`);
-  if (state.mayor?.rows) cargarMayor(state.mayor.name, state.mayor.rows.map((r) => r.map((c) => (/[;"\n]/.test(c) ? `"${c.replace(/"/g, '""')}"` : c)).join(";")).join("\n"));
+  if (state.mayor?.rows) cargarMayorFilas(state.mayor.name, state.mayor.rows, { xlsx: state.mayor.xlsx, archivo: state.mayor.archivo });
+}
+
+// ---------------------------------------------------------------- planillas (Excel o CSV)
+// Una planilla puede ser el mayor, un extracto bancario exportado o el reporte de Mercado Pago.
+// Se decide por los encabezados y el título; si no se puede saber (solo "Débito / Crédito"), se
+// toma como mayor —o como extracto si el mayor ya está— y se ofrece cambiarlo con un toque.
+async function filasDePlanilla(nombre, blob) {
+  if (/\.xlsx$/i.test(nombre)) {
+    const { hojas } = await leerXlsx(await blob.arrayBuffer());
+    const h = hojas.find((x) => clasificarPlanilla(x.rows).tipo) || hojas.find((x) => x.rows.length) || hojas[0];
+    return { rows: h.rows, hoja: hojas.length > 1 ? h.nombre : null, xlsx: true };
+  }
+  return { rows: parseCsv(await blob.text()), hoja: null, xlsx: false };
+}
+async function cargarPlanilla(file, { tipo = null, subir = true } = {}) {
+  const p = await filasDePlanilla(file.name, file);
+  const c = tipo ? { tipo, seguro: true } : clasificarPlanilla(p.rows);
+  let t = c.tipo || "mayor";
+  if (!c.seguro && t === "mayor" && state.mayor && !state.extracto) t = "extracto"; // el mayor ya está: será el extracto
+  const dudoso = !c.seguro;
+  if (t === "mercadopago" || t === "extracto") {
+    cargarExtractoPlanilla(file.name, p, t, { archivo: file, dudoso });
+    if (subir) await estudioSubir("extracto", file);
+  } else {
+    cargarMayorFilas(file.name, p.rows, { xlsx: p.xlsx, archivo: file, dudoso });
+    if (subir) await estudioSubir("mayor", file);
+  }
+}
+function bancoDePlanilla(rows) {
+  for (const r of rows.slice(0, 5)) for (const c of r) if (/banco|coop|galicia|santander|macro|naci[oó]n|provincia|supervielle|credicoop|icbc|bbva|patagonia|hsbc|brubank|ciudad/i.test(c)) return String(c).split(/\s[—–-]\s|,/)[0].trim().slice(0, 40);
+  return "";
+}
+function cargarExtractoPlanilla(name, p, tipo, { archivo = null, dudoso = false } = {}) {
+  const base = { name, tabla: tipo, rows: p.rows, hoja: p.hoja, xlsx: p.xlsx, seg: 0, plantilla: false, archivo, dudoso, ext: { segments: [] } };
+  try {
+    const r = tipo === "mercadopago" ? leerMercadoPago(p.rows, { doc: name }) : leerExtractoPlanilla(p.rows, { doc: name, amountMode: "auto" });
+    if (!r.movs.length) throw new Error("No encontré movimientos en la planilla.");
+    const anio = Number(r.movs[0].fecha.slice(0, 4));
+    state.extracto = { ...base, banco: r.banco || bancoDePlanilla(p.rows), anio, avisos: r.avisos || [],
+      data: { movs: r.movs, apertura: r.apertura, cierre: r.cierre },
+      check: { globalOk: r.control.ok === true, sinControl: r.control.ok == null }, error: null };
+  } catch (e) {
+    state.extracto = { ...base, banco: "", error: tipo === "mercadopago" ? e.message : `${e.message} Si es el mayor, tocá "es el mayor".`, dudoso: true };
+  }
+  resetDecisiones();
+}
+/** Cambia una planilla de lugar (extracto ⇄ mayor) cuando Fulgoria no pudo saber cuál era. */
+async function cambiarPlanilla(destino) {
+  const desde = destino === "mayor" ? state.extracto : state.mayor;
+  if (!desde?.archivo) return;
+  if (destino === "mayor") state.extracto = null; else state.mayor = null;
+  if (est.activo) est.docs[destino === "mayor" ? "extracto" : "mayor"] = null;
+  await cargarPlanilla(desde.archivo, { tipo: destino });
+  run();
+  toast(destino === "mayor" ? "Listo: esa planilla ahora es el mayor." : "Listo: esa planilla ahora es el extracto.");
 }
 
 // ---------------------------------------------------------------- mapear columnas del mayor
@@ -315,23 +370,31 @@ function finDeMes(iso) {
 function renderDocs() {
   const x = state.extracto, m = state.mayor;
   const docX = x ? (() => {
+    if (x.tabla) {
+      const cambiar = x.dudoso && !soloLectura() ? ` · <button class="lnk" data-cambiar="mayor">es el mayor</button>` : "";
+      if (x.error) return `<div class="c-doc">${dot("rojo")}<div><div class="k">${x.tabla === "mercadopago" ? "Mercado Pago" : "Extracto en planilla"}</div><div class="n">${esc(x.name)}</div><div class="s">${esc(x.error)}${cambiar}</div></div></div>`;
+      const ok = x.check.globalOk;
+      const lectura = ok ? "saldos verificados" : x.check.sinControl ? "sin saldo ni total para verificar: nada se confirma solo" : "<b>los saldos no cierran</b>: nada se confirma solo";
+      return `<div class="c-doc">${dot(ok ? "verde" : x.check.sinControl ? "amarillo" : "rojo")}<div><div class="k">${x.tabla === "mercadopago" ? "Mercado Pago" : `Extracto en planilla${x.banco ? " · " + esc(x.banco) : ""}`}</div><div class="n">${esc(x.name)}${x.hoja ? ` · hoja ${esc(x.hoja)}` : ""}</div>
+        <div class="s">${x.data.movs.length} movimientos · saldo ${fmtCents(x.data.apertura)} → ${fmtCents(x.data.cierre)} · ${lectura}${x.avisos.length ? ` · ${x.avisos.length} aviso${x.avisos.length > 1 ? "s" : ""}` : ""}${cambiar}</div></div></div>`;
+    }
     const segs = x.ext.segments;
     const sel = segs.length > 1 ? `<select id="segSel">${segs.map((s, i) => `<option value="${i}"${i === x.seg ? " selected" : ""}>Cuenta ${i + 1}${s.currency ? " · " + s.currency : ""} (${s.movements.length} mov.)</option>`).join("")}</select>` : "";
     if (x.error) return `<div class="c-doc">${dot("rojo")}<div><div class="k">Extracto</div><div class="n">${esc(x.name)}</div><div class="s">${esc(x.error)}</div></div></div>`;
     const ok = x.check.globalOk;
     return `<div class="c-doc">${dot(ok ? "verde" : "rojo")}<div><div class="k">Extracto${x.banco ? " · " + esc(x.banco) : ""}</div><div class="n">${esc(x.name)}</div>
       <div class="s">${x.data.movs.length} movimientos · saldo ${fmtCents(x.data.apertura)} → ${fmtCents(x.data.cierre)} · ${ok ? "lectura verificada con la regla del saldo" : `<b>la lectura no cierra</b> (diferencia ${fmtCents(Math.round(((x.check.closing ?? 0) - (x.check.computed ?? 0)) * 100))}): ${iaEstado.disponible && !soloLectura() ? "pedile a la IA que lea las columnas, o ajustalas" : "ajustá las columnas"} en el <a class="link" href="./">Extractor</a>`}${x.plantilla === "ia" ? " · columnas leídas por la IA" : x.plantilla ? " · plantilla reconocida" : ""}${x.pdf.scanned ? " · OCR" : ""}</div>${!ok && iaEstado.disponible && !soloLectura() ? `<button class="btn sm primary" data-ia="1" style="margin-top:8px">Pedirle a la IA que lea las columnas</button>` : ""}${sel}</div></div>`;
-  })() : `<div class="c-doc falta">${ICON.doc}<div><div class="k">Extracto</div><div class="s">Falta el PDF o la imagen del extracto bancario.</div></div></div>`;
+  })() : `<div class="c-doc falta">${ICON.doc}<div><div class="k">Extracto</div><div class="s">Falta el extracto: PDF, imagen, Excel o CSV del banco, o el reporte de Mercado Pago.</div></div></div>`;
   const docM = m ? (m.error
-    ? `<div class="c-doc">${dot("rojo")}<div><div class="k">Mayor</div><div class="n">${esc(m.name)}</div><div class="s">${esc(m.error)}</div>${m.rows ? `<button class="btn sm primary" data-mapear="1" style="margin-top:8px">Indicar columnas</button>` : ""}</div></div>`
+    ? `<div class="c-doc">${dot("rojo")}<div><div class="k">Mayor</div><div class="n">${esc(m.name)}</div><div class="s">${esc(m.error)}${m.dudoso && m.archivo && !soloLectura() ? ` · <button class="lnk" data-cambiar="extracto">es el extracto</button>` : ""}</div>${m.rows ? `<button class="btn sm primary" data-mapear="1" style="margin-top:8px">Indicar columnas</button>` : ""}</div></div>`
     : (() => {
       const c = m.led.control;
       const est = c.ok === true ? "verde" : c.ok === false ? "rojo" : "amarillo";
       const txt = c.ok === true ? "saldos verificados" : c.ok === false ? `<b>el saldo no cierra</b>${c.filasConError.length ? ` en las filas ${c.filasConError.slice(0, 5).join(", ")}` : ""}` : "sin saldo para verificar";
       return `<div class="c-doc">${dot(est)}<div><div class="k">Mayor de la cuenta Banco</div><div class="n">${esc(m.name)}</div>
-        <div class="s">${m.led.movs.length} registros · saldo ${fmtCents(m.led.apertura)} → ${fmtCents(m.led.cierre)} · ${txt}${m.led.avisos.length ? ` · ${m.led.avisos.length} aviso${m.led.avisos.length > 1 ? "s" : ""}` : ""}${m.plantilla ? ` · plantilla ${esc(m.plantilla)}` : ""} · <button class="lnk" data-mapear="1">columnas</button></div></div></div>`;
+        <div class="s">${m.led.movs.length} registros · saldo ${fmtCents(m.led.apertura)} → ${fmtCents(m.led.cierre)} · ${txt}${m.led.avisos.length ? ` · ${m.led.avisos.length} aviso${m.led.avisos.length > 1 ? "s" : ""}` : ""}${m.plantilla ? ` · plantilla ${esc(m.plantilla)}` : ""} · <button class="lnk" data-mapear="1">columnas</button>${m.dudoso && m.archivo && !soloLectura() ? ` · <button class="lnk" data-cambiar="extracto">es el extracto</button>` : ""}</div></div></div>`;
     })())
-    : `<div class="c-doc falta">${ICON.sheet}<div><div class="k">Mayor</div><div class="s">Falta el mayor de la cuenta Banco (CSV exportado de tu sistema contable o un Excel guardado como CSV).</div></div></div>`;
+    : `<div class="c-doc falta">${ICON.sheet}<div><div class="k">Mayor</div><div class="s">Falta el mayor de la cuenta Banco (Excel o CSV exportado de tu sistema contable).</div></div></div>`;
   const docA = state.arrastre.length ? `<div class="c-doc">${dot("verde")}<div><div class="k">Pendientes del mes anterior</div><div class="s">${state.arrastre.length} partidas arrastradas · <button class="lnk" id="quitarArrastre">quitar</button></div></div></div>` : "";
   $("docs").innerHTML = docX + docM + docA;
   $("segSel")?.addEventListener("change", (e) => { elegirSegmento(+e.target.value); resetDecisiones(); run(); });
@@ -524,8 +587,9 @@ document.addEventListener("click", (e) => {
   if (b.closest("summary") && b.tagName === "BUTTON") e.preventDefault(); // un botón en el encabezado no abre/cierra la tarjeta
   const d = b.dataset;
   if (d.ev) return verEvidencia(d.ev);
-  if (soloLectura() && (d.conf || d.rech || d.confall || d.mapear || b.id === "emparejar" || b.id === "limpiarDec")) return toast(puedo("editar") ? "El mes está cerrado. Reabrilo para hacer cambios." : "Tu rol solo permite ver.");
+  if (soloLectura() && (d.conf || d.rech || d.confall || d.mapear || d.cambiar || b.id === "emparejar" || b.id === "limpiarDec")) return toast(puedo("editar") ? "El mes está cerrado. Reabrilo para hacer cambios." : "Tu rol solo permite ver.");
   if (d.mapear) return abrirMapeo();
+  if (d.cambiar) return cambiarPlanilla(d.cambiar);
   if (d.ia) return pedirColumnasIA();
   if (d.conf) { const m = state.rec.matches.find((x) => x.id === d.conf); state.decisiones.confirmados.push({ banco: m.banco, libros: m.libros }); return run(); }
   if (d.rech) {
@@ -767,8 +831,13 @@ async function abrirPeriodo() {
   // Arrastre automático: lo que quedó pendiente el mes anterior.
   state.arrastre = (r.body.anterior?.pendientes || []).map((m) => ({ ...m }));
   try {
-    if (per?.extractoDoc) { const d = await bajarDocumento(per.extractoDoc); await cargarExtracto(d.nombre, d.blob); if (per.segmento) elegirSegmento(per.segmento); }
-    if (per?.mayorDoc) { const d = await bajarDocumento(per.mayorDoc); await cargarMayor(d.nombre, await d.blob.text()); }
+    const esPlanilla = (n) => /\.(xlsx|csv|txt)$/i.test(n);
+    if (per?.extractoDoc) {
+      const d = await bajarDocumento(per.extractoDoc);
+      if (esPlanilla(d.nombre)) { const p = await filasDePlanilla(d.nombre, d.blob); const c = clasificarPlanilla(p.rows); cargarExtractoPlanilla(d.nombre, p, c.tipo === "mercadopago" ? "mercadopago" : "extracto"); }
+      else { await cargarExtracto(d.nombre, d.blob); if (per.segmento) elegirSegmento(per.segmento); }
+    }
+    if (per?.mayorDoc) { const d = await bajarDocumento(per.mayorDoc); const p = await filasDePlanilla(d.nombre, d.blob); cargarMayorFilas(d.nombre, p.rows, { xlsx: p.xlsx }); }
   } catch (e) { toast("No pude abrir los documentos guardados: " + e.message); }
   if (gen !== est.gen) return;
   if (per?.decisiones) state.decisiones = { manuales: [], rechazados: [], confirmados: [], ...per.decisiones };
@@ -790,7 +859,7 @@ async function bajarDocumento(id) {
 async function estudioSubir(tipo, file) {
   if (!est.activo || !est.abierto) return;
   setGuardado("Subiendo " + file.name + "…");
-  const r = await srv("POST", "/documentos", file, { "x-tipo": tipo, "x-nombre": encodeURIComponent(file.name), "content-type": file.type || (tipo === "mayor" ? "text/csv" : "application/octet-stream") });
+  const r = await srv("POST", "/documentos", file, { "x-tipo": tipo, "x-nombre": encodeURIComponent(file.name), "content-type": file.type || (/\.xlsx$/i.test(file.name) ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : /\.(csv|txt)$/i.test(file.name) ? "text/csv" : "application/octet-stream") });
   if (!r.ok) { setGuardado(r.body.mensaje || "No se pudo subir el documento", true); return; }
   est.docs[tipo] = r.body.id;
 }
