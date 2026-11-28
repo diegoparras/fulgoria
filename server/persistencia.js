@@ -72,6 +72,8 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
   fs.mkdirSync(dataDir, { recursive: true });
   const db = new DatabaseSync(path.join(dataDir, "fulgoria.sqlite"));
   db.exec(ESQUEMA);
+  // Migraciones de bases ya creadas (columnas agregadas después).
+  for (const sql of ["ALTER TABLE periodos ADD COLUMN liquidaciones_docs TEXT"]) { try { db.exec(sql); } catch { /* ya existe */ } }
   const blobs = crearBlobs({ almacenamiento, dataDir, s3, clave });
   const claveSecretos = claveDesde(clave); // la misma DOCS_CLAVE cifra las claves de API guardadas
   const q = (sql) => db.prepare(sql);
@@ -82,7 +84,7 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
 
   const filaPeriodo = (r) => r && ({
     id: r.id, cuentaId: r.cuenta_id, periodo: r.periodo, estado: r.estado, version: r.version,
-    extractoDoc: r.extracto_doc, mayorDoc: r.mayor_doc, segmento: r.segmento,
+    extractoDoc: r.extracto_doc, mayorDoc: r.mayor_doc, liquidacionesDocs: J(r.liquidaciones_docs) || [], segmento: r.segmento,
     decisiones: J(r.decisiones), resumen: J(r.resumen), pendientes: J(r.pendientes), resultado: J(r.resultado),
     preparo: r.preparo, preparoEn: r.preparo_en, reviso: r.reviso, revisoEn: r.reviso_en, cerro: r.cerro, cerroEn: r.cerro_en,
     actualizado: r.actualizado, actualizadoPor: r.actualizado_por,
@@ -132,12 +134,54 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
       const claves = new Set(J(r.items).map((i) => i.clave)), actuales = J(r.respuestas) || {}, t = ahora();
       for (const [k, v] of Object.entries(respuestas || {})) {
         if (!claves.has(k)) continue;
-        const texto = String(v ?? "").trim().slice(0, 2000);
-        if (texto) actuales[k] = { texto, fecha: t }; else delete actuales[k];
+        const texto = String(v ?? "").trim().slice(0, 2000), adjuntos = actuales[k]?.adjuntos || [];
+        if (texto || adjuntos.length) actuales[k] = { texto, fecha: t, ...(adjuntos.length ? { adjuntos } : {}) };
+        else delete actuales[k];
       }
       q("UPDATE pedidos SET respuestas = ?, respondido = ? WHERE id = ?").run(JSON.stringify(actuales), t, r.id);
       evento("cliente", "responder", "pedido", r.id, { respuestas: Object.keys(actuales).length });
       return api.pedidoPublico(token);
+    },
+    /** El cliente adjunta un comprobante (PDF o imagen ya validados) a una partida del pedido. */
+    async adjuntarComprobante(token, clave, { nombre, mime, datos }) {
+      const r = q("SELECT * FROM pedidos WHERE token_hash = ?").get(hashToken(token));
+      if (!r || r.anulado || r.vence < ahora()) return { error: 404 };
+      if (!J(r.items).some((i) => i.clave === clave)) return { error: 400, msg: "Esa partida no es de este pedido." };
+      const actuales = J(r.respuestas) || {};
+      const total = Object.values(actuales).reduce((s, x) => s + (x.adjuntos?.length || 0), 0);
+      const deEsta = actuales[clave]?.adjuntos?.length || 0;
+      if (deEsta >= 5) return { error: 400, msg: "Hasta 5 comprobantes por movimiento." };
+      if (total >= 30) return { error: 400, msg: "Llegaste al máximo de comprobantes de este pedido." };
+      const doc = await api.guardarDocumento("cliente", { tipo: "comprobante", nombre, mime, datos });
+      // Se relee por si otro envío cambió las respuestas mientras se guardaba el archivo.
+      const ahoraR = J(q("SELECT respuestas FROM pedidos WHERE id = ?").get(r.id).respuestas) || {};
+      const e = ahoraR[clave] || { texto: "", fecha: ahora() };
+      if (!(e.adjuntos || []).some((a) => a.id === doc.id)) e.adjuntos = [...(e.adjuntos || []), { id: doc.id, nombre: doc.nombre, mime: doc.mime, bytes: doc.bytes, fecha: ahora() }];
+      ahoraR[clave] = e;
+      q("UPDATE pedidos SET respuestas = ?, respondido = ? WHERE id = ?").run(JSON.stringify(ahoraR), ahora(), r.id);
+      evento("cliente", "adjuntar", "pedido", r.id, { documento: doc.id, bytes: doc.bytes });
+      return { pedido: api.pedidoPublico(token) };
+    },
+    /** El cliente quita un comprobante que subió (y si nadie más lo usa, se borra el archivo). */
+    async quitarComprobante(token, docId) {
+      const r = q("SELECT * FROM pedidos WHERE token_hash = ?").get(hashToken(token));
+      if (!r || r.anulado || r.vence < ahora()) return { error: 404 };
+      const actuales = J(r.respuestas) || {};
+      let estaba = false;
+      for (const [k, e] of Object.entries(actuales)) {
+        const antes = e.adjuntos?.length || 0;
+        e.adjuntos = (e.adjuntos || []).filter((a) => a.id !== docId);
+        if (e.adjuntos.length !== antes) estaba = true;
+        if (!e.adjuntos.length) delete e.adjuntos;
+        if (!e.texto && !e.adjuntos) delete actuales[k];
+      }
+      if (!estaba) return { error: 404 };
+      q("UPDATE pedidos SET respuestas = ? WHERE id = ?").run(JSON.stringify(actuales), r.id);
+      const enUso = q("SELECT COUNT(*) AS n FROM pedidos WHERE respuestas LIKE ?").get(`%${docId}%`).n;
+      const d = q("SELECT * FROM documentos WHERE id = ? AND tipo = 'comprobante'").get(docId);
+      if (d && !enUso) { await blobs.borrar(d.clave); q("DELETE FROM documentos WHERE id = ?").run(docId); }
+      evento("cliente", "quitar_adjunto", "pedido", r.id, { documento: docId });
+      return { pedido: api.pedidoPublico(token) };
     },
     anularPedido(u, id) {
       const r = q("SELECT * FROM pedidos WHERE id = ?").get(id);
@@ -240,8 +284,8 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
 
       const n = p ? { ...p } : { id: uid(), cuentaId, periodo, estado: "borrador", version: 0, segmento: 0 };
       const cambiaContenido = (k) => body[k] !== undefined && JSON.stringify(body[k]) !== JSON.stringify(n[k]);
-      const contenidoCambio = ["extractoDoc", "mayorDoc", "segmento", "decisiones"].some(cambiaContenido);
-      for (const k of ["extractoDoc", "mayorDoc", "segmento", "decisiones", "resumen", "pendientes", "resultado"]) if (body[k] !== undefined) n[k] = body[k];
+      const contenidoCambio = ["extractoDoc", "mayorDoc", "liquidacionesDocs", "segmento", "decisiones"].some(cambiaContenido);
+      for (const k of ["extractoDoc", "mayorDoc", "liquidacionesDocs", "segmento", "decisiones", "resumen", "pendientes", "resultado"]) if (body[k] !== undefined) n[k] = body[k];
       const t = ahora();
       if (contenidoCambio && (n.estado === "preparado" || n.estado === "revisado")) {
         n.estado = "borrador"; n.preparo = n.preparoEn = n.reviso = n.revisoEn = null;
@@ -265,15 +309,15 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
       } else if (accion) return { error: 400, msg: "Acción desconocida." };
       n.version = (n.version || 0) + 1;
       const s = (v) => (v == null ? null : JSON.stringify(v));
-      q(`INSERT INTO periodos (id, cuenta_id, periodo, estado, version, extracto_doc, mayor_doc, segmento, decisiones, resumen, pendientes, resultado,
+      q(`INSERT INTO periodos (id, cuenta_id, periodo, estado, version, extracto_doc, mayor_doc, liquidaciones_docs, segmento, decisiones, resumen, pendientes, resultado,
            preparo, preparo_en, reviso, reviso_en, cerro, cerro_en, actualizado, actualizado_por)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
          ON CONFLICT (cuenta_id, periodo) DO UPDATE SET estado = excluded.estado, version = excluded.version,
-           extracto_doc = excluded.extracto_doc, mayor_doc = excluded.mayor_doc, segmento = excluded.segmento,
+           extracto_doc = excluded.extracto_doc, mayor_doc = excluded.mayor_doc, liquidaciones_docs = excluded.liquidaciones_docs, segmento = excluded.segmento,
            decisiones = excluded.decisiones, resumen = excluded.resumen, pendientes = excluded.pendientes, resultado = excluded.resultado,
            preparo = excluded.preparo, preparo_en = excluded.preparo_en, reviso = excluded.reviso, reviso_en = excluded.reviso_en,
            cerro = excluded.cerro, cerro_en = excluded.cerro_en, actualizado = excluded.actualizado, actualizado_por = excluded.actualizado_por`)
-        .run(n.id, cuentaId, periodo, n.estado, n.version, n.extractoDoc ?? null, n.mayorDoc ?? null, n.segmento ?? 0,
+        .run(n.id, cuentaId, periodo, n.estado, n.version, n.extractoDoc ?? null, n.mayorDoc ?? null, n.liquidacionesDocs?.length ? JSON.stringify(n.liquidacionesDocs) : null, n.segmento ?? 0,
           s(n.decisiones), s(n.resumen), s(n.pendientes), s(n.resultado),
           n.preparo ?? null, n.preparoEn ?? null, n.reviso ?? null, n.revisoEn ?? null, n.cerro ?? null, n.cerroEn ?? null, t, u);
       if (accion || !p || contenidoCambio) evento(u, accion || (p ? "editar" : "crear"), "periodo", n.id, { cuentaId, periodo, estado: n.estado });

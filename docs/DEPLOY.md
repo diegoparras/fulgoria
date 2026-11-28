@@ -143,6 +143,8 @@ the server stores.
 - **Client response links**: from "Ask the client", a preparer creates a link (`/r/<token>`) where the
   client answers what each movement is, with no account. Only those movements are shown; the link
   expires in 30 days and can be revoked; only a hash of the token is stored. Answers show up in the inbox.
+  The client can also attach the invoice or receipt (PDF or photo, up to 10 MB, recognized by content),
+  stored encrypted like any other document.
 
 **EasyPanel**: *Mounts → Volume →* mount path `/data` (the image sets `DATA_DIR=/data`). Without the
 volume, everything saved is lost on the next deploy — even with R2/S3, because the database lives in

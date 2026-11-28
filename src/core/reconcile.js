@@ -5,9 +5,10 @@
 //
 // Si esa ecuación no da exacto al centavo, hay una DIFERENCIA NO EXPLICADA y la conciliación
 // no puede quedar en verde. No existe la partida "varios" para forzar el cuadre.
-import { matchAll } from "./match.js";
+import { matchAll, subsetSums, pairKey } from "./match.js";
+import { asientoLiquidacion, marcaDe } from "./tarjetas.js";
 import { classifyAll, GRUPOS_AJUSTABLES } from "./classify.js";
-import { daysBetween } from "./dates.js";
+import { daysBetween, fmtISO } from "./dates.js";
 import { fmtCents, sumCents } from "./money.js";
 
 /**
@@ -22,6 +23,7 @@ import { fmtCents, sumCents } from "./money.js";
  */
 export const TIPOS_PENDIENTE = {
   ajuste_bancario: "Débito/crédito del banco a registrar (impuestos, gastos, intereses)",
+  liquidacion_tarjeta: "Acreditación de una liquidación de tarjetas, a registrar",
   credito_no_identificado: "Crédito del banco sin identificar",
   debito_no_identificado: "Débito del banco sin identificar",
   cheque_pendiente: "Cheque emitido pendiente de débito",
@@ -44,7 +46,7 @@ export const TIPOS_PENDIENTE = {
  *   (regla del saldo)? Si alguna no lo está, NADA se confirma solo: los verdes pasan a amarillo. Sin
  *   este dato, el extracto se da por no verificado cuando no se leyeron sus saldos.
  */
-export function reconcile({ banco, libros, arrastre = [], saldos, periodo, cfg, reglas = [], decisiones = {}, lectura = {} }) {
+export function reconcile({ banco, libros, arrastre = [], saldos, periodo, cfg, reglas = [], decisiones = {}, lectura = {}, liquidaciones = [] }) {
   const arr = arrastre.map((m) => ({ ...m, arrastre: true }));
   const poolB = [...arr.filter((m) => m.lado === "banco"), ...banco];
   const poolL = [...arr.filter((m) => m.lado === "libros"), ...libros];
@@ -52,7 +54,10 @@ export function reconcile({ banco, libros, arrastre = [], saldos, periodo, cfg, 
   if (byId.size !== poolB.length + poolL.length) throw new Error("Hay ids repetidos entre banco, libros y arrastre");
 
   const clasif = classifyAll(poolB, reglas);
-  const { matches, libresBanco, libresLibros } = matchAll(poolB, poolL, cfg, decisiones, { clasif });
+  const { matches, libresBanco: libresB0, libresLibros: libresL0 } = matchAll(poolB, poolL, cfg, decisiones, { clasif });
+  // Liquidaciones de tarjetas: explican créditos del banco que el libro no tiene (o tiene en bruto).
+  const liq = aplicarLiquidaciones({ liquidaciones, libresBanco: libresB0, libresLibros: libresL0, matches, decisiones });
+  const libresBanco = libresB0.filter((m) => !liq.usadosB.has(m.id)), libresLibros = libresL0.filter((m) => !liq.usadosL.has(m.id));
 
   // Lectura no verificada → ningún emparejamiento automático queda confirmado. Un verde sobre datos
   // mal leídos es exactamente el error que el producto no puede cometer.
@@ -69,6 +74,10 @@ export function reconcile({ banco, libros, arrastre = [], saldos, periodo, cfg, 
   // --- Pendientes ---
   const pc = cfg.pendientes;
   const pendientes = [];
+  for (const x of liq.aRegistrar) pendientes.push({
+    id: x.banco.id, lado: "banco", tipo: "liquidacion_tarjeta", certeza: x.certeza, antiguedadDias: daysBetween(x.banco.fecha, periodo.hasta) ?? 0,
+    motivo: x.motivo, liquidaciones: x.liqs.map((l) => l.id),
+  });
   for (const m of libresBanco) {
     const c = clasif.get(m.id);
     const ant = daysBetween(m.fecha, periodo.hasta) ?? 0;
@@ -116,6 +125,18 @@ export function reconcile({ banco, libros, arrastre = [], saldos, periodo, cfg, 
   }
 
   const ajustes = proponerAjustes(pendientes.filter((p) => p.tipo === "ajuste_bancario"), byId, cfg);
+  // Asientos de las liquidaciones: completos (Banco neto + descuentos / Tarjetas a cobrar bruto) o, si
+  // la venta bruta ya estaba en el libro del banco, solo los descuentos.
+  for (const x of [...liq.aRegistrar, ...liq.conLibro]) {
+    const lineas = asientoLiquidacion(x.liqs, cfg, { brutoEnLibros: !!x.libro });
+    if (!lineas.length) continue;
+    const l0 = x.liqs[0];
+    ajustes.push({
+      id: "A" + (ajustes.length + 1), fecha: x.banco.fecha, tipo: "liquidacion_tarjeta", certeza: x.certeza, origen: [x.banco.id, ...(x.libro ? [x.libro.id] : [])],
+      concepto: `Liquidación ${l0.marca || "de tarjetas"}${x.liqs.length > 1 ? ` (${x.liqs.length} liquidaciones)` : l0.numero ? ` nº ${l0.numero}` : ""} pagada el ${fmtISO(l0.fechaPago)}${x.libro ? ": descuentos" : ""}`,
+      lineas,
+    });
+  }
   const bandeja = armarBandeja({ matches, pendientes, byId, diferenciaNoExplicada, apertura, lectura: { banco: bancoOk, libros: librosOk } });
   const rojos = bandeja.filter((t) => t.certeza === "rojo").length;
   const amarillos = bandeja.filter((t) => t.certeza === "amarillo").length;
@@ -142,6 +163,54 @@ export function reconcile({ banco, libros, arrastre = [], saldos, periodo, cfg, 
       estado: diferenciaNoExplicada !== 0 || rojos || !lecturaOk ? "rojo" : amarillos ? "amarillo" : "verde",
     },
   };
+}
+
+// --- Liquidaciones de tarjetas ---
+// Un crédito del banco igual al neto de una liquidación (o a la suma de varias pagadas el mismo día),
+// dentro de unos días de la fecha de pago, queda explicado. Si además el libro del banco tiene la
+// venta BRUTA (algunos estudios registran así), se emparejan y solo quedan por asentar los descuentos.
+const VENTANA_LIQ = 4, MAX_JUNTAS = 8;
+function aplicarLiquidaciones({ liquidaciones, libresBanco, libresLibros, matches, decisiones }) {
+  const usadosB = new Set(), usadosL = new Set(), usadas = new Set(), aRegistrar = [], conLibro = [];
+  if (!liquidaciones.length) return { usadosB, usadosL, aRegistrar, conLibro };
+  const rechazados = new Set((decisiones.rechazados || []).map(pairKey));
+  const cerca = (a, b, d = VENTANA_LIQ) => Math.abs(daysBetween(a, b) ?? 99) <= d;
+  const creditos = libresBanco.filter((m) => m.cents > 0).sort((a, b) => a.fecha.localeCompare(b.fecha));
+  for (const b of creditos) {
+    const cand = liquidaciones.filter((l) => !usadas.has(l.id) && cerca(l.fechaPago, b.fecha));
+    if (!cand.length) continue;
+    const marcaB = marcaDe(b.descripcion);
+    const orden = (xs) => [...xs].sort((x, y) => (y.marca === marcaB) - (x.marca === marcaB) || Math.abs(daysBetween(x.fechaPago, b.fecha)) - Math.abs(daysBetween(y.fechaPago, b.fecha)));
+    let sol = orden(cand).find((l) => l.neto === b.cents);
+    sol = sol ? [sol] : null;
+    if (!sol) {
+      // Varias liquidaciones acreditadas juntas: misma fecha de pago (y misma marca si el banco la dice).
+      for (const f of [...new Set(cand.map((l) => l.fechaPago))]) {
+        const mismas = cand.filter((l) => l.fechaPago === f && (!marcaB || !l.marca || l.marca === marcaB));
+        const s = subsetSums(mismas.map((l) => ({ ...l, cents: l.neto })), b.cents, MAX_JUNTAS, 1)[0];
+        if (s) { sol = s.map((x) => mismas.find((l) => l.id === x.id)); break; }
+      }
+    }
+    if (!sol) continue;
+    const bruto = sol.reduce((s, l) => s + l.bruto, 0);
+    const libro = libresLibros.find((x) => !usadosL.has(x.id) && x.cents === bruto && cerca(x.fecha, b.fecha, VENTANA_LIQ + 3));
+    if (libro && rechazados.has(pairKey({ banco: [b.id], libros: [libro.id] }))) continue;
+    sol.forEach((l) => usadas.add(l.id));
+    usadosB.add(b.id);
+    const marcaOk = !marcaB || sol.every((l) => !l.marca || l.marca === marcaB);
+    const verificada = sol.every((l) => l.verificada !== false);
+    const certeza = marcaOk && verificada ? "verde" : "amarillo";
+    const desc = sol.reduce((s, l) => s + Object.values(l.descuentos).reduce((a, c) => a + c, 0), 0);
+    const quien = sol.length > 1 ? `${sol.length} liquidaciones ${sol[0].marca || ""}`.trim() : `la liquidación ${sol[0].marca || ""}${sol[0].numero ? ` nº ${sol[0].numero}` : ""}`.replace(/\s+/g, " ");
+    const motivo = `${quien} del ${fmtISO(sol[0].fechaPago)}: ventas ${fmtCents(bruto)} − descuentos ${fmtCents(desc)} = neto ${fmtCents(b.cents)}${!marcaOk ? " (el banco no dice la misma tarjeta: revisar)" : ""}${!verificada ? " (la liquidación no cierra: revisar)" : ""}`;
+    const x = { banco: b, liqs: sol, libro: libro || null, certeza, motivo };
+    if (libro) {
+      usadosL.add(libro.id);
+      matches.push({ id: "M" + (matches.length + 1) + "t", banco: [b.id], libros: [libro.id], diferenciaCents: libro.cents - b.cents, estrategia: "liquidacion", certeza, puntaje: 0.9, motivos: [motivo + "; la venta bruta está en el libro y los descuentos quedan para asentar"] });
+      conLibro.push(x);
+    } else aRegistrar.push(x);
+  }
+  return { usadosB, usadosL, aRegistrar, conLibro };
 }
 
 // --- Asientos de ajuste propuestos para las partidas del banco no registradas ---
@@ -211,6 +280,8 @@ function armarBandeja({ matches, pendientes, byId, diferenciaNoExplicada, apertu
   const am = matches.filter((m) => m.certeza === "amarillo");
   add("emparejamientos_a_confirmar", "amarillo", `${am.length} emparejamiento${n(am.length)} para confirmar`, am.flatMap((m) => m.banco), "confirmar", { matches: am.map((m) => m.id) });
 
+  const lt = de("liquidacion_tarjeta");
+  add("liquidaciones_tarjeta", pendientes.some((p) => p.tipo === "liquidacion_tarjeta" && p.certeza !== "verde") ? "amarillo" : "verde", `${lt.length} ${lt.length === 1 ? "acreditación" : "acreditaciones"} de tarjetas explicada${n(lt.length)} por su liquidación, lista${n(lt.length)} para asentar`, lt, "generar_asientos");
   const aj = de("ajuste_bancario");
   const ajDudosos = pendientes.some((p) => p.tipo === "ajuste_bancario" && p.certeza !== "verde");
   add("ajustes_bancarios", ajDudosos ? "amarillo" : "verde", `${aj.length} impuesto${n(aj.length)}, gasto${n(aj.length)} e interes${aj.length === 1 ? "" : "es"} del banco listos para asentar`, aj, "generar_asientos");

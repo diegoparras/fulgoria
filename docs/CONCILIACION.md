@@ -155,6 +155,27 @@ contra ellos (`RESULTADOS.md`). Lo que el dataset encontró y se corrigió:
 - Entidades: número de cheque con palabras en el medio ("CHEQUE CAMARA NRO …"); todos los
   comprobantes que cita una operación, no solo el primero.
 
+## Liquidaciones de tarjetas
+
+El banco acredita un **neto** por liquidación (o varias juntas); la liquidación de la procesadora
+explica de dónde sale. Se suelta la planilla que exporta la procesadora (Excel o CSV) junto con el
+extracto y el mayor, y Fulgoria (`src/core/tarjetas.js`):
+
+- la reconoce por sus encabezados (fecha de pago, nº de liquidación, tarjeta, ventas brutas,
+  arancel, IVA, costo financiero, retenciones y percepciones, neto). Si no, se indican las columnas
+  una vez y queda como plantilla de esa procesadora (compartida con el estudio);
+- suma los cupones de una misma liquidación si la planilla viene por cupón;
+- verifica cada liquidación: **bruto − descuentos = neto** (la regla del saldo de la liquidación);
+- busca, para cada crédito del banco que el libro no tiene, la liquidación con ese neto (o varias
+  pagadas el mismo día que suman ese neto), a no más de 4 días de la fecha de pago. Si el banco
+  nombra otra tarjeta, o la liquidación no cierra, queda en amarillo para revisar;
+- propone el asiento: **Banco** (neto) + arancel, IVA crédito fiscal, costo financiero, retenciones
+  y percepciones **a Tarjetas a cobrar** (bruto). Si la venta bruta ya estaba registrada en el libro
+  del banco, se empareja con ella y el asiento es solo el de los descuentos (a Banco).
+
+Las cuentas están en el plan de cuentas (modo Deportivo): Tarjetas de crédito a cobrar, Aranceles
+y comisiones de tarjetas, Retenciones IVA / Ganancias / IIBB (tarjetas), además de las existentes.
+
 ## Asientos para cada sistema contable
 
 ### El formato de tu sistema, aprendido de un ejemplo
@@ -197,6 +218,5 @@ movimientos por separado).
 - IA también en el Extractor (hoy se ofrece en Conciliar) y para clasificar leyendas nuevas.
 - Traducciones de la pantalla de conciliación (hoy solo en español).
 - Editor de reglas de clasificación propias en la interfaz (el motor ya las acepta).
-- Liquidaciones de tarjetas (N:1 con aranceles).
 - Aprender formatos de asientos en XML o en dos archivos (cabeceras + movimientos).
 - IA opcional para casos ambiguos, sobre filas ya anonimizadas, solo como sugerencia.

@@ -9,6 +9,7 @@ import { parseMoneyCents, fmtCents } from "./money.js";
 import { toISO } from "./dates.js";
 import { normText } from "./text.js";
 import { makeMov } from "./model.js";
+import { detectarColumnasLiquidacion } from "./tarjetas.js";
 
 const normH = (s) => normText(String(s ?? "")).replace(/[^A-Z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
 
@@ -167,11 +168,12 @@ const H_BANCO = new Set(["CAUSAL", "SUCURSAL", "SUC", "FECHA VALOR", "NRO OPERAC
 
 /**
  * @param {string[][]} rows
- * @returns {{ tipo: "mercadopago"|"extracto"|"mayor"|null, seguro: boolean }}
+ * @returns {{ tipo: "mercadopago"|"liquidacion"|"extracto"|"mayor"|null, seguro: boolean }}
  *   seguro = false cuando la planilla podría ser cualquiera de los dos (p. ej. solo Débito/Crédito).
  */
 export function clasificarPlanilla(rows) {
   if (columnasMP(rows)) return { tipo: "mercadopago", seguro: true };
+  if (detectarColumnasLiquidacion(rows)) return { tipo: "liquidacion", seguro: true };
   const enc = detectarColumnasExtracto(rows), led = detectLedgerColumns(rows);
   const fila = enc?.headerRow ?? led?.headerRow ?? 0;
   const titulo = normText(rows.slice(0, Math.max(fila, 1)).map((r) => r.join(" ")).join(" "));

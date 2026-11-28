@@ -5,6 +5,19 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y
 [Versionado Semantico](https://semver.org/lang/es/). Cada deploy sube la version y agrega su
 seccion aca: sin ella el CI no publica la imagen.
 
+## [1.5.0] - 2026-11-28
+
+### Nuevo
+- **Liquidaciones de tarjetas**: se suelta la planilla de liquidaciones de la procesadora (Excel o
+  CSV) junto con el extracto y el mayor. Fulgoria la reconoce por sus encabezados (o se indican las
+  columnas una vez), verifica cada liquidacion (ventas − arancel − IVA − costo financiero −
+  retenciones = neto) y explica con ella cada credito del banco, aunque junte varias liquidaciones.
+  Propone el asiento completo: Banco por el neto, cada descuento a su cuenta y Tarjetas a cobrar
+  por las ventas; si la venta bruta ya estaba en el libro del banco, solo los descuentos.
+- **Comprobantes en el link del cliente**: ademas de contestar que es cada movimiento, el cliente
+  adjunta la factura o el recibo (PDF o foto) desde el celular. Se guardan cifrados y aparecen en
+  la bandeja junto a la respuesta.
+
 ## [1.4.0] - 2026-11-28
 
 ### Nuevo

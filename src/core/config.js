@@ -58,6 +58,12 @@ export const DEFAULTS = Object.freeze({
     interesesGanados: "Intereses ganados",
     interesesPagados: "Intereses y gastos financieros",
     aIdentificar: "Partidas a identificar",
+    // Liquidaciones de tarjetas
+    tarjetasACobrar: "Tarjetas de crédito a cobrar",
+    arancelesTarjeta: "Aranceles y comisiones de tarjetas",
+    retencionIVA: "Retenciones IVA sufridas",
+    retencionGanancias: "Retenciones Ganancias sufridas",
+    retencionIIBBTarjetas: "Retenciones IIBB sufridas (tarjetas)",
   },
 });
 

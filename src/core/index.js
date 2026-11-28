@@ -15,3 +15,4 @@ export { papelSaldoASaldo, papelToMarkdown, papelToCsv, asientosToCsv, bandejaTo
 export { clasificarPlanilla, detectarColumnasExtracto, leerExtractoPlanilla, leerMercadoPago } from "./tabla.js";
 export { leerXlsx } from "./xlsx.js";
 export { escribirXlsx } from "./xlsx-escribir.js";
+export { leerLiquidaciones, detectarColumnasLiquidacion, crearPlantillaLiquidacion, reconocerPlantillaLiquidacion, asientoLiquidacion, marcaDe, DESCUENTOS, ROLES_LIQUIDACION } from "./tarjetas.js";

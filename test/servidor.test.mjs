@@ -312,3 +312,44 @@ test("formatos de asientos compartidos: solo se acepta algo con forma de formato
   assert.equal((await api("PUT", "/plantillas", { tipo: "asientos", nombre: fmt.nombre, plantilla: fmt })).status, 200);
   assert.ok((await api("GET", "/plantillas?tipo=asientos")).body.some((p) => p.nombre === "Sistema del estudio"));
 });
+
+test("comprobantes del cliente: solo PDF o fotos reales, límites, el estudio los ve y el cliente los puede quitar", async () => {
+  const RAIZ = BASE.replace("/api/v1", "");
+  const cli = (await api("POST", "/clientes", { nombre: "Cliente con comprobantes" })).body;
+  const cta = (await api("POST", `/clientes/${cli.id}/cuentas`, { nombre: "Caja de ahorro" })).body;
+  const items = [{ clave: "2026-06-11|23500|TRANSF GOMEZ", fecha: "2026-06-11", descripcion: "TRANSF GOMEZ", cents: 23500 }];
+  const token = (await api("POST", `/cuentas/${cta.id}/periodos/2026-06/pedidos`, { items })).body.url.split("/").pop();
+  const subir = (datos, clave = items[0].clave, tipo = "application/pdf") => fetch(`${RAIZ}/api/publico/pedidos/${token}/adjuntos?clave=${encodeURIComponent(clave)}`, { method: "POST", headers: { "content-type": tipo, "x-nombre": encodeURIComponent("Factura B 0003-123.pdf") }, body: datos });
+  const pdf = Buffer.concat([Buffer.from("%PDF-1.4\n"), Buffer.alloc(200, 32), Buffer.from("%%EOF")]);
+  // Un HTML que dice ser PDF no pasa (se mira el contenido, no el tipo que manda el navegador).
+  assert.equal((await subir(Buffer.from("<html><script>alert(1)</script></html>"))).status, 400);
+  assert.equal((await subir(pdf, "no-es-del-pedido")).status, 400);
+  const r = await subir(pdf);
+  assert.equal(r.status, 201);
+  const pd = await r.json();
+  const adj = pd.respuestas[items[0].clave].adjuntos;
+  assert.equal(adj.length, 1);
+  assert.equal(adj[0].mime, "application/pdf");
+  // Contestar el texto no borra el adjunto.
+  await fetch(`${RAIZ}/api/publico/pedidos/${token}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ respuestas: { [items[0].clave]: "Pago de María Gómez" } }) });
+  const delEstudio = (await api("GET", `/cuentas/${cta.id}/periodos/2026-06/pedidos`)).body[0].respuestas[items[0].clave];
+  assert.equal(delEstudio.texto, "Pago de María Gómez");
+  assert.equal(delEstudio.adjuntos.length, 1);
+  // El estudio lo baja (cifrado en disco, se devuelve como PDF y en sandbox).
+  const bajado = await fetch(`${BASE}/documentos/${adj[0].id}`);
+  assert.equal(bajado.headers.get("content-type"), "application/pdf");
+  assert.ok(Buffer.from(await bajado.arrayBuffer()).equals(pdf));
+  // Una foto JPG real también entra; hasta 5 por movimiento.
+  const jpg = Buffer.concat([Buffer.from([0xff, 0xd8, 0xff, 0xe0]), Buffer.alloc(100, 1)]);
+  for (let i = 0; i < 4; i++) assert.equal((await subir(Buffer.concat([jpg, Buffer.from([i])]), items[0].clave, "image/jpeg")).status, 201);
+  assert.equal((await subir(Buffer.concat([jpg, Buffer.from([9])]), items[0].clave, "image/jpeg")).status, 400);
+  // El cliente quita el PDF: desaparece y el archivo se borra.
+  const q = await fetch(`${RAIZ}/api/publico/pedidos/${token}/adjuntos/${adj[0].id}`, { method: "DELETE" });
+  assert.equal(q.status, 200);
+  assert.ok(!(await q.json()).respuestas[items[0].clave].adjuntos.some((a) => a.id === adj[0].id));
+  assert.equal((await fetch(`${BASE}/documentos/${adj[0].id}`)).status, 404);
+  // Con el link anulado no se puede subir.
+  const pid = (await api("GET", `/cuentas/${cta.id}/periodos/2026-06/pedidos`)).body[0].id;
+  await api("DELETE", `/pedidos/${pid}`);
+  assert.equal((await subir(pdf)).status, 404);
+});
