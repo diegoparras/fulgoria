@@ -132,12 +132,54 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
       const claves = new Set(J(r.items).map((i) => i.clave)), actuales = J(r.respuestas) || {}, t = ahora();
       for (const [k, v] of Object.entries(respuestas || {})) {
         if (!claves.has(k)) continue;
-        const texto = String(v ?? "").trim().slice(0, 2000);
-        if (texto) actuales[k] = { texto, fecha: t }; else delete actuales[k];
+        const texto = String(v ?? "").trim().slice(0, 2000), adjuntos = actuales[k]?.adjuntos || [];
+        if (texto || adjuntos.length) actuales[k] = { texto, fecha: t, ...(adjuntos.length ? { adjuntos } : {}) };
+        else delete actuales[k];
       }
       q("UPDATE pedidos SET respuestas = ?, respondido = ? WHERE id = ?").run(JSON.stringify(actuales), t, r.id);
       evento("cliente", "responder", "pedido", r.id, { respuestas: Object.keys(actuales).length });
       return api.pedidoPublico(token);
+    },
+    /** El cliente adjunta un comprobante (PDF o imagen ya validados) a una partida del pedido. */
+    async adjuntarComprobante(token, clave, { nombre, mime, datos }) {
+      const r = q("SELECT * FROM pedidos WHERE token_hash = ?").get(hashToken(token));
+      if (!r || r.anulado || r.vence < ahora()) return { error: 404 };
+      if (!J(r.items).some((i) => i.clave === clave)) return { error: 400, msg: "Esa partida no es de este pedido." };
+      const actuales = J(r.respuestas) || {};
+      const total = Object.values(actuales).reduce((s, x) => s + (x.adjuntos?.length || 0), 0);
+      const deEsta = actuales[clave]?.adjuntos?.length || 0;
+      if (deEsta >= 5) return { error: 400, msg: "Hasta 5 comprobantes por movimiento." };
+      if (total >= 30) return { error: 400, msg: "Llegaste al máximo de comprobantes de este pedido." };
+      const doc = await api.guardarDocumento("cliente", { tipo: "comprobante", nombre, mime, datos });
+      // Se relee por si otro envío cambió las respuestas mientras se guardaba el archivo.
+      const ahoraR = J(q("SELECT respuestas FROM pedidos WHERE id = ?").get(r.id).respuestas) || {};
+      const e = ahoraR[clave] || { texto: "", fecha: ahora() };
+      if (!(e.adjuntos || []).some((a) => a.id === doc.id)) e.adjuntos = [...(e.adjuntos || []), { id: doc.id, nombre: doc.nombre, mime: doc.mime, bytes: doc.bytes, fecha: ahora() }];
+      ahoraR[clave] = e;
+      q("UPDATE pedidos SET respuestas = ?, respondido = ? WHERE id = ?").run(JSON.stringify(ahoraR), ahora(), r.id);
+      evento("cliente", "adjuntar", "pedido", r.id, { documento: doc.id, bytes: doc.bytes });
+      return { pedido: api.pedidoPublico(token) };
+    },
+    /** El cliente quita un comprobante que subió (y si nadie más lo usa, se borra el archivo). */
+    async quitarComprobante(token, docId) {
+      const r = q("SELECT * FROM pedidos WHERE token_hash = ?").get(hashToken(token));
+      if (!r || r.anulado || r.vence < ahora()) return { error: 404 };
+      const actuales = J(r.respuestas) || {};
+      let estaba = false;
+      for (const [k, e] of Object.entries(actuales)) {
+        const antes = e.adjuntos?.length || 0;
+        e.adjuntos = (e.adjuntos || []).filter((a) => a.id !== docId);
+        if (e.adjuntos.length !== antes) estaba = true;
+        if (!e.adjuntos.length) delete e.adjuntos;
+        if (!e.texto && !e.adjuntos) delete actuales[k];
+      }
+      if (!estaba) return { error: 404 };
+      q("UPDATE pedidos SET respuestas = ? WHERE id = ?").run(JSON.stringify(actuales), r.id);
+      const enUso = q("SELECT COUNT(*) AS n FROM pedidos WHERE respuestas LIKE ?").get(`%${docId}%`).n;
+      const d = q("SELECT * FROM documentos WHERE id = ? AND tipo = 'comprobante'").get(docId);
+      if (d && !enUso) { await blobs.borrar(d.clave); q("DELETE FROM documentos WHERE id = ?").run(docId); }
+      evento("cliente", "quitar_adjunto", "pedido", r.id, { documento: docId });
+      return { pedido: api.pedidoPublico(token) };
     },
     anularPedido(u, id) {
       const r = q("SELECT * FROM pedidos WHERE id = ?").get(id);

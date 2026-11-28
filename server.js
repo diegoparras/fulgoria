@@ -330,11 +330,46 @@ if (persistencia) {
     const pd = TOKEN_RE.test(req.params.token) && persistencia.pedidoPublico(req.params.token);
     pd ? res.json(pd) : noExiste(res);
   });
+  const limite = (req, res) => {
+    const ip = req.ip || "?", ahora = Date.now(), l = (envios.get(ip) || []).filter((t) => ahora - t < 3600e3);
+    if (l.length >= 60) { res.status(429).json({ error: 429, mensaje: "Demasiados envíos seguidos: probá en un rato." }); return false; }
+    l.push(ahora); envios.set(ip, l); return true;
+  };
+  // Comprobantes: solo PDF o imágenes, reconocidos por su contenido (no por lo que diga el navegador).
+  const tipoReal = (b) => b.subarray(0, 5).toString("latin1") === "%PDF-" ? "application/pdf"
+    : b[0] === 0xff && b[1] === 0xd8 && b[2] === 0xff ? "image/jpeg"
+    : b.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])) ? "image/png"
+    : b.subarray(0, 4).toString("latin1") === "RIFF" && b.subarray(8, 12).toString("latin1") === "WEBP" ? "image/webp" : null;
+  const MAX_COMPROBANTE_MB = Math.min(Number(process.env.DOC_MAX_MB || 25), 10);
+  app.post("/api/publico/pedidos/:token/adjuntos", express.raw({ type: () => true, limit: `${MAX_COMPROBANTE_MB}mb` }), async (req, res, next) => {
+    sinIndexar(res);
+    if (!limite(req, res)) return;
+    try {
+      if (!TOKEN_RE.test(req.params.token)) return noExiste(res);
+      const datos = req.body;
+      if (!Buffer.isBuffer(datos) || !datos.length) return res.status(400).json({ error: 400, mensaje: "El archivo llegó vacío." });
+      const mime = tipoReal(datos);
+      if (!mime) return res.status(400).json({ error: 400, mensaje: "Solo se pueden adjuntar PDF o fotos (JPG, PNG, WEBP)." });
+      let nombre = "comprobante";
+      try { nombre = decodeURIComponent(String(req.get("x-nombre") || "comprobante")).replace(/[\x00-\x1f]/g, "").slice(0, 120) || "comprobante"; } catch {}
+      const out = await persistencia.adjuntarComprobante(req.params.token, String(req.query.clave || ""), { nombre, mime, datos });
+      if (out.error === 404) return noExiste(res);
+      if (out.error) return res.status(out.error).json({ error: out.error, mensaje: out.msg });
+      res.status(201).json(out.pedido);
+    } catch (e) { next(e); }
+  });
+  app.delete("/api/publico/pedidos/:token/adjuntos/:doc", async (req, res, next) => {
+    sinIndexar(res);
+    if (!limite(req, res)) return;
+    try {
+      if (!TOKEN_RE.test(req.params.token) || !/^[0-9a-f-]{36}$/i.test(req.params.doc)) return noExiste(res);
+      const out = await persistencia.quitarComprobante(req.params.token, req.params.doc);
+      out.error ? noExiste(res) : res.json(out.pedido);
+    } catch (e) { next(e); }
+  });
   app.post("/api/publico/pedidos/:token", express.json({ limit: "64kb" }), (req, res) => {
     sinIndexar(res);
-    const ip = req.ip || "?", ahora = Date.now(), l = (envios.get(ip) || []).filter((t) => ahora - t < 3600e3);
-    if (l.length >= 60) return res.status(429).json({ error: 429, mensaje: "Demasiados envíos seguidos: probá en un rato." });
-    l.push(ahora); envios.set(ip, l);
+    if (!limite(req, res)) return;
     const r = req.body?.respuestas;
     if (!r || typeof r !== "object" || Array.isArray(r)) return res.status(400).json({ error: 400, mensaje: "Respuestas inválidas." });
     const pd = TOKEN_RE.test(req.params.token) && persistencia.responderPedido(req.params.token, r);

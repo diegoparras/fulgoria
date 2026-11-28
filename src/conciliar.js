@@ -437,7 +437,10 @@ const mov = (id) => state.rec.movimientos[id];
 function itemRow(id, extra = "") {
   const m = mov(id);
   const resp = respuestaCliente(m);
-  if (resp) extra += `<div class="c-resp"><b>El cliente respondió:</b> ${esc(resp.texto)} <span class="muted">· ${esc(new Date(resp.fecha).toLocaleString("es-AR"))}</span></div>`;
+  if (resp) {
+    const adj = (resp.adjuntos || []).map((a) => `<button class="lnk" data-comprobante="${esc(a.id)}" data-nombre="${esc(a.nombre)}">📎 ${esc(a.nombre)}</button>`).join(" ");
+    extra += `<div class="c-resp"><b>El cliente ${resp.texto ? "respondió:" : "adjuntó:"}</b> ${esc(resp.texto || "")} ${adj} <span class="muted">· ${esc(new Date(resp.fecha).toLocaleString("es-AR"))}</span></div>`;
+  }
   const p = state.rec.pendientes.find((x) => x.id === id);
   const why = p?.motivo ? `<span class="why">${esc(p.motivo)}${p.antiguedadDias != null ? ` · ${p.antiguedadDias} día${p.antiguedadDias === 1 ? "" : "s"}` : ""}</span>` : "";
   const ev = m.evidencia?.page != null ? `<button class="lnk" data-ev="${esc(id)}">Ver en el extracto</button>` : m.evidencia?.row != null ? `<span class="muted" style="font-size:12px">${esc(m.evidencia.doc || "mayor")} · fila ${esc(m.evidencia.row)}</span>` : "";
@@ -592,6 +595,7 @@ document.addEventListener("click", (e) => {
   if (b.closest("summary") && b.tagName === "BUTTON") e.preventDefault(); // un botón en el encabezado no abre/cierra la tarjeta
   const d = b.dataset;
   if (d.ev) return verEvidencia(d.ev);
+  if (d.comprobante) return abrirComprobante(d.comprobante, d.nombre);
   if (soloLectura() && (d.conf || d.rech || d.confall || d.mapear || d.cambiar || b.id === "emparejar" || b.id === "limpiarDec")) return toast(puedo("editar") ? "El mes está cerrado. Reabrilo para hacer cambios." : "Tu rol solo permite ver.");
   if (d.mapear) return abrirMapeo();
   if (d.cambiar) return cambiarPlanilla(d.cambiar);
@@ -685,6 +689,16 @@ function respuestaCliente(m) {
   let mejor = null;
   for (const x of est.pedidos) { const r = !x.anulado && x.respuestas[k]; if (r && (!mejor || r.fecha > mejor.fecha)) mejor = r; }
   return mejor;
+}
+/** Abre un comprobante que subió el cliente (PDF o foto) en otra pestaña. */
+async function abrirComprobante(id, nombre) {
+  const r = await srv("GET", `/documentos/${id}`);
+  if (!r.ok || !(r.body instanceof Blob)) return toast("No pude abrir el comprobante.");
+  const url = URL.createObjectURL(r.body);
+  const w = window.open(url, "_blank"); // con "noopener" window.open devuelve null y no se sabría si abrió
+  if (w) w.opener = null;
+  else { const a = Object.assign(document.createElement("a"), { href: url, download: nombre || "comprobante" }); document.body.appendChild(a); a.click(); a.remove(); }
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
 }
 async function cargarPedidos() {
   if (!est.activo || !est.abierto) { est.pedidos = []; return; }
