@@ -241,3 +241,13 @@ test("todas las páginas arman el mismo header (src/header.js) y llevan la versi
   assert.equal(js.status, 200);
   assert.equal(js.headers.get("cache-control"), "no-cache");
 });
+
+test("CSRF: un pedido que cambia algo desde otro sitio se rechaza; desde la misma página pasa", async () => {
+  const host = new URL(BASE).host;
+  const post = (headers) => fetch(BASE + "/clientes", { method: "POST", headers: { "content-type": "application/json", ...headers }, body: JSON.stringify({ nombre: "Cliente CSRF" }) });
+  assert.equal((await post({ origin: "https://otro-sitio.example" })).status, 403);
+  assert.equal((await post({ origin: "null" })).status, 403);
+  assert.equal((await post({ "sec-fetch-site": "cross-site" })).status, 403);
+  assert.equal((await post({ origin: `http://${host}`, "sec-fetch-site": "same-origin" })).status, 201);
+  assert.equal((await fetch(BASE + "/clientes", { headers: { origin: "https://otro-sitio.example" } })).status, 200); // leer no cambia nada
+});

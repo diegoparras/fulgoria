@@ -299,6 +299,22 @@ app.get("/api/health", (req, res) => res.json({ ok: true }));
 // Script del ojito del login: ungated (la página de login no tiene sesión todavía).
 app.get("/login-eye.js", (req, res) => res.type("application/javascript").send(LOGIN_EYE_JS));
 
+// --- CSRF: un pedido que cambia algo en /api tiene que venir de esta misma página. Los navegadores
+//     mandan Origin (y Sec-Fetch-Site) en esos pedidos; si vienen de otro sitio, se rechazan. Además
+//     de la cookie sameSite=lax: cubre subdominios "hermanos" y navegadores viejos. ---
+const SEGUROS = new Set(["GET", "HEAD", "OPTIONS"]);
+function mismoOrigen(req) {
+  if (req.get("sec-fetch-site") === "cross-site") return false;
+  const o = req.get("origin");
+  if (!o) return true; // sin Origin: no es un navegador (curl, scripts) o es un GET de navegación
+  if (o === "null") return false;
+  try { return new URL(o).host === req.get("host"); } catch { return false; }
+}
+app.use("/api", (req, res, next) => {
+  if (SEGUROS.has(req.method) || mismoOrigen(req)) return next();
+  res.status(403).json({ error: 403, mensaje: "Pedido de otro sitio rechazado." });
+});
+
 // --- Puerta: todo lo de abajo requiere sesión (si AUTH_ENABLED) ---
 app.use((req, res, next) => {
   if (authed(req)) return next();
@@ -358,7 +374,19 @@ app.use((req, res) => res.status(404).send("No encontrado"));
 
 if (require.main === module) {
   // CLI: copia de seguridad de la base a demanda →  node server.js --backup
-  if (process.argv[2] === "--backup") {
+  if (process.argv[2] === "--copias") {
+    if (!persistencia) { console.error("PERSISTENCIA=off: no hay copias."); process.exit(1); }
+    persistencia.copias().then((l) => { console.log(l.length ? l.join("\n") : "No hay copias todavía."); process.exit(0); }).catch((e) => { console.error(e.message); process.exit(1); });
+  } else if (process.argv[2] === "--restaurar") {
+    // node server.js --restaurar backups/fulgoria-….sqlite   (o la ruta de un archivo .sqlite)
+    if (!persistencia) { console.error("PERSISTENCIA=off: no hay base que restaurar."); process.exit(1); }
+    if (!process.argv[3]) { console.error("Uso: node server.js --restaurar <copia>   (las copias: node server.js --copias)"); process.exit(1); }
+    persistencia.restaurar(process.argv[3]).then((r) => {
+      console.log(`Restaurada ${r.restaurada} (${r.meses ?? "?"} meses guardados). La base anterior quedó en ${r.anterior}.`);
+      console.log("Reiniciá el servidor (en EasyPanel: Restart) para que la use.");
+      process.exit(0);
+    }).catch((e) => { console.error(e.message); process.exit(1); });
+  } else if (process.argv[2] === "--backup") {
     if (!persistencia) { console.error("PERSISTENCIA=off: no hay base que copiar."); process.exit(1); }
     persistencia.backup().then((b) => { console.log(`Copia guardada: ${b.clave} (${b.bytes} bytes)`); process.exit(0); }).catch((e) => { console.error(e.message); process.exit(1); });
   } else {

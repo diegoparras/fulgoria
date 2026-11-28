@@ -323,7 +323,33 @@ function crearPersistencia({ dataDir, almacenamiento = "disco", s3 = {}, clave, 
       await blobs.guardar(clave, datos);
       return { clave, bytes: datos.length };
     },
-    cerrar() { clearInterval(api._timer); db.close(); },
+    async copias() { return (await blobs.listar("backups/")).filter((k) => k.endsWith(".sqlite")); },
+    /**
+     * Restaura una copia (clave "backups/…" del almacenamiento, o la ruta de un archivo .sqlite).
+     * Verifica que sea una base de Fulgoria, guarda la actual como fulgoria.sqlite.antes-<fecha> y la
+     * reemplaza. Deja esta instancia cerrada: hay que reiniciar el servidor.
+     */
+    async restaurar(origen) {
+      const datos = String(origen).startsWith("backups/") ? await blobs.leer(origen) : fs.existsSync(origen) ? fs.readFileSync(origen) : null;
+      if (!datos) throw new Error(`No encontré la copia ${origen}.`);
+      if (datos.subarray(0, 16).toString("latin1") !== "SQLite format 3\u0000") throw new Error("Eso no es una base SQLite (¿DOCS_CLAVE distinta de la que la cifró?).");
+      const tmp = path.join(dataDir, `.restaurar-${Date.now()}.sqlite`);
+      fs.writeFileSync(tmp, datos);
+      try {
+        const prueba = new DatabaseSync(tmp, { readOnly: true });
+        const tablas = prueba.prepare("SELECT name FROM sqlite_master WHERE type = 'table'").all().map((t) => t.name);
+        const cuantos = tablas.includes("periodos") ? prueba.prepare("SELECT COUNT(*) AS n FROM periodos").get().n : null;
+        prueba.close();
+        if (!["clientes", "cuentas", "periodos"].every((t) => tablas.includes(t))) throw new Error("La copia no tiene las tablas de Fulgoria.");
+        clearInterval(api._timer); db.close();
+        const actual = path.join(dataDir, "fulgoria.sqlite"), antes = `${actual}.antes-${ahora().replace(/[:.]/g, "-")}`;
+        for (const ext of ["-wal", "-shm"]) if (fs.existsSync(actual + ext)) fs.unlinkSync(actual + ext);
+        fs.renameSync(actual, antes);
+        fs.renameSync(tmp, actual);
+        return { restaurada: origen, anterior: antes, meses: cuantos };
+      } finally { if (fs.existsSync(tmp)) fs.unlinkSync(tmp); }
+    },
+    cerrar() { clearInterval(api._timer); try { db.close(); } catch {} },
   };
   if (backupHoras > 0) {
     api._timer = setInterval(() => api.backup().then((b) => console.log(`[fulgoria] copia de la base: ${b.clave}`)).catch((e) => console.error("[fulgoria] copia de la base falló:", e.message)), backupHoras * 3600 * 1000);
